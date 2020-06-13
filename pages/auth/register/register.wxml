@@ -1,0 +1,21 @@
+<view>
+  <view class="login_logo">
+    <image class="logo_img" src="../../../static/images/logo.jpg"></image>
+  </view>
+  <view class="logo_name">海外海</view>
+  <view class="logo_content">给与您最优质的服务</view>
+  <view class="form_box">
+    <view class="form-item">
+      <input class="mobile" value="{{mobile}}" bindinput="bindMobileInput" placeholder="手机号" />
+    </view>
+    <view class="form-item">
+      <view class="form-item code-item">
+        <input class="code" value="{{code}}" bindinput="bindCodeInput" placeholder="验证码" />
+      </view>
+      <view class="code-btn" bindtap="sendCode" wx:if="{{!countdownShow}}">获取验证码</view>
+      <view class="code-btn" wx:if="{{countdownShow}}">{{countdown}}s</view>
+    </view>
+    <view class="register_btn" bindtap="startRegister" >确认绑定</view>
+    <view class="register_i">一天内最多失败五次验证</view>
+  </view>
+</view>

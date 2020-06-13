@@ -1,0 +1,80 @@
+/* pages/ucenter/orderCancel/orderCancel.wxss */
+.cancel_info{
+  background-color: #fff;
+  padding: 30rpx;
+}
+.info_hotelName{
+  font-weight: 600;
+  margin-bottom: 20rpx;
+}
+.cancel_info>view{
+  padding: 10rpx;
+}
+.info_text{
+  color: #666;
+  font-size: 26rpx;
+}
+.info_t1{
+  display: inline-block;
+  width: 150rpx;
+  text-align: left;
+}
+/**/
+.cancel_choose{
+  margin-top: 20rpx;
+  background-color: #fff;
+  padding: 10rpx;
+}
+.choose_box{
+  position: relative;
+  margin:20rpx;
+}
+.choose_radio{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  width: 30rpx;
+  height: 30rpx;
+  border-radius:40rpx;
+  border: 5px solid #cdcdcd;
+  padding: 10rpx;
+}
+.choose_radio_on{
+  border: 5px solid #e66465;
+}
+.radio_val{
+  background-color: #fff;
+  width: 20rpx;
+  height: 20rpx;
+  margin: auto;
+  border-radius:15rpx;
+}
+.radio_val_on{
+  background-color: #fff;
+}
+.choose_val{
+  margin-left: 60rpx;
+  font-size: 26rpx;
+}
+.textarea_box{
+  margin:40rpx 20rpx;
+  background-color: #f1f1f1;
+  padding: 20rpx;
+}
+.cancel_textarea{
+  width: 100%;
+  height: 200rpx;
+  color: #666;
+  font-size: 26rpx;
+}
+/**/
+.cancel_btn{
+  padding: 20rpx;
+}
+.cancel_btn>view{
+  text-align: center;
+  background-color: #e66465;
+  color: #fff;
+  padding: 20rpx;
+  border-radius:50rpx ;
+}

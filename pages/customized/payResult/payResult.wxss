@@ -1,0 +1,10 @@
+.result{
+  margin-top: 100rpx;
+}
+.result_img{
+  margin: auto;
+  text-align: center;
+}
+.result_text{
+  text-align: center;
+}

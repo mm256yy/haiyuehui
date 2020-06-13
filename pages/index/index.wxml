@@ -1,0 +1,64 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="home_head">
+    <view class="home_swiper">
+      <swiper 
+        indicator-dots="false"
+        autoplay="true"
+        interval="5000"
+        >
+        <block wx:for="{{bannerUrls}}" wx:key="item">
+          <swiper-item>
+            <image src="{{item}}" class="banner_image" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="home_booking">
+      <view class="booking_box">
+        <view class="booking_hotels" bindtap="hotelsList">{{hotelsName}}</view>
+        <view class="booking_ul" bindtap="calendarShow">
+          <view class="booking_li">
+            <view class="booking_li_h5">入住时间</view>
+            <view class="booking_li_time">
+              <text class="booking_li_days">{{show.startTime}}</text>
+              <text class="booking_li_h5">{{show.startWeek}}</text>
+            </view>
+          </view>
+          <view class="booking_li">
+            <view class="booking_li_h5">离店时间</view>
+            <view class="booking_li_time">
+              <text class="booking_li_days">{{show.endTime}}</text>
+              <text class="booking_li_h5">{{show.endWeek}}</text>
+            </view>
+          </view>
+          <view class="booking_li booking_li_totle">
+            <text class="booking_li_h5">共</text><text>{{show.num}}</text><text class="booking_li_h5">晚</text>
+          </view>
+        </view>
+        <view class="booking_btn" bindtap="hotelsList">
+          <view>查询</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="home_recommend">
+    <view>
+    
+    </view>
+  </view>
+  <view class="home_member">
+    <image src="../../static/images/member-home.jpg" bindtap="aa"></image>
+    <view>
+    </view>
+  </view>
+  
+  <!--<view>
+    <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+      <view class="picker">
+        当前选择: {{date}}
+      </view>
+    </picker>
+  </view>-->
+</view>

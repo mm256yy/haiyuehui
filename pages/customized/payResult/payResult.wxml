@@ -1,0 +1,12 @@
+<view class="result">
+  <view class="result_img">
+    <icon wx:if="{{result==1}}" class="icon-box-img" type="success" size="93"></icon>
+    <icon wx:if="{{result==0}}" class="icon-box-img" type="cancel" size="93"></icon>
+  </view>
+  <view class="result_text">
+    <text wx:if="{{result==1}}">支付成功</text><text wx:if="{{result==0}}">支付失败</text>
+  </view>
+  <view class="result_text">
+    页面正在跳转{{second}}s
+  </view>
+</view>

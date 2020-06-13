@@ -1,0 +1,46 @@
+
+page{background-color: #f1f1f1;}
+.pay_pop{
+  margin: 20rpx;
+  padding: 20rpx;
+  background-color: #313848;
+  color: #fff;
+  border-radius:10rpx ;
+}
+.pay_ul{
+  background-color: #fff;
+  padding:0rpx 20rpx ;
+  margin-bottom: 20rpx;
+}
+.pay_li{
+  border-bottom:1px solid #f1f1f1 ;
+  padding: 20rpx 0rpx;
+}
+.pay_li:last-child{
+  border-bottom:0rpx ;
+}
+.pay_li_h{
+  margin-right: 30rpx;
+}
+.pay_li_r{
+  float: right;
+}
+.pay_li_totle{
+  font-size: 36rpx;
+  color: #cc0000;
+}
+.pay_li_green{
+  color:#179B16 ;
+}
+.pay_label{
+  text-align: center;
+  color: #999;
+}
+.pay_btn{
+  margin: 20rpx;
+  padding: 20rpx;
+  background: linear-gradient(to right, #039cee , #753ffd);
+  color: #fff;
+  border-radius:50rpx ;
+  text-align: center;
+}

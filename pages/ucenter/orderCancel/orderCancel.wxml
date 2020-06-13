@@ -1,0 +1,28 @@
+<!--pages/ucenter/orderCancel/orderCancel.wxml-->
+<view>
+  <view class="cancel_info">
+    <view class="info_hotelName">{{info.hotelName}}</view>
+    <view><text class="info_text info_t1">房型：</text><text class="info_text">{{info.room}}</text></view>
+    <view><text class="info_text info_t1">入住时间：</text><text class="info_text">{{info.startTimeS}}至{{info.endTimeS}}</text></view>
+    <view><text class="info_text info_t1">订单金额：</text><text class="info_text">{{info.totalS}}</text></view>
+    <view><text class="info_text info_t1">订单编号：</text><text class="info_text">{{info.orderId}}</text></view>
+  </view>
+  <view class="cancel_choose">
+    <view>
+      <view class="choose_box" wx:for="{{choose}}" wx:key="index" bindtap="radioChange" data-val="{{item.name}}" data-index="{{index}}">
+        <view class="choose_radio {{chooseVal == index?'choose_radio_on':''}}"></view>
+        <view class="choose_val">{{item.name}}</view>
+      </view>
+      <view class="choose_box" bindtap="radioChange" data-val="其他原因" data-index="4">
+        <view class="choose_radio {{chooseVal == 4?'choose_radio_on':''}}"></view>
+        <view class="choose_val">其他原因</view>
+        <view class="textarea_box">
+          <textarea class="cancel_textarea" bindinput="bindTextareaInput" placeholder="请输入其他内容" nodes="{{nodes}}" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="cancel_btn" bindtap="cancel">
+    <view>{{payType == 1?'订单取消':'订单退款'}}</view>
+  </view>
+</view>

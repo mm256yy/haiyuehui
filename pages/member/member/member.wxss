@@ -1,0 +1,145 @@
+/* pages/member/member/index.wxss */
+
+page{
+  background-color: #fff;
+}
+/*head*/
+.member_head{
+  width: 100%;
+  margin-bottom: -8rpx;
+}
+.member_head_ba{
+  width: 100%;
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  z-index: -2;
+}
+.member_card{
+  position: relative;
+}
+.member_card_ba{
+  width: 100%;
+}
+.member_card_tou{
+  position: absolute;
+  top: 120rpx;
+  left: 100rpx;
+}
+.card_tou_img{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 100rpx;
+  border: 5rpx solid #abadb5;
+}
+.card_integral{
+  position: absolute;
+  top: 90rpx;
+  left: 100rpx;
+  margin-left: 120rpx;
+  padding-top:60rpx ;
+}
+.card_t{
+  color: #fff;
+}
+.card_t1{
+  font-size: 22rpx;
+  line-height: 38rpx;
+}
+.card_t2{
+  font-size: 36rpx;
+}
+.card_t3{
+  font-size: 30rpx;
+}
+.card_member{
+  position: absolute;
+  bottom: 40rpx;
+  right:120rpx;
+  text-align: center;
+}
+.card_endtime{
+  position: absolute;
+  bottom: 20rpx;
+  left: 100rpx;
+  color: #cdcdcd;
+  font-size: 22rpx;
+}
+/*member_progress*/
+.member_progress{
+  height: 200rpx;
+  background: linear-gradient(to right, #039cee , #753ffd);
+}
+.progress_ul{
+  display: flex;
+  padding: 20rpx 0rpx;
+}
+.progress_li_content{
+  display: flex;
+}
+.progress_li_left,.progress_li_right{
+  flex: 1 1 auto;
+  display: inline-block;
+  height: 5rpx;
+  background-color: #fff;
+  margin: auto 0rpx;
+}
+.progress_li_down{
+  padding: 0rpx!important;
+  margin:30rpx 0rpx!important;
+}
+.progress_li_down,.progress_li_up{
+  display: inline-block;
+  padding: 10rpx;
+  border: 5px solid #fff;
+  border-radius:40rpx ;
+  margin:20rpx 0rpx;
+}
+.progress_li{
+  flex: 1 1 auto;
+  text-align: center;
+}
+.progress_li_t1{
+  color: #fff;
+  font-size: 24rpx;
+}
+.progress_li_t2{
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: 800;
+}
+.progress_li_label{
+  color: #fff;
+  font-size: 24rpx;
+  text-align: center;
+}
+/*privilege*/
+.member_privilege{
+  position: relative;
+}
+.privilege_ba{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  z-index: -1;
+}
+.privilege_ul{
+  padding:130rpx 50rpx;
+  overflow: hidden;
+}
+.privilege_li{
+  width: 25%;
+  text-align: center;
+  float: left;
+  margin-top: 10rpx;
+}
+.privilege_li_img{
+  width:80rpx;
+  height: 80rpx;
+}
+.privilege_li_t1{
+  color: #fff;
+  font-size: 20rpx;
+  text-align: center;
+}

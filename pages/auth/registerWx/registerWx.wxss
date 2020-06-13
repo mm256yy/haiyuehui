@@ -1,0 +1,69 @@
+.login_h{
+  padding: 40rpx 60rpx;
+}
+.login_h1{
+  font-size: 46rpx;
+}
+.login_h2{
+  padding: 20rpx 0rpx;
+  font-size: 34rpx;
+}
+.login_h3{
+  font-size: 26rpx;
+  color: #999;
+}
+/**/
+.login_logo{
+  margin-top: 100rpx;
+  text-align: center;
+}
+.logo_img{
+  height: 400rpx;
+  padding: 20rpx;
+  border-radius:20rpx;
+  margin:auto ;
+}
+.logo_name{
+  margin-top: 30rpx;
+  font-size: 40rpx;
+  text-align: center;
+  font-weight: 800;
+}
+.logo_content{
+  text-align: center;
+  color: #999;
+}
+.form_box {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding: 0 40rpx;
+  background: #fff;
+  margin-top: 100rpx;
+}
+.register_b{
+  margin: 20rpx 0rpx 20rpx 0rpx;
+  border-radius:50rpx ;
+  font-size: 30rpx;
+  width: 100% !important;
+  border-radius: 50rpx;
+  text-align: center;
+}
+.register_wxbtn{
+  padding: 26rpx 10rpx;
+  color: #fff;
+  background: linear-gradient(to right, #039cee , #753ffd);
+}
+.register_btn{
+  padding: 25rpx 10rpx;
+  color: #008cd7;
+  text-decoration: underline;
+}
+.agreement{
+  text-align: center;
+  color: #999;
+}
+.agreement_href{
+  color: #008cd7;
+  text-decoration: underline;
+}

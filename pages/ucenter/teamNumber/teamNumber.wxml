@@ -1,0 +1,80 @@
+<!--pages/ucenter/teamNumber/teamNumber.wxml-->
+<view>
+  <view class="team_box">
+    <image class="team_ba" src="../../../static/images/team_ba.png"></image>
+    <view class="team_title" wx-if="{{chooseNum == 1||chooseNum == 2}}">
+      <view class="title_h1">{{chooseNum == 1?'请填写团队编号':'请填写团队密钥'}}</view>
+      <view class="title_h2">-- 海外海集团</view>
+    </view>
+    <view class="team_process" wx:if="{{chooseNum == 3||chooseNum == 4||chooseNum == 5}}">
+      <view class="process_num {{chooseNum == 3?'process_num_on':''}}" bindtap="{{chooseNum == 3?'again':''}}">
+        <image class="process_img" src="../../../static/images/team3.png"></image>
+        <view class="process_text">入住类型</view>
+      </view>
+      <view class="process_num {{chooseNum == 4?'process_num_on':''}}" bindtap="{{chooseNum == 4?'query':''}}">
+        <image class="process_img" src="../../../static/images/team4.png"></image>
+        <view class="process_text">填写信息</view>
+      </view>
+      <view class="process_num {{chooseNum == 5?'process_num_on':''}}" bindtap="{{chooseNum == 5?'query':''}}">
+        <image class="process_img" src="../../../static/images/team5.png"></image>
+        <view class="process_text">支付完成</view>
+      </view>
+    </view>
+    <view class="team_number" wx:if="{{chooseNum == 1}}">
+      <view class="number_input">
+        <input  placeholder="请输入团队编号" bindblur="bindNumInput" bindinput="bindNumInput"></input>
+      </view>
+    </view>
+    <view class="team_pwd" wx:if="{{chooseNum == 2}}">
+      <view class="pwd_input">
+        <view class="pwd_val" data-val="1">{{pwdVal[0]}}</view>
+        <view class="pwd_val" data-val="2">{{pwdVal[1]}}</view>
+        <view class="pwd_val" data-val="3">{{pwdVal[2]}}</view>
+        <view class="pwd_val" data-val="4">{{pwdVal[3]}}</view>
+      </view>
+      <view class="pwd_btn_box">
+        <view class="pwd_btn" bindtap="pwdBtn" data-val="{{item}}" wx:for="{{pwdBtn}}" wx:key="index">{{item}}</view>
+        <view class="pwd_btn"></view>
+        <view class="pwd_btn" bindtap="pwdBtn" data-val="0">0</view>
+        <view class="pwd_btn" bindtap="pwdDel">
+          <image class="pwd_btn_del" src="../../../static/images/del_num.png"></image>
+        </view>
+      </view>
+    </view>
+    <view class="team_people" wx:if="{{chooseNum == 3}}">
+      <view class="people_li people_li1" bindtap="peopleType" data-type="1">
+        <view class="people_val">单人入住</view>
+        <view class="people_label">填写信息只需填写自己身份信息</view>
+      </view>
+      <view class="people_li people_li2" bindtap="peopleType" data-type="2">
+        <view class="people_val">多人入住</view>
+        <view class="people_label">填写信息需要把同住人信息一起提交</view>
+      </view>
+    </view>
+    <view class="team_info" wx:if="{{chooseNum == 4}}">
+      <view class="info_ul">
+        <view class="info_li">
+          <view class="info_li_title">用户信息一</view>
+          <input class="number_input" placeholder="请输入真实姓名" bindblur="bindNameInput" bindinput="bindNameInput"></input>
+          <input class="number_input" placeholder="请输入身份证号" bindblur="bindIdentityInput" bindinput="bindIdentityInput"></input>
+          <input class="number_input" placeholder="请输入手机号码（选填）" bindblur="bindMobileInput" bindinput="bindMobileInput"></input>
+        </view>
+        <view class="info_li" wx:if="{{peopleType == 2}}">
+          <view class="info_li_title">用户信息二</view>
+          <input class="number_input" placeholder="请输入真实姓名" bindblur="bindPwdInput" bindinput="bindNumInput"></input>
+          <input class="number_input" placeholder="请输入身份证号" bindblur="bindPwdInput" bindinput="bindNumInput"></input>
+          <input class="number_input" placeholder="请输入手机号码（选填）" bindblur="bindPwdInput" bindinput="bindNumInput"></input>
+        </view>
+      </view>
+    </view>
+    <view class="team_pay" wx:if="{{chooseNum == 5}}">
+      <view>
+      
+      </view>
+    </view>
+    <view class="team_btn">
+      <view class="btn_define" wx:if="{{chooseNum != 2&&chooseNum != 3}}" bindtap="define">下一步</view>
+      <view class="btn_again" wx:if="{{chooseNum != 1&&chooseNum != 2&&chooseNum != 3}}" bindtap="back">上一步</view>
+    </view>
+  </view>
+</view>

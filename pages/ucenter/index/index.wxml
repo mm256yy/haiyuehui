@@ -1,0 +1,55 @@
+<view>
+  <view class="ucenter_head">
+    <view class="ucenter_person" bindtap="{{ucenter.name == '点击登陆'?'sign':''}}">
+      <view>
+        <text class="ucenter_name">{{ucenter.name}}</text>
+        <text class="ucenter_vip">{{ucenter.vip}}</text>
+      </view>
+      <view wx:if="{{false}}">
+        <view class="progress_box">
+          <view class="progress_val"></view>
+          <text class="ucenter_text progress_text">{{ucenter.progressVal}}/{{ucenter.progressTop}}</text>
+        </view>
+      </view>
+      <view wx:if="{{false}}">
+        <text class="ucenter_text">下一等级会员需要{{ucenter.progressTop}}积分</text>
+      </view>
+      <image class="ucenter_ba" src="../../../static/images/ucenter_ba.jpg"></image>
+      <image class="ucenter_tou" src="{{ucenter.tou}}"></image>
+      <image class="ucenter_set" bindtap="set" src="../../../static/images/set.png" wx:if="{{false}}"></image>
+    </view>
+    <view class="ucenter_menu">
+      <view class="menu_box">
+        <view class="menu_ul">
+          <view class="menu_li" bindtap="{{item.bindtap}}" wx:for="{{menuUl}}" wx:key="index">
+            <view class="menu_icon">
+              <image src="{{item.img}}"></image>
+              <text class="badge_num" wx:if="{{badge.menu[index]!=0}}">{{badge.menu[index]}}</text>
+            </view>
+            <text>{{item.text}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="ucenter_member" wx:if="{{false}}">
+    <view class="member_h1">海悦会特权</view>
+    <image class="member_kind" src="../../../static/images/king.png"></image>
+    <view class="member_ul">
+      <view class="member_li" wx:for="{{memberUl}}" wx:key="index">
+        <image class="member_li_img" src="{{item.img}}"></image>
+        <view class="member_li_text">{{item.text1}}</view>
+        <view class="member_li_text">{{item.text2}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="ucenter_other" wx:if="{{false}}">
+    <view class="ucenter_other_h1">我的服务</view>
+    <view class="other_ul">
+      <view class="other_li" wx:for="{{otherIcon}}" wx:key="index">
+        <image class="other_img" src="{{item.img}}"></image>
+        <view class="other_text">{{item.text}}</view>
+      </view>
+    </view>
+  </view>
+</view>

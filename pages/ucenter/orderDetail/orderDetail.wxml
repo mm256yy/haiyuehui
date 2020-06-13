@@ -1,0 +1,85 @@
+<!--pages/ucenter/orderDetail/orderDetail.wxml-->
+<view>
+  <view class="order_type">
+    <image class="order_type_img" src="../../../static/images/order_ba.jpg"></image>
+    <text>{{detail.statusS}}</text>
+  </view>
+  <view class="order_detail">
+    <view class="detail_ul">
+      <view class="detail_hotel">{{detail.hotelName}}</view>
+      <view><text class="detail_t1">房型名称：</text><text class="detail_t0">{{detail.rmdesc}}</text></view>
+      <view wx:if="{{(detail.status == 31)||(detail.status == 41)||(detail.status == 51)}}"><text class="detail_t1" >入住房号：</text><text class="detail_t0">{{detail.roomNo}}</text></view>
+      <view><text class="detail_t1">房型编号：</text><text class="detail_t0">{{detail.rmtype}}</text></view>
+      <view><text class="detail_t1">入住时间：</text><text class="detail_t0">{{detail.startTimeS}}至{{detail.endTimeS}}</text></view>
+      <view><text class="detail_t1">订单编号：</text><text class="detail_t0">{{detail.orderId}}</text></view>
+    </view>
+    <view class="detail_ul">
+      <view><text class="detail_t1">联系人：</text><text class="detail_t0">{{detail.contactsName}}</text></view>
+      <view><text class="detail_t1">联系电话：</text><text class="detail_t0">{{detail.contactsTel}}</text></view>
+    </view>
+  </view> 
+  <view class="order_person" wx:if="{{detail.status == 22||detail.status == 31||detail.status == 41||detail.status == 51}}">
+    <view class="order_h1">入住人信息</view>
+    <view class="person_ul" wx:for="{{personUl}}" wx:key="index">
+      <view class="person_li">
+        <view class="liveY" >
+          <view><text class="detail_t1">入住类型：</text><text class="detail_t0">{{index == 0?'房间主客':'同住人'}}</text></view>
+          <view><text class="detail_t1">真实姓名：</text><text class="detail_t0">{{item.name}}</text></view>
+          <view>
+            <text class="detail_t1">身份证号：</text><text class="detail_t0">{{item.identS}}</text>
+            <image class="detail_see" bindtap="see" data-index="{{index}}" wx:if="{{!item.seeIdent}}" src="../../../static/images/see-no.png"></image>
+            <image class="detail_see" bindtap="see" data-index="{{index}}" wx:if="{{item.seeIdent}}" src="../../../static/images/see-y.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="person_ul" wx:if="{{detail.status == 22||detail.status == 31}}">
+      <view class="person_li">
+        <view class="liveN" wx:if="{{!item.live}}">
+          <view class="liveN_btn" bindtap="{{personUl.length == 0?'goOrderChoose':'goOrderAddition'}}" data-type="0">{{personUl.length == 0?'+ 办理入住':'+ 添加同住人'}}</view>
+          <text class="detail_t4">{{personUl.length == 0?'办理入住后可扫脸开门':'同住人将赋予同等扫脸开门权限'}}</text>
+        </view>
+      </view>
+    </view>
+    <view  class="person_ul" wx:if="{{(detail.status == 22||detail.status == 31)&&personUl.length != 0&&false}}">
+      <view class="person_li">
+        <view class="liveN" wx:if="{{!item.live}}">
+          <view class="liveN_btn" bindtap="goOrderAddition" data-type="1">+ 添加访客</view>
+          <text class="detail_t4">按照公安规定进出房间人员需要如实登记</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="addition_box" wx:if="{{(detail.status == 31||detail.status == 41||detail.status == 51)&&additionUl.length != 0}}">
+    <view class="order_h1">续住订单</view>
+    <view class="addition_ul">
+      <view class="addition_li" wx:for="{{additionUl}}" wx:key="index">
+        <view class="addition_content">
+          <view class="addition_status">{{item.statusS}}</view>
+          <view class="addition_btn_label" wx:if="{{item.status == 11}}">注：订单只为您保留30分钟，超时将自动取消</view>
+          <view><text class="detail_t1">订单编号：</text><text class="detail_t0">{{item.orderId}}</text></view>
+          <view><text class="detail_t1">续住时间：</text><text class="detail_t0">{{item.time}}</text></view>
+          <view><text class="detail_t1">续住金额：</text><text class="detail_t0">￥{{item.subtotalS}}</text></view>
+        </view>
+        <view class="addition_btn" wx:if="{{item.status == 11}}">
+          <view class="addition_btn_li" bindtap="perpay" data-index="{{index}}">立即支付</view>
+          <view class="addition_btn_li" bindtap="orderCancel" data-index="{{index}}" data-order-id="{{item.orderId}}">取消续租</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="money_box">
+    <view class="order_h1">订单金额详情</view>
+    <view class="order_money">
+      <view><text class="detail_t1">房间价格：</text><text class="detail_t2">￥{{money.roomPriceS}}</text></view>
+      <view><text class="detail_t1">房间押金：</text><text class="detail_t2">￥{{money.depositS}}</text></view>
+      <view wx:if="{{(detail.status == 31||detail.status == 41||detail.status == 51)&&additionUl.length != 0}}"><text class="detail_t1">续住小计：</text><text class="detail_t2">￥{{money.additionS}}</text></view>
+      <view><text class="detail_t1">总价：</text><text class="detail_t3">￥{{money.totalS}}</text></view>
+    </view>
+  </view>
+  <view class="order_i">
+    <image src="../../../static/images/i.png" class="i_img"></image>
+    <view class="i_text1">取消政策</view>
+    <view class="i_text2">支付后，订单将会保留，支付后一个小时内可免费取消</view>
+  </view>
+</view>

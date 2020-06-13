@@ -1,0 +1,155 @@
+/* pages/ucenter/orderContinue/orderContinue.wxss */
+/*banner*/
+page{background-color: #f1f1f1;}
+.detailed_head{
+  position: relative;
+}
+.head_banner{
+  background-color: #cdcdcd;
+}
+.head_banner>swiper{
+  height: 500rpx;
+}
+.banner_image{
+  width: 100%;
+  height: 600rpx;
+}
+/*info*/
+.hotels_info{
+  padding: 20rpx;
+  background-color: #fff;
+}
+.hotels_name{
+  font-size: 32rpx;
+  font-weight: 600;
+  padding-right: 20rpx;
+  margin-bottom: 20rpx;
+}
+.room_name{
+  color: #999;
+  margin-left: 50rpx;
+}
+.room_no{
+  color: #999;
+}
+.time_ul{
+  display: flex;
+  margin-top: 20rpx;
+}
+.time_li{
+  flex: 1 1 auto;
+}
+.time_li_t1{
+  color: #999;
+  font-size: 24rpx;
+}
+.time_li_t2{
+  color: #000;
+  font-size: 30rpx;
+}
+.time_li_t3{
+  color: #000;
+  font-size: 24rpx;
+}
+.time_totle{
+  border-left:1px solid #cdcdcd ;
+  margin-top: 35rpx;
+  text-align: center;
+}
+/*fill*/
+.hotels_fill{
+  margin:30rpx ;
+  padding:20rpx 20rpx;
+  border-radius:10rpx ;
+  background-color: #fff;
+}
+.fill_h1{
+  padding:10rpx 20rpx;
+}
+.fill_day_ul{
+  text-align: center;
+  overflow: hidden;
+}
+.fill_day_li{
+  float: left;
+  width: 33%;
+  display: inline-block;
+  padding: 10rpx 20rpx;
+}
+.day_li_btn{
+  color: #039cee;
+  background-color: #FFF;
+  border-radius:50rpx ;
+  padding: 15rpx 20rpx;
+  border: 1rpx solid #039cee;
+}
+.day_li_on{
+  color: #fff;
+  background: linear-gradient(to right, #039cee , #346ae8);
+}
+.custom_ul{
+  margin: 50rpx;
+  text-align: center;
+}
+.custom_btn{
+  display: inline-block;
+  height: 70rpx;
+  width: 70rpx;
+  color: #039cee;
+  /*background: linear-gradient(to right, #039cee , #346ae8);*/
+  border-radius:50rpx;
+  padding: 15rpx 20rpx;
+  border: 1rpx solid #039cee;
+  text-align: center;
+}
+.custom_num{
+  display: inline-block;
+  padding: 10rpx 50rpx;
+  color: #039cee;
+}
+
+/*other*/
+.other_li{
+  background-color: #fff;
+  padding:30rpx 20rpx;
+  margin-bottom: 20rpx;
+}
+.other_li>text:nth-child(1){
+  padding-right: 20rpx;
+}
+/*hotels_introduce*/
+.hotels_introduce{
+  padding: 20rpx;
+  color: #999;
+}
+.introduce_t{
+  color: #999;
+}
+.introduce_t1{
+  text-indent: 2em;
+}
+
+/*price*/
+.hotels_price{
+  background-color: #fff;
+  padding: 20rpx;
+}
+.price_li{
+  padding: 10rpx;
+}
+.price_li_r{
+  float: right;
+}
+.price_red{
+  color: #cc0000;
+  font-size: 36rpx;
+}
+/*立即下单*/
+.hotels_btn{
+  margin: 30rpx;
+  padding: 20rpx;
+  background: linear-gradient(to right, #039cee , #753ffd);
+  text-align: center;
+  color: #fff;
+  border-radius: 50rpx;
+}

@@ -1,0 +1,50 @@
+<!--pages/member/member/index.wxml-->
+<view>
+  <view class="member_head">
+    <image class="member_head_ba" mode="widthFix" src="../../../static/images/member_ba.jpg"></image>
+    <view class="member_card">
+      <image class="member_card_ba" mode="widthFix" src="../../../static/images/card_ba.png"></image>
+      <view class="member_card_content">
+        <view class="member_card_tou">
+          <image class="card_tou_img" src="../../../static/images/person.png"></image>
+        </view>
+        <view class="card_integral">
+          <view class="card_t card_t1">当前积分：<text class="card_t card_t2">3277</text></view>
+        </view>
+        <view class="card_member">
+          <view class="card_t card_t3">贵宾卡</view>
+          <view class="card_t card_t1">Gold Member</view>
+        </view>
+        <view class="card_endtime">有效期至：2021年06月15日</view>
+      </view>
+    </view>
+  </view>
+  <view class="member_progress">
+    <view class="progress_ul">
+      <view class="progress_li" wx:for="{{memberGrade}}" wx:key="index">
+        <view class="progress_li_content">
+          <view class="progress_li_left"></view>
+          <view class=" {{memberUp == index?'progress_li_up':'progress_li_down'}}">
+            <!-- <image wx:if="{{memberUp == index}}" src="../../../static/images/king.png"></image> -->
+          </view>
+          <view class="progress_li_right"></view>
+        </view>
+        <view class="progress_li_t1">{{item.name}}</view>
+      </view>
+    </view>
+    <view class="progress_li_label">☆再住<text class="progress_li_t2">3</text>间夜可升级为 | 金卡 |</view>
+  </view>
+  <view class="member_privilege">
+    <image class="privilege_ba" src="../../../static/images/member-ba.png"  mode="widthFix"></image>
+    <view class="privilege_ul">
+      <view class="privilege_li" wx:for="{{privilegeUl}}" wx:key="index">
+        <image class="privilege_li_img" src="{{item.img}}"></image>
+        <view class="privilege_li_t1">{{item.text1}}</view>
+        <view class="privilege_li_t1">{{item.text2}}</view>
+      </view>
+    </view>
+    <view class="privilege_most">
+      <image src="../../../static/images/power/power_most.png"  mode="widthFix"></image>
+    </view>
+  </view>
+</view>

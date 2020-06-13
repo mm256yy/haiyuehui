@@ -1,0 +1,15 @@
+
+<view>
+  <view class="hotels_ul">
+    <view class="hotels_li"  wx:for="{{hotels}}" wx:key="index" bindtap="hotelsDetailed" data-arr="{{index}}" data-id="{{item.id}}" data-name="{{item.name}}">
+      <image src="{{item.img}}"></image>
+      <view class="hotels_text">
+        <view>{{item.name}}</view>
+        <view>{{item.address}}</view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{hotels.length == 0}}" class="order_zero">
+    <image class="zero_img" src="../../../static/images/zero.png"></image>
+  </view>
+</view>

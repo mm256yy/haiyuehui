@@ -1,0 +1,56 @@
+<!--pages/ucenter/orderChoose/orderChoose.wxml-->
+<view>
+  <image class="choose_ba" src="../../../static/images/team_ba.png"></image>
+  <view class="choose_box">
+    <view class="team_process">
+      <view class="process_num {{chooseNum == 1?'process_num_on':''}}" bindtap="{{chooseNum == 2?'again':''}}">
+        <image class="process_img" src="../../../static/images/team1.png"></image>
+        <view class="process_text">房间喜好</view>
+      </view>
+      <view class="process_num {{chooseNum == 2?'process_num_on':''}}" bindtap="{{chooseNum == 1?'query':''}}">
+        <image class="process_img" src="../../../static/images/team2.png"></image>
+        <view class="process_text">选择房间</view>
+      </view>
+    </view>
+    <view class="choose_one" wx:if="{{chooseNum == 1}}">
+      <view class="choose_option">
+        <picker mode="selector" value="{{floorArr}}" range="{{floorUl}}" range-key="{{'name'}}" bindchange="bindChange">
+          <view >选择楼层（单选）：<text class="floor_val">{{floorUl[floorArr].name}}</text></view>
+        </picker>
+      </view>
+      <view class="choose_option">
+        <text>选择类型（多选）：</text>
+        <view class="checkbox_li" data-index="{{index}}" bindtap="option" wx:for="{{checkboxUl}}" wx:key="index">
+          <text class="checkbox_val {{item.val?'checkbox_val_on':''}}"></text>
+          <text class="checkbox_text">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="choose_two" wx:if="{{chooseNum == 2}}">
+      <view class="room_ul">
+        <view class="room_detail">查询到以下房间</view>
+        <view class="room_li" wx:for="{{roomUl}}" wx:key="index">
+          <view class="room_li_val {{roomArr == index?'room_li_on':''}}" data-index="{{index}}" bindtap="roomChoose">{{item}}</view>
+        </view>
+      </view>
+      <view class="live_input">
+        <view class="input_li">
+          <text>真实名：</text>
+          <input placeholder="请输入真实姓名" bindblur="bindNameInput" bindinput="bindNameInput"></input>
+        </view>
+        <view class="input_li">
+          <text>身份证：</text>
+          <input placeholder="请输入身份证" bindblur="bindIdentityInput" bindinput="bindIdentityInput"></input>
+        </view>
+        <view class="input_li">
+          <text>手机号：</text>
+          <input placeholder="请输入手机号（选填）" bindblur="bindTelInput" bindinput="bindTelInput"></input>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="choose_btn" >
+    <view class="btn_define" bindtap="{{chooseNum == 1?'query':'infoBtnFrist'}}">{{chooseNum == 1?'查询':'办理入住'}}</view>
+    <view class="btn_again" bindtap="again" wx:if="{{chooseNum == 2}}">重新选择</view>
+  </view>
+</view>

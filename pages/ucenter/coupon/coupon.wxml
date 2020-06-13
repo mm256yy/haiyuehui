@@ -1,0 +1,35 @@
+<!--pages/ucenter/coupon/coupon.wxml-->
+<view>
+  <view class="coupon_type">
+    <view class="type_li {{typeMenu == 0?'type_li_on':''}}" bindtap="typeBind" data-type="0">未使用</view>
+    <view class="type_li {{typeMenu == 1?'type_li_on':''}}" bindtap="typeBind" data-type="1">已使用</view>
+    <view class="type_li {{typeMenu == 2?'type_li_on':''}}" bindtap="typeBind" data-type="2">已过期</view>
+  </view>
+  <view class="coupon_list">
+    <view class="coupon_li" wx:for="{{couponUl}}" wx:key="index" wx:if="{{typeMenu == item.type}}">
+      <image class="coupon_ba" src="../../../static/images/coupon.png"></image>
+      <view class="coupon_box">
+        <view class="coupon_left">
+          <view class="coupon_val"><text>￥</text><text>{{item.priceS}}</text></view>
+          <view class="coupon_remarks">仅在活动中使用</view>
+          <view class="coupon_btn">立即使用</view>
+        </view>
+        <view class="coupon_right">
+          <view class="coupon_name">{{item.name}}</view>
+          <view class="coupon_time">{{item.startTimeS}}至{{item.endTimeS}}</view>
+          <view class="coupon_detailed" bindtap="detailedShow" data-detailed-id="{{index+1}}">
+            <text>详细信息</text>
+            <image class="coupon_go_img" src="../../../static/images/right.png"></image>
+          </view>
+        </view>
+      </view>
+      <view class="coupon_rule" wx:if="{{detailedShow == (index+1)}}">
+        <view class="rule_t">优惠劵规则</view>
+        <view class="rule_t">{{item.rule}}</view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{couponUl.length == 0}}" class="order_zero">
+    <image class="zero_img" src="../../../static/images/zero.png"></image>
+  </view>
+</view>

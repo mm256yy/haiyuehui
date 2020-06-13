@@ -1,0 +1,52 @@
+
+<view>
+  <view class="pay_pop">客房已经锁定，订单将为你保留30分钟</view>
+  <view class="pay_ul">
+    <view class="pay_li">
+      <text class="pay_li_h">订单编号</text>
+      <text>{{order.num}}</text>
+    </view>
+    <view class="pay_li">
+      <text class="pay_li_h">订单类型</text>
+      <text>客房预定</text>
+    </view>
+    <view class="pay_li">
+      <text class="pay_li_h">订单金额</text>
+      <text>￥{{order.moneyS}}</text>
+    </view>
+    <view class="pay_li">
+      <text class="pay_li_h">下单时间</text>
+      <text>{{order.timeS}}</text>
+    </view>
+  </view>
+  <view class="pay_ul">
+    <view class="pay_li">
+      <text>客房优惠</text>
+      <text class="pay_li_r">￥{{pay.discountS}}</text>
+    </view>
+    <view class="pay_li">
+      <text>优惠劵</text>
+      <text class="pay_li_r">￥{{pay.couponS}}</text>
+    </view>
+    <view class="pay_li">
+      <text>支付优惠</text>
+      <text class="pay_li_r">￥{{pay.paymentS}}</text>
+    </view>
+    <view class="pay_li">
+      <text>使用余额</text>
+      <text class="pay_li_r">￥{{pay.remainderS}}</text>
+    </view>
+    <view class="pay_li">
+      <text>应支付</text>
+      <text class="pay_li_r pay_li_totle">￥{{pay.totalS}}</text>
+    </view>
+    <view class="pay_li">
+      <text>支付方式</text>
+      <text class="pay_li_r pay_li_green">微信支付</text>
+    </view>
+  </view>
+  <view>
+    <view class="pay_label">入住日前1天12:00过后订单不可取消</view>
+    <view class="pay_btn" bindtap="perpay">立即支付</view>
+  </view>
+</view>

@@ -1,0 +1,283 @@
+
+/*banner*/
+page{background-color: #f1f1f1;}
+.detailed_head{
+  position: relative;
+}
+.head_banner{
+  background-color: #cdcdcd;
+}
+swiper{
+  height: 500rpx;
+}
+.banner_image{
+  width: 100%;
+  height: 500rpx;
+}
+/*choose*/
+.head_choose{
+  position: absolute;
+  top: 20rpx;
+  left: 0rpx;
+  width: 100%;
+}
+.choose_ba{
+  background-color: rgba(0,0,0,0.6);
+  margin: 40rpx;
+  padding:20rpx 30rpx;
+  border-radius:20rpx ;
+  position: relative;
+}
+.choose_li text{
+  color: #fff;
+}
+.choose_name{
+  font-size: 34rpx;
+  line-height: 70rpx;
+}
+.choose_li_time{
+  width: 150rpx;
+  border-left:1px solid #fff ;
+  position: absolute;
+  top: 20rpx;
+  right: 35rpx;
+}
+.choose_time{
+  text-align: center;
+}
+.choose_time text{
+  font-size: 24rpx;
+}
+.name_down{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top: 40rpx;
+  right: 15rpx;
+}
+.time_down{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top: 40rpx;
+  right: 205rpx;
+}
+/*info*/
+.info_val{
+  position: relative;
+  padding:30rpx 100rpx;
+  background-color: #fff;
+  border-bottom:1px solid #f1f1f1 ;
+}
+.info_val image:nth-child(1){
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top: 30rpx;
+  left: 30rpx;
+}
+.info_val image:nth-child(3){
+  width: 200rpx;
+  height: 100rpx;
+  position: absolute;
+  top: 0rpx;
+  right: 0rpx;
+}
+/*menu*/
+.detailed_menu{
+  display: flex;
+  margin:40rpx 50rpx;
+  text-align: center;
+}
+.menu_li{
+  flex: 1 1 auto;
+}
+.menu_li>text{
+  display: inline-block;
+  margin-top:20rpx ;
+}
+.menu_icon{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius:100rpx;
+  background-color: #fff;
+  margin: auto;
+  box-shadow: 0rpx 5rpx 8rpx #cdcdcd;
+}
+.menu_icon image{
+  display: inline-block;
+  width: 70rpx;
+  height: 70rpx;
+  margin: 15rpx;
+}
+/*room*/
+.room_ul{
+  padding: 20rpx 0rpx;
+}
+.availZero{
+  opacity: 0.5;
+}
+.room_li{
+  padding: 20rpx;
+  overflow: hidden;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+.room_li image{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius:10rpx ;
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+}
+.room_text{
+  padding:0rpx 20rpx;
+  position: relative;
+  height: 200rpx;
+  margin-left: 200rpx;
+}
+.room_name text{
+  font-size: 34rpx;
+  font-weight:800 ;
+}
+.room_avail{
+  color: #999;
+  font-size: 24rpx;
+}
+.room_breakfast image{
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  top: 5rpx;
+  left: 0rpx;
+}
+.room_breakfast text{
+  color: #999;
+  padding-left: 40rpx;
+  font-size: 24rpx;
+}
+
+.room_price_before{
+  position: absolute;
+  bottom: 0rpx;
+  left: 20rpx;
+  text-align: center;
+  text-decoration: line-through;
+  color: #999;
+  font-size: 24rpx;
+}
+.room_price_vip{
+  width: 180rpx;
+  position: absolute;
+  bottom: 0rpx;
+  right: 0rpx;
+  background: linear-gradient(#e66465, #cc0000);
+  padding: 5rpx;
+  border-radius:10rpx ;
+  text-align: center;
+}
+.room_price_vip_zero{
+  background: #999;
+}
+.vip_name{
+  padding:8rpx 5rpx;
+}
+.vip_name text{
+  color: #fff;
+  font-size: 24rpx;
+}
+.vip_price{
+  background-color: #fff;
+  padding:8rpx 5rpx;
+  border-radius:10rpx ;
+  text-align: center;
+  font-size: 24rpx;
+}
+.vip_price text{
+  color: #cc0000;
+  font-size: 24rpx;
+}
+.vip_price_zero text{
+  color: #999;
+}
+/*pop*/
+.black{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0rpx;
+  left: 0rpx;
+  background-color: rgba(0,0,0,0.6);
+}
+.pop{
+  position: fixed;
+  bottom: -1140rpx;
+  left: 0rpx;
+  width: 100%;
+}
+.info{
+  border-top-left-radius:20rpx ;
+  border-top-right-radius:20rpx ;
+  background-color: #fff;
+  width: 100%;
+  position: relative;
+  padding-bottom: 40rpx;
+}
+.info_del{
+  position: absolute;
+  top: 10rpx;
+  right: 20rpx;
+  width: 60rpx;
+  height: 60rpx;
+}
+.info_h1{
+  padding: 20rpx;
+  text-align: center;
+}
+.info_img{
+  width: 100%;
+}
+.info_body{
+  margin: 40rpx 0rpx;
+  height: 400rpx;
+  overflow-y: scroll;
+}
+.info_body1{
+  padding: 20rpx;
+  border-bottom: 1rpx solid #cdcdcd;
+}
+.info_body2{
+  padding:20rpx 20rpx 20rpx 20rpx;
+}
+.info_body text{
+  font-size: 24rpx;
+}
+.info_attr_val{
+  display: inline-block;
+  color: #999;
+  width: 5em;
+  text-align: right;
+  padding-right:1em ;
+}
+.info_attr_s{
+  display: inline-block;
+  width: 50%;
+  padding: 10rpx;
+}
+.info_attr_b{
+  display: inline-block;
+  width: 100%;
+  padding: 10rpx;
+}
+/*zero*/
+.order_zero{
+  text-align: center;
+}
+.zero_img{
+  display: inline-block;
+  width: 200rpx;
+  height: 200rpx;
+  margin: 100rpx auto;
+}
