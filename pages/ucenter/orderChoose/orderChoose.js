@@ -22,7 +22,16 @@ Page({
     chooseNum:1,   //入住顺序
     floorArr:0,    //楼层顺序
     floorVal:'',   //选中楼层
-    roomUl:[],     //房间列表
+    roomUl:[
+      /*{
+        roomNo:11003,
+        isCis:true
+      },
+      {
+        roomNo:12002,
+        isCis:false
+      }*/
+    ],     //房间列表
     roomArr:0,
     info:{
       name:0,
@@ -153,6 +162,7 @@ Page({
       roomArr: e.currentTarget.dataset.index,
       'info.room':this.data.roomUl[e.currentTarget.dataset.index]
     });
+
   },
    //input
   bindNameInput(e){
@@ -174,10 +184,11 @@ Page({
   infoBtnFrist(){
     if(!util.checkName(this.data.info.name)){return false}
     if(!util.checkIdentity(this.data.info.identity)){return false}
+    if(!util.checkMobile(this.data.info.mobile)){return false}
     console.log(this.data.info)
     let param = {
       orderId:this.data.hotel.orderId,
-      roomNo:this.data.info.room,
+      roomNo:this.data.info.room.roomNo,
       name:this.data.info.name,
       ident:this.data.info.identity,
       mobile:this.data.info.mobile

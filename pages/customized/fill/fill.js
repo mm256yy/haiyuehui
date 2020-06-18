@@ -30,7 +30,7 @@ Page({
       roomNum:1,
       name:'',
       mobile:'',
-      mobileDisabled:true,
+      mobileDisabled:false,
     },
     breakfast:{
       need:false,
@@ -224,7 +224,7 @@ Page({
     if(tel){  //如果存在
       this.setData({
         'fill.mobile':tel,
-        'fill.mobileDisabled':true
+        'fill.mobileDisabled':false
       })
       console.log(this.data.fill)
     }else{

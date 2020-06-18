@@ -100,7 +100,12 @@ Page({
       this.setData({
         badge:badgeNew
       })
-      app.globalData.badge = ""
+      wx.setTabBarBadge({
+        index: 1,
+        text:'1',
+        success: res => { console.log(res) },
+        fail: res => { console.error }
+      })
     }
     //获取用户信息
     let userInfo = "";
@@ -142,6 +147,12 @@ Page({
   orderList(){
     this.setData({
       'badge.menu':[0,0,0,0]
+    })
+    app.globalData.badge = "";
+    wx.removeTabBarBadge({
+      index: 1,
+      success: res => { console.log(res) },
+      fail: res => { console.error }
     })
     wx.navigateTo({
       url: "../orderList/orderList"

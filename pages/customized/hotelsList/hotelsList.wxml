@@ -5,7 +5,9 @@
       <image src="{{item.img}}"></image>
       <view class="hotels_text">
         <view>{{item.name}}</view>
-        <view>{{item.address}}</view>
+        <view class="hotels_text_attr">{{item.address}}</view>
+        <text class="hotels_text_cis" wx:if="{{index == 0}}">云智住</text>
+        <image wx:if="{{index == 0}}" src="../../../static/images/cis.png" class="cis"></image>
       </view>
     </view>
   </view>

@@ -1,8 +1,9 @@
 {
   "pages":[
-    "pages/member/member/member",
+    
     "pages/index/index",
     "pages/pop/calendar/index",
+    "pages/member/member/member",
     
     "pages/auth/login/login",
     "pages/auth/loginAgree/loginAgree",
@@ -23,10 +24,11 @@
     "pages/ucenter/orderList/orderList",
     "pages/ucenter/orderContinue/orderContinue",
     "pages/ucenter/orderChoose/orderChoose", 
+    "pages/ucenter/orderTransfer/orderTransfer", 
+    "pages/ucenter/teamNumber/teamNumber",
     
     "pages/ucenter/coupon/coupon",
     
-    "pages/ucenter/teamNumber/teamNumber",
 
     "pages/logs/logs",
     "pages/activity/actList/actList",

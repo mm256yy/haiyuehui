@@ -11,7 +11,19 @@
       <view wx:if="{{(detail.status == 31)||(detail.status == 41)||(detail.status == 51)}}"><text class="detail_t1" >入住房号：</text><text class="detail_t0">{{detail.roomNo}}</text></view>
       <view><text class="detail_t1">房型编号：</text><text class="detail_t0">{{detail.rmtype}}</text></view>
       <view><text class="detail_t1">入住时间：</text><text class="detail_t0">{{detail.startTimeS}}至{{detail.endTimeS}}</text></view>
-      <view><text class="detail_t1">订单编号：</text><text class="detail_t0">{{detail.orderId}}</text></view>
+      <view class="detail_relative">
+        <text class="detail_t1">订单编号：</text><text class="detail_t0">{{detail.orderId}}</text>
+        <image wx:if="{{detail.status == 11||detail.status == 22}}" bindtap="copy" data-text="{{detail.orderId}}" class="detail_copy" src="../../../static/images/copy_{{allowConnect == 0?'n':'y'}}.png"></image>
+      </view>
+    </view>
+    <view class="detail_copy_i" wx:if="{{detail.status == 11||detail.status == 22}}">
+      <view>点击订单编号右侧按钮可以打开转接订单的授权，进行复制，可把订单转接给他人</view>
+      <view>注：若房间自己入住，请勿开启转接订单的授权</view>
+    </view>
+    <view class="detail_ul" wx:if="{{(detail.status == 31||detail.status == 32)&&personUl.length != 0}}">
+      <view><text class="detail_t1">房间密码：</text><text class="detail_t0">{{pwdValS}}</text></view>
+      <image class="detail_see" bindtap="pwd" wx:if="{{!pwdSeeIdent}}" src="../../../static/images/see-no.png"></image>
+      <image class="detail_see" bindtap="pwd" wx:if="{{pwdSeeIdent}}" src="../../../static/images/see-y.png"></image>
     </view>
     <view class="detail_ul">
       <view><text class="detail_t1">联系人：</text><text class="detail_t0">{{detail.contactsName}}</text></view>
@@ -36,12 +48,13 @@
     <view class="person_ul" wx:if="{{detail.status == 22||detail.status == 31}}">
       <view class="person_li">
         <view class="liveN" wx:if="{{!item.live}}">
-          <view class="liveN_btn" bindtap="{{personUl.length == 0?'goOrderChoose':'goOrderAddition'}}" data-type="0">{{personUl.length == 0?'+ 办理入住':'+ 添加同住人'}}</view>
+          <button wx:if="{{personUl.length == 0}}"  class="liveN_btn" bindtap="goOrderChoose" type='primary'>办理入住</button>
+          <view wx:if="{{personUl.length != 0}}" class="liveN_btn" bindtap="goOrderAddition" data-type="0">添加同住人</view>
           <text class="detail_t4">{{personUl.length == 0?'办理入住后可扫脸开门':'同住人将赋予同等扫脸开门权限'}}</text>
         </view>
       </view>
     </view>
-    <view  class="person_ul" wx:if="{{(detail.status == 22||detail.status == 31)&&personUl.length != 0&&false}}">
+    <view  class="person_ul" wx:if="{{(detail.status == 22||detail.status == 31)&&personUl.length != 0}}">
       <view class="person_li">
         <view class="liveN" wx:if="{{!item.live}}">
           <view class="liveN_btn" bindtap="goOrderAddition" data-type="1">+ 添加访客</view>

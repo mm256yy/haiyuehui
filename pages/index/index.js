@@ -49,6 +49,12 @@ Page({
       url: "../pop/calendar/index"
     })
   },
+  //跳转日历
+  orderTransfer(){
+    wx.navigateTo({
+      url: "../ucenter/orderTransfer/orderTransfer"
+    })
+  },
   //进行日历处理
   renderingTime(){
     let calendar = wx.getStorageSync("calendar")  //获取数据

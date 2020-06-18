@@ -73,6 +73,10 @@ Page({
   },
   //点击 1取消订单/ 2退款
   cancel(){
+    if(this.data.textarea.length>100){
+      wx.showModal({ title: '错误' , content: "填写原因字数过长" ,showCancel: false });
+      return false
+    }
     let parma = {
       orderId:this.data.info.orderId,
       reason:this.data.cause + ',' + this.data.textarea

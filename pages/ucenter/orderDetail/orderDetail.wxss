@@ -25,9 +25,11 @@ page{background-color: #f1f1f1;}
 }
 .detail_ul{
   padding: 20rpx 0rpx;
-}
-.detail_ul:nth-child(1){
   border-bottom: 1px solid #f1f1f1;
+  position: relative;
+}
+.detail_ul:last-child{
+  border-bottom: 1px solid #fff;
 }
 .detail_hotel{
   margin-bottom: 20rpx;
@@ -42,6 +44,27 @@ page{background-color: #f1f1f1;}
   width: 180rpx;
   color: #999;
   font-size: 26rpx;
+}
+.detail_relative{
+  position: relative;
+}
+.detail_copy{
+  width: 70rpx;
+  height: 70rpx;
+  font-size: 24rpx;
+  float: right;
+  color: #999;
+  position: absolute;
+  bottom: -10rpx;
+  right: 20rpx;
+}
+.detail_copy_i{
+  background-color: #f1f1f1;
+  padding: 20rpx;
+}
+.detail_copy_i>view{
+  color: #999;
+  font-size: 24rpx;
 }
 /*person*/
 .person_li{

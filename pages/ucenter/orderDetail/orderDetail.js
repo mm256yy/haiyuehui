@@ -2,6 +2,7 @@
 const util = require('../../../utils/util.js');
 const api = require('../../../config/api.js');
 const pay = require('../../../utils/pay.js');
+var app = getApp();
 Page({
   data: {
     detail:{
@@ -48,6 +49,10 @@ Page({
       total:0,
       totalS:'0.00'
     },
+    pwdVal:123456,
+    pwdValS:'******',
+    pwdSeeIdent:false,
+    allowConnect:0, //0 不允许 1 允许
   },
   onLoad(options) {
     this.init(options)
@@ -57,10 +62,11 @@ Page({
   },
   onShow() {
     this.orderList();
-    
+    //退出页面时把密码删除
+    app.globalData.orderPwd = "";
   },
   onHide() {
-
+    
   },
   //初始化
   init(options){
@@ -106,21 +112,24 @@ Page({
         }
         let personsUL = [];
         let personsLi = {};
-        for(let i=0;i<data.persons.length;i++){
-          personsLi = {    
-            orderId:data.persons[i].id,
-            name:data.persons[i].name,
-            ident:data.persons[i].ident,
-            identS:util.identityCard(data.persons[i].ident),
-            seeIdent:false,
+        if(data.persons != null){
+          for(let i=0;i<data.persons.length;i++){
+            personsLi = {    
+              orderId:data.persons[i].id,
+              name:data.persons[i].name,
+              ident:data.persons[i].ident,
+              identS:util.identityCard(data.persons[i].ident),
+              seeIdent:false,
+            }
+            personsUL.push(personsLi)
           }
-          personsUL.push(personsLi)
         }
         personUlNew = personsUL;
         this.setData({
           detail:detailNew,
           personUl:personUlNew,
-          money:moneyNew
+          money:moneyNew,
+          allowConnect:data.allowConnect
         })
         this.addDaysList();
       }
@@ -185,6 +194,41 @@ Page({
       })
     });
   },
+  //复制
+  copy(e){
+    console.log(e)
+    
+    let allowConnectNew = null;
+    if(this.data.allowConnect == 0){
+      allowConnectNew = 1;
+    }else{
+      allowConnectNew = 0;
+    }
+    let param = {
+      orderId:this.data.detail.orderId,
+      allowConnect:allowConnectNew,
+    }
+    console.log(param)
+    util.request(api.UcenterOrderAllowConnect , param , 'GET').then(res => {
+      console.log(res)
+      if (res.status.code === 0) {
+        if(allowConnectNew == 1){
+          wx.setClipboardData({
+            data: e.currentTarget.dataset.text,
+            success: function (res) {
+            }
+          })
+        }
+        this.setData({
+          allowConnect : allowConnectNew
+        })
+      }else{ //500
+        wx.showModal({ title: '错误信息',content: res.status.message,showCancel: false });
+      }
+    }).catch((err) => {
+      console.log(err)
+    });
+  },
   //取消订单
   orderCancel(e){
     let orderId = e.currentTarget.dataset.orderId;
@@ -194,15 +238,28 @@ Page({
   },
   //点击办理入住
   goOrderChoose(){
-    wx.navigateTo({
-      url: "../orderChoose/orderChoose?arr="+this.data.detail.startTimeS+"&dep="+this.data.detail.endTimeS+"&hotelId="+this.data.detail.hotelId+"&rmtype="+this.data.detail.rmtype+"&orderId="+this.data.detail.orderId
+    let that = this;
+    /*申请调用*/
+    wx.requestSubscribeMessage({
+      tmplIds: ['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'],
+      success (res) {
+        if(res['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'] == "accept"){
+          wx.navigateTo({
+            url: "../orderChoose/orderChoose?arr="+that.data.detail.startTimeS+"&dep="+that.data.detail.endTimeS+"&hotelId="+that.data.detail.hotelId+"&rmtype="+that.data.detail.rmtype+"&orderId="+that.data.detail.orderId
+          })
+        }else if(res['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'] == "reject"){
+          wx.showModal({title: '错误信息',content: "请确认退房通知提醒",showCancel: false});
+        }else{
+          wx.showModal({title: '错误信息',content: "请联系前台处理",showCancel: false});
+        }
+      }
     })
   },
   //添加同住人/访客  0 同住人 1 访客
   goOrderAddition(e){
     let additionType = e.currentTarget.dataset.type
     wx.navigateTo({
-      url: "../orderAddition/orderAddition?orderId="+this.data.detail.orderId+"&additionType="+additionType+"&hotelId="+this.data.detail.hotelId
+      url: "../orderAddition/orderAddition?orderId="+this.data.detail.orderId+"&additionType="+additionType+"&hotelId="+this.data.detail.hotelId+"&roomNo="+this.data.detail.roomNo
     })
   },
   //显示隐藏身份证号码
@@ -220,6 +277,42 @@ Page({
       personUl : personUlNew
     })
     
+  },
+  //密码的显示
+  pwd(){
+    let pwdValNew = "";
+    if(!this.data.pwdSeeIdent){ //不显示
+      //pwdValNew = this.data.pwdVal;
+      console.log(app.globalData.orderPwd)
+      if(app.globalData.orderPwd != undefined && app.globalData.orderPwd != 'undefined' && app.globalData.orderPwd != ""){  //判断是否有存密码(将会在退出页面删除)
+        pwdValNew = app.globalData.orderPwd
+      }else{
+        let param = {
+          orderId:this.data.detail.orderId,
+        }
+        console.log(param)
+        util.request(api.UcenterOrderGetRoomPwd , param , 'GET').then(res => {
+          console.log(res)
+          if (res.status.code === 0) {
+            pwdValNew = res.result
+            app.globalData.orderPwd = pwdValNew
+            this.setData({
+              pwdValS : pwdValNew,
+            })
+          }else{ //500
+            wx.showModal({ title: '错误信息',content: res.status.message,showCancel: false });
+          }
+        }).catch((err) => {
+          console.log(err)
+        });
+      }
+    }else{
+      pwdValNew = "******"
+    }
+    this.setData({
+      pwdValS : pwdValNew,
+      pwdSeeIdent : !this.data.pwdSeeIdent
+    })
   },
   //订单类型
   orderType(type){

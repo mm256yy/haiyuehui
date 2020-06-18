@@ -50,15 +50,24 @@
   font-size: 22rpx;
 }
 .booking_btn{
-  padding: 50rpx 0rpx 20rpx 0rpx;
-}
-.booking_btn>view{
   font-size: 28rpx;
   background: linear-gradient(to right, #039cee , #753ffd);
+  padding: 50rpx 0rpx 20rpx 0rpx;
   color: #fff;
   text-align: center;
   padding: 20rpx 10rpx;
   border-radius:50rpx ;
+  margin-top: 20rpx;
+}
+.order_btn{
+  font-size: 28rpx;
+  border: 1rpx solid #753ffd;
+  padding: 50rpx 0rpx 20rpx 0rpx;
+  color: #753ffd;
+  text-align: center;
+  padding: 19rpx 10rpx;
+  border-radius:50rpx ;
+  margin-top: 20rpx;
 }
 /*精品推荐*/
 .home_recommend{
@@ -66,12 +75,11 @@
 }
 /*会员介绍*/
 .home_member{
-  margin: 20rpx;
-  border-radius:20rpx;
-  overflow: hidden;
-  background: linear-gradient(to right, #2f374f , #2f374f);
+  padding:50rpx 20rpx;
 }
 .home_member image{
   width: 100%;
   height: 320rpx;
+  border-radius:20rpx;
 }
+

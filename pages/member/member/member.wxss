@@ -143,3 +143,16 @@ page{
   font-size: 20rpx;
   text-align: center;
 }
+.privilege_most{
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  left: 50%;
+  bottom: 30rpx;
+  margin-left: -30rpx;
+}
+.privilege_most image{
+  width: 60rpx;
+  height: 60rpx;
+  opacity: 0.5;
+}

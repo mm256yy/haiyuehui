@@ -1,0 +1,101 @@
+/* pages/ucenter/orderTransfer/orderTransfer.wxss */
+/*process*/
+.transfer_head{
+  margin: 20rpx;
+  border-radius: 20rpx;
+  padding: 50rpx 20rpx;
+}
+.transfer_ba{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  z-index: -1;
+}
+.transfer_process{
+  text-align: center;
+  margin-bottom: 180rpx;
+  display: flex;
+}
+.process_li{
+  flex: 1 1 auto;
+}
+.process_num{
+  display: inline-block;
+  color: #999;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  border-radius: 80rpx;
+  line-height: 60rpx;
+  margin: 0rpx 50rpx;
+  padding: 10rpx;
+}
+.process_num_on{
+  color: #fff;
+  background-color: rgba(255, 225, 255, 0.5);
+}
+.process_num_on>.process_img{
+  width: 100rpx;
+  height: 100rpx;
+}
+.process_img{
+  display: block;
+  width: 80rpx;
+  height: 80rpx;
+  margin: auto;
+}
+.process_text{
+  color: #fff;
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
+/*body*/
+.form_box {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding: 0 40rpx;
+  background: #fff;
+  margin-top: 100rpx;
+}
+.form-item {
+  height: 96rpx;
+  position: relative;
+  border-bottom: 1px solid #d9d9d9;
+}
+.order, .code{
+  display: block;
+  width: 100%;
+  height: 95rpx;
+  color: #333;
+  font-size: 30rpx;
+  border-bottom: 1px solid #f1f1f1;
+}
+/*card*/
+.order_card{
+  padding: 30rpx;
+}
+.order_text{
+  padding: 10rpx;
+}
+/*btn*/
+.transfer_btn{
+  margin-top: 60rpx;
+}
+.btn_define{
+  background: linear-gradient(to right, #039cee , #753ffd);
+  color: #fff;
+  border-radius: 40rpx;
+  text-align: center;
+  padding: 20rpx;
+  margin: 20rpx;
+}
+.btn_again{
+  background-color: #e6e4e4;
+  color: #666;
+  border-radius: 40rpx;
+  text-align: center;
+  padding: 20rpx;
+  margin: 20rpx;
+}

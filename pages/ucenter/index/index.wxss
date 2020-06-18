@@ -110,8 +110,8 @@
   width: 35rpx;
   height: 35rpx;
   border-radius:430rpx ;
-  border: 1px solid #cc0000;
-  background-color: #cc0000;
+  border: 1px solid #f00000;
+  background-color: #f00000;
   color: #fff !important;
   position: absolute;
   top: -10rpx;

@@ -1,4 +1,6 @@
-
+page{
+  background-color: #f1f1f1;
+}
 .hotels_ul{
   width: 100%;
   padding: 15rpx;
@@ -8,7 +10,7 @@
   border-radius:20rpx ;
   margin-bottom: 60rpx;
 }
-.hotels_li image{
+.hotels_li>image{
   border-top-left-radius:20rpx ;
   border-top-right-radius:20rpx ;
   width: 100%;
@@ -17,19 +19,31 @@
 }
 .hotels_text{
   padding: 20rpx;
+  position: relative;
 }
 .hotels_text>view:nth-child(1){
   font-size: 32rpx;
   font-weight: 800;
 }
-.hotels_text>view:nth-child(2){
+.hotels_text_attr{
   margin-top: 20rpx;
   display: inline-block;
-  font-size: 28rpx;
+  font-size: 24rpx;
   background-color: #d8f1ff;
   color: #008cd7;
   padding: 5rpx 10rpx;
   border-radius:10rpx ;
+  margin-right: 10rpx;
+}
+.hotels_text_cis{
+  margin-top: 20rpx;
+  display: inline-block;
+  font-size: 24rpx;
+  background-color: #ede6ff;
+  color: #753ffd;
+  padding: 5rpx 10rpx;
+  border-radius:10rpx ;
+  margin-right: 10rpx;
 }
 /*zero*/
 .order_zero{
@@ -40,4 +54,11 @@
   width: 200rpx;
   height: 200rpx;
   margin: 200rpx auto;
+}
+.cis{
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+  top: 0rpx;
+  right: 10rpx;
 }

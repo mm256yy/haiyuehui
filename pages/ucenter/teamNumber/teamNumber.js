@@ -2,7 +2,7 @@
 var util = require('../../../utils/util.js');
 Page({
   data: {
-    chooseNum:4,
+    chooseNum:3,
     teamNum:0,
     pwdVal:[],
     pwdBtn:[1,2,3,4,5,6,7,8,9],
@@ -29,13 +29,15 @@ Page({
   },
   //下一步
   define(){
-    if(!util.checkName(this.data.info[0].name)){return false}
-    if(!util.checkIdentity(this.data.info[0].identity)){return false}
-    //if(!util.checkMobile(this.data.info[0].mobile)){return false}
-
-    this.setData({
-      chooseNum:this.data.chooseNum + 1 
-    })
+    if(this.data.chooseNum == 4){
+      if(!util.checkName(this.data.info[0].name)){return false}
+      if(!util.checkIdentity(this.data.info[0].identity)){return false}
+      //if(!util.checkMobile(this.data.info[0].mobile)){return false}
+    }else{
+      this.setData({
+        chooseNum:this.data.chooseNum + 1 
+      })
+    }
   },
   //上一步
   back(){

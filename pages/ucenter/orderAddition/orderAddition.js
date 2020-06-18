@@ -4,9 +4,10 @@ const api = require('../../../config/api.js');
 const check = require('../../../utils/check.js');
 Page({
   data: {
-    additionType:0,   //0 同住人 1 访客     no2 扫码/分享同住人 3 扫码/分享访客人 4 扫码路人（没有携带参数）
+    additionType:1,   //0 同住人 1 访客     no2 扫码/分享同住人 3 扫码/分享访客人 4 扫码路人（没有携带参数）
     orderId:0,
     hotelId:0,
+    roomNo:0,
     info:{
       name:'',
       identity:'',
@@ -18,6 +19,7 @@ Page({
       additionType:options.additionType,
       orderId:options.orderId,
       hotelId:options.hotelId,
+      roomNo:options.roomNo
     })
   },
   onReady() {
@@ -60,11 +62,12 @@ Page({
       'info.mobile': e.detail.value
     });
   },
-  //startBtn
+  //添加同住人
   startBtn0(){
     console.log(this.data.info)
     if(!util.checkName(this.data.info.name)){return false}
     if(!util.checkIdentity(this.data.info.identity)){return false}
+    if(!util.checkMobile(this.data.info.mobile)){return false}
 
     let param = {
       orderId:this.data.orderId,
@@ -93,18 +96,25 @@ Page({
     });
     
   },
+  //添加访客
   startBtn1(){
+    if(!util.checkName(this.data.info.name)){return false}
+    if(!util.checkIdentity(this.data.info.identity)){return false}
     if(!util.checkMobile(this.data.info.mobile)){return false}
-    
+
     let param = {
+      orderId:this.data.orderId,
       hotelId:this.data.hotelId,
+      roomNo:this.data.roomNo,
+      name:this.data.info.name,
+      ident:this.data.info.identity,
       mobile:this.data.info.mobile
     }
     console.log(param)
-    util.request(api.UcenterVisitorSendMobile , param , 'POST').then(res => {
+    util.request(api.UcenterVisitorAddInfo , param , 'POST').then(res => {
       console.log(res)
       if (res.status.code === 0) {
-        wx.showModal({ title: '成功',content: '入住成功',showCancel: false , success (res) {
+        wx.showModal({ title: '成功',content: '提交成功',showCancel: false , success (res) {
           if (res.confirm) {
             wx.navigateBack({
               delta: 1  // 返回上一级页面。

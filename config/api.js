@@ -2,12 +2,12 @@
  // 手机 开发API地址
  // var WxApiRoot = 'http://112.17.106.101:9001/wx/';  
  // 正式线上ip
-  var WxApiRoot = 'http://124.70.147.182:9001/wx/'; 
+  var WxApiRoot = 'http://124.70.147.182:9001/wx/';
  // 测试线上ip
  // var WxApiRoot = 'http://124.70.132.80:9001/wx/';  
  // 本机 开发api地址
  // var WxApiRoot = 'http://192.168.188.79:9001/wx/';  // http://192.168.133.67:9002/wx/;
- // 线上地址
+ // 生产地址
  //var WxApiRoot = 'https://www.hwhhotels.com/wx/';
  
  module.exports = {
@@ -34,5 +34,9 @@
    UcenterOrderCheckOut: WxApiRoot + 'order/checkout', //退房 hwh
    UcenterOrderDaysSubmit: WxApiRoot + 'order/addDaysSubmit', //续住下订单 hwh
    UcenterAddDaysList: WxApiRoot + 'order/addDaysList', //查询续住列表 hwh
-   UcenterVisitorSendMobile: WxApiRoot + 'visitor/sendMobile', //访客发起手机号 hwh
- };
+   //UcenterVisitorSendMobile: WxApiRoot + 'visitor/sendMobile', //访客发起手机号 
+   UcenterVisitorAddInfo: WxApiRoot + 'visitor/addInfo', //添加访客
+   UcenterConnectOrder: WxApiRoot + 'order/connectOrder', //查询订单（转移订单-接受）
+   UcenterOrderAllowConnect: WxApiRoot + 'order/allowConnect', //是否可转接（转移订单-发送-复制）
+   UcenterOrderGetRoomPwd: WxApiRoot + 'order/getRoomPwd', //获取到当前订单的房间密码
+ }

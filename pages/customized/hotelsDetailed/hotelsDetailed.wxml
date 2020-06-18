@@ -67,20 +67,28 @@
   <view class="detailed_room">
     <view class="room_ul">
       <view class="room_li {{item.avail == 0?'availZero':''}}"   wx:for="{{hotel.room}}" wx:key="index">
-        <image src="{{item.img}}" bindtap="infoShow" data-rmtype="{{item.rmtype}}"></image>
+        <image class="room_li_img" src="{{item.img}}" bindtap="infoShow" data-rmtype="{{item.rmtype}}"></image>
+        <image wx:if="{{item.isCis}}" src="../../../static/images/cis_ba.png" class="cis_ba"></image>
+        <image wx:if="{{item.isCis}}" src="../../../static/images/cis.png" class="cis"></image>
         <view class="room_text">
           <view class="room_name">
             <text>{{item.name}}</text>
           </view>
-          <!--<view class="room_avail">剩余房间数：{{item.avail}}</view>
-          <view class="room_breakfast">
+          <view class="room_avail" wx:if="{{item.avail<=5}}">仅剩{{item.avail}}间</view>
+          <!--<view class="room_breakfast">
             <image src="../../../static/images/breakfast.png"></image>
             <text>可选择早餐</text>
           </view>-->
-          <view class="room_price_before">门市价：￥{{item.priceBeforeS}}/晚</view>
-          <view class="room_price_vip {{item.avail == 0?'room_price_vip_zero':''}}" bindtap="room" data-arr="{{index}}">
-            <view class="vip_name"><text>会员价预定</text></view>
-            <view class="vip_price {{item.avail == 0?'vip_price_zero':''}}" >
+          <view class="room_label1">今天18点前可免费取消</view>
+          <view class="room_attr">
+            <text class="room_attr_val">免费取消保障</text>
+            <text class="room_attr_val">入住即会员</text>
+          </view>
+          <view class="room_price_before {{isLogin?'room_price_before_y':'room_price_before_n'}}">门市价：￥{{item.priceBeforeS}}/晚</view>
+          
+          <view class=" {{item.avail == 0?'room_price_vip_zero':''}} {{item.isCis?'room_price_sic':'room_price_vip'}}" bindtap="room" data-arr="{{index}}">
+            <view class="vip_name"><text>{{item.isCis?'云智住预定':'会员价预定'}}</text></view>
+            <view class="vip_price {{item.avail == 0?'vip_price_zero':''}} {{item.isCis?'sic_price':''}}" >
               <text>￥</text>
               <text>{{item.avail == 0?'已满员':(item.priceVipS+'/晚')}}</text>
             </view>

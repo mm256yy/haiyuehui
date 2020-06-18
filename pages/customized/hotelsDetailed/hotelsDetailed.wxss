@@ -124,7 +124,7 @@ swiper{
   margin-bottom: 20rpx;
   position: relative;
 }
-.room_li image{
+.room_li_img{
   width: 200rpx;
   height: 200rpx;
   border-radius:10rpx ;
@@ -142,9 +142,25 @@ swiper{
   font-size: 34rpx;
   font-weight:800 ;
 }
+.room_label1{
+  color: #039cee;
+  font-size: 24rpx;
+}
+.room_attr{
+  width: 300rpx;
+}
+.room_attr_val{
+  font-size: 20rpx;
+  padding: 5rpx 10rpx;
+  border: 1rpx solid #c9b4ff;
+  border-radius:5rpx ;
+  color: #753ffd;
+  margin: 10rpx 10rpx 10rpx 0rpx;
+}
 .room_avail{
   color: #999;
   font-size: 24rpx;
+  color: #e66465;
 }
 .room_breakfast image{
   width: 30rpx;
@@ -164,9 +180,28 @@ swiper{
   bottom: 0rpx;
   left: 20rpx;
   text-align: center;
+  font-size: 28rpx;
+}
+.room_price_before_y{
   text-decoration: line-through;
   color: #999;
-  font-size: 24rpx;
+}
+.room_price_before_n{
+  color: #000;
+}
+.cis{
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+  bottom: 150rpx;
+  right:10rpx;
+}
+.cis_ba{
+  width: 140rpx;
+  height: 140rpx;
+  position: absolute;
+  bottom: 125rpx;
+  right: 0rpx;
 }
 .room_price_vip{
   width: 180rpx;
@@ -174,6 +209,16 @@ swiper{
   bottom: 0rpx;
   right: 0rpx;
   background: linear-gradient(#e66465, #cc0000);
+  padding: 5rpx;
+  border-radius:10rpx ;
+  text-align: center;
+}
+.room_price_sic{
+  width: 180rpx;
+  position: absolute;
+  bottom: 0rpx;
+  right: 0rpx;
+  background: linear-gradient(to right, #039cee , #753ffd);
   padding: 5rpx;
   border-radius:10rpx ;
   text-align: center;
@@ -194,6 +239,9 @@ swiper{
   border-radius:10rpx ;
   text-align: center;
   font-size: 24rpx;
+}
+.sic_price text{
+  color: #753ffd!important;
 }
 .vip_price text{
   color: #cc0000;

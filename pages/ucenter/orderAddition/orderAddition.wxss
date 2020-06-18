@@ -14,26 +14,15 @@
   color: #999;
 }
 /*logo*/
-.logo_box{
+.login_logo{
   margin-top: 100rpx;
   text-align: center;
 }
 .logo_img{
-  width: 200rpx;
-  height: 200rpx;
-  padding: 30rpx;
-  border-radius:200rpx;
+  height: 400rpx;
+  padding: 20rpx;
+  border-radius:20rpx;
   margin:auto ;
-}
-.logo_name{
-  margin-top: 30rpx;
-  font-size: 40rpx;
-  text-align: center;
-  font-weight: 800;
-}
-.logo_content{
-  text-align: center;
-  color: #999;
 }
 /*form*/
 .form_box {
@@ -63,8 +52,6 @@
   height: auto;
   overflow: hidden;
   width: 100%;
-}
-.form-item-code{
   position: relative;
 }
 .code-btn {

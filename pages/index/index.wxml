@@ -36,8 +36,9 @@
             <text class="booking_li_h5">共</text><text>{{show.num}}</text><text class="booking_li_h5">晚</text>
           </view>
         </view>
-        <view class="booking_btn" bindtap="hotelsList">
-          <view>查询</view>
+        <view>
+          <view bindtap="hotelsList" class="booking_btn">预定酒店</view>
+          <view bindtap="orderTransfer" class="order_btn">接入订单</view>
         </view>
       </view>
     </view>

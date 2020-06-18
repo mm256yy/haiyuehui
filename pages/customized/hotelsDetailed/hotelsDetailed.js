@@ -1,8 +1,9 @@
 const util = require('../../../utils/util.js');
 const api = require('../../../config/api.js');
-
+const user = require('../../../utils/user');
 Page({
   data: {
+    isLogin:false,
     time:{
       start:'05月27日',
       end:'05月29日',
@@ -31,7 +32,8 @@ Page({
           avail:1,
           rmtype:'HHF',
           ratecode:'MEMC',
-          ratecodem:'OTA5'
+          ratecodem:'OTA5',
+          isCis:false,
         }*/
       ]
     },
@@ -52,7 +54,7 @@ Page({
   },
   onShow: function () {
     this.init();
-    
+    //this.isLogin();
   },
   onHide: function () {
 
@@ -90,6 +92,13 @@ Page({
       'hotel.id':hotel.id,
       'hotel.name':hotel.name,
     })
+    //判断是否登陆
+    let isLoginNew = false;
+    user.checkLogin().then(res => {
+      isLoginNew = true
+    }).catch((res) =>{
+      isLoginNew = false
+    })
     //获取房间信息
     let arrNew = new Date(calendar.startTime).getFullYear() +'-'+ this.dayZero(new Date(calendar.startTime).getMonth()+1)+'-'+this.dayZero(new Date(calendar.startTime).getDate())
     let depNew = new Date(calendar.startTime).getFullYear() +'-'+ this.dayZero(new Date(calendar.endTime).getMonth()+1)+'-'+this.dayZero(new Date(calendar.endTime).getDate())
@@ -108,14 +117,15 @@ Page({
             id:0,
             name:res.result[i].name,
             img:'../../../static/images/room.jpg',
-            priceBefore:res.result[i].pricem,
-            priceBeforeS:(res.result[i].pricem/100).toFixed(2),
-            priceVip:res.result[i].price,
-            priceVipS:(res.result[i].price/100).toFixed(2),
+            priceBefore:res.result[i].price,
+            priceBeforeS:(res.result[i].price/100).toFixed(2),
+            priceVip:res.result[i].pricem,
+            priceVipS:(isLoginNew?(res.result[i].pricem/100).toFixed(2):'？？？'),
             avail:res.result[i].avail,
             rmtype:res.result[i].rmtype,
             ratecode:res.result[i].ratecode,
             ratecodem:res.result[i].ratecodem,
+            isCis:false
           }
           roomNew.push(roomLi)
         }
@@ -135,8 +145,11 @@ Page({
           room:roomNew
         }
         this.setData({
-          hotel:hotelNew
+          hotel:hotelNew,
+          isLogin:isLoginNew
         })
+        //如果存在云入住
+        this.isCis()
       } else {
         wx.navigateTo({
           url: "../../auth/login/login"
@@ -147,6 +160,49 @@ Page({
     });
     console.log(this.data.hotel)
     
+  },
+  //判断是否云智住
+  isCis(){
+    let canCis = [
+      {
+        hotelId:"H000001",
+        room:[0,2,5]
+      }
+    ]
+    let hotelCisNew = this.data.hotel
+    for(let i=0;i<canCis.length;i++){
+      if(canCis[i].hotelId == this.data.hotel.id){
+        for(let j=0;j<canCis[i].room.length;j++){
+          hotelCisNew.room[canCis[i].room[j]].isCis = true;
+        }
+      }
+    }
+    this.setData({
+      hotel:hotelCisNew
+    })
+  },
+  //判断是否登陆
+  isLogin(){
+    user.checkLogin().then(res => {
+      this.setData({
+        isLogin:true
+      })
+      //进行页面渲染
+      let hotelNew = this.data.hotel
+      for(let i=0;i<hotelNew.room.length;i++){
+        hotelNew.room[i].priceVipS = (hotelNew.room[i].priceVip/100).toFixed(2)
+      }
+      console.log(hotelNew)
+      this.setData({
+        hotel:hotelNew
+      })
+    }).catch((res) =>{
+      console.log(res+'需要登陆');
+      this.setData({
+        isLogin:false
+      })
+      //进行页面渲染
+    })
   },
   /*选择酒店*/
   goHotelsList(){
@@ -171,9 +227,15 @@ Page({
     let data = e.currentTarget.dataset;
     if(this.data.hotel.room[data.arr].avail!=0){
       wx.setStorageSync("room", this.data.hotel.room[data.arr])
-      wx.navigateTo({
-        url: "../fill/fill"
-      })
+      if(this.data.isLogin){
+        wx.navigateTo({
+          url: "../fill/fill"
+        })
+      }else{
+        wx.navigateTo({ 
+          url: "/pages/auth/login/login"
+        });
+      }
     }else{  //已满员
       wx.showModal({title: '错误信息',content: '房间已经满员',showCancel: false});
     }

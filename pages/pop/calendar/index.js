@@ -26,6 +26,7 @@ Page({
   },
   onLoad: function (options) {
     let ru_data = new Date().getTime()
+    console.log(ru_data)
     this.rendering(ru_data)
     this.setData({
       d:ru_data
@@ -139,12 +140,13 @@ Page({
     /*this.data.head.year = y_del+d.getFullYear();*/
     
     //重新渲染
-    let dNew = new Date((y_del+(new Date().getFullYear())+"-"+m_del).replace(/-/g,'/'));
+    let dNew = new Date((y_del+(new Date().getFullYear())+"-"+m_del+"-"+"1").replace(/-/g,'/')).getTime();
+    
     console.log(dNew)
     this.rendering(dNew);
     //赋予this.d
     this.setData({
-      d:dNew.getTime()
+      d:dNew
     })
   },
   //选择日期
@@ -179,6 +181,7 @@ Page({
       //赋值
       let one = this.data.time.startTime
       let two = new Date((d.getFullYear()+'-'+(d.getMonth()+1)+'-'+daysNew[arr].val).replace(/-/g,'/')).getTime()
+      console.log((d.getFullYear()+'-'+(d.getMonth()+1)+'-'+daysNew[arr].val).replace(/-/g,'/'))
       let len = 0
       if(two<one){
         timeNew = {

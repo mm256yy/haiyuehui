@@ -134,11 +134,15 @@
   width: 25%;
   float: left;
   padding: 10rpx 0rpx;
-  
 }
 .room_detail{
-  font-size: 28rpx;
+  font-size: 24rpx;
   color: #999;
+  padding: 10rpx;
+}
+.room_detai2{
+  font-size: 24rpx;
+  color: #753ffd;
   padding: 10rpx;
 }
 .room_li_val{
@@ -147,12 +151,26 @@
   font-size: 28rpx;
   text-align: center;
   padding: 10rpx 0rpx;
-  border-radius:20rpx ;
   margin: 0rpx 10rpx;
+  overflow: hidden;
+  border-radius:20rpx ;
+  position: relative;
 }
 .room_li_on{
   color: #fff;
   background-color: #008cd7;
+}
+.room_choose{
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  top: 10rpx;
+}
+.room_choose_left{
+  left: 0rpx;
+}
+.room_choose_right{
+  right: 0rpx;
 }
 /*btn*/
 

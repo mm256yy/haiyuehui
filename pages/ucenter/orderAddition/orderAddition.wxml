@@ -6,33 +6,30 @@
     <view class="code_content">扫描上方二维码</view>
     <view class="code_content">可在对方手机进行登记</view>
   </view>
-  <view class="logo" wx:if="{{true}}">
-    <view class="logo_box">
-        <image class="logo_img" src="../../../static/images/logo.jpg"></image>
-    </view>
-    <view class="logo_name">海外海</view>
-    <view class="logo_content">给与您最优质的服务</view>
+  <view class="login_logo">
+    <image class="logo_img" mode="widthFix" src="../../../static/images/addition.png"></image>
   </view>
   <view class="form_box">
-    <view wx:if="{{additionType == 0}}">
+    <view>
       <view class="form-item">
-        <input class="name" value="{{name}}" bindinput="bindNameInput" placeholder="请输入真实名字" />
+        <input class="name" value="{{name}}" bindinput="bindNameInput" placeholder="{{additionType == 0?'请输入真实名字':'请输入访客真实名字'}}" />
       </view>
       <view class="form-item">
-        <input class="identity" value="{{identity}}" bindinput="bindIdentityInput" placeholder="请输入真实身份证" />
+        <input class="identity" value="{{identity}}" bindinput="bindIdentityInput" placeholder="{{additionType == 0?'请输入真实身份证':'请输入访客真实身份证'}}" />
       </view>
       <view class="form-item">
-        <input class="mobile" value="{{mobile}}" bindinput="bindMobileInput" placeholder="请输入手机号码（选填）" />
+        <input class="mobile" value="{{mobile}}" bindinput="bindMobileInput" placeholder="{{additionType == 0?'请输入手机号码':'请输入访客手机号码'}}"/>
       </view>
     </view>
-    <view wx:if="{{additionType == 1}}">
+    <view wx:if="{{additionType == 1}}" class="form_label">按照公安规定进出房间人员需要如实登记</view>
+    <view wx:if="{{additionType == 2}}">
       <view class="form-item">
         <input class="mobile" value="{{mobile}}" bindinput="bindMobileInput" placeholder="请输入访客手机号码" />
       </view>
       <view class="form_label">将会发送短信到访客人的手机号，填写信息</view>
     </view>
-    <view class="addition_btn" bindtap="startBtn0" wx:if="{{additionType == 0}}">确认</view>
-    <view class="addition_btn" bindtap="startBtn1" wx:if="{{additionType == 1}}">发送</view>
+    <view class="addition_btn" bindtap="startBtn0" wx:if="{{additionType == 0}}">确认同住人</view>
+    <view class="addition_btn" bindtap="startBtn1" wx:if="{{additionType == 1}}">确认访客</view>
     <view class="agreement">确认即同意<text class="agreement_href">《海外海酒店协议》</text></view>
   </view>
 </view>

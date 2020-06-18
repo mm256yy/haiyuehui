@@ -47,7 +47,7 @@
       </view>
       <view class="fill_li">
         <text>手机号码</text>
-        <input disabled="{{fill.mobileDisabled}}" placeholder="{{fill.mobileDisabled?fill.mobile:'请输入手机号码'}}" bindblur="bindMobileInput" bindinput="bindMobileInput"></input>
+        <input value="{{fill.mobile}}" placeholder="请输入手机号码" bindblur="bindMobileInput" bindinput="bindMobileInput"></input>
       </view>
     </view>
   </view>

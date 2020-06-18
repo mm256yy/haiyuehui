@@ -8,7 +8,7 @@ Page({
       {name:' 全部 ',val:0},
       {name:'待支付',val:1},
       {name:'待入住',val:2},
-      {name:'待退房',val:3},
+      {name:'已入住',val:3},
     ],
     orderUl:[
       /*{
@@ -40,6 +40,9 @@ Page({
   },
   onShow: function () {
     this.init(0,1);
+    this.setData({
+      menuVal:0,
+    })
   },
   onHide: function () {
 
@@ -47,7 +50,7 @@ Page({
   // 上拉刷新
   onReachBottom: function() {
     this.setData({
-      pageNo:this.data.pageNo + 1
+      pageNo:this.data.pageNo + 1,
     })
     this.init(this.data.menuVal,2)
   },
@@ -101,7 +104,7 @@ Page({
           }
         }
         this.setData({
-          orderUl:orderUlNew
+          orderUl:orderUlNew,
         })
       }else{
         //登陆
