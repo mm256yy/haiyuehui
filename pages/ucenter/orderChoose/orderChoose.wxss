@@ -172,6 +172,10 @@
 .room_choose_right{
   right: 0rpx;
 }
+.live_red{
+  color: #cc0000;
+  font-size: 24rpx;
+}
 /*btn*/
 
 .btn_define{

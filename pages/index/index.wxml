@@ -16,7 +16,7 @@
     </view>
     <view class="home_booking">
       <view class="booking_box">
-        <view class="booking_hotels" bindtap="hotelsList">{{hotelsName}}</view>
+        <view class="booking_hotels" >选择入住时间</view>
         <view class="booking_ul" bindtap="calendarShow">
           <view class="booking_li">
             <view class="booking_li_h5">入住时间</view>
@@ -38,7 +38,7 @@
         </view>
         <view>
           <view bindtap="hotelsList" class="booking_btn">预定酒店</view>
-          <view bindtap="orderTransfer" class="order_btn">接入订单</view>
+          <view bindtap="orderTransfer" class="order_btn">查询订单</view>
         </view>
       </view>
     </view>

@@ -13,12 +13,13 @@
       <view><text class="detail_t1">入住时间：</text><text class="detail_t0">{{detail.startTimeS}}至{{detail.endTimeS}}</text></view>
       <view class="detail_relative">
         <text class="detail_t1">订单编号：</text><text class="detail_t0">{{detail.orderId}}</text>
+        <text wx:if="{{detail.status == 11||detail.status == 22}}" bindtap="copy" class="{{allowConnect == 0?'detail_share_n':'detail_share_y'}}">{{allowConnect == 0?'转移已关闭':'转移已开启'}}</text>
         <image wx:if="{{detail.status == 11||detail.status == 22}}" bindtap="copy" data-text="{{detail.orderId}}" class="detail_copy" src="../../../static/images/copy_{{allowConnect == 0?'n':'y'}}.png"></image>
       </view>
     </view>
     <view class="detail_copy_i" wx:if="{{detail.status == 11||detail.status == 22}}">
-      <view>点击订单编号右侧按钮可以打开转接订单的授权，进行复制，可把订单转接给他人</view>
-      <view>注：若房间自己入住，请勿开启转接订单的授权</view>
+      <view>点击订单转移按钮可以打开转移订单的授权，并且复制，可把订单转移给他人</view>
+      <view>注：若房间自己入住，请关闭订单转移的授权</view>
     </view>
     <view class="detail_ul" wx:if="{{(detail.status == 31||detail.status == 32)&&personUl.length != 0}}">
       <view><text class="detail_t1">房间密码：</text><text class="detail_t0">{{pwdValS}}</text></view>

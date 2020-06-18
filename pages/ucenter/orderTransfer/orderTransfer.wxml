@@ -4,13 +4,13 @@
     <image class="transfer_ba" src="../../../static/images/team_ba.png"></image>
     <view class="transfer_process">
       <view class="process_li">
-        <view class="process_num {{processNum == 1?'process_num_on':''}}" >
+        <view class="process_num {{processNum == 1?'process_num_on':''}}">
           <image class="process_img" src="../../../static/images/team6.png"></image>
           <view class="process_text">编号填写</view>
         </view>
       </view>
       <view class="process_li">
-        <view class="process_num {{processNum == 2?'process_num_on':''}}" bindtap="{{processNum == 1?'queryOrder':''}}">
+        <view class="process_num {{processNum == 2?'process_num_on':''}}">
           <image class="process_img" src="../../../static/images/team4.png"></image>
           <view class="process_text">接入订单</view>
         </view>
@@ -37,7 +37,7 @@
     </view>
   </view>
   <view class="transfer_btn">
-    <view class="btn_define" wx:if="{{processNum == 1}}" bindtap="queryOrder">接入订单</view>
+    <view class="btn_define" wx:if="{{processNum == 1}}" bindtap="queryOrder">获取订单</view>
     <view class="btn_define" wx:if="{{processNum == 2&&detail.status == 11}}" bindtap="goPay">立即支付</view>
     <view class="btn_define" wx:if="{{processNum == 2&&detail.status == 22}}" bindtap="goOrderChoose">立即入住</view>
     <view class="btn_again" wx:if="{{processNum == 2}}" bindtap="goIndex">返回个人中心</view>

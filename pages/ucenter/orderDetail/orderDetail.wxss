@@ -66,6 +66,20 @@ page{background-color: #f1f1f1;}
   color: #999;
   font-size: 24rpx;
 }
+.detail_share_y{
+  position: absolute;
+  bottom: 10rpx;
+  right: 100rpx;
+  color: #039cee;
+  font-size: 24rpx;
+}
+.detail_share_n{
+  position: absolute;
+  bottom: 10rpx;
+  right: 100rpx;
+  color: #999;
+  font-size: 24rpx;
+}
 /*person*/
 .person_li{
   margin: 20rpx;

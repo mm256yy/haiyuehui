@@ -131,6 +131,13 @@ function checkMobile(mobile){  //使用：if(!util.checkMobile(this.data.mobile)
       showCancel: false
     });
     return false;
+  }else if(!check.spaceNo(mobile)){
+    wx.showModal({
+      title: '错误信息',
+      content: '手机号不能存在空格或者特殊字符',
+      showCancel: false
+    });
+    return false;
   }else{
     return true;
   }
@@ -151,7 +158,15 @@ function checkName(name){ //使用：if(!util.checkName(this.data.name)){return 
       showCancel: false
     });
     return false;
+  }else if(!check.spaceNo(name)){
+    wx.showModal({
+      title: '错误信息',
+      content: '姓名不能存在空格或者特殊字符',
+      showCancel: false
+    });
+    return false;
   }else{
+    console.log("姓名成功+"+name)
     return true;
   }
 }
@@ -168,6 +183,13 @@ function checkIdentity(identity){  //使用：if(!util.checkIdentity(this.data.i
     wx.showModal({
       title: '错误信息',
       content: '身份证不能小于18位',
+      showCancel: false
+    });
+    return false;
+  }else if(!check.spaceNo(identity)){
+    wx.showModal({
+      title: '错误信息',
+      content: '身份证不能存在空格或者特殊字符',
       showCancel: false
     });
     return false;

@@ -3,11 +3,11 @@
   <image class="choose_ba" src="../../../static/images/team_ba.png"></image>
   <view class="choose_box">
     <view class="team_process">
-      <view class="process_num {{chooseNum == 1?'process_num_on':''}}" bindtap="{{chooseNum == 2?'again':''}}">
+      <view class="process_num {{chooseNum == 1?'process_num_on':''}}">
         <image class="process_img" src="../../../static/images/team1.png"></image>
         <view class="process_text">房间喜好</view>
       </view>
-      <view class="process_num {{chooseNum == 2?'process_num_on':''}}" bindtap="{{chooseNum == 1?'query':''}}">
+      <view class="process_num {{chooseNum == 2?'process_num_on':''}}">
         <image class="process_img" src="../../../static/images/team2.png"></image>
         <view class="process_text">选择房间</view>
       </view>
@@ -54,6 +54,7 @@
           <input placeholder="请输入手机号" bindblur="bindTelInput" bindinput="bindTelInput"></input>
         </view>
       </view>
+      <view class="live_red">注:请确认好真实的姓名与身份证</view>
     </view>
   </view>
   <view class="choose_btn" >

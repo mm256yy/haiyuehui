@@ -19,7 +19,7 @@
   text-align: center;
 }
 .logo_img{
-  height: 400rpx;
+  /* height: 400rpx; */
   padding: 20rpx;
   border-radius:20rpx;
   margin:auto ;
