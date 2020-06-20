@@ -152,13 +152,14 @@ Page({
       money: this.data.total.money,
       rmtype:this.data.room.rmtype,
       rmdesc:this.data.room.roomName,
-      ratecode:this.data.room.ratecode,
+      ratecode:this.data.room.ratecodem,
       roomPrice:this.data.room.roomPrice,
       name:this.data.fill.name,
       mobile:this.data.fill.mobile,
       arr:this.data.room.arr,
       dep:this.data.room.dep,
       deposit:this.data.total.deposit,
+      cis:this.data.room.cis
     }
     console.log(param)
     util.request(api.CustomizedHotelsFill ,param, 'POST').then(res => {
@@ -212,10 +213,12 @@ Page({
       ratecodem:roomrNew.ratecodem,
       arr:arrTime,
       dep:depTime,
+      cis:(roomrNew.isCis?1:0)
     }
     this.setData({
       room : roomNew
     })
+    console.log(this.data.room)
   },
   //个人信息
   userInfo(){

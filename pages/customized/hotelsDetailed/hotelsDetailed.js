@@ -54,7 +54,6 @@ Page({
   },
   onShow: function () {
     this.init();
-    //this.isLogin();
   },
   onHide: function () {
 
@@ -92,13 +91,6 @@ Page({
       'hotel.id':hotel.id,
       'hotel.name':hotel.name,
     })
-    //判断是否登陆
-    let isLoginNew = false;
-    user.checkLogin().then(res => {
-      isLoginNew = true
-    }).catch((res) =>{
-      isLoginNew = false
-    })
     //获取房间信息
     let arrNew = new Date(calendar.startTime).getFullYear() +'-'+ this.dayZero(new Date(calendar.startTime).getMonth()+1)+'-'+this.dayZero(new Date(calendar.startTime).getDate())
     let depNew = new Date(calendar.startTime).getFullYear() +'-'+ this.dayZero(new Date(calendar.endTime).getMonth()+1)+'-'+this.dayZero(new Date(calendar.endTime).getDate())
@@ -107,59 +99,63 @@ Page({
       dep: depNew,
       hotelId: hotel.id
     }
-    util.request(api.CustomizedHotelsDetailed, param , 'GET').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        let roomNew  = [];
-        let roomLi = {};
-        for(let i=0;i<res.result.length;i++){
-          roomLi = {
-            id:0,
-            name:res.result[i].name,
-            img:'../../../static/images/room.jpg',
-            priceBefore:res.result[i].price,
-            priceBeforeS:(res.result[i].price/100).toFixed(2),
-            priceVip:res.result[i].pricem,
-            priceVipS:(isLoginNew?(res.result[i].pricem/100).toFixed(2):'？？？'),
-            avail:res.result[i].avail,
-            rmtype:res.result[i].rmtype,
-            ratecode:res.result[i].ratecode,
-            ratecodem:res.result[i].ratecodem,
-            isCis:false
+    //判断是否登陆
+    let isLoginNew = false;
+    user.checkLogin().then(res => {
+      isLoginNew = true
+    }).catch((res) =>{
+      isLoginNew = false
+    }).then(res=>{
+      util.request(api.CustomizedHotelsDetailed, param , 'GET').then(res => {
+        console.log(res)
+        if (res.status.code === 0) {
+          let roomNew  = [];
+          let roomLi = {};
+          for(let i=0;i<res.result.length;i++){
+            roomLi = {
+              id:0,
+              name:res.result[i].name,
+              img:('../../../static/images/room.jpg'||res.result[i].image),
+              priceBefore:res.result[i].price,
+              priceBeforeS:(res.result[i].price/100).toFixed(2),
+              priceVip:res.result[i].pricem,
+              priceVipS:(isLoginNew?(res.result[i].pricem/100).toFixed(2):'？？？'),
+              avail:res.result[i].avail,
+              rmtype:res.result[i].rmtype,
+              ratecode:res.result[i].ratecode,
+              ratecodem:res.result[i].ratecodem,
+              isCis:res.result[i].isCis
+            }
+            roomNew.push(roomLi)
           }
-          roomNew.push(roomLi)
+          console.log(telVal)
+          let hotelNew = {
+            id:hotel.id,
+            name:hotel.name,   
+            pics:[
+              '../../../static/images/banner1.jpg'
+            ],
+            address:hotelVal,
+            tel:telVal,
+            dining:{},
+            gym:{},
+            meeting:{},
+            room:roomNew
+          }
+          this.setData({
+            hotel:hotelNew,
+            isLogin:isLoginNew
+          })
+        } else {
+          wx.navigateTo({
+            url: "../../auth/login/login"
+          })
         }
-        console.log(telVal)
-        let hotelNew = {
-          id:hotel.id,
-          name:hotel.name,   
-          pics:[
-            '../../../static/images/banner1.jpg',
-            '../../../static/images/banner1.jpg',
-          ],
-          address:hotelVal,
-          tel:telVal,
-          dining:{},
-          gym:{},
-          meeting:{},
-          room:roomNew
-        }
-        this.setData({
-          hotel:hotelNew,
-          isLogin:isLoginNew
-        })
-        //如果存在云入住
-        this.isCis()
-      } else {
-        wx.navigateTo({
-          url: "../../auth/login/login"
-        })
-      }
-    }).catch((err) => {
-      console.log(err)
-    });
+      }).catch((err) => {
+        console.log(err)
+      });
+    })
     console.log(this.data.hotel)
-    
   },
   //判断是否云智住
   isCis(){
@@ -181,29 +177,6 @@ Page({
       hotel:hotelCisNew
     })
   },
-  //判断是否登陆
-  isLogin(){
-    user.checkLogin().then(res => {
-      this.setData({
-        isLogin:true
-      })
-      //进行页面渲染
-      let hotelNew = this.data.hotel
-      for(let i=0;i<hotelNew.room.length;i++){
-        hotelNew.room[i].priceVipS = (hotelNew.room[i].priceVip/100).toFixed(2)
-      }
-      console.log(hotelNew)
-      this.setData({
-        hotel:hotelNew
-      })
-    }).catch((res) =>{
-      console.log(res+'需要登陆');
-      this.setData({
-        isLogin:false
-      })
-      //进行页面渲染
-    })
-  },
   /*选择酒店*/
   goHotelsList(){
     wx.navigateBack({
@@ -218,9 +191,9 @@ Page({
   },
   //拨打电话
   goTel(){
-    /*wx.makePhoneCall({
+    wx.makePhoneCall({
       phoneNumber: this.data.hotel.tel
-    })*/
+    })
   },
   //选择房间
   room(e){
@@ -237,7 +210,7 @@ Page({
         });
       }
     }else{  //已满员
-      wx.showModal({title: '错误信息',content: '房间已经满员',showCancel: false});
+      wx.showModal({title: '错误信息',content: '房间已经满房',showCancel: false});
     }
     
   },

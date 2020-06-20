@@ -23,7 +23,7 @@
         <input class="order" value="{{order}}" bindinput="bindOrderInput" placeholder="请输入订单编号" />
       </view>
       <view class="form-item">
-        <input class="code" value="{{code}}" bindinput="bindCodeInput" placeholder="请输入手机号后四位" />
+        <input class="code" value="{{code}}" bindinput="bindCodeInput" placeholder="请输入预定人手机号后四位" />
       </view>
     </view>
     <view class="order_box" wx:if="{{processNum == 2}}">

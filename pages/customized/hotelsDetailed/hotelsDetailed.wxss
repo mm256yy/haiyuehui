@@ -150,12 +150,14 @@ swiper{
   width: 300rpx;
 }
 .room_attr_val{
+  display: inline-block;
   font-size: 20rpx;
-  padding: 5rpx 10rpx;
+  line-height: 20rpx;
+  padding: 8rpx 10rpx;
   border: 1rpx solid #c9b4ff;
   border-radius:5rpx ;
   color: #753ffd;
-  margin: 10rpx 10rpx 10rpx 0rpx;
+  margin: 8rpx 10rpx 8rpx 0rpx;
 }
 .room_avail{
   color: #999;

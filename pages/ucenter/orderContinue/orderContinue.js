@@ -5,7 +5,6 @@ Page({
   data: {
     pics:[
       '../../../static/images/banner1.jpg',
-      '../../../static/images/banner1.jpg',
     ],
     order:{
       hotelId:'',
@@ -138,5 +137,4 @@ Page({
     })
     this.total()
   }
-
 })

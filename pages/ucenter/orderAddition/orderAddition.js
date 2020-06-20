@@ -1,10 +1,9 @@
-// pages/ucenter/orderAddition/orderAddition.js
 const util = require('../../../utils/util.js');
 const api = require('../../../config/api.js');
 const check = require('../../../utils/check.js');
 Page({
   data: {
-    additionType:1,   //0 同住人 1 访客     no2 扫码/分享同住人 3 扫码/分享访客人 4 扫码路人（没有携带参数）
+    additionType:1,   //0 同住人 1 访客  no2 扫码/分享同住人 3 扫码/分享访客人 4 扫码路人（没有携带参数）
     orderId:0,
     hotelId:0,
     roomNo:0,

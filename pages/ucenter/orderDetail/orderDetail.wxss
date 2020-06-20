@@ -81,6 +81,14 @@ page{background-color: #f1f1f1;}
   font-size: 24rpx;
 }
 /*person*/
+.isCis_person{
+  background-color: #f1f1f1;
+  padding: 20rpx;
+  text-align: center;
+}
+.isCis_person_text{
+  color: #999;
+}
 .person_li{
   margin: 20rpx;
   padding: 20rpx;

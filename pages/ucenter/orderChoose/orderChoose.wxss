@@ -7,6 +7,14 @@
   width: 100%;
   z-index: -1;
 }
+.cis_bac{
+  text-align: center;
+}
+.cis_title{
+  width: 60%;
+  margin: 0rpx auto 120rpx;
+
+}
 /*process*/
 .team_box{
   margin: 20rpx;

@@ -12,8 +12,8 @@ Page({
     },
     floorUl: [
       {code:'',name:'全部楼层'},
-      /*{code:'01',name:'1F'},
-      {code:'02',name:'2F'}*/
+      {code:'22',name:'22层'},
+      /*{code:'02',name:'2F'}*/
     ],
     checkboxUl:[
       /*{val:false,code:'NE',name:'靠近电梯'},
@@ -84,7 +84,7 @@ Page({
         }
         console.log(checkboxUlNew)
         this.setData({
-          floorUl:floorUlNew,
+          /*floorUl:floorUlNew,*/
           checkboxUl:checkboxUlNew
         })
       }
@@ -133,7 +133,7 @@ Page({
       hotelid:this.data.hotel.hotelId,
       arr:this.data.hotel.arr,
       dep:this.data.hotel.dep,
-      floor:this.data.floorUl[this.data.floorArr].code,
+      floor:22,//this.data.floorUl[this.data.floorArr].code,
       feature:chooseType.substring(0, chooseType.length - 1),
       rmtype:this.data.hotel.rmtype
     }
@@ -195,23 +195,36 @@ Page({
     }
     //this.onLoad(this.data.detail.orderId)
     console.log(param)
-    util.request(api.UcenterOrderCheckin , param , 'POST').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        wx.showModal({ title: '成功',content: '入住成功',showCancel: false });
-        wx.navigateBack({
-          delta: 1  // 返回上一级页面。
-        })
-        console.log(this.data.hotel.orderId)
-        /*wx.navigateTo({
-          url: "../orderDetail/orderDetail?orderId="+this.data.hotel.orderId
-        })*/
-      }else{ //500
-        wx.showModal({ title: '错误信息',content: res.status.message,showCancel: false });
+    let that = this
+    wx.showModal({ //cancelColor（取消按钮的文字颜色）confirmColor（确定按钮的文字颜色）
+      title: '办理入住',
+      content: '请确认入住信息填写正确无误',
+      success: function(resV) {
+        if (resV.confirm) {
+          console.log('用户点击确定')
+          util.request(api.UcenterOrderCheckin , param , 'POST').then(res => {
+            console.log(res)
+            if (res.status.code === 0) {
+              wx.showModal({ title: '成功',content: '入住成功',showCancel: false });
+              wx.navigateBack({
+                delta: 1  // 返回上一级页面。
+              })
+              console.log(this.data.hotel.orderId)
+              /*wx.navigateTo({
+                url: "../orderDetail/orderDetail?orderId="+this.data.hotel.orderId
+              })*/
+            }else{ //500
+              wx.showModal({ title: '错误信息',content: res.status.message,showCancel: false });
+            }
+          }).catch((err) => {
+            console.log(err)
+          });
+        } else if (resV.cancel) {
+          console.log('用户点击取消')
+        }
       }
-    }).catch((err) => {
-      console.log(err)
-    });
+    })
+    
   },
   again(){
     this.setData({

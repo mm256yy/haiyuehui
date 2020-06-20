@@ -1,14 +1,14 @@
- // 以下是业务服务器API地址
- // 手机 开发API地址
+ // 以下是业务服务器API地址 
+ // 手机 开发API地址 
  // var WxApiRoot = 'http://112.17.106.101:9001/wx/';  
- // 正式线上ip
+ // 正式线上ip 
  // var WxApiRoot = 'http://124.70.147.182:9001/wx/';
  // 测试线上ip
- // var WxApiRoot = 'http://124.70.132.80:9001/wx/';  
+ // var WxApiRoot = 'http://124.70.132.80:9001/wx/';
  // 本机 开发api地址
- // var WxApiRoot = 'http://192.168.188.79:9001/wx/';  // http://192.168.133.67:9002/wx/;
+ // var WxApiRoot = 'http://192.168.188.79:9001/wx/';  // http://192.168.133.67:9002/wx/; 
  // 生产地址
- var WxApiRoot = 'https://www.hwhhotels.com/wx/';
+  var WxApiRoot = 'https://www.hwhhotels.com/wx/';
  
  module.exports = {
    AuthLoginByWeixin: WxApiRoot + 'auth/wxLogin', //微信登录 hwh

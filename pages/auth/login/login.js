@@ -53,7 +53,7 @@ Page({
       }).catch((err) => {
         console.log(err)
         app.globalData.hasLogin = false;
-        util.showErrorToast('微信登录失败2');
+        util.showErrorToast('失败-网络连接失败');
       });
     }).catch((res) => {
       console.log(res)
@@ -76,7 +76,7 @@ Page({
       }).catch((err) => {
         console.log(err)
         app.globalData.hasLogin = false;
-        util.showErrorToast('微信登录失败2');
+        util.showErrorToast('失败-网络连接失败');
       });
     })
   },

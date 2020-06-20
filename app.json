@@ -17,7 +17,6 @@
     "pages/customized/hotelsDetailed/hotelsDetailed",
 
     "pages/ucenter/index/index",
-    "pages/ucenter/set/set",
     "pages/ucenter/orderCancel/orderCancel",
     "pages/ucenter/orderAddition/orderAddition",
     "pages/ucenter/orderDetail/orderDetail",
@@ -27,6 +26,8 @@
     "pages/ucenter/orderTransfer/orderTransfer", 
     "pages/ucenter/teamNumber/teamNumber",
     
+    "pages/ucenter/set/setIndex/setIndex",
+
     "pages/ucenter/coupon/coupon",
     
 

@@ -8,20 +8,20 @@
     <view class="detail_ul">
       <view class="detail_hotel">{{detail.hotelName}}</view>
       <view><text class="detail_t1">房型名称：</text><text class="detail_t0">{{detail.rmdesc}}</text></view>
-      <view wx:if="{{(detail.status == 31)||(detail.status == 41)||(detail.status == 51)}}"><text class="detail_t1" >入住房号：</text><text class="detail_t0">{{detail.roomNo}}</text></view>
+      <view wx:if="{{((detail.status == 31)||(detail.status == 41)||(detail.status == 51))&&(detail.roomNo!=null)&&detail.isCis}}"><text class="detail_t1" >入住房号：</text><text class="detail_t0">{{detail.roomNo}}</text></view>
       <view><text class="detail_t1">房型编号：</text><text class="detail_t0">{{detail.rmtype}}</text></view>
       <view><text class="detail_t1">入住时间：</text><text class="detail_t0">{{detail.startTimeS}}至{{detail.endTimeS}}</text></view>
       <view class="detail_relative">
         <text class="detail_t1">订单编号：</text><text class="detail_t0">{{detail.orderId}}</text>
-        <text wx:if="{{detail.status == 11||detail.status == 22}}" bindtap="copy" class="{{allowConnect == 0?'detail_share_n':'detail_share_y'}}">{{allowConnect == 0?'转移已关闭':'转移已开启'}}</text>
-        <image wx:if="{{detail.status == 11||detail.status == 22}}" bindtap="copy" data-text="{{detail.orderId}}" class="detail_copy" src="../../../static/images/copy_{{allowConnect == 0?'n':'y'}}.png"></image>
+        <text wx:if="{{(detail.status == 11||detail.status == 22)&&detail.isCis}}" bindtap="copy" class="{{allowConnect == 0?'detail_share_n':'detail_share_y'}}">{{allowConnect == 0?'授权已关闭':'授权已开启'}}</text>
+        <image wx:if="{{(detail.status == 11||detail.status == 22)&&detail.isCis}}" bindtap="copy" data-text="{{detail.orderId}}" class="detail_copy" src="../../../static/images/copy_{{allowConnect == 0?'n':'y'}}.png"></image>
       </view>
     </view>
-    <view class="detail_copy_i" wx:if="{{detail.status == 11||detail.status == 22}}">
-      <view>点击订单转移按钮可以打开转移订单的授权，并且复制，可把订单转移给他人</view>
-      <view>注：若房间自己入住，请关闭订单转移的授权</view>
+    <view class="detail_copy_i" wx:if="{{(detail.status == 11||detail.status == 22)&&detail.isCis}}">
+      <view>点击订单授权按钮可以打开转移订单的授权，并且复制，可把订单转移给他人</view>
+      <view>注：若房间自己入住，请关闭订单的授权</view>
     </view>
-    <view class="detail_ul" wx:if="{{(detail.status == 31||detail.status == 32)&&personUl.length != 0}}">
+    <view class="detail_ul" wx:if="{{(detail.status == 31||detail.status == 32)&&(personUl.length != 0)&&detail.isCis}}">
       <view><text class="detail_t1">房间密码：</text><text class="detail_t0">{{pwdValS}}</text></view>
       <image class="detail_see" bindtap="pwd" wx:if="{{!pwdSeeIdent}}" src="../../../static/images/see-no.png"></image>
       <image class="detail_see" bindtap="pwd" wx:if="{{pwdSeeIdent}}" src="../../../static/images/see-y.png"></image>
@@ -31,7 +31,10 @@
       <view><text class="detail_t1">联系电话：</text><text class="detail_t0">{{detail.contactsTel}}</text></view>
     </view>
   </view> 
-  <view class="order_person" wx:if="{{detail.status == 22||detail.status == 31||detail.status == 41||detail.status == 51}}">
+  <view class="isCis_person" wx:if="{{(detail.status == 22||detail.status == 31)&&!detail.isCis}}">
+    <view class="isCis_person_text">非云智住暂不支持入住，请到前台办理</view>
+  </view>
+  <view class="order_person" wx:if="{{(detail.status == 22||detail.status == 31||detail.status == 41||detail.status == 51)&&detail.isCis}}">
     <view class="order_h1">入住人信息</view>
     <view class="person_ul" wx:for="{{personUl}}" wx:key="index">
       <view class="person_li">
@@ -64,7 +67,7 @@
       </view>
     </view>
   </view>
-  <view class="addition_box" wx:if="{{(detail.status == 31||detail.status == 41||detail.status == 51)&&additionUl.length != 0}}">
+  <view class="addition_box" wx:if="{{(detail.status == 31||detail.status == 41||detail.status == 51)&&(additionUl.length != 0)&&detail.isCis}}">
     <view class="order_h1">续住订单</view>
     <view class="addition_ul">
       <view class="addition_li" wx:for="{{additionUl}}" wx:key="index">
@@ -87,7 +90,7 @@
     <view class="order_money">
       <view><text class="detail_t1">房间价格：</text><text class="detail_t2">￥{{money.roomPriceS}}</text></view>
       <view><text class="detail_t1">房间押金：</text><text class="detail_t2">￥{{money.depositS}}</text></view>
-      <view wx:if="{{(detail.status == 31||detail.status == 41||detail.status == 51)&&additionUl.length != 0}}"><text class="detail_t1">续住小计：</text><text class="detail_t2">￥{{money.additionS}}</text></view>
+      <view wx:if="{{(detail.status == 31||detail.status == 41||detail.status == 51)&&(additionUl.length != 0)&&detail.isCis}}"><text class="detail_t1">续住小计：</text><text class="detail_t2">￥{{money.additionS}}</text></view>
       <view><text class="detail_t1">总价：</text><text class="detail_t3">￥{{money.totalS}}</text></view>
     </view>
   </view>

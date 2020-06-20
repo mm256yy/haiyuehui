@@ -27,6 +27,7 @@ Page({
         roomNo:'roomNo',
         show:true,
         canAdd:0,  //判断是否显示续住订单 0 隐藏 1 显示
+        isCis:true,
       }*/
     ],
     pageNo:1,
@@ -75,7 +76,7 @@ Page({
               id:res.result.records[i].orderId ,
               hotelName:res.result.records[i].hotelName||'暂无获取到酒店名字',
               type:res.result.records[i].status,
-              typeS:this.orderType(res.result.records[i].status),
+              typeS:util.orderType(res.result.records[i].status),
               startTime:new Date(res.result.records[i].arr).getTime(),
               startTimeS:res.result.records[i].arr,
               endTime:new Date(res.result.records[i].dep).getTime(),
@@ -86,7 +87,8 @@ Page({
               orderPriceS:(res.result.records[i].money/100).toFixed(2),
               roomNo:res.result.records[i].roomNo,
               show:(res.result.records[i].parentOrderId == ""),
-              canAdd:res.result.records[i].canAdd
+              canAdd:res.result.records[i].canAdd,
+              isCis:res.result.records[i].isCis
             }
             o_ul.push(o_li)
           }
@@ -207,32 +209,4 @@ Page({
   refresh(){
     this.onShow()
   },
-  //订单类型
-  orderType(type){
-    if(type == 11){  //订单生成，未支付
-      return "待支付"
-    }else if(type == 12){  //下单未支付用户取消
-      return "已取消"
-    }else if(type == 13){ //下单未支付超期系统自动取消
-      return "超时已取消"
-    }else if(type == 21){  //订单支付中
-      return "支付中"
-    }else if(type == 22){  //支付完成，待入住
-      return "待入住"
-    }else if(type == 23){  //支付完成，未入住，用户申请退款
-      return "退款申请中"
-    }else if(type == 24){  //管理员执行退款操作，确认退款成功
-      return "退款成功"
-    }else if(type == 25){  //续租，支付成功
-      return "已支付"
-    }else if(type == 31){  //已入住
-      return "已入住"
-    }else if(type == 32){  //已入住 并且续住
-      return "已续住"
-    }else if(type == 41){  //已退房
-      return "已申请退房"
-    }else if(type == 51){  //已结单
-      return "已结单"
-    }
-  }
 })

@@ -80,17 +80,16 @@
             <text>可选择早餐</text>
           </view>-->
           <view class="room_label1">今天18点前可免费取消</view>
-          <view class="room_attr">
-            <text class="room_attr_val">免费取消保障</text>
-            <text class="room_attr_val">入住即会员</text>
+          <view class="room_attr" wx:if="{{item.isCis}}">
+            <text class="room_attr_val">含有云智住房间</text>
           </view>
           <view class="room_price_before {{isLogin?'room_price_before_y':'room_price_before_n'}}">门市价：￥{{item.priceBeforeS}}/晚</view>
           
           <view class=" {{item.avail == 0?'room_price_vip_zero':''}} {{item.isCis?'room_price_sic':'room_price_vip'}}" bindtap="room" data-arr="{{index}}">
-            <view class="vip_name"><text>{{item.isCis?'云智住预定':'会员价预定'}}</text></view>
+            <view class="vip_name"><text>{{item.isCis?'会员价预定':'会员价预定'}}</text></view>
             <view class="vip_price {{item.avail == 0?'vip_price_zero':''}} {{item.isCis?'sic_price':''}}" >
               <text>￥</text>
-              <text>{{item.avail == 0?'已满员':(item.priceVipS+'/晚')}}</text>
+              <text>{{item.avail == 0?'已满房':(item.priceVipS+'/晚')}}</text>
             </view>
           </view>
         </view>

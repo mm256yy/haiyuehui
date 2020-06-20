@@ -60,9 +60,11 @@ Page({
     let calendar = wx.getStorageSync("calendar")  //获取数据
     let d_today = new Date();
     console.log(calendar)
-    if(calendar && (calendar.startTime+1000*60*60*24)>=d_today.getTime()){  //判断是否有储存时间/时间大于当前时间 --有
+    if(calendar && (calendar.startTime+1000*60*60*24)>=d_today.getTime()){  //判断是否有储存时间/储存时间大于当前时间 --有
+      console.log(789)
       let d_today = new Date(calendar.startTime);
       let d_tomorrow = new Date(calendar.endTime);
+      console.log(d_today)
       this.setData({
         startTime:this.dayZero(d_today.getFullYear())+'-'+this.dayZero(d_today.getMonth()+1)+'-'+this.dayZero(d_today.getDate()),
         endTime:this.dayZero(d_tomorrow.getFullYear())+'-'+this.dayZero(d_tomorrow.getMonth()+1)+'-'+this.dayZero(d_tomorrow.getDate())
