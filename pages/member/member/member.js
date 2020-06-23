@@ -1,4 +1,4 @@
-// pages/member/member/index.js
+
 Page({
   data: {
     memberGrade:[

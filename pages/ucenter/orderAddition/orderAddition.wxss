@@ -17,6 +17,31 @@
   background: #fff;
   margin-top: 100rpx;
 }
+.form_ul{
+  display: flex;
+}
+.form_left{
+  flex: 1 1 auto;
+}
+.form_right{
+  width: 180rpx;
+  display: flex;
+  border-left:1rpx solid #f1f1f1;
+  border-bottom:1rpx solid #f1f1f1 ;
+}
+.form_person{
+  align-items:center;
+  text-align: center;
+  margin: auto;
+}
+.person_img{
+  width: 80rpx;
+  height: 80rpx;
+}
+.person_text{
+  color: #999;
+  font-size: 24rpx;
+}
 .form_li{
   height: 96rpx;
   position: relative;

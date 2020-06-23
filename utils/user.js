@@ -1,6 +1,6 @@
 /*用户相关服务*/
-const util = require('../utils/util.js');
-const api = require('../config/api.js');
+let util = require('../utils/util.js');
+let api = require('../config/api.js');
 /*Promise封装wx.checkSession登陆是否过期*/
 function checkSession() {
   return new Promise(function(resolve, reject) {

@@ -9,15 +9,15 @@
       <view class="detail_hotel">{{detail.hotelName}}</view>
       <view><text class="detail_t1">房型名称：</text><text class="detail_t0">{{detail.rmdesc}}</text></view>
       <view wx:if="{{((detail.status == 31)||(detail.status == 41)||(detail.status == 51))&&(detail.roomNo!=null)&&detail.isCis}}"><text class="detail_t1" >入住房号：</text><text class="detail_t0">{{detail.roomNo}}</text></view>
-      <view><text class="detail_t1">房型编号：</text><text class="detail_t0">{{detail.rmtype}}</text></view>
+      <view wx:if="{{false}}"><text class="detail_t1" >房型编号：</text><text class="detail_t0">{{detail.rmtype}}</text></view>
       <view><text class="detail_t1">入住时间：</text><text class="detail_t0">{{detail.startTimeS}}至{{detail.endTimeS}}</text></view>
       <view class="detail_relative">
-        <text class="detail_t1">订单编号：</text><text class="detail_t0">{{detail.orderId}}</text>
+        <text class="detail_t1">订单编号：</text><text class="detail_t0">{{detail.orderNo}}</text>
         <text wx:if="{{(detail.status == 11||detail.status == 22)&&detail.isCis}}" bindtap="copy" class="{{allowConnect == 0?'detail_share_n':'detail_share_y'}}">{{allowConnect == 0?'授权已关闭':'授权已开启'}}</text>
-        <image wx:if="{{(detail.status == 11||detail.status == 22)&&detail.isCis}}" bindtap="copy" data-text="{{detail.orderId}}" class="detail_copy" src="../../../static/images/copy_{{allowConnect == 0?'n':'y'}}.png"></image>
+        <image wx:if="{{(detail.status == 11||detail.status == 22)}}" bindtap="copy" data-text="{{detail.orderNo}}" class="detail_copy" src="../../../static/images/copy_{{allowConnect == 0?'n':'y'}}.png"></image>
       </view>
     </view>
-    <view class="detail_copy_i" wx:if="{{(detail.status == 11||detail.status == 22)&&detail.isCis}}">
+    <view class="detail_copy_i" wx:if="{{(detail.status == 11||detail.status == 22)}}">
       <view>点击订单授权按钮可以打开转移订单的授权，并且复制，可把订单转移给他人</view>
       <view>注：若房间自己入住，请关闭订单的授权</view>
     </view>

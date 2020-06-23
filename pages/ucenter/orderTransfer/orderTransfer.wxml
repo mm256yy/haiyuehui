@@ -22,9 +22,6 @@
       <view class="form-item">
         <input class="order" value="{{order}}" bindinput="bindOrderInput" placeholder="请输入订单编号" />
       </view>
-      <!-- <view class="form-item">
-        <input class="code" value="{{code}}" bindinput="bindCodeInput" placeholder="请输入预定人手机号后四位" />
-      </view> -->
     </view>
     <view class="order_box" wx:if="{{processNum == 2}}">
       <view class="order_card">
@@ -39,7 +36,7 @@
   <view class="transfer_btn">
     <view class="btn_define" wx:if="{{processNum == 1}}" bindtap="queryOrder">获取订单</view>
     <view class="btn_define" wx:if="{{processNum == 2&&detail.status == 11}}" bindtap="goPay">立即支付</view>
-    <view class="btn_define" wx:if="{{processNum == 2&&detail.status == 22}}" bindtap="goOrderChoose">立即入住</view>
+    <view class="btn_define" wx:if="{{(processNum == 2&&detail.status == 22)&&detail.isCis}}" bindtap="goOrderChoose">立即入住</view>
     <view class="btn_again" wx:if="{{processNum == 2}}" bindtap="goIndex">返回个人中心</view>
   </view>
 </view>

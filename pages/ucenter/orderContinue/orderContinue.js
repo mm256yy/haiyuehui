@@ -1,6 +1,6 @@
 // pages/ucenter/orderContinue/orderContinue.js
-const util = require('../../../utils/util.js');
-const api = require('../../../config/api.js');
+let util = require('../../../utils/util.js');
+let api = require('../../../config/api.js');
 Page({
   data: {
     pics:[

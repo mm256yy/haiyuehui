@@ -43,11 +43,17 @@
       </view>
       <view class="fill_li">
         <text>联系人</text>
-        <input placeholder="请输入真实姓名" bindblur="bindNameInput" bindinput="bindNameInput"></input>
+        <input placeholder="请输入真实姓名" value="{{fill.name}}" bindblur="bindNameInput" bindinput="bindNameInput"></input>
       </view>
       <view class="fill_li">
         <text>手机号码</text>
         <input value="{{fill.mobile}}" placeholder="请输入手机号码" bindblur="bindMobileInput" bindinput="bindMobileInput"></input>
+      </view>
+    </view>
+    <view class="person_selected">
+      <view class="person_val" bindtap="person">
+        <image class="person_img" src="/static/images/selected.png"></image>
+        <view class="person_text" >常住人簿</view>
       </view>
     </view>
   </view>

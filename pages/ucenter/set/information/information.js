@@ -22,15 +22,19 @@ Page({
     //获取到当前的手机号
     let tel = wx.getStorageSync('userInfoTel');
     if(tel){  //如果存在
-      this.setData({
-        'info.mobile':tel+'(无法修改)',
-        hasInfo:true
-      })
       util.request(api.UcenterSetMemberGet, 'GET').then(res => {
         console.log(res)
         if (res.status.code === 0) {
-
-        }else if(res.status.code === 400){
+          let infoNew = {
+            ident:res.status.ident||'',
+            name:res.status.name||'',
+            mobile:tel+'(无法修改)',
+          }
+          this.setData({
+            info:infoNew,
+            hasInfo:true
+          })
+        }else if(res.status.message === "请先登录"){
           wx.navigateTo({ 
             url: "/pages/auth/login/login"
           });

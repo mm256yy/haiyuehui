@@ -1,6 +1,6 @@
 /*支付*/
 var util = require('../utils/util.js');
-const api = require('../config/api.js');
+var api = require('../config/api.js');
 var app = getApp();
 
 function usePay(param){

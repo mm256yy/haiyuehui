@@ -1,10 +1,10 @@
-var user = require('./utils/user');
+let user = require('./utils/user');
 //app.js
 App({
   onLaunch: function () { 
     console.log("app.js+onLaunch")
     //更新
-    const updateManager = wx.getUpdateManager();
+    let updateManager = wx.getUpdateManager();
     wx.getUpdateManager().onUpdateReady(function() {
       wx.showModal({
         title: '更新提示',

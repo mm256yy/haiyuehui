@@ -106,9 +106,6 @@
   width: 200rpx;
 }
 /*two*/
-.live_info{
-  padding:0rpx 30rpx;
-}
 .live_input{
   padding: 20rpx 0rpx;
 }
@@ -117,8 +114,32 @@
   padding: 30rpx;
   border-bottom: 1px solid #999;
 }
+.form_ul{
+  display: flex;
+}
+.form_left{
+  flex: 1 1 auto;
+}
+.form_right{
+  width: 180rpx;
+  display: flex;
+  border-left:1rpx solid #f1f1f1;
+  border-bottom:1rpx solid #f1f1f1 ;
+}
+.form_person{
+  align-items:center;
+  text-align: center;
+  margin: auto;
+}
+.person_img{
+  width: 80rpx;
+  height: 80rpx;
+}
+.person_text{
+  color: #999;
+  font-size: 24rpx;
+}
 .input_li{
-  padding: 20rpx 0rpx;
   position: relative;
 }
 .input_li text{
@@ -130,10 +151,9 @@
   padding-top:10rpx ;
 }
 .input_li input{
-  margin-left: 120rpx;
-  background-color: #f1f1f1;
-  padding: 10rpx 20rpx;
+  padding: 25rpx 20rpx;
   border-radius:10rpx ;
+  border-bottom:1rpx solid #f1f1f1 ;
 }
 .room_ul{
   overflow: hidden;
@@ -185,7 +205,6 @@
   font-size: 24rpx;
 }
 /*btn*/
-
 .btn_define{
   background: linear-gradient(to right, #039cee , #753ffd);
   color: #fff;

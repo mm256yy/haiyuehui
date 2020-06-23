@@ -1,6 +1,6 @@
 // pages/ucenter/orderChoose/orderChoose.js
-const util = require('../../../utils/util.js');
-const api = require('../../../config/api.js');
+let util = require('../../../utils/util.js');
+let api = require('../../../config/api.js');
 Page({
   data: {
     hotel:{
@@ -19,7 +19,7 @@ Page({
       /*{val:false,code:'NE',name:'靠近电梯'},
       {val:false,code:'NE',name:'靠近电梯'},*/
     ],
-    chooseNum:1,   //入住顺序
+    chooseNum:2,   //入住顺序
     floorArr:0,    //楼层顺序
     floorVal:'',   //选中楼层
     roomUl:[
@@ -34,9 +34,9 @@ Page({
     ],     //房间列表
     roomArr:0,
     info:{
-      name:0,
-      identity:0,
-      mobile:0,
+      name:'',
+      identity:'',
+      mobile:'',
       room:''
     }
   },
@@ -48,7 +48,19 @@ Page({
 
   },
   onShow: function () {
-
+    let pages = getCurrentPages()
+    let currPage = pages[pages.length - 1]  // 当前页
+    console.log(currPage.data.info)  // data中会含有testdata
+    this.setData({
+      'info.name':currPage.data.info.name,
+      'info.identity':currPage.data.info.identity,
+      'info.mobile':currPage.data.info.mobile,
+    })
+  },
+  person(){
+    wx.navigateTo({
+      url: "/pages/ucenter/set/oftenList/oftenList?oftenType=1"
+    })
   },
   onHide: function () {
 

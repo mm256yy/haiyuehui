@@ -1,8 +1,6 @@
 {
   "pages":[
     
-    "pages/ucenter/set/setIndex/setIndex",
-
     "pages/index/index",
     "pages/pop/calendar/index",
     "pages/member/member/member",
@@ -28,7 +26,7 @@
     "pages/ucenter/orderTransfer/orderTransfer", 
     "pages/ucenter/teamNumber/teamNumber",
     
-    
+    "pages/ucenter/set/setIndex/setIndex",
     "pages/ucenter/set/oftenList/oftenList",
     "pages/ucenter/set/oftenEdit/oftenEdit",
     "pages/ucenter/set/information/information",

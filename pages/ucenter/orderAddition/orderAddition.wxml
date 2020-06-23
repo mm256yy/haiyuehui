@@ -4,15 +4,23 @@
   </view>
   <view class="form_box">
     <view class="form_ul">
-      <view class="form_li">
-        <input class="form_input" value="{{name}}" bindinput="bindNameInput" placeholder="{{additionType == 0?'请输入真实名字':'请输入访客真实名字'}}" />
+      <view class="form_left">
+        <view class="form_li">
+          <input class="form_input" value="{{info.name}}" bindinput="bindNameInput" placeholder="{{additionType == 0?'请输入真实名字':'请输入访客真实名字'}}" />
+        </view>
+        <view class="input_li">
+          <input class="form_input" value="{{info.identity}}" bindinput="bindIdentityInput" placeholder="{{additionType == 0?'请输入真实身份证':'请输入访客真实身份证'}}" />
+        </view>
       </view>
-      <view class="input_li">
-        <input class="form_input" value="{{identity}}" bindinput="bindIdentityInput" placeholder="{{additionType == 0?'请输入真实身份证':'请输入访客真实身份证'}}" />
+      <view class="form_right" bindtap="person">
+        <view class="form_person">
+          <image class="person_img" src="/static/images/selected.png"></image>
+          <view class="person_text">常住人簿</view>
+        </view>
       </view>
-      <view class="input_li">
-        <input class="form_input" value="{{mobile}}" bindinput="bindMobileInput" placeholder="{{additionType == 0?'请输入手机号码':'请输入访客手机号码'}}"/>
-      </view>
+    </view>
+    <view class="input_li">
+      <input class="form_input" value="{{info.mobile}}" bindinput="bindMobileInput" placeholder="{{additionType == 0?'请输入手机号码':'请输入访客手机号码'}}"/>
     </view>
     <view wx:if="{{additionType == 1}}" class="form_label">按照公安规定进出房间人员需要如实登记</view>
     <view wx:if="{{additionType == 2}}">

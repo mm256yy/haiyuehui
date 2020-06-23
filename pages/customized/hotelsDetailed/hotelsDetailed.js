@@ -1,6 +1,6 @@
-const util = require('../../../utils/util.js');
-const api = require('../../../config/api.js');
-const user = require('../../../utils/user');
+var util = require('../../../utils/util.js');
+var api = require('../../../config/api.js');
+var user = require('../../../utils/user');
 Page({
   data: {
     isLogin:false,

@@ -1,8 +1,8 @@
 // pages/ucenter/orderDetail/orderDetail.js
-const util = require('../../../utils/util.js');
-const api = require('../../../config/api.js');
-const pay = require('../../../utils/pay.js');
-var app = getApp();
+let util = require('../../../utils/util.js');
+let api = require('../../../config/api.js');
+let pay = require('../../../utils/pay.js');
+let app = getApp();
 Page({
   data: {
     detail:{
@@ -16,6 +16,7 @@ Page({
       endTimeS:'',
       rmdesc:'',
       orderId:0,
+      orderNo:0,
       contactsName:'',
       contactsTel:'',
       isCis:false,
@@ -97,6 +98,7 @@ Page({
           endTimeS:data.dep,
           rmdesc:data.rmdesc,
           orderId:this.data.detail.orderId,
+          orderNo:data.orderNo,
           contactsName:data.name,
           contactsTel:data.mobile,
           isCis:data.isCis,

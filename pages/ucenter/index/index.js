@@ -1,6 +1,6 @@
 // pages/ucenter/index/index.js
-const util = require('../../../utils/util.js');
-var app = getApp();
+let util = require('../../../utils/util.js');
+let app = getApp();
 Page({
   data: {
     ucenter:{

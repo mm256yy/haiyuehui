@@ -24,7 +24,7 @@ Page({
   },
   goOften(){
     wx.navigateTo({ 
-      url: "../oftenList/oftenList"
+      url: "../oftenList/oftenList?oftenType=0"
     });
   },
   goPrivacy(){

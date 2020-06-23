@@ -1,6 +1,6 @@
-const util = require('../../../utils/util.js');
-const api = require('../../../config/api.js');
-const pay = require('../../../utils/pay.js');
+let util = require('../../../utils/util.js');
+let api = require('../../../config/api.js');
+let pay = require('../../../utils/pay.js');
 // pages/ucenter/order/index.js
 Page({
   data: {

@@ -1,6 +1,6 @@
 var check = require('../../../utils/check.js');
-const util = require('../../../utils/util.js');
-const api = require('../../../config/api.js');
+var util = require('../../../utils/util.js');
+var api = require('../../../config/api.js');
 
 Page({
   data: {
@@ -60,6 +60,15 @@ Page({
 
   },
   onShow: function () {
+    let pages = getCurrentPages()
+    let currPage = pages[pages.length - 1]  // 当前页v
+    console.log(currPage.data)  
+    if(currPage.data.info){
+      this.setData({
+        'fill.name':currPage.data.info.name,
+        'fill.mobile':currPage.data.info.mobile,
+      })
+    }
     
   },
   onHide: function () {
@@ -236,6 +245,11 @@ Page({
         'fill.mobileDisabled':false
       })
     }
+  },
+  person(){
+    wx.navigateTo({
+      url: "/pages/ucenter/set/oftenList/oftenList?oftenType=1"
+    })
   },
   //时间
   dayZero(val){

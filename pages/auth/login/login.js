@@ -20,9 +20,7 @@ Page({
 
   },
   wxLogin(e) {
-    console.log(e.detail)
     if (!this.data.agreeRadio) {
-      console.log('请勾选协议')
       util.showErrorToast('请勾选协议');
       return false;
     }
@@ -76,15 +74,17 @@ Page({
       }).catch((err) => {
         console.log(err)
         app.globalData.hasLogin = false;
-        util.showErrorToast('失败-网络连接失败');
+        util.showErrorToast('网络连接失败');
       });
     })
   },
+  //点击协议
   agree(){
     this.setData({
       agreeRadio:!this.data.agreeRadio
     })
   },
+  //协议链接
   agreeUrl(){
     wx.navigateTo({ 
       url: "../loginAgree/loginAgree"

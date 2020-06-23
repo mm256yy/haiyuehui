@@ -16,7 +16,7 @@
       </view>
       <image class="ucenter_ba" src="../../../static/images/ucenter_ba.jpg"></image>
       <image class="ucenter_tou" src="{{ucenter.tou}}"></image>
-      <image class="ucenter_set" wx:if="{{false}}" bindtap="set" src="../../../static/images/set.png" ></image>
+      <image class="ucenter_set" bindtap="set" src="../../../static/images/set.png" ></image>
     </view>
     <view class="ucenter_menu">
       <view class="menu_box">

@@ -1,13 +1,13 @@
 // pages/ucenter/orderTransfer/orderTransfer.js
-var util = require('../../../utils/util.js');
-var api = require('../../../config/api.js');
-const pay = require('../../../utils/pay.js');
-var app = getApp();
+let util = require('../../../utils/util.js');
+let api = require('../../../config/api.js');
+let pay = require('../../../utils/pay.js');
+let app = getApp();
 Page({
   data: {
     processNum:1,
     info:{
-      orderId:0,
+      orderNo:0,
       // code:0,
     },
     detail:{
@@ -22,85 +22,32 @@ Page({
       startTimeS:'',
       endTime:'',
       endTimeS:'',
+      isCis:false,
     }
-  },
-  onLoad: function (options) {
-
-  },
-  onReady: function () {
-
   },
   onShow: function () {
 
   },
-  //下一步
-  define(){
-    if(this.data.processNum == 4){
-      if(!util.checkName(this.data.info[0].name)){return false}
-      if(!util.checkIdentity(this.data.info[0].identity)){return false}
-      //if(!util.checkMobile(this.data.info[0].mobile)){return false}
-    }else{
-      this.setData({
-        processNum:this.data.processNum + 1 
-      })
-    }
-  },
-  //上一步
-  back(){
-    this.setData({
-      chooseNum:this.data.chooseNum - 1 
-    })
-  },
   //input
   bindOrderInput(e){
     this.setData({
-      'info.orderId': e.detail.value
-    });
-  },
-  bindCodeInput(e){
-    this.setData({
-      'info.code': e.detail.value
+      'info.orderNo': e.detail.value
     });
   },
   //查询订单
   queryOrder(){
     let that = this
-    let orderId = this.data.info.orderId
-    // let code = this.data.info.code
-    if(orderId.length == 0){
+    let orderNo = this.data.info.orderNo
+    if(orderNo.length == 0){
       wx.showModal({
         title: '错误信息',
         content: '订单编号不能为空',
         showCancel: false
       });
       return false;
-    }else if(orderId.length != 14){
-      wx.showModal({
-        title: '错误信息',
-        content: '订单编号格式不正确',
-        showCancel: false
-      });
-      return false;
     }
-    // if(code.length == 0){
-    //   wx.showModal({
-    //     title: '错误信息',
-    //     content: '手机尾号不能为空',
-    //     showCancel: false
-    //   });
-    //   return false;
-    // }else if(code.length != 4){
-    //   wx.showModal({
-    //     title: '错误信息',
-    //     content: '手机尾号输入不正确',
-    //     showCancel: false
-    //   });
-    //   return false;
-    // }
-
     let param = {
-      orderId:this.data.info.orderId,
-      // code:this.data.info.code
+      orderNo:this.data.info.orderNo,
     }
     console.log(param)
     util.request(api.UcenterConnectOrder , param , 'GET').then(res => {
@@ -120,6 +67,7 @@ Page({
           startTimeS:res.result.arr,
           endTime:'',
           endTimeS:res.result.dep,
+          isCis:res.result.isCis
         }
         app.globalData.badge = {menu:[1,0,0,0]}
         wx.showModal({ title: '成功',content: '查询成功',showCancel: false , success (res) {

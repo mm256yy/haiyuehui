@@ -1,9 +1,8 @@
-const api = require('../../../config/api.js');
-const util = require('../../../utils/util.js');
-const check = require('../../../utils/check.js');
-
+var api = require('../../../config/api.js');
+var util = require('../../../utils/util.js');
+var check = require('../../../utils/check.js');
 var app = getApp();
-// pages/auth/register/register.js
+
 Page({
   data: {
     mobile: '',
@@ -15,13 +14,7 @@ Page({
   onLoad: function (options) {
 
   },
-  onReady: function () {
-
-  },
   onShow: function () {
-
-  },
-  onHide: function () {
 
   },
   //发送验证码

@@ -1,8 +1,8 @@
 //index.js
-const util = require('../../utils/util.js');
-const api = require('../../config/api.js');
+var util = require('../../utils/util.js');
+var api = require('../../config/api.js');
 //获取应用实例
-const app = getApp()
+var app = getApp()
 
 Page({
   data: {

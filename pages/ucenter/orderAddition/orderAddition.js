@@ -1,9 +1,9 @@
-const util = require('../../../utils/util.js');
-const api = require('../../../config/api.js');
-const check = require('../../../utils/check.js');
+let util = require('../../../utils/util.js');
+let api = require('../../../config/api.js');
+let check = require('../../../utils/check.js');
 Page({
   data: {
-    additionType:1,   //0 同住人 1 访客  no2 扫码/分享同住人 3 扫码/分享访客人 4 扫码路人（没有携带参数）
+    additionType:0,   //0 同住人 1 访客  no2 扫码/分享同住人 3 扫码/分享访客人 4 扫码路人（没有携带参数）
     orderId:0,
     hotelId:0,
     roomNo:0,
@@ -21,30 +21,14 @@ Page({
       roomNo:options.roomNo
     })
   },
-  onReady() {
-
-  },
   onShow() {
-
+    let pages = getCurrentPages()
+    let currPage = pages[pages.length - 1]  // 当前页
+    console.log(currPage.data.info)  // data中会含有testdata
+    this.setData({
+      info:currPage.data.info
+    })
   },
-  onHide() {
-
-  },
-  /*onShareAppMessage(){
-    let type = '';
-    if(this.data.additionType == 0){  //同住人
-      type =  2
-    }else if(this.data.additionType == 1){  //访客
-      type =  3
-    }else{
-      return false;
-    }
-    return {
-      title: '海外海酒店申报信息',
-      path: '/page/ucenter/orderAddition?additionType='+type+'&orderId='+this.data.orderId,
-      imageUrl:'../../../static/images/share.jpg'  //比例是4:5
-    }
-  },*/
   //input焦点
   bindNameInput(e) {
     this.setData({
@@ -129,4 +113,9 @@ Page({
       console.log(err)
     });
   },  
+  person(){
+    wx.navigateTo({
+      url: "/pages/ucenter/set/oftenList/oftenList?oftenType=1"
+    })
+  },
 })

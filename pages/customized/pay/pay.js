@@ -1,7 +1,7 @@
 
-const util = require('../../../utils/util.js');
-const pay = require('../../../utils/pay.js');
-const api = require('../../../config/api.js');
+var util = require('../../../utils/util.js');
+var pay = require('../../../utils/pay.js');
+var api = require('../../../config/api.js');
 Page({
   data: {
     order:{

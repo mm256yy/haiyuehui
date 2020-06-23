@@ -13,12 +13,12 @@ Page({
       },*/
     ],
     oftenChoose:0,
+    oftenType:0,  //从set进入0   从order进入1
   },
-  onLoad: function () {
-    
-  },
-  onReady: function () {
-
+  onLoad: function (options) {
+    this.setData({
+      oftenType:options.oftenType
+    })
   },
   onShow: function () {
     this.init();
@@ -53,18 +53,34 @@ Page({
       console.log(err)
     });
   },
-  //选择
+  //选择常住人
   chooseOften(e){
-    let oftenChooseNew = e.currentTarget.dataset.index+1;
+    let index = e.currentTarget.dataset.index
+    let oftenChooseNew = index+1;
     if(oftenChooseNew != this.data.oftenChoose){
-      this.setData({
-        oftenChoose:oftenChooseNew,
-        longChoose:0
-      })
+      if(this.data.oftenType == 0){  //set
+        this.setData({
+          oftenChoose:oftenChooseNew,
+        })
+      }else{  //order
+        let pages = getCurrentPages();
+        let prevPage = pages[ pages.length - 2 ];
+        let infoNew = {
+          name:this.data.often[index].name,
+          identity:this.data.often[index].identity,
+          mobile:this.data.often[index].mobile,
+        }
+        console.log(infoNew)
+        prevPage.setData({  // 将我们想要传递的参数在这里直接setData。上个页面就会执行这里的操作。
+          info:infoNew
+        })  
+        wx.navigateBack({
+          delta: 1  // 返回上一级页面。
+        })
+      }
     }else{
       this.setData({
         oftenChoose:0,
-        longChoose:0
       })
     }
   },

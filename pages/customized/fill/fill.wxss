@@ -51,16 +51,23 @@ page{background-color: #f1f1f1;}
   text-align: center;
 }
 /*fill*/
+.hotels_fill{
+  display: flex;
+}
 .fill_form{
-  margin:30rpx ;
+  margin:30rpx 0rpx 30rpx 30rpx;
   padding:10rpx 20rpx;
-  border-radius:10rpx ;
+  border-top-left-radius:10rpx ;
+  border-bottom-left-radius:10rpx ;
   background-color: #fff;
+  flex: 1 1 auto;
 }
 .fill_li{
   padding: 20rpx 0rpx;
-  border-bottom: 1px solid #f1f1f1;
   position: relative;
+}
+.fill_li:first-child{
+  border-bottom: 1px solid #f1f1f1;
 }
 .fill_li_disabled{
   opacity: 0.5;
@@ -92,7 +99,26 @@ page{background-color: #f1f1f1;}
 .room_num_val{
   display: inline-block;
 }
-
+.person_selected{
+  width: 180rpx;
+  margin: 30rpx 30rpx 30rpx 0rpx;
+  display: flex;
+  background-color: #fff;
+  border-top-right-radius:10rpx ;
+  border-bottom-right-radius:10rpx ;
+}
+.person_val{
+  align-items:center;
+  margin: auto;
+  text-align: center;
+}
+.person_img{
+  width: 60rpx;
+  height: 60rpx;
+}
+.person_text{
+  color: #999;
+}
 /*other*/
 .other_li{
   background-color: #fff;

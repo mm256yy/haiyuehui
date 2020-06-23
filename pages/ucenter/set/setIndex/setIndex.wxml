@@ -15,7 +15,7 @@
       <text>隐私协议</text>
       <image class="set_list_img" src="../../../../static/images/right.png"></image>
     </view>
-    <view class="set_list_li">
+    <view class="set_list_li" wx:if="{{false}}">
       <image class="set_list_icon" src="../../../../static/images/set4.png"></image>
       <text>意见反馈</text>
       <image class="set_list_img" src="../../../../static/images/right.png"></image>

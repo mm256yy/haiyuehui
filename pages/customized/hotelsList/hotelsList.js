@@ -48,7 +48,6 @@ Page({
       hotelsId:e.currentTarget.dataset.id,
       hotelsName : e.currentTarget.dataset.name
     })
-    
     //跳转
     wx.navigateBack({
         delta: 1  // 返回上一级页面。
