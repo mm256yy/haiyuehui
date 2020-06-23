@@ -1,25 +1,9 @@
-/*code*/
-.code_box{
-  margin-top: 100rpx;
-  text-align: center;
-}
-.code_img{
-  width: 300rpx;
-  height: 300rpx;
-  padding: 30rpx;
-  margin:auto ;
-}
-.code_content{
-  text-align: center;
-  color: #999;
-}
 /*logo*/
 .login_logo{
   margin-top: 100rpx;
   text-align: center;
 }
 .logo_img{
-  /* height: 400rpx; */
   padding: 20rpx;
   border-radius:20rpx;
   margin:auto ;
@@ -33,13 +17,13 @@
   background: #fff;
   margin-top: 100rpx;
 }
-.form-item {
+.form_li{
   height: 96rpx;
   position: relative;
   border-bottom: 1px solid #d9d9d9;
 }
 
-.name, .form-item, .identity, .mobile, .room{
+.form_input{
   display: block;
   width: 100%;
   height: 95rpx;
@@ -75,7 +59,7 @@
   width: 44rpx;
 }
 
-.addition_btn {
+.btn_li {
   margin: 60rpx 0rpx 40rpx 0rpx;
   padding: 20rpx 10rpx;
   border-radius:50rpx ;

@@ -1,0 +1,90 @@
+
+/*often_li*/
+.often_ul{
+  background-color: #fff;
+  margin-bottom: 100rpx;
+}
+.often_li{
+  border-bottom:1rpx solid #f1f1f1;
+  position: relative;
+}
+.often_li_val{
+  display: flex;
+}
+.often_li_choose{
+  width: 80rpx;
+  background-color: #cc0000;
+  display: flex;
+}
+.often_li_del{
+  width: 40rpx;
+  height: 40rpx;
+  align-items:center;
+  margin: auto;
+}
+.often_li_text{
+  padding: 20rpx;
+  flex: 1 1 auto;
+}
+.often_li_t{
+  padding: 10rpx;
+}
+.often_li_name{
+  font-weight: 800;
+}
+.often_li_mobile{
+  padding-left: 100rpx;
+}
+.often_li_mo{
+  font-size: 22rpx;
+  color: #fff;
+  padding: 5rpx 10rpx;
+  border-radius:10rpx ;
+  background-color: #cc0000;
+  margin-left: 20rpx;
+}
+.often_li_edit{
+  position: absolute;
+  top: 0rpx;
+  right: 0rpx;
+  width: 100rpx;
+  height: 100%;
+  text-align: center;
+  display: flex;
+}
+.i_edit{
+  width: 40rpx;
+  height: 40rpx;
+  margin: auto;
+  align-items:center;
+}
+/*zero*/
+.order_zero{
+  text-align: center;
+}
+.zero_img{
+  display: inline-block;
+  width: 200rpx;
+  height: 200rpx;
+  margin: 200rpx auto;
+}
+/*btn*/
+.btn_box{
+  padding:0rpx 30rpx;
+  position: fixed;
+  bottom: 10rpx;
+  left: 0rpx;
+  width: 100%;
+  background-color: #fff;
+}
+.btn_success{
+  margin: 20rpx 0rpx 20rpx 0rpx;
+  padding: 20rpx 10rpx;
+  border-radius:50rpx ;
+  color: #fff;
+  font-size: 30rpx;
+  width: 100%;
+  border-radius: 50rpx;
+  background: linear-gradient(to right, #039cee , #753ffd);
+  text-align: center;
+}

@@ -19,7 +19,6 @@ function isNonnum(str){
 //判断是否存在 true 纯字符串 false 存在空格或者特殊字符
 function spaceNo(str){
   var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>《》/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
-  console.log(str.indexOf(" "))
   if(pattern.test(str)||str.indexOf(" ") >= 0){
     return false;
   }else{

@@ -134,7 +134,7 @@ Page({
   //设置
   set(){
     wx.navigateTo({
-      url: "../set/set"
+      url: "../set/setIndex/setIndex"
     })
   },
   //点击登陆

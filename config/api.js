@@ -6,9 +6,9 @@
  // 测试线上ip
  // var WxApiRoot = 'http://124.70.132.80:9001/wx/';
  // 本机 开发api地址
- // var WxApiRoot = 'http://192.168.188.79:9001/wx/';  // http://192.168.133.67:9002/wx/; 
+  var WxApiRoot = 'http://192.168.188.79:9001/wx/';  // http://192.168.133.67:9002/wx/; 
  // 生产地址
-  var WxApiRoot = 'https://www.hwhhotels.com/wx/';
+ // var WxApiRoot = 'https://www.hwhhotels.com/wx/';
  
  module.exports = {
    AuthLoginByWeixin: WxApiRoot + 'auth/wxLogin', //微信登录 hwh
@@ -39,4 +39,12 @@
    UcenterConnectOrder: WxApiRoot + 'order/connectOrder', //查询订单（转移订单-接受）
    UcenterOrderAllowConnect: WxApiRoot + 'order/allowConnect', //是否可转接（转移订单-发送-复制）
    UcenterOrderGetRoomPwd: WxApiRoot + 'order/getRoomPwd', //获取到当前订单的房间密码
+
+   UcenterSetMemberEdit:WxApiRoot + 'member/edit', //会员信息编辑
+   UcenterSetMemberGet:WxApiRoot + 'member/get', //会员信息获取
+   UcenterSetPersonList:WxApiRoot + 'memberPerson/list', //常住人列表
+   UcenterSetPersonAdd:WxApiRoot + 'memberPerson/add', //常住人添加
+   UcenterSetPersonEdit:WxApiRoot + 'memberPerson/edit', //常住人编辑
+   UcenterSetPersonDelete:WxApiRoot + 'memberPerson/delete', //常住人删除
+   UcenterSetPersonQuery:WxApiRoot + 'memberPerson/queryById', //常住人查询
  }

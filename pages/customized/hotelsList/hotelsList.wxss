@@ -55,6 +55,7 @@ page{
   height: 200rpx;
   margin: 200rpx auto;
 }
+/*cis*/
 .cis{
   width: 80rpx;
   height: 80rpx;

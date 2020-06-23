@@ -52,26 +52,6 @@
 .agree_radio{
   color: #008cd7 !important;
 }
-radio .wx-radio-input{
-  border-radius:50%;
-  width:20px;height:20px;
-}
-radio .wx-radio-input.wx-radio-input-checked{
-  border-color:#008cd7 !important;
-  background:#008cd7 !important;
-}
-radio .wx-radio-input.wx-radio-input-checked::before{
-  border-radius:50%;
-  width:20px;
-  height:20px;
-  line-height:20px;
-  text-align:center;
-  font-size:15px;
-  color:#fff;
-  background:transparent;
-  transform:translate(-50%, -50%) scale(1);
-  -webkit-transform:translate(-50%, -50%) scale(1);
-}
 .wx_login_tel{
   border: 1px solid #008cd7;
   border-radius: 50rpx;

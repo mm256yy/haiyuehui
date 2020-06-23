@@ -1,4 +1,4 @@
-// pages/ucenter/set/set.js
+
 Page({
   data: {
     info:{
@@ -16,12 +16,20 @@ Page({
 
   },
   init(){
-    let param = {
-
-    };
-    /*util.requset()*/
   },
-  submit(){
-
-  }
+  goInformation(){
+    wx.navigateTo({ 
+      url: "../information/information"
+    });
+  },
+  goOften(){
+    wx.navigateTo({ 
+      url: "../oftenList/oftenList"
+    });
+  },
+  goPrivacy(){
+    wx.navigateTo({ 
+      url: "../../../auth/loginAgree/loginAgree"
+    });
+  } 
 })

@@ -194,7 +194,6 @@ function checkName(name){ //使用：if(!util.checkName(this.data.name)){return 
     });
     return false;
   }else{
-    console.log("姓名成功+"+name)
     return true;
   }
 }
@@ -211,6 +210,13 @@ function checkIdentity(identity){  //使用：if(!util.checkIdentity(this.data.i
     wx.showModal({
       title: '错误信息',
       content: '身份证不能小于18位',
+      showCancel: false
+    });
+    return false;
+  }else if(identity.length > 18){
+    wx.showModal({
+      title: '错误信息',
+      content: '身份证不能大于18位',
       showCancel: false
     });
     return false;

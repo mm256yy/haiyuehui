@@ -1,1 +1,28 @@
-/* pages/ucenter/set/set.wxss */
+page{
+  background-color: #f1f1f1;
+}
+.set_list_ul{
+  background-color: #fff;
+  border-top:1px solid #f1f1f1;
+}
+.set_list_li{
+  display: block;
+  margin-left: 30rpx;
+  padding: 30rpx 30rpx 30rpx 60rpx;
+  position: relative;
+  border-top:1px solid #f1f1f1;
+}
+.set_list_icon{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top: 30rpx;
+  left: 0rpx;
+}
+.set_list_img{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top: 30rpx;
+  right: 10rpx;
+}

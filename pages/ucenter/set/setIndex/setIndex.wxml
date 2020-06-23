@@ -1,6 +1,24 @@
-<!--pages/ucenter/set/set.wxml-->
 <view>
-  <view>
-    
+  <view class="set_list_ul">
+    <view class="set_list_li" bindtap="goInformation">
+      <image class="set_list_icon" src="../../../../static/images/set1.png"></image>
+      <text>个人信息</text>
+      <image class="set_list_img" src="../../../../static/images/right.png"></image>
+    </view>
+    <view class="set_list_li" bindtap="goOften">
+      <image class="set_list_icon" src="../../../../static/images/set2.png"></image>
+      <text>常住人簿</text>
+      <image class="set_list_img" src="../../../../static/images/right.png"></image>
+    </view>
+    <view class="set_list_li" bindtap="goPrivacy">
+      <image class="set_list_icon" src="../../../../static/images/set3.png"></image>
+      <text>隐私协议</text>
+      <image class="set_list_img" src="../../../../static/images/right.png"></image>
+    </view>
+    <view class="set_list_li">
+      <image class="set_list_icon" src="../../../../static/images/set4.png"></image>
+      <text>意见反馈</text>
+      <image class="set_list_img" src="../../../../static/images/right.png"></image>
+    </view>
   </view>
 </view>

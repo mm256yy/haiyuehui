@@ -8,7 +8,7 @@ Page({
     processNum:1,
     info:{
       orderId:0,
-      code:0,
+      // code:0,
     },
     detail:{
       status:'',
@@ -44,7 +44,6 @@ Page({
         processNum:this.data.processNum + 1 
       })
     }
-    
   },
   //上一步
   back(){
@@ -67,7 +66,7 @@ Page({
   queryOrder(){
     let that = this
     let orderId = this.data.info.orderId
-    let code = this.data.info.code
+    // let code = this.data.info.code
     if(orderId.length == 0){
       wx.showModal({
         title: '错误信息',
@@ -83,25 +82,25 @@ Page({
       });
       return false;
     }
-    if(code.length == 0){
-      wx.showModal({
-        title: '错误信息',
-        content: '手机尾号不能为空',
-        showCancel: false
-      });
-      return false;
-    }else if(code.length != 4){
-      wx.showModal({
-        title: '错误信息',
-        content: '手机尾号输入不正确',
-        showCancel: false
-      });
-      return false;
-    }
+    // if(code.length == 0){
+    //   wx.showModal({
+    //     title: '错误信息',
+    //     content: '手机尾号不能为空',
+    //     showCancel: false
+    //   });
+    //   return false;
+    // }else if(code.length != 4){
+    //   wx.showModal({
+    //     title: '错误信息',
+    //     content: '手机尾号输入不正确',
+    //     showCancel: false
+    //   });
+    //   return false;
+    // }
 
     let param = {
       orderId:this.data.info.orderId,
-      code:this.data.info.code
+      // code:this.data.info.code
     }
     console.log(param)
     util.request(api.UcenterConnectOrder , param , 'GET').then(res => {

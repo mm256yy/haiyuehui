@@ -1,5 +1,5 @@
 var util = require('../../../utils/util.js');
-const api = require('../../../config/api.js');
+var api = require('../../../config/api.js');
 Page({
   data: {
     hotels:[

@@ -9,3 +9,21 @@
   height: 200rpx;
   margin: 200rpx auto;
 }
+/*label*/
+.label_box{
+  position: relative;
+  padding: 20rpx 30rpx;
+}
+.i_label{
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  top: 20rpx;
+  left: 30rpx;
+}
+.label_text{
+  font-size: 24rpx;
+  color: #999;
+  padding-left: 40rpx;
+}
+/*btnSuccess*/

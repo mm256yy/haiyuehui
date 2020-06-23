@@ -1,0 +1,30 @@
+<view>
+  <view class="often_box">
+    <view class="often_ul">
+      <view class="often_li" wx:for="{{often}}" wx:key="index" >
+        <view bindtap="chooseOften"  class="often_li_val" data-index="{{index}}">
+          <view class="often_li_choose" wx:if="{{index+1 == oftenChoose}}" data-index="{{index}}" bindtap="delete">
+            <image class="often_li_del" src="/static/images/del.png"></image>
+          </view>
+          <view class="often_li_text">
+            <view class="often_li_t">
+              <text class="often_li_name">{{item.name}}</text>
+              <text class="often_li_mobile">{{item.mobile}}</text>
+              <text class="often_li_mo" wx:if="{{item.isDefault == 1}}">默认</text>
+            </view>
+            <view class="often_li_t often_li_identity">{{item.identityS}}</view>
+          </view>
+        </view>
+        <view class="often_li_edit" bindtap="edit" data-index="{{index}}">
+          <image class="i_edit" src="/static/images/edit.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{often.length == 0}}" class="order_zero">
+    <image class="zero_img" src="/static/images/zero.png"></image>
+  </view>
+  <view class="btn_box">
+    <view class="btn_success" bindtap="btnSuccess">+ 新增常住人</view>
+  </view>
+</view>

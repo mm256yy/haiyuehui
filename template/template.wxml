@@ -4,3 +4,12 @@
     <image class="zero_img" src="../../../static/images/zero.png"></image>
   </view>
 </template>
+
+<!--label.wxml-->
+<template name="label">
+  <view class="label_box"> 
+    <image class="i_label" src="/static/images/i.png"></image>
+    <view class="label_text" wx:for="{{text}}" wx:key="index">{{item}}</view>
+  </view>
+</template>
+

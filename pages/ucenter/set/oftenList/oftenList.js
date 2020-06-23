@@ -1,0 +1,119 @@
+var util = require('../../../../utils/util.js');
+var api = require('../../../../config/api.js');
+Page({
+  data: {
+    often:[
+      /*{
+        id:0,
+        name:'陈晓明',
+        mobile:'15967125243',
+        identity:'330327199508024315',
+        identityS:'3303**********24315',
+        isDefault:0,
+      },*/
+    ],
+    oftenChoose:0,
+  },
+  onLoad: function () {
+    
+  },
+  onReady: function () {
+
+  },
+  onShow: function () {
+    this.init();
+  },
+  init(){
+    let oftenUl = [];
+    let oftenLi = {};
+    util.request(api.UcenterSetPersonList, 'GET').then(res => {
+      console.log(res)
+      if (res.status.code === 0) {
+        //存储用户信息
+        for(let i=0;i<res.result.records.length;i++){
+          oftenLi = {
+            id:res.result.records[i].id,
+            name:res.result.records[i].name,
+            mobile:res.result.records[i].mobile,
+            identity:res.result.records[i].ident,
+            identityS:util.identityCard(res.result.records[i].ident),
+            isDefault:res.result.records[i].isDefault
+          }
+          oftenUl.push(oftenLi)
+        }
+        this.setData({  
+          often: oftenUl
+        })
+      }else if(res.status.code === 400){
+        wx.navigateTo({ 
+          url: "/pages/auth/login/login"
+        });
+      }
+    }).catch((err) => {
+      console.log(err)
+    });
+  },
+  //选择
+  chooseOften(e){
+    let oftenChooseNew = e.currentTarget.dataset.index+1;
+    if(oftenChooseNew != this.data.oftenChoose){
+      this.setData({
+        oftenChoose:oftenChooseNew,
+        longChoose:0
+      })
+    }else{
+      this.setData({
+        oftenChoose:0,
+        longChoose:0
+      })
+    }
+  },
+  //编辑
+  edit(e){
+    let index = e.currentTarget.dataset.index;
+    let data = this.data.often[index]
+    wx.navigateTo({ 
+      url: "../oftenEdit/oftenEdit?id="+data.id
+    });
+  },
+  //删除
+  delete(e){
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    let data = this.data.often[index]
+    console.log(e)
+    let param = {
+      id:data.id,
+    }
+    console.log(param)
+    wx.showModal({ 
+      title: '删除常住人',
+      content: '请确认要删除常住人？',
+      success: function(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          util.request(api.UcenterSetPersonDelete, param, 'GET').then(res => {
+            console.log(res)
+            if (res.status.code === 0) {
+              that.onShow();
+            }else if(res.status.code === 400){
+              wx.navigateTo({ 
+                url: "/pages/auth/login/login"
+              });
+            }
+          }).catch((err) => {
+            console.log(err)
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  //新增
+  btnSuccess(){
+    wx.navigateTo({ 
+      url: "../oftenEdit/oftenEdit"
+    });
+  }
+})
