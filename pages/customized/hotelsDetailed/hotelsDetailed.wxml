@@ -21,45 +21,45 @@
           <view class="choose_time"><text>{{time.start}}</text></view>
           <view class="choose_time"><text>入住{{time.num}}晚</text></view>
         </view>
-        <image class="time_down" src="../../../static/images/down.png"></image>
-        <image class="name_down" src="../../../static/images/down.png"></image>
+        <image class="time_down" src="/static/images/down.png"></image>
+        <image class="name_down" src="/static/images/down.png"></image>
       </view>
     </view>
     <view class="head_info">
       <view class="info_val">
-        <image src="../../../static/images/address.png"></image>
+        <image src="/static/images/address.png"></image>
         <text>{{hotel.address}}</text>
-        <image src="../../../static/images/hotel-address.png"></image>
+        <image src="/static/images/hotel-address.png"></image>
       </view>
       <view class="info_val" bindtap="goTel">
-        <image src="../../../static/images/tel.png"></image>
+        <image src="/static/images/tel.png"></image>
         <text>{{hotel.tel}}</text>
-        <image src="../../../static/images/hotel-tel.png"></image>
+        <image src="/static/images/hotel-tel.png"></image>
       </view>
     </view>
   </view>
   <view class="detailed_menu" wx:if="{{false}}">
     <view class="menu_li" bindtap="infoShow">
       <view class="menu_icon">
-        <image src="../../../static/images/room-menu1.png"></image>
+        <image src="/static/images/room-menu1.png"></image>
       </view>
       <text>健身房</text>
     </view>
     <view class="menu_li" bindtap="infoShow">
       <view class="menu_icon">
-        <image src="../../../static/images/room-menu2.png"></image>
+        <image src="/static/images/room-menu2.png"></image>
       </view>
       <text>酒廊</text>
     </view>
     <view class="menu_li" bindtap="infoShow">
       <view class="menu_icon">
-        <image src="../../../static/images/room-menu3.png"></image>
+        <image src="/static/images/room-menu3.png"></image>
       </view>
       <text>餐厅</text>
     </view>
     <view class="menu_li" bindtap="infoShow">
       <view class="menu_icon">
-        <image src="../../../static/images/room-menu4.png"></image>
+        <image src="/static/images/room-menu4.png"></image>
       </view>
       <text>会议厅</text>
     </view>
@@ -68,15 +68,15 @@
     <view class="room_ul">
       <view class="room_li {{item.avail == 0?'availZero':''}}"   wx:for="{{hotel.room}}" wx:key="index">
         <image class="room_li_img" src="{{item.img}}" bindtap="infoShow" data-rmtype="{{item.rmtype}}"></image>
-        <image wx:if="{{item.isCis&&false}}" src="../../../static/images/cis_ba.png" class="cis_ba"></image>
-        <image wx:if="{{item.isCis}}" src="../../../static/images/cis.png" class="cis"></image>
+        <image wx:if="{{item.isCis&&false}}" src="/static/images/cis_ba.png" class="cis_ba"></image>
+        <image wx:if="{{item.isCis}}" src="/static/images/cis.png" class="cis"></image>
         <view class="room_text">
           <view class="room_name">
             <text>{{item.name}}</text>
           </view>
           <view class="room_avail" wx:if="{{item.avail<=5}}">仅剩{{item.avail}}间</view>
           <!--<view class="room_breakfast">
-            <image src="../../../static/images/breakfast.png"></image>
+            <image src="/static/images/breakfast.png"></image>
             <text>可选择早餐</text>
           </view>-->
           <view class="room_label1">今天18点前可免费取消</view>
@@ -97,14 +97,14 @@
     </view>
   </view>
   <view wx:if="{{hotel.room.length == 0}}" class="order_zero">
-    <image class="zero_img" src="../../../static/images/zero.png"></image>
+    <image class="zero_img" src="/static/images/zero.png"></image>
   </view>
   <view class="detailed_pop" wx:if="{{infoPop}}" >
     <view class="black" bindtap="infoHide"></view>
     <view class="pop" animation="{{animationData}}" id="pop">
       <view class="info">
         <view class="info_h1">{{room.name}}</view>
-        <image class="info_del" bindtap="infoHide" src="../../../static/images/del.png"></image>
+        <image class="info_del" bindtap="infoHide" src="/static/images/del.png"></image>
         <swiper>
           <block wx:for="{{hotel.pics}}" wx:key="item">
             <swiper-item>

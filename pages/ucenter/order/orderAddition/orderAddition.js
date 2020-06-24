@@ -1,6 +1,6 @@
-let util = require('../../../utils/util.js');
-let api = require('../../../config/api.js');
-let check = require('../../../utils/check.js');
+let util = require('../../../../utils/util.js');
+let api = require('../../../../config/api.js');
+let check = require('../../../../utils/check.js');
 Page({
   data: {
     additionType:0,   //0 同住人 1 访客  no2 扫码/分享同住人 3 扫码/分享访客人 4 扫码路人（没有携带参数）

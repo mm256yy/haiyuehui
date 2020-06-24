@@ -1,7 +1,7 @@
 // pages/ucenter/orderTransfer/orderTransfer.js
-let util = require('../../../utils/util.js');
-let api = require('../../../config/api.js');
-let pay = require('../../../utils/pay.js');
+let util = require('../../../../utils/util.js');
+let api = require('../../../../config/api.js');
+let pay = require('../../../../utils/pay.js');
 let app = getApp();
 Page({
   data: {
@@ -79,7 +79,7 @@ Page({
       }else if(res.status.code === 400){
         wx.showModal({ title: '错误信息' , content: '未登陆',showCancel: false , success (res) {
           wx.navigateTo({
-            url: "../../auth/login/login"
+            url: "/pages/auth/login/login"
           })
         }})
       }else{ //500
@@ -99,12 +99,12 @@ Page({
     pay.usePay(param).then(res => {
       //跳转
       wx.navigateTo({
-        url: "../../customized/payResult/payResult?result="+'1'
+        url: "/pages/customized/payResult/payResult?result="+'1'
       })
     }).catch(() => {
       //跳转
       wx.navigateTo({
-        url: "../payResult/payResult?result="+'0'
+        url: "/pages/customized/payResult/payResult?result="+'0'
       })
     });
   },

@@ -36,9 +36,9 @@
       <view class="fill_li" wx:if="{{false}}">
         <text>房间数量</text>
         <view class="room_num">
-          <image class="room_num_btn room_num_reduce" bindtap="room" data-type="0" src="../../../static/images/num_reduce.png"></image>
+          <image class="room_num_btn room_num_reduce" bindtap="room" data-type="0" src="/static/images/num_reduce.png"></image>
           <text class="room_num_val">{{fill.roomNum}}</text>
-          <image class="room_num_btn room_num_add" bindtap="room" data-type="1" src="../../../static/images/num_add.png"></image>
+          <image class="room_num_btn room_num_add" bindtap="room" data-type="1" src="/static/images/num_add.png"></image>
         </view>
       </view>
       <view class="fill_li">
@@ -74,9 +74,9 @@
           </view>
           <view class="breakfast_foot {{breakfast.need?'breakfast_foot_on':''}}" >
             <view class="room_num">
-            <image class="room_num_btn room_num_reduce" bindtap="breakfast" data-type="0" src="../../../static/images/num_reduce.png"></image>
+            <image class="room_num_btn room_num_reduce" bindtap="breakfast" data-type="0" src="/static/images/num_reduce.png"></image>
             <text class="room_num_val">{{breakfast.num}}</text>
-            <image class="room_num_btn room_num_add" bindtap="breakfast" data-type="1" src="../../../static/images/num_add.png"></image>
+            <image class="room_num_btn room_num_add" bindtap="breakfast" data-type="1" src="/static/images/num_add.png"></image>
           </view>
           </view>
         </view>

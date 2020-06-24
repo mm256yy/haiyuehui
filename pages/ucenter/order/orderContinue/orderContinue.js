@@ -1,10 +1,10 @@
 // pages/ucenter/orderContinue/orderContinue.js
-let util = require('../../../utils/util.js');
-let api = require('../../../config/api.js');
+let util = require('../../../../utils/util.js');
+let api = require('../../../../config/api.js');
 Page({
   data: {
     pics:[
-      '../../../static/images/banner1.jpg',
+      '/static/images/banner1.jpg',
     ],
     order:{
       hotelId:'',
@@ -97,7 +97,7 @@ Page({
       if (res.status.code === 0) {
         //跳转
         wx.redirectTo({
-          url: "../../customized/pay/pay?money="+res.result.money+"&orderId="+res.result.orderId+"&rmdesc="+this.data.order.roomName
+          url: "/pages/customized/pay/pay?money="+res.result.money+"&orderId="+res.result.orderId+"&rmdesc="+this.data.order.roomName
         })
       }else{
         wx.showModal({ title: '错误信息',content: res.status.message,showCancel: false });

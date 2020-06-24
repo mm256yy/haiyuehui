@@ -1,9 +1,10 @@
 {
   "pages":[
-    
+    "pages/member/member/member",
     "pages/index/index",
     "pages/pop/calendar/index",
-    "pages/member/member/member",
+    
+    "pages/member/memberAgree/memberAgree",
     
     "pages/auth/login/login",
     "pages/auth/loginAgree/loginAgree",
@@ -17,13 +18,14 @@
     "pages/customized/hotelsDetailed/hotelsDetailed",
 
     "pages/ucenter/index/index",
-    "pages/ucenter/orderCancel/orderCancel",
-    "pages/ucenter/orderAddition/orderAddition",
-    "pages/ucenter/orderDetail/orderDetail",
-    "pages/ucenter/orderList/orderList",
-    "pages/ucenter/orderContinue/orderContinue",
-    "pages/ucenter/orderChoose/orderChoose", 
-    "pages/ucenter/orderTransfer/orderTransfer", 
+    "pages/ucenter/order/orderCancel/orderCancel",
+    "pages/ucenter/order/orderAddition/orderAddition",
+    "pages/ucenter/order/orderDetail/orderDetail",
+    "pages/ucenter/order/orderList/orderList",
+    "pages/ucenter/order/orderContinue/orderContinue",
+    "pages/ucenter/order/orderChoose/orderChoose", 
+    "pages/ucenter/order/orderTransfer/orderTransfer", 
+
     "pages/ucenter/teamNumber/teamNumber",
     
     "pages/ucenter/set/setIndex/setIndex",

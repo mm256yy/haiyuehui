@@ -1,6 +1,6 @@
 // pages/ucenter/orderChoose/orderChoose.js
-let util = require('../../../utils/util.js');
-let api = require('../../../config/api.js');
+let util = require('../../../../utils/util.js');
+let api = require('../../../../config/api.js');
 Page({
   data: {
     hotel:{
@@ -222,9 +222,7 @@ Page({
                 delta: 1  // 返回上一级页面。
               })
               console.log(this.data.hotel.orderId)
-              /*wx.navigateTo({
-                url: "../orderDetail/orderDetail?orderId="+this.data.hotel.orderId
-              })*/
+
             }else{ //500
               wx.showModal({ title: '错误信息',content: res.status.message,showCancel: false });
             }

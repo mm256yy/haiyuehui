@@ -1,15 +1,15 @@
 <!--pages/ucenter/orderChoose/orderChoose.wxml-->
 <view>
-  <image class="choose_ba" src="../../../static/images/team_ba.png"></image>
+  <image class="choose_ba" src="/static/images/team_ba.png"></image>
   <view class="choose_box">
     <view class="cis_bac">
-      <image src="../../../static/images/cis_title.png" mode="widthFix" class="cis_title"></image>
+      <image src="/static/images/cis_title.png" mode="widthFix" class="cis_title"></image>
       <!-- <view class="process_num {{chooseNum == 1?'process_num_on':''}}">
-        <image class="process_img" src="../../../static/images/team1.png"></image>
+        <image class="process_img" src="/static/images/team1.png"></image>
         <view class="process_text">房间喜好</view>
       </view>
       <view class="process_num {{chooseNum == 2?'process_num_on':''}}">
-        <image class="process_img" src="../../../static/images/team2.png"></image>
+        <image class="process_img" src="/static/images/team2.png"></image>
         <view class="process_text">选择房间</view>
       </view> -->
     </view>
@@ -34,8 +34,8 @@
           <view class="room_li" wx:for="{{roomUl}}" wx:key="index">
             <view class="room_li_val {{roomArr == index?'room_li_on':''}}" data-index="{{index}}" bindtap="roomChoose">
               {{item.roomNo}}
-              <image wx:if="{{item.isCis}}" class="room_choose room_choose_left room_choose_on" src="../../../static/images/choose{{roomArr == index?1:3}}.png"></image>
-              <image wx:if="{{item.isCis}}" class="room_choose room_choose_right room_choose_on" src="../../../static/images/choose{{roomArr == index?2:4}}.png"></image>
+              <image wx:if="{{item.isCis}}" class="room_choose room_choose_left room_choose_on" src="/static/images/choose{{roomArr == index?1:3}}.png"></image>
+              <image wx:if="{{item.isCis}}" class="room_choose room_choose_right room_choose_on" src="/static/images/choose{{roomArr == index?2:4}}.png"></image>
             </view>
           </view>
         </view>

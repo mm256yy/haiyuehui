@@ -106,6 +106,7 @@ page{background-color: #f1f1f1;}
   background-color: #fff;
   border-top-right-radius:10rpx ;
   border-bottom-right-radius:10rpx ;
+  border-left: 1rpx solid #f1f1f1;
 }
 .person_val{
   align-items:center;

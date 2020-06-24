@@ -14,9 +14,9 @@
       <view wx:if="{{false}}">
         <text class="ucenter_text">下一等级会员需要{{ucenter.progressTop}}积分</text>
       </view>
-      <image class="ucenter_ba" src="../../../static/images/ucenter_ba.jpg"></image>
+      <image class="ucenter_ba" src="/static/images/ucenter_ba.jpg"></image>
       <image class="ucenter_tou" src="{{ucenter.tou}}"></image>
-      <image class="ucenter_set" bindtap="set" src="../../../static/images/set.png" ></image>
+      <image class="ucenter_set" bindtap="set" src="/static/images/set.png" ></image>
     </view>
     <view class="ucenter_menu">
       <view class="menu_box">
@@ -34,7 +34,7 @@
   </view>
   <view class="ucenter_member" wx:if="{{false}}">
     <view class="member_h1">海悦会特权</view>
-    <image class="member_kind" src="../../../static/images/king.png"></image>
+    <image class="member_kind" src="/static/images/king.png"></image>
     <view class="member_ul">
       <view class="member_li" wx:for="{{memberUl}}" wx:key="index">
         <image class="member_li_img" src="{{item.img}}"></image>

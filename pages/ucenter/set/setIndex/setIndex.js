@@ -1,35 +1,24 @@
 
 Page({
   data: {
-    info:{
-      identity:0,
-      name:'',
-    }
   },
   onLoad: function (options) {
-    this.init();
-  },
-  onReady: function () {
-
   },
   onShow: function () {
-
-  },
-  init(){
   },
   goInformation(){
     wx.navigateTo({ 
-      url: "../information/information"
+      url: "/pages/ucenter/set/information/information"
     });
   },
   goOften(){
     wx.navigateTo({ 
-      url: "../oftenList/oftenList?oftenType=0"
+      url: "/pages/ucenter/set/oftenList/oftenList?oftenType=0"
     });
   },
   goPrivacy(){
     wx.navigateTo({ 
-      url: "../../../auth/loginAgree/loginAgree"
+      url: "/pages/auth/memberAgree/memberAgree"
     });
   } 
 })

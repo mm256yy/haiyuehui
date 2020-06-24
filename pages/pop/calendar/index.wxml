@@ -15,8 +15,8 @@
         </view>
         <view class="calendar_body">
           <view class="body_title">
-            <image bindtap="calendarButtom" data-val="1" class="body_title_l" src="../../../static/images/left.png"></image>
-            <image bindtap="calendarButtom" data-val="2" class="body_title_r" src="../../../static/images/right.png"></image>
+            <image bindtap="calendarButtom" data-val="1" class="body_title_l" src="/static/images/left.png"></image>
+            <image bindtap="calendarButtom" data-val="2" class="body_title_r" src="/static/images/right.png"></image>
             <text class="time_t1">{{show.month}}月</text>
           </view>
           <view class="body_week">

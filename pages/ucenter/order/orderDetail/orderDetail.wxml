@@ -1,7 +1,7 @@
 <!--pages/ucenter/orderDetail/orderDetail.wxml-->
 <view>
   <view class="order_type">
-    <image class="order_type_img" src="../../../static/images/order_ba.jpg"></image>
+    <image class="order_type_img" src="/static/images/order_ba.jpg"></image>
     <text>{{detail.statusS}}</text>
   </view>
   <view class="order_detail">
@@ -14,7 +14,7 @@
       <view class="detail_relative">
         <text class="detail_t1">订单编号：</text><text class="detail_t0">{{detail.orderNo}}</text>
         <text wx:if="{{(detail.status == 11||detail.status == 22)&&detail.isCis}}" bindtap="copy" class="{{allowConnect == 0?'detail_share_n':'detail_share_y'}}">{{allowConnect == 0?'授权已关闭':'授权已开启'}}</text>
-        <image wx:if="{{(detail.status == 11||detail.status == 22)}}" bindtap="copy" data-text="{{detail.orderNo}}" class="detail_copy" src="../../../static/images/copy_{{allowConnect == 0?'n':'y'}}.png"></image>
+        <image wx:if="{{(detail.status == 11||detail.status == 22)}}" bindtap="copy" data-text="{{detail.orderNo}}" class="detail_copy" src="/static/images/copy_{{allowConnect == 0?'n':'y'}}.png"></image>
       </view>
     </view>
     <view class="detail_copy_i" wx:if="{{(detail.status == 11||detail.status == 22)}}">
@@ -23,8 +23,8 @@
     </view>
     <view class="detail_ul" wx:if="{{(detail.status == 31||detail.status == 32)&&(personUl.length != 0)&&detail.isCis}}">
       <view><text class="detail_t1">房间密码：</text><text class="detail_t0">{{pwdValS}}</text></view>
-      <image class="detail_see" bindtap="pwd" wx:if="{{!pwdSeeIdent}}" src="../../../static/images/see-no.png"></image>
-      <image class="detail_see" bindtap="pwd" wx:if="{{pwdSeeIdent}}" src="../../../static/images/see-y.png"></image>
+      <image class="detail_see" bindtap="pwd" wx:if="{{!pwdSeeIdent}}" src="/static/images/see-no.png"></image>
+      <image class="detail_see" bindtap="pwd" wx:if="{{pwdSeeIdent}}" src="/static/images/see-y.png"></image>
     </view>
     <view class="detail_ul">
       <view><text class="detail_t1">联系人：</text><text class="detail_t0">{{detail.contactsName}}</text></view>
@@ -43,8 +43,8 @@
           <view><text class="detail_t1">真实姓名：</text><text class="detail_t0">{{item.name}}</text></view>
           <view>
             <text class="detail_t1">身份证号：</text><text class="detail_t0">{{item.identS}}</text>
-            <image class="detail_see" bindtap="see" data-index="{{index}}" wx:if="{{!item.seeIdent}}" src="../../../static/images/see-no.png"></image>
-            <image class="detail_see" bindtap="see" data-index="{{index}}" wx:if="{{item.seeIdent}}" src="../../../static/images/see-y.png"></image>
+            <image class="detail_see" bindtap="see" data-index="{{index}}" wx:if="{{!item.seeIdent}}" src="/static/images/see-no.png"></image>
+            <image class="detail_see" bindtap="see" data-index="{{index}}" wx:if="{{item.seeIdent}}" src="/static/images/see-y.png"></image>
           </view>
         </view>
       </view>
@@ -95,7 +95,7 @@
     </view>
   </view>
   <view class="order_i">
-    <image src="../../../static/images/i.png" class="i_img"></image>
+    <image src="/static/images/i.png" class="i_img"></image>
     <view class="i_text1">取消政策</view>
     <view class="i_text2">支付后，订单将会保留，支付后一个小时内可免费取消</view>
   </view>

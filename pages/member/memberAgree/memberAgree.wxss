@@ -1,4 +1,4 @@
-
+/* pages/member/memberAgree/memberAgree.wxss */
 .agree{
   padding: 30rpx;
 }

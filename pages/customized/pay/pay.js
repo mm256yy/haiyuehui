@@ -69,7 +69,7 @@ Page({
     console.log(param)
     //跳转
     /*wx.navigateTo({
-      url: "../../customized/payResult/payResult?result="+'1'
+      url: "/pages/customized/payResult/payResult?result="+'1'
     })*/
     pay.usePay(param).then(res => {
       //跳转

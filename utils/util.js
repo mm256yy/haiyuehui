@@ -1,7 +1,8 @@
 var api = require('../config/api.js');
-var app = getApp();
 var check = require('./check.js')
 var debug = true;  //开启测试
+
+var app = getApp();
 
 //时间转化 时间戳 ==> 2020-05-14 16:40:08
 function formatTime(date) {

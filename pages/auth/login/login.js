@@ -2,7 +2,6 @@ var util = require('../../../utils/util.js');
 var user = require('../../../utils/user.js');
 
 var app = getApp();
-// pages/auth/login/login.js
 Page({
   data: {
     agreeRadio:false
@@ -10,13 +9,7 @@ Page({
   onLoad: function (options) {
 
   },
-  onReady: function () {
-
-  },
   onShow: function () {
-
-  },
-  onHide: function () {
 
   },
   wxLogin(e) {
@@ -51,7 +44,7 @@ Page({
       }).catch((err) => {
         console.log(err)
         app.globalData.hasLogin = false;
-        util.showErrorToast('失败-网络连接失败');
+        util.showErrorToast('网络连接失败');
       });
     }).catch((res) => {
       console.log(res)
@@ -87,7 +80,7 @@ Page({
   //协议链接
   agreeUrl(){
     wx.navigateTo({ 
-      url: "../loginAgree/loginAgree"
+      url: "../memberAgree/memberAgree"
     });
   }
 })

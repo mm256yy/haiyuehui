@@ -5,7 +5,7 @@ var api = require('../../../config/api.js');
 Page({
   data: {
     pics:[
-      '../../../static/images/banner1.jpg',
+      '/static/images/banner1.jpg',
     ],
     room:{
       hotelId:'',
@@ -176,11 +176,11 @@ Page({
       if (res.status.code === 0) {
         //跳转
         wx.redirectTo({
-          url: "../../customized/pay/pay?money="+res.result.money+"&orderId="+res.result.orderId+"&rmdesc="+this.data.room.roomName
+          url: "/pages/customized/pay/pay?money="+res.result.money+"&orderId="+res.result.orderId+"&rmdesc="+this.data.room.roomName
         })
       }else if(res.status.message == "未登录"){
         wx.navigateTo({
-          url: "../../auth/login/login"
+          url: "/pages/auth/login/login"
         })
       }else{
         wx.showModal({title: '错误信息', content: res.status.message ,showCancel: false});

@@ -1,6 +1,6 @@
-let util = require('../../../utils/util.js');
-let api = require('../../../config/api.js');
-let pay = require('../../../utils/pay.js');
+let util = require('../../../../utils/util.js');
+let api = require('../../../../config/api.js');
+let pay = require('../../../../utils/pay.js');
 // pages/ucenter/order/index.js
 Page({
   data: {
@@ -111,7 +111,7 @@ Page({
       }else{
         //登陆
         wx.navigateTo({
-          url: "../../auth/login/login"
+          url: "/pages/auth/login/login"
         })
       }
     }).catch((err) => {
@@ -196,12 +196,12 @@ Page({
     pay.usePay(param).then(res => {
       //跳转
       wx.navigateTo({
-        url: "../../customized/payResult/payResult?result="+'1'
+        url: "/pages/customized/payResult/payResult?result="+'1'
       })
     }).catch(() => {
       //跳转
       wx.navigateTo({
-        url: "../payResult/payResult?result="+'0'
+        url: "/pages/customized/payResult/payResult?result="+'0'
       })
     });
   },

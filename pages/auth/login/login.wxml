@@ -5,7 +5,7 @@
     <view class="login_h3">登录之后，可以在小程序内在线预定、支付海外海旗下的酒店，享受一键入住，一键退房等快捷服务~</view>
   </view>
   <view class="login_logo">
-    <image class="logo_img" src="../../../static/images/login.png"></image>
+    <image class="logo_img" src="/static/images/login.png"></image>
   </view>
   <view class="login_box">
     <view class="login_agree">
@@ -17,7 +17,7 @@
     </view>
     <button open-type="getUserInfo" class="wx_login_wx" bindgetuserinfo="wxLogin" size="default">
       <view class="wx_login_text2">
-        <image class="wxImg" src="../../../static/images/wx.png"></image>
+        <image class="wxImg" src="/static/images/wx.png"></image>
         微信快捷登录
       </view>
     </button>

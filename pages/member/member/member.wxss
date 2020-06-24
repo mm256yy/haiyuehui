@@ -15,11 +15,23 @@ page{
   left: 0rpx;
   z-index: -2;
 }
+.swiper{
+  height: 385rpx;
+}
 .member_card{
   position: relative;
 }
 .member_card_ba{
   width: 100%;
+}
+.member_rule{
+  position: absolute;
+  top: 120rpx;
+  left: 100rpx;
+}
+.rule_up{
+  color: #fff;
+  font-size: 24rpx;
 }
 .member_card_tou{
   position: absolute;
@@ -55,7 +67,7 @@ page{
 .card_member{
   position: absolute;
   bottom: 40rpx;
-  right:120rpx;
+  right:105rpx;
   text-align: center;
 }
 .card_endtime{
@@ -72,7 +84,7 @@ page{
 }
 .progress_ul{
   display: flex;
-  padding: 20rpx 0rpx;
+  padding: 10rpx 0rpx;
 }
 .progress_li_content{
   display: flex;

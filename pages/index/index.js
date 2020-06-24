@@ -7,7 +7,7 @@ var app = getApp()
 Page({
   data: {
     bannerUrls:[
-      '../../static/images/banner1.jpg',
+      '/static/images/banner1.jpg',
     ],
     hotelsName:'点击选择酒店',
     hotelsId:'hotelsId',
@@ -34,25 +34,25 @@ Page({
   //跳转酒店详情
   hotelsDetailed(){
     wx.navigateTo({
-      url: "../customized/hotelsDetailed/hotelsDetailed?hotelsId="+this.data.hotelsId+"&startTime="+this.data.startTime+"&endTime="+this.data.endTime
+      url: "/pages/customized/hotelsDetailed/hotelsDetailed?hotelsId="+this.data.hotelsId+"&startTime="+this.data.startTime+"&endTime="+this.data.endTime
     })
   },
   //跳转酒店列表
   hotelsList(){
     wx.navigateTo({
-      url: "../customized/hotelsList/hotelsList"
+      url: "/pages/customized/hotelsList/hotelsList"
     })
   },
   //跳转日历
   calendarShow(){
     wx.navigateTo({
-      url: "../pop/calendar/index"
+      url: "/pages/pop/calendar/index"
     })
   },
   //跳转日历
   orderTransfer(){
     wx.navigateTo({
-      url: "../ucenter/orderTransfer/orderTransfer"
+      url: "/pages/ucenter/order/orderTransfer/orderTransfer"
     })
   },
   //进行日历处理

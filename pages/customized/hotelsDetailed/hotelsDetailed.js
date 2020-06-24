@@ -13,7 +13,7 @@ Page({
       id:0,
       name:'暂无酒店名',
       pics:[
-        '../../../static/images/banner1.jpg',
+        '/static/images/banner1.jpg',
       ],
       address:'暂无地址',
       tel:'暂无电话',
@@ -24,7 +24,7 @@ Page({
         /*{
           id:0,
           name:'roomName',
-          img:'../../../static/images/room.jpg',
+          img:'/static/images/room.jpg',
           priceBefore:'0',
           priceBeforeS:'100.00',
           priceVip:'0',
@@ -115,7 +115,7 @@ Page({
             roomLi = {
               id:0,
               name:res.result[i].name,
-              img:('../../../static/images/room.jpg'||res.result[i].image),
+              img:('/static/images/room.jpg'||res.result[i].image),
               priceBefore:res.result[i].price,
               priceBeforeS:(res.result[i].price/100).toFixed(2),
               priceVip:res.result[i].pricem,
@@ -133,7 +133,7 @@ Page({
             id:hotel.id,
             name:hotel.name,   
             pics:[
-              '../../../static/images/banner1.jpg'
+              '/static/images/banner1.jpg'
             ],
             address:hotelVal,
             tel:telVal,
@@ -148,7 +148,7 @@ Page({
           })
         } else {
           wx.navigateTo({
-            url: "../../auth/login/login"
+            url: "/pages/auth/login/login"
           })
         }
       }).catch((err) => {
@@ -186,7 +186,7 @@ Page({
   /*选择日历*/ 
   goCalendar(){
     wx.navigateTo({
-      url: "../../pop/calendar/index"
+      url: "/pages/pop/calendar/index"
     })
   },
   //拨打电话
@@ -232,7 +232,7 @@ Page({
       }else{
         //登陆
         wx.navigateTo({
-          url: "../../auth/login/login"
+          url: "/pages/auth/login/login"
         })
       }
     }).catch((err) => {

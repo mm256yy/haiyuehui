@@ -50,7 +50,7 @@
     </view>
   </view>
   <view class="home_member">
-    <image src="../../static/images/member-home.jpg" bindtap="aa"></image>
+    <image src="/static/images/member-home.jpg" bindtap="aa"></image>
     <view>
     </view>
   </view>

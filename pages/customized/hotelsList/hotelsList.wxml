@@ -7,11 +7,11 @@
         <view>{{item.name}}</view>
         <view class="hotels_text_attr">{{item.address}}</view>
         <text class="hotels_text_cis" wx:if="{{item.id == 'H000001'}}">云智住</text>
-        <image wx:if="{{index == 0}}" src="../../../static/images/cis.png" class="cis"></image>
+        <image wx:if="{{index == 0}}" src="/static/images/cis.png" class="cis"></image>
       </view>
     </view>
   </view>
   <view wx:if="{{hotels.length == 0}}" class="order_zero">
-    <image class="zero_img" src="../../../static/images/zero.png"></image>
+    <image class="zero_img" src="/static/images/zero.png"></image>
   </view>
 </view>

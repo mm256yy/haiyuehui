@@ -1,7 +1,7 @@
 // pages/ucenter/orderDetail/orderDetail.js
-let util = require('../../../utils/util.js');
-let api = require('../../../config/api.js');
-let pay = require('../../../utils/pay.js');
+let util = require('../../../../utils/util.js');
+let api = require('../../../../config/api.js');
+let pay = require('../../../../utils/pay.js');
 let app = getApp();
 Page({
   data: {
@@ -189,12 +189,12 @@ Page({
     pay.usePay(param).then(res => {
       //跳转
       wx.navigateTo({
-        url: "../../customized/payResult/payResult?result="+'1'
+        url: "/pages/customized/payResult/payResult?result="+'1'
       })
     }).catch(() => {
       //跳转
       wx.navigateTo({
-        url: "../payResult/payResult?result="+'0'
+        url: "/pages/customized/payResult/payResult?result="+'0'
       })
     });
   },

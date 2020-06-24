@@ -1,6 +1,6 @@
 <view>
   <view class="login_logo">
-    <image class="logo_img" src="../../../static/images/logo.jpg"></image>
+    <image class="logo_img" src="/static/images/logo.jpg"></image>
   </view>
   <view class="logo_name">海外海</view>
   <view class="logo_content">给与您最优质的服务</view>

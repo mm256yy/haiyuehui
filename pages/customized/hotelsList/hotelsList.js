@@ -3,7 +3,7 @@ var api = require('../../../config/api.js');
 Page({
   data: {
     hotels:[
-      /*{id:'0',name:"酒店1",img:"../../../static/images/hotels1.jpg",address:"address",tel:'15967125243',deposit:20000}*/
+      /*{id:'0',name:"酒店1",img:"/static/images/hotels1.jpg",address:"address",tel:'15967125243',deposit:20000}*/
     ]
   },
   onLoad: function (options) {
@@ -17,7 +17,7 @@ Page({
           hotelsLi = {
             id:res.result[i].id,
             name:res.result[i].name,
-            img:'../../../static/images/hotels'+i+'.jpg',
+            img:'/static/images/hotels'+i+'.jpg',
             address:res.result[i].address,
             deposit:res.result[i].deposit,
             tel:res.result[i].tel

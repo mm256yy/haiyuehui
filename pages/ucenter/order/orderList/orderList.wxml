@@ -34,7 +34,7 @@
       </view>
     </block>
     <view wx:if="{{orderUl.length == 0}}" class="order_zero">
-      <image class="zero_img" src="../../../static/images/zero.png"></image>
+      <image class="zero_img" src="/static/images/zero.png"></image>
     </view>
   </view>
 </view>
