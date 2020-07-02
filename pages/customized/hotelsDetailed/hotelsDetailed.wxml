@@ -1,4 +1,5 @@
 <view>
+  <import src="/template/template"/> 
   <view class="detailed_head">
     <view class="head_banner">
       <swiper 
@@ -83,22 +84,20 @@
           <view class="room_attr" wx:if="{{item.isCis}}">
             <text class="room_attr_val">含有云智住房间</text>
           </view>
-          <view class="room_price_before {{isLogin?'room_price_before_y':'room_price_before_n'}}">门市价：￥{{item.priceBeforeS}}/晚</view>
+          <view class="room_price_before {{isLogin?'room_price_before_y':'room_price_before_n'}}">门市价：￥{{item.wrecS}}/晚</view>
           
           <view class=" {{item.avail == 0?'room_price_vip_zero':''}} {{item.isCis?'room_price_sic':'room_price_vip'}}" bindtap="room" data-arr="{{index}}">
-            <view class="vip_name"><text>{{item.isCis?'会员价预定':'会员价预定'}}</text></view>
+            <view class="vip_name"><text>{{item.isCis?'会员价低至':'会员价低至'}}</text></view>
             <view class="vip_price {{item.avail == 0?'vip_price_zero':''}} {{item.isCis?'sic_price':''}}" >
               <text>￥</text>
-              <text>{{item.avail == 0?'已满房':(item.priceVipS+'/晚')}}</text>
+              <text>{{item.avail == 0?'已满房':(item.wec0S+'/晚')}}</text>
             </view>
           </view>
         </view>
       </view>
     </view>
   </view>
-  <view wx:if="{{hotel.room.length == 0}}" class="order_zero">
-    <image class="zero_img" src="/static/images/zero.png"></image>
-  </view>
+  <template is="zero" data="{{list: hotel.room}}"/>
   <view class="detailed_pop" wx:if="{{infoPop}}" >
     <view class="black" bindtap="infoHide"></view>
     <view class="pop" animation="{{animationData}}" id="pop">

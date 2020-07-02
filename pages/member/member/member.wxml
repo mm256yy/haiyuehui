@@ -1,4 +1,3 @@
-<!--pages/member/member/index.wxml-->
 <view>
   <view class="member_head">
     <image class="member_head_ba" mode="widthFix" src="/static/images/member_ba.jpg"></image>
@@ -36,7 +35,7 @@
   </view>
   <view class="member_progress">
     <view class="progress_ul">
-      <view class="progress_li" wx:for="{{memberGrade}}" wx:key="index">
+      <view class="progress_li" wx:for="{{memberCard}}" wx:key="index">
         <view class="progress_li_content">
           <view class="progress_li_left"></view>
           <view class="{{memberVal == index?'progress_li_up':'progress_li_down'}}">
@@ -44,22 +43,32 @@
           </view>
           <view class="progress_li_right"></view>
         </view>
-        <view class="progress_li_t1">{{item.name}}</view>
+        <view class="progress_li_t1">{{item.nameC}}</view>
       </view>
     </view>
     <view class="progress_li_label">☆再住<text class="progress_li_t2">3</text>间夜可升级为 | 银卡 |</view>
   </view>
   <view class="member_privilege">
-    <image class="privilege_ba" src="/static/images/member-ba.png"  mode="widthFix"></image>
-    <view class="privilege_ul">
-      <view class="privilege_li" wx:for="{{privilegeUl}}" wx:key="index">
-        <image class="privilege_li_img" src="{{item.img}}"></image>
-        <view class="privilege_li_t1">{{item.text1}}</view>
-        <view class="privilege_li_t1">{{item.text2}}</view>
+    <view class="privilege_ba">
+      <image src="/static/images/member-i1.png" class="member_i1"></image>
+      <image src="/static/images/member-i2.png" class="member_i2"></image>
+      <view class="privilege_ul">
+        <view class="privilege_li" bindtap="introduceValShow" data-index="{{index}}" wx:for="{{privilegeUl}}" wx:key="index">
+          <image class="privilege_li_img" src="{{item.img}}"></image>
+          <view class="privilege_li_t1">{{item.text1}}</view>
+          <view class="privilege_li_t1">{{item.text2}}</view>
+        </view>
+      </view>
+      <view class="privilege_most">
+        <image src="/static/images/power/power_most.png"  mode="widthFix"></image>
       </view>
     </view>
-    <view class="privilege_most">
-      <image src="/static/images/power/power_most.png"  mode="widthFix"></image>
+  </view>
+  <view class="member_black" wx:if="{{introduceShow}}" data-index="0" bindtap="introduceValShow">
+    <view class="black_flex">
+      <view class="black_tip_box">
+        <view class="black_tip_val">{{introduceVal}}</view>
+      </view>
     </view>
   </view>
 </view>

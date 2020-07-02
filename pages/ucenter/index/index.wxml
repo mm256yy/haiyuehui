@@ -16,7 +16,7 @@
       </view>
       <image class="ucenter_ba" src="/static/images/ucenter_ba.jpg"></image>
       <image class="ucenter_tou" src="{{ucenter.tou}}"></image>
-      <image class="ucenter_set" bindtap="set" src="/static/images/set.png" ></image>
+      <image wx:if="{{false}}" class="ucenter_set" bindtap="set" src="/static/images/set.png" ></image>
     </view>
     <view class="ucenter_menu">
       <view class="menu_box">
@@ -43,12 +43,21 @@
       </view>
     </view>
   </view>
-  <view class="ucenter_other" wx:if="{{false}}">
-    <view class="ucenter_other_h1">我的服务</view>
+  <view class="ucenter_other">
     <view class="other_ul">
-      <view class="other_li" wx:for="{{otherIcon}}" wx:key="index">
-        <image class="other_img" src="{{item.img}}"></image>
-        <view class="other_text">{{item.text}}</view>
+      <view class="other_li" wx:for="{{otherIcon}}" wx:key="index" bindtap="{{item.tap}}">
+        <image class="other_li_img" src="{{item.img}}"></image>
+        <text class="other_li_text">{{item.text}}</text>
+        <image class="other_li_go" src="/static/images/right.png"></image>
+      </view>
+    </view>
+  </view>
+  <view class="ucenter_service" wx:if="{{false}}">
+    <view class="ucenter_service_h1">我的服务</view>
+    <view class="service_ul">
+      <view class="service_li" wx:for="{{serviceIcon}}" wx:key="index">
+        <image class="service_img" src="{{item.img}}"></image>
+        <view class="service_text">{{item.text}}</view>
       </view>
     </view>
   </view>

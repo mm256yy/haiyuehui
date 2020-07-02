@@ -19,11 +19,13 @@ Page({
   onHide: function () {
 
   },
+  //手机注册
   startRegister(){
     wx.navigateTo({ 
       url: "../register/register"
     });
   },
+  //微信注册
   getPhoneNumber (e) {
     let param = {
       errMsg: e.detail.errMsg,
@@ -35,7 +37,7 @@ Page({
       console.log(res)
       if (res.status.code === 0) {
         app.globalData.hasLogin = true;
-        wx.setStorageSync('userInfoTel', res.result.mobile);
+        wx.setStorageSync('userInfoMobile', res.result.mobile);
         wx.navigateBack({
           delta: 2  // 返回上一级页面。
         })

@@ -64,21 +64,12 @@
     <view class="other_li">
       <text>优惠劵</text><text>暂无优惠劵可用</text>
     </view>
-    <view class="other_li" wx:if="{{false}}">
-      <text >早餐劵</text>
+    <view class="other_li">
+      <text>早餐类型（必选）</text>
       <view class="breakfast_ul">
-        <view class="breakfast_li {{breakfast.need?'breakfast_li_on':''}}" >
-          <view class="breakfast_body {{breakfast.need?'breakfast_body_on':''}}" bindtap="breakfastChoose">
-            <view>双人早餐劵</view>
-            <view class="breakfast_price">￥{{breakfast.priceS}}</view>
-          </view>
-          <view class="breakfast_foot {{breakfast.need?'breakfast_foot_on':''}}" >
-            <view class="room_num">
-            <image class="room_num_btn room_num_reduce" bindtap="breakfast" data-type="0" src="/static/images/num_reduce.png"></image>
-            <text class="room_num_val">{{breakfast.num}}</text>
-            <image class="room_num_btn room_num_add" bindtap="breakfast" data-type="1" src="/static/images/num_add.png"></image>
-          </view>
-          </view>
+        <view bindtap="breakfastChoose" wx:if="{{item.price != 0}}" data-index="{{index}}" wx:for="{{breakfastUl}}" wx:key="index" class="breakfast_li {{breakfastChoose == index?'breakfast_li_on':''}}">
+          <image class="breakfast_li_img" src="/static/images/breakfast/breakfast{{index}}.png"></image>
+          <view class="breakfast_li_text {{breakfastChoose == index?'breakfast_li_text_on':''}}">{{item.name}}</view>
         </view>
       </view>
     </view>

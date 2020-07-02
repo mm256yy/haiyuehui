@@ -1,17 +1,16 @@
 
 <view>
+  <import src="/template/template"/> 
   <view class="hotels_ul">
     <view class="hotels_li"  wx:for="{{hotels}}" wx:key="index" bindtap="hotelsDetailed" data-arr="{{index}}" data-id="{{item.id}}" data-name="{{item.name}}">
       <image src="{{item.img}}"></image>
       <view class="hotels_text">
         <view>{{item.name}}</view>
         <view class="hotels_text_attr">{{item.address}}</view>
-        <text class="hotels_text_cis" wx:if="{{item.id == 'H000001'}}">云智住</text>
-        <image wx:if="{{index == 0}}" src="/static/images/cis.png" class="cis"></image>
+        <text class="hotels_text_cis" wx:if="{{item.cis == 1}}">云智住</text>
+        <image wx:if="{{item.cis == 1}}" src="/static/images/cis.png" class="cis"></image>
       </view>
     </view>
   </view>
-  <view wx:if="{{hotels.length == 0}}" class="order_zero">
-    <image class="zero_img" src="/static/images/zero.png"></image>
-  </view>
+  <template is="zero" data="{{list:hotels}}"/>
 </view>

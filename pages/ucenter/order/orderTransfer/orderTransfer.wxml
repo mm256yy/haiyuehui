@@ -1,42 +1,63 @@
 <!--pages/ucenter/orderTransfer/orderTransfer.wxml-->
 <view>
+  <import src="/template/template.wxml"/>
   <view class="transfer_head">
     <image class="transfer_ba" src="/static/images/team_ba.png"></image>
     <view class="transfer_process">
-      <view class="process_li">
-        <view class="process_num {{processNum == 1?'process_num_on':''}}">
-          <image class="process_img" src="/static/images/team6.png"></image>
-          <view class="process_text">编号填写</view>
-        </view>
-      </view>
-      <view class="process_li">
-        <view class="process_num {{processNum == 2?'process_num_on':''}}">
-          <image class="process_img" src="/static/images/team4.png"></image>
-          <view class="process_text">接入订单</view>
+      <view class="process_li" wx:for="{{processUl}}" wx:key="index">
+        <view class="process_num {{processNum == index+1?'process_num_on':''}}">
+          <image class="process_img" src="/static/images/{{item.img}}"></image>
+          <view class="process_text">{{item.text}}</view>
         </view>
       </view>
     </view>
   </view>
   <view class="transfer_body">
-    <view class="form_box" wx:if="{{processNum == 1}}">
-      <view class="form-item">
-        <input class="order" value="{{order}}" bindinput="bindOrderInput" placeholder="请输入订单编号" />
+    <view class="order_type" wx:if="{{processNum == 1}}">
+      <view class="order_type_li order_type_li1" bindtap="transferType" data-type="1">
+        <image class="order_type_ba" src="/static/images/type-ba1.png"></image>
+        <view class="order_type_text">第三方接入订单</view>
+      </view>
+      <view class="order_type_label">
+        <template is="label" data="{{text:['携程，美团等第三方平台订单']}}"/>
+      </view>
+      <view class="order_type_li order_type_li2" bindtap="transferType" data-type="2">
+        <image class="order_type_ba" src="/static/images/type-ba2.png"></image>
+        <view class="order_type_text">海外海小程序订单</view>
       </view>
     </view>
-    <view class="order_box" wx:if="{{processNum == 2}}">
+    <view class="form_box" wx:if="{{processNum == 2}}">
+      <view class="choose_option" wx:if="{{transferType == 1}}">
+        <picker mode="selector" value="{{info.hotelsId}}" range="{{hotelsUl}}" range-key="{{'name'}}" bindchange="bindChange">
+          <view class="choose_hotel">
+            <text class="hotel_val" wx:if="{{info.hotelsId == ''}}">点击选择酒店</text>
+            <text class="hotel_val">{{hotelsUl[info.hotelsId].name}}</text>
+          </view>
+        </picker>
+      </view>
+      <view class="form-item">
+        <input class="order" value="{{order}}" bindinput="bindOrderInput" placeholder-style="order_placeholder" placeholder="请输入订单编号" />
+      </view>
+    </view>
+    <view class="order_box" wx:if="{{processNum == 3}}">
       <view class="order_card">
+        <view class="order_text">下订单人：{{detail.name}}</view>
         <view class="order_text">订单状态：{{detail.statusS}}</view>
         <view class="order_text">订单编号：{{detail.orderId}}</view>
         <view class="order_text">酒店名称：{{detail.hotelName}}</view>
         <view class="order_text">房型名称：{{detail.rmdesc}}</view>
-        <view class="order_text">入住时间：{{detail.startTimeS}}至{{detail.endTimeS}}</view>
+        <view class="order_text">入住时间：{{detail.startTimeS}}至{{detail.endTimeS}}（共{{detail.dayNum}}晚）</view>
+        <view class="order_text">房间价格：{{detail.roomPriceS}}</view>
+        <view class="order_text">房间押金：{{detail.depositS}}</view>
+        <view class="order_text">房间总价：{{detail.moneyS}}</view>
       </view>
     </view>
   </view>
   <view class="transfer_btn">
-    <view class="btn_define" wx:if="{{processNum == 1}}" bindtap="queryOrder">获取订单</view>
-    <view class="btn_define" wx:if="{{processNum == 2&&detail.status == 11}}" bindtap="goPay">立即支付</view>
-    <view class="btn_define" wx:if="{{(processNum == 2&&detail.status == 22)&&detail.isCis}}" bindtap="goOrderChoose">立即入住</view>
-    <view class="btn_again" wx:if="{{processNum == 2}}" bindtap="goIndex">返回个人中心</view>
+    <view class="btn_define" wx:if="{{processNum == 2}}" bindtap="queryOrder">获取订单</view>
+    <view class="btn_again" wx:if="{{processNum == 2}}" bindtap="goBack">上一步</view>
+    <view class="btn_define" wx:if="{{processNum == 3&&detail.status == 11}}" bindtap="goPay">立即支付</view>
+    <view class="btn_define" wx:if="{{(processNum == 3&&detail.status == 22)&&detail.isCis}}" bindtap="goOrderChoose">立即入住</view>
+    <view class="btn_again" wx:if="{{processNum == 3}}" bindtap="goIndex">返回个人中心</view>
   </view>
 </view>

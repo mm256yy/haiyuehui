@@ -45,16 +45,6 @@ page{
   border-radius:10rpx ;
   margin-right: 10rpx;
 }
-/*zero*/
-.order_zero{
-  text-align: center;
-}
-.zero_img{
-  display: inline-block;
-  width: 200rpx;
-  height: 200rpx;
-  margin: 200rpx auto;
-}
 /*cis*/
 .cis{
   width: 80rpx;

@@ -1,5 +1,6 @@
 <!--pages/ucenter/coupon/coupon.wxml-->
 <view>
+  <import src="/template/template"/> 
   <view class="coupon_type">
     <view class="type_li {{typeMenu == 0?'type_li_on':''}}" bindtap="typeBind" data-type="0">未使用</view>
     <view class="type_li {{typeMenu == 1?'type_li_on':''}}" bindtap="typeBind" data-type="1">已使用</view>
@@ -29,7 +30,5 @@
       </view>
     </view>
   </view>
-  <view wx:if="{{couponUl.length == 0}}" class="order_zero">
-    <image class="zero_img" src="/static/images/zero.png"></image>
-  </view>
+  <template is="zero" data="{{list:couponUl}}"/>
 </view>

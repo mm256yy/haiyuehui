@@ -3,7 +3,7 @@ var api = require('../../../config/api.js');
 Page({
   data: {
     hotels:[
-      /*{id:'0',name:"酒店1",img:"/static/images/hotels1.jpg",address:"address",tel:'15967125243',deposit:20000}*/
+      /*{id:'0',name:"酒店1",img:"/static/images/hotels1.jpg",address:"address",tel:'15967125243',deposit:20000,cis:0}*/
     ]
   },
   onLoad: function (options) {
@@ -17,10 +17,11 @@ Page({
           hotelsLi = {
             id:res.result[i].id,
             name:res.result[i].name,
-            img:'/static/images/hotels'+i+'.jpg',
+            img:'/static/images/hotels/hotels'+i+'.jpg',
             address:res.result[i].address,
             deposit:res.result[i].deposit,
-            tel:res.result[i].tel
+            tel:res.result[i].tel,
+            cis:res.result[i].cis,
           }
           hotelsUl.push(hotelsLi)
         }
@@ -42,16 +43,6 @@ Page({
 
   },
   hotelsDetailed(e){
-    /*let pages = getCurrentPages(); //获取当前页面js里面的pages里的所有信息。
-    let prevPage = pages[ pages.length - 2 ];  
-    prevPage.setData({  // 将我们想要传递的参数在这里直接setData。上个页面就会执行这里的操作。
-      hotelsId:e.currentTarget.dataset.id,
-      hotelsName : e.currentTarget.dataset.name
-    })
-    //跳转
-    wx.navigateBack({
-        delta: 1  // 返回上一级页面。
-    })*/
     //存储到缓存
     console.log(e.currentTarget.dataset)
     wx.setStorageSync("hotel", this.data.hotels[e.currentTarget.dataset.arr])

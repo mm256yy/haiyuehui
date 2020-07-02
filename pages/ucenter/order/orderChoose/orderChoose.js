@@ -19,7 +19,7 @@ Page({
       /*{val:false,code:'NE',name:'靠近电梯'},
       {val:false,code:'NE',name:'靠近电梯'},*/
     ],
-    chooseNum:2,   //入住顺序
+    chooseNum:1,   //入住顺序
     floorArr:0,    //楼层顺序
     floorVal:'',   //选中楼层
     roomUl:[

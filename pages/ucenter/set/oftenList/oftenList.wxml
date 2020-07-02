@@ -1,4 +1,5 @@
 <view>
+  <import src="/template/template"/> 
   <view class="often_box">
     <view class="often_ul">
       <view class="often_li" wx:for="{{often}}" wx:key="index" >
@@ -21,10 +22,8 @@
       </view>
     </view>
   </view>
-  <view wx:if="{{often.length == 0}}" class="order_zero">
-    <image class="zero_img" src="/static/images/zero.png"></image>
-  </view>
   <view class="btn_box">
     <view class="btn_success" bindtap="btnSuccess">+ 新增常住人</view>
   </view>
+  <template is="zero" data="{{list:often}}"/>
 </view>

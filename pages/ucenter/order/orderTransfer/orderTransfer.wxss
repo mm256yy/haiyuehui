@@ -51,6 +51,48 @@
   margin-top: 10rpx;
 }
 /*body*/
+/*type*/
+.order_type_li{
+  margin:0rpx auto;
+  text-align: center;
+  width: 400rpx;
+  height: 100rpx;
+  border-radius:50rpx ;
+  padding: 20rpx;
+  position: relative;
+}
+.order_type_ba{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+}
+.order_type_li1{
+  background: linear-gradient(to right, #753ffd , #956cfc);
+}  
+.order_type_li2{
+  margin-top: 20rpx;
+  background: linear-gradient(to right, #039cee , #29aff7);
+}
+.order_type_text{
+  color: #fff;
+  line-height: 60rpx;
+}
+.order_type_label{
+  width: 430rpx;
+  margin: auto;
+}
+/*input*/
+.choose_hotel{
+  padding: 20rpx 0rpx;
+  border-bottom: 1px solid #f1f1f1;
+  color: #666;
+}
+.hotel_val{
+  font-size: 30rpx;
+  color: #666;
+}
 .form_box {
   width: 100%;
   height: auto;
@@ -62,15 +104,18 @@
 .form-item {
   height: 96rpx;
   position: relative;
-  border-bottom: 1px solid #d9d9d9;
 }
-.order, .code{
+.order{
   display: block;
   width: 100%;
   height: 95rpx;
-  color: #333;
+  color: #666;
   font-size: 30rpx;
   border-bottom: 1px solid #f1f1f1;
+}
+.order_placeholder{
+  color: #666;
+  font-size: 30rpx;
 }
 /*card*/
 .order_card{

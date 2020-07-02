@@ -95,7 +95,7 @@ Page({
       console.log(res)
       if (res.status.code == 0) {
         app.globalData.hasLogin = true;
-        wx.setStorageSync('userInfoTel', that.data.mobile);
+        wx.setStorageSync('userInfoMobile', that.data.mobile);
         //wx.setStorageSync('userInfo', res.data.data.userInfo);
         wx.navigateBack({
           delta: 3  // 返回上一级页面。

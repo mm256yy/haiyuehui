@@ -7,7 +7,7 @@
     </view>
     <view class="set_list_li" bindtap="goOften">
       <image class="set_list_icon" src="/static/images/set2.png"></image>
-      <text>常住人簿</text>
+      <text>同住人簿</text>
       <image class="set_list_img" src="/static/images/right.png"></image>
     </view>
     <view class="set_list_li" bindtap="goPrivacy">

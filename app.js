@@ -2,7 +2,6 @@ let user = require('./utils/user');
 //app.js
 App({
   onLaunch: function () { 
-    console.log("app.js+onLaunch")
     //更新
     let updateManager = wx.getUpdateManager();
     wx.getUpdateManager().onUpdateReady(function() {
@@ -19,7 +18,7 @@ App({
     })
     // 登录
     user.checkLogin().then(res => {
-      console.log(res)
+      //console.log(res)
       /*wx.switchTab({ 
         url:"/pages/index/index"
       })*/
@@ -32,12 +31,12 @@ App({
     // 获取用户信息
     wx.getSetting({
       success: res => {
-        console.log(res)
+        //console.log(res)
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
-              console.log(res)
+              //console.log(res)
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo;
               wx.setStorageSync('userInfo', res.userInfo);
@@ -59,20 +58,19 @@ App({
       this.globalData.hasLogin = false;
     });
   },
-  globalData: {
-  }
+  globalData: {},  //切勿删除
 })
 /*
-      {
-        "pagePath": "pages/activity/actList/index",
-        "iconPath": "static/images/activity2.png",
-        "selectedIconPath": "static/images/activity1.png",
-        "text": "活动"
-      },
-      {
-        "pagePath": "pages/member/member/member",
-        "iconPath": "static/images/member2.png",
-        "selectedIconPath": "static/images/member1.png",
-        "text": "会员"
-      },
+  {
+    "pagePath": "pages/activity/actList/index",
+    "iconPath": "static/images/tab/activity2.png",
+    "selectedIconPath": "static/images/tab/activity1.png",
+    "text": "活动"
+  },
+  {
+    "pagePath": "pages/member/member/member",
+    "iconPath": "static/images/tab/member2.png",
+    "selectedIconPath": "static/images/tab/member1.png",
+    "text": "会员"
+  },
 */ 

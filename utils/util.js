@@ -24,7 +24,7 @@ function formatNumber(n) {
 //时间转化 数字转化星期 0 ==> '周日'
 function formatWeek(n){
   let week = ['周日','周一','周二','周三','周四','周五','周六']
-  return week[new Date(val).getDay()]
+  return week[new Date(n).getDay()]
 }
 /*封封微信的的request*/
 function request(url, data = {}, method = "GET") {

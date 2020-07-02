@@ -22,9 +22,14 @@ Page({
       timeNum:1,
       rmtype:'',
       ratecode:'',
-      ratecodem:'',
       arr:'',
       dep:'',
+      cis:0,
+      wrec:1600,  //门市价
+      wec0:800,  //无早
+      wec1:900,  //单早
+      wec:1000,  //双早
+      wec3:1100,  //三早
     },
     fill:{
       roomNum:1,
@@ -32,13 +37,13 @@ Page({
       mobile:'',
       mobileDisabled:false,
     },
-    breakfast:{
-      need:false,
-      id:1,
-      num:1,
-      price:6000,
-      priceS:'60.00'
-    },
+    breakfastUl:[
+      // {price:1200,priceS:'12.00',name:'不选早餐',val:'wec0'},
+      // {price:1200,priceS:'12.00',name:'单人早餐',val:'wec1'},
+      // {price:1200,priceS:'12.00',name:'双人早餐',val:'wec'},
+      // {price:1200,priceS:'12.00',name:'三人早餐',val:'wec3'},
+    ],
+    breakfastChoose:0,
     total:{
       roomPrice:0,
       roomPriceS:'0.00',
@@ -56,12 +61,9 @@ Page({
     this.total();
     console.log(this.data.total.moneyS)
   },
-  onReady: function () {
-
-  },
   onShow: function () {
     let pages = getCurrentPages()
-    let currPage = pages[pages.length - 1]  // 当前页v
+    let currPage = pages[pages.length - 1]  // 当前页
     console.log(currPage.data)  
     if(currPage.data.info){
       this.setData({
@@ -69,10 +71,6 @@ Page({
         'fill.mobile':currPage.data.info.mobile,
       })
     }
-    
-  },
-  onHide: function () {
-
   },
   //房间数量
   room(e){
@@ -100,39 +98,20 @@ Page({
       'fill.mobile': e.detail.value
     });
   },
-  //早餐劵选择
-  breakfastChoose(){
-    let need = this.data.breakfast.need
+  //早餐选择
+  breakfastChoose(e){
+    let index = e.currentTarget.dataset.index
     this.setData({
-      'breakfast.need': !need
+      breakfastChoose: index,
+      'room.roomPrice':this.data.breakfastUl[index].price,
+      'room.ratecode':this.data.breakfastUl[index].val,
     });
-    //重新计算
-    this.total()
-  },
-  //早餐劵数量
-  breakfast(e){
-    let type = e.currentTarget.dataset.type
-    let numNew = this.data.breakfast.num
-    if(type == 0&&numNew>1){  //减法
-      numNew -- ;
-    }else if(type == 1){
-      numNew ++ ;
-    }
-    this.setData({
-      'breakfast.num' : numNew
-    })
     //重新计算
     this.total()
   },
   //总计
   total(){
     console.log(this.data.room)
-    let bfPrice = 0
-    if(this.data.breakfast.need){  //存在早餐
-      bfPrice = this.data.breakfast.num*this.data.breakfast.price
-    }else{
-      bfPrice = 0
-    }
     console.log(this.data.room.roomPrice)
     console.log(this.data.fill.roomNum)
     let totalNew = {
@@ -140,10 +119,10 @@ Page({
       roomPriceS:((this.data.room.roomPrice*this.data.fill.roomNum*this.data.room.timeNum)/100).toFixed(2),
       deposit:this.data.room.roomDeposit*this.data.fill.roomNum,
       depositS:(this.data.room.roomDeposit*this.data.fill.roomNum/100).toFixed(2),
-      other:this.data.room.roomOther + bfPrice,
-      otherS:((this.data.room.roomOther + bfPrice)/100).toFixed(2),
-      money:this.data.room.roomPrice*this.data.fill.roomNum*this.data.room.timeNum+this.data.room.roomDeposit*this.data.fill.roomNum+this.data.room.roomOther+bfPrice,
-      moneyS:((this.data.room.roomPrice*this.data.fill.roomNum*this.data.room.timeNum+this.data.room.roomDeposit*this.data.fill.roomNum+this.data.room.roomOther+bfPrice)/100).toFixed(2)
+      other:this.data.room.roomOther,
+      otherS:((this.data.room.roomOther)/100).toFixed(2),
+      money:this.data.room.roomPrice*this.data.fill.roomNum*this.data.room.timeNum+this.data.room.roomDeposit*this.data.fill.roomNum+this.data.room.roomOther,
+      moneyS:((this.data.room.roomPrice*this.data.fill.roomNum*this.data.room.timeNum+this.data.room.roomDeposit*this.data.fill.roomNum+this.data.room.roomOther)/100).toFixed(2)
     } 
     console.log(totalNew)
     this.setData({
@@ -161,7 +140,7 @@ Page({
       money: this.data.total.money,
       rmtype:this.data.room.rmtype,
       rmdesc:this.data.room.roomName,
-      ratecode:this.data.room.ratecodem,
+      ratecode:this.data.room.ratecode,
       roomPrice:this.data.room.roomPrice,
       name:this.data.fill.name,
       mobile:this.data.fill.mobile,
@@ -209,29 +188,40 @@ Page({
       hotelName:hotelNew.name,
       roomId:roomrNew.id,
       roomName:roomrNew.name,
-      roomPrice:roomrNew.priceVip,
+      roomPrice:roomrNew.wec0,
       roomDeposit:hotelNew.deposit,
       roomOther:0,
       startTime:startTime_s,
-      startWeek:this.dayWeek(calendarNew.startTime),
+      startWeek:util.formatWeek(calendarNew.startTime),
       endTime:endTime_s,
-      endWeek:this.dayWeek(calendarNew.endTime),
+      endWeek:util.formatWeek(calendarNew.endTime),
       timeNum:this.dayNum(calendarNew),
       rmtype:roomrNew.rmtype,
-      ratecode:roomrNew.ratecode,
-      ratecodem:roomrNew.ratecodem,
+      ratecode:'WEC0',
       arr:arrTime,
       dep:depTime,
-      cis:(roomrNew.isCis?1:0)
+      cis:(roomrNew.isCis?1:0), //1是 0否
+      wrec:roomrNew.wrec,  //门市价
+      wec0:roomrNew.wec0,  //无早
+      wec1:roomrNew.wec1,  //单早
+      wec:roomrNew.wec,  //双早
+      wec3:roomrNew.wec3,  //三早
     }
+    let breakfastUlNew = [
+      {price:roomrNew.wec0,priceS:((roomrNew.wec0)/100).toFixed(2),name:'不选早餐',val:'WEC0'},
+      {price:roomrNew.wec1,priceS:((roomrNew.wec1)/100).toFixed(2),name:'单人早餐',val:'WEC1'},
+      {price:roomrNew.wec,priceS:((roomrNew.wec)/100).toFixed(2),name:'双人早餐',val:'WEC'},
+      {price:roomrNew.wec3,priceS:((roomrNew.wec3)/100).toFixed(2),name:'三人早餐',val:'WEC3'},
+    ]
     this.setData({
-      room : roomNew
+      room : roomNew,
+      breakfastUl:breakfastUlNew
     })
     console.log(this.data.room)
   },
   //个人信息
   userInfo(){
-    let tel = wx.getStorageSync('userInfoTel');
+    let tel = wx.getStorageSync('userInfoMobile');
     console.log(tel)
     if(tel){  //如果存在
       this.setData({
@@ -258,10 +248,6 @@ Page({
     }else{
       return val
     }
-  },
-  dayWeek(val){
-    let week = ['周日','周一','周二','周三','周四','周五','周六']
-    return week[new Date(val).getDay()]
   },
   dayNum(calendarNew){
     let num = calendarNew.endTime-calendarNew.startTime

@@ -6,7 +6,17 @@ let app = getApp();
 Page({
   data: {
     processNum:1,
+    transferType:'', //1 ota 2 小程序
+    processUl:[
+      {img:'team7.png',text:'选择类型'},
+      {img:'team6.png',text:'编号填写'},
+      {img:'team4.png',text:'接入订单'},
+    ],
+    hotelsUl: [
+      /*{hotelId:'02',name:'2F'}*/
+    ],
     info:{
+      hotelsId:'',
       orderNo:0,
       // code:0,
     },
@@ -26,7 +36,47 @@ Page({
     }
   },
   onShow: function () {
-
+    let hotelsUl = [];
+    let hotelsLi = {};
+    util.request(api.CustomizedHotelsList, 'GET').then(res => {
+      console.log(res)
+      if (res.status.code === 0) {
+        //存储用户信息
+        for(let i=0;i<res.result.length;i++){
+          hotelsLi = {
+            hotelId:res.result[i].id,
+            name:res.result[i].name,
+          }
+          hotelsUl.push(hotelsLi)
+        }
+        this.setData({  
+          hotelsUl: hotelsUl
+        })
+      }
+    }).catch((err) => {
+      console.log(err)
+    });
+  },
+  //选择类型
+  transferType(e){
+    let type = e.currentTarget.dataset.type
+    this.setData({
+      transferType:type,
+      processNum:this.data.processNum + 1 ,
+    })
+  },
+  //上一步
+  goBack(){
+    this.setData({
+      processNum:1 ,
+    })
+  },
+  //选择酒店
+  bindChange(e){
+    console.log(e)
+    this.setData({
+      'info.hotelsId': e.detail.value
+    })
   },
   //input
   bindOrderInput(e){
@@ -36,9 +86,15 @@ Page({
   },
   //查询订单
   queryOrder(){
-    let that = this
-    let orderNo = this.data.info.orderNo
-    if(orderNo.length == 0){
+    if(this.data.info.hotelsId == ''){
+      wx.showModal({
+        title: '错误信息',
+        content: '请点击选择酒店',
+        showCancel: false
+      });
+      return false;
+    }
+    if(this.data.info.orderNo.length == 0){
       wx.showModal({
         title: '错误信息',
         content: '订单编号不能为空',
@@ -46,6 +102,15 @@ Page({
       });
       return false;
     }
+    if(this.data.transferType == 1){
+      this.otaOrder();   
+    }else if(this.data.transferType == 2){
+      this.hwhOrder();
+    }
+  },
+  //小程序内部订单转移
+  hwhOrder(){
+    let that = this;
     let param = {
       orderNo:this.data.info.orderNo,
     }
@@ -67,7 +132,70 @@ Page({
           startTimeS:res.result.arr,
           endTime:'',
           endTimeS:res.result.dep,
-          isCis:res.result.isCis
+          isCis:res.result.isCis,
+          name:res.result.name,
+          dayNum:this.dayNum(res.result.arr,res.result.dep),
+          roomPrice:res.result.roomPrice,
+          roomPriceS:(res.result.roomPrice/100).toFixed(2),
+          deposit:res.result.deposit,
+          depositS:(res.result.deposit/100).toFixed(2),
+          money:res.result.money,
+          moneyS:(res.result.money/100).toFixed(2),
+        }
+        app.globalData.badge = {menu:[1,0,0,0]}
+        wx.showModal({ title: '成功',content: '查询成功',showCancel: false , success (res) {
+          that.setData({
+            processNum:that.data.processNum + 1 ,
+            detail:detailNew
+          })
+        }});
+      }else if(res.status.code === 400){
+        wx.showModal({ title: '错误信息' , content: '未登陆',showCancel: false , success (res) {
+          wx.navigateTo({
+            url: "/pages/auth/login/login"
+          })
+        }})
+      }else{ //500
+        wx.showModal({ title: '错误信息',content: res.status.message,showCancel: false });
+      }
+    }).catch((err) => {
+      console.log(err)
+    });
+  },
+  //OTA订单转移
+  otaOrder(){
+    let that = this;
+    let param = {
+      hotelId:this.data.hotelsUl[this.data.info.hotelsId].hotelId,
+      otaId:this.data.info.orderNo,
+    }
+    console.log(param)
+    util.request(api.UcenterOrderOta , param , 'GET').then(res => {
+      console.log(res)
+      if (res.status.code === 0) {
+        //获取到订单信息
+        console.log(res.result.orderId)
+        let detailNew = {
+          status:res.result.status,
+          statusS:util.orderType(res.result.status),
+          orderId:res.result.orderId,
+          hotelId:res.result.hotelId,
+          hotelName:res.result.hotelName,
+          rmtype:res.result.rmtype,
+          rmdesc:res.result.rmdesc,
+          startTime:'',
+          startTimeS:res.result.arr,
+          endTime:'',
+          endTimeS:res.result.dep,
+          isCis:res.result.isCis,
+          name:res.result.name,
+          dayNum:this.dayNum(res.result.arr,res.result.dep),
+          roomPrice:res.result.roomPrice,
+          roomPriceS:(res.result.roomPrice/100).toFixed(2),
+          deposit:res.result.deposit,
+          depositS:(res.result.deposit/100).toFixed(2),
+          money:res.result.money,
+          moneyS:(res.result.money/100).toFixed(2),
         }
         app.globalData.badge = {menu:[1,0,0,0]}
         wx.showModal({ title: '成功',content: '查询成功',showCancel: false , success (res) {
@@ -134,5 +262,9 @@ Page({
       url:"/pages/ucenter/index/index"
     })
   },
-  
+  dayNum(startTime,endTime){
+    let day = new Date((endTime).replace(/-/g,'/')) - new Date((startTime).replace(/-/g,'/'))
+    let num = day/1000/60/60/24;
+    return num
+  }
 })

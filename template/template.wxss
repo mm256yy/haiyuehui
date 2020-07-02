@@ -1,6 +1,6 @@
 /* components/template.wxss */
 /*zero*/
-.order_zero{
+.zero{
   text-align: center;
 }
 .zero_img{

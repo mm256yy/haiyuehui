@@ -3,7 +3,7 @@ var api = require('../../../config/api.js');
 var user = require('../../../utils/user');
 Page({
   data: {
-    isLogin:false,
+    isLogin:true,
     time:{
       start:'05月27日',
       end:'05月29日',
@@ -21,20 +21,29 @@ Page({
       gym:{},
       meeting:{},
       room:[
-        /*{
+        {
           id:0,
           name:'roomName',
           img:'/static/images/room.jpg',
-          priceBefore:'0',
-          priceBeforeS:'100.00',
-          priceVip:'0',
-          priceVipS:'100.00',
           avail:1,
           rmtype:'HHF',
-          ratecode:'MEMC',
-          ratecodem:'OTA5',
           isCis:false,
-        }*/
+
+          // priceBefore:'0',
+          // priceBeforeS:'100.00',
+          // priceVip:'0',
+          // priceVipS:'100.00',
+          // ratecode:'MEMC',
+          // ratecodem:'OTA5',
+
+          wrec:1600,  //门市价
+          wec0:800,  //无早
+          wec1:900,  //单早
+          wec:1000,  //双早
+          wec3:1100,  //三早
+          wrecS:'16.00',  
+          wec0S:'8.00',  
+        }
       ]
     },
     room:{
@@ -46,17 +55,9 @@ Page({
     popHeight:0,
   },
   onLoad: function () {
-    //this.init()
-    
-  },
-  onReady: function () {
-    
   },
   onShow: function () {
     this.init();
-  },
-  onHide: function () {
-
   },
   //初始化时间
   init(){
@@ -116,15 +117,24 @@ Page({
               id:0,
               name:res.result[i].name,
               img:('/static/images/room.jpg'||res.result[i].image),
-              priceBefore:res.result[i].price,
-              priceBeforeS:(res.result[i].price/100).toFixed(2),
-              priceVip:res.result[i].pricem,
-              priceVipS:(isLoginNew?(res.result[i].pricem/100).toFixed(2):'？？？'),
               avail:res.result[i].avail,
               rmtype:res.result[i].rmtype,
-              ratecode:res.result[i].ratecode,
-              ratecodem:res.result[i].ratecodem,
-              isCis:res.result[i].isCis
+              isCis:res.result[i].isCis,
+
+              // priceBefore:res.result[i].price,
+              // priceBeforeS:(res.result[i].price/100).toFixed(2),
+              // priceVip:res.result[i].pricem,
+              // priceVipS:(isLoginNew?(res.result[i].pricem/100).toFixed(2):'？？？'),
+              // ratecode:res.result[i].ratecode,
+              // ratecodem:res.result[i].ratecodem,
+
+              wrec:res.result[i].wrec,  //门市价
+              wec0:res.result[i].wec0||0,  //无早
+              wec1:res.result[i].wec1||0,  //单早
+              wec:res.result[i].wec||0,  //双早
+              wec3:res.result[i].wec3||0,  //三早
+              wrecS:(res.result[i].wrec/100).toFixed(2),  
+              wec0S:(isLoginNew?(res.result[i].wec0/100).toFixed(2):'？？？'), 
             }
             roomNew.push(roomLi)
           }
@@ -277,10 +287,6 @@ Page({
     }else{
       return val
     }
-  },
-  dayWeek(val){
-    let week = ['周日','周一','周二','周三','周四','周五','周六']
-    return week[new Date(val).getDay()]
   },
   dayNum(calendarNew){
     let num = calendarNew.endTime-calendarNew.startTime

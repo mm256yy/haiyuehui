@@ -7,114 +7,207 @@ Page({
         baImg:'/static/images/card5.png',
         nameC:'贵宾卡',
         nameE:'Common Member',
-        upRule:'年消费满2000元<br/>官方渠道预定间夜量达5',
+        upRule:'',
         validityRule:'长久',
       },
       {
         baImg:'/static/images/card2.png',
         nameC:'银卡',
         nameE:'Silver Member',
-        upRule:'年消费满10000元<br/>官方渠道预定间夜量达30',
+        upRule:'年消费满2000元<br/>官方渠道预定间夜量达5',
         validityRule:'一年',
       },
       {
         baImg:'/static/images/card3.png',
         nameC:'金卡',
         nameE:'Gold Member',
-        upRule:'年消费满50000元<br/>官方渠道预定间夜量达150',
+        upRule:'年消费满10000元<br/>官方渠道预定间夜量达30',
         validityRule:'一年',
       },
       {
         baImg:'/static/images/card6.png',
         nameC:'白金卡',
         nameE:'Platinum Member',
-        upRule:'年消费满100000元<br/>官方渠道预定间夜量达300',
+        upRule:'年消费满50000元<br/>官方渠道预定间夜量达150',
         validityRule:'一年',
       },
       {
         baImg:'/static/images/card7.png',
         nameC:'黑金卡',
         nameE:'Diamond Member',
-        upRule:'',
+        upRule:'年消费满100000元<br/>官方渠道预定间夜量达300',
         validityRule:'一年',
       }
-    ],
-    memberGrade:[
-      {
-        id:0,
-        name:'贵宾卡',
-        val1:'1000积分',
-      },
-      {
-        id:1,
-        name:'银卡',
-        val1:'5000积分',
-      },
-      {
-        id:2,
-        name:'金卡',
-        val1:'5000积分',
-      },
-      {
-        id:3,
-        name:'白金卡',
-        val1:'10000积分',
-      },
-      {
-        id:4,
-        name:'黑金卡',
-        val1:'100000积分',
-      },
     ],
     privilegeUl:[
       {
         img:'/static/images/power/power0.png',
         text1:'订房折扣',
         text2:'9.5折',
+        introduce:'订房折扣',
         grade:0,
       },
       {
         img:'/static/images/power/power1.png',
         text1:'积分奖励',
         text2:'一倍积分',
+        introduce:'积分奖励',
         grade:0,
       },
       {
         img:'/static/images/power/power14.png',
         text1:'延迟退房',
         text2:'14:00',
+        introduce:'延迟退房',
         grade:0,
       },
       {
         img:'/static/images/power/power15.png',
         text1:'宽带上网',
         text2:'免费无线',
+        introduce:'宽带上网',
         grade:0,
       },
       {
         img:'/static/images/power/power2.png',
         text1:'夜床服务',
         text2:'夜床服务',
+        introduce:'夜床服务',
         grade:0,
       },
       {
         img:'/static/images/power/power6.png',
         text1:'免查房',
         text2:'免查房',
+        introduce:'免查房',
         grade:0,
       },
       {
         img:'/static/images/power/power7.png',
         text1:'免费取消',
         text2:'提前72小时',
+        introduce:'免费取消',
         grade:0,
       },
       {
         img:'/static/images/power/power8.png',
         text1:'迎宾糕点',
         text2:'入住首日送达',
+        introduce:'迎宾糕点',
         grade:1,
-      }
+      },
+      {
+        img:'/static/images/power/power0.png',
+        text1:'订房折扣',
+        text2:'9.5折',
+        introduce:'订房折扣',
+        grade:0,
+      },
+      {
+        img:'/static/images/power/power1.png',
+        text1:'积分奖励',
+        text2:'一倍积分',
+        introduce:'积分奖励',
+        grade:0,
+      },
+      {
+        img:'/static/images/power/power14.png',
+        text1:'延迟退房',
+        text2:'14:00',
+        introduce:'延迟退房',
+        grade:0,
+      },
+      {
+        img:'/static/images/power/power15.png',
+        text1:'宽带上网',
+        text2:'免费无线',
+        introduce:'宽带上网',
+        grade:0,
+      },
+      {
+        img:'/static/images/power/power2.png',
+        text1:'夜床服务',
+        text2:'夜床服务',
+        introduce:'夜床服务',
+        grade:0,
+      },
+      {
+        img:'/static/images/power/power6.png',
+        text1:'免查房',
+        text2:'免查房',
+        introduce:'免查房',
+        grade:0,
+      },
+      {
+        img:'/static/images/power/power7.png',
+        text1:'免费取消',
+        text2:'提前72小时',
+        introduce:'免费取消',
+        grade:0,
+      },
+      {
+        img:'/static/images/power/power8.png',
+        text1:'迎宾糕点',
+        text2:'入住首日送达',
+        introduce:'迎宾糕点',
+        grade:1,
+      },
+      {
+        img:'/static/images/power/power2.png',
+        text1:'夜床服务',
+        text2:'夜床服务',
+        introduce:'夜床服务',
+        grade:0,
+      },
+      {
+        img:'/static/images/power/power6.png',
+        text1:'免查房',
+        text2:'免查房',
+        introduce:'免查房',
+        grade:0,
+      },
+      {
+        img:'/static/images/power/power7.png',
+        text1:'免费取消',
+        text2:'提前72小时',
+        introduce:'免费取消',
+        grade:0,
+      },
+      {
+        img:'/static/images/power/power8.png',
+        text1:'迎宾糕点',
+        text2:'入住首日送达',
+        introduce:'迎宾糕点',
+        grade:1,
+      },
+      {
+        img:'/static/images/power/power2.png',
+        text1:'夜床服务',
+        text2:'夜床服务',
+        introduce:'夜床服务',
+        grade:0,
+      },
+      {
+        img:'/static/images/power/power6.png',
+        text1:'免查房',
+        text2:'免查房',
+        introduce:'免查房',
+        grade:0,
+      },
+      {
+        img:'/static/images/power/power7.png',
+        text1:'免费取消',
+        text2:'提前72小时',
+        introduce:'免费取消',
+        grade:0,
+      },
+      {
+        img:'/static/images/power/power8.png',
+        text1:'迎宾糕点',
+        text2:'入住首日送达',
+        introduce:'迎宾糕点',
+        grade:1,
+      },
     ],
     info:{
       avatarUrl:'',
@@ -122,6 +215,8 @@ Page({
       scoring:3200,
     },
     memberVal:0,
+    introduceVal:'订房折扣9.5折',
+    introduceShow:false,
   },
   onLoad: function (options) {
     
@@ -152,6 +247,14 @@ Page({
     let index = e.detail.current
     this.setData({
       memberVal:index
+    })
+  },
+  introduceValShow(e){
+    let index = e.currentTarget.dataset.index
+    let introduceVal = this.data.privilegeUl[index].introduce
+    this.setData({
+      introduceShow:!this.data.introduceShow,
+      introduceVal:introduceVal
     })
   }
 })

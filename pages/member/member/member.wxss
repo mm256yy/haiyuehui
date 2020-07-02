@@ -1,4 +1,3 @@
-/* pages/member/member/index.wxss */
 
 page{
   background-color: #fff;
@@ -126,29 +125,42 @@ page{
   text-align: center;
 }
 /*privilege*/
-.member_privilege{
-  position: relative;
+.member_privilege{ 
+  padding: 30rpx;
 }
 .privilege_ba{
-  position: absolute;
-  top: 0rpx;
-  left: 0rpx;
+  position: relative;
   width: 100%;
-  z-index: -1;
+  background-color: #33353e;
+  border-radius: 20rpx;
+  padding-top: 30rpx;
+}
+.member_i1{
+  width: 200rpx;
+  height: 200rpx;
+  position: absolute;
+  top: -20rpx;
+  left: -20rpx;
+}
+.member_i2{
+  display: block;
+  width: 400rpx;
+  height: 50rpx;
+  margin: 0rpx auto;
 }
 .privilege_ul{
-  padding:130rpx 50rpx;
+  padding:30rpx 20rpx;
   overflow: hidden;
 }
 .privilege_li{
   width: 25%;
   text-align: center;
   float: left;
-  margin-top: 10rpx;
+  margin-top: 20rpx;
 }
 .privilege_li_img{
-  width:80rpx;
-  height: 80rpx;
+  width:70rpx;
+  height: 70rpx;
 }
 .privilege_li_t1{
   color: #fff;
@@ -158,13 +170,39 @@ page{
 .privilege_most{
   width: 60rpx;
   height: 60rpx;
-  position: absolute;
-  left: 50%;
-  bottom: 30rpx;
-  margin-left: -30rpx;
+  margin: 0rpx auto;
 }
 .privilege_most image{
   width: 60rpx;
   height: 60rpx;
   opacity: 0.5;
+  padding-bottom: 20rpx;
+}
+/*black*/
+.member_black{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0rpx;
+  left: 0rpx;
+  background-color: rgba(0,0,0,0.5);
+}
+.black_flex{
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.black_tip_box{
+  width: 400rpx;
+  height: 150rpx;
+  margin: auto;
+  background-color: #fff;
+  border-radius:20rpx;
+  padding: 20rpx;
+  display: flex;
+}
+.black_tip_val{
+  text-align: center;
+  margin: auto;
+
 }

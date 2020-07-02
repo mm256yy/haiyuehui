@@ -71,6 +71,13 @@ Page({
 
     ],
     otherIcon:[
+      {img:'/static/images/other/other1.png',text:'个人信息',tap:'goInformation'},
+      {img:'/static/images/other/other2.png',text:'同住人薄',tap:'goOften'},
+      {img:'/static/images/other/other3.png',text:'邀请下单',tap:'goInvitation'},
+      {img:'/static/images/other/other4.png',text:'隐私条款',tap:'goPrivacy'},
+      {img:'/static/images/other/other5.png',text:'客服热线',tap:'goService'},
+    ],
+    serviceIcon:[
       {img:'/static/images/service/service0.png',text:'住房延期'},
       {img:'/static/images/service/service1.png',text:'账单查询'},
       {img:'/static/images/service/service2.png',text:'我的发票'},
@@ -110,7 +117,7 @@ Page({
     //获取用户信息
     let userInfo = "";
     let ucenterNew = "";
-    if(userInfo){
+    if(wx.getStorageSync("userInfo")){
       userInfo = wx.getStorageSync("userInfo") 
     }else if(app.globalData.userInfo){
       userInfo = app.globalData.userInfo
@@ -127,9 +134,6 @@ Page({
     this.setData({
       ucenter:ucenterNew
     })
-  },
-  onHide: function () {
-
   },
   //设置
   set(){
@@ -176,4 +180,34 @@ Page({
   wallet(){
     util.showErrorToast("暂未开放")
   },
+  //个人信息
+  goInformation(){
+    wx.navigateTo({ 
+      url: "/pages/ucenter/set/information/information"
+    });
+  },
+  //同住人簿
+  goOften(){
+    wx.navigateTo({ 
+      url: "/pages/ucenter/set/oftenList/oftenList?oftenType=0"
+    });
+  },
+  //邀请下单
+  goInvitation(){
+    wx.navigateTo({
+      url: "/pages/ucenter/invite/inviteList/inviteList"
+    })
+  },
+  //隐私条款
+  goPrivacy(){
+    wx.navigateTo({ 
+      url: "/pages/member/memberAgree/memberAgree"
+    });
+  }, 
+  //客服热线
+  goService(){
+    wx.makePhoneCall({
+      phoneNumber:'057188173811'
+    })
+  }
 })

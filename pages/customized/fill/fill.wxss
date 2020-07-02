@@ -129,50 +129,39 @@ page{background-color: #f1f1f1;}
 .other_li>text:nth-child(1){
   padding-right: 20rpx;
 }
-
+/*breakfast*/
 .breakfast_ul{
   margin-top: 30rpx;
+  display: flex;
 }
 .breakfast_li{
+  width: 25%;
+  float: left;
   border-radius:10rpx ;
+  background-color: #cdcdcd;
   text-align: center;
-  display: flex;
-  border:1px solid #f1f1f1;
+  margin:0rpx 10rpx;
+  padding:10rpx 10rpx;
 }
 .breakfast_li_on{
-  border:1px solid #008cd7;
-}
-.breakfast_body{
-  flex: 1 1 auto;
-  width: 50%;
-  background-color: #f1f1f1;
-  padding:20rpx;
-  margin:auto;
-}
-.breakfast_body_on{
   background-color: #008cd7;
-}
-.breakfast_body>view{
-  color: #999;
-}
-.breakfast_body_on>view{
   color: #fff;
 }
-.breakfast_foot{
-  opacity: 0;
-  flex: 1 1 auto;
-  margin:auto;
-  display: flex;
-  padding:20rpx;
+.breakfast_li_img{
+  margin: auto;
+  width: 80rpx;
+  height: 80rpx;
 }
-.breakfast_foot_on{
-  opacity: 1;
+.breakfast_li_text{
+  text-align: center;
+  color: #fff;
+  font-size: 24rpx;
+  border-top: 1rpx solid #fff;
+  padding: 10rpx;
 }
-.breakfast_price{
-  padding: 10rpx 0rpx;
-}
-.bre_foot_li{
-  flex: 1 1 auto;
+.breakfast_li_text_on{
+  border-top: 1rpx solid #fff;
+  color: #fff;
 }
 /*hotels_introduce*/
 .hotels_introduce{

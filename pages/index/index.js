@@ -22,14 +22,19 @@ Page({
     },
     calendarShow:false,
   },
-  onLoad: function (e) {
-    console.log(app.globalData)
-  },
-  aa(){
-    console.log(wx.getStorageSync("hotel"))
+  onLoad: function (option) {
+    this.invite(option)
   },
   onShow: function (e) {
+    let pages = getCurrentPages()
+    console.log(pages)
     this.renderingTime()
+  },
+  //传递邀请人
+  invite(option){
+    let scene = decodeURIComponent(option.scene).toString().split('=');
+    let inviteCode = scene[1];
+    wx.setStorageSync('othersInviteCode', inviteCode);
   },
   //跳转酒店详情
   hotelsDetailed(){
@@ -59,12 +64,10 @@ Page({
   renderingTime(){
     let calendar = wx.getStorageSync("calendar")  //获取数据
     let d_today = new Date();
-    console.log(calendar)
+    //console.log(calendar)
     if(calendar && (calendar.startTime+1000*60*60*24)>=d_today.getTime()){  //判断是否有储存时间/储存时间大于当前时间 --有
-      console.log(789)
       let d_today = new Date(calendar.startTime);
       let d_tomorrow = new Date(calendar.endTime);
-      console.log(d_today)
       this.setData({
         startTime:this.dayZero(d_today.getFullYear())+'-'+this.dayZero(d_today.getMonth()+1)+'-'+this.dayZero(d_today.getDate()),
         endTime:this.dayZero(d_tomorrow.getFullYear())+'-'+this.dayZero(d_tomorrow.getMonth()+1)+'-'+this.dayZero(d_tomorrow.getDate())
@@ -77,8 +80,8 @@ Page({
         endTime:this.dayZero(d_tomorrow.getFullYear())+'-'+this.dayZero(d_tomorrow.getMonth()+1)+'-'+this.dayZero(d_tomorrow.getDate())
       })
       calendarSto = {
-        startTime:d_today.getTime(),
-        endTime:d_tomorrow.getTime()
+        startTime:new Date(new Date().toLocaleDateString()).getTime(),
+        endTime:new Date(new Date().toLocaleDateString()).getTime()+24*60*60*1000,
       }
       wx.setStorageSync("calendar", calendarSto)
     }
@@ -88,12 +91,11 @@ Page({
     let end_t = new Date(calendarNew.endTime)
     let showNew = {
       startTime:this.dayZero(st_t.getMonth()+1)+'月'+this.dayZero(st_t.getDate())+'日',
-      startWeek:this.dayWeek(calendarNew.startTime),
+      startWeek:util.formatWeek(calendarNew.startTime),
       endTime:this.dayZero(end_t.getMonth()+1)+'月'+this.dayZero(end_t.getDate())+'日',
-      endWeek:this.dayWeek(calendarNew.endTime),
+      endWeek:util.formatWeek(calendarNew.endTime),
       num:this.dayNum(calendarNew)
     }
-    console.log(calendarNew)
     this.setData({
       show:showNew
     })
@@ -105,12 +107,29 @@ Page({
       return val
     }
   },
-  dayWeek(val){
-    let week = ['周日','周一','周二','周三','周四','周五','周六']
-    return week[new Date(val).getDay()]
-  },
   dayNum(calendarNew){
     let num = calendarNew.endTime-calendarNew.startTime
     return parseInt(num/60/60/24/1000)
-  }
+  },
+  UrlDecode(str){
+    var ret="";
+    for(var i=0;i<str.length;i++){
+      var chr = str.charAt(i);
+      if(chr == "+"){
+        ret+=" ";
+      }else if(chr=="%"){
+        var asc = str.substring(i+1,i+3);
+        if(parseInt("0x"+asc)>0x7f){
+          ret+=asc2str(parseInt("0x"+asc+str.substring(i+4,i+6)));
+          i+=5;
+        }else{
+          ret+=asc2str(parseInt("0x"+asc));
+        i+=2;
+        }
+      }else{
+        ret+= chr;
+      }
+      }
+      return ret;
+    }
 })

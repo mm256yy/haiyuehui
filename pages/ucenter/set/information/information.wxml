@@ -4,7 +4,7 @@
     <view class="input_li">
       <input class="form_input form_mobile" disabled="{{true}}" value="{{info.mobile}}" placeholder="请输入手机号码"/>
     </view>
-    <view class="form_li">
+    <view class="input_li">
       <input class="form_input" value="{{info.name}}" bindinput="bindNameInput" placeholder="请输入真实名字" />
     </view>
     <view class="input_li">

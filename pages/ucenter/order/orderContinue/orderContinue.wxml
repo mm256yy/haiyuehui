@@ -20,14 +20,18 @@
     </view>
   </view>
   <view class="hotels_fill">
-    <view class="fill_h1">续住时间</view>
+    <view class="fill_h1">续住时间<text class="fill_h1_tip" wx:if="{{dayNum == 0}}">注：延期时间至当日18:00</text></view>
     <view class="fill_day_ul">
+      <view class="fill_day_li">
+        <view class="day_li_btn {{dayNum == 0?'day_li_on':''}}" bindtap="dayBtn" data-day="0">半天</view>
+      </view>   
       <view class="fill_day_li"><view class="day_li_btn {{dayNum == 1?'day_li_on':''}}" bindtap="dayBtn" data-day="1">1天</view></view>
       <view class="fill_day_li"><view class="day_li_btn {{dayNum == 2?'day_li_on':''}}" bindtap="dayBtn" data-day="2">2天</view></view>
       <view class="fill_day_li"><view class="day_li_btn {{dayNum == 3?'day_li_on':''}}" bindtap="dayBtn" data-day="3">3天</view></view>
       <view class="fill_day_li"><view class="day_li_btn {{dayNum == 4?'day_li_on':''}}" bindtap="dayBtn" data-day="4">4天</view></view>
-      <view class="fill_day_li"><view class="day_li_btn {{dayNum == 5?'day_li_on':''}}" bindtap="dayBtn" data-day="5">5天</view></view>
-      <view class="fill_day_li"><view class="day_li_btn {{dayNum == 6?'day_li_on':''}}" bindtap="dayBtn" data-day="6">自定义</view></view>
+      <!-- <view class="fill_day_li"><view class="day_li_btn {{dayNum == 5?'day_li_on':''}}" bindtap="dayBtn" data-day="5">5天</view></view> -->
+      <view class="fill_day_li"><view class="day_li_btn {{dayNum == 5?'day_li_on':''}}" bindtap="dayBtn" data-day="5">自定义</view></view>
+      <view class="clear"></view>
     </view>
     <view class="custom_ul" wx:if="{{customShow}}">
       <view class="custom_btn fill_day_reduce" bindtap="reduceDay">-</view>

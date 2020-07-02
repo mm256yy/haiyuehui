@@ -1,5 +1,6 @@
 <!--pages/ucenter/order/index.wxml-->
 <view>
+  <import src="/template/template"/> 
   <view class="menu_ul">
     <view class="menu_li" wx:for="{{menuUl}}" wx:key="index">
       <text class="menu_li_text {{menuVal == index?'menu_li_text_on':''}}" bindtap="typeShow" data-type="{{item.val}}">{{item.name}}</text>
@@ -33,8 +34,6 @@
         </view>
       </view>
     </block>
-    <view wx:if="{{orderUl.length == 0}}" class="order_zero">
-      <image class="zero_img" src="/static/images/zero.png"></image>
-    </view>
+    <template is="zero" data="{{list:orderUl}}"/>
   </view>
 </view>

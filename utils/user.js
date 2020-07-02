@@ -40,6 +40,10 @@ function loginByWeixin(userInfo) {
   if (!shareUserId || shareUserId =='undefined'){
     shareUserId = 1;
   }
+  let inviteCode = wx.getStorageSync('othersInviteCode');
+  if (!inviteCode || inviteCode =='undefined'){
+    shareUserId = '';
+  }
   return new Promise(function(resolve, reject) {
     return login().then((res) => {
       console.log(res)
@@ -47,7 +51,8 @@ function loginByWeixin(userInfo) {
       let pamarLogin = {
         code: res.code,
         userInfo: userInfo,
-        shareUserId: shareUserId
+        shareUserId: shareUserId,
+        inviteCode:inviteCode
       }
       console.log(pamarLogin)
       util.request(api.AuthLoginByWeixin , pamarLogin , 'POST').then(res => {
@@ -76,11 +81,11 @@ function checkLogin() {
       checkSession().then(() => {
         resolve(true);
       }).catch(() => {
-        reject(false);
+        reject(true);
       });
     } else {
       console.log('token'+'失败')
-      reject(false);
+      reject(true);
     }
   });
 }

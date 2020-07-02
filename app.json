@@ -1,9 +1,10 @@
 {
   "pages":[
-    "pages/member/member/member",
+    "pages/ucenter/invite/inviteList/inviteList", 
     "pages/index/index",
-    "pages/pop/calendar/index",
     
+    "pages/pop/calendar/index",
+    "pages/member/member/member",
     "pages/member/memberAgree/memberAgree",
     
     "pages/auth/login/login",
@@ -26,12 +27,16 @@
     "pages/ucenter/order/orderChoose/orderChoose", 
     "pages/ucenter/order/orderTransfer/orderTransfer", 
 
+    
+    "pages/ucenter/invite/inviteCode/inviteCode", 
+    
     "pages/ucenter/teamNumber/teamNumber",
     
     "pages/ucenter/set/setIndex/setIndex",
     "pages/ucenter/set/oftenList/oftenList",
     "pages/ucenter/set/oftenEdit/oftenEdit",
     "pages/ucenter/set/information/information",
+    
     
     "pages/ucenter/coupon/coupon",
     
@@ -55,15 +60,15 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "static/images/index2.png",
-        "selectedIconPath": "static/images/index1.png",
+        "iconPath": "static/images/tab/index2.png",
+        "selectedIconPath": "static/images/tab/index1.png",
         "text": "首页"
       },
       
       {
         "pagePath": "pages/ucenter/index/index",
-        "iconPath": "static/images/ucenter2.png",
-        "selectedIconPath": "static/images/ucenter1.png",
+        "iconPath": "static/images/tab/ucenter2.png",
+        "selectedIconPath": "static/images/tab/ucenter1.png",
         "text": "我的"
       }
     ]

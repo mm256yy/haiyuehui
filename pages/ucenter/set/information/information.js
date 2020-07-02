@@ -20,14 +20,14 @@ Page({
   },
   init(){
     //获取到当前的手机号
-    let tel = wx.getStorageSync('userInfoTel');
+    let tel = wx.getStorageSync('userInfoMobile');
     if(tel){  //如果存在
       util.request(api.UcenterSetMemberGet, 'GET').then(res => {
         console.log(res)
         if (res.status.code === 0) {
           let infoNew = {
-            ident:res.status.ident||'',
-            name:res.status.name||'',
+            ident:res.result.ident != null?res.result.ident:'',
+            name:res.result.name != null?res.result.name:'',
             mobile:tel+'(无法修改)',
           }
           this.setData({
@@ -35,7 +35,7 @@ Page({
             hasInfo:true
           })
         }else if(res.status.message === "请先登录"){
-          wx.navigateTo({ 
+          wx.navigateTo({
             url: "/pages/auth/login/login"
           });
         }
@@ -54,10 +54,10 @@ Page({
   //确认信息
   btnSuccess(){
     if(!util.checkName(this.data.info.name)){return false}
-    if(!util.checkIdentity(this.data.info.identity)){return false}
+    if(!util.checkIdentity(this.data.info.ident)){return false}
     let param = {
       name:this.data.info.name,
-      ident:this.data.info.identity,
+      ident:this.data.info.ident,
     }
     console.log(param)
     util.request(api.UcenterSetMemberEdit, param, 'POST').then(res => {

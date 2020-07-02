@@ -53,7 +53,7 @@ Page({
       console.log(err)
     });
   },
-  //选择常住人
+  //选择同住人
   chooseOften(e){
     let index = e.currentTarget.dataset.index
     let oftenChooseNew = index+1;
@@ -73,7 +73,7 @@ Page({
         console.log(infoNew)
         prevPage.setData({  // 将我们想要传递的参数在这里直接setData。上个页面就会执行这里的操作。
           info:infoNew
-        })  
+        })
         wx.navigateBack({
           delta: 1  // 返回上一级页面。
         })

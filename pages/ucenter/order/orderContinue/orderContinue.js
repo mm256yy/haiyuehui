@@ -34,13 +34,7 @@ Page({
     this.init(options);
     
   },
-  onReady: function () {
-
-  },
   onShow: function () {
-
-  },
-  onHide: function () {
 
   },
   init(options){
@@ -76,7 +70,13 @@ Page({
   },
   //统计
   total(){
-    let moneyNew = parseInt(this.data.order.roomPrice)*parseInt(this.data.continueDay)
+    let dayNum = null;
+    if(this.data.continueDay == 0){
+      dayNum = 0.5
+    }else{
+      dayNum = this.data.continueDay
+    }
+    let moneyNew = parseInt(this.data.order.roomPrice)*parseFloat(dayNum)
     let totalNew = moneyNew + parseInt(this.data.total.deposit) + parseInt(this.data.total.other)
     this.setData({
       'total.roomPrice':totalNew,
@@ -90,6 +90,7 @@ Page({
     let param = {
       orderId:this.data.orderId,
       days:this.data.continueDay,
+      outHour:(this.data.continueDay == 0?18:14)
     }
     console.log(param)
     util.request(api.UcenterOrderDaysSubmit , param , 'POST').then(res => {
@@ -111,7 +112,7 @@ Page({
   dayBtn(e){
     let customShowNew = false;
     let day = e.currentTarget.dataset.day
-    if(day == 6){
+    if(day == 5){
       customShowNew = true;
     }
     this.setData({
