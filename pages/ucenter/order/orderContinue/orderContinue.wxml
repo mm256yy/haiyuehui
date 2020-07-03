@@ -20,7 +20,7 @@
     </view>
   </view>
   <view class="hotels_fill">
-    <view class="fill_h1">续住时间<text class="fill_h1_tip" wx:if="{{dayNum == 0}}">注：延期时间至当日18:00</text></view>
+    <view class="fill_h1">续住时间<text class="fill_h1_tip" wx:if="{{dayNum == 0}}">注：延期时间至当日18:00(暂只能续住一次)</text></view>
     <view class="fill_day_ul">
       <view class="fill_day_li">
         <view class="day_li_btn {{dayNum == 0?'day_li_on':''}}" bindtap="dayBtn" data-day="0">半天</view>

@@ -20,7 +20,6 @@ Page({
         isEdit:true
       })
     }else{  //新增
-      console.log("新增");
       this.setData({
         'info.id':options.id,
         isEdit:false

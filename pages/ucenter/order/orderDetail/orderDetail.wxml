@@ -12,7 +12,7 @@
       <view wx:if="{{false}}"><text class="detail_t1" >房型编号：</text><text class="detail_t0">{{detail.rmtype}}</text></view>
       <view><text class="detail_t1">入住时间：</text><text class="detail_t0">{{detail.startTimeS}}至{{detail.endTimeS}}</text></view>
       <view class="detail_relative">
-        <text class="detail_t1">订单编号：</text><text class="detail_t0">{{detail.orderNo}}</text>
+        <text class="detail_t1">订单编号：</text><text class="detail_t0">{{detail.orderId}}</text>
         <text wx:if="{{(detail.status == 11||detail.status == 22)&&detail.isCis}}" bindtap="copy" class="{{allowConnect == 0?'detail_share_n':'detail_share_y'}}">{{allowConnect == 0?'授权已关闭':'授权已开启'}}</text>
         <image wx:if="{{(detail.status == 11||detail.status == 22)}}" bindtap="copy" data-text="{{detail.orderNo}}" class="detail_copy" src="/static/images/copy_{{allowConnect == 0?'n':'y'}}.png"></image>
       </view>

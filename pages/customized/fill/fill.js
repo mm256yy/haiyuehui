@@ -224,10 +224,26 @@ Page({
     let tel = wx.getStorageSync('userInfoMobile');
     console.log(tel)
     if(tel){  //如果存在
+      //获取手机
       this.setData({
         'fill.mobile':tel,
         'fill.mobileDisabled':false
       })
+      //获取名字
+      util.request(api.UcenterSetMemberGet, 'GET').then(res => {
+        console.log(res)
+        if (res.status.code === 0) {
+          this.setData({
+            'fill.name':(res.result.name != null?res.result.name:'')
+          })
+        }else if(res.status.message === "请先登录"){
+          wx.navigateTo({
+            url: "/pages/auth/login/login"
+          });
+        }
+      }).catch((err) => {
+        console.log(err)
+      });
       console.log(this.data.fill)
     }else{
       console.log("手机号不存在");

@@ -1,4 +1,3 @@
-// pages/ucenter/orderDetail/orderDetail.js
 let util = require('../../../../utils/util.js');
 let api = require('../../../../config/api.js');
 let pay = require('../../../../utils/pay.js');

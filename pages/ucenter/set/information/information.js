@@ -10,13 +10,13 @@ Page({
     hasInfo:false,
   },
   onLoad: function (options) {
-    this.init();
+    
   },
   onReady: function () {
 
   },
   onShow: function () {
-
+    this.init();
   },
   init(){
     //获取到当前的手机号

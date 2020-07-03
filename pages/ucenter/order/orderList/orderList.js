@@ -94,7 +94,7 @@ Page({
           }
         }
         if(pull == 1){  //初始化
-          orderUlNew = o_ul
+          orderUlNew = o_ul;
         }else{
           if(res.result.records.length == 0){
             orderUlNew = this.data.orderUl.concat(o_ul)
