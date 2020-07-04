@@ -13,7 +13,7 @@
     </view>
   </view>
   <view class="transfer_body">
-    <view class="order_type" wx:if="{{processNum == 1}}">
+    <view class="order_type" wx:if="{{processNum == 1}}" >
       <view class="order_type_li order_type_li1" bindtap="transferType" data-type="1">
         <image class="order_type_ba" src="/static/images/type-ba1.png"></image>
         <view class="order_type_text">第三方接入订单</view>

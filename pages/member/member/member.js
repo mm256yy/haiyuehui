@@ -45,7 +45,13 @@ Page({
         text1:'订房折扣',
         text2:'9.5折',
         introduce:'订房折扣',
-        grade:0,
+        grade:[
+          {arr:0,text1:'',text2:'',use:true},
+          {arr:1,text1:'',text2:'',use:true},
+          {arr:2,text1:'',text2:'',use:true},
+          {arr:3,text1:'',text2:'',use:true},
+          {arr:4,text1:'',text2:'',use:true},
+        ],
       },
       {
         img:'/static/images/power/power1.png',
@@ -217,6 +223,7 @@ Page({
     memberVal:0,
     introduceVal:'订房折扣9.5折',
     introduceShow:false,
+    powerRelease:false,
   },
   onLoad: function (options) {
     
@@ -249,6 +256,7 @@ Page({
       memberVal:index
     })
   },
+  //会员特权详细
   introduceValShow(e){
     let index = e.currentTarget.dataset.index
     let introduceVal = this.data.privilegeUl[index].introduce
@@ -256,5 +264,11 @@ Page({
       introduceShow:!this.data.introduceShow,
       introduceVal:introduceVal
     })
-  }
+  },
+  //会员特权扩展
+  funPowerRelease(){
+    this.setData({
+      powerRelease:!this.data.powerRelease,
+    })
+  },
 })

@@ -247,7 +247,7 @@ swiper{
 }
 .vip_price text{
   color: #cc0000;
-  font-size: 24rpx;
+  font-size: 30rpx;
 }
 .vip_price_zero text{
   color: #999;

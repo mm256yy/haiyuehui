@@ -32,9 +32,15 @@ Page({
   },
   //传递邀请人
   invite(option){
-    let scene = decodeURIComponent(option.scene).toString().split('=');
-    let inviteCode = scene[1];
-    wx.setStorageSync('othersInviteCode', inviteCode);
+    if(option.inviteCode){
+      console.log(option.inviteCode)
+      wx.setStorageSync('othersInviteCode', option.inviteCode);
+    }else{
+      let scene = decodeURIComponent(option.scene).toString().split('=');
+      let inviteCode = scene[1];
+      console.log(inviteCode)
+      wx.setStorageSync('othersInviteCode', inviteCode);
+    }
   },
   //跳转酒店详情
   hotelsDetailed(){

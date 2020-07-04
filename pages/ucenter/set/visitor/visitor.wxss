@@ -1,0 +1,132 @@
+/*logo*/
+.login_logo{
+  margin-top: 40rpx;
+  text-align: center;
+}
+.logo_img{
+  padding: 20rpx;
+  border-radius:20rpx;
+  margin:auto ;
+}
+/*form*/
+.form_box {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding: 0 40rpx;
+  background: #fff;
+  margin-top: 40rpx;
+}
+.form_ul{
+  display: flex;
+}
+.form_left{
+  flex: 1 1 auto;
+}
+.form_right{
+  width: 180rpx;
+  display: flex;
+  border-left:1rpx solid #f1f1f1;
+  border-bottom:1rpx solid #f1f1f1 ;
+}
+.form_person{
+  align-items:center;
+  text-align: center;
+  margin: auto;
+}
+.person_img{
+  width: 80rpx;
+  height: 80rpx;
+}
+.person_text{
+  color: #999;
+  font-size: 24rpx;
+}
+.form_li{
+  height: 96rpx;
+  position: relative;
+}
+.form_input{
+  display: block;
+  width: 100%;
+  height: 95rpx;
+  color: #333;
+  font-size: 30rpx;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.form-item-code {
+  height: auto;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+.code-btn {
+  padding: 20rpx 40rpx;
+  border-radius: 10rpx;
+  color: #008cd7;
+  z-index: 10;
+  position: absolute;
+  right: 0rpx;
+  top: 10rpx;
+}
+
+.form-item .clear {
+  position: absolute;
+  top: 26rpx;
+  right: 18rpx;
+  z-index: 2;
+  display: block;
+  background: #fff;
+  height: 44rpx;
+  width: 44rpx;
+}
+.form_li_slider{
+  display: flex;
+  padding: 20rpx 0rpx;
+}
+.slider_time{
+  width: 330rpx;
+  padding: 15rpx 0rpx;
+}
+.slider_li{
+  flex: 1 1 auto;
+}
+/* btn */
+.btn_li {
+  margin: 60rpx 0rpx 40rpx 0rpx;
+  padding: 20rpx 10rpx;
+  border-radius:50rpx ;
+  color: #fff;
+  font-size: 30rpx;
+  width: 100%;
+  border-radius: 50rpx;
+  background: linear-gradient(to right, #039cee , #753ffd);
+  text-align: center;
+}
+.form_label{
+  padding: 10rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+.share_btn{
+  margin: 40rpx 0rpx 40rpx 0rpx;
+  padding: 20rpx 10rpx;
+  border-radius:50rpx ;
+  color: #039cee;
+  font-size: 30rpx;
+  width: 100% !important;
+  border-radius: 50rpx;
+  border: 1px solid #039cee;
+  /*background: linear-gradient(to right, #039cee , #753ffd);*/
+  font-weight: 500;
+  text-align: center;
+}
+.agreement{
+  text-align: center;
+  color: #999;
+}
+.agreement_href{
+  color: #008cd7;
+  text-decoration: underline;
+}

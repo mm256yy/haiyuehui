@@ -25,7 +25,7 @@ Page({
       arr:'',
       dep:'',
       cis:0,
-      wrec:1600,  //门市价
+      wrac:1600,  //门市价
       wec0:800,  //无早
       wec1:900,  //单早
       wec:1000,  //双早
@@ -201,7 +201,7 @@ Page({
       arr:arrTime,
       dep:depTime,
       cis:(roomrNew.isCis?1:0), //1是 0否
-      wrec:roomrNew.wrec,  //门市价
+      wrac:roomrNew.wrac,  //门市价
       wec0:roomrNew.wec0,  //无早
       wec1:roomrNew.wec1,  //单早
       wec:roomrNew.wec,  //双早

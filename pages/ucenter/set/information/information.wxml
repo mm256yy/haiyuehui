@@ -1,17 +1,20 @@
 <view>
   <import src="/template/template.wxml"/>
   <view class="form_ul">
-    <view class="input_li">
+    <view class="form_li">
+      <text class="form_li_t">手机号码</text>
       <input class="form_input form_mobile" disabled="{{true}}" value="{{info.mobile}}" placeholder="请输入手机号码"/>
     </view>
-    <view class="input_li">
+    <view class="form_li">
+      <text class="form_li_t">真实姓名</text>
       <input class="form_input" value="{{info.name}}" bindinput="bindNameInput" placeholder="请输入真实名字" />
     </view>
-    <view class="input_li">
+    <view class="form_li">
+      <text class="form_li_t">身份证号</text>
       <input class="form_input" value="{{info.ident}}" bindinput="bindIdentityInput" placeholder="请输入真实身份证" />
     </view>
   </view>
-  <template is="label" data="{{text:['完善个人信息将会快捷入住']}}"/>
+  <template is="label" data="{{text:['完善会员信息将会快捷入住']}}"/>
   <view class="btn_box">
     <view class="btn_success" bindtap="btnSuccess">确认信息</view>
   </view>

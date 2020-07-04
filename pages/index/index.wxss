@@ -44,10 +44,13 @@
 }
 .booking_li_totle{
   width: 40rpx;
-  padding-top:30rpx ;
+  padding-top:12rpx ;
 }
 .booking_li_h5{
-  font-size: 22rpx;
+  font-size: 24rpx;
+}
+.booking_li_h6{
+  font-size: 40rpx;
 }
 .booking_btn{
   font-size: 28rpx;

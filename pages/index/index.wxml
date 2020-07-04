@@ -33,7 +33,7 @@
             </view>
           </view>
           <view class="booking_li booking_li_totle">
-            <text class="booking_li_h5">共</text><text>{{show.num}}</text><text class="booking_li_h5">晚</text>
+            <text class="booking_li_h5"></text><text class="booking_li_h6">{{show.num}}</text><text class="booking_li_h5">晚</text>
           </view>
         </view>
         <view>

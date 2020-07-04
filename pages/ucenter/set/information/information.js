@@ -83,7 +83,7 @@ Page({
   },
   bindIdentityInput(e) {
     this.setData({
-      'info.identity': e.detail.value
+      'info.ident': e.detail.value
     });
   },
 })

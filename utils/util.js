@@ -142,6 +142,15 @@ function orderType(type){
     return "已结单"
   }
 }
+//金钱转化  1200 ==> '12'  1201 => '12.01'
+function money(money){
+  let moneyNew = ((money)/100).toFixed(2).toString().split('.');
+  if(moneyNew[1] == '00'){
+    return moneyNew[0]
+  }else{
+    return ((money)/100).toFixed(2).toString()
+  }
+}
 
 /*验证并且提示*/
 //手机号码验证
@@ -260,6 +269,7 @@ module.exports = {
   identityCard,
   networkManage,
   orderType,
+  money,
 
   checkMobile,
   checkName,

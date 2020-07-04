@@ -70,6 +70,7 @@
 }
 .order_type_li1{
   background: linear-gradient(to right, #753ffd , #956cfc);
+  /* background-color: #cdcdcd; */
 }  
 .order_type_li2{
   margin-top: 20rpx;

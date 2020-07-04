@@ -54,7 +54,7 @@
           <view class="form_right" bindtap="person">
             <view class="form_person">
               <image class="person_img" src="/static/images/selected.png"></image>
-              <view class="person_text">同住人簿</view>
+              <view class="person_text">常住人簿</view>
             </view>
           </view>
         </view>

@@ -10,8 +10,14 @@
   height: 96rpx;
   position: relative;
   border-bottom: 1px solid #d9d9d9;
+  display: flex;
+}
+.form_li_t{
+  width: 200rpx;
+  line-height: 95rpx;
 }
 .form_input{
+  flex: 1 1 auto;
   display: block;
   width: 100%;
   height: 95rpx;

@@ -21,29 +21,22 @@ Page({
       gym:{},
       meeting:{},
       room:[
-        {
-          id:0,
-          name:'roomName',
-          img:'/static/images/room.jpg',
-          avail:1,
-          rmtype:'HHF',
-          isCis:false,
+        // {
+        //   id:0,
+        //   name:'roomName',
+        //   img:'/static/images/room.jpg',
+        //   avail:1,
+        //   rmtype:'HHF',
+        //   isCis:false,
 
-          // priceBefore:'0',
-          // priceBeforeS:'100.00',
-          // priceVip:'0',
-          // priceVipS:'100.00',
-          // ratecode:'MEMC',
-          // ratecodem:'OTA5',
-
-          wrec:1600,  //门市价
-          wec0:800,  //无早
-          wec1:900,  //单早
-          wec:1000,  //双早
-          wec3:1100,  //三早
-          wrecS:'16.00',  
-          wec0S:'8.00',  
-        }
+        //   wrac:1600,  //门市价
+        //   wec0:800,  //无早
+        //   wec1:900,  //单早
+        //   wec:1000,  //双早
+        //   wec3:1100,  //三早
+        //   wracS:'16.00',  
+        //   wec0S:'8.00',  
+        // }
       ]
     },
     room:{
@@ -122,19 +115,19 @@ Page({
               isCis:res.result[i].isCis,
 
               // priceBefore:res.result[i].price,
-              // priceBeforeS:(res.result[i].price/100).toFixed(2),
+              // priceBeforeS:util.money(res.result[i].price),
               // priceVip:res.result[i].pricem,
-              // priceVipS:(isLoginNew?(res.result[i].pricem/100).toFixed(2):'？？？'),
+              // priceVipS:(isLoginNew?util.money(res.result[i].pricem):'？？？'),
               // ratecode:res.result[i].ratecode,
               // ratecodem:res.result[i].ratecodem,
 
-              wrec:res.result[i].wrec,  //门市价
+              wrac:res.result[i].wrac,  //门市价
               wec0:res.result[i].wec0||0,  //无早
               wec1:res.result[i].wec1||0,  //单早
               wec:res.result[i].wec||0,  //双早
               wec3:res.result[i].wec3||0,  //三早
-              wrecS:(res.result[i].wrec/100).toFixed(2),  
-              wec0S:(isLoginNew?(res.result[i].wec0/100).toFixed(2):'？？？'), 
+              wracS:(res.result[i].wrac/100),  
+              wec0S:(isLoginNew?(res.result[i].wec0/100):'？？？'), 
             }
             roomNew.push(roomLi)
           }

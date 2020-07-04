@@ -36,10 +36,9 @@
     "pages/ucenter/set/oftenList/oftenList",
     "pages/ucenter/set/oftenEdit/oftenEdit",
     "pages/ucenter/set/information/information",
-    
+    "pages/ucenter/set/visitor/visitor",
     
     "pages/ucenter/coupon/coupon",
-    
 
     "pages/logs/logs",
     "pages/activity/actList/actList",

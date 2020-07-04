@@ -97,7 +97,7 @@ Page({
             }
           }});
         }else{
-          wx.showModal({ title: '错误' , content: "取消+"+res.status.message ,showCancel: false });
+          wx.showModal({ title: '错误' , content:res.status.message ,showCancel: false });
         }
       }).catch((err) => {
         console.log(err)
@@ -116,7 +116,7 @@ Page({
             }
           }});
         }else{
-          wx.showModal({ title: '错误' , content: "退款+"+res2.status.message ,showCancel: false });
+          wx.showModal({ title: '错误' , content: res2.status.message ,showCancel: false });
         }
       }).catch((err2) => {
         console.log(err2)

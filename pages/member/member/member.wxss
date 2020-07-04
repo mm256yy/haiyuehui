@@ -133,7 +133,7 @@ page{
   width: 100%;
   background-color: #33353e;
   border-radius: 20rpx;
-  padding-top: 30rpx;
+  padding: 30rpx 0rpx 10rpx 0rpx;
 }
 .member_i1{
   width: 200rpx;
@@ -172,11 +172,14 @@ page{
   height: 60rpx;
   margin: 0rpx auto;
 }
-.privilege_most image{
+.privilege_most_image{
   width: 60rpx;
   height: 60rpx;
   opacity: 0.5;
-  padding-bottom: 20rpx;
+  padding-top: 10rpx;
+}
+.privilege_most_image_release{
+  transform: rotateX(180deg);
 }
 /*black*/
 .member_black{
@@ -204,5 +207,4 @@ page{
 .black_tip_val{
   text-align: center;
   margin: auto;
-
 }

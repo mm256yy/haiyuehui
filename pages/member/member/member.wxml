@@ -49,18 +49,18 @@
     <view class="progress_li_label">☆再住<text class="progress_li_t2">3</text>间夜可升级为 | 银卡 |</view>
   </view>
   <view class="member_privilege">
-    <view class="privilege_ba">
+    <view class="privilege_ba " >
       <image src="/static/images/member-i1.png" class="member_i1"></image>
       <image src="/static/images/member-i2.png" class="member_i2"></image>
-      <view class="privilege_ul">
-        <view class="privilege_li" bindtap="introduceValShow" data-index="{{index}}" wx:for="{{privilegeUl}}" wx:key="index">
+      <view class="privilege_ul ">
+        <view class="privilege_li" bindtap="introduceValShow" data-index="{{index}}" wx:if="{{powerRelease||index<8}}" wx:for="{{privilegeUl}}" wx:key="index">
           <image class="privilege_li_img" src="{{item.img}}"></image>
           <view class="privilege_li_t1">{{item.text1}}</view>
           <view class="privilege_li_t1">{{item.text2}}</view>
         </view>
       </view>
-      <view class="privilege_most">
-        <image src="/static/images/power/power_most.png"  mode="widthFix"></image>
+      <view class="privilege_most" bindtap="funPowerRelease">
+        <image class="privilege_most_image {{powerRelease?'privilege_most_image_release':''}}" src="/static/images/power/power_most.png"  mode="widthFix"></image>
       </view>
     </view>
   </view>

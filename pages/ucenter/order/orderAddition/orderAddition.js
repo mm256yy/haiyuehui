@@ -113,6 +113,7 @@ Page({
       console.log(err)
     });
   },  
+  //同住人簿
   person(){
     wx.navigateTo({
       url: "/pages/ucenter/set/oftenList/oftenList?oftenType=1"

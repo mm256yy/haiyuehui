@@ -65,6 +65,9 @@ Page({
       processNum:this.data.processNum + 1 ,
     })
   },
+  transferTypeNo(){
+    util.showErrorToast("暂未开放")
+  },
   //上一步
   goBack(){
     this.setData({
@@ -86,14 +89,7 @@ Page({
   },
   //查询订单
   queryOrder(){
-    if(this.data.info.hotelsId == ''){
-      wx.showModal({
-        title: '错误信息',
-        content: '请点击选择酒店',
-        showCancel: false
-      });
-      return false;
-    }
+    
     if(this.data.info.orderNo.length == 0){
       wx.showModal({
         title: '错误信息',
@@ -164,6 +160,14 @@ Page({
   },
   //OTA订单转移
   otaOrder(){
+    if(this.data.info.hotelsId == ''){
+      wx.showModal({
+        title: '错误信息',
+        content: '请点击选择酒店',
+        showCancel: false
+      });
+      return false;
+    }
     let that = this;
     let param = {
       hotelId:this.data.hotelsUl[this.data.info.hotelsId].hotelId,

@@ -1,4 +1,4 @@
-/**app.wxss**/
+/* *app.wxss* */
 view, image, text, navigator {
   box-sizing: border-box;
   padding: 0;
@@ -70,8 +70,8 @@ radio .wx-radio-input{
   width:20px;height:20px;
 }
 radio .wx-radio-input.wx-radio-input-checked{
-  border-color:#008cd7 !important;
-  background:#008cd7 !important;
+  border-color:#753ffd !important;
+  background:#753ffd !important;
 }
 radio .wx-radio-input.wx-radio-input-checked::before{
   border-radius:50%;
@@ -84,6 +84,9 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   background:transparent;
   transform:translate(-50%, -50%) scale(1);
   -webkit-transform:translate(-50%, -50%) scale(1);
+}
+.font_24{
+  font-size: 24rpx!important;
 }
 /*template*/
 @import "/template/template.wxss";

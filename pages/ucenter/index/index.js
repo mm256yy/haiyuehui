@@ -71,11 +71,11 @@ Page({
 
     ],
     otherIcon:[
-      {img:'/static/images/other/other1.png',text:'个人信息',tap:'goInformation'},
-      {img:'/static/images/other/other2.png',text:'同住人薄',tap:'goOften'},
+      {img:'/static/images/other/other1.png',text:'会员信息',tap:'goInformation'},
+      {img:'/static/images/other/other2.png',text:'常住人簿',tap:'goOften'},
       {img:'/static/images/other/other3.png',text:'邀请下单',tap:'goInvitation'},
       {img:'/static/images/other/other4.png',text:'隐私条款',tap:'goPrivacy'},
-      {img:'/static/images/other/other5.png',text:'客服热线',tap:'goService'},
+      // {img:'/static/images/other/other5.png',text:'客服热线',tap:'goService'},
     ],
     serviceIcon:[
       {img:'/static/images/service/service0.png',text:'住房延期'},

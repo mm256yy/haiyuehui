@@ -19,7 +19,7 @@
               <view class="order_time">入住时间：<text class="order_text_blue">{{item.startTimeS}}</text>至<text class="order_text_blue">{{item.endTimeS}}</text></view>
               <view class="order_time" wx:if="{{item.type === 31||item.type === 32||item.type === 41}}">房间号：{{item.roomNo}}</view>
               <view class="order_time">房间类型：{{item.orderRoom}}</view>
-              <view class="order_time">订单总金额：<text class="order_text_total">￥{{item.orderPriceS}}</text></view>
+              <view class="order_time">订单总金额：<text class="rmb order_text_total">￥</text><text class="order_text_total">{{item.orderPriceS}}</text></view>
             </view>
           </view>
         </view>
