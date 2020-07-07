@@ -78,13 +78,22 @@ function loginByWeixin(userInfo) {
 function checkLogin() {
   return new Promise(function(resolve, reject) {
     if (wx.getStorageSync('token')) {
-      checkSession().then(() => {
-        resolve(true);
-      }).catch(() => {
+      // checkSession().then(() => {
+      //   resolve(true);
+      // }).catch(() => {
+      //   reject(true);
+      // });
+      util.request(api.AuthCheckToken , 'POST').then(res => {
+        console.log(res)
+        if (res.status.code === 0) {  //已经登陆
+          resolve(res);
+        } else {
+          reject(true);
+        }
+      }).catch((err) => {
         reject(true);
       });
     } else {
-      console.log('token'+'失败')
       reject(true);
     }
   });

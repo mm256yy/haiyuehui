@@ -1,0 +1,6 @@
+<view>
+  <view class="form_li">
+    <view class="form_label">{{labelText}}</view>
+    <input class="form_input" value="{{value}}" bindinput="bindInput" placeholder="请输入{{labelText}}" />
+  </view>
+</view>

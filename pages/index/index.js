@@ -23,7 +23,7 @@ Page({
     calendarShow:false,
   },
   onLoad: function (option) {
-    this.invite(option)
+    this.invite(option);
   },
   onShow: function (e) {
     let pages = getCurrentPages()

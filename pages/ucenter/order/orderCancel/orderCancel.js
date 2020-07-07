@@ -79,10 +79,9 @@ Page({
     }
     let parma = {
       orderId:this.data.info.orderId,
-      reason:this.data.cause + ',' + this.data.textarea
+      reason:this.data.cause + ',' + this.data.textarea,
     }
     console.log(parma)
-    console.log(this.data.payType)
     if(this.data.payType == 1){
       util.request(api.UcenterOrderCancel , parma , 'POST').then(res => {
         console.log(res)

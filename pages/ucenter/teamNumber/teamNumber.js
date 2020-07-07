@@ -32,7 +32,6 @@ Page({
     if(this.data.chooseNum == 4){
       if(!util.checkName(this.data.info[0].name)){return false}
       if(!util.checkIdentity(this.data.info[0].identity)){return false}
-      //if(!util.checkMobile(this.data.info[0].mobile)){return false}
     }else{
       this.setData({
         chooseNum:this.data.chooseNum + 1 

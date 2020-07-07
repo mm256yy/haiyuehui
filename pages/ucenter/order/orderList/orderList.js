@@ -36,17 +36,11 @@ Page({
   onLoad: function () {
     
   },
-  onReady: function () {
-
-  },
   onShow: function () {
     this.init(0,1);
     this.setData({
       menuVal:0,
     })
-  },
-  onHide: function () {
-
   },
   // 上拉刷新
   onReachBottom: function() {

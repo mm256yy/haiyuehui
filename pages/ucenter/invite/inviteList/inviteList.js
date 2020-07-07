@@ -11,10 +11,10 @@ Page({
     pageNo:1,
   },
   onLoad: function (options) {
-    this.init(1,0)
+    
   },
   onShow: function () {
-    
+    this.init(1,0)
   },
   //上拉刷新
   onReachBottom: function() {
@@ -23,6 +23,7 @@ Page({
     })
     this.init(this.data.pageNo,1)
   },
+  //初始化
   init(pageNo,add){
     let param = {
       pageNo:pageNo,
@@ -58,6 +59,10 @@ Page({
         this.setData({
           inviteList:inviteListUl
         })
+      }else if(res.status.message == "未登录"){
+        wx.navigateTo({ 
+          url: "/pages/auth/login/login"
+        });
       }else{ //500
         wx.showModal({ title: '错误信息',content: res.status.message,showCancel: false });
       }
@@ -68,6 +73,7 @@ Page({
       })
     });
   },
+  //点击转发按钮
   onShareAppMessage: function (ops) {
     let inviteCode = wx.getStorageSync('userInfoInviteCode');
     console.log(inviteCode)
@@ -90,12 +96,14 @@ Page({
     }
 
   },
+  //打开二维码的页面
   onAppCode(){
     let inviteCode = wx.getStorageSync('userInfoInviteCode');
     wx.navigateTo({
       url: "/pages/ucenter/invite/inviteCode/inviteCode?inviteCode="+inviteCode
     })
   },
+  //黑幕
   blackShow(){
     this.setData({
       inviteBlackShow:!this.data.inviteBlackShow

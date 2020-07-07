@@ -67,7 +67,7 @@
   </view>
   <view class="detailed_room">
     <view class="room_ul">
-      <view class="room_li {{item.avail == 0?'availZero':''}}"   wx:for="{{hotel.room}}" wx:key="index">
+      <view class="room_li {{item.avail == 0?'availZero':''}}" wx:if="{{item.wec0S != 9999}}" wx:for="{{hotel.room}}" wx:key="index">
         <image class="room_li_img" src="{{item.img}}" bindtap="infoShow" data-rmtype="{{item.rmtype}}"></image>
         <image wx:if="{{item.isCis&&false}}" src="/static/images/cis_ba.png" class="cis_ba"></image>
         <image wx:if="{{item.isCis}}" src="/static/images/cis.png" class="cis"></image>
@@ -75,7 +75,7 @@
           <view class="room_name">
             <text>{{item.name}}</text>
           </view>
-          <view class="room_avail" wx:if="{{item.avail<=5}}">仅剩{{item.avail}}间</view>
+          <view class="room_avail" wx:if="{{item.avail>=0&&item.avail<=5}}">仅剩{{item.avail}}间</view>
           <!--<view class="room_breakfast">
             <image src="/static/images/breakfast.png"></image>
             <text>可选择早餐</text>

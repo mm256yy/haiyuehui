@@ -1,5 +1,6 @@
 // pages/ucenter/index/index.js
 let util = require('../../../utils/util.js');
+let user = require('../../../utils/user.js');
 let app = getApp();
 Page({
   data: {
@@ -96,6 +97,7 @@ Page({
     }
   },
   onLoad: function () {
+    this.login();
   },
   onReady: function () {
   },
@@ -133,6 +135,21 @@ Page({
     }
     this.setData({
       ucenter:ucenterNew
+    })
+  },
+  //判断登陆
+  login(){
+    // 判断登录
+    user.checkLogin().then(res => {
+      //console.log(res)
+      /*wx.switchTab({ 
+        url:"/pages/index/index"
+      })*/
+    }).catch((res) =>{
+      console.log(res+'需要登陆');
+      wx.navigateTo({ 
+        url: "/pages/auth/login/login"
+      });
     })
   },
   //设置

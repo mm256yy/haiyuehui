@@ -84,7 +84,7 @@ Page({
     util.request(api.UcenterOrderDetail ,param, 'GET').then(res => {
       console.log(res)
       if (res.status.code === 0) {
-        let data = res.result
+        let data = res.result;
         let detailNew = {},personUlNew = [],moneyNew = {};
         detailNew = {
           status:data.status,

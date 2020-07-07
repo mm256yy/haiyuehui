@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "访客人信息填写",
-  "usingComponents": {}
+  "usingComponents": {
+    "from-input": "/components/input/input"
+  }
 }

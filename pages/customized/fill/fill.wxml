@@ -67,7 +67,7 @@
     <view class="other_li">
       <text>早餐类型（必选）</text>
       <view class="breakfast_ul">
-        <view bindtap="breakfastChoose" wx:if="{{item.price != 0}}" data-index="{{index}}" wx:for="{{breakfastUl}}" wx:key="index" class="breakfast_li {{breakfastChoose == index?'breakfast_li_on':''}}">
+        <view bindtap="breakfastChoose" wx:if="{{item.price != 999900}}" data-index="{{index}}" wx:for="{{breakfastUl}}" wx:key="index" class="breakfast_li {{breakfastChoose == index?'breakfast_li_on':''}}">
           <image class="breakfast_li_img" src="/static/images/breakfast/breakfast{{index}}.png"></image>
           <view class="breakfast_li_text {{breakfastChoose == index?'breakfast_li_text_on':''}}">{{item.name}}</view>
         </view>

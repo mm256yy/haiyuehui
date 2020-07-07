@@ -133,7 +133,8 @@ Page({
   placeOrder(){
     if(!util.checkName(this.data.fill.name)){return false}
     if(!util.checkMobile(this.data.fill.mobile)){return false}
-    
+    if(!util.checkMoney(this.data.total.money)){return false}
+    if(!util.checkMoney(this.data.room.roomPrice)){return false}
     //传递
     let param = {
       hotelId: this.data.room.hotelId,
@@ -188,7 +189,7 @@ Page({
       hotelName:hotelNew.name,
       roomId:roomrNew.id,
       roomName:roomrNew.name,
-      roomPrice:roomrNew.wec0,
+      roomPrice:this.moneyMin(roomrNew.wec0,roomrNew.wec1,roomrNew.wec,roomrNew.wec3),
       roomDeposit:hotelNew.deposit,
       roomOther:0,
       startTime:startTime_s,
@@ -215,7 +216,8 @@ Page({
     ]
     this.setData({
       room : roomNew,
-      breakfastUl:breakfastUlNew
+      breakfastUl:breakfastUlNew,
+      breakfastChoose:this.breakfastNum(roomrNew.wec0,roomrNew.wec1,roomrNew.wec,roomrNew.wec3),
     })
     console.log(this.data.room)
   },
@@ -256,6 +258,33 @@ Page({
     wx.navigateTo({
       url: "/pages/ucenter/set/oftenList/oftenList?oftenType=1"
     })
+  },
+  //money
+  moneyMin(wec0,wec1,wec,wec3){
+    if(util.importantMoney(wec0) != 999900){
+      return wec0;
+    }else if(util.importantMoney(wec1) != 999900){
+      return wec1;
+    }else if(util.importantMoney(wec) != 999900){
+      return wec;
+    }else if(util.importantMoney(wec3) != 999900){
+      return wec3;
+    }else{
+      return 999900
+    }
+  },
+  breakfastNum(wec0,wec1,wec,wec3){
+    if(util.importantMoney(wec0) != 999900){
+      return 0;
+    }else if(util.importantMoney(wec1) != 999900){
+      return 1;
+    }else if(util.importantMoney(wec) != 999900){
+      return 2;
+    }else if(util.importantMoney(wec3) != 999900){
+      return 3;
+    }else{
+      return 999900
+    }
   },
   //时间
   dayZero(val){

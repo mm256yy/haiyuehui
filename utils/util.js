@@ -1,6 +1,5 @@
 var api = require('../config/api.js');
 var check = require('./check.js')
-var debug = true;  //开启测试
 
 var app = getApp();
 
@@ -28,6 +27,8 @@ function formatWeek(n){
 }
 /*封封微信的的request*/
 function request(url, data = {}, method = "GET") {
+  console.log(wx.getStorageSync('token'))
+  
   jhxLoadShow("加载中")
   return new Promise(function(resolve, reject) {
     wx.request({
@@ -151,6 +152,14 @@ function money(money){
     return ((money)/100).toFixed(2).toString()
   }
 }
+//金钱判断
+function importantMoney(money){
+  if(money == '0' ||money <= 0 ||money == ''||money == null||money == undefined ||money == 'undefined'){
+    return 999900;
+  }else{
+    return money;
+  }
+}
 
 /*验证并且提示*/
 //手机号码验证
@@ -241,6 +250,19 @@ function checkIdentity(identity){  //使用：if(!util.checkIdentity(this.data.i
     return true;
   }
 }
+//金钱验证
+function checkMoney(money){ //使用：if(!util.checkMoney(this.data.identity)){return false}
+  if(money == 999900 ||money == '0' ||money <= 0 ||money == ''||money == null||money == undefined ||money == 'undefined'){
+    wx.showModal({
+      title: '错误信息',
+      content: '金额错误，请联系客服人员',
+      showCancel: false
+    });
+    return false;
+  }else{
+    return true;
+  }
+}
 
 //网络监听
 function networkManage(){
@@ -252,12 +274,7 @@ function networkManage(){
     }
   })
 }
-//测试环境
-function aa(val){
-  if(debug){  //测试环境
-    console.log(val)
-  }
-}
+
 module.exports = {
   formatTime,
   formatWeek,
@@ -270,10 +287,10 @@ module.exports = {
   networkManage,
   orderType,
   money,
+  importantMoney,
 
   checkMobile,
   checkName,
   checkIdentity,
-
-  aa,
+  checkMoney,
 }

@@ -2,7 +2,7 @@
   "pages":[
     
     "pages/index/index",
-    
+    "pages/ucenter/set/visitor/visitor",
     "pages/pop/calendar/index",
     "pages/member/member/member",
     "pages/member/memberAgree/memberAgree",
@@ -36,7 +36,7 @@
     "pages/ucenter/set/oftenList/oftenList",
     "pages/ucenter/set/oftenEdit/oftenEdit",
     "pages/ucenter/set/information/information",
-    "pages/ucenter/set/visitor/visitor",
+    
     
     "pages/ucenter/coupon/coupon",
 

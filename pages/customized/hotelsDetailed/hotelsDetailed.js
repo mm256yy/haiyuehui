@@ -121,13 +121,13 @@ Page({
               // ratecode:res.result[i].ratecode,
               // ratecodem:res.result[i].ratecodem,
 
-              wrac:res.result[i].wrac,  //门市价
-              wec0:res.result[i].wec0||0,  //无早
-              wec1:res.result[i].wec1||0,  //单早
-              wec:res.result[i].wec||0,  //双早
-              wec3:res.result[i].wec3||0,  //三早
-              wracS:(res.result[i].wrac/100),  
-              wec0S:(isLoginNew?(res.result[i].wec0/100):'？？？'), 
+              wrac:util.importantMoney(res.result[i].wrac),  //门市价
+              wec0:util.importantMoney(res.result[i].wec0),  //无早
+              wec1:util.importantMoney(res.result[i].wec1),  //单早
+              wec:util.importantMoney(res.result[i].wec),  //双早
+              wec3:util.importantMoney(res.result[i].wec3),  //三早
+              wracS:(util.importantMoney(res.result[i].wrac)/100),  
+              wec0S:(isLoginNew?(this.moneyMin(res.result[i].wec0,res.result[i].wec1,res.result[i].wec,res.result[i].wec3)/100):'？？？'), 
             }
             roomNew.push(roomLi)
           }
@@ -272,6 +272,20 @@ Page({
       animationData:animation.export(),   //设置完毕
       infoPop:false
     })
+  },
+  //money
+  moneyMin(wec0,wec1,wec,wec3){
+    if(util.importantMoney(wec0) != 999900){
+      return wec0;
+    }else if(util.importantMoney(wec1) != 999900){
+      return wec1;
+    }else if(util.importantMoney(wec) != 999900){
+      return wec;
+    }else if(util.importantMoney(wec3) != 999900){
+      return wec3;
+    }else{
+      return 999900
+    }
   },
   //时间
   dayZero(val){
