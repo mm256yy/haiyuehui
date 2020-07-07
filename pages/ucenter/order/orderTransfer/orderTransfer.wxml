@@ -47,7 +47,7 @@
         <view class="order_text">酒店名称：{{detail.hotelName}}</view>
         <view class="order_text">房型名称：{{detail.rmdesc}}</view>
         <view class="order_text">入住时间：{{detail.startTimeS}}至{{detail.endTimeS}}（共{{detail.dayNum}}晚）</view>
-        <view class="order_text">房间价格：{{detail.roomPriceS}}</view>
+        <view class="order_text">房间价格：{{detail.totleRoomPriceS}}<text class="order_details">{{detail.days + "晚 x 房间单价 " + detail.roomPriceS+" 元"}}</text></view>
         <view class="order_text">房间押金：{{detail.depositS}}</view>
         <view class="order_text">房间总价：{{detail.moneyS}}</view>
       </view>

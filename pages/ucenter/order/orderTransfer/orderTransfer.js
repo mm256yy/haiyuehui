@@ -133,10 +133,13 @@ Page({
           dayNum:this.dayNum(res.result.arr,res.result.dep),
           roomPrice:res.result.roomPrice,
           roomPriceS:(res.result.roomPrice/100).toFixed(2),
+          totleRoomPrice:res.result.roomPrice*res.result.days,
+          totleRoomPriceS:(res.result.roomPrice*res.result.days/100).toFixed(2),
           deposit:res.result.deposit,
           depositS:(res.result.deposit/100).toFixed(2),
           money:res.result.money,
           moneyS:(res.result.money/100).toFixed(2),
+          days:res.result.days,
         }
         app.globalData.badge = {menu:[1,0,0,0]}
         wx.showModal({ title: '成功',content: '查询成功',showCancel: false , success (res) {
@@ -178,7 +181,7 @@ Page({
       console.log(res)
       if (res.status.code === 0) {
         //获取到订单信息
-        console.log(res.result.orderId)
+        console.log(res.result.days)
         let detailNew = {
           status:res.result.status,
           statusS:util.orderType(res.result.status),
@@ -196,10 +199,13 @@ Page({
           dayNum:this.dayNum(res.result.arr,res.result.dep),
           roomPrice:res.result.roomPrice,
           roomPriceS:(res.result.roomPrice/100).toFixed(2),
+          totleRoomPrice:res.result.roomPrice*res.result.days,
+          totleRoomPriceS:(res.result.roomPrice*res.result.days/100).toFixed(2),
           deposit:res.result.deposit,
           depositS:(res.result.deposit/100).toFixed(2),
           money:res.result.money,
           moneyS:(res.result.money/100).toFixed(2),
+          days:res.result.days,
         }
         app.globalData.badge = {menu:[1,0,0,0]}
         wx.showModal({ title: '成功',content: '查询成功',showCancel: false , success (res) {

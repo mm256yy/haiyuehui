@@ -13,6 +13,7 @@ Page({
       roomId:'',
       roomName:'',
       roomPrice:0,
+      roomPriceS:0,
       roomDeposit:0,
       roomOther:0,
       startTime:'',
@@ -104,6 +105,7 @@ Page({
     this.setData({
       breakfastChoose: index,
       'room.roomPrice':this.data.breakfastUl[index].price,
+      'room.roomPriceS':((this.data.breakfastUl[index].price)/100).toFixed(2),
       'room.ratecode':this.data.breakfastUl[index].val,
     });
     //重新计算
@@ -111,9 +113,6 @@ Page({
   },
   //总计
   total(){
-    console.log(this.data.room)
-    console.log(this.data.room.roomPrice)
-    console.log(this.data.fill.roomNum)
     let totalNew = {
       roomPrice:this.data.room.roomPrice*this.data.fill.roomNum*this.data.room.timeNum,
       roomPriceS:((this.data.room.roomPrice*this.data.fill.roomNum*this.data.room.timeNum)/100).toFixed(2),
@@ -124,7 +123,6 @@ Page({
       money:this.data.room.roomPrice*this.data.fill.roomNum*this.data.room.timeNum+this.data.room.roomDeposit*this.data.fill.roomNum+this.data.room.roomOther,
       moneyS:((this.data.room.roomPrice*this.data.fill.roomNum*this.data.room.timeNum+this.data.room.roomDeposit*this.data.fill.roomNum+this.data.room.roomOther)/100).toFixed(2)
     } 
-    console.log(totalNew)
     this.setData({
       total: totalNew
     });
@@ -190,6 +188,7 @@ Page({
       roomId:roomrNew.id,
       roomName:roomrNew.name,
       roomPrice:this.moneyMin(roomrNew.wec0,roomrNew.wec1,roomrNew.wec,roomrNew.wec3),
+      roomPriceS:(this.moneyMin(roomrNew.wec0,roomrNew.wec1,roomrNew.wec,roomrNew.wec3)/100).toFixed(2),
       roomDeposit:hotelNew.deposit,
       roomOther:0,
       startTime:startTime_s,
@@ -209,7 +208,7 @@ Page({
       wec3:roomrNew.wec3,  //三早
     }
     let breakfastUlNew = [
-      {price:roomrNew.wec0,priceS:((roomrNew.wec0)/100).toFixed(2),name:'不选早餐',val:'WEC0'},
+      {price:roomrNew.wec0,priceS:((roomrNew.wec0)/100).toFixed(2),name:'无早餐',val:'WEC0'},
       {price:roomrNew.wec1,priceS:((roomrNew.wec1)/100).toFixed(2),name:'单人早餐',val:'WEC1'},
       {price:roomrNew.wec,priceS:((roomrNew.wec)/100).toFixed(2),name:'双人早餐',val:'WEC'},
       {price:roomrNew.wec3,priceS:((roomrNew.wec3)/100).toFixed(2),name:'三人早餐',val:'WEC3'},

@@ -183,8 +183,18 @@ page{background-color: #f1f1f1;}
 .price_li{
   padding: 10rpx;
 }
+.price_li_details{
+  font-size: 24rpx;
+  color: #cdcdcd;
+  margin-right: 50rpx;
+  float: right;
+}
 .price_li_r{
   float: right;
+}
+.price_li_rmb{
+  float: right;
+  font-size: 24rpx;
 }
 .price_red{
   color: #cc0000;

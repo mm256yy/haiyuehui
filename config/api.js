@@ -4,9 +4,9 @@
  // 正式线上ip 
  // var WxApiRoot = 'http://124.70.147.182:9001/wx/';
  // 测试线上ip
- var WxApiRoot = 'http://124.70.132.80:9001/wx/';
+ // var WxApiRoot = 'http://124.70.132.80:9001/wx/';
  // 本机 开发api地址
- // var WxApiRoot = 'http://192.168.188.79:9001/wx/';  // http://192.168.133.67:9002/wx/; 
+ var WxApiRoot = 'http://192.168.188.79:9001/wx/';  // http://192.168.133.67:9002/wx/; 
  // 生产地址
  // var WxApiRoot = 'https://www.hwhhotels.com/wx/';
  

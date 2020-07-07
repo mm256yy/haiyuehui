@@ -80,16 +80,24 @@
   </view>
   <view class="hotels_price">
     <view class="price_li">
-      <text>房费</text><text class="price_li_r">{{total.roomPriceS}}</text><text class="price_li_r">￥</text>
+      <text>房费</text>
+      <text class="price_li_r">{{total.roomPriceS}}</text>
+      <text class="price_li_rmb">￥</text>
+      <text class="price_li_details">{{room.timeNum + "晚 x 房间单价 " + room.roomPriceS+" 元"}}</text>
     </view>
     <view class="price_li">
-      <text>押金</text><text class="price_li_r">{{total.depositS}}</text><text class="price_li_r">￥</text>
+      <text>押金</text>
+      <text class="price_li_r">{{total.depositS}}</text>
+      <text class="price_li_rmb">￥</text>
     </view>
     <view class="price_li">
-      <text>其他费用</text><text class="price_li_r">{{total.otherS}}</text><text class="price_li_r">￥</text>
+      <text>其他费用</text>
+      <text class="price_li_r">{{total.otherS}}</text>
+      <text class="price_li_rmb">￥</text>
     </view>
     <view class="price_li">
-      <text>总价：</text><text class="price_li_r price_red">￥{{total.moneyS}}</text>
+      <text>总价：</text>
+      <text class="price_li_r price_red">￥{{total.moneyS}}</text>
     </view>
   </view>
   <view class="hotels_btn" bindtap="placeOrder">

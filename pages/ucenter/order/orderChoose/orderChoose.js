@@ -33,11 +33,11 @@ Page({
       }*/
     ],     //房间列表
     roomArr:0,
+    roomVal:[],
     info:{
       name:'',
       identity:'',
       mobile:'',
-      room:''
     }
   },
 
@@ -159,20 +159,21 @@ Page({
           this.setData({
             chooseNum:2,
             roomUl:res.result,
-            'info.room':res.result[0],
+            roomVal:res.result[0],
           })
         }
       }
     }).catch((err) => {
       console.log(err)
     });
+    
   },
   //选择房间
   roomChoose(e){
     console.log(e)
     this.setData({
       roomArr: e.currentTarget.dataset.index,
-      'info.room':this.data.roomUl[e.currentTarget.dataset.index]
+      roomVal:this.data.roomUl[e.currentTarget.dataset.index]
     });
 
   },
@@ -197,16 +198,14 @@ Page({
     if(!util.checkName(this.data.info.name)){return false}
     if(!util.checkIdentity(this.data.info.identity)){return false}
     if(!util.checkMobile(this.data.info.mobile)){return false}
-    console.log(this.data.info)
     let param = {
       orderId:this.data.hotel.orderId,
-      roomNo:this.data.info.room.roomNo,
+      roomNo:this.data.roomVal.roomNo,
       name:this.data.info.name,
       ident:this.data.info.identity,
       mobile:this.data.info.mobile
     }
     //this.onLoad(this.data.detail.orderId)
-    console.log(param)
     let that = this
     wx.showModal({ //cancelColor（取消按钮的文字颜色）confirmColor（确定按钮的文字颜色）
       title: '办理入住',

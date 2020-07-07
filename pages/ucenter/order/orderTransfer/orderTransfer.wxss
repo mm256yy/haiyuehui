@@ -14,7 +14,7 @@
 }
 .transfer_process{
   text-align: center;
-  margin-bottom: 180rpx;
+  margin-bottom: 120rpx;
   display: flex;
 }
 .process_li{
@@ -73,7 +73,7 @@
   /* background-color: #cdcdcd; */
 }  
 .order_type_li2{
-  margin-top: 20rpx;
+  margin-top: 80rpx;
   background: linear-gradient(to right, #039cee , #29aff7);
 }
 .order_type_text{
@@ -124,6 +124,10 @@
 }
 .order_text{
   padding: 10rpx;
+}
+.order_details{
+  color: #cdcdcd;
+  margin-left: 30rpx;
 }
 /*btn*/
 .transfer_btn{
