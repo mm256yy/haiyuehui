@@ -129,6 +129,9 @@ page{background-color: #f1f1f1;}
 .other_li>text:nth-child(1){
   padding-right: 20rpx;
 }
+.other_li:last-child{
+  margin-bottom: 0rpx;
+}
 /*breakfast*/
 .breakfast_ul{
   margin-top: 30rpx;

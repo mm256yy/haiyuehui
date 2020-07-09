@@ -48,9 +48,9 @@ Page({
   //添加同住人
   startBtn0(){
     console.log(this.data.info)
-    if(!util.checkName(this.data.info.name)){return false}
-    if(!util.checkIdentity(this.data.info.identity)){return false}
-    if(!util.checkMobile(this.data.info.mobile)){return false}
+    if(!check.checkName(this.data.info.name)){return false}
+    if(!check.checkIdentity(this.data.info.identity)){return false}
+    if(!check.checkMobile(this.data.info.mobile)){return false}
 
     let param = {
       orderId:this.data.orderId,
@@ -60,30 +60,25 @@ Page({
     }
     console.log(param)
     util.request(api.UcenterOrderAddPerson , param , 'POST').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        wx.showModal({ title: '成功',content: '入住成功',showCancel: false , success (res) {
-          if (res.confirm) {
-            wx.navigateBack({
-              delta: 1  // 返回上一级页面。
-            })
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
-        }});
-      }else{ //500
-        wx.showModal({ title: '错误信息',content: res.status.message,showCancel: false });
-      }
+      wx.showModal({ title: '成功',content: '入住成功',showCancel: false , success (res) {
+        if (res.confirm) {
+          wx.navigateBack({
+            delta: 1  // 返回上一级页面。
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }});
     }).catch((err) => {
-      console.log(err)
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
     
   },
   //添加访客
   startBtn1(){
-    if(!util.checkName(this.data.info.name)){return false}
-    if(!util.checkIdentity(this.data.info.identity)){return false}
-    if(!util.checkMobile(this.data.info.mobile)){return false}
+    if(!check.checkName(this.data.info.name)){return false}
+    if(!check.checkIdentity(this.data.info.identity)){return false}
+    if(!check.checkMobile(this.data.info.mobile)){return false}
 
     let param = {
       orderId:this.data.orderId,
@@ -95,22 +90,17 @@ Page({
     }
     console.log(param)
     util.request(api.UcenterVisitorAddInfo , param , 'POST').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        wx.showModal({ title: '成功',content: '提交成功',showCancel: false , success (res) {
-          if (res.confirm) {
-            wx.navigateBack({
-              delta: 1  // 返回上一级页面。
-            })
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
-        }});
-      }else{ //500
-        wx.showModal({ title: '错误信息',content: res.status.message,showCancel: false });
-      }
+      wx.showModal({ title: '成功',content: '提交成功',showCancel: false , success (res) {
+        if (res.confirm) {
+          wx.navigateBack({
+            delta: 1  // 返回上一级页面。
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }});
     }).catch((err) => {
-      console.log(err)
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },  
   //同住人簿

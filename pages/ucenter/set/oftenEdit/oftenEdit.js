@@ -1,4 +1,5 @@
 var util = require('../../../../utils/util.js');
+var check = require('../../../../utils/check.js');
 var api = require('../../../../config/api.js');
 Page({
   data: {
@@ -39,25 +40,18 @@ Page({
     }
     console.log(param)
     util.request(api.UcenterSetPersonQuery, param , 'GET').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        let infoNew = {
-          id:res.result.id,
-          name:res.result.name,
-          identity:res.result.ident,
-          mobile:res.result.mobile,
-        }
-        this.setData({
-          info:infoNew,
-          isDefault:res.result.isDefault
-        })
-      }else if(res.status.code === 400){
-        wx.navigateTo({ 
-          url: "/pages/auth/login/login"
-        });
+      let infoNew = {
+        id:res.result.id,
+        name:res.result.name,
+        identity:res.result.ident,
+        mobile:res.result.mobile,
       }
+      this.setData({
+        info:infoNew,
+        isDefault:res.result.isDefault
+      })
     }).catch((err) => {
-      console.log(err)
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
   //点击是否默认
@@ -91,18 +85,11 @@ Page({
     }
     console.log(param)
     util.request(api.UcenterSetPersonDelete, param, 'GET').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        wx.navigateBack({ 
-          delta: 1  
-        }); 
-      }else if(res.status.code === 400){
-        wx.navigateTo({ 
-          url: "/pages/auth/login/login"
-        });
-      }
+      wx.navigateBack({ 
+        delta: 1  
+      }); 
     }).catch((err) => {
-      console.log(err)
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
   //input焦点
@@ -124,9 +111,9 @@ Page({
   //确认
   btnSuccess(){
     console.log(this.data.info.identity)
-    if(!util.checkName(this.data.info.name)){return false}
-    if(!util.checkIdentity(this.data.info.identity)){return false}
-    if(!util.checkMobile(this.data.info.mobile)){return false}
+    if(!check.checkName(this.data.info.name)){return false}
+    if(!check.checkIdentity(this.data.info.identity)){return false}
+    if(!check.checkMobile(this.data.info.mobile)){return false}
 
     let param = {}
     if(this.data.isEdit){  //编辑
@@ -139,18 +126,11 @@ Page({
       }
       console.log(param)
       util.request(api.UcenterSetPersonEdit, param, 'POST').then(res => {
-        console.log(res)
-        if (res.status.code === 0) {
-          wx.navigateBack({ 
-            delta: 1  
-          }); 
-        }else if(res.status.code === 400){
-          wx.navigateTo({ 
-            url: "/pages/auth/login/login"
-          });
-        }
+        wx.navigateBack({ 
+          delta: 1  
+        }); 
       }).catch((err) => {
-        console.log(err)
+        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
       });
     }else{  //新增
       param = {
@@ -161,18 +141,11 @@ Page({
       }
       console.log(param)
       util.request(api.UcenterSetPersonAdd, param, 'POST').then(res => {
-        console.log(res)
-        if (res.status.code === 0) {
-          wx.navigateBack({ 
-            delta: 1  
-          }); 
-        }else if(res.status.code === 400){
-          wx.navigateTo({ 
-            url: "/pages/auth/login/login"
-          });
-        }
+        wx.navigateBack({ 
+          delta: 1  
+        }); 
       }).catch((err) => {
-        console.log(err)
+        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
       });
     }
     

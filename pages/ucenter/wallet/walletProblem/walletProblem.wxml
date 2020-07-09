@@ -1,0 +1,9 @@
+<view>
+  <view class="question_h1">猜你想问</view>
+  <view class="question_ul">  
+    <view class="question_li" wx:for="{{questionUl}}" wx:key="index">
+      <view class="question_li_t1">{{item.question}}</view>
+      <view class="question_li_t2">{{item.answer}}</view>
+    </view>
+  </view>
+</view>

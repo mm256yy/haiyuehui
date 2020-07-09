@@ -58,58 +58,50 @@ Page({
     }
     console.log(param)
     util.request(api.UcenterOrderList , param , 'GET').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        let o_ul = [];
-        let o_li = {};
-        let orderUlNew = []
-        if(res.result.records.length == 0){ 
-        }else{
-          for(let i=0;i<res.result.records.length;i++){
-            o_li = {
-              id:res.result.records[i].orderId ,
-              hotelName:res.result.records[i].hotelName||'暂无获取到酒店名字',
-              type:res.result.records[i].status,
-              typeS:util.orderType(res.result.records[i].status),
-              startTime:new Date(res.result.records[i].arr).getTime(),
-              startTimeS:res.result.records[i].arr,
-              endTime:new Date(res.result.records[i].dep).getTime(),
-              endTimeS:res.result.records[i].dep,
-              orderRoom:res.result.records[i].rmdesc,
-              orderNum:res.result.records[i].orderId,
-              orderPrice:res.result.records[i].money,
-              orderPriceS:(res.result.records[i].money/100).toFixed(2),
-              roomNo:res.result.records[i].roomNo,
-              show:(res.result.records[i].parentOrderId == ""),
-              canAdd:res.result.records[i].canAdd,
-              isCis:res.result.records[i].isCis
-            }
-            o_ul.push(o_li)
-          }
-        }
-        if(pull == 1){  //初始化
-          orderUlNew = o_ul;
-        }else{
-          if(res.result.records.length == 0){
-            orderUlNew = this.data.orderUl.concat(o_ul)
-            this.setData({
-              pageNo:this.data.pageNo - 1
-            })
-          }else{
-            orderUlNew = this.data.orderUl.concat(o_ul)
-          }
-        }
-        this.setData({
-          orderUl:orderUlNew,
-        })
+      let o_ul = [];
+      let o_li = {};
+      let orderUlNew = []
+      if(res.result.records.length == 0){ 
       }else{
-        //登陆
-        wx.navigateTo({
-          url: "/pages/auth/login/login"
-        })
+        for(let i=0;i<res.result.records.length;i++){
+          o_li = {
+            id:res.result.records[i].orderId ,
+            hotelName:res.result.records[i].hotelName||'暂无获取到酒店名字',
+            type:res.result.records[i].status,
+            typeS:util.orderType(res.result.records[i].status),
+            startTime:new Date(res.result.records[i].arr).getTime(),
+            startTimeS:res.result.records[i].arr,
+            endTime:new Date(res.result.records[i].dep).getTime(),
+            endTimeS:res.result.records[i].dep,
+            orderRoom:res.result.records[i].rmdesc,
+            orderNum:res.result.records[i].orderId,
+            orderPrice:res.result.records[i].money,
+            orderPriceS:(res.result.records[i].money/100).toFixed(2),
+            roomNo:res.result.records[i].roomNo,
+            show:(res.result.records[i].parentOrderId == ""),
+            canAdd:res.result.records[i].canAdd,
+            isCis:res.result.records[i].isCis
+          }
+          o_ul.push(o_li)
+        }
       }
+      if(pull == 1){  //初始化
+        orderUlNew = o_ul;
+      }else{
+        if(res.result.records.length == 0){
+          orderUlNew = this.data.orderUl.concat(o_ul)
+          this.setData({
+            pageNo:this.data.pageNo - 1
+          })
+        }else{
+          orderUlNew = this.data.orderUl.concat(o_ul)
+        }
+      }
+      this.setData({
+        orderUl:orderUlNew,
+      })
     }).catch((err) => {
-      console.log(err)
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
   //选择类型
@@ -155,16 +147,10 @@ Page({
           }
           console.log(param)
           util.request(api.UcenterOrderCheckOut , param , 'POST').then(res => {
-            console.log(res)
-            if (res.status.code === 0) {
-              wx.showModal({ title: '成功',content: '退房申请成功',showCancel: false });
-              that.init(0,1);
-            }else{
-              wx.showModal({ title: '失败',content: '退房申请失败',showCancel: false });
-              that.init(0,1);
-            }
+            wx.showModal({ title: '成功',content: '退房申请成功',showCancel: false });
+            that.init(0,1);
           }).catch((err) => {
-            console.log(err)
+            wx.showModal({title: '错误信息',content: err,showCancel: false}); 
           });
         } else if (res.cancel) {
           console.log('用户点击取消')

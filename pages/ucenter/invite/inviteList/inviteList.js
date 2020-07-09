@@ -31,43 +31,34 @@ Page({
     }
     console.log(param)
     util.request(api.MemberInviteList , param , 'GET').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        let inviteListUl = [];
-        let inviteListLi = {};
-        let inviteListNew = [];
-        for(let i=0;i<res.result.records.length;i++){
-          inviteListLi = {
-            'name':res.result.records[i].nickname,
-            'time':res.result.records[i].addTime
-          }
-          inviteListUl.push(inviteListLi)
+      let inviteListUl = [];
+      let inviteListLi = {};
+      let inviteListNew = [];
+      for(let i=0;i<res.result.records.length;i++){
+        inviteListLi = {
+          'name':res.result.records[i].nickname,
+          'time':res.result.records[i].addTime
         }
-
-        if(add == 0){ //初始化
-          inviteListNew = inviteListUl
-        }else{
-          if(res.result.records.length == 0){
-            inviteListNew = this.data.inviteList.concat(inviteListUl);
-            this.setData({
-              pageNo:this.data.pageNo - 1
-            })
-          }else{
-            inviteListNew = this.data.inviteList.concat(inviteListUl)
-          }
-        }
-        this.setData({
-          inviteList:inviteListUl
-        })
-      }else if(res.status.message == "未登录"){
-        wx.navigateTo({ 
-          url: "/pages/auth/login/login"
-        });
-      }else{ //500
-        wx.showModal({ title: '错误信息',content: res.status.message,showCancel: false });
+        inviteListUl.push(inviteListLi)
       }
+
+      if(add == 0){ //初始化
+        inviteListNew = inviteListUl
+      }else{
+        if(res.result.records.length == 0){
+          inviteListNew = this.data.inviteList.concat(inviteListUl);
+          this.setData({
+            pageNo:this.data.pageNo - 1
+          })
+        }else{
+          inviteListNew = this.data.inviteList.concat(inviteListUl)
+        }
+      }
+      this.setData({
+        inviteList:inviteListNew
+      })
     }).catch((err) => {
-      console.log(err);
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
       this.setData({
         pageNo:this.data.pageNo - 1,
       })
@@ -83,7 +74,7 @@ Page({
     }
     return {
       title: '邀请你来入住酒店啦',
-      imageUrl:'/static/images/invite.jpg',//图片地址
+      imageUrl:'/static/images/invite.png',//图片地址
       path:'/pages/index/index?inviteCode='+inviteCode,// 用户点击首先进入的当前页面
       success: function (res) {
         // 转发成功

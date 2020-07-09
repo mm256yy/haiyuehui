@@ -41,15 +41,44 @@
     </view>
     <view class="order_box" wx:if="{{processNum == 3}}">
       <view class="order_card">
-        <view class="order_text">下订单人：{{detail.name}}</view>
-        <view class="order_text">订单状态：{{detail.statusS}}</view>
-        <view class="order_text">订单编号：{{detail.orderId}}</view>
-        <view class="order_text">酒店名称：{{detail.hotelName}}</view>
-        <view class="order_text">房型名称：{{detail.rmdesc}}</view>
-        <view class="order_text">入住时间：{{detail.startTimeS}}至{{detail.endTimeS}}（共{{detail.dayNum}}晚）</view>
-        <view class="order_text">房间价格：{{detail.totleRoomPriceS}}<text class="order_details">{{detail.days + "晚 x 房间单价 " + detail.roomPriceS+" 元"}}</text></view>
-        <view class="order_text">房间押金：{{detail.depositS}}</view>
-        <view class="order_text">房间总价：{{detail.moneyS}}</view>
+        <view class="order_text">
+          <text class="order_t0">下订单人：</text>
+          <text class="order_t1">{{detail.name}}</text>
+        </view>
+        <view class="order_text">
+          <text class="order_t0">订单状态：</text>
+          <text class="order_t1">{{detail.statusS}}</text>
+        </view>
+        <view class="order_text">
+          <text class="order_t0">订单编号：</text>
+          <text class="order_t1">{{detail.orderId}}</text>
+        </view>
+        <view class="order_text">
+          <text class="order_t0">酒店名称：</text>
+          <text class="order_t1">{{detail.hotelName}}</text>
+        </view>
+        <view class="order_text">
+          <text class="order_t0">房型名称：</text>
+          <text class="order_t1">{{detail.rmdesc}}</text>
+        </view>
+        <view class="order_text">
+          <text class="order_t0">入住时间：</text>
+          <text class="order_t1">{{detail.startTimeS}}至{{detail.endTimeS}}</text>
+          <text class="order_details">共{{detail.days}}晚</text>
+        </view>
+        <view class="order_text">
+          <text class="order_t0">房间价格：</text>
+          <text class="order_t1">￥{{detail.totleRoomPriceS}}</text>
+          <text class="order_details">{{detail.days + "晚 x 房间单价 " + detail.roomPriceS+" 元"}}</text>
+        </view>
+        <view class="order_text">
+          <text class="order_t0">房间押金：</text>
+          <text class="order_t1">￥{{detail.depositS}}</text>
+        </view>
+        <view class="order_text">
+          <text class="order_t0">房间总价：</text>
+          <text class="order_t1 order_t_red">￥{{detail.moneyS}}</text>
+        </view>
       </view>
     </view>
   </view>

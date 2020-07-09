@@ -1,0 +1,34 @@
+<view>
+  <view class="wallet_head">
+    <view class="amount_money" bindtap="moneyHide">
+      <view class="amount_h">
+        <text class="amount_h1">总资产（元）</text>
+        <image class="amount_see" src="/static/images/see-{{moneyShow?'y':'no'}}-white.png"></image>
+      </view>
+      <view class="amount_h">
+        <text class="amount_h2">{{moneyShow?moneyValS:'****'}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="wallet_body">
+    <view class="wallet_list">
+      <view class="wallet_ul">
+        <view class="wallet_li" bindtap="moneyRecharge">
+          <image class="wallet_li_img" src="/static/images/other/other6.png"></image>
+          <text class="wallet_li_text">充值</text>
+          <image class="wallet_li_go" src="/static/images/right.png">></image>
+        </view>
+        <view class="wallet_li" bindtap="moneyConsume">
+          <image class="wallet_li_img" src="/static/images/other/other7.png"></image>
+          <text class="wallet_li_text">消费记录</text>
+          <image class="wallet_li_go" src="/static/images/right.png">></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="wallet_foot">
+    <view class="wallet_problem" bindtap="moneyProblem">
+      <view class="wallet_problem_href">消费结算 | 常见问题</view>
+    </view>
+  </view>
+</view>

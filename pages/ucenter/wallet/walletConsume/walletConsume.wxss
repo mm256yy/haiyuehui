@@ -1,0 +1,31 @@
+page{
+  background-color: #f1f1f1;
+}
+/**/
+.consume_li{
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f1f1f1;
+  background-color: #fff;
+} 
+.consume_li_text{
+  padding: 5rpx 0rpx;
+}
+.consume_li_text text{
+  line-height: 30rpx;
+}
+.consume_li_t1{
+  font-size: 28rpx;
+}
+.consume_li_t2{
+  font-size: 24rpx;
+  color: #cdcdcd;
+  float: right;
+}
+.consume_li_t3{
+  font-size: 24rpx;
+}
+.consume_li_t4{
+  font-size: 28rpx;
+  font-weight: 800;
+  float: right;
+}

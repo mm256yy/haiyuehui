@@ -101,61 +101,53 @@ Page({
       isLoginNew = false
     }).then(res=>{
       util.request(api.CustomizedHotelsDetailed, param , 'GET').then(res => {
-        console.log(res)
-        if (res.status.code === 0) {
-          let roomNew  = [];
-          let roomLi = {};
-          for(let i=0;i<res.result.length;i++){
-            roomLi = {
-              id:0,
-              name:res.result[i].name,
-              img:('/static/images/room.jpg'||res.result[i].image),
-              avail:res.result[i].avail,
-              rmtype:res.result[i].rmtype,
-              isCis:res.result[i].isCis,
+        let roomNew  = [];
+        let roomLi = {};
+        for(let i=0;i<res.result.length;i++){
+          roomLi = {
+            id:0,
+            name:res.result[i].name,
+            img:('/static/images/room.jpg'||res.result[i].image),
+            avail:res.result[i].avail,
+            rmtype:res.result[i].rmtype,
+            isCis:res.result[i].isCis,
 
-              // priceBefore:res.result[i].price,
-              // priceBeforeS:util.money(res.result[i].price),
-              // priceVip:res.result[i].pricem,
-              // priceVipS:(isLoginNew?util.money(res.result[i].pricem):'？？？'),
-              // ratecode:res.result[i].ratecode,
-              // ratecodem:res.result[i].ratecodem,
+            // priceBefore:res.result[i].price,
+            // priceBeforeS:util.money(res.result[i].price),
+            // priceVip:res.result[i].pricem,
+            // priceVipS:(isLoginNew?util.money(res.result[i].pricem):'？？？'),
+            // ratecode:res.result[i].ratecode,
+            // ratecodem:res.result[i].ratecodem,
 
-              wrac:util.importantMoney(res.result[i].wrac),  //门市价
-              wec0:util.importantMoney(res.result[i].wec0),  //无早
-              wec1:util.importantMoney(res.result[i].wec1),  //单早
-              wec:util.importantMoney(res.result[i].wec),  //双早
-              wec3:util.importantMoney(res.result[i].wec3),  //三早
-              wracS:(util.importantMoney(res.result[i].wrac)/100),  
-              wec0S:(isLoginNew?(this.moneyMin(res.result[i].wec0,res.result[i].wec1,res.result[i].wec,res.result[i].wec3)/100):'？？？'), 
-            }
-            roomNew.push(roomLi)
+            wrac:util.importantMoney(res.result[i].wrac),  //门市价
+            wec0:util.importantMoney(res.result[i].wec0),  //无早
+            wec1:util.importantMoney(res.result[i].wec1),  //单早
+            wec:util.importantMoney(res.result[i].wec),  //双早
+            wec3:util.importantMoney(res.result[i].wec3),  //三早
+            wracS:(util.importantMoney(res.result[i].wrac)/100),  
+            wec0S:(isLoginNew?(this.moneyMin(res.result[i].wec0,res.result[i].wec1,res.result[i].wec,res.result[i].wec3)/100):'？？？'), 
           }
-          console.log(telVal)
-          let hotelNew = {
-            id:hotel.id,
-            name:hotel.name,   
-            pics:[
-              '/static/images/banner1.jpg'
-            ],
-            address:hotelVal,
-            tel:telVal,
-            dining:{},
-            gym:{},
-            meeting:{},
-            room:roomNew
-          }
-          this.setData({
-            hotel:hotelNew,
-            isLogin:isLoginNew
-          })
-        } else {
-          wx.navigateTo({
-            url: "/pages/auth/login/login"
-          })
+          roomNew.push(roomLi)
         }
+        let hotelNew = {
+          id:hotel.id,
+          name:hotel.name,   
+          pics:[
+            '/static/images/banner1.jpg'
+          ],
+          address:hotelVal,
+          tel:telVal,
+          dining:{},
+          gym:{},
+          meeting:{},
+          room:roomNew
+        }
+        this.setData({
+          hotel:hotelNew,
+          isLogin:isLoginNew
+        })
       }).catch((err) => {
-        console.log(err)
+        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
       });
     })
     console.log(this.data.hotel)
@@ -226,20 +218,12 @@ Page({
     }
     console.log(param)
     util.request(api.CustomizedHotelsRoom , param , 'GET').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        let roomNew = res.result
-        this.setData({
-          room:roomNew
-        })
-      }else{
-        //登陆
-        wx.navigateTo({
-          url: "/pages/auth/login/login"
-        })
-      }
+      let roomNew = res.result
+      this.setData({
+        room:roomNew
+      })
     }).catch((err) => {
-      console.log(err)
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
     //POP
     this.setData({

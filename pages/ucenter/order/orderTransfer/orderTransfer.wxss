@@ -125,9 +125,22 @@
 .order_text{
   padding: 10rpx;
 }
+.order_t0{
+  font-size: 26rpx;
+  color: #999;
+}
+.order_t1{
+  font-size: 26rpx;
+  color: #000;
+  padding-left: 20rpx;
+}
 .order_details{
   color: #cdcdcd;
   margin-left: 30rpx;
+  font-size: 26rpx;
+}
+.order_t_red{
+  color: #cc0000;
 }
 /*btn*/
 .transfer_btn{

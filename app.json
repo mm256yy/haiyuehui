@@ -2,6 +2,7 @@
   "pages":[
     
     "pages/index/index",
+    
     "pages/ucenter/set/visitor/visitor",
     "pages/pop/calendar/index",
     "pages/member/member/member",
@@ -37,6 +38,10 @@
     "pages/ucenter/set/oftenEdit/oftenEdit",
     "pages/ucenter/set/information/information",
     
+    "pages/ucenter/wallet/walletAmount/walletAmount",
+    "pages/ucenter/wallet/walletConsume/walletConsume",
+    "pages/ucenter/wallet/walletRecharge/walletRecharge",
+    "pages/ucenter/wallet/walletProblem/walletProblem",
     
     "pages/ucenter/coupon/coupon",
 

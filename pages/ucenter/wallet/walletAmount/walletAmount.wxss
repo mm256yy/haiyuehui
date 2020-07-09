@@ -1,0 +1,65 @@
+page{
+  background-color: #f1f1f1;
+}
+/*head*/
+.amount_money{
+  background: linear-gradient(to left, #346ae8 , #039cee);
+  text-align: center;
+  height: 300rpx;
+  padding: 80rpx;
+}
+.amount_h{
+  padding: 10rpx;
+}
+.amount_h1{
+  color: #fff;
+}
+.amount_h2{
+  color: #fff;
+  font-size: 60rpx;
+}
+.amount_see{
+  width: 50rpx;
+  height: 50rpx;
+  margin-bottom: -15rpx;
+}
+/*body*/
+.wallet_list{
+  background-color: #fff;
+  margin: 30rpx 20rpx;
+  border-radius:20rpx ;
+  box-shadow: 0rpx 5rpx 8rpx #f1f1f1;
+}
+.wallet_ul{
+  padding: 0rpx 20rpx;
+}
+.wallet_li{
+  padding: 30rpx 0rpx;
+  border-bottom:1rpx solid #f1f1f1 ;
+}
+.wallet_li_img{
+  width: 40rpx;
+  height: 40rpx;
+  float: left;
+}
+.wallet_li_text{
+  padding-left: 20rpx;
+}
+.wallet_li_go{
+  width: 40rpx;
+  height: 40rpx;
+  float: right;
+}
+
+/*foot*/
+.wallet_problem{
+  text-align: center;
+  position: fixed;
+  bottom: 0rpx;
+  padding: 20rpx;
+  width: 100%;
+}
+.wallet_problem_href{
+  color: #039cee;
+
+}

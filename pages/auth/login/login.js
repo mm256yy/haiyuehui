@@ -70,5 +70,5 @@ Page({
     wx.navigateTo({ 
       url: "../memberAgree/memberAgree"
     });
-  }
+  },
 })

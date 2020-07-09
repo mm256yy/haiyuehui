@@ -1,0 +1,14 @@
+<view>
+  <view class="consume_ul">
+    <view class="consume_li">
+      <view class="consume_li_text">
+        <text class="consume_li_t1">充值</text>
+        <text class="consume_li_t2">2020-12-12</text>
+      </view>
+      <view class="consume_li_text">
+        <text class="consume_li_t3">余额：94.00</text>
+        <text class="consume_li_t4">-5000</text>
+      </view>
+    </view>
+  </view>
+</view>

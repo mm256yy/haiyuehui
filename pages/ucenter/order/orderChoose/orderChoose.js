@@ -1,6 +1,7 @@
 // pages/ucenter/orderChoose/orderChoose.js
 let util = require('../../../../utils/util.js');
 let api = require('../../../../config/api.js');
+let check = require('../../../../utils/check.js');
 Page({
   data: {
     hotel:{
@@ -74,34 +75,30 @@ Page({
     let param = {
       hotelId:options.hotelId
     }
+    console.log(param)
     util.request(api.UcenterSystemBaseCode ,param, 'GET').then(res => {
-      console.log(res)
       let data = res.result
-      if (res.status.code === 0) {
-        for(let i=0;i<data.length;i++){
-          if(data[i].type == 1){  //楼层
-            li = {
-              code:data[i].code,
-              name:data[i].name
-            };
-            floorUlNew.push(li)
-          }else{  //类型
-            li = {
-              val:false,
-              code:data[i].code,
-              name:data[i].name
-            };
-            checkboxUlNew.push(li)
-          }
+      for(let i=0;i<data.length;i++){
+        if(data[i].type == 1){  //楼层
+          li = {
+            code:data[i].code,
+            name:data[i].name
+          };
+          floorUlNew.push(li)
+        }else{  //类型
+          li = {
+            val:false,
+            code:data[i].code,
+            name:data[i].name
+          };
+          checkboxUlNew.push(li)
         }
-        console.log(checkboxUlNew)
-        this.setData({
-          /*floorUl:floorUlNew,*/
-          checkboxUl:checkboxUlNew
-        })
       }
+      this.setData({
+        checkboxUl:checkboxUlNew
+      })
     }).catch((err) => {
-      console.log(err)
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
     //获取酒店信息
     let hotelNew = {
@@ -151,20 +148,17 @@ Page({
     }
     console.log(param)
     util.request(api.UcenterMoveInto ,param, 'POST').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        if(res.result.length == 0){  //没有房间
-          wx.showModal({title: '查询',content: '并没有查询到要求类型的房间',showCancel: false});
-        }else{ //有房间
-          this.setData({
-            chooseNum:2,
-            roomUl:res.result,
-            roomVal:res.result[0],
-          })
-        }
+      if(res.result.length == 0){  //没有房间
+        wx.showModal({title: '查询',content: '并没有查询到要求类型的房间',showCancel: false});
+      }else{ //有房间
+        this.setData({
+          chooseNum:2,
+          roomUl:res.result,
+          roomVal:res.result[0],
+        })
       }
     }).catch((err) => {
-      console.log(err)
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
     
   },
@@ -195,9 +189,9 @@ Page({
   },
   //办理入住
   infoBtnFrist(){
-    if(!util.checkName(this.data.info.name)){return false}
-    if(!util.checkIdentity(this.data.info.identity)){return false}
-    if(!util.checkMobile(this.data.info.mobile)){return false}
+    if(!check.checkName(this.data.info.name)){return false}
+    if(!check.checkIdentity(this.data.info.identity)){return false}
+    if(!check.checkMobile(this.data.info.mobile)){return false}
     let param = {
       orderId:this.data.hotel.orderId,
       roomNo:this.data.roomVal.roomNo,
@@ -214,19 +208,12 @@ Page({
         if (resV.confirm) {
           console.log('用户点击确定')
           util.request(api.UcenterOrderCheckin , param , 'POST').then(res => {
-            console.log(res)
-            if (res.status.code === 0) {
-              wx.showModal({ title: '成功',content: '入住成功',showCancel: false });
-              wx.navigateBack({
-                delta: 1  // 返回上一级页面。
-              })
-              console.log(this.data.hotel.orderId)
-
-            }else{ //500
-              wx.showModal({ title: '错误信息',content: res.status.message,showCancel: false });
-            }
+            wx.showModal({ title: '成功',content: '入住成功',showCancel: false });
+            wx.navigateBack({
+              delta: 1  // 返回上一级页面。
+            })
           }).catch((err) => {
-            console.log(err)
+            wx.showModal({title: '错误信息',content: err,showCancel: false}); 
           });
         } else if (resV.cancel) {
           console.log('用户点击取消')

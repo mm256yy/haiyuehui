@@ -18,7 +18,7 @@ App({
     })
     // 判断登录
     user.checkLogin().then(res => {
-      console.log('已经登陆')
+      // console.log('已经登陆')
       //console.log(res)
       /*wx.switchTab({ 
         url:"/pages/index/index"

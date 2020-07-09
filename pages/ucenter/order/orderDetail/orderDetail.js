@@ -71,7 +71,6 @@ Page({
   },
   //初始化
   init(options){
-    console.log(options)
     this.setData({
       'detail.orderId':options.orderId
     })
@@ -82,62 +81,59 @@ Page({
       orderId:this.data.detail.orderId
     }
     util.request(api.UcenterOrderDetail ,param, 'GET').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        let data = res.result;
-        let detailNew = {},personUlNew = [],moneyNew = {};
-        detailNew = {
-          status:data.status,
-          statusS:util.orderType(data.status),
-          hotelId:data.hotelId,
-          hotelName:data.hotelName,
-          rmtype:data.rmtype,
-          roomNo:data.roomNo,
-          startTimeS:data.arr,
-          endTimeS:data.dep,
-          rmdesc:data.rmdesc,
-          orderId:this.data.detail.orderId,
-          orderNo:data.orderNo,
-          contactsName:data.name,
-          contactsTel:data.mobile,
-          isCis:data.isCis,
-        }
-        let dayNum = (new Date(data.dep) - new Date(data.arr))/1000/60/60/24
-        moneyNew = {
-          roomPrice:data.roomPrice*dayNum,
-          roomPriceS:(data.roomPrice/100*dayNum).toFixed(2),
-          deposit:data.deposit,
-          depositS:(data.deposit/100).toFixed(2),
-          addition:0,
-          additionS:'0.00',
-          total:data.money,
-          totalS:(data.money/100).toFixed(2)
-        }
-        let personsUL = [];
-        let personsLi = {};
-        if(data.persons != null){
-          for(let i=0;i<data.persons.length;i++){
-            personsLi = {    
-              orderId:data.persons[i].id,
-              name:data.persons[i].name,
-              ident:data.persons[i].ident,
-              identS:util.identityCard(data.persons[i].ident),
-              seeIdent:false,
-            }
-            personsUL.push(personsLi)
-          }
-        }
-        personUlNew = personsUL;
-        this.setData({
-          detail:detailNew,
-          personUl:personUlNew,
-          money:moneyNew,
-          allowConnect:data.allowConnect
-        })
-        this.addDaysList();
+      let data = res.result;
+      let detailNew = {},personUlNew = [],moneyNew = {};
+      detailNew = {
+        status:data.status,
+        statusS:util.orderType(data.status),
+        hotelId:data.hotelId,
+        hotelName:data.hotelName,
+        rmtype:data.rmtype,
+        roomNo:data.roomNo,
+        startTimeS:data.arr,
+        endTimeS:data.dep,
+        rmdesc:data.rmdesc,
+        orderId:this.data.detail.orderId,
+        orderNo:data.orderNo,
+        contactsName:data.name,
+        contactsTel:data.mobile,
+        isCis:data.isCis,
       }
+      let dayNum = (new Date(data.dep) - new Date(data.arr))/1000/60/60/24
+      moneyNew = {
+        roomPrice:data.roomPrice*dayNum,
+        roomPriceS:(data.roomPrice/100*dayNum).toFixed(2),
+        deposit:data.deposit,
+        depositS:(data.deposit/100).toFixed(2),
+        addition:0,
+        additionS:'0.00',
+        total:data.money,
+        totalS:(data.money/100).toFixed(2)
+      }
+      let personsUL = [];
+      let personsLi = {};
+      if(data.persons != null){
+        for(let i=0;i<data.persons.length;i++){
+          personsLi = {    
+            orderId:data.persons[i].id,
+            name:data.persons[i].name,
+            ident:data.persons[i].ident,
+            identS:util.identityCard(data.persons[i].ident),
+            seeIdent:false,
+          }
+          personsUL.push(personsLi)
+        }
+      }
+      personUlNew = personsUL;
+      this.setData({
+        detail:detailNew,
+        personUl:personUlNew,
+        money:moneyNew,
+        allowConnect:data.allowConnect
+      })
+      this.addDaysList();
     }).catch((err) => {
-      console.log(err)
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
   //获取续住列表
@@ -146,35 +142,31 @@ Page({
       orderId:this.data.detail.orderId
     }
     util.request(api.UcenterAddDaysList ,param, 'GET').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        let additionUlNew = [],additionliNew = {},additionMoney = 0;
-        for(let i=0;i<res.result.length;i++){
-          additionliNew = {
-            orderId:res.result[i].id,
-            rmdesc:res.result[i].rmdesc,
-            time:this.TimeR(res.result[i].inDay)+'至'+this.TimeR(res.result[i].outDay),
-            status:res.result[i].status,
-            statusS:util.orderType(res.result[i].status),
-            subtotal:res.result[i].money,
-            subtotalS:(res.result[i].money/100).toFixed(2),
-          }
-          additionUlNew.push(additionliNew);
-          if(res.result[i].status == 25){
-            additionMoney = additionMoney + res.result[i].money
-          }
+      let additionUlNew = [],additionliNew = {},additionMoney = 0;
+      for(let i=0;i<res.result.length;i++){
+        additionliNew = {
+          orderId:res.result[i].id,
+          rmdesc:res.result[i].rmdesc,
+          time:this.TimeR(res.result[i].inDay)+'至'+this.TimeR(res.result[i].outDay),
+          status:res.result[i].status,
+          statusS:util.orderType(res.result[i].status),
+          subtotal:res.result[i].money,
+          subtotalS:(res.result[i].money/100).toFixed(2),
         }
-        this.setData({
-          additionUl:additionUlNew,
-          'money.addition':additionMoney,
-          'money.additionS':(additionMoney/100).toFixed(2),
-          'money.total':additionMoney+this.data.money.total,
-          'money.totalS':((additionMoney+this.data.money.total)/100).toFixed(2),
-        })
-        console.log(this.data.money.totalS)
+        additionUlNew.push(additionliNew);
+        if(res.result[i].status == 25){
+          additionMoney = additionMoney + res.result[i].money
+        }
       }
+      this.setData({
+        additionUl:additionUlNew,
+        'money.addition':additionMoney,
+        'money.additionS':(additionMoney/100).toFixed(2),
+        'money.total':additionMoney+this.data.money.total,
+        'money.totalS':((additionMoney+this.data.money.total)/100).toFixed(2),
+      })
     }).catch((err) => {
-      console.log(err)
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
   //续租订单支付
@@ -199,8 +191,6 @@ Page({
   },
   //复制
   copy(e){
-    console.log(e)
-    
     let allowConnectNew = null;
     if(this.data.allowConnect == 0){
       allowConnectNew = 1;
@@ -213,23 +203,18 @@ Page({
     }
     console.log(param)
     util.request(api.UcenterOrderAllowConnect , param , 'GET').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        if(allowConnectNew == 1){
-          wx.setClipboardData({
-            data: e.currentTarget.dataset.text,
-            success: function (res) {
-            }
-          })
-        }
-        this.setData({
-          allowConnect : allowConnectNew
+      if(allowConnectNew == 1){
+        wx.setClipboardData({
+          data: e.currentTarget.dataset.text,
+          success: function (res) {
+          }
         })
-      }else{ //500
-        wx.showModal({ title: '错误信息',content: res.status.message,showCancel: false });
       }
+      this.setData({
+        allowConnect : allowConnectNew
+      })
     }).catch((err) => {
-      console.log(err)
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
   //取消订单
@@ -295,18 +280,13 @@ Page({
         }
         console.log(param)
         util.request(api.UcenterOrderGetRoomPwd , param , 'GET').then(res => {
-          console.log(res)
-          if (res.status.code === 0) {
-            pwdValNew = res.result
-            app.globalData.orderPwd = pwdValNew
-            this.setData({
-              pwdValS : pwdValNew,
-            })
-          }else{ //500
-            wx.showModal({ title: '错误信息',content: res.status.message,showCancel: false });
-          }
+          pwdValNew = res.result
+          app.globalData.orderPwd = pwdValNew
+          this.setData({
+            pwdValS : pwdValNew,
+          })
         }).catch((err) => {
-          console.log(err)
+          wx.showModal({title: '错误信息',content: err,showCancel: false}); 
         });
       }
     }else{

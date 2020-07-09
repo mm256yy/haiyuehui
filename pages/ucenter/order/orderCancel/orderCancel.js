@@ -42,25 +42,22 @@ Page({
       orderId:options.orderId
     }
     util.request(api.UcenterOrderDetail ,param, 'GET').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        let data = res.result
-        let infoNew = {
-          hotelName:data.hotelName,
-          room:data.rmdesc,
-          startTimeS:data.arr,
-          endTimeS:data.dep,
-          total:data.money,
-          totalS:(data.money/100).toFixed(2),
-          orderId:options.orderId
-        }
-        this.setData({
-          info:infoNew,
-          payType:options.pay
-        })
+      let data = res.result
+      let infoNew = {
+        hotelName:data.hotelName,
+        room:data.rmdesc,
+        startTimeS:data.arr,
+        endTimeS:data.dep,
+        total:data.money,
+        totalS:(data.money/100).toFixed(2),
+        orderId:options.orderId
       }
+      this.setData({
+        info:infoNew,
+        payType:options.pay
+      })
     }).catch((err) => {
-      console.log(err)
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
   //点击选择类型
@@ -84,41 +81,31 @@ Page({
     console.log(parma)
     if(this.data.payType == 1){
       util.request(api.UcenterOrderCancel , parma , 'POST').then(res => {
-        console.log(res)
-        if (res.status.code === 0) {
-          wx.showModal({ title: '成功' , content: '订单取消申请成功',showCancel: false , success (res) {
-            if (res.confirm) {
-              wx.switchTab({ 
-                url:"/pages/ucenter/index/index"
-              })
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
-          }});
-        }else{
-          wx.showModal({ title: '错误' , content:res.status.message ,showCancel: false });
-        }
+        wx.showModal({ title: '成功' , content: '订单取消申请成功',showCancel: false , success (res) {
+          if (res.confirm) {
+            wx.switchTab({ 
+              url:"/pages/ucenter/index/index"
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }});
       }).catch((err) => {
-        console.log(err)
+        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
       });
     }else if(this.data.payType == 2){
       util.request(api.UcenterOrderRefund , parma , 'POST').then(res2 => {
-        console.log(res2)
-        if (res2.status.code === 0) {
-          wx.showModal({ title: '成功' , content: '订单退款申请成功',showCancel: false , success (res) {
-            if (res.confirm) {
-              wx.switchTab({ 
-                url:"/pages/ucenter/index/index"
-              })
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
-          }});
-        }else{
-          wx.showModal({ title: '错误' , content: res2.status.message ,showCancel: false });
-        }
+        wx.showModal({ title: '成功' , content: '订单退款申请成功',showCancel: false , success (res) {
+          if (res.confirm) {
+            wx.switchTab({ 
+              url:"/pages/ucenter/index/index"
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }});
       }).catch((err2) => {
-        console.log(err2)
+        wx.showModal({title: '错误信息',content: err2,showCancel: false}); 
       });
     }
   },

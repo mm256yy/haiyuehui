@@ -20,7 +20,7 @@ Page({
   //发送验证码
   sendCode() {
     let that = this;
-    if(!util.checkMobile(this.data.mobile)){return false}
+    if(!check.checkMobile(this.data.mobile)){return false}
 
     this.setData({
       countdownShow:true
@@ -29,12 +29,9 @@ Page({
       mobile: that.data.mobile
     }
     util.request(api.AuthRegisterCaptcha,param,'POST').then(function(res) {
-      console.log(res)
-      if (res.status.code == 0) {
-        wx.showModal({title: '发送成功',content: '验证码已发送',showCancel: false});
-      } else {
-        wx.showModal({title: '错误信息',content: res.status.message,showCancel: false});
-      }
+      wx.showModal({title: '发送成功',content: '验证码已发送',showCancel: false});
+    }).catch((err) => {
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
     let timeNum = 60
     let time = setInterval(()=>{
@@ -66,7 +63,7 @@ Page({
   //点击
   startRegister() {
     var that = this;
-    if(!util.checkMobile(this.data.mobile)){return false}
+    if(!check.checkMobile(this.data.mobile)){return false}
     if (this.data.code.length == 0) {
       wx.showModal({title: '错误信息',content: '验证码不能为空',showCancel: false});
       return false;
@@ -92,17 +89,14 @@ Page({
       code: that.data.code,
     }
     util.request(api.AuthRegister,param,'POST').then(function(res) {
-      console.log(res)
-      if (res.status.code == 0) {
-        app.globalData.hasLogin = true;
-        wx.setStorageSync('userInfoMobile', that.data.mobile);
-        //wx.setStorageSync('userInfo', res.data.data.userInfo);
-        wx.navigateBack({
-          delta: 3  // 返回上一级页面。
-        })
-      } else {
-        wx.showModal({title: '错误信息',content: res.status.message,showCancel: false});
-      }
+      app.globalData.hasLogin = true;
+      wx.setStorageSync('userInfoMobile', that.data.mobile);
+      //wx.setStorageSync('userInfo', res.data.data.userInfo);
+      wx.navigateBack({
+        delta: 3  // 返回上一级页面。
+      })
+    }).catch((err) => {
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
 })

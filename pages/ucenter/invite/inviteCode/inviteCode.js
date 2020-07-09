@@ -13,12 +13,11 @@ Page({
   init(options){
     let that = this
     util.request(api.MemberInviteCode , 'GET').then(res => {
-      console.log(res)
       that.setData({
         codeImg:res.result
       })
     }).catch((err) => {
-      console.log(err)  
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
 })

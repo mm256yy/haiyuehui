@@ -129,10 +129,10 @@ Page({
   },
   //立即下单
   placeOrder(){
-    if(!util.checkName(this.data.fill.name)){return false}
-    if(!util.checkMobile(this.data.fill.mobile)){return false}
-    if(!util.checkMoney(this.data.total.money)){return false}
-    if(!util.checkMoney(this.data.room.roomPrice)){return false}
+    if(!check.checkName(this.data.fill.name)){return false}
+    if(!check.checkMobile(this.data.fill.mobile)){return false}
+    if(!check.checkMoney(this.data.total.money)){return false}
+    if(!check.checkMoney(this.data.room.roomPrice)){return false}
     //传递
     let param = {
       hotelId: this.data.room.hotelId,
@@ -150,23 +150,13 @@ Page({
     }
     console.log(param)
     util.request(api.CustomizedHotelsFill ,param, 'POST').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        //跳转
-        wx.redirectTo({
-          url: "/pages/customized/pay/pay?money="+res.result.money+"&orderId="+res.result.orderId+"&rmdesc="+this.data.room.roomName
-        })
-      }else if(res.status.message == "未登录"){
-        wx.navigateTo({
-          url: "/pages/auth/login/login"
-        })
-      }else{
-        wx.showModal({title: '错误信息', content: res.status.message ,showCancel: false});
-      }
+      //跳转
+      wx.redirectTo({
+        url: "/pages/customized/pay/pay?money="+res.result.money+"&orderId="+res.result.orderId+"&rmdesc="+this.data.room.roomName
+      })
     }).catch((err) => {
-      console.log(err)  //{errMsg: "request:fail timeout"}
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
-    
   },
   //酒店信息
   hotelInfo(){
@@ -232,20 +222,12 @@ Page({
       })
       //获取名字
       util.request(api.UcenterSetMemberGet, 'GET').then(res => {
-        console.log(res)
-        if (res.status.code === 0) {
-          this.setData({
-            'fill.name':(res.result.name != null?res.result.name:'')
-          })
-        }else if(res.status.message === "请先登录"){
-          wx.navigateTo({
-            url: "/pages/auth/login/login"
-          });
-        }
+        this.setData({
+          'fill.name':(res.result.name != null?res.result.name:'')
+        })
       }).catch((err) => {
-        console.log(err)
+        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
       });
-      console.log(this.data.fill)
     }else{
       console.log("手机号不存在");
       this.setData({

@@ -242,12 +242,12 @@ swiper{
   text-align: center;
   font-size: 24rpx;
 }
-.sic_price text{
-  color: #753ffd!important;
-}
 .vip_price text{
   color: #cc0000;
   font-size: 30rpx;
+}
+.sic_price text{
+  color: #753ffd;
 }
 .vip_price_zero text{
   color: #999;

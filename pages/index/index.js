@@ -27,11 +27,11 @@ Page({
   },
   onShow: function (e) {
     let pages = getCurrentPages()
-    console.log(pages)
     this.renderingTime()
   },
   //传递邀请人
   invite(option){
+    console.log(option)
     if(option.inviteCode){
       console.log(option.inviteCode)
       wx.setStorageSync('othersInviteCode', option.inviteCode);

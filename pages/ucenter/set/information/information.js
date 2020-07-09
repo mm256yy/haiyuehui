@@ -1,4 +1,5 @@
 var util = require('../../../../utils/util.js');
+var check = require('../../../../utils/check.js');
 var api = require('../../../../config/api.js');
 Page({
   data: {
@@ -23,24 +24,17 @@ Page({
     let tel = wx.getStorageSync('userInfoMobile');
     if(tel){  //如果存在
       util.request(api.UcenterSetMemberGet, 'GET').then(res => {
-        console.log(res)
-        if (res.status.code === 0) {
-          let infoNew = {
-            ident:res.result.ident != null?res.result.ident:'',
-            name:res.result.name != null?res.result.name:'',
-            mobile:tel+'(无法修改)',
-          }
-          this.setData({
-            info:infoNew,
-            hasInfo:true
-          })
-        }else if(res.status.message === "请先登录"){
-          wx.navigateTo({
-            url: "/pages/auth/login/login"
-          });
+        let infoNew = {
+          ident:res.result.ident != null?res.result.ident:'',
+          name:res.result.name != null?res.result.name:'',
+          mobile:tel+'(无法修改)',
         }
+        this.setData({
+          info:infoNew,
+          hasInfo:true
+        })
       }).catch((err) => {
-        console.log(err)
+        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
       });
     }else{
       this.setData({
@@ -53,26 +47,19 @@ Page({
   },
   //确认信息
   btnSuccess(){
-    if(!util.checkName(this.data.info.name)){return false}
-    if(!util.checkIdentity(this.data.info.ident)){return false}
+    if(!check.checkName(this.data.info.name)){return false}
+    if(!check.checkIdentity(this.data.info.ident)){return false}
     let param = {
       name:this.data.info.name,
       ident:this.data.info.ident,
     }
     console.log(param)
     util.request(api.UcenterSetMemberEdit, param, 'POST').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        wx.navigateBack({ 
-          delta: 1  
-        }); 
-      }else if(res.status.code === 400){
-        wx.navigateTo({ 
-          url: "/pages/auth/login/login"
-        });
-      }
+      wx.navigateBack({ 
+        delta: 1  
+      }); 
     }).catch((err) => {
-      console.log(err)
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
   //input焦点

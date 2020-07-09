@@ -27,8 +27,6 @@ function formatWeek(n){
 }
 /*封封微信的的request*/
 function request(url, data = {}, method = "GET") {
-  console.log(wx.getStorageSync('token'))
-  
   jhxLoadShow("加载中")
   return new Promise(function(resolve, reject) {
     wx.request({
@@ -40,9 +38,22 @@ function request(url, data = {}, method = "GET") {
         'X-HWH-Token': wx.getStorageSync('token')
       },
       success: function(res) {
+        console.log(res)
         jhxLoadHide()
         if (res.statusCode == 200) {
-          resolve(res.data);
+          if(res.data.code == 0){  //判断是否成功
+            resolve(res.data);
+          }else{
+            if(res.data.message == "未登录"){
+              wx.navigateTo({
+                url: "/pages/auth/login/login"
+              })
+            }else if(res.data.message){
+              wx.showModal({title: '错误信息',content: res.data.message,showCancel: false});
+            }else{
+              reject("未知异常")
+            }
+          }
           /*if (res.data.errno == 501) {
             // 清除登录相关内容
             try {
@@ -59,13 +70,12 @@ function request(url, data = {}, method = "GET") {
             resolve(res.data);
           }*/
         } else {
-          reject(res.errMsg);
+          reject(res.errMsg)
         }
       },
       fail: function(err) {
         jhxLoadHide()
         reject(err)
-        showErrorToast("网络异常")
       }
     })
   });
@@ -161,108 +171,6 @@ function importantMoney(money){
   }
 }
 
-/*验证并且提示*/
-//手机号码验证
-function checkMobile(mobile){  //使用：if(!util.checkMobile(this.data.mobile)){return false}
-  if(mobile.length == 0){
-    wx.showModal({
-      title: '错误信息',
-      content: '手机号不能为空',
-      showCancel: false
-    });
-    return false;
-  }else if(!check.isValidPhone(mobile)){
-    wx.showModal({
-      title: '错误信息',
-      content: '手机号输入不正确',
-      showCancel: false
-    });
-    return false;
-  }else if(!check.spaceNo(mobile)){
-    wx.showModal({
-      title: '错误信息',
-      content: '手机号不能存在空格或者特殊字符',
-      showCancel: false
-    });
-    return false;
-  }else{
-    return true;
-  }
-}
-//姓名验证
-function checkName(name){ //使用：if(!util.checkName(this.data.name)){return false}
-  if(name.length == 0){
-    wx.showModal({
-      title: '错误信息',
-      content: '姓名不能为空',
-      showCancel: false
-    });
-    return false;
-  }else if(check.isNonnum(name)){
-    wx.showModal({
-      title: '错误信息',
-      content: '姓名不能为数字',
-      showCancel: false
-    });
-    return false;
-  }else if(!check.spaceNo(name)){
-    wx.showModal({
-      title: '错误信息',
-      content: '姓名不能存在空格或者特殊字符',
-      showCancel: false
-    });
-    return false;
-  }else{
-    return true;
-  }
-}
-//身份证验证
-function checkIdentity(identity){  //使用：if(!util.checkIdentity(this.data.identity)){return false}
-  if(identity.length == 0){
-    wx.showModal({
-      title: '错误信息',
-      content: '身份证不能为空',
-      showCancel: false
-    });
-    return false;
-  }else if(identity.length < 18){
-    wx.showModal({
-      title: '错误信息',
-      content: '身份证不能小于18位',
-      showCancel: false
-    });
-    return false;
-  }else if(identity.length > 18){
-    wx.showModal({
-      title: '错误信息',
-      content: '身份证不能大于18位',
-      showCancel: false
-    });
-    return false;
-  }else if(!check.spaceNo(identity)){
-    wx.showModal({
-      title: '错误信息',
-      content: '身份证不能存在空格或者特殊字符',
-      showCancel: false
-    });
-    return false;
-  }else{
-    return true;
-  }
-}
-//金钱验证
-function checkMoney(money){ //使用：if(!util.checkMoney(this.data.identity)){return false}
-  if(money == 999900 ||money == '0' ||money <= 0 ||money == ''||money == null||money == undefined ||money == 'undefined'){
-    wx.showModal({
-      title: '错误信息',
-      content: '金额错误，请联系客服人员',
-      showCancel: false
-    });
-    return false;
-  }else{
-    return true;
-  }
-}
 
 //网络监听
 function networkManage(){
@@ -288,9 +196,4 @@ module.exports = {
   orderType,
   money,
   importantMoney,
-
-  checkMobile,
-  checkName,
-  checkIdentity,
-  checkMoney,
 }

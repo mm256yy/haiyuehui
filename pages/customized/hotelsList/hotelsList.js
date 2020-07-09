@@ -10,36 +10,26 @@ Page({
     let hotelsUl = [];
     let hotelsLi = {};
     util.request(api.CustomizedHotelsList, 'GET').then(res => {
-      console.log(res)
       if (res.status.code === 0) {
-        //存储用户信息
-        for(let i=0;i<res.result.length;i++){
-          hotelsLi = {
-            id:res.result[i].id,
-            name:res.result[i].name,
-            img:'/static/images/hotels/hotels'+i+'.jpg',
-            address:res.result[i].address,
-            deposit:res.result[i].deposit,
-            tel:res.result[i].tel,
-            cis:res.result[i].cis,
-          }
-          hotelsUl.push(hotelsLi)
+        hotelsLi = {
+          id:res.result[i].id,
+          name:res.result[i].name,
+          img:'/static/images/hotels/hotels'+i+'.jpg',
+          address:res.result[i].address,
+          deposit:res.result[i].deposit,
+          tel:res.result[i].tel,
+          cis:res.result[i].cis,
         }
-        this.setData({  
-          hotels: hotelsUl
-        })
+        hotelsUl.push(hotelsLi)
       }
+      this.setData({  
+        hotels: hotelsUl
+      })
     }).catch((err) => {
-      console.log(err)
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
-  onReady: function () {
-
-  },
   onShow: function () {
-
-  },
-  onHide: function () {
 
   },
   hotelsDetailed(e){

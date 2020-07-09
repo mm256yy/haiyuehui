@@ -1,0 +1,16 @@
+<view>
+  <view class="wallet_recharge">
+    <view>充值金额（单位：元）</view>
+    <view class="recharge_money">
+      <text class="recharge_money_text">￥</text>
+      <input class="recharge_money_input" value="{{moneyNum}}" bindinput="bindMoneyInput" onkeyup="value=value.replace(/[^\d]/g,'')" ></input>
+    </view>
+  </view>
+  <view class="wallet_recharge">
+    <text class="">充值方式</text>
+    <text class="wallet_recharge_type">微信支付</text>
+  </view>
+  <view class="wallet_btn">
+    <view class="{{moneyNum == ''?'wx_btn_DisSuccess':'wx_btn_success'}}" bindtap="successPay">充值</view>
+  </view>
+</view>

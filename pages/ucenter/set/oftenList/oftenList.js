@@ -27,30 +27,23 @@ Page({
     let oftenUl = [];
     let oftenLi = {};
     util.request(api.UcenterSetPersonList, 'GET').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        //存储用户信息
-        for(let i=0;i<res.result.records.length;i++){
-          oftenLi = {
-            id:res.result.records[i].id,
-            name:res.result.records[i].name,
-            mobile:res.result.records[i].mobile,
-            identity:res.result.records[i].ident,
-            identityS:util.identityCard(res.result.records[i].ident),
-            isDefault:res.result.records[i].isDefault
-          }
-          oftenUl.push(oftenLi)
+      //存储用户信息
+      for(let i=0;i<res.result.records.length;i++){
+        oftenLi = {
+          id:res.result.records[i].id,
+          name:res.result.records[i].name,
+          mobile:res.result.records[i].mobile,
+          identity:res.result.records[i].ident,
+          identityS:util.identityCard(res.result.records[i].ident),
+          isDefault:res.result.records[i].isDefault
         }
-        this.setData({  
-          often: oftenUl
-        })
-      }else if(res.status.code === 400){
-        wx.navigateTo({ 
-          url: "/pages/auth/login/login"
-        });
+        oftenUl.push(oftenLi)
       }
+      this.setData({  
+        often: oftenUl
+      })
     }).catch((err) => {
-      console.log(err)
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
   //选择同住人
@@ -109,16 +102,9 @@ Page({
         if (res.confirm) {
           console.log('用户点击确定')
           util.request(api.UcenterSetPersonDelete, param, 'GET').then(res => {
-            console.log(res)
-            if (res.status.code === 0) {
-              that.onShow();
-            }else if(res.status.code === 400){
-              wx.navigateTo({ 
-                url: "/pages/auth/login/login"
-              });
-            }
+            that.onShow();
           }).catch((err) => {
-            console.log(err)
+            wx.showModal({title: '错误信息',content: err,showCancel: false}); 
           });
         } else if (res.cancel) {
           console.log('用户点击取消')

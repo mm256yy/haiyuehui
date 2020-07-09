@@ -46,26 +46,23 @@ Page({
     }
     console.log(param)
     util.request(api.UcenterOrderDetail ,param, 'GET').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        let data = res.result
-        let orderNew = {
-          hotelId:data.hotelId,
-          hotelName:data.hotelName,
-          roomId:'',
-          roomName:data.rmdesc,
-          roomNo:data.roomNo,
-          roomPrice:data.roomPrice,
-          roomPriceS:(data.roomPrice/100).toFixed(2),
-        }
-        console.log(orderNew)
-        this.setData({
-          order:orderNew
-        })
-        this.total();
+      let data = res.result
+      let orderNew = {
+        hotelId:data.hotelId,
+        hotelName:data.hotelName,
+        roomId:'',
+        roomName:data.rmdesc,
+        roomNo:data.roomNo,
+        roomPrice:data.roomPrice,
+        roomPriceS:(data.roomPrice/100).toFixed(2),
       }
+      console.log(orderNew)
+      this.setData({
+        order:orderNew
+      })
+      this.total();
     }).catch((err) => {
-      console.log(err)
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
   //统计
@@ -94,18 +91,12 @@ Page({
     }
     console.log(param)
     util.request(api.UcenterOrderDaysSubmit , param , 'POST').then(res => {
-      console.log(res)
-      if (res.status.code === 0) {
-        //跳转
-        wx.redirectTo({
-          url: "/pages/customized/pay/pay?money="+res.result.money+"&orderId="+res.result.orderId+"&rmdesc="+this.data.order.roomName
-        })
-      }else{
-        wx.showModal({ title: '错误信息',content: res.status.message,showCancel: false });
-      }
+      //跳转
+      wx.redirectTo({
+        url: "/pages/customized/pay/pay?money="+res.result.money+"&orderId="+res.result.orderId+"&rmdesc="+this.data.order.roomName
+      })
     }).catch((err) => {
-      console.log(err)
-      console.log('网络连接失败')
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
   //快捷选天数

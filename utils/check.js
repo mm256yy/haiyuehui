@@ -26,8 +26,117 @@ function spaceNo(str){
   }
 }
 
+/*验证并且提示*/
+//手机号码验证
+function checkMobile(mobile){  //使用：if(!util.checkMobile(this.data.mobile)){return false}
+  if(mobile.length == 0){
+    wx.showModal({
+      title: '错误信息',
+      content: '手机号不能为空',
+      showCancel: false
+    });
+    return false;
+  }else if(!isValidPhone(mobile)){
+    wx.showModal({
+      title: '错误信息',
+      content: '手机号输入不正确',
+      showCancel: false
+    });
+    return false;
+  }else if(!spaceNo(mobile)){
+    wx.showModal({
+      title: '错误信息',
+      content: '手机号不能存在空格或者特殊字符',
+      showCancel: false
+    });
+    return false;
+  }else{
+    return true;
+  }
+}
+//姓名验证
+function checkName(name){ //使用：if(!util.checkName(this.data.name)){return false}
+  if(name.length == 0){
+    wx.showModal({
+      title: '错误信息',
+      content: '姓名不能为空',
+      showCancel: false
+    });
+    return false;
+  }else if(isNonnum(name)){
+    wx.showModal({
+      title: '错误信息',
+      content: '姓名不能为数字',
+      showCancel: false
+    });
+    return false;
+  }else if(!spaceNo(name)){
+    wx.showModal({
+      title: '错误信息',
+      content: '姓名不能存在空格或者特殊字符',
+      showCancel: false
+    });
+    return false;
+  }else{
+    return true;
+  }
+}
+//身份证验证
+function checkIdentity(identity){  //使用：if(!util.checkIdentity(this.data.identity)){return false}
+  if(identity.length == 0){
+    wx.showModal({
+      title: '错误信息',
+      content: '身份证不能为空',
+      showCancel: false
+    });
+    return false;
+  }else if(identity.length < 18){
+    wx.showModal({
+      title: '错误信息',
+      content: '身份证不能小于18位',
+      showCancel: false
+    });
+    return false;
+  }else if(identity.length > 18){
+    wx.showModal({
+      title: '错误信息',
+      content: '身份证不能大于18位',
+      showCancel: false
+    });
+    return false;
+  }else if(!spaceNo(identity)){
+    wx.showModal({
+      title: '错误信息',
+      content: '身份证不能存在空格或者特殊字符',
+      showCancel: false
+    });
+    return false;
+  }else{
+    return true;
+  }
+}
+//金钱验证
+function checkMoney(money){ //使用：if(!util.checkMoney(this.data.identity)){return false}
+  if(money == 999900 ||money == '0' ||money <= 0 ||money == ''||money == null||money == undefined ||money == 'undefined'){
+    wx.showModal({
+      title: '错误信息',
+      content: '金额错误',
+      showCancel: false
+    });
+    return false;
+  }else{
+    return true;
+  }
+}
+
+
 module.exports = {
   isValidPhone,
   isNonnum,
   spaceNo,
+
+  checkMobile,
+  checkName,
+  checkIdentity,
+  checkMoney,
 }

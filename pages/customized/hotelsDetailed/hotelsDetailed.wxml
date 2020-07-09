@@ -67,11 +67,11 @@
   </view>
   <view class="detailed_room">
     <view class="room_ul">
-      <view class="room_li {{item.avail == 0?'availZero':''}}" wx:if="{{item.wec0S != 9999}}" wx:for="{{hotel.room}}" wx:key="index">
+      <view class="room_li {{item.avail <= 0?'availZero':''}}" wx:if="{{item.wec0S != 9999}}" wx:for="{{hotel.room}}" wx:key="index">
         <image class="room_li_img" src="{{item.img}}" bindtap="infoShow" data-rmtype="{{item.rmtype}}"></image>
         <image wx:if="{{item.isCis&&false}}" src="/static/images/cis_ba.png" class="cis_ba"></image>
         <image wx:if="{{item.isCis}}" src="/static/images/cis.png" class="cis"></image>
-        <view class="room_text">
+        <view class="room_text" bindtap="room" data-arr="{{index}}">
           <view class="room_name">
             <text>{{item.name}}</text>
           </view>
@@ -85,12 +85,12 @@
             <text class="room_attr_val">含有云智住房间</text>
           </view>
           <view class="room_price_before {{isLogin?'room_price_before_y':'room_price_before_n'}}">门市价￥{{item.wracS}}/晚</view>
-          <view class=" {{item.avail == 0?'room_price_vip_zero':''}} {{item.isCis?'room_price_sic':'room_price_vip'}}" bindtap="room" data-arr="{{index}}">
+          <view class=" {{item.avail <= 0?'room_price_vip_zero':''}} {{item.isCis?'room_price_sic':'room_price_vip'}}" >
             <view class="vip_name"><text>{{item.isCis?'会员价低至':'会员价低至'}}</text></view>
-            <view class="vip_price {{item.avail == 0?'vip_price_zero':''}} {{item.isCis?'sic_price':''}}" >
+            <view class="vip_price {{item.avail <= 0?'vip_price_zero':''}} {{item.isCis?'sic_price':''}}" >
               <text class="rmb">￥</text>
-              <text wx:if="{{item.avail == 0}}">已满房</text>
-              <text wx:if="{{item.avail != 0}}">{{item.wec0S}}<text class="font_24">/晚</text></text>
+              <text wx:if="{{item.avail <= 0}}">已满房</text>
+              <text wx:if="{{item.avail > 0}}">{{item.wec0S}}<text class="font_24">/晚</text></text>
             </view>
           </view>
         </view>

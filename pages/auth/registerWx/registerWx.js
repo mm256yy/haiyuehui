@@ -34,14 +34,13 @@ Page({
     }
     console.log(param)
     util.request(api.AuthRegisterWx, param, 'POST').then(function(res) {
-      console.log(res)
-      if (res.status.code === 0) {
-        app.globalData.hasLogin = true;
-        wx.setStorageSync('userInfoMobile', res.result.mobile);
-        wx.navigateBack({
-          delta: 2  // 返回上一级页面。
-        })
-      }
+      app.globalData.hasLogin = true;
+      wx.setStorageSync('userInfoMobile', res.result.mobile);
+      wx.navigateBack({
+        delta: 2  // 返回上一级页面。
+      })
+    }).catch((err) => {
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   }
 })
