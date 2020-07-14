@@ -5,7 +5,7 @@ var api = require('../../../config/api.js');
 Page({
   data: {
     pics:[
-      '/static/images/banner1.jpg',
+      // '/static/images/banner1.jpg',
     ],
     room:{
       hotelId:'',
@@ -60,6 +60,7 @@ Page({
     this.hotelInfo();
     this.userInfo();
     this.total();
+    this.pics();
     console.log(this.data.total.moneyS)
   },
   onShow: function () {
@@ -274,6 +275,21 @@ Page({
     }else{
       return val
     }
+  },
+  pics(){
+    //获取房间信息
+    let param = {
+      hotelId:this.data.room.hotelId,
+      rmtype:this.data.room.rmtype,
+    }
+    console.log(param)
+    util.request(api.CustomizedHotelsRoom , param , 'GET').then(res => {
+      this.setData({
+        pics:res.result.imgList
+      })
+    }).catch((err) => {
+      // wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+    });
   },
   dayNum(calendarNew){
     let num = calendarNew.endTime-calendarNew.startTime

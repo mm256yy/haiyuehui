@@ -1,14 +1,17 @@
 Page({
   data: {
     moneyShow:true,
-    moneyVal:250036,
-    moneyValS:'2500.36'
+    moneyVal:0,
+    moneyValS:'0.00'
   },
   onLoad: function (options) {
-
+    this.setData({
+      moneyVal:parseInt(options.amount),
+      moneyValS:(parseInt(options.amount)/100).toFixed(2),
+    })
   },
   onShow: function () {
-
+    
   },
   moneyHide(){
     this.setData({

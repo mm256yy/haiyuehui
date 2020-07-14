@@ -41,15 +41,17 @@ function request(url, data = {}, method = "GET") {
         console.log(res)
         jhxLoadHide()
         if (res.statusCode == 200) {
-          if(res.data.code == 0){  //判断是否成功
+          if(res.data.code == 0||res.data == "ok"){  //判断是否成功
             resolve(res.data);
           }else{
             if(res.data.message == "未登录"){
               wx.navigateTo({
                 url: "/pages/auth/login/login"
               })
+              reject("未登陆")
             }else if(res.data.message){
-              wx.showModal({title: '错误信息',content: res.data.message,showCancel: false});
+              wx.showModal({title: '错误信息',content: (res.data.message?res.data.message:'错误') ,showCancel: false});
+              reject("错误")
             }else{
               reject("未知异常")
             }
@@ -70,11 +72,13 @@ function request(url, data = {}, method = "GET") {
             resolve(res.data);
           }*/
         } else {
+          reject("200+")
           reject(res.errMsg)
         }
       },
       fail: function(err) {
         jhxLoadHide()
+        reject("网络连接失败")
         reject(err)
       }
     })

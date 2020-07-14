@@ -27,12 +27,8 @@ Page({
     app.globalData.userInfo = e.detail.userInfo
     wx.setStorageSync('userInfo', e.detail.userInfo);
     user.checkLogin().then(res => {   
-      console.log(res)
-      console.log("then")
       this.login(e)
     }).catch((res) => {
-      console.log(res)
-      console.log("catch")
       this.login(e)
     })
   },

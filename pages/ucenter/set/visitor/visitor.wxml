@@ -1,6 +1,6 @@
 <view>
   <view class="login_logo">
-    <image class="logo_img" mode="widthFix" src="/static/images/addition.png"></image>
+    <image class="logo_img" mode="widthFix" src="/static/images/addition.jpg"></image>
   </view>
   <view class="form_box">
     <view class="form_ul">

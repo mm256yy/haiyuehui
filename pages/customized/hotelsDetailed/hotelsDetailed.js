@@ -107,7 +107,7 @@ Page({
           roomLi = {
             id:0,
             name:res.result[i].name,
-            img:('/static/images/room.jpg'||res.result[i].image),
+            img:(res.result[i].img?res.result[i].img:'/static/images/room.jpg'),
             avail:res.result[i].avail,
             rmtype:res.result[i].rmtype,
             isCis:res.result[i].isCis,
@@ -129,12 +129,11 @@ Page({
           }
           roomNew.push(roomLi)
         }
+        console.log(hotel)
         let hotelNew = {
           id:hotel.id,
           name:hotel.name,   
-          pics:[
-            '/static/images/banner1.jpg'
-          ],
+          pics:(hotel.imgList?hotel.imgList:['/static/images/banner1.jpg']),
           address:hotelVal,
           tel:telVal,
           dining:{},

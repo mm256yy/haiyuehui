@@ -5,7 +5,7 @@ page{
 .wallet_recharge{
   background-color: #fff;
   padding: 30rpx;
-  margin-bottom: 20rpx;
+  margin-top: 20rpx;
 }
 .recharge_money{
   padding: 30rpx 0rpx;
@@ -25,4 +25,25 @@ page{
 }
 .wallet_recharge_type{
   float: right;
+}
+.money_ul{
+  margin-top: 20rpx;
+  overflow: hidden;
+}
+.money_li{
+  width: 25%;
+  float: left;
+  padding: 10rpx;
+}
+.money_li_val_on{
+  background-color: #039cee;
+  color: #fff!important;
+}
+.money_li_val{
+  width: 100%;
+  text-align: center;
+  border: 1rpx solid #039cee;
+  border-radius: 100rpx;
+  color: #039cee;
+  padding: 10rpx;
 }

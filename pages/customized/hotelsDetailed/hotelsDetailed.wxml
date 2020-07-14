@@ -104,8 +104,11 @@
       <view class="info">
         <view class="info_h1">{{room.name}}</view>
         <image class="info_del" bindtap="infoHide" src="/static/images/del.png"></image>
-        <swiper>
-          <block wx:for="{{hotel.pics}}" wx:key="item">
+        <swiper 
+          autoplay="true"
+          interval="5000"
+          >
+          <block wx:for="{{room.imgList}}" wx:key="item">
             <swiper-item>
               <image src="{{item}}" class="banner_image" />
             </swiper-item>

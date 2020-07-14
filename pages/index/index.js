@@ -33,12 +33,10 @@ Page({
   invite(option){
     console.log(option)
     if(option.inviteCode){
-      console.log(option.inviteCode)
       wx.setStorageSync('othersInviteCode', option.inviteCode);
     }else{
       let scene = decodeURIComponent(option.scene).toString().split('=');
       let inviteCode = scene[1];
-      console.log(inviteCode)
       wx.setStorageSync('othersInviteCode', inviteCode);
     }
   },

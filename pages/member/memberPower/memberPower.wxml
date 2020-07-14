@@ -6,40 +6,40 @@
         <swiper 
           class="swiper"
           bindchange="changeCard"
+          current="{{memberVal}}"
           >
           <block wx:for="{{memberCard}}" wx:key="index">
             <swiper-item>
-              <image src="{{item.baImg}}" class="member_card_ba" mode="widthFix" />
+              <image src="/static/images/{{item.baImg}}.png" class="member_card_ba" mode="widthFix" />
               <view class="member_card_content">
-                <view class="member_rule" wx:if="{{info.memberUp != index}}">
+                <view class="member_rule">
                   <rich-text class="rule_up" nodes="{{item.upRule}}"></rich-text>
                 </view>
-                <view class="member_card_tou" wx:if="{{info.memberUp == index}}">
+                <!-- <view class="member_card_tou" wx:if="{{info.memberUp == index}}">
                   <image class="card_tou_img" src="{{info.avatarUrl}}"></image>
                 </view>
-                <view class="card_integral" wx:if="{{info.memberUp == index}}">
-                  <view class="card_t card_t1">当前积分：<text class="card_t card_t2">{{info.scoring}}</text></view>
-                </view>
+                <view class="card_integral" wx:if="{{info.memberUp == index}}" bindtap="information">
+                  <view class="card_t card_t1">{{info.name}}</view>
+                  <view class="card_t card_t2">编辑会员信息></view>
+                </view> -->
                 <view class="card_member">
                   <view class="card_t card_t3">{{item.nameC}}</view>
-                  <view class="card_t card_t1">{{item.nameE}}</view>
+                  <view class="card_t card_t2">{{item.nameE}}</view>
                 </view>
-                <view class="card_endtime" wx:if="{{info.memberUp == index}}">有效期至：{{item.validityRule}}</view>
+                <view class="card_endtime" >有效期至：{{item.validityRule}}</view>
               </view>
             </swiper-item>
           </block>
         </swiper>
       </view>
-      
     </view>
   </view>
   <view class="member_progress">
     <view class="progress_ul">
-      <view class="progress_li" wx:for="{{memberCard}}" wx:key="index">
+      <view class="progress_li" wx:for="{{memberCard}}" wx:key="index" bindtap="memberProgress" data-index="{{index}}">
         <view class="progress_li_content">
           <view class="progress_li_left"></view>
           <view class="{{memberVal == index?'progress_li_up':'progress_li_down'}}">
-            <!-- <image wx:if="{{memberUp == index}}" src="/static/images/king.png"></image> -->
           </view>
           <view class="progress_li_right"></view>
         </view>
@@ -50,18 +50,18 @@
   </view>
   <view class="member_privilege">
     <view class="privilege_ba " >
-      <image src="/static/images/member-i1.png" class="member_i1"></image>
+      <!-- <image src="/static/images/member-i1.png" class="member_i1"></image> -->
       <image src="/static/images/member-i2.png" class="member_i2"></image>
       <view class="privilege_ul ">
-        <view class="privilege_li" bindtap="introduceValShow" data-index="{{index}}" wx:if="{{powerRelease||index<8}}" wx:for="{{privilegeUl}}" wx:key="index">
-          <image class="privilege_li_img" src="{{item.img}}"></image>
+        <view class="privilege_li {{item.show?'':'privilege_li_show'}}" bindtap="introduceValShow" data-index="{{index}}" wx:if="{{powerRelease||index<8}}" wx:for="{{powerUl}}" wx:key="index">
+          <image class="privilege_li_img" src="/static/images/power/{{item.img}}.png"></image>
           <view class="privilege_li_t1">{{item.text1}}</view>
           <view class="privilege_li_t1">{{item.text2}}</view>
         </view>
       </view>
-      <view class="privilege_most" bindtap="funPowerRelease">
+      <!-- <view class="privilege_most" bindtap="funPowerRelease">
         <image class="privilege_most_image {{powerRelease?'privilege_most_image_release':''}}" src="/static/images/power/power_most.png"  mode="widthFix"></image>
-      </view>
+      </view> -->
     </view>
   </view>
   <view class="member_black" wx:if="{{introduceShow}}" data-index="0" bindtap="introduceValShow">

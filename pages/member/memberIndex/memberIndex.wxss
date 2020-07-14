@@ -1,0 +1,241 @@
+
+page{
+  background-color: #f1f1f1;
+}
+/*head*/
+.member_head{
+  width: 100%;
+  margin-bottom: 0rpx;
+}
+.member_head_ba{
+  width: 100%;
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  z-index: -2;
+}
+.swiper{
+  height: 385rpx;
+}
+.member_card{
+  position: relative;
+}
+.member_card_ba{
+  width: 100%;
+}
+.member_rule{
+  position: absolute;
+  top: 120rpx;
+  left: 100rpx;
+}
+.rule_up{
+  color: #fff;
+  font-size: 24rpx;
+}
+.member_card_tou{
+  position: absolute;
+  top: 120rpx;
+  left: 100rpx;
+}
+.card_tou_img{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 100rpx;
+  border: 5rpx solid #abadb5;
+  background-color: #fff;
+}
+.card_integral{
+  position: absolute;
+  top: 90rpx;
+  left: 100rpx;
+  margin-left: 120rpx;
+  padding-top:50rpx ;
+}
+.card_t{
+  color: #fff;
+}
+.card_t1{
+  font-size: 28rpx;
+  line-height: 38rpx;
+}
+.card_t2{
+  font-size: 22rpx;
+  opacity: 0.6;
+}
+.card_t3{
+  font-size: 30rpx;
+}
+.card_member{
+  position: absolute;
+  bottom: 40rpx;
+  right:105rpx;
+  text-align: center;
+}
+.card_endtime{
+  position: absolute;
+  bottom: 20rpx;
+  left: 100rpx;
+  color: #cdcdcd;
+  font-size: 22rpx;
+}
+/*wallet*/
+.wallet_ul{
+  display: flex;
+}
+.wallet_li{
+  flex: 1 1 auto;
+  text-align: center;
+  background-color: #fff;
+  padding: 40rpx 10rpx;
+}
+.wallet_li_t1{
+  color: #999;
+  font-size: 24rpx;
+  margin-bottom: 10rpx;
+}
+.wallet_li_t2{
+  color: #000;
+  font-size: 30rpx;
+}
+/*power*/
+.member_list{
+  background-color: #fff;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  margin: 20rpx;
+}
+.member_title{
+  text-align: left;
+  font-size: 34rpx;
+  padding-left: 10rpx;
+}
+.member_title_most{
+  float: right;
+  font-size: 24rpx;
+  line-height: 45rpx;
+}
+.power_ul{
+  display: flex;
+  padding:40rpx 20rpx;
+}
+.power_li{
+  flex: 1 1 auto;
+  text-align: center;
+}
+.power_li_circular{
+  width: 90rpx;
+  height: 90rpx;
+  background: linear-gradient(to right, #039cee , #346ae8);
+  border-radius: 100rpx;
+  padding: 5rpx;
+  margin:10rpx auto;
+}
+.power_li_img{
+  width: 80rpx;
+  height: 80rpx;
+}
+.power_li_text{
+  font-size: 24rpx;
+}
+/*优惠劵*/
+.member_coupon{
+  
+}
+.coupon_ul{
+  padding:20rpx 0rpx;
+  margin-top: 20rpx;
+  overflow: hidden;
+}
+.coupon_li{
+  width: 50%;
+  float: left;
+  padding: 5rpx 0rpx 10rpx 5rpx;
+}
+.coupon_li_box{
+  position: relative;
+  background-color: #ecf8ff;
+  border-radius: 20rpx;
+  padding: 40rpx 0rpx;
+  display: flex;
+}
+.coupon_li:nth-child(2n-1){
+  padding-right:5rpx ;
+}
+.coupon_li_grade{
+  background: linear-gradient(to right, #039cee , #753ffd);
+  color: #fff;
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  border-bottom-right-radius: 20rpx;
+  border-top-left-radius: 20rpx;
+  font-size: 22rpx;
+  padding: 5rpx 20rpx;
+}
+.coupon_li_receive{
+  position: absolute;
+  top: 0rpx;
+  right: 50rpx;
+  width: 120rpx;
+  height: 120rpx;
+  opacity: 0.4;
+}
+.coupon_li_left{
+  flex: 1 1 auto;
+}
+.coupon_li_right{
+  width: 50rpx;
+  border-left: 2rpx dashed #039cee;
+  padding: 10rpx;
+  display: flex;
+}
+.coupon_li_text{
+  padding:0rpx 20rpx ;
+}
+.coupon_li_text text{
+  color: #039cee;
+}
+.coupon_li_t1{
+  font-size: 22rpx;
+}
+.coupon_li_t2{
+  font-size: 40rpx;
+  font-weight: 800;
+}
+.coupon_li_t3{
+  padding:0rpx 20rpx;
+  font-size: 22rpx;
+  color: #039cee;
+}
+.coupon_li_btn{
+  color: #039cee;
+  font-size: 22rpx;
+  margin: auto;
+}
+/*black*/
+.member_black{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0rpx;
+  left: 0rpx;
+  background-color: rgba(0,0,0,0.5);
+}
+.black_flex{
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.black_tip_box{
+  width: 400rpx;
+  height: 150rpx;
+  margin: auto;
+  background-color: #fff;
+  border-radius:20rpx;
+  padding: 20rpx;
+  display: flex;
+}
+.black_tip_val{
+  text-align: center;
+  margin: auto;
+}

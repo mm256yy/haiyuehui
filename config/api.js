@@ -4,9 +4,9 @@
  // 正式线上ip 
  // var WxApiRoot = 'http://124.70.147.182:9001/wx/';
  // 测试线上ip
- var WxApiRoot = 'http://124.70.132.80:9001/wx/'; 
+ // var WxApiRoot = 'http://124.70.132.80:9001/wx/'; 
  // 本机 开发api地址
- // var WxApiRoot = 'http://192.168.188.79:9001/wx/';  // http://192.168.133.67:9002/wx/; 
+  var WxApiRoot = 'http://192.168.133.67:9002/wx/';  //'http://192.168.188.79:9001/wx/';
  // 生产地址
  // var WxApiRoot = 'https://www.hwhhotels.com/wx/';
  
@@ -43,14 +43,17 @@
    UcenterOrderGetRoomPwd: WxApiRoot + 'order/getRoomPwd', //获取到当前订单的房间密码
 
    UcenterSetMemberEdit:WxApiRoot + 'member/edit', //会员信息编辑
-   UcenterSetMemberGet:WxApiRoot + 'member/get', //会员信息获取
    UcenterSetPersonList:WxApiRoot + 'memberPerson/list', //常住人列表
    UcenterSetPersonAdd:WxApiRoot + 'memberPerson/add', //常住人添加
    UcenterSetPersonEdit:WxApiRoot + 'memberPerson/edit', //常住人编辑
    UcenterSetPersonDelete:WxApiRoot + 'memberPerson/delete', //常住人删除
    UcenterSetPersonQuery:WxApiRoot + 'memberPerson/queryById', //常住人查询
-
-  // MemberInviteGet:WxApiRoot + 'member/invite', //会员邀请
+  //  UcenterMemberQuery:WxApiRoot + 'member/query', //会员信息查询
    MemberInviteCode:WxApiRoot + 'member/qrCode',  //会员二维码
-   MemberInviteList:WxApiRoot + 'memberInvite/list'  //会员邀请列表
+   MemberInviteList:WxApiRoot + 'memberInvite/list',  //会员邀请列表
+
+   MemberGet:WxApiRoot + 'member/get', //会员信息获取和余额
+   MemberRechargeSubmit:WxApiRoot +'recharge/submit',  //充值下订单
+   MemberRechargePrepay:WxApiRoot +'recharge/prepay',  //充值调起
+   MemberRechargeCallback:WxApiRoot +'recharge/callback/doCallback',  //充值返回
  }

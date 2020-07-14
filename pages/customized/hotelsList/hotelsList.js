@@ -10,7 +10,7 @@ Page({
     let hotelsUl = [];
     let hotelsLi = {};
     util.request(api.CustomizedHotelsList, 'GET').then(res => {
-      if (res.status.code === 0) {
+      for(let i=0;i<res.result.length;i++){
         hotelsLi = {
           id:res.result[i].id,
           name:res.result[i].name,
@@ -19,6 +19,7 @@ Page({
           deposit:res.result[i].deposit,
           tel:res.result[i].tel,
           cis:res.result[i].cis,
+          imgList:res.result[i].imgList,
         }
         hotelsUl.push(hotelsLi)
       }
@@ -26,7 +27,8 @@ Page({
         hotels: hotelsUl
       })
     }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+      console.log(err)
+      // wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
   onShow: function () {

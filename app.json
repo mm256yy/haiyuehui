@@ -1,13 +1,17 @@
 {
   "pages":[
+    "pages/member/memberIndex/memberIndex",
+    "pages/ucenter/wallet/walletAmount/walletAmount",
     
     "pages/index/index",
     
+    "pages/member/memberPower/memberPower",
     "pages/ucenter/set/visitor/visitor",
     "pages/pop/calendar/index",
-    "pages/member/member/member",
+    
     "pages/member/memberAgree/memberAgree",
     
+
     "pages/auth/login/login",
     "pages/auth/loginAgree/loginAgree",
     "pages/auth/registerWx/registerWx",
@@ -38,7 +42,7 @@
     "pages/ucenter/set/oftenEdit/oftenEdit",
     "pages/ucenter/set/information/information",
     
-    "pages/ucenter/wallet/walletAmount/walletAmount",
+    
     "pages/ucenter/wallet/walletConsume/walletConsume",
     "pages/ucenter/wallet/walletRecharge/walletRecharge",
     "pages/ucenter/wallet/walletProblem/walletProblem",

@@ -1,6 +1,6 @@
 
 page{
-  background-color: #fff;
+  background-color: #f1f1f1;
 }
 /*head*/
 .member_head{
@@ -49,17 +49,18 @@ page{
   top: 90rpx;
   left: 100rpx;
   margin-left: 120rpx;
-  padding-top:60rpx ;
+  padding-top:50rpx ;
 }
 .card_t{
   color: #fff;
 }
 .card_t1{
-  font-size: 22rpx;
+  font-size: 28rpx;
   line-height: 38rpx;
 }
 .card_t2{
-  font-size: 36rpx;
+  font-size: 22rpx;
+  opacity: 0.6;
 }
 .card_t3{
   font-size: 30rpx;
@@ -80,7 +81,9 @@ page{
 /*member_progress*/
 .member_progress{
   height: 200rpx;
-  background: linear-gradient(to right, #039cee , #753ffd);
+  background-color: #33353e;
+  margin-bottom: 10rpx;
+  /* background: linear-gradient(to right, #039cee , #753ffd); */
 }
 .progress_ul{
   display: flex;
@@ -89,11 +92,14 @@ page{
 .progress_li_content{
   display: flex;
 }
+.progress_li:last-child .progress_li_right{
+  background-color: #33353e;
+}
 .progress_li_left,.progress_li_right{
   flex: 1 1 auto;
   display: inline-block;
   height: 5rpx;
-  background-color: #fff;
+  background-color: #f1f1f1;
   margin: auto 0rpx;
 }
 .progress_li_down{
@@ -103,7 +109,7 @@ page{
 .progress_li_down,.progress_li_up{
   display: inline-block;
   padding: 10rpx;
-  border: 5px solid #fff;
+  border: 5px solid #f1f1f1;
   border-radius:40rpx ;
   margin:20rpx 0rpx;
 }
@@ -112,22 +118,23 @@ page{
   text-align: center;
 }
 .progress_li_t1{
-  color: #fff;
+  color: #f1f1f1;
   font-size: 24rpx;
 }
 .progress_li_t2{
-  color: #fff;
+  color: #f1f1f1;
   font-size: 36rpx;
   font-weight: 800;
 }
 .progress_li_label{
-  color: #fff;
+  color: #f1f1f1;
   font-size: 24rpx;
   text-align: center;
 }
 /*privilege*/
 .member_privilege{ 
   padding: 30rpx;
+  background-color: #33353e;
 }
 .privilege_ba{
   position: relative;
@@ -150,7 +157,7 @@ page{
   margin: 0rpx auto;
 }
 .privilege_ul{
-  padding:30rpx 20rpx;
+  padding:30rpx 0rpx;
   overflow: hidden;
 }
 .privilege_li{
@@ -162,6 +169,9 @@ page{
 .privilege_li_img{
   width:70rpx;
   height: 70rpx;
+}
+.privilege_li_show{
+  opacity: 0.6;
 }
 .privilege_li_t1{
   color: #fff;
