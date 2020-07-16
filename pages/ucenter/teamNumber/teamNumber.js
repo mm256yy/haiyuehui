@@ -1,6 +1,6 @@
 // pages/ucenter/teamNumber/teamNumber.js
-var util = require('../../../utils/util.js');
-var check = require('../../../utils/check.js');
+let util = require('../../../utils/util.js');
+let check = require('../../../utils/check.js');
 Page({
   data: {
     chooseNum:3,

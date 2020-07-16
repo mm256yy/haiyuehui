@@ -1,5 +1,5 @@
-var util = require('../../../utils/util.js');
-var api = require('../../../config/api.js');
+let util = require('../../../utils/util.js');
+let api = require('../../../config/api.js');
 Page({
   data: {
     hotels:[
@@ -14,7 +14,7 @@ Page({
         hotelsLi = {
           id:res.result[i].id,
           name:res.result[i].name,
-          img:'/static/images/hotels/hotels'+i+'.jpg',
+          img:res.result[i].imgList[0],
           address:res.result[i].address,
           deposit:res.result[i].deposit,
           tel:res.result[i].tel,

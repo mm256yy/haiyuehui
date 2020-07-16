@@ -1,7 +1,7 @@
-var api = require('../../../config/api.js');
-var util = require('../../../utils/util.js');
-var check = require('../../../utils/check.js');
-var app = getApp();
+let api = require('../../../config/api.js');
+let util = require('../../../utils/util.js');
+let check = require('../../../utils/check.js');
+let app = getApp();
 
 Page({
   data: {
@@ -62,7 +62,7 @@ Page({
   },
   //点击
   startRegister() {
-    var that = this;
+    let that = this;
     if(!check.checkMobile(this.data.mobile)){return false}
     if (this.data.code.length == 0) {
       wx.showModal({title: '错误信息',content: '验证码不能为空',showCancel: false});

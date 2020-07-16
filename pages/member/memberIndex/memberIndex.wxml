@@ -6,13 +6,10 @@
       <view class="head_banner">
         <image src="/static/images/{{info.card.baImg}}.png" class="member_card_ba" mode="widthFix" />
         <view class="member_card_content">
-          <view class="member_rule" wx:if="{{info.memberUp != index}}">
-            <rich-text class="rule_up" nodes="{{info.card.upRule}}"></rich-text>
-          </view>
-          <view class="member_card_tou" wx:if="{{info.memberUp == index}}">
+          <view class="member_card_tou" >
             <image class="card_tou_img" src="{{info.avatarUrl}}"></image>
           </view>
-          <view class="card_integral" wx:if="{{info.memberUp == index}}" bindtap="information">
+          <view class="card_integral" bindtap="information">
             <view class="card_t card_t1">{{info.name}}</view>
             <view class="card_t card_t2">编辑会员信息></view>
           </view>
@@ -20,7 +17,10 @@
             <view class="card_t card_t3">{{info.card.nameC}}</view>
             <view class="card_t card_t2">{{info.card.nameE}}</view>
           </view>
-          <view class="card_endtime" wx:if="{{info.memberUp == index}}">有效期至：{{info.card.validityRule}}</view>
+          <view class="card_bottom_left">
+            <view class="card_cardno">NO:{{info.cardNo}}</view>
+            <view class="card_endtime">有效期至：{{info.dep}}</view>
+          </view>
         </view>
       </view>
     </view>
@@ -29,11 +29,11 @@
     <view class="wallet_ul">
       <view class="wallet_li">
         <view class="wallet_li_t1">我的积分</view>
-        <view class="wallet_li_t2">{{info.integral}}</view>
+        <view class="wallet_li_t2">{{info.points}}</view>
       </view>
       <view class="wallet_li" bindtap="walletAmount">
         <view class="wallet_li_t1">我的余额</view>
-        <view class="wallet_li_t2">￥{{info.moneyS}}</view>
+        <view class="wallet_li_t2">{{info.moneyS}}</view>
       </view>
       <!-- <view class="wallet_li" bindtap="coupon">
         <view class="wallet_li_t1">优惠劵</view>

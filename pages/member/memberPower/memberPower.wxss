@@ -30,7 +30,6 @@ page{
 }
 .rule_up{
   color: #fff;
-  font-size: 24rpx;
 }
 .member_card_tou{
   position: absolute;
@@ -55,7 +54,6 @@ page{
   color: #fff;
 }
 .card_t1{
-  font-size: 28rpx;
   line-height: 38rpx;
 }
 .card_t2{
@@ -76,7 +74,7 @@ page{
   bottom: 20rpx;
   left: 100rpx;
   color: #cdcdcd;
-  font-size: 22rpx;
+  font-size: 26rpx;
 }
 /*member_progress*/
 .member_progress{
@@ -119,7 +117,6 @@ page{
 }
 .progress_li_t1{
   color: #f1f1f1;
-  font-size: 24rpx;
 }
 .progress_li_t2{
   color: #f1f1f1;
@@ -128,7 +125,6 @@ page{
 }
 .progress_li_label{
   color: #f1f1f1;
-  font-size: 24rpx;
   text-align: center;
 }
 /*privilege*/
@@ -152,8 +148,8 @@ page{
 }
 .member_i2{
   display: block;
-  width: 400rpx;
-  height: 50rpx;
+  width: 500rpx;
+  height: 65rpx;
   margin: 0rpx auto;
 }
 .privilege_ul{
@@ -175,7 +171,7 @@ page{
 }
 .privilege_li_t1{
   color: #fff;
-  font-size: 20rpx;
+  font-size: 24rpx;
   text-align: center;
 }
 .privilege_most{

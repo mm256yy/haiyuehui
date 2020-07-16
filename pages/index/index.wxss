@@ -59,7 +59,7 @@
   color: #fff;
   text-align: center;
   padding: 20rpx 10rpx;
-  border-radius:50rpx ;
+  border-radius:50rpx;
   margin-top: 20rpx;
 }
 .order_btn{

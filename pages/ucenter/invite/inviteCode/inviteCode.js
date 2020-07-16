@@ -1,5 +1,5 @@
-var api = require('../../../../config/api.js');
-var util = require('../../../../utils/util.js');
+let api = require('../../../../config/api.js');
+let util = require('../../../../utils/util.js');
 Page({
   data: {
     codeImg:'',

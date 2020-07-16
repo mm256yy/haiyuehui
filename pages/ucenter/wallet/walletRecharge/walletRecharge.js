@@ -1,7 +1,7 @@
-var util = require('../../../../utils/util.js');
-var check = require('../../../../utils/check.js');
-var api = require('../../../../config/api.js');
-var pay = require('../../../../utils/pay.js');
+let util = require('../../../../utils/util.js');
+let check = require('../../../../utils/check.js');
+let api = require('../../../../config/api.js');
+let pay = require('../../../../utils/pay.js');
 Page({
   data: {
     moneyNum:'',
@@ -54,12 +54,12 @@ Page({
     pay.rechargePay(param).then(res => {
       //跳转
       wx.navigateTo({
-        url: "/pages/customized/payResult/payResult?result="+'1'
+        url: "/pages/customized/payResult/payResult?result=1&end=1"
       })
     }).catch(() => {
       //跳转
       wx.navigateTo({
-        url: "/pages/customized/payResult/payResult?result="+'0'
+        url: "/pages/customized/payResult/payResult?result=0&end=1"
       })
     });
   },

@@ -27,9 +27,9 @@ App({
       console.log(res+'需要登陆');
       this.globalData.userInfo = '';
       wx.setStorageSync('userInfo', '');
-      wx.navigateTo({ 
-        url: "/pages/auth/login/login"
-      });
+      // wx.navigateTo({ 
+      //   url: "/pages/auth/login/login"
+      // });
     })
     // 获取用户信息
     // wx.getSetting({
@@ -64,11 +64,5 @@ App({
     "iconPath": "static/images/tab/activity2.png",
     "selectedIconPath": "static/images/tab/activity1.png",
     "text": "活动"
-  },
-  {
-    "pagePath": "pages/member/member/member",
-    "iconPath": "static/images/tab/member2.png",
-    "selectedIconPath": "static/images/tab/member1.png",
-    "text": "会员"
   },
 */ 

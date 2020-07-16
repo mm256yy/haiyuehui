@@ -1,17 +1,17 @@
-var api = require('../config/api.js');
-var check = require('./check.js')
+let api = require('../config/api.js');
+let check = require('./check.js')
 
-var app = getApp();
+let app = getApp();
 
 //时间转化 时间戳 ==> 2020-05-14 16:40:08
 function formatTime(date) {
-  var year = date.getFullYear()
-  var month = date.getMonth() + 1
-  var day = date.getDate()
+  let year = date.getFullYear()
+  let month = date.getMonth() + 1
+  let day = date.getDate()
 
-  var hour = date.getHours()
-  var minute = date.getMinutes()
-  var second = date.getSeconds()
+  let hour = date.getHours()
+  let minute = date.getMinutes()
+  let second = date.getSeconds()
   
   return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
@@ -50,8 +50,7 @@ function request(url, data = {}, method = "GET") {
               })
               reject("未登陆")
             }else if(res.data.message){
-              wx.showModal({title: '错误信息',content: (res.data.message?res.data.message:'错误') ,showCancel: false});
-              reject("错误")
+              reject(res.data.message)
             }else{
               reject("未知异常")
             }
@@ -73,13 +72,13 @@ function request(url, data = {}, method = "GET") {
           }*/
         } else {
           reject("200+")
-          reject(res.errMsg)
+          console.log(res.errMsg)
         }
       },
       fail: function(err) {
         jhxLoadHide()
         reject("网络连接失败")
-        reject(err)
+        console.log(err)
       }
     })
   });
@@ -189,6 +188,7 @@ function networkManage(){
 
 module.exports = {
   formatTime,
+  formatNumber,
   formatWeek,
   request,
   showErrorToast,

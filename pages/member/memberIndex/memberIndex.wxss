@@ -55,7 +55,7 @@ page{
   color: #fff;
 }
 .card_t1{
-  font-size: 28rpx;
+  font-size: 30rpx;
   line-height: 38rpx;
 }
 .card_t2{
@@ -71,12 +71,19 @@ page{
   right:105rpx;
   text-align: center;
 }
-.card_endtime{
+.card_bottom_left{
   position: absolute;
   bottom: 20rpx;
   left: 100rpx;
+}
+.card_cardno{
+  color: #fff;
+  font-size: 30rpx;
+  margin-bottom: 10rpx;
+}
+.card_endtime{
   color: #cdcdcd;
-  font-size: 22rpx;
+  font-size: 24rpx;
 }
 /*wallet*/
 .wallet_ul{
@@ -90,12 +97,11 @@ page{
 }
 .wallet_li_t1{
   color: #999;
-  font-size: 24rpx;
   margin-bottom: 10rpx;
 }
 .wallet_li_t2{
   color: #000;
-  font-size: 30rpx;
+  font-size: 34rpx;
 }
 /*power*/
 .member_list{
@@ -107,7 +113,6 @@ page{
 .member_title{
   text-align: left;
   font-size: 34rpx;
-  padding-left: 10rpx;
 }
 .member_title_most{
   float: right;

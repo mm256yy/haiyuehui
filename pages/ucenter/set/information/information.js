@@ -23,7 +23,7 @@ Page({
     //获取到当前的手机号
     let tel = wx.getStorageSync('userInfoMobile');
     if(tel){  //如果存在
-      util.request(api.UcenterSetMemberGet, 'GET').then(res => {
+      util.request(api.MemberGet, 'GET').then(res => {
         let infoNew = {
           ident:res.result.ident != null?res.result.ident:'',
           name:res.result.name != null?res.result.name:'',
@@ -54,13 +54,24 @@ Page({
       ident:this.data.info.ident,
     }
     console.log(param)
-    util.request(api.UcenterSetMemberEdit, param, 'POST').then(res => {
-      wx.navigateBack({ 
-        delta: 1  
-      }); 
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    wx.showModal({   //cancelColor（取消按钮的文字颜色）confirmColor（确定按钮的文字颜色）
+      title: '确认信息',
+      content: '身份证信息填写后将不允许修改',
+      success: function(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          util.request(api.UcenterSetMemberEdit, param, 'POST').then(res => {
+            wx.navigateBack({ 
+              delta: 1  
+            }); 
+          }).catch((err) => {
+            wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
   //input焦点
   bindNameInput(e) {

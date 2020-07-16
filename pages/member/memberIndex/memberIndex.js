@@ -1,29 +1,34 @@
 let util = require('../../../utils/util.js');
-let user = require('../../../utils/user.js');
 let api = require('../../../config/api.js');
 let member = require('../../../utils/member.js');
 let app = getApp();
 Page({
   data: {
     info:{
-      avatarUrl:'',
-      name:'徐树旺',
-      integral:23000,
+      avatarUrl:'/static/images/person.jpg',
+      name:'默认',
+      points:0,
       money:0,
-      moneyS:'230.00',
-      couponNum:2,
+      moneyS:'0.00',
+      couponNum:0,
       arr:'',
-      dep:'',
-      cardNo:'',
-      card:[],
+      dep:'2020-12-12',
+      cardNo:'SXC15615615',
+      card:{
+        baImg:'card5',
+        nameC:'贵宾卡',
+        nameE:'Common Member',
+        upRule:'注册即会员',
+        validityRule:'长久',
+      },
     },
     memberCard:[],
     powerUl:[],
     powerUlShow:[
-      // {img:'power0',text1:'订房折扣',text2:'9.5折'},
-      // {img:'power1',text1:'餐饮折扣',text2:'9.5折'},
-      // {img:'power2',text1:'娱乐折扣',text2:'9.5折'},
-      // {img:'power3',text1:'积分奖励',text2:'1倍积分'},
+      {img:'power0',text1:'订房折扣',text2:'9.5折'},
+      {img:'power1',text1:'餐饮折扣',text2:'9.5折'},
+      {img:'power2',text1:'娱乐折扣',text2:'9.5折'},
+      {img:'power3',text1:'积分奖励',text2:'1倍积分'},
     ],
     couponUl:[
       // {
@@ -54,9 +59,8 @@ Page({
 
   },
   onShow: function () {
-    // this.memberGrade(0)
+    this.memberInfo();
     this.init();
-    // this.memberInfo();
     this.memberCard();
   },
   //init
@@ -78,30 +82,48 @@ Page({
     }else{
       return false
     }
+    console.log(userInfo)
     this.setData({
       'info.avatarUrl':userInfo.avatarUrl,
-      'info.name':res.result.name != null?res.result.name:'',
+      'info.name':userInfo.name != null?userInfo.name:'',
     })
-    //获取到当前的手机号
-    let tel = wx.getStorageSync('userInfoMobile');
-    if(tel){  //如果存在
-      util.request(api.UcenterSetMemberGet, 'GET').then(res => {
-        this.setData({
-          'info.name':res.result.name != null?res.result.name:'',
-        })
-      }).catch((err) => {
-        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-      });
-    }else{
-      wx.navigateTo({
-        url: "/pages/auth/login/login"
-      })
-    }
+    // //获取到当前的手机号
+    // let tel = wx.getStorageSync('userInfoMobile');
+    // if(tel){  //如果存在
+    //   util.request(api.MemberGet, 'GET').then(res => {
+    //     this.setData({
+    //       'info.name':res.result.name != null?res.result.name:'',
+    //     })
+    //   }).catch((err) => {
+    //     wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+    //   });
+    // }else{
+    //   wx.navigateTo({
+    //     url: "/pages/auth/login/login"
+    //   })
+    // }
   },
    //会员卡信息
   memberCard(){
+    let infoNew = {};
     util.request(api.MemberGet, 'GET').then(res => {
-      
+      console.log(res)
+      infoNew = {
+        avatarUrl:this.data.info.avatarUrl,
+        name:res.result.name,
+        points:res.result.points,
+        money:res.result.arbal*(-1),
+        moneyS:(res.result.arbal*(-1)/100).toFixed(2),
+        couponNum:0,
+        arr:res.result.arr,
+        dep:res.result.dep,
+        cardNo:res.result.cardno,
+        card:member.memberCard[this.typeDes(res.result.type_des)],
+      }
+      this.setData({
+        info:infoNew 
+      })
+      console.log(this.data.info)
     }).catch((err) => {
       wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
     });
@@ -134,7 +156,7 @@ Page({
   //我的余额
   walletAmount(){
     wx.navigateTo({ 
-      url: "/pages/ucenter/wallet/walletAmount/walletAmount?amount="+this.data.info.integral
+      url: "/pages/ucenter/wallet/walletAmount/walletAmount"
     });
   },
   //优惠劵
@@ -152,4 +174,20 @@ Page({
       introduceVal:introduceVal
     })
   },
+  //会员名字转换
+  typeDes(val){
+    if(val == "贵宾卡"){
+      return 0;
+    }else if(val == "银卡"){
+      return 1;
+    }else if(val == "金卡"){
+      return 2;
+    }else if(val == "白金卡"){
+      return 3;
+    }else if(val == "黑金卡"){
+      return 4;
+    }else{
+      return 0;
+    }
+  }
 })

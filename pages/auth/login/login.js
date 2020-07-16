@@ -1,7 +1,7 @@
-var util = require('../../../utils/util.js');
-var user = require('../../../utils/user.js');
+let util = require('../../../utils/util.js');
+let user = require('../../../utils/user.js');
 
-var app = getApp();
+let app = getApp();
 Page({
   data: {
     agreeRadio:false

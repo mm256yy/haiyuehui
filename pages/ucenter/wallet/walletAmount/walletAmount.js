@@ -1,3 +1,6 @@
+let util = require('../../../../utils/util.js');
+let api = require('../../../../config/api.js');
+
 Page({
   data: {
     moneyShow:true,
@@ -5,14 +8,22 @@ Page({
     moneyValS:'0.00'
   },
   onLoad: function (options) {
-    this.setData({
-      moneyVal:parseInt(options.amount),
-      moneyValS:(parseInt(options.amount)/100).toFixed(2),
-    })
   },
   onShow: function () {
-    
+    this.init()
   },
+  init(){
+    util.request(api.MemberGet, 'GET').then(res => {
+      let money = res.result.arbal*(-1)
+      this.setData({
+        moneyVal:money,
+        moneyValS:(money/100).toFixed(2)
+      })
+    }).catch((err) => {
+      wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
+    });
+  },
+  //隐藏金额
   moneyHide(){
     this.setData({
       moneyShow:!this.data.moneyShow

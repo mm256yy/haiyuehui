@@ -18,7 +18,7 @@ function isNonnum(str){
 }
 //判断是否存在 true 纯字符串 false 存在空格或者特殊字符
 function spaceNo(str){
-  var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>《》/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+  let pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>《》/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
   if(pattern.test(str)||str.indexOf(" ") >= 0){
     return false;
   }else{
@@ -28,7 +28,7 @@ function spaceNo(str){
 
 /*验证并且提示*/
 //手机号码验证
-function checkMobile(mobile){  //使用：if(!util.checkMobile(this.data.mobile)){return false}
+function checkMobile(mobile){  //使用：if(!check.checkMobile(this.data.mobile)){return false}
   if(mobile.length == 0){
     wx.showModal({
       title: '错误信息',
@@ -55,7 +55,7 @@ function checkMobile(mobile){  //使用：if(!util.checkMobile(this.data.mobile)
   }
 }
 //姓名验证
-function checkName(name){ //使用：if(!util.checkName(this.data.name)){return false}
+function checkName(name){ //使用：if(!check.checkName(this.data.name)){return false}
   if(name.length == 0){
     wx.showModal({
       title: '错误信息',
@@ -82,7 +82,7 @@ function checkName(name){ //使用：if(!util.checkName(this.data.name)){return 
   }
 }
 //身份证验证
-function checkIdentity(identity){  //使用：if(!util.checkIdentity(this.data.identity)){return false}
+function checkIdentity(identity){  //使用：if(!check.checkIdentity(this.data.identity)){return false}
   if(identity.length == 0){
     wx.showModal({
       title: '错误信息',
@@ -116,7 +116,7 @@ function checkIdentity(identity){  //使用：if(!util.checkIdentity(this.data.i
   }
 }
 //金钱验证
-function checkMoney(money){ //使用：if(!util.checkMoney(this.data.identity)){return false}
+function checkMoney(money){ //使用：if(!check.checkMoney(this.data.identity)){return false}
   if(money == 999900 ||money == '0' ||money <= 0 ||money == ''||money == null||money == undefined ||money == 'undefined'){
     wx.showModal({
       title: '错误信息',

@@ -1,7 +1,7 @@
 /*支付*/
-var util = require('../utils/util.js');
-var api = require('../config/api.js');
-var app = getApp();
+let util = require('../utils/util.js');
+let api = require('../config/api.js');
+let app = getApp();
 //订房支付
 function usePay(param){
   console.log(app.globalData.canPay)

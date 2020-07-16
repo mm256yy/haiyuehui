@@ -58,12 +58,6 @@
   </view>
   <view class="hotels_other">
     <view class="other_li">
-      <text>预计到店</text><text>18:00点之前</text>
-    </view>
-    <view class="other_li">
-      <text>优惠劵</text><text>暂无优惠劵可用</text>
-    </view>
-    <view class="other_li">
       <text>早餐类型（必选）</text>
       <view class="breakfast_ul">
         <view bindtap="breakfastChoose" wx:if="{{item.price != 999900}}" data-index="{{index}}" wx:for="{{breakfastUl}}" wx:key="index" class="breakfast_li {{breakfastChoose == index?'breakfast_li_on':''}}">
@@ -71,6 +65,16 @@
           <view class="breakfast_li_text {{breakfastChoose == index?'breakfast_li_text_on':''}}">{{item.name}}</view>
         </view>
       </view>
+    </view>
+    <view class="other_li">
+      <text>预计到店</text><text>18:00点之前</text>
+    </view>
+    <view class="other_li">
+      <text>优惠劵</text><text>暂无优惠劵可用</text>
+    </view>
+    <view class="other_li">
+      <text>账户余额</text>
+      <image class="other_li_right" src="/static/images/right.png"></image>
     </view>
   </view>
   <view class="hotels_introduce">

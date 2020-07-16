@@ -1,11 +1,11 @@
-var check = require('../../../utils/check.js');
-var util = require('../../../utils/util.js');
-var api = require('../../../config/api.js');
+let check = require('../../../utils/check.js');
+let util = require('../../../utils/util.js');
+let api = require('../../../config/api.js');
 
 Page({
   data: {
     pics:[
-      // '/static/images/banner1.jpg',
+      '/static/images/banner1.jpg',
     ],
     room:{
       hotelId:'',
@@ -222,7 +222,7 @@ Page({
         'fill.mobileDisabled':false
       })
       //获取名字
-      util.request(api.UcenterSetMemberGet, 'GET').then(res => {
+      util.request(api.MemberGet, 'GET').then(res => {
         this.setData({
           'fill.name':(res.result.name != null?res.result.name:'')
         })
@@ -285,7 +285,7 @@ Page({
     console.log(param)
     util.request(api.CustomizedHotelsRoom , param , 'GET').then(res => {
       this.setData({
-        pics:res.result.imgList
+        pics:res.result.imgList.length == 0?['/static/images/banner1.jpg']:res.result.imgList
       })
     }).catch((err) => {
       // wx.showModal({title: '错误信息',content: err,showCancel: false}); 

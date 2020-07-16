@@ -1,5 +1,5 @@
-var util = require('../../../../utils/util.js');
-var api = require('../../../../config/api.js');
+let util = require('../../../../utils/util.js');
+let api = require('../../../../config/api.js');
 Page({
   data: {
     often:[

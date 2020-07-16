@@ -132,6 +132,11 @@ page{background-color: #f1f1f1;}
 .other_li:last-child{
   margin-bottom: 0rpx;
 }
+.other_li_right{
+  width: 40rpx;
+  height: 40rpx;
+  float: right;
+}
 /*breakfast*/
 .breakfast_ul{
   margin-top: 30rpx;

@@ -1,16 +1,11 @@
 {
   "pages":[
-    "pages/member/memberIndex/memberIndex",
-    "pages/ucenter/wallet/walletAmount/walletAmount",
-    
     "pages/index/index",
     
-    "pages/member/memberPower/memberPower",
     "pages/ucenter/set/visitor/visitor",
-    "pages/pop/calendar/index",
-    
+    "pages/member/memberIndex/memberIndex",
+    "pages/member/memberPower/memberPower",
     "pages/member/memberAgree/memberAgree",
-    
 
     "pages/auth/login/login",
     "pages/auth/loginAgree/loginAgree",
@@ -22,6 +17,7 @@
     "pages/customized/hotelsList/hotelsList",
     "pages/customized/payResult/payResult",
     "pages/customized/hotelsDetailed/hotelsDetailed",
+    "pages/customized/hotelsMap/hotelsMap",
 
     "pages/ucenter/index/index",
     "pages/ucenter/order/orderCancel/orderCancel",
@@ -35,20 +31,19 @@
     "pages/ucenter/invite/inviteList/inviteList", 
     "pages/ucenter/invite/inviteCode/inviteCode", 
     
-    "pages/ucenter/teamNumber/teamNumber",
-    
     "pages/ucenter/set/setIndex/setIndex",
     "pages/ucenter/set/oftenList/oftenList",
     "pages/ucenter/set/oftenEdit/oftenEdit",
     "pages/ucenter/set/information/information",
     
-    
+    "pages/ucenter/wallet/walletAmount/walletAmount",
     "pages/ucenter/wallet/walletConsume/walletConsume",
     "pages/ucenter/wallet/walletRecharge/walletRecharge",
     "pages/ucenter/wallet/walletProblem/walletProblem",
     
     "pages/ucenter/coupon/coupon",
-
+    "pages/ucenter/teamNumber/teamNumber",
+    "pages/pop/calendar/index",
     "pages/logs/logs",
     "pages/activity/actList/actList",
     "pages/activity/actDetailed/actDetailed"
@@ -72,7 +67,12 @@
         "selectedIconPath": "static/images/tab/index1.png",
         "text": "首页"
       },
-      
+      {
+        "pagePath": "pages/member/memberIndex/memberIndex",
+        "iconPath": "static/images/tab/member2.png",
+        "selectedIconPath": "static/images/tab/member1.png",
+        "text": "会员"
+      },
       {
         "pagePath": "pages/ucenter/index/index",
         "iconPath": "static/images/tab/ucenter2.png",

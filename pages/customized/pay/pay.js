@@ -1,7 +1,7 @@
 
-var util = require('../../../utils/util.js');
-var pay = require('../../../utils/pay.js');
-var api = require('../../../config/api.js');
+let util = require('../../../utils/util.js');
+let pay = require('../../../utils/pay.js');
+let api = require('../../../config/api.js');
 Page({
   data: {
     order:{
@@ -74,14 +74,14 @@ Page({
     pay.usePay(param).then(res => {
       //跳转
       wx.navigateTo({
-        url: "../payResult/payResult?result="+'1'
+        url: "../payResult/payResult?result=1&end=0"
       })
     }).catch(() => {
       //跳转
       wx.navigateTo({
-        url: "../payResult/payResult?result="+'0'
+        url: "../payResult/payResult?result=0&end=0"
       })
     });
   },
-  formatDateTime(inputTime) { var date = new Date(inputTime); var y = date.getFullYear(); var m = date.getMonth() + 1; m = m < 10 ? ('0' + m) : m; var d = date.getDate(); d = d < 10 ? ('0' + d) : d; var h = date.getHours(); h = h < 10 ? ('0' + h) : h; var minute = date.getMinutes(); var second = date.getSeconds(); minute = minute < 10 ? ('0' + minute) : minute; second = second < 10 ? ('0' + second) : second; return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second; }
+  formatDateTime(inputTime) { let date = new Date(inputTime); let y = date.getFullYear(); let m = date.getMonth() + 1; m = m < 10 ? ('0' + m) : m; let d = date.getDate(); d = d < 10 ? ('0' + d) : d; let h = date.getHours(); h = h < 10 ? ('0' + h) : h; let minute = date.getMinutes(); let second = date.getSeconds(); minute = minute < 10 ? ('0' + minute) : minute; second = second < 10 ? ('0' + second) : second; return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second; }
 })

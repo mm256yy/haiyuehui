@@ -1,6 +1,6 @@
-var util = require('../../../../utils/util.js');
-var check = require('../../../../utils/check.js');
-var api = require('../../../../config/api.js');
+let util = require('../../../../utils/util.js');
+let check = require('../../../../utils/check.js');
+let api = require('../../../../config/api.js');
 Page({
   data: {
     info:{

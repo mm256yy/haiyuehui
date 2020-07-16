@@ -26,8 +26,8 @@
         <image class="name_down" src="/static/images/down.png"></image>
       </view>
     </view>
-    <view class="head_info">
-      <view class="info_val">
+    <view class="head_info" > 
+      <view class="info_val" bindtap="goMap">
         <image src="/static/images/address.png"></image>
         <text>{{hotel.address}}</text>
         <image src="/static/images/hotel-address.png"></image>
@@ -108,7 +108,7 @@
           autoplay="true"
           interval="5000"
           >
-          <block wx:for="{{room.imgList}}" wx:key="item">
+          <block wx:for="{{(room.imgList.length == 0?['/static/images/banner1.jpg']:room.imgList)}}" wx:key="item">
             <swiper-item>
               <image src="{{item}}" class="banner_image" />
             </swiper-item>
@@ -116,11 +116,11 @@
         </swiper>
         <view class="info_body">
           <view class="info_body1">
-            <text class="info_attr_s info_attr"><text class="info_attr_val">面积</text><text>{{room.square}}</text></text>
-            <text class="info_attr_s info_attr"><text class="info_attr_val">楼层</text><text>{{room.floor}}</text></text>
-            <text class="info_attr_s info_attr"><text class="info_attr_val">加床</text><text>{{room.addBed}}</text></text>
-            <text class="info_attr_s info_attr"><text class="info_attr_val">吸烟</text><text>{{room.smoke}}</text></text>
-            <text class="info_attr_s info_attr"><text class="info_attr_val">窗户</text><text>{{room.windowType}}</text></text>
+            <text class="info_attr_s info_attr"><text class="info_attr_val">面积</text><text>{{room.square == null?'':room.square}}</text></text>
+            <text class="info_attr_s info_attr"><text class="info_attr_val">楼层</text><text>{{room.floor == null?'':room.floor}}</text></text>
+            <text class="info_attr_s info_attr"><text class="info_attr_val">加床</text><text>{{room.addBed == null?'':room.addBed}}</text></text>
+            <text class="info_attr_s info_attr"><text class="info_attr_val">吸烟</text><text>{{room.smoke == null?'':room.smoke}}</text></text>
+            <text class="info_attr_s info_attr"><text class="info_attr_val">窗户</text><text>{{room.windowType == null?'':room.windowType}}</text></text>
             <text class="info_attr_s info_attr"><text class="info_attr_val">其他</text><text></text></text>
           </view>
           <view class="info_body2">

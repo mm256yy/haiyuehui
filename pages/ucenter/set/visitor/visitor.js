@@ -1,4 +1,5 @@
 let util = require('../../../../utils/util.js');
+let check = require('../../../../utils/check.js');
 let api = require('../../../../config/api.js');
 
 Page({
@@ -8,13 +9,16 @@ Page({
       name:'',
       ident:'',
       mobile:'',
-      time:'30',
+      time:30,
     },
+    hotelId:'',
     visitorTime:30,
     visitorTimeS:'30分钟',
   },
   onLoad: function (options) {
-
+    this.setData({
+      hotelId:options.hotelId
+    })
   },
   onShow: function () {
 
@@ -44,8 +48,31 @@ Page({
   },
   //确认信息
   visitorBtn(){
-
-    console.log(this.data.info)
+    if(!check.checkName(this.data.info.name)){return false}
+    if(!check.checkIdentity(this.data.info.ident)){return false}
+    if(!check.checkMobile(this.data.info.mobile)){return false}
+    if(this.data.info.roomNo.length == 0){
+      wx.showModal({
+        title: '错误信息',
+        content: '房间号不能为空',
+        showCancel: false
+      });
+      return false;
+    }
+    let param = {
+      hotelId:this.data.hotelId, 
+      roomNo:this.data.info.roomNo,
+      name:this.data.info.name,
+      ident:this.data.info.ident,
+      mobile:this.data.info.mobile,
+      duration:this.data.info.time,
+    }
+    console.log(param)
+    util.request(api.UcenterVisitorAdd, param , 'POST').then(res => {
+      console.log(res)
+    }).catch((err) => {
+      wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
+    });
   },
   //同住人簿
   person(){

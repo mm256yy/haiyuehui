@@ -1,8 +1,8 @@
 // pages/auth/registerWx/registerWx.js
-var util = require('../../../utils/util.js');
-var user = require('../../../utils/user.js');
-var api = require('../../../config/api.js');
-var app = getApp();
+let util = require('../../../utils/util.js');
+let user = require('../../../utils/user.js');
+let api = require('../../../config/api.js');
+let app = getApp();
 Page({
   data: {
 

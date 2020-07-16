@@ -1,6 +1,6 @@
-var util = require('../../../utils/util.js');
-var api = require('../../../config/api.js');
-var user = require('../../../utils/user');
+let util = require('../../../utils/util.js');
+let api = require('../../../config/api.js');
+let user = require('../../../utils/user');
 Page({
   data: {
     isLogin:true,
@@ -183,6 +183,12 @@ Page({
       url: "/pages/pop/calendar/index"
     })
   },
+  //去地图
+  goMap(){
+    wx.navigateTo({ 
+      url: "/pages/customized/hotelsMap/hotelsMap?hotelId="+this.data.hotel.id
+    });
+  },
   //拨打电话
   goTel(){
     wx.makePhoneCall({
@@ -192,7 +198,7 @@ Page({
   //选择房间
   room(e){
     let data = e.currentTarget.dataset;
-    if(this.data.hotel.room[data.arr].avail!=0){
+    if(this.data.hotel.room[data.arr].avail>0){
       wx.setStorageSync("room", this.data.hotel.room[data.arr])
       if(this.data.isLogin){
         wx.navigateTo({
@@ -206,7 +212,6 @@ Page({
     }else{  //已满员
       wx.showModal({title: '错误信息',content: '房间已经满房',showCancel: false});
     }
-    
   },
   //pop显示
   infoShow(e){

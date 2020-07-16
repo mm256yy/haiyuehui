@@ -5,7 +5,7 @@ let app = getApp();
 Page({
   data: {
     ucenter:{
-      tou:'/static/images/person.png',
+      tou:'/static/images/person.jpg',
       name:'点击登陆',
       vip:'贵宾会员',
       progressVal:'0',
@@ -110,7 +110,7 @@ Page({
         badge:badgeNew
       })
       wx.setTabBarBadge({
-        index: 1,
+        index: 2,
         text:'1',
         success: res => { console.log(res) },
         fail: res => { console.error }
@@ -171,7 +171,7 @@ Page({
     })
     app.globalData.badge = "";
     wx.removeTabBarBadge({
-      index: 1,
+      index: 2,
       success: res => { console.log(res) },
       fail: res => { console.error }
     })
@@ -195,7 +195,9 @@ Page({
   },
   //我的钱包
   wallet(){
-    util.showErrorToast("暂未开放")
+    wx.navigateTo({ 
+      url: "/pages/ucenter/wallet/walletAmount/walletAmount"
+    });
   },
   //个人信息
   goInformation(){
