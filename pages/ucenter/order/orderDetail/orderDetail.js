@@ -1,4 +1,5 @@
 let util = require('../../../../utils/util.js');
+let check = require('../../../../utils/check.js');
 let api = require('../../../../config/api.js');
 let pay = require('../../../../utils/pay.js');
 let app = getApp();
@@ -19,6 +20,8 @@ Page({
       contactsName:'',
       contactsTel:'',
       isCis:false,
+      isOverdue:null,  //是否超时
+      canStay:false,
     },
     personUl:[
       /*{    
@@ -66,9 +69,6 @@ Page({
     //退出页面时把密码删除
     app.globalData.orderPwd = "";
   },
-  onHide() {
-    
-  },
   //初始化
   init(options){
     this.setData({
@@ -98,6 +98,8 @@ Page({
         contactsName:data.name,
         contactsTel:data.mobile,
         isCis:data.isCis,
+        isOverdue:check.checkIsOverdue(data.dep),
+        canStay:check.checkCanStay(data.arr)
       }
       let dayNum = (new Date(data.dep) - new Date(data.arr))/1000/60/60/24
       moneyNew = {
@@ -125,6 +127,7 @@ Page({
         }
       }
       personUlNew = personsUL;
+      console.log(detailNew)
       this.setData({
         detail:detailNew,
         personUl:personUlNew,
@@ -227,6 +230,7 @@ Page({
   //点击办理入住
   goOrderChoose(){
     let that = this;
+
     /*申请调用*/
     wx.requestSubscribeMessage({
       tmplIds: ['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'],

@@ -16,7 +16,7 @@
       </view>
     </view>
   </view>
-  <view class="wallet_recharge" bindtap="rechargePay">
+  <view class="wallet_recharge">
     <text class="">充值方式</text>
     <text class="wallet_recharge_type">微信支付</text>
   </view>

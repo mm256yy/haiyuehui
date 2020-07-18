@@ -69,7 +69,11 @@ Page({
     }
     console.log(param)
     util.request(api.UcenterVisitorAdd, param , 'POST').then(res => {
-      console.log(res)
+      wx.showModal({title: '成功',content: '提交成功' ,showCancel: false , success (res) {
+        wx.switchTab({
+          url: "/pages/index/index"
+        })
+      }}); 
     }).catch((err) => {
       wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
     });

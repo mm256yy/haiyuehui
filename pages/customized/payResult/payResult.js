@@ -32,7 +32,7 @@ Page({
       })
     }else if(val == 1){  //充值
       wx.navigateBack({
-        delta: 1
+        delta: 2
       })
     }
   }

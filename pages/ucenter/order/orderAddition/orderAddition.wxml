@@ -33,6 +33,6 @@
       <view class="btn_li" bindtap="startBtn0" wx:if="{{additionType == 0}}">确认同住人</view>
       <view class="btn_li" bindtap="startBtn1" wx:if="{{additionType == 1}}">确认访客</view>
     </view>
-    <view class="agreement">确认即同意<text class="agreement_href">《海外海酒店协议》</text></view>
+    <view class="agreement">确认即同意<text class="agreement_href" bindtap="goAgree">《海外海酒店协议》</text></view>
   </view>
 </view>

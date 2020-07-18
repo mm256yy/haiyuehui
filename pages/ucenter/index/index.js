@@ -97,9 +97,10 @@ Page({
     }
   },
   onLoad: function () {
-    this.login();
+    
   },
   onReady: function () {
+    this.login();
   },
   onShow: function () {
     console.log(app.globalData)

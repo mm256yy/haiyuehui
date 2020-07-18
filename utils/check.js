@@ -128,7 +128,30 @@ function checkMoney(money){ //使用：if(!check.checkMoney(this.data.identity))
     return true;
   }
 }
-
+//时间验证 是否过期
+function checkIsOverdue(time){
+  let timeNew = new Date(time).getTime();
+  let day = new Date().getTime();
+  if(day>(timeNew+1000*60*60*24)){
+    return true;
+  }else{
+    return false;
+  }
+}
+//时间验证 是否是当前时间
+function checkCanStay(time){
+  let timeNew = new Date(time).getTime();
+  let date = new Date();
+  let YY = date.getFullYear() + '-';
+  let MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+  let DD = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+  let day = new Date(YY+MM+DD).getTime();
+  if(day === timeNew){
+    return true;
+  }else{
+    return false;
+  }
+}
 
 module.exports = {
   isValidPhone,
@@ -139,4 +162,7 @@ module.exports = {
   checkName,
   checkIdentity,
   checkMoney,
+
+  checkIsOverdue,
+  checkCanStay,
 }

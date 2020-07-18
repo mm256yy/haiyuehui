@@ -71,20 +71,11 @@ function loginByWeixin(userInfo) {
 /*判断用户是否登录*/
 function checkLogin() {
   return new Promise(function(resolve, reject) {
-    if (wx.getStorageSync('token')) {
-      // checkSession().then(() => {
-      //   resolve(true);
-      // }).catch(() => {
-      //   reject(true);
-      // });
-      util.request(api.AuthCheckToken , 'POST').then(res => {
-        resolve(res);
-      }).catch((err) => {
-        reject(true);
-      });
-    } else {
+    util.request(api.AuthCheckToken , 'POST').then(res => {
+      resolve(res);
+    }).catch((err) => {
       reject(true);
-    }
+    });
   });
 }
 module.exports = {

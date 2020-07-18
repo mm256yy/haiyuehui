@@ -167,7 +167,7 @@ page{
   height: 70rpx;
 }
 .privilege_li_show{
-  opacity: 0.6;
+  opacity: 0.3;
 }
 .privilege_li_t1{
   color: #fff;

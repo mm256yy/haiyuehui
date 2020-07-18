@@ -27,13 +27,13 @@
   </view>
   <view class="member_wallet">
     <view class="wallet_ul">
-      <view class="wallet_li">
-        <view class="wallet_li_t1">我的积分</view>
-        <view class="wallet_li_t2">{{info.points}}</view>
-      </view>
       <view class="wallet_li" bindtap="walletAmount">
         <view class="wallet_li_t1">我的余额</view>
         <view class="wallet_li_t2">{{info.moneyS}}</view>
+      </view>
+      <view class="wallet_li">
+        <view class="wallet_li_t1">我的积分</view>
+        <view class="wallet_li_t2">{{info.points}}</view>
       </view>
       <!-- <view class="wallet_li" bindtap="coupon">
         <view class="wallet_li_t1">优惠劵</view>

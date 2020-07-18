@@ -1,8 +1,9 @@
 {
   "pages":[
-    "pages/index/index",
     
+    "pages/index/index",
     "pages/ucenter/set/visitor/visitor",
+    
     "pages/member/memberIndex/memberIndex",
     "pages/member/memberPower/memberPower",
     "pages/member/memberAgree/memberAgree",

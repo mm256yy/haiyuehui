@@ -89,7 +89,7 @@ Page({
       mobile:this.data.info.mobile
     }
     console.log(param)
-    util.request(api.UcenterVisitorAddInfo , param , 'POST').then(res => {
+    util.request(api.UcenterVisitorAdd , param , 'POST').then(res => {
       wx.showModal({ title: '成功',content: '提交成功',showCancel: false , success (res) {
         if (res.confirm) {
           wx.navigateBack({
@@ -109,4 +109,9 @@ Page({
       url: "/pages/ucenter/set/oftenList/oftenList?oftenType=1"
     })
   },
+  goAgree(){
+    wx.navigateTo({
+      url: "/pages/member/memberAgree/memberAgree"
+    })
+  }
 })

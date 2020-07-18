@@ -1,4 +1,3 @@
-<!--index.wxml-->
 <view class="container">
   <view class="home_head">
     <view class="home_swiper">

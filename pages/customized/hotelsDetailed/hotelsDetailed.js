@@ -69,17 +69,15 @@ Page({
     if(hotel.address == null||hotel.address == 'null'||hotel.address == undefined||hotel.address == ''){
       hotelVal = '暂无地址'
     }else{
-      hotelVal = hotel.address
+      hotelVal = hotel.address;
     }
       //判断电话
     let telVal = '';
-    console.log(hotel.tel == null||hotel.tel == 'null')
     if(hotel.tel == null||hotel.tel == 'null'||hotel.tel == undefined||hotel.tel == ''){
       telVal = '暂无电话'
     }else{
       telVal = hotel.tel
     }
-    console.log(hotelVal)
     this.setData({   
       time: timeNew,
       'hotel.id':hotel.id,
@@ -125,7 +123,7 @@ Page({
             wec:util.importantMoney(res.result[i].wec),  //双早
             wec3:util.importantMoney(res.result[i].wec3),  //三早
             wracS:(util.importantMoney(res.result[i].wrac)/100),  
-            wec0S:(isLoginNew?(this.moneyMin(res.result[i].wec0,res.result[i].wec1,res.result[i].wec,res.result[i].wec3)/100):'？？？'), 
+            wec0S:(isLoginNew?(this.moneyMin(res.result[i].wec0,res.result[i].wec1,res.result[i].wec,res.result[i].wec3)/100):'???? '), 
           }
           roomNew.push(roomLi)
         }
@@ -222,7 +220,7 @@ Page({
     }
     console.log(param)
     util.request(api.CustomizedHotelsRoom , param , 'GET').then(res => {
-      let roomNew = res.result
+      let roomNew = res.result;
       this.setData({
         room:roomNew
       })

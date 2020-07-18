@@ -32,7 +32,7 @@ Page({
       return false
     }
     let param = {
-      money:1 //this.data.moneyNum*100
+      money:(api.testing?1:this.data.moneyNum*100),
     }
     console.log(param)
     util.request(api.MemberRechargeSubmit , param , 'POST').then(res => {

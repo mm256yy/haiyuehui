@@ -1,4 +1,5 @@
 let util = require('../../../../utils/util.js');
+let check = require('../../../../utils/check.js');
 let api = require('../../../../config/api.js');
 let pay = require('../../../../utils/pay.js');
 // pages/ucenter/order/index.js
@@ -28,6 +29,7 @@ Page({
         show:true,
         canAdd:0,  //判断是否显示续住订单 0 隐藏 1 显示
         isCis:true,
+        isOverdue:true,  //是否超时
       }*/
     ],
     pageNo:1,
@@ -80,7 +82,8 @@ Page({
             roomNo:res.result.records[i].roomNo,
             show:(res.result.records[i].parentOrderId == ""),
             canAdd:res.result.records[i].canAdd,
-            isCis:res.result.records[i].isCis
+            isCis:res.result.records[i].isCis,
+            isOverdue:check.checkIsOverdue(res.result.records[i].dep),
           }
           o_ul.push(o_li)
         }

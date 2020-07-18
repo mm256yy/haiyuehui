@@ -1,16 +1,17 @@
  // 以下是业务服务器API地址 
  // 手机 开发API地址 
- // let WxApiRoot = 'http://112.17.106.101:9001/wx/';  
+ // let WxApiRoot = 'http://112.17.106.101:9001/wx/';  let testing = true;
  // 正式线上ip 
- // let WxApiRoot = 'http://124.70.147.182:9001/wx/';
+ // let WxApiRoot = 'http://124.70.147.182:9001/wx/'; let testing = false;
  // 测试线上ip
- let WxApiRoot = 'http://124.70.132.80:9001/wx/'; 
+ let WxApiRoot = 'http://124.70.132.80:9001/wx/'; let testing = true;
  // 本机 开发api地址
- // let WxApiRoot = 'http://192.168.133.67:9002/wx/';  //'http://192.168.188.79:9001/wx/';
+ // let WxApiRoot = 'http://192.168.133.67:9002/wx/'; let testing = true;    //'http://192.168.188.79:9001/wx/';
  // 生产地址
- // let WxApiRoot = 'https://www.hwhhotels.com/wx/';
+ // let WxApiRoot = 'https://www.hwhhotels.com/wx/'; let testing = false;
  
  module.exports = {
+   testing,  //判断是否是测试环境
    AuthCheckToken: WxApiRoot + 'auth/checkToken', //判断token是否过期 hwh
    AuthLoginByWeixin: WxApiRoot + 'auth/wxLogin', //微信登录 hwh
    AuthRegisterCaptcha: WxApiRoot + 'auth/sendSmsCode', //验证码 hwh
@@ -36,7 +37,7 @@
    UcenterOrderDaysSubmit: WxApiRoot + 'order/addDaysSubmit', //续住下订单 hwh
    UcenterAddDaysList: WxApiRoot + 'order/addDaysList', //查询续住列表 hwh
    //UcenterVisitorSendMobile: WxApiRoot + 'visitor/sendMobile', //访客发起手机号 
-   UcenterVisitorAddInfo: WxApiRoot + 'visitor/addInfo', //添加访客
+  //  UcenterVisitorAddInfo: WxApiRoot + 'visitor/addInfo', //添加访客
    UcenterVisitorAdd: WxApiRoot + 'visitor/add', //访客扫描二维码自行添加
    UcenterConnectOrder: WxApiRoot + 'order/connectOrder', //查询订单（转移订单-接受）
    UcenterOrderOta: WxApiRoot + 'order/otaOrder', //查询订单（转移订单-接受）(OTA)

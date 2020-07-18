@@ -1,5 +1,6 @@
 <!--pages/ucenter/orderDetail/orderDetail.wxml-->
 <view>
+  <import src="/template/template"/> 
   <view class="order_type">
     <image class="order_type_img" src="/static/images/order_ba.jpg"></image>
     <text>{{detail.statusS}}</text>
@@ -13,11 +14,11 @@
       <view><text class="detail_t1">入住时间：</text><text class="detail_t0">{{detail.startTimeS}}至{{detail.endTimeS}}</text></view>
       <view class="detail_relative">
         <text class="detail_t1">订单编号：</text><text class="detail_t0">{{detail.orderId}}</text>
-        <text wx:if="{{(detail.status == 11||detail.status == 22)&&detail.isCis}}" bindtap="copy" class="{{allowConnect == 0?'detail_share_n':'detail_share_y'}}">{{allowConnect == 0?'授权已关闭':'授权已开启'}}</text>
-        <image wx:if="{{(detail.status == 11||detail.status == 22)}}" bindtap="copy" data-text="{{detail.orderNo}}" class="detail_copy" src="/static/images/copy_{{allowConnect == 0?'n':'y'}}.png"></image>
+        <text wx:if="{{(detail.status == 11||detail.status == 22)&&detail.isCis&&(!detail.isOverdue)}}" bindtap="copy" class="{{allowConnect == 0?'detail_share_n':'detail_share_y'}}">{{allowConnect == 0?'授权已关闭':'授权已开启'}}</text>
+        <image wx:if="{{(detail.status == 11||detail.status == 22)&&(!detail.isOverdue)}}" bindtap="copy" data-text="{{detail.orderNo}}" class="detail_copy" src="/static/images/copy_{{allowConnect == 0?'n':'y'}}.png"></image>
       </view>
     </view>
-    <view class="detail_copy_i" wx:if="{{(detail.status == 11||detail.status == 22)}}">
+    <view class="detail_copy_i" wx:if="{{(detail.status == 11||detail.status == 22)&&(!detail.isOverdue)}}">
       <view>点击订单授权按钮可以打开转移订单的授权，并且复制，可把订单转移给他人</view>
       <view>注：若房间自己入住，请关闭订单的授权</view>
     </view>
@@ -49,16 +50,19 @@
         </view>
       </view>
     </view>
-    <view class="person_ul" wx:if="{{detail.status == 22||detail.status == 31}}">
+    <view class="zero_box" wx:if="{{(detail.status == 22||detail.status == 31)&&(detail.isOverdue)}}">
+      <template is="zeroSmall" data="{{list: personUl}}"/>
+    </view>
+    <view class="person_ul" wx:if="{{(detail.status == 22||detail.status == 31)&&(!detail.isOverdue)}}">
       <view class="person_li">
         <view class="liveN" wx:if="{{!item.live}}">
-          <button wx:if="{{personUl.length == 0}}"  class="liveN_btn" bindtap="goOrderChoose" type='primary'>办理入住</button>
+          <button wx:if="{{personUl.length == 0}}"  class="liveN_btn {{detail.canStay?'':'liveN_btn_n'}}" bindtap="{{detail.canStay?'goOrderChoose':''}}" type='primary'>{{detail.canStay?'办理入住':'请当天办理入住'}}</button>
           <view wx:if="{{personUl.length != 0}}" class="liveN_btn" bindtap="goOrderAddition" data-type="0">添加同住人</view>
           <text class="detail_t4">{{personUl.length == 0?'办理入住后可扫脸开门':'同住人将赋予同等扫脸开门权限'}}</text>
         </view>
       </view>
     </view>
-    <view  class="person_ul" wx:if="{{(detail.status == 22||detail.status == 31)&&personUl.length != 0}}">
+    <view  class="person_ul" wx:if="{{(detail.status == 22||detail.status == 31)&&(personUl.length != 0)&&(!detail.isOverdue)}}">
       <view class="person_li">
         <view class="liveN" wx:if="{{!item.live}}">
           <view class="liveN_btn" bindtap="goOrderAddition" data-type="1">+ 添加访客</view>

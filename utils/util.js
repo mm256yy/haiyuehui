@@ -177,7 +177,7 @@ function importantMoney(money){
 
 //网络监听
 function networkManage(){
-  let that = this
+  let that = this;
     //监听网络状态
   wx.onNetworkStatusChange(function (res) {
     if (!res.isConnected) {

@@ -142,7 +142,7 @@ Page({
       hotelid:this.data.hotel.hotelId,
       arr:this.data.hotel.arr,
       dep:this.data.hotel.dep,
-      floor:22,//this.data.floorUl[this.data.floorArr].code,
+      floor:(api.testing?this.data.floorUl[this.data.floorArr].code:22),
       feature:chooseType.substring(0, chooseType.length - 1),
       rmtype:this.data.hotel.rmtype
     }
