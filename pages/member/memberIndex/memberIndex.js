@@ -79,29 +79,29 @@ Page({
     if(wx.getStorageSync("userInfo")){
       userInfo = wx.getStorageSync("userInfo") 
     }else if(app.globalData.userInfo){
-      userInfo = app.globalData.userInfo
+      userInfo = app.globalData.userInfo;
     }else{
-      return false
+      return false;
     }
     console.log(userInfo)
     this.setData({
       'info.avatarUrl':userInfo.avatarUrl,
       'info.name':userInfo.name != null?userInfo.name:'',
-    })
+    });
     // //获取到当前的手机号
     // let tel = wx.getStorageSync('userInfoMobile');
     // if(tel){  //如果存在
     //   util.request(api.MemberGet, 'GET').then(res => {
     //     this.setData({
     //       'info.name':res.result.name != null?res.result.name:'',
-    //     })
+    //     });
     //   }).catch((err) => {
     //     wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     //   });
     // }else{
     //   wx.navigateTo({
     //     url: "/pages/auth/login/login"
-    //   })
+    //   });
     // }
   },
    //会员卡信息

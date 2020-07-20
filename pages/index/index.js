@@ -49,19 +49,19 @@ Page({
   //跳转酒店列表
   hotelsList(){
     wx.navigateTo({
-      url: "/pages/customized/hotelsList/hotelsList"
+      url: "/pages/customized/hotelsList/hotelsList",
     });
   },
   //跳转日历
   calendarShow(){
     wx.navigateTo({
-      url: "/pages/pop/calendar/index"
+      url: "/pages/pop/calendar/index",
     });
   },
   //跳转日历
   orderTransfer(){
     wx.navigateTo({
-      url: "/pages/ucenter/order/orderTransfer/orderTransfer"
+      url: "/pages/ucenter/order/orderTransfer/orderTransfer",
     });
   },
   //进行日历处理
@@ -86,7 +86,7 @@ Page({
       calendarSto = {
         startTime:new Date(new Date().toLocaleDateString()).getTime(),
         endTime:new Date(new Date().toLocaleDateString()).getTime()+24*60*60*1000,
-      }
+      };
       wx.setStorageSync("calendar", calendarSto);
     }
     //转化成展示数据
