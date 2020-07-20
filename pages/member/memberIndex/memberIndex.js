@@ -13,7 +13,7 @@ Page({
       couponNum:0,
       arr:'',
       dep:'2020-12-12',
-      cardNo:'SXC15615615',
+      cardNo:'1500615615',
       card:{
         baImg:'card5',
         nameC:'贵宾卡',
@@ -26,9 +26,9 @@ Page({
     powerUl:[],
     powerUlShow:[
       {img:'power0',text1:'订房折扣',text2:'9.5折'},
-      {img:'power1',text1:'餐饮折扣',text2:'9.5折'},
-      {img:'power2',text1:'娱乐折扣',text2:'9.5折'},
-      {img:'power3',text1:'积分奖励',text2:'1倍积分'},
+      {img:'power3',text1:'积分奖励',text2:'1倍'},
+      {img:'power22',text1:'免费取消',text2:''},
+      {img:'power18',text1:'延迟退房',text2:'14:00'},
     ],
     couponUl:[
       // {
@@ -70,6 +70,7 @@ Page({
       powerUl : member.powerUl,
       'info.card' : member.memberCard[0],
     });
+    
   },
   //会员信息 头像/名字
   memberInfo(){
@@ -168,7 +169,7 @@ Page({
   //会员特权详细
   introduceValShow(e){
     let index = e.currentTarget.dataset.index
-    let introduceVal = member.powerUl[index].introduce
+    let introduceVal = this.data.powerUlShow[index].text1
     this.setData({
       introduceShow:!this.data.introduceShow,
       introduceVal:introduceVal

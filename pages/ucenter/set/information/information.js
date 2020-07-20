@@ -55,6 +55,7 @@ Page({
   },
   //确认信息
   btnSuccess(){
+    let that = this;
     if(!check.checkName(this.data.info.name)){return false}
     if(!check.checkIdentity(this.data.info.ident)){return false}
     let param = {
@@ -68,10 +69,10 @@ Page({
         content: '身份证信息填写后将不允许修改',
         success: function(res) {
           if (res.confirm) {
-            console.log('用户点击确定')
-            this.edit(param)  
+            console.log('用户点击确定');
+            that.edit(param); 
           } else if (res.cancel) {
-            console.log('用户点击取消')
+            console.log('用户点击取消');
           }
         }
       })

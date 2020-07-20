@@ -139,14 +139,16 @@ function checkIsOverdue(time){
   }
 }
 //时间验证 是否是当前时间
-function checkCanStay(time){
-  let timeNew = new Date(time).getTime();
+function checkCanStay(day){
+  let dayOld = new Date(day).getTime();
   let date = new Date();
   let YY = date.getFullYear() + '-';
   let MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
   let DD = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-  let day = new Date(YY+MM+DD).getTime();
-  if(day === timeNew){
+  let dayNew = new Date(YY+MM+DD).getTime();
+  console.log(dayNew)
+  console.log(dayOld)
+  if(dayNew === dayOld){
     return true;
   }else{
     return false;

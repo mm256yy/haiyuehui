@@ -46,14 +46,14 @@
         <view class="progress_li_t1">{{item.nameC}}</view>
       </view>
     </view>
-    <view class="progress_li_label">☆再住<text class="progress_li_t2">3</text>间夜可升级为 | 银卡 |</view>
+    <view class="progress_li_label" wx:if="{{false}}">☆再住<text class="progress_li_t2">3</text>间夜可升级为 | 银卡 |</view>
   </view>
   <view class="member_privilege">
     <view class="privilege_ba " >
       <!-- <image src="/static/images/member-i1.png" class="member_i1"></image> -->
       <image src="/static/images/member-i2.png" class="member_i2"></image>
       <view class="privilege_ul ">
-        <view class="privilege_li {{item.show?'':'privilege_li_show'}}" bindtap="introduceValShow" data-index="{{index}}" wx:if="{{powerRelease||index<8}}" wx:for="{{powerUl}}" wx:key="index">
+        <view class="privilege_li {{item.use?'':'privilege_li_show'}}" bindtap="introduceValShow" data-index="{{index}}" wx:if="{{item.show}}" wx:for="{{powerUl}}" wx:key="index">
           <image class="privilege_li_img" src="/static/images/power/{{item.img}}.png"></image>
           <view class="privilege_li_t1">{{item.text1}}</view>
           <view class="privilege_li_t1">{{item.text2}}</view>

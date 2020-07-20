@@ -56,7 +56,7 @@ let powerUl = [
     text1:'餐饮折扣',
     text2:'9.5折',
     introduce:'餐饮折扣',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'餐饮折扣',text2:'9.5折',use:true},
       {arr:1,text1:'餐饮折扣',text2:'9折',use:true},
@@ -70,7 +70,7 @@ let powerUl = [
     text1:'娱乐折扣',
     text2:'9.5折',
     introduce:'娱乐折扣',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'娱乐折扣',text2:'9.5折',use:true},
       {arr:1,text1:'娱乐折扣',text2:'9折',use:true},
@@ -112,7 +112,7 @@ let powerUl = [
     text1:'夜床服务',
     text2:'',
     introduce:'夜床服务',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'夜床服务',text2:'',use:true},
       {arr:1,text1:'夜床服务',text2:'',use:true},
@@ -124,15 +124,15 @@ let powerUl = [
   {
     img:'power18',
     text1:'延迟退房',
-    text2:'14:00',
+    text2:'14：00',
     introduce:'延迟退房（视当日住房情况而定）',
     show:true,
     grade:[
-      {arr:0,text1:'延迟退房',text2:'14:00',use:true},
-      {arr:1,text1:'延迟退房',text2:'14:00',use:true},
-      {arr:2,text1:'延迟退房',text2:'15:00',use:true},
-      {arr:3,text1:'延迟退房',text2:'16:00',use:true},
-      {arr:4,text1:'延迟退房',text2:'16:00',use:true},
+      {arr:0,text1:'延迟退房',text2:'14：00',use:true},
+      {arr:1,text1:'延迟退房',text2:'14：00',use:true},
+      {arr:2,text1:'延迟退房',text2:'15：00',use:true},
+      {arr:3,text1:'延迟退房',text2:'16：00',use:true},
+      {arr:4,text1:'延迟退房',text2:'16：00',use:true},
     ],
   },
   {
@@ -154,7 +154,7 @@ let powerUl = [
     text1:'迎宾鲜果',
     text2:'首日',
     introduce:'迎宾鲜果',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'迎宾鲜果',text2:'首日',use:false},
       {arr:1,text1:'迎宾鲜果',text2:'首日',use:false},
@@ -168,7 +168,7 @@ let powerUl = [
     text1:'欢迎糕点/礼品',
     text2:'首日',
     introduce:'欢迎糕点/礼品',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'欢迎糕点/礼品',text2:'首日',use:false},
       {arr:1,text1:'欢迎糕点/礼品',text2:'首日',use:false},
@@ -196,7 +196,7 @@ let powerUl = [
     text1:'餐饮酒水',
     text2:'提供保价',
     introduce:'餐饮酒水提供保价',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'餐饮酒水',text2:'提供保价',use:false},
       {arr:1,text1:'餐饮酒水',text2:'提供保价',use:false},
@@ -210,7 +210,7 @@ let powerUl = [
     text1:'代驾接送',
     text2:'仅送回',
     introduce:'代驾接送',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'代驾接送',text2:'仅送回',use:false},
       {arr:1,text1:'代驾接送',text2:'仅送回',use:false},
@@ -238,7 +238,7 @@ let powerUl = [
     text1:'专享通道',
     text2:'办理入住',
     introduce:'专享通道办理入住',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'专享通道',text2:'办理入住',use:false},
       {arr:1,text1:'专享通道',text2:'办理入住',use:false},
@@ -252,7 +252,7 @@ let powerUl = [
     text1:'提前入住',
     text2:'10:00起',
     introduce:'提前入住',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'提前入住',text2:'10:00起',use:false},
       {arr:1,text1:'提前入住',text2:'10:00起',use:false},
@@ -266,7 +266,7 @@ let powerUl = [
     text1:'客房升级',
     text2:'升一级',
     introduce:'客房升级',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'客房升级',text2:'升一级',use:false},
       {arr:1,text1:'客房升级',text2:'升一级',use:false},
@@ -280,7 +280,7 @@ let powerUl = [
     text1:'指定饮品',
     text2:'',
     introduce:'指定饮品',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'指定饮品',text2:'',use:false},
       {arr:1,text1:'指定饮品',text2:'',use:false},
@@ -294,7 +294,7 @@ let powerUl = [
     text1:'免费使用',
     text2:'行政走廊',
     introduce:'免费使用行政走廊',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'免费使用',text2:'行政走廊',use:false},
       {arr:0,text1:'免费使用',text2:'行政走廊',use:false},
@@ -308,7 +308,7 @@ let powerUl = [
     text1:'免费提供',
     text2:'下午茶',
     introduce:'免费提供下午茶',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'免费提供',text2:'下午茶',use:false},
       {arr:1,text1:'免费提供',text2:'下午茶',use:false},
@@ -322,7 +322,7 @@ let powerUl = [
     text1:'洗衣熨烫',
     text2:'每日一套',
     introduce:'洗衣熨烫',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'洗衣熨烫',text2:'每日一套',use:false},
       {arr:1,text1:'洗衣熨烫',text2:'每日一套',use:false},
@@ -336,7 +336,7 @@ let powerUl = [
     text1:'早餐送房',
     text2:'',
     introduce:'早餐送房',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'早餐送房',text2:'',use:false},
       {arr:1,text1:'早餐送房',text2:'',use:false},
@@ -350,7 +350,7 @@ let powerUl = [
     text1:'游泳健身',
     text2:'提供使用',
     introduce:'游泳健身',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'游泳健身',text2:'提供使用',use:false},
       {arr:1,text1:'游泳健身',text2:'提供使用',use:false},

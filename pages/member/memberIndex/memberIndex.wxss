@@ -114,9 +114,14 @@ page{
   text-align: left;
   font-size: 34rpx;
 }
+.member_title_no{
+  text-align: left;
+  font-size: 28rpx;
+  color: #039cee;
+}
 .member_title_most{
   float: right;
-  font-size: 24rpx;
+  font-size: 26rpx;
   line-height: 45rpx;
 }
 .power_ul{

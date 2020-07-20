@@ -90,7 +90,7 @@ Page({
     let memberVal = this.data.memberVal;
     console.log(memberVal)
     for(let i=0;i<powerUl.length;i++){
-      powerUl[i].show = powerUl[i].grade[memberVal].use;
+      powerUl[i].use = powerUl[i].grade[memberVal].use;
       powerUl[i].text1 = powerUl[i].grade[memberVal].text1;
       powerUl[i].text2 = powerUl[i].grade[memberVal].text2;
     }

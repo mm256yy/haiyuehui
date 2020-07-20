@@ -1,6 +1,6 @@
 
 page{
-  background-color: #f1f1f1;
+  background-color: #33353e;
 }
 /*head*/
 .member_head{
@@ -80,7 +80,7 @@ page{
 .member_progress{
   height: 200rpx;
   background-color: #33353e;
-  margin-bottom: 10rpx;
+  border-bottom: 10rpx solid #fff;
   /* background: linear-gradient(to right, #039cee , #753ffd); */
 }
 .progress_ul{

@@ -37,7 +37,7 @@
    UcenterOrderDaysSubmit: WxApiRoot + 'order/addDaysSubmit', //续住下订单 hwh
    UcenterAddDaysList: WxApiRoot + 'order/addDaysList', //查询续住列表 hwh
    //UcenterVisitorSendMobile: WxApiRoot + 'visitor/sendMobile', //访客发起手机号 
-  //  UcenterVisitorAddInfo: WxApiRoot + 'visitor/addInfo', //添加访客
+   //UcenterVisitorAddInfo: WxApiRoot + 'visitor/addInfo', //添加访客
    UcenterVisitorAdd: WxApiRoot + 'visitor/add', //访客扫描二维码自行添加
    UcenterConnectOrder: WxApiRoot + 'order/connectOrder', //查询订单（转移订单-接受）
    UcenterOrderOta: WxApiRoot + 'order/otaOrder', //查询订单（转移订单-接受）(OTA)

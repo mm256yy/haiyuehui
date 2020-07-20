@@ -41,9 +41,10 @@
       </view> -->
     </view>
   </view>
-  <view class="member_list">
+  <view class="member_list" wx:if="{{true}}">
     <view class="member_title">
       <text class="member_title">会员权益</text>
+      <text class="member_title_no">（暂未开启，敬请期待）</text>
       <text class="member_title_most" bindtap="powerMost">更多权益 ></text>
     </view>
     <view class="power_ul">
