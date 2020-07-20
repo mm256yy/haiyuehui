@@ -13,7 +13,7 @@ Page({
       id:0,
       name:'暂无酒店名',
       pics:[
-        '/static/images/banner1.jpg',
+        // '/static/images/banner1.jpg',
       ],
       address:'暂无地址',
       tel:'暂无电话',

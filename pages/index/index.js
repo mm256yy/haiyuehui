@@ -7,7 +7,7 @@ Page({
   data: {
     bannerUrls:[
       '/static/images/banner1.jpg',
-      '/static/images/banner3.jpg',
+      '/static/images/banner4.jpg',
     ],
     hotelsName:'点击选择酒店',
     hotelsId:'hotelsId',
