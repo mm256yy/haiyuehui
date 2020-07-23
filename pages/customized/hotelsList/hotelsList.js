@@ -14,7 +14,7 @@ Page({
         hotelsLi = {
           id:res.result[i].id,
           name:res.result[i].name,
-          img:res.result[i].imgList != null?res.result[i].imgList[0]:'/static/images/banner1.jpg',
+          img:res.result[i].imgList != null?res.result[i].imgList[0]:'/static/images/banner2.jpg',
           address:res.result[i].address,
           deposit:res.result[i].deposit,
           tel:res.result[i].tel,
@@ -27,8 +27,7 @@ Page({
         hotels: hotelsUl
       })
     }).catch((err) => {
-      console.log(err)
-      // wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
   onShow: function () {
@@ -36,7 +35,6 @@ Page({
   },
   hotelsDetailed(e){
     //存储到缓存
-    console.log(e.currentTarget.dataset)
     wx.setStorageSync("hotel", this.data.hotels[e.currentTarget.dataset.arr])
     //跳转
     wx.navigateTo({

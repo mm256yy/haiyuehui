@@ -11,31 +11,27 @@ Page({
       time:'',
       timeS:'',
     },
+    mode:{
+      // balance:0,
+      // balanceS:'0.00',
+      // balanceRadio:false,
+    },
     pay:{
-      discount:0,
-      discountS:'0.00',
-      coupon:0,
-      couponS:'0.00',
       payment:0,
       paymentS:'0.00',
-      remainder:0,
-      remainderS:'0.00',
+      balance:0,
+      balanceS:'0.00',
       total:0,
       totalS:'0.00'
     },
     rmdescVal:'',
   },
   onLoad: function (options) {
-    this.initialize(options)
-    this.total()
-  },
-  onReady: function () {
-
+    this.initialize(options);
+    this.balance();
+    this.total();
   },
   onShow: function () {
-
-  },
-  onHide: function () {
 
   },
   initialize(data){
@@ -52,21 +48,66 @@ Page({
       rmdescVal:data.rmdesc
     })
   },
-  total(){
-    let totalNew = parseInt(this.data.order.money) + parseInt(this.data.pay.discount) + parseInt(this.data.pay.coupon) + parseInt(this.data.pay.payment) + parseInt(this.data.pay.remainder)
-    this.setData({
-      'pay.total':totalNew,
-      'pay.totalS':(totalNew/100).toFixed(2),
-    })
+  //获取余额
+  balance(){
+    util.request(api.MemberGet, 'GET').then(res => {
+      console.log(res)
+      let modeNew = {
+        balance:res.result.balance*(-1),
+        balanceS:(res.result.balance*(-1)/100).toFixed(2),
+        balanceRadio:false,
+      }
+      this.setData({
+        mode:modeNew
+      })
+      console.log(modeNew)
+    }).catch((err) => {
+      wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
+    });
   },
+  //选择支付类型
+  bindBalanceSRadio(){
+    this.setData({
+      'mode.balanceRadio':!this.data.mode.balanceRadio,
+    })
+    this.total();
+  },
+  //金额计算
+  total(){
+    let balanceNew = 0;
+    let wayNew = '微信支付'
+    if(this.data.order.money <= this.data.mode.balance&&this.data.mode.balanceRadio){
+      balanceNew = this.data.order.money;
+      wayNew = '余额支付';
+    }else if(this.data.order.money>this.data.mode.balance&&this.data.mode.balanceRadio){
+      balanceNew = this.data.mode.balance;
+      wayNew = '微信支付 + 余额支付';
+    }else{
+      balanceNew = 0;
+      wayNew = '微信支付';
+    };
+    let totalNew = parseInt(this.data.order.money) - parseInt(this.data.pay.payment) - parseInt(balanceNew);
+    let payNew = {
+      payment:0,
+      paymentS:'0.00',
+      balance:balanceNew,
+      balanceS:(balanceNew/100).toFixed(2),
+      total:totalNew,
+      totalS:(totalNew/100).toFixed(2),
+      way:wayNew,
+    };
+    this.setData({
+      pay : payNew ,
+    });
+  },
+  //预支付
   perpay(){
-    let roomrNew = wx.getStorageSync("room");
-    console.log(roomrNew)
     let param = {
       orderId:this.data.order.num,
       rmdesc:this.data.rmdescVal,
+      balance:this.data.pay.balance,
     }
-    console.log(param)
+    console.log(param);
     //跳转
     /*wx.navigateTo({
       url: "/pages/customized/payResult/payResult?result="+'1'
@@ -75,12 +116,12 @@ Page({
       //跳转
       wx.navigateTo({
         url: "../payResult/payResult?result=1&end=0"
-      })
+      });
     }).catch(() => {
       //跳转
       wx.navigateTo({
         url: "../payResult/payResult?result=0&end=0"
-      })
+      });
     });
   },
   formatDateTime(inputTime) { let date = new Date(inputTime); let y = date.getFullYear(); let m = date.getMonth() + 1; m = m < 10 ? ('0' + m) : m; let d = date.getDate(); d = d < 10 ? ('0' + d) : d; let h = date.getHours(); h = h < 10 ? ('0' + h) : h; let minute = date.getMinutes(); let second = date.getSeconds(); minute = minute < 10 ? ('0' + minute) : minute; second = second < 10 ? ('0' + second) : second; return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second; }

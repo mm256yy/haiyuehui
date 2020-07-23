@@ -4,7 +4,7 @@ let api = require('../../../../config/api.js');
 Page({
   data: {
     pics:[
-      '/static/images/banner1.jpg',
+      '/static/images/banner3.jpg',
     ],
     order:{
       hotelId:'',
@@ -28,14 +28,19 @@ Page({
     orderId:0,
     customShow:false,
     dayNum:1,  //快捷续住
-    continueDay:1,  //最终时间
+    continueDay:1,  //最终续住时间
+    popShow:false,
+    couponMoney:0,//获取的优惠劵减的金额
+    couponId:0,
   },
   onLoad: function (options) {
     this.init(options);
-    
+  },
+  onReady: function (){
+    this.popId = this.selectComponent("#popId");
   },
   onShow: function () {
-
+    
   },
   init(options){
     this.setData({
@@ -82,12 +87,20 @@ Page({
       'total.totalS':(totalNew/100).toFixed(2),
     })
   },
+  //couponTotal
+  couponTotal(e){
+    let money = e.detail
+    this.setData({
+      couponMoney:money
+    });
+    this.total();
+  },
   //下订单
   placeOrder(){
     let param = {
       orderId:this.data.orderId,
       days:this.data.continueDay,
-      outHour:(this.data.continueDay == 0?18:14)
+      outHour:(this.data.continueDay == 0?18:14),
     }
     console.log(param)
     util.request(api.UcenterOrderDaysSubmit , param , 'POST').then(res => {
@@ -102,16 +115,17 @@ Page({
   //快捷选天数
   dayBtn(e){
     let customShowNew = false;
-    let day = e.currentTarget.dataset.day
+    let day = e.currentTarget.dataset.day;
     if(day == 5){
       customShowNew = true;
-    }
+    };
     this.setData({
       dayNum:day,
       customShow:customShowNew,
       continueDay:day
-    })
-    this.total()
+    });
+    this.changcoupon(parseInt(this.data.order.roomPrice),day)
+    this.total();
   },
   //减
   reduceDay(){
@@ -128,5 +142,13 @@ Page({
       continueDay:parseInt(this.data.continueDay)+1
     })
     this.total()
-  }
+  },
+  //把金额传递给coupon
+  changcoupon(price,num){
+    this.popId.funCouponList(price*num);
+    this.setData({
+      couponMoney:0,
+      couponId:null,
+    })
+  },
 })

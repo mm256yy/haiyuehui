@@ -10,13 +10,7 @@ Page({
   onLoad: function (options) {
 
   },
-  onReady: function () {
-
-  },
   onShow: function () {
-
-  },
-  onHide: function () {
 
   },
   //手机注册
@@ -35,9 +29,10 @@ Page({
     console.log(param)
     util.request(api.AuthRegisterWx, param, 'POST').then(function(res) {
       app.globalData.hasLogin = true;
+      app.fristRegister = true;
       wx.setStorageSync('userInfoMobile', res.result.mobile);
-      wx.navigateBack({
-        delta: 2  // 返回上一级页面。
+      wx.switchTab({ 
+        url:"/pages/index/index"
       })
     }).catch((err) => {
       wx.showModal({title: '错误信息',content: err,showCancel: false}); 

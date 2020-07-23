@@ -100,10 +100,10 @@
   <template is="zero" data="{{list: hotel.room}}"/>
   <view class="detailed_pop" wx:if="{{infoPop}}" >
     <view class="black" bindtap="infoHide"></view>
-    <view class="pop" animation="{{animationData}}" id="pop">
-      <view class="info">
-        <view class="info_h1">{{room.name}}</view>
-        <image class="info_del" bindtap="infoHide" src="/static/images/del.png"></image>
+    <view class="pop_box" animation="{{animationData}}" id="pop">
+      <view class="pop">
+        <view class="pop_h1">{{room.name}}</view>
+        <image class="pop_del" bindtap="infoHide" src="/static/images/del.png"></image>
         <swiper 
           autoplay="true"
           interval="5000"

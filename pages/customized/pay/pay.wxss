@@ -7,6 +7,7 @@ page{background-color: #f1f1f1;}
   color: #fff;
   border-radius:10rpx ;
 }
+/*订单类型*/
 .pay_ul{
   background-color: #fff;
   padding:0rpx 20rpx ;
@@ -43,4 +44,20 @@ page{background-color: #f1f1f1;}
   color: #fff;
   border-radius:50rpx ;
   text-align: center;
+}
+/*支付类型*/
+.pay_mode{
+  background-color: #f1f1f1;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+.pay_mode_h1{
+  font-weight: 800;
+}
+.pay_li_l{
+  margin-left: 20rpx;
+}
+.pay_li_balance{
+  font-size: 36rpx;
+  color: #039cee;
 }

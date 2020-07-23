@@ -1,0 +1,43 @@
+<view>
+  <view class="other_li" bindtap="popShow">
+    <text>优惠劵</text>
+    <text class="other_li_red" wx:if="{{popMenu.menu1>0}}">[有可使用的优惠劵]</text>
+    <image class="other_li_right" src="/static/images/right.png"></image>
+  </view>
+  <view class="hotels_pop" wx:if="{{popShow}}">
+    <view class="black" bindtap="popHide"></view>
+    <view class="pop_box" >
+      <view class="pop" animation="{{animationData}}" id="pop">
+        <view class="pop_h1">优惠劵</view>
+        <image class="pop_del" bindtap="popHide" src="/static/images/del-b.png"></image>
+        <view class="coupon_menu">
+          <view class="coupon_menu_li {{popMenu.val == 0?'coupon_menu_li_on':''}}" bindtap="bindPopMenu" data-type="0">可用优惠劵</view>
+          <view class="coupon_menu_li {{popMenu.val == 1?'coupon_menu_li_on':''}}" bindtap="bindPopMenu" data-type="1">不可用优惠劵</view>
+        </view>
+        <view class="coupon_ul">
+          <view class="coupon_li" wx:if="{{item.typeFill == popMenu.val}}" wx:for="{{couponUl}}" wx:key="index" bindtap="{{item.typeFill == 0?'couponChoose':''}}" data-index="{{index}}">
+            <view class="coupon_li_b">
+              <view class="coupon_left {{item.typeFill == 0?'':'coupon_left_no'}}">
+                <view class="coupon_val"><text>￥</text><text>{{item.moneyS}}</text></view>
+                <view class="coupon_remarks">满{{item.fullMoneyS}}可用</view>
+              </view>
+              <view class="coupon_right">
+                <view class="coupon_name">{{item.name}}</view>
+                <view class="coupon_time" >{{item.startTime}}至{{item.endTime}}</view>
+                <view class="coupon_detailed" bindtap="detailedShow" data-detailed-id="{{index+1}}">
+                  <text>详细信息</text>
+                  <image class="coupon_go_img" src="/static/images/right.png"></image>
+                </view>
+                <label class="coupon_radio" wx:if="{{item.typeFill == 0}}">
+                  <radio value="r1"  checked="{{couponArr == index+1}}" class="agree_radio" ext-class="agree_radio"/>
+                </label>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="hotels_btn" bindtap="popHide">确定</view>
+      </view>
+    </view>
+  </view>
+</view>
+

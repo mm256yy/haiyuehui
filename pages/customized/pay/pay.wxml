@@ -6,10 +6,10 @@
       <text class="pay_li_h">订单编号</text>
       <text>{{order.num}}</text>
     </view>
-    <view class="pay_li">
+    <!-- <view class="pay_li">
       <text class="pay_li_h">订单类型</text>
       <text>客房预定</text>
-    </view>
+    </view> -->
     <view class="pay_li">
       <text class="pay_li_h">订单金额</text>
       <text>￥{{order.moneyS}}</text>
@@ -19,31 +19,35 @@
       <text>{{order.timeS}}</text>
     </view>
   </view>
+  
   <view class="pay_ul">
-    <view class="pay_li">
-      <text>客房优惠</text>
-      <text class="pay_li_r">￥{{pay.discountS}}</text>
-    </view>
-    <view class="pay_li">
-      <text>优惠劵</text>
-      <text class="pay_li_r">￥{{pay.couponS}}</text>
-    </view>
     <view class="pay_li">
       <text>支付优惠</text>
       <text class="pay_li_r">￥{{pay.paymentS}}</text>
     </view>
     <view class="pay_li">
-      <text>使用余额</text>
-      <text class="pay_li_r">￥{{pay.remainderS}}</text>
+      <text>余额抵扣</text>
+      <text class="pay_li_r" >-￥{{pay.balanceS}}</text>
     </view>
-    <view class="pay_li">
-      <text>应支付</text>
+    <view class="pay_mode">
+      <!-- <view class="pay_mode_h1">支付方式</view> -->
+      <view class="pay_li" bindtap="bindBalanceSRadio">
+        <label class="radio" >
+          <radio value="r1"  checked="{{mode.balanceRadio}}" class="agree_radio" ext-class="agree_radio"/>
+        </label>
+        <text class="pay_li_l">余额</text>
+        <text class="pay_li_r pay_li_balance">￥{{mode.balanceS}}</text>
+      </view>
+    </view>
+    <view class="pay_li" wx:if="{{pay.total != 0}}">
+      <text>还应支付</text>
       <text class="pay_li_r pay_li_totle">￥{{pay.totalS}}</text>
     </view>
     <view class="pay_li">
       <text>支付方式</text>
-      <text class="pay_li_r pay_li_green">微信支付</text>
+      <text class="pay_li_r pay_li_green">{{pay.way}}</text>
     </view>
+    
   </view>
   <view>
     <view class="pay_label">入住日前1天12:00过后订单不可取消</view>

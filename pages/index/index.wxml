@@ -42,18 +42,20 @@
       </view>
     </view>
   </view>
-  
   <view class="home_recommend">
-    <view>
-    
-    </view>
   </view>
-  <view class="home_member">
+  <view class="home_member">  
     <image src="/static/images/member-home.jpg" bindtap="aa"></image>
     <view>
     </view>
   </view>
-  
+  <view class="pop" wx:if="{{popShow}}">
+    <view class="black"></view>
+    <view class="pop_coupon">
+      <view class="pop_img_box" bindtap="goCoupon"><image class="pop_img" src="/static/images/pop_coupon.png"></image></view>
+      <image class="pop_del" bindtap="popHide" src="/static/images/del-w.png"></image>
+    </view>
+  </view>
   <!--<view>
     <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
       <view class="picker">

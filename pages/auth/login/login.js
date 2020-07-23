@@ -4,7 +4,7 @@ let user = require('../../../utils/user.js');
 let app = getApp();
 Page({
   data: {
-    agreeRadio:false
+    agreeRadio:false,
   },
   onLoad: function (options) {
 

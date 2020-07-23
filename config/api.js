@@ -1,14 +1,14 @@
- // 以下是业务服务器API地址 
+ // 以下是业务服务器API地址   
  // 手机 开发API地址 
- // let WxApiRoot = 'http://112.17.106.101:9001/wx/';  let testing = true;
+ // let WxApiRoot = 'http://112.17.106.101:9001/wx/';  let testing = true; 
  // 正式线上ip 
- // let WxApiRoot = 'http://124.70.147.182:9001/wx/'; let testing = false;
- // 测试线上ip
- // let WxApiRoot = 'http://124.70.132.80:9001/wx/'; let testing = true;
- // 本机 开发api地址
- // let WxApiRoot = 'http://192.168.133.67:9002/wx/'; let testing = true;    //'http://192.168.188.79:9001/wx/';
- // 生产地址
- let WxApiRoot = 'https://www.hwhhotels.com/wx/'; let testing = false;
+ // let WxApiRoot = 'http://124.70.147.182:9001/wx/'; let testing = false; 
+ // 测试线上ip 
+ // let WxApiRoot = 'http://124.70.132.80:9001/wx/'; let testing = true; 
+ // 本机 开发api地址 
+ let WxApiRoot = 'http://192.168.133.67:9002/wx/'; let testing = true;    //'http://192.168.188.79:9001/wx/'; 
+ // 生产地址 
+ // let WxApiRoot = 'https://www.hwhhotels.com/wx/'; let testing = false; 
  
  module.exports = {
    testing,  //判断是否是测试环境
@@ -61,4 +61,6 @@
    MemberRechargeCallback:WxApiRoot +'recharge/callback/doCallback',  //充值返回
    MemberRechargeHistory:WxApiRoot +'recharge/history', //余额查询
    MemberPointHistory:WxApiRoot +'member/pointHistory', //积分查询
+
+   MemberCouponList:WxApiRoot +'memberCoupon/list',//优惠劵列表
  }

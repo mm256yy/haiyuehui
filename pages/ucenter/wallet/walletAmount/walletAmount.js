@@ -14,7 +14,7 @@ Page({
   },
   init(){
     util.request(api.MemberGet, 'GET').then(res => {
-      let money = res.result.arbal*(-1)
+      let money = res.result.balance*(-1)
       this.setData({
         moneyVal:money,
         moneyValS:(money/100).toFixed(2)

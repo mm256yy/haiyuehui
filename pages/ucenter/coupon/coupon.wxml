@@ -2,22 +2,23 @@
 <view>
   <import src="/template/template"/> 
   <view class="coupon_type">
-    <view class="type_li {{typeMenu == 0?'type_li_on':''}}" bindtap="typeBind" data-type="0">未使用</view>
-    <view class="type_li {{typeMenu == 1?'type_li_on':''}}" bindtap="typeBind" data-type="1">已使用</view>
-    <view class="type_li {{typeMenu == 2?'type_li_on':''}}" bindtap="typeBind" data-type="2">已过期</view>
+    <view class="type_li {{typeMenu == 1?'type_li_on':''}}" bindtap="typeBind" data-type="1">即将到期</view>
+    <view class="type_li {{typeMenu == 2?'type_li_on':''}}" bindtap="typeBind" data-type="2">最新领劵</view>
+    <view class="type_li {{typeMenu == 3?'type_li_on':''}}" bindtap="typeBind" data-type="3">历史用劵</view>
   </view>
   <view class="coupon_list">
     <view class="coupon_li" wx:for="{{couponUl}}" wx:key="index" wx:if="{{typeMenu == item.type}}">
-      <image class="coupon_ba" src="/static/images/coupon.png"></image>
+      <!-- <image class="coupon_ba" src="/static/images/coupon.png"></image> -->
       <view class="coupon_box">
-        <view class="coupon_left">
+        <view class="coupon_left {{item.type == 3?'coupon_left_overdue':''}}">
           <view class="coupon_val"><text>￥</text><text>{{item.priceS}}</text></view>
-          <view class="coupon_remarks">仅在活动中使用</view>
-          <view class="coupon_btn">立即使用</view>
+          <view class="coupon_remarks">满300可用</view>
+          <view class="coupon_btn {{item.type == 3?'coupon_btn_overdue':''}}">立即使用</view>
         </view>
         <view class="coupon_right">
-          <view class="coupon_name">{{item.name}}</view>
-          <view class="coupon_time">{{item.startTimeS}}至{{item.endTimeS}}</view>
+          <view class="coupon_name {{item.type == 3?'coupon_name_overdue':''}}">{{item.name}}</view>
+          <view class="coupon_time {{item.type == 3?'coupon_time_overdue':''}}" wx:if="{{item.type == 2||item.type == 3}}">{{item.startTimeS}}至{{item.endTimeS}}</view>
+          <view class="coupon_time_only" wx:if="{{item.type == 1}}">还剩{{item.onlyTimeS}}天到期</view>
           <view class="coupon_detailed" bindtap="detailedShow" data-detailed-id="{{index+1}}">
             <text>详细信息</text>
             <image class="coupon_go_img" src="/static/images/right.png"></image>
@@ -26,7 +27,7 @@
       </view>
       <view class="coupon_rule" wx:if="{{detailedShow == (index+1)}}">
         <view class="rule_t">优惠劵规则</view>
-        <view class="rule_t">{{item.rule}}</view>
+        <view class="rule_t">优惠劵规则</view>
       </view>
     </view>
   </view>

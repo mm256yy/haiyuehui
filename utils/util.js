@@ -156,6 +156,22 @@ function orderType(type){
     return "已结单"
   }
 }
+//会员类型
+function memberGrade(type){
+  if(type == "GBK"){
+    return 0;
+  }else if(type == "YK"){
+    return 1;
+  }else if(type == "JK"){
+    return 2;
+  }else if(type == "BJK"){
+    return 3;
+  }else if(type == "HJK"){
+    return 4;
+  }else{
+    return 0;
+  }
+}
 //金钱转化  1200 ==> '12'  1201 => '12.01'
 function money(money){
   let moneyNew = ((money)/100).toFixed(2).toString().split('.');
@@ -198,6 +214,7 @@ module.exports = {
   identityCard,
   networkManage,
   orderType,
+  memberGrade,
   money,
   importantMoney,
 }

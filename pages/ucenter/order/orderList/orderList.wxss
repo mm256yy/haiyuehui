@@ -4,6 +4,10 @@ page{background-color: #f1f1f1;}
 .menu_ul{
   display: flex;
   background-color: #fff;
+  width: 100%;
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
 }
 .menu_li{
   flex: 1 1 auto;
@@ -21,6 +25,9 @@ page{background-color: #f1f1f1;}
   border-bottom: 5rpx solid #039cee;
 }
 /*list*/
+.order_ul{
+  margin-top: 120rpx;
+}
 .order_li{
   margin: 20rpx;
   padding: 30rpx 30rpx;

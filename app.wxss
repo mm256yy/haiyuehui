@@ -21,8 +21,8 @@ radio .wx-radio-input{
   width:20px;height:20px;
 }
 radio .wx-radio-input.wx-radio-input-checked{
-  border-color:#753ffd !important;
-  background:#753ffd !important;
+  border-color:#039cee !important;
+  background:#039cee !important;
 }
 radio .wx-radio-input.wx-radio-input-checked::before{
   border-radius:50%;

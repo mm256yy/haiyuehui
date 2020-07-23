@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "预定房型",
-  "usingComponents": {}
+  "usingComponents": {
+    "popCoupon":"/components/popCard/popCard"
+  }
 }

@@ -14,6 +14,8 @@ Page({
       arr:'',
       dep:'2020-12-12',
       cardNo:'1500615615',
+      discount:95,  //95%  会员打折
+      scoreTimes:150,  //1.5倍 积分倍数
       card:{
         baImg:'card5',
         nameC:'贵宾卡',
@@ -27,8 +29,8 @@ Page({
     powerUlShow:[
       {img:'power0',text1:'订房折扣',text2:'9.5折'},
       {img:'power3',text1:'积分奖励',text2:'1倍'},
-      {img:'power22',text1:'免费取消',text2:''},
       {img:'power18',text1:'延迟退房',text2:'14:00'},
+      {img:'power22',text1:'免费取消',text2:''},
     ],
     couponUl:[
       // {
@@ -70,7 +72,6 @@ Page({
       powerUl : member.powerUl,
       'info.card' : member.memberCard[0],
     });
-    
   },
   //会员信息 头像/名字
   memberInfo(){
@@ -88,59 +89,45 @@ Page({
       'info.avatarUrl':userInfo.avatarUrl,
       'info.name':userInfo.name != null?userInfo.name:'',
     });
-    // //获取到当前的手机号
-    // let tel = wx.getStorageSync('userInfoMobile');
-    // if(tel){  //如果存在
-    //   util.request(api.MemberGet, 'GET').then(res => {
-    //     this.setData({
-    //       'info.name':res.result.name != null?res.result.name:'',
-    //     });
-    //   }).catch((err) => {
-    //     wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    //   });
-    // }else{
-    //   wx.navigateTo({
-    //     url: "/pages/auth/login/login"
-    //   });
-    // }
   },
    //会员卡信息
   memberCard(){
     let infoNew = {};
+    let grade = 0;
+    let discountNew = 100;
+    let scoreTimesNew = 100;
     util.request(api.MemberGet, 'GET').then(res => {
       console.log(res)
+      grade = util.memberGrade(res.result.cardLevel);
+      discountNew = res.result.discount?res.result.discount:100;
+      scoreTimesNew = res.result.scoreTimes?res.result.scoreTimes:100;
       infoNew = {
         avatarUrl:this.data.info.avatarUrl,
         name:res.result.name,
         points:res.result.points,
-        money:res.result.arbal*(-1),
-        moneyS:(res.result.arbal*(-1)/100).toFixed(2),
+        money:res.result.balance*(-1),
+        moneyS:(res.result.balance*(-1)/100).toFixed(2),
         couponNum:0,
         arr:res.result.arr,
         dep:res.result.dep,
         cardNo:res.result.cardno,
-        card:member.memberCard[this.typeDes(res.result.type_des)],
+        card:member.memberCard[grade],
+        discount:discountNew,  
+        scoreTimes:scoreTimesNew, 
       }
+      let powerUlShowNew = [
+        {img:'power0',text1:'订房折扣',text2:(discountNew/10)+'折'},
+        {img:'power3',text1:'积分奖励',text2:(scoreTimesNew/100)+'倍'},
+        {img:'power18',text1:'延迟退房',text2:member.powerUl[6].grade[grade].text2},
+        {img:'power22',text1:'免费取消',text2:''},
+      ]
       this.setData({
-        info:infoNew 
+        info:infoNew,
+        powerUlShow:powerUlShowNew,
       })
-      console.log(this.data.info)
     }).catch((err) => {
       wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
     });
-  },
-  //会员等级变化
-  memberGrade(grade){
-    let powerUlShowNew = [
-      {img:'power0',text1:'订房折扣',text2:member.powerUl[0].grade[grade].text2},
-      {img:'power1',text1:'餐饮折扣',text2:member.powerUl[1].grade[grade].text2},
-      {img:'power2',text1:'娱乐折扣',text2:member.powerUl[2].grade[grade].text2},
-      {img:'power3',text1:'积分奖励',text2:member.powerUl[3].grade[grade].text2},
-    ]
-    this.setData({
-      powerUlShow:powerUlShowNew,
-      'info.card':member.memberCard[grade]
-    })
   },
   //跳转到会员信息
   information(){
@@ -175,20 +162,4 @@ Page({
       introduceVal:introduceVal
     })
   },
-  //会员名字转换
-  typeDes(val){
-    if(val == "贵宾卡"){
-      return 0;
-    }else if(val == "银卡"){
-      return 1;
-    }else if(val == "金卡"){
-      return 2;
-    }else if(val == "白金卡"){
-      return 3;
-    }else if(val == "黑金卡"){
-      return 4;
-    }else{
-      return 0;
-    }
-  }
 })

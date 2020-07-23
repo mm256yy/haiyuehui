@@ -55,7 +55,6 @@ Page({
   // },
   //滑动会员卡
   changeCard(e){
-    console.log(e)
     let index = e.detail.current
     this.setData({
       memberVal:index
@@ -64,7 +63,6 @@ Page({
   },
   memberProgress(e){
     let index = e.currentTarget.dataset.index;
-    console.log(index)
     this.setData({
       memberVal:index
     })
@@ -88,7 +86,6 @@ Page({
   funPowerOpacity(){
     let powerUl = this.data.powerUl;
     let memberVal = this.data.memberVal;
-    console.log(memberVal)
     for(let i=0;i<powerUl.length;i++){
       powerUl[i].use = powerUl[i].grade[memberVal].use;
       powerUl[i].text1 = powerUl[i].grade[memberVal].text1;

@@ -85,4 +85,37 @@
   height: 320rpx;
   border-radius:20rpx;
 }
-
+/*pop*/
+.black{
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+.pop_coupon{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0rpx;
+  left: 0rpx;
+  text-align: center;
+}
+.pop_img_box{
+  display: flex;
+  margin-top: 200rpx;
+}
+.pop_img{
+  margin: auto;
+  width: 600rpx;
+  height: 658rpx;
+}
+.pop_del{
+  display: block;
+  margin: auto;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius:50rpx;
+  border: 2rpx solid #fff;
+}

@@ -63,7 +63,7 @@ Page({
     }
     //获取酒店信息
     let hotel = wx.getStorageSync("hotel")
-    console.log(hotel)
+    // console.log(hotel)
       //判断地址
     let hotelVal = '';
     if(hotel.address == null||hotel.address == 'null'||hotel.address == undefined||hotel.address == ''){
@@ -94,9 +94,9 @@ Page({
     //判断是否登陆
     let isLoginNew = false;
     user.checkLogin().then(res => {
-      isLoginNew = true
+      isLoginNew = true;
     }).catch((res) =>{
-      isLoginNew = false
+      isLoginNew = false;
     }).then(res=>{
       util.request(api.CustomizedHotelsDetailed, param , 'GET').then(res => {
         let roomNew  = [];
@@ -127,11 +127,11 @@ Page({
           }
           roomNew.push(roomLi)
         }
-        console.log(hotel)
+        // console.log(hotel)
         let hotelNew = {
           id:hotel.id,
           name:hotel.name,   
-          pics:(hotel.imgList?hotel.imgList:['/static/images/banner1.jpg']),
+          pics:(hotel.imgList?hotel.imgList:['/static/images/banner2.jpg']),
           address:hotelVal,
           tel:telVal,
           dining:{},

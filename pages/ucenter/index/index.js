@@ -182,10 +182,10 @@ Page({
   },
   //我的劵包
   coupon(){
-    util.showErrorToast("暂未开放")
-    /*wx.navigateTo({
+    // util.showErrorToast("暂未开放")
+    wx.navigateTo({
       url: "/pages/ucenter/coupon/coupon"
-    })*/
+    })
   },
   //会议与团队
   meeting(){

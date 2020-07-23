@@ -55,8 +55,8 @@ Page({
   init(typeVal,pull){  //pull 1为初始化 2为下拉
     let param = {
       pageNo:this.data.pageNo,
+      showType:typeVal,
       pageSize:15,
-      showType:typeVal
     }
     console.log(param)
     util.request(api.UcenterOrderList , param , 'GET').then(res => {
@@ -83,7 +83,7 @@ Page({
             show:(res.result.records[i].parentOrderId == ""),
             canAdd:res.result.records[i].canAdd,
             isCis:res.result.records[i].isCis,
-            isOverdue:check.checkIsOverdue(res.result.records[i].dep),
+            isOverdue:(check.checkIsOverdue(res.result.records[i].dep) < 0),
           }
           o_ul.push(o_li)
         }
@@ -92,14 +92,14 @@ Page({
         orderUlNew = o_ul;
       }else{
         if(res.result.records.length == 0){
-          orderUlNew = this.data.orderUl.concat(o_ul)
+          orderUlNew = this.data.orderUl.concat(o_ul);
           this.setData({
             pageNo:this.data.pageNo - 1
-          })
+          });
         }else{
-          orderUlNew = this.data.orderUl.concat(o_ul)
-        }
-      }
+          orderUlNew = this.data.orderUl.concat(o_ul);
+        };
+      };
       this.setData({
         orderUl:orderUlNew,
       })
@@ -170,23 +170,28 @@ Page({
   },
   //支付
   orderPay(e){
-    console.log(this.data.orderUl[e.currentTarget.dataset.index])
-    let param = {
-      orderId:this.data.orderUl[e.currentTarget.dataset.index].id,
-      rmdesc:this.data.orderUl[e.currentTarget.dataset.index].orderRoom,
-    }
-    console.log(param)
-    pay.usePay(param).then(res => {
-      //跳转
-      wx.navigateTo({
-        url: "/pages/customized/payResult/payResult?result=1&end=0"
-      })
-    }).catch(() => {
-      //跳转
-      wx.navigateTo({
-        url: "/pages/customized/payResult/payResult?result=0&end=0"
-      })
-    });
+    let index = e.currentTarget.dataset.index;
+    //跳转
+    wx.redirectTo({
+      url: "/pages/customized/pay/pay?money="+this.data.orderUl[index].orderPrice+"&orderId="+this.data.orderUl[index].id+"&rmdesc="+this.data.orderUl[index].orderRoom
+    })
+    // console.log(this.data.orderUl[e.currentTarget.dataset.index])
+    // let param = {
+    //   orderId:this.data.orderUl[e.currentTarget.dataset.index].id,
+    //   rmdesc:this.data.orderUl[e.currentTarget.dataset.index].orderRoom,
+    // }
+    // console.log(param)
+    // pay.usePay(param).then(res => {
+    //   //跳转
+    //   wx.navigateTo({
+    //     url: "/pages/customized/payResult/payResult?result=1&end=0"
+    //   })
+    // }).catch(() => {
+    //   //跳转
+    //   wx.navigateTo({
+    //     url: "/pages/customized/payResult/payResult?result=0&end=0"
+    //   })
+    // });
   },
   //刷新
   refresh(){

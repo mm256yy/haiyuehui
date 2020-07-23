@@ -261,13 +261,13 @@ swiper{
   left: 0rpx;
   background-color: rgba(0,0,0,0.6);
 }
-.pop{
+.pop_box{
   position: fixed;
   bottom: -1140rpx;
   left: 0rpx;
   width: 100%;
 }
-.info{
+.pop{
   border-top-left-radius:20rpx ;
   border-top-right-radius:20rpx ;
   background-color: #fff;
@@ -275,16 +275,16 @@ swiper{
   position: relative;
   padding-bottom: 40rpx;
 }
-.info_del{
+.pop_h1{
+  padding: 20rpx;
+  text-align: center;
+}
+.pop_del{
   position: absolute;
   top: 10rpx;
   right: 20rpx;
   width: 60rpx;
   height: 60rpx;
-}
-.info_h1{
-  padding: 20rpx;
-  text-align: center;
 }
 .info_img{
   width: 100%;

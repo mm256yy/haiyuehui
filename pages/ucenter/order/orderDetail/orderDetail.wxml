@@ -93,6 +93,8 @@
     <view class="order_h1">订单金额详情</view>
     <view class="order_money">
       <view><text class="detail_t1">房间价格：</text><text class="detail_t2">￥{{money.roomPriceS}}</text></view>
+      <view><text class="detail_t1">优惠劵使用：</text><text class="detail_t2">-￥{{money.couponS}}</text></view>
+      <view><text class="detail_t1">会员折扣：</text><text class="detail_t2">{{money.discountS}}折</text></view>
       <view><text class="detail_t1">房间押金：</text><text class="detail_t2">￥{{money.depositS}}</text></view>
       <view wx:if="{{(detail.status == 31||detail.status == 41||detail.status == 51)&&(additionUl.length != 0)&&detail.isCis}}"><text class="detail_t1">续住小计：</text><text class="detail_t2">￥{{money.additionS}}</text></view>
       <view><text class="detail_t1">总价：</text><text class="detail_t3">￥{{money.totalS}}</text></view>

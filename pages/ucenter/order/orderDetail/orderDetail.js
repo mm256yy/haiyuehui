@@ -50,6 +50,10 @@ Page({
       depositS:'0.00',
       addition:0,
       additionS:'0.00',
+      coupon:0,
+      couponS:'0.00',
+      discount:100,
+      discountS:10,
       total:0,
       totalS:'0.00'
     },
@@ -98,8 +102,8 @@ Page({
         contactsName:data.name,
         contactsTel:data.mobile,
         isCis:data.isCis,
-        isOverdue:check.checkIsOverdue(data.dep),
-        canStay:check.checkCanStay(data.arr)
+        isOverdue:(check.checkIsOverdue(data.dep) < 0),
+        canStay:(check.checkIsOverdue(data.arr) === 0)
       }
       let dayNum = (new Date(data.dep) - new Date(data.arr))/1000/60/60/24
       moneyNew = {
@@ -109,6 +113,10 @@ Page({
         depositS:(data.deposit/100).toFixed(2),
         addition:0,
         additionS:'0.00',
+        coupon:0,
+        couponS:'0.00',
+        discount:100,
+        discountS:10,
         total:data.money,
         totalS:(data.money/100).toFixed(2)
       }

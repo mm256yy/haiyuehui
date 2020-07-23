@@ -128,30 +128,24 @@ function checkMoney(money){ //使用：if(!check.checkMoney(this.data.identity))
     return true;
   }
 }
-//时间验证 是否过期
-function checkIsOverdue(time){
-  let timeNew = new Date(time).getTime();
-  let day = new Date().getTime();
-  if(day>(timeNew+1000*60*60*24)){
-    return true;
-  }else{
-    return false;
-  }
-}
-//时间验证 是否是当前时间
-function checkCanStay(day){
-  let dayOld = new Date(day).getTime();
+
+//时间验证 是否是当前时间 0 当前时间 大于0 未来时间 小于0 过去时间
+function checkIsOverdue(day){
+  let dayOld = new Date(day.replace(/-/g,'/')).getTime();
   let date = new Date();
   let YY = date.getFullYear() + '-';
   let MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
   let DD = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-  let dayNew = new Date(YY+MM+DD).getTime();
-  console.log(dayNew)
-  console.log(dayOld)
+  let dayNew = new Date((YY+MM+DD).replace(/-/g,'/')).getTime();
+  let dayNum = (dayOld - dayNew)/(1000*60*60*24);
+  // console.log(dayNew);
+  // console.log(dayOld);
   if(dayNew === dayOld){
-    return true;
+    return 0;
+  }else if(dayOld > dayNew){
+    return dayNum;
   }else{
-    return false;
+    return dayNum;
   }
 }
 
@@ -166,5 +160,4 @@ module.exports = {
   checkMoney,
 
   checkIsOverdue,
-  checkCanStay,
 }

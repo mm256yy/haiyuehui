@@ -21,13 +21,14 @@ Page({
       num:1
     },
     calendarShow:false,
+    popShow:false,
   },
   onLoad: function (option) {
     this.invite(option);
   },
   onShow: function (e) {
-    let pages = getCurrentPages();
     this.renderingTime();
+    this.fristRegister();
   },
   //传递邀请人
   invite(option){
@@ -103,6 +104,28 @@ Page({
     this.setData({
       show:showNew
     });
+  },
+  //验证第一次注册
+  fristRegister(){
+    let frist =  app.fristRegister;
+    if(frist){
+      this.setData({
+        popShow:true,
+      })
+      app.fristRegister = false;
+    }
+  },
+  //跳转到优惠劵列表
+  goCoupon(){
+    wx.navigateTo({
+      url: "/pages/ucenter/coupon/coupon",
+    });
+  },
+  //隐藏pop
+  popHide(){
+    this.setData({
+      popShow:false
+    })
   },
   dayZero(val){
     if(val<=9){
