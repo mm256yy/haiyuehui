@@ -1,6 +1,4 @@
-
 .calendar_box{
-  /*height: 900rpx;*/
   margin: 20rpx;
   padding:40rpx 30rpx;
   background-color: #fff;

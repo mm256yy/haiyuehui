@@ -56,7 +56,7 @@ Page({
   //跳转日历
   calendarShow(){
     wx.navigateTo({
-      url: "/pages/pop/calendar/index",
+      url: "/pages/customized/calendar/calendar",
     });
   },
   //跳转日历

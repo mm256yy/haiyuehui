@@ -40,7 +40,16 @@ Page({
         status:11,
         statusS:'状态',
         subtotal:20000,
-        subtotalS:'200.00'
+        subtotalS:'200.00',
+        detailsShow:false,
+        coupon:0,
+        couponS:'0.00',
+        discount:100,
+        discountS:10,
+        wayWx:0,
+        wayWxS:'0.00',
+        wayBalance:0,
+        wayBalanceS:'0.00',
       }*/
     ],
     money:{
@@ -55,7 +64,11 @@ Page({
       discount:100,
       discountS:10,
       total:0,
-      totalS:'0.00'
+      totalS:'0.00',
+      wayWx:0,
+      wayWxS:'0.00',
+      wayBalance:0,
+      wayBalanceS:'0.00',
     },
     pwdVal:123456,
     pwdValS:'******',
@@ -72,6 +85,24 @@ Page({
     this.orderList();
     //退出页面时把密码删除
     app.globalData.orderPwd = "";
+  },
+  //点击转发按钮
+  onShareAppMessage: function (ops) {
+    if (ops.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(ops.target);
+    }
+    return {
+      title: '邀请你来入住酒店啦',
+      imageUrl:'/static/images/invite.png',//图片地址
+      path:"/pages/ucenter/order/orderAddition/orderAddition?orderId="+this.data.detail.orderId+"&additionType=0&hotelId="+this.data.detail.hotelId+"&roomNo="+this.data.detail.roomNo,
+      success: function (res) { // 转发成功
+        console.log("转发成功:");
+      },
+      fail: function (res) { // 转发失败
+        console.log("转发失败:");
+      }
+    }
   },
   //初始化
   init(options){
@@ -105,20 +136,28 @@ Page({
         isOverdue:(check.checkIsOverdue(data.dep) < 0),
         canStay:(check.checkIsOverdue(data.arr) === 0)
       }
-      let dayNum = (new Date(data.dep) - new Date(data.arr))/1000/60/60/24
+      let dayNum = (new Date(data.dep) - new Date(data.arr))/1000/60/60/24;
+      let orderPayInfoNew = {
+        discount:0,   
+        balance:0,
+      };
       moneyNew = {
         roomPrice:data.roomPrice*dayNum,
         roomPriceS:(data.roomPrice/100*dayNum).toFixed(2),
         deposit:data.deposit,
         depositS:(data.deposit/100).toFixed(2),
-        addition:0,
+        addition:0,   //续住
         additionS:'0.00',
-        coupon:0,
-        couponS:'0.00',
-        discount:100,
-        discountS:10,
+        coupon:data.subtractMoney?data.subtractMoney:0,
+        couponS:((data.subtractMoney?data.subtractMoney:0)/100).toFixed(2),
+        discount:data.orderPayInfo.discount,
+        discountS:(data.orderPayInfo.discount/10).toFixed(1),
         total:data.money,
-        totalS:(data.money/100).toFixed(2)
+        totalS:(data.money/100).toFixed(2),
+        wayWx:(data.money-data.orderPayInfo.balance),
+        wayWxS:((data.money-data.orderPayInfo.balance)/100).toFixed(2),
+        wayBalance:data.orderPayInfo.balance,
+        wayBalanceS:(data.orderPayInfo.balance/100).toFixed(2),
       }
       let personsUL = [];
       let personsLi = {};
@@ -144,7 +183,8 @@ Page({
       })
       this.addDaysList();
     }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+      console.log(err)
+      // wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
   //获取续住列表
@@ -163,6 +203,15 @@ Page({
           statusS:util.orderType(res.result[i].status),
           subtotal:res.result[i].money,
           subtotalS:(res.result[i].money/100).toFixed(2),
+          detailsShow:false,
+          coupon:0,
+          couponS:'0.00',
+          discount:100,
+          discountS:10,
+          wayWx:0,
+          wayWxS:'0.00',
+          wayBalance:0,
+          wayBalanceS:'0.00',
         }
         additionUlNew.push(additionliNew);
         if(res.result[i].status == 25){
@@ -314,4 +363,5 @@ Page({
     let arr = val.toString().split("");
     return arr[0]+arr[1]+arr[2]+arr[3]+"-"+arr[4]+arr[5]+"-"+arr[6]+arr[7]
   },
+  
 })

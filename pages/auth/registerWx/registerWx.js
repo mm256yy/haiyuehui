@@ -29,13 +29,15 @@ Page({
     console.log(param)
     util.request(api.AuthRegisterWx, param, 'POST').then(function(res) {
       app.globalData.hasLogin = true;
-      app.fristRegister = true;
-      wx.setStorageSync('userInfoMobile', res.result.mobile);
+      app.fristRegister = true;  //首页弹窗
+      app.globalData.badge = {menu:[0,0,3,0]};
+      // wx.setStorageSync('userInfoMobile', res.result.mobile);
       wx.switchTab({ 
         url:"/pages/index/index"
       })
     }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+      console.log(err)
+      // wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   }
 })

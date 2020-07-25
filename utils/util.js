@@ -44,7 +44,7 @@ function request(url, data = {}, method = "GET") {
           if(res.data.code == 0||res.data == "ok"){  //判断是否成功
             resolve(res.data);
           }else{
-            if(res.data.message == "未登录"){
+            if(res.data.message == "未登录"||res.data.message == '请先登陆'){
               wx.navigateTo({
                 url: "/pages/auth/login/login"
               })

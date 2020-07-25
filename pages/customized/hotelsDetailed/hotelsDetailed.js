@@ -178,7 +178,7 @@ Page({
   /*选择日历*/ 
   goCalendar(){
     wx.navigateTo({
-      url: "/pages/pop/calendar/index"
+      url: "/pages/customized/calendar/calendar"
     })
   },
   //去地图

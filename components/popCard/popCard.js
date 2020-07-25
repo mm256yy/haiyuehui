@@ -10,30 +10,30 @@ Component({
   },
   data: {
     couponUl:[
-      {
-        id:0,
-        typeFill:1,
-        name:'酒店价格满300减免',
-        startTime:'2020-05-04',
-        endTime:'2020-06-04',
-        onlyTimeS:4,
-        fullMoney:50000,
-        fullMoneyS:500.00,
-        money:500,
-        moneyS:5.00,
-      },
-      {
-        id:0,
-        typeFill:0,
-        name:'酒店价格满500减免',
-        startTime:'2020-05-04',
-        endTime:'2020-06-04',
-        onlyTimeS:4,
-        fullMoney:10000,
-        fullMoneyS:100.00,
-        money:1000,
-        moneyS:10.00,
-      },
+      // {
+      //   id:0,
+      //   typeFill:1,
+      //   name:'酒店价格满300减免',
+      //   startTime:'2020-05-04',
+      //   endTime:'2020-06-04',
+      //   onlyTimeS:4,
+      //   fullMoney:50000,
+      //   fullMoneyS:500.00,
+      //   subtractMoney:500,
+      //   subtractMoneyS:5.00,
+      // },
+      // {
+      //   id:0,
+      //   typeFill:0,
+      //   name:'酒店价格满500减免',
+      //   startTime:'2020-05-04',
+      //   endTime:'2020-06-04',
+      //   onlyTimeS:4,
+      //   fullMoney:10000,
+      //   fullMoneyS:100.00,
+      //   subtractMoney:1000,
+      //   subtractMoneyS:10.00,
+      // },
     ],
     couponArr:0,  //未选择为0
     popShow:false,
@@ -44,6 +44,12 @@ Component({
       menu2:0,
     },
     animationData:{},
+    show:{
+      fullMoney:0,
+      fullMoneyS:'0',
+      subtractMoney:0,
+      subtractMoneyS:'0',
+    }
   },
   lifetimes: {
     ready: function() {
@@ -52,7 +58,8 @@ Component({
   },
   methods: {
     //优惠劵
-    coupon(){
+    coupon(fullMoneyPrice){
+      console.log(fullMoneyPrice)
       let param = {
         pageNo:1,
         showType:2,
@@ -60,13 +67,15 @@ Component({
       };
       util.request(api.MemberCouponList , param , 'GET').then(res => {
         let data = res.result.records;
-        this.funCouponUl(data,this.data.fullMoneyPrice);
+        this.funCouponUl(data,fullMoneyPrice);
       }).catch((err) => {
+        this.funCouponUl(this.data.couponUl,fullMoneyPrice);
         wx.showModal({title: '错误信息',content: err,showCancel: false}); 
       });
     },
     //优惠劵列表
     funCouponUl(data,fullMoneyPrice){
+      console.log(data)
       console.log(fullMoneyPrice)
       if(data.length == 0){ return false };
       let c_ul = [];
@@ -91,8 +100,8 @@ Component({
           onlyTimeS:this.onlyTimeS(data[i].startTime,data[i].endTime),
           fullMoney:data[i].fullMoney,
           fullMoneyS:(data[i].fullMoney/100),
-          money:data[i].money,
-          moneyS:(data[i].money/100),
+          subtractMoney:data[i].subtractMoney,
+          subtractMoneyS:(data[i].subtractMoney/100),
         }
         c_ul.push(c_li)
       }
@@ -103,9 +112,23 @@ Component({
         'popMenu.menu2':couponN,
       });
     },
+    //加载时父组件传递过来
+    funCouponFrist(fullMoneyPrice){
+      this.coupon(fullMoneyPrice);
+    },
     //父组件传递过来
     funCouponList(fullMoneyPrice){
       this.funCouponUl(this.data.couponUl,fullMoneyPrice);
+      //
+      let showNew = {
+        fullMoney:0,
+        fullMoneyS:'0',
+        subtractMoney:0,
+        subtractMoneyS:'0',
+      }
+      this.setData({
+        show:showNew
+      })
     },
     //pop显示
     popShow(){
@@ -131,34 +154,47 @@ Component({
     },
     //pop隐藏
     popHide(){
-      let animation = wx.createAnimation({
-          duration:1000,
-          timingFunction:"ease",  
-      })
-      animation.translate(0, 440).step();  
-      this.setData({
-        animationData:animation.export(),  
-        popShow:false
-      });
       //优惠劵传出
       let couponArrNew = null;
       let couponMoney = 0;
-      let couponId = null;
+      let couponId = '';
+      let fullMoney = 0;
       console.log(this.data.couponUl)
       if(this.data.couponArr !== 0){
         couponArrNew = this.data.couponArr - 1;
-        couponMoney = this.data.couponUl[couponArrNew].money;
-        couponId = this.data.couponUl[couponArrNew].id
+        couponMoney = this.data.couponUl[couponArrNew].subtractMoney;
+        couponId = parseInt(this.data.couponUl[couponArrNew].id);
+        fullMoney = this.data.couponUl[couponArrNew].fullMoney;
       }else{
         couponMoney = 0;
-        couponId = null;
+        couponId = '';
+        fullMoney = 0;
       }
       let coupon = {
         couponMoney:couponMoney,
-        couponId:parseInt(couponId),
+        couponId:couponId,
+        fullMoney:fullMoney,
       }
       console.log(coupon);
       this.triggerEvent('couponTotal',coupon)
+      //动画效果
+      let animation = wx.createAnimation({
+        duration:1000,
+        timingFunction:"ease",  
+      })
+      animation.translate(0, 440).step();  
+      //展示
+      let showNew = {
+        fullMoney:fullMoney,
+        fullMoneyS:(fullMoney/100),
+        subtractMoney:couponMoney,
+        subtractMoneyS:(couponMoney/100),
+      }
+      this.setData({
+        show:showNew,
+        animationData:animation.export(),  
+        popShow:false
+      });
     },
     //优惠劵选择
     couponChoose(e){

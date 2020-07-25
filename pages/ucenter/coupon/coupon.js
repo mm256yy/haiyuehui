@@ -87,8 +87,8 @@ Page({
             onlyTimeS:this.onlyTimeS(data[i].startTime,data[i].endTime),
             fullMoney:data[i].fullMoney,
             fullMoneyS:(data[i].fullMoney/100),
-            price:data[i].money,
-            priceS:(data[i].money/100),
+            price:data[i].subtractMoney,
+            priceS:(data[i].subtractMoney/100),
           }
           c_ul.push(c_li)
         }
@@ -138,5 +138,11 @@ Page({
     let end = new Date(endTime.replace(/-/g,'/')).getTime();
     let num = (end - start)/(100*60*60*24);
     return num;
+  },
+  //跳转到酒店列表
+  hotelsList(){
+    wx.navigateTo({ 
+      url: "/pages/customized/hotelsList/hotelsList"
+    });
   },
 })

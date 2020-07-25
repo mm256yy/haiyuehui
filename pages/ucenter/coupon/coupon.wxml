@@ -9,11 +9,11 @@
   <view class="coupon_list">
     <view class="coupon_li" wx:for="{{couponUl}}" wx:key="index" wx:if="{{typeMenu == item.type}}">
       <!-- <image class="coupon_ba" src="/static/images/coupon.png"></image> -->
-      <view class="coupon_box">
-        <view class="coupon_left {{item.type == 3?'coupon_left_overdue':''}}">
+      <view class="coupon_box" >
+        <view class="coupon_left {{item.type == 3?'coupon_left_overdue':''}}" bindtap="hotelsList">
           <view class="coupon_val"><text>￥</text><text>{{item.priceS}}</text></view>
           <view class="coupon_remarks">满300可用</view>
-          <view class="coupon_btn {{item.type == 3?'coupon_btn_overdue':''}}">立即使用</view>
+          <view class="coupon_btn {{item.type == 3?'coupon_btn_overdue':''}}" >立即使用</view>
         </view>
         <view class="coupon_right">
           <view class="coupon_name {{item.type == 3?'coupon_name_overdue':''}}">{{item.name}}</view>
@@ -27,7 +27,11 @@
       </view>
       <view class="coupon_rule" wx:if="{{detailedShow == (index+1)}}">
         <view class="rule_t">优惠劵规则</view>
-        <view class="rule_t">优惠劵规则</view>
+        <view class="rule_t">1.本券适用于全部酒店</view>
+        <view class="rule_t">2.本券适用于周一至周日</view>
+        <view class="rule_t">3.本券仅限用于海外海微信小程序</view>
+        <view class="rule_t">4.本券不可与其他优惠叠加使用</view>
+        <view class="rule_t">5.本券不兑换，不找零，不得在市场上以任何方式转售</view>
       </view>
     </view>
   </view>

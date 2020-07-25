@@ -96,11 +96,11 @@
         <text class="calculation_li_right">2晚</text>
       </view>
     </view> -->
-    <view class="price_li">
+    <view class="price_li price_li_coupon" wx:if="{{total.coupon != 0}}">
       <text>优惠劵</text>
       <text class="price_li_r">-￥{{total.couponS}}</text>
     </view>
-    <view class="price_li">
+    <view class="price_li ">
       <text>会员折扣</text>
       <text class="price_li_r">{{total.discountS}}折</text>
     </view>

@@ -4,11 +4,11 @@ Page({
     weeksE:["SUM","MON","TUS","WED","THU","FRI","SAT"],
     weeksC:["日","一","二","三","四","五","六"],
     days:[
-      {val:"1",class:"",abled:true},
-      {val:"1",class:"",abled:true}
+      // {val:"1",class:"",abled:true,time},
+      // {val:"1",class:"",abled:true,time}
     ],
     setVal:0, //计算月份前后退
-    d:'',
+    monthOneDay:'',
     show:{  //展示信息
       month:'',
       startTimeM:"", //05 月份
@@ -18,36 +18,26 @@ Page({
       endTimeD:"",  //13 日期
       endTimeW:""  //周三 星期
     },
-    time:{
+    time:{  //最终时间
       startTime:0,
       endTime:0,
     },
-    chooseNum:0, //点击次数
+    clickNum:0, //点击次数
   },
-  onLoad: function (options) {
-    let ru_data = new Date().getTime()
-    console.log(ru_data)
-    this.rendering(ru_data)
+  onLoad: function () {
+    let now_data = new Date().getTime()
+    console.log(now_data)
+    this.rendering(now_data)
     this.setData({
-      d:ru_data
+      monthOneDay:now_data
     })
     this.renderingChoose()
   },
   //渲染日历
   rendering(d){
     let d_today = new Date()  //现在时间
-    let d_new = new Date(d)
-    let currentVal = 0;  //1 过去 2 现在 3 未来
-    //console.log(d_today.getFullYear())
-    if(d_new.getFullYear() == d_today.getFullYear()&&d_new.getMonth() == d_today.getMonth()){
-      currentVal = 2;
-    }else if(d_new.getFullYear() <= d_today.getFullYear()&&d_new.getMonth() < d_today.getMonth()){
-      currentVal = 1;
-    }else if(d_new.getFullYear() > d_today.getFullYear()||d_new.getMonth() > d_today.getMonth()){
-      currentVal = 3;
-    }else{
-      console.log('计算错误')
-    }
+    let d_new = new Date(d)  //传递过来的时间
+    let monthState = this.monthState(d_new)   //1 过去 2 现在 3 未来 0 错误
     //获取到当前月份的天数
     let dayNum = new Date(d_new.getFullYear(),d_new.getMonth()+1,0).getDate();
     let dayNumBefore = null;
@@ -63,6 +53,7 @@ Page({
     let days_li = {};
     for(let i=1;i<=42;i++){
       let i_val = null;
+      let i_stamp = 0;
       let i_class = null;
       let i_abled = false;
       let i_time = "";
@@ -74,16 +65,22 @@ Page({
         i_class = "calendar_td_disabled"
       }else{  //当前月份
         i_val = i-oneDay;
-        i_time = new Date((d_new.getFullYear()+'-'+d_new.getMonth()+'-'+(i-oneDay)).replace(/-/g,'/'))
-        if(i-oneDay == headDay&&currentVal == 2){ //本月本日 今天
+        i_time = new Date((d_new.getFullYear()+'-'+(d_new.getMonth()+1)+'-'+(i-oneDay)).replace(/-/g,'/')).getTime()
+        if(i-oneDay == headDay&&monthState == 2){ //本月本日 今天
           i_class = "calendar_td_today calendar_td_abled"
           i_abled = true
-        }else if(i-oneDay < headDay&&currentVal == 2){  //本月之前日
+        }else if(i-oneDay < headDay&&monthState == 2){  //本月之前日
           i_class = "calendar_td_disabled"
-        }else if(currentVal == 1){  //之前月
+        }else if(monthState == 1){  //之前月
           i_class = "calendar_td_disabled"
         }else{
-          i_class = "calendar_td_abled"
+          if(this.selectDay(i_time) == 1){
+            i_class = "calendar_td_choose"
+          }else if(this.selectDay(i_time) == 2){
+            i_class = "calendar_td_choose_pass"
+          }else{
+            i_class = "calendar_td_abled" 
+          }
           i_abled = true
         }
       }
@@ -93,7 +90,6 @@ Page({
         abled:i_abled,
         time:i_time
       }
-      
       days_ul.push(days_li)
     }
     //渲染头部
@@ -119,7 +115,6 @@ Page({
   calendarButtom(e){
     console.log(e)
     let val = e.currentTarget.dataset.val;
-    let d = new Date(this.data.d);
     if(val == 1&&this.data.setVal>0){  //后退
       this.setData({
         setVal : this.data.setVal - 1
@@ -130,24 +125,7 @@ Page({
       })
     }
     console.log(this.data.setVal)
-    //改变头部值
-    let data = this.data.setVal+new Date().getMonth()
-    let m_del = data%12+1;
-    let y_del = (data-data%12)/12
-
-    console.log(m_del)
-    console.log(y_del)
-    /*this.data.head.year = y_del+d.getFullYear();*/
-    
-    //重新渲染
-    let dNew = new Date((y_del+(new Date().getFullYear())+"-"+m_del+"-"+"1").replace(/-/g,'/')).getTime();
-    
-    console.log(dNew)
-    this.rendering(dNew);
-    //赋予this.d
-    this.setData({
-      d:dNew
-    })
+    this.afresh()
   },
   //选择日期
   daysButtom(e){
@@ -157,81 +135,72 @@ Page({
     }
     let daysNew = this.data.days;
     let timeNew = {}
-    let d = new Date(this.data.d)
-    console.log(d.getFullYear()+'-'+(d.getMonth()+1)+'-'+daysNew[arr].val)
-    if(this.data.chooseNum == 0){  //初始化/
+    let d = new Date(this.data.monthOneDay)
+    if(this.data.clickNum == 0){  //初始化/
       //清除
       daysNew = this.cleanClass()
       //附加点击
       daysNew[arr].class = "calendar_td_choose"
       this.setData({
-        chooseNum:1
+        clickNum:1
       })
       //赋值
       timeNew = {
         startTime:new Date((d.getFullYear()+'-'+(d.getMonth()+1)+'-'+daysNew[arr].val).replace(/-/g,'/')).getTime(),
         endTime:new Date((d.getFullYear()+'-'+(d.getMonth()+1)+'-'+daysNew[arr].val).replace(/-/g,'/')).getTime()+24*60*60*1000,
       }
-    }else if(this.data.chooseNum == 1){  //已经有第一个
+    }else if(this.data.clickNum == 1){  //已经有第一个
       //附加点击
       daysNew[arr].class = "calendar_td_choose"
       this.setData({
-        chooseNum:0
+        clickNum:0
       })
       //赋值
       let one = this.data.time.startTime
       let two = new Date((d.getFullYear()+'-'+(d.getMonth()+1)+'-'+daysNew[arr].val).replace(/-/g,'/')).getTime()
-      console.log((d.getFullYear()+'-'+(d.getMonth()+1)+'-'+daysNew[arr].val).replace(/-/g,'/'))
-      let len = 0
       if(two<one){
         timeNew = {
           startTime:two,
           endTime:one,
-        }
-        len = (timeNew.endTime - timeNew.startTime)/24/60/60/1000-1
-        for(let i=1;i<=len;i++){
-          daysNew[arr+i].class = "calendar_td_choose_pass"
         }
       }else if(two == one){
         timeNew = {
           startTime:one,
           endTime:one+24*60*60*1000,
         }
-        len = 1
       }else{
         timeNew = {
           startTime:one,
           endTime:two,
         }
-        len = (timeNew.endTime - timeNew.startTime)/24/60/60/1000-1
-        for(let i=1;i<=len;i++){
-          daysNew[arr-i].class = "calendar_td_choose_pass"
-        }
+        // len = (timeNew.endTime - timeNew.startTime)/24/60/60/1000-1
+        // for(let i=1;i<=len;i++){
+        //   daysNew[arr-i].class = "calendar_td_choose_pass"
+        // }
       }
-
     }
-    console.log(timeNew)
     this.setData({
       days:daysNew,
       time:timeNew
     })
     wx.setStorageSync("calendar", timeNew);
+    this.afresh()
     //渲染
     this.renderingChoose()
   },
   //确认
   confirm(){
     wx.navigateBack({ 
-        delta: 1  //返回
+      delta: 1  //返回
     }); 
   },
   //选择后渲染
   renderingChoose(){
-    let calendarNew = wx.getStorageSync("calendar")  //获取数据
-    let st_t = new Date(calendarNew.startTime)
-    let end_t = new Date(calendarNew.endTime)
+    let calendarNew = wx.getStorageSync("calendar");  //获取数据
+    let st_t = new Date(calendarNew.startTime);
+    let end_t = new Date(calendarNew.endTime);
     let showNew = {
-      month : this.data.show.month,
+      month:this.data.show.month,
       startTimeM:this.dayZero(st_t.getMonth()+1),
       startTimeD:this.dayZero(st_t.getDate()),
       startTimeW:this.dayWeek(calendarNew.startTime),
@@ -278,4 +247,44 @@ Page({
     let week = ['周日','周一','周二','周三','周四','周五','周六']
     return week[new Date(val).getDay()]
   },  
+  //判断传递过来的月份的状态 //1 过去 2 现在 3 未来 0 错误
+  monthState(d_new){
+    let d_today = new Date()  //现在时间
+    if(d_new.getFullYear() == d_today.getFullYear()&&d_new.getMonth() == d_today.getMonth()){
+      return 2;
+    }else if(d_new.getFullYear() <= d_today.getFullYear()&&d_new.getMonth() < d_today.getMonth()){
+      return 1;
+    }else if(d_new.getFullYear() > d_today.getFullYear()||d_new.getMonth() > d_today.getMonth()){
+      return 3;
+    }else{
+      return 0;
+    }
+  },
+  //判断当前时间戳是否属于选中区域
+  selectDay(time){ //1 选中 2 范围内 0没有选中
+    let calendarNew = wx.getStorageSync("calendar");  //获取数据
+    let st_t = calendarNew.startTime;
+    let end_t = calendarNew.endTime;
+    if(time === st_t||time === end_t){
+      return 1;
+    }else if(time>st_t&&time<end_t){
+      return 2;
+    }else{
+      return 0;
+    }
+  },
+  //重新渲染
+  afresh(){
+    let data = this.data.setVal+new Date().getMonth()
+    let m_del = data%12+1;
+    let y_del = (data-data%12)/12
+
+    //重新渲染
+    let dNew = new Date((y_del+(new Date().getFullYear())+"-"+m_del+"-"+"1").replace(/-/g,'/')).getTime();
+    this.rendering(dNew);
+    //赋予this.monthOneDay
+    this.setData({
+      monthOneDay:dNew
+    })
+  },
 })

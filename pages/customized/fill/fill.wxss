@@ -194,6 +194,9 @@ page{background-color: #f1f1f1;}
 .price_li{
   padding: 10rpx;
 }
+.price_li_coupon text{
+  color: #039cee;
+}
 .price_li_details{
   font-size: 24rpx;
   color: #cdcdcd;

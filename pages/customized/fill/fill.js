@@ -87,8 +87,11 @@ Page({
     //   menu2:0,
     // },
     // animationData:{},
-    couponId:null,
-    couponMoney:0, 
+    coupon:{
+      couponId:null,
+      couponMoney:0, 
+      fullMoney:0,
+    },
     total:{
       roomPrice:999900,
       roomPriceS:'9999.00',
@@ -200,6 +203,8 @@ Page({
         this.setData({
           fill:fillNew,
         });
+        //加载外部事件
+        this.popId.funCouponFrist(this.data.breakfastUl[0].price*this.data.fill.roomNum*this.data.room.timeNum)
         this.total();
       }).catch((err) => {
         wx.showModal({title: '错误信息',content: err,showCancel: false}); 
@@ -222,8 +227,8 @@ Page({
       'room.roomPrice':this.data.breakfastUl[index].price,
       'room.roomPriceS':((this.data.breakfastUl[index].price)/100).toFixed(2),  
       'room.ratecode':this.data.breakfastUl[index].val,
-      couponMoney:0,
-      couponId:null,
+      'coupon.couponMoney':0,
+      'coupon.couponId':null,
     });
     
     //重新计算
@@ -231,11 +236,14 @@ Page({
   },
   //couponTotal
   couponTotal(e){
-    console.log(e)
-    let money = e.detail
-    this.setData({
-      couponMoney:money.couponMoney,
+    let money = e.detail;
+    let couponNew = {
       couponId:money.couponId,
+      couponMoney:money.couponMoney, 
+      fullMoney:money.fullMoney,
+    };
+    this.setData({
+      coupon:couponNew,
     });
     this.total();
   },
@@ -351,7 +359,7 @@ Page({
     //押金
     let depositNew = this.data.room.roomDeposit*this.data.fill.roomNum;
     //优惠劵
-    let couponMoney = this.data.couponMoney;
+    let couponMoney = this.data.coupon.couponMoney;
     //会员折扣
     let discountNew = this.data.fill.discount;
     //other
@@ -407,8 +415,9 @@ Page({
       dep:this.data.room.dep,
       deposit:this.data.total.deposit,
       cis:this.data.room.cis,
-      memberCouponId:this.data.couponId,  //优惠劵id
-      subtractMoney:this.data.couponMoney,  //优惠劵减金额
+      memberCouponId:this.data.coupon.couponId,  //优惠劵id
+      subtractMoney:this.data.coupon.couponMoney,  //优惠劵减金额
+      fullMoney:this.data.coupon.fullMoney,  //优惠劵满金额
       scoreTimes:this.data.fill.scoreTimes,  //积分倍数
       cardLevel:this.data.fill.cardLevel,  //卡等级
       discount:this.data.fill.discount,  //等级折扣

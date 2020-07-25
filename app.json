@@ -15,12 +15,13 @@
     "pages/auth/registerWx/registerWx",
     "pages/auth/register/register",
     
-    
+    "pages/customized/calendar/calendar",
     "pages/customized/fill/fill",
     "pages/customized/hotelsList/hotelsList",
     "pages/customized/payResult/payResult",
     "pages/customized/hotelsDetailed/hotelsDetailed",
     "pages/customized/hotelsMap/hotelsMap",
+    
 
     "pages/ucenter/index/index",
     "pages/ucenter/order/orderCancel/orderCancel",

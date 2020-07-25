@@ -167,22 +167,14 @@ Page({
   },
   //我的订单
   orderList(){
-    this.setData({
-      'badge.menu':[0,0,0,0]
-    })
-    app.globalData.badge = "";
-    wx.removeTabBarBadge({
-      index: 2,
-      success: res => { console.log(res) },
-      fail: res => { console.error }
-    })
+    this.cleanBadge();
     wx.navigateTo({
       url: "/pages/ucenter/order/orderList/orderList"
     })
   },
   //我的劵包
   coupon(){
-    // util.showErrorToast("暂未开放")
+    this.cleanBadge();
     wx.navigateTo({
       url: "/pages/ucenter/coupon/coupon"
     })
@@ -229,5 +221,17 @@ Page({
     wx.makePhoneCall({
       phoneNumber:'057188173811'
     })
-  }
+  },
+  //清除红点
+  cleanBadge(){
+    this.setData({
+      'badge.menu':[0,0,0,0]
+    })
+    app.globalData.badge = "";
+    wx.removeTabBarBadge({
+      index: 2,
+      success: res => { console.log(res) },
+      fail: res => { console.error }
+    })
+  },
 })

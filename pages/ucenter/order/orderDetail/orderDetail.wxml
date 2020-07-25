@@ -56,8 +56,8 @@
     <view class="person_ul" wx:if="{{(detail.status == 22||detail.status == 31)&&(!detail.isOverdue)}}">
       <view class="person_li">
         <view class="liveN" wx:if="{{!item.live}}">
-          <button wx:if="{{personUl.length == 0}}"  class="liveN_btn {{detail.canStay?'':'liveN_btn_n'}}" bindtap="{{detail.canStay?'goOrderChoose':''}}" type='primary'>{{detail.canStay?'办理入住':'请当天办理入住'}}</button>
-          <view wx:if="{{personUl.length != 0}}" class="liveN_btn" bindtap="goOrderAddition" data-type="0">添加同住人</view>
+          <button wx:if="{{personUl.length == 0}}" class="liveN_btn {{detail.canStay?'':'liveN_btn_n'}}" bindtap="{{detail.canStay?'goOrderChoose':''}}" type='primary'>{{detail.canStay?'办理入住':'请当天办理入住'}}</button>
+          <view wx:if="{{personUl.length != 0}}" class="liveN_btn" bindtap="goOrderAddition" data-type="0">+添加同住人</view>
           <text class="detail_t4">{{personUl.length == 0?'办理入住后可扫脸开门':'同住人将赋予同等扫脸开门权限'}}</text>
         </view>
       </view>
@@ -80,7 +80,13 @@
           <view class="addition_btn_label" wx:if="{{item.status == 11}}">注：订单只为您保留30分钟，超时将自动取消</view>
           <view><text class="detail_t1">订单编号：</text><text class="detail_t0">{{item.orderId}}</text></view>
           <view><text class="detail_t1">续住时间：</text><text class="detail_t0">{{item.time}}</text></view>
-          <view><text class="detail_t1">续住金额：</text><text class="detail_t0">￥{{item.subtotalS}}</text></view>
+          <view><text class="detail_t1">续住总金额：</text><text class="detail_t0">￥{{item.subtotalS}}</text></view>
+        </view>
+        <view class="addition_details" wx:if="{{item.detailsShow}}">
+          <view><text class="detail_t1">优惠劵：</text><text class="detail_t2">￥{{item.couponS}}</text></view>
+          <view><text class="detail_t1">会员折扣：</text><text class="detail_t2">￥{{item.discountS}}</text></view>
+          <view><text class="detail_t1">余额支付：</text><text class="detail_t2">￥{{item.wayBalanceS}}</text></view>
+          <view><text class="detail_t1">微信支付：</text><text class="detail_t2">￥{{item.wayWxS}}</text></view>
         </view>
         <view class="addition_btn" wx:if="{{item.status == 11}}">
           <view class="addition_btn_li" bindtap="perpay" data-index="{{index}}">立即支付</view>
@@ -98,6 +104,13 @@
       <view><text class="detail_t1">房间押金：</text><text class="detail_t2">￥{{money.depositS}}</text></view>
       <view wx:if="{{(detail.status == 31||detail.status == 41||detail.status == 51)&&(additionUl.length != 0)&&detail.isCis}}"><text class="detail_t1">续住小计：</text><text class="detail_t2">￥{{money.additionS}}</text></view>
       <view><text class="detail_t1">总价：</text><text class="detail_t3">￥{{money.totalS}}</text></view>
+    </view>
+  </view>
+  <view class="money_box">
+    <view class="order_h1">订单支付方式</view>
+    <view class="order_money">
+      <view><text class="detail_t1">余额支付：</text><text class="detail_t2">￥{{money.wayBalanceS}}</text></view>
+      <view><text class="detail_t1">微信支付：</text><text class="detail_t2">￥{{money.wayWxS}}</text></view>
     </view>
   </view>
   <view class="order_i">
