@@ -17,6 +17,9 @@
   margin-bottom: 120rpx;
   display: flex;
 }
+.transfer_process3{
+  margin-bottom: 50rpx;
+}
 .process_li{
   flex: 1 1 auto;
 }
@@ -119,8 +122,13 @@
   font-size: 30rpx;
 }
 /*card*/
+.order_box{
+  padding: 30rpx;
+}
 .order_card{
   padding: 30rpx;
+  border: 1rpx solid #f1f1f1;
+  border-radius: 10rpx;
 }
 .order_text{
   padding: 10rpx;
@@ -132,12 +140,17 @@
 .order_t1{
   font-size: 26rpx;
   color: #000;
-  padding-left: 20rpx;
+}
+.order_t2{
+  font-size: 26rpx;
+  color: #000;
+  float: right;
 }
 .order_details{
   color: #cdcdcd;
-  margin-left: 30rpx;
+  margin-right: 30rpx;
   font-size: 26rpx;
+  padding-left: 30rpx;
 }
 .order_t_red{
   color: #cc0000;

@@ -48,8 +48,10 @@
     <view class="price_li">
       <text>房费</text><text class="price_li_r">{{total.roomPriceS}}</text><text class="price_li_r">￥</text>
     </view>
-    <view class="price_li">
-      <text>优惠劵</text><text class="price_li_r">{{total.couponS}}</text><text class="price_li_r">-￥</text>
+    <view class="price_li price_li_coupon">
+      <text>优惠劵</text>
+      <text class="price_li_r" wx:if="{{total.coupon != 0}}">-￥{{total.couponS}}</text>
+      <text class="price_li_r" wx:if="{{total.coupon == 0}}">未使用</text>
     </view>
     <view class="price_li">
       <text>会员折扣</text><text class="price_li_r">{{total.discountS}}折</text>

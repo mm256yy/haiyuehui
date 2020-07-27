@@ -155,6 +155,9 @@ page{background-color: #f1f1f1;}
   color: #cc0000;
   font-size: 36rpx;
 }
+.price_li_coupon text{ 
+  color: #039cee;
+}
 /*立即下单*/
 .hotels_btn{
   margin: 30rpx;

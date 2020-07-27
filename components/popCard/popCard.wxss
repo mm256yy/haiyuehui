@@ -68,7 +68,10 @@
   overflow-y: scroll;
 }
 .coupon_li{
-  padding: 20rpx;
+  padding:0rpx 20rpx 20rpx;
+}
+.coupon_li:first-child{
+  padding-top: 20rpx;
 }
 .coupon_li_b{
   display: flex;
@@ -77,7 +80,7 @@
   position: relative;
 }
 .coupon_left{
-  width: 300rpx;
+  width: 260rpx;
   background: linear-gradient(to right, #039cee , #346ae8);
   padding: 20rpx;
   text-align: center;
@@ -107,7 +110,7 @@
   background-color: #fff;
 }
 .coupon_name{
-  margin-bottom: 15rpx;
+  margin-bottom: 40rpx;
   font-size: 30rpx;
 }
 .coupon_time{

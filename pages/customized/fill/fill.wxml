@@ -1,4 +1,5 @@
 <view>
+  <wxs src="../../../utils/filter/money.wxs" module="money" />
   <view class="head_banner">
     <swiper 
       autoplay="true"
@@ -82,7 +83,7 @@
   <view class="hotels_price">
     <view class="price_li">
       <text>房费</text>
-      <text class="price_li_r">{{total.roomPriceS}}</text>
+      <text class="price_li_r">{{money.moneyFixed(total.roomPrice)}}</text>
       <text class="price_li_rmb">￥</text>
       <text class="price_li_details">{{room.timeNum + "晚 x 房间单价 " + room.roomPriceS+" 元"}}</text>
     </view>

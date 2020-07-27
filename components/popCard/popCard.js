@@ -53,7 +53,6 @@ Component({
   },
   lifetimes: {
     ready: function() {
-      this.coupon();
     },
   },
   methods: {
@@ -95,8 +94,8 @@ Component({
           id:data[i].id,
           typeFill:(data[i].fullMoney<fullMoneyPrice)?0:1,
           name:data[i].name,
-          startTime:data[i].startTime,
-          endTime:data[i].endTime,
+          startTime:data[i].startTime.split(' ')[0],
+          endTime:data[i].endTime.split(' ')[0],
           onlyTimeS:this.onlyTimeS(data[i].startTime,data[i].endTime),
           fullMoney:data[i].fullMoney,
           fullMoneyS:(data[i].fullMoney/100),

@@ -31,7 +31,7 @@
         <view class="wallet_li_t1">我的余额</view>
         <view class="wallet_li_t2">{{info.moneyS}}</view>
       </view>
-      <view class="wallet_li">
+      <view class="wallet_li" bindtap="walletAmount">
         <view class="wallet_li_t1">我的积分</view>
         <view class="wallet_li_t2">{{info.points}}</view>
       </view>
@@ -44,7 +44,6 @@
   <view class="member_list" wx:if="{{true}}">
     <view class="member_title">
       <text class="member_title">会员权益</text>
-      <text class="member_title_no">（暂未开启，敬请期待）</text>
       <text class="member_title_most" bindtap="powerMost">更多权益 ></text>
     </view>
     <view class="power_ul">

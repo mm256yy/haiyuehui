@@ -48,8 +48,12 @@ page{background-color: #f1f1f1;}
 /*支付类型*/
 .pay_mode{
   background-color: #f1f1f1;
-  padding: 20rpx;
+  padding:10rpx 20rpx;
   margin-bottom: 20rpx;
+}
+.pay_li_not{
+  margin-left: 20rpx;
+  color: #cc0000;
 }
 .pay_mode_h1{
   font-weight: 800;

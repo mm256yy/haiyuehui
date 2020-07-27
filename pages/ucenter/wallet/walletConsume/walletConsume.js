@@ -83,7 +83,6 @@ Page({
       this.setData({
         consumeUl : ul
       })
-      console.log(res)
     }).catch((err) => {
       wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
     });

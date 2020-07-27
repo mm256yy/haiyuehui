@@ -140,7 +140,7 @@ let powerUl = [
     text1:'生日礼',
     text2:'领取蛋糕劵',
     introduce:'生日礼',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'生日礼',text2:'领取蛋糕劵',use:false},
       {arr:1,text1:'生日礼',text2:'领取蛋糕劵',use:true},

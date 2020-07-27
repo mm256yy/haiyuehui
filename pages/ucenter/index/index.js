@@ -18,11 +18,6 @@ Page({
         text:'我的订单'
       },
       {
-        bindtap:'meeting',
-        img:'/static/images/u-menu5.png',
-        text:'会议与团队'
-      },
-      {
         bindtap:'coupon',
         img:'/static/images/u-menu2.png',
         text:'我的劵包'
@@ -31,7 +26,12 @@ Page({
         bindtap:'wallet',
         img:'/static/images/u-menu3.png',
         text:'我的钱包'
-      }
+      },
+      {
+        bindtap:'meeting',
+        img:'/static/images/u-menu5.png',
+        text:'会议与团队'
+      },
       /*{
         bindtap:'',
         img:'/static/images/u-menu4.png',

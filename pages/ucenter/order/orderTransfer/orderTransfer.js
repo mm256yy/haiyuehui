@@ -33,6 +33,10 @@ Page({
       endTime:'',
       endTimeS:'',
       isCis:false,
+      coupon:0,
+      couponS:'0.00',
+      discount:100,
+      discountS:10,
     }
   },
   onShow: function () {
@@ -86,7 +90,6 @@ Page({
   },
   //查询订单
   queryOrder(){
-    
     if(this.data.info.orderNo.length == 0){
       wx.showModal({
         title: '错误信息',
@@ -110,7 +113,16 @@ Page({
     console.log(param)
     util.request(api.UcenterConnectOrder , param , 'GET').then(res => {
       //获取到订单信息
-      console.log(res.result.orderId)
+      let orderPayInfo = {};
+      let orderPayInfoNew = {
+        discount:0,   
+        balance:0,
+      };
+      if(res.result.orderPayInfo){
+        orderPayInfo = res.result.orderPayInfo;
+      }else{
+        orderPayInfo = orderPayInfoNew;
+      }
       let detailNew = {
         status:res.result.status,
         statusS:util.orderType(res.result.status),
@@ -135,6 +147,10 @@ Page({
         money:res.result.money,
         moneyS:(res.result.money/100).toFixed(2),
         days:res.result.days,
+        coupon:res.result.subtractMoney?res.result.subtractMoney:0,
+        couponS:((res.result.subtractMoney?res.result.subtractMoney:0)/100).toFixed(2),
+        discount:orderPayInfo.discount,
+        discountS:(orderPayInfo.discount/10).toFixed(1),
       }
       app.globalData.badge = {menu:[1,0,0,0]}
       wx.showModal({ title: '成功',content: '查询成功',showCancel: false , success (res) {
@@ -144,6 +160,7 @@ Page({
         })
       }});
     }).catch((err) => {
+      console.log(err)
       wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
@@ -202,24 +219,11 @@ Page({
       wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
-  //查看订单列表
+  //支付
   goPay(){
-    let param = {
-      orderId:this.data.detail.orderId,
-      rmdesc:this.data.detail.rmdesc,
-    }
-    console.log(param)
-    pay.usePay(param).then(res => {
-      //跳转
-      wx.navigateTo({
-        url: "/pages/customized/payResult/payResult?result=1&end=0"
-      })
-    }).catch(() => {
-      //跳转
-      wx.navigateTo({
-        url: "/pages/customized/payResult/payResult?result=0&end=0"
-      })
-    });
+    wx.redirectTo({
+      url: "/pages/customized/pay/pay?money="+this.data.detail.money+"&orderId="+this.data.detail.orderId+"&rmdesc="+this.data.detail.rmdesc
+    })
   },
   //点击办理入住
   goOrderChoose(){
@@ -228,14 +232,14 @@ Page({
     wx.requestSubscribeMessage({
       tmplIds: ['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'],
       success (res) {
-        if(JSON.stringify(res).split('"')[3] == "accept"){
-          wx.navigateTo({
+        if(res['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'] == "accept"){
+          wx.redirectTo({
             url: "../orderChoose/orderChoose?arr="+that.data.detail.startTimeS+"&dep="+that.data.detail.endTimeS+"&hotelId="+that.data.detail.hotelId+"&rmtype="+that.data.detail.rmtype+"&orderId="+that.data.detail.orderId
           })
-        }else if(JSON.stringify(res).split('"')[3] == "reject"){
+        }else if(res['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'] == "reject"){
           wx.showModal({title: '错误信息',content: "请确认退房通知提醒",showCancel: false});
         }else{
-          console.log(res)
+          wx.showModal({title: '错误信息',content: "请联系前台处理",showCancel: false});
         }
       }
     })

@@ -3,6 +3,11 @@ page{background-color: #f1f1f1;}
 .coupon_type{
   background-color: #fff;
   display: flex;
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  z-index: 100;
 }
 .type_li{
   padding: 30rpx;
@@ -16,6 +21,7 @@ page{background-color: #f1f1f1;}
 /*coupon*/
 .coupon_list{
   padding: 20rpx;
+  margin-top: 100rpx;
 }
 .coupon_li{
   margin-bottom: 20rpx;
@@ -35,7 +41,7 @@ page{background-color: #f1f1f1;}
   overflow: hidden;
 }
 .coupon_left{
-  width: 300rpx;
+  width: 260rpx;
   background: linear-gradient(to right, #039cee , #346ae8);
   float: left;
   padding: 20rpx;
@@ -65,7 +71,7 @@ page{background-color: #f1f1f1;}
   background-color: #fff;
 }
 .coupon_name{
-  margin-bottom: 15rpx;
+  margin-bottom: 40rpx;
   font-size: 30rpx;
 }
 .coupon_time{

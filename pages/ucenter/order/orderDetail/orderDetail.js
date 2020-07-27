@@ -137,10 +137,17 @@ Page({
         canStay:(check.checkIsOverdue(data.arr) === 0)
       }
       let dayNum = (new Date(data.dep) - new Date(data.arr))/1000/60/60/24;
+      //
+      let orderPayInfo = {};
       let orderPayInfoNew = {
         discount:0,   
         balance:0,
       };
+      if(data.orderPayInfo){
+        orderPayInfo = data.orderPayInfo;
+      }else{
+        orderPayInfo = orderPayInfoNew;
+      }
       moneyNew = {
         roomPrice:data.roomPrice*dayNum,
         roomPriceS:(data.roomPrice/100*dayNum).toFixed(2),
@@ -150,14 +157,14 @@ Page({
         additionS:'0.00',
         coupon:data.subtractMoney?data.subtractMoney:0,
         couponS:((data.subtractMoney?data.subtractMoney:0)/100).toFixed(2),
-        discount:data.orderPayInfo.discount,
-        discountS:(data.orderPayInfo.discount/10).toFixed(1),
+        discount:orderPayInfo.discount,
+        discountS:(orderPayInfo.discount/10).toFixed(1),
         total:data.money,
         totalS:(data.money/100).toFixed(2),
-        wayWx:(data.money-data.orderPayInfo.balance),
-        wayWxS:((data.money-data.orderPayInfo.balance)/100).toFixed(2),
-        wayBalance:data.orderPayInfo.balance,
-        wayBalanceS:(data.orderPayInfo.balance/100).toFixed(2),
+        wayWx:(data.money-orderPayInfo.balance),
+        wayWxS:((data.money-orderPayInfo.balance)/100).toFixed(2),
+        wayBalance:orderPayInfo.balance,
+        wayBalanceS:(orderPayInfo.balance/100).toFixed(2),
       }
       let personsUL = [];
       let personsLi = {};
@@ -181,11 +188,31 @@ Page({
         money:moneyNew,
         allowConnect:data.allowConnect
       })
+      this.member();
       this.addDaysList();
     }).catch((err) => {
       console.log(err)
       // wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
+  },
+  //会员信息
+  member(){
+    let type = this.data.detail.status;
+    if(type == 11||type == 12||type == 13){
+      //获取名字
+      util.request(api.MemberGet, 'GET').then(res => {
+        let couponNew = Math.round((this.data.money.roomPrice-this.data.money.total/(res.result.discount/100)-this.data.money.deposit)/100)
+        this.setData({
+          'money.coupon':couponNew,
+          'money.couponS':couponNew,
+          'money.discount':(res.result.discount?res.result.discount:100),
+          'money.discountS':(res.result.discount?res.result.discount:100)/10,
+        });
+      }).catch((err) => {
+        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+      });
+    }
+    
   },
   //获取续住列表
   addDaysList(){
@@ -232,22 +259,10 @@ Page({
   //续租订单支付
   perpay(e){
     let index = e.currentTarget.dataset.index;
-    let param = {
-      orderId:this.data.additionUl[index].orderId,
-      rmdesc:this.data.additionUl[index].rmdesc,
-    }
-    console.log(param)
-    pay.usePay(param).then(res => {
-      //跳转
-      wx.navigateTo({
-        url: "/pages/customized/payResult/payResult?result=1&end=0"
-      })
-    }).catch(() => {
-      //跳转
-      wx.navigateTo({
-        url: "/pages/customized/payResult/payResult?result=0&end=0"
-      })
-    });
+    //
+    wx.redirectTo({
+      url: "/pages/customized/pay/pay?money="+this.data.additionUl[index].subtotal+"&orderId="+this.data.additionUl[index].orderId+"&rmdesc="+this.data.additionUl[index].rmdesc
+    })
   },
   //复制
   copy(e){
@@ -287,7 +302,6 @@ Page({
   //点击办理入住
   goOrderChoose(){
     let that = this;
-
     /*申请调用*/
     wx.requestSubscribeMessage({
       tmplIds: ['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'],

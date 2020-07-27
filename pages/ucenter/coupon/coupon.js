@@ -82,8 +82,8 @@ Page({
             id:data[i].id,
             type:showType,
             name:data[i].name,
-            startTimeS:data[i].startTime,
-            endTimeS:data[i].endTime,
+            startTimeS:this.daySplit(data[i].startTime),
+            endTimeS:this.daySplit(data[i].endTime),
             onlyTimeS:this.onlyTimeS(data[i].startTime,data[i].endTime),
             fullMoney:data[i].fullMoney,
             fullMoneyS:(data[i].fullMoney/100),
@@ -126,17 +126,18 @@ Page({
   },
   //选择类型
   typeBind(e){
+    let type = parseInt(e.currentTarget.dataset.type)
     this.setData({
-      typeMenu:e.currentTarget.dataset.type,
+      typeMenu:type,
       pageNo:1,
     });
-    this.init(this.data.typeMenu,1);
+    this.init(type,1);
   },
   //剩余时间
   onlyTimeS(startTime,endTime){
     let start = new Date(startTime.replace(/-/g,'/')).getTime();
     let end = new Date(endTime.replace(/-/g,'/')).getTime();
-    let num = (end - start)/(100*60*60*24);
+    let num = parseInt((end - start)/(1000*60*60*24));
     return num;
   },
   //跳转到酒店列表
@@ -144,5 +145,9 @@ Page({
     wx.navigateTo({ 
       url: "/pages/customized/hotelsList/hotelsList"
     });
+  },
+  //split
+  daySplit(time){
+    return time.split(' ')[0]
   },
 })

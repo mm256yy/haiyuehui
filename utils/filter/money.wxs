@@ -1,0 +1,13 @@
+// 5050 == 50.50
+function moneyFixed(money){
+  return (money/100).toFixed(2)
+}
+//5000 == 50
+function moneyInteger(money){
+  return (money/100)
+}
+
+module.exports = {
+  moneyFixed:moneyFixed,
+  moneyInteger:moneyInteger, 
+}

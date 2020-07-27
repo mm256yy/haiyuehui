@@ -9,8 +9,8 @@ Page({
     moneyUl:[
       {money:10000,moneyS:'100元',recharge:100},
       {money:20000,moneyS:'200元',recharge:200},
-      {money:30000,moneyS:'300元',recharge:300},
       {money:50000,moneyS:'500元',recharge:500},
+      {money:100000,moneyS:'1000元',recharge:1000},
       {money:200000,moneyS:'两千元',recharge:2000},
       {money:1000000,moneyS:'一万元',recharge:10000},
       {money:5000000,moneyS:'五万元',recharge:50000},

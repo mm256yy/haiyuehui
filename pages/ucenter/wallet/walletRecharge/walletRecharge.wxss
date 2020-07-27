@@ -25,6 +25,7 @@ page{
 }
 .wallet_recharge_type{
   float: right;
+  color: #179B16;
 }
 .money_ul{
   margin-top: 20rpx;

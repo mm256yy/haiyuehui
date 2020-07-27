@@ -52,41 +52,6 @@ Page({
       // {price:1200,priceS:'12.00',name:'三人早餐',val:'wec3'},
     ],
     breakfastChoose:0,
-    // couponUl:[
-    //   {
-    //     id:0,
-    //     typeFill:1,
-    //     name:'酒店价格满300减免',
-    //     startTime:'2020-05-04',
-    //     endTime:'2020-06-04',
-    //     onlyTimeS:4,
-    //     fullMoney:50000,
-    //     fullMoneyS:500.00,
-    //     money:500,
-    //     moneyS:5.00,
-    //   },
-    //   {
-    //     id:0,
-    //     typeFill:0,
-    //     name:'酒店价格满500减免',
-    //     startTime:'2020-05-04',
-    //     endTime:'2020-06-04',
-    //     onlyTimeS:4,
-    //     fullMoney:10000,
-    //     fullMoneyS:100.00,
-    //     money:1000,
-    //     moneyS:10.00,
-    //   },
-    // ],
-    // couponArr:0,  //未选择为0
-    // popShow:false,
-    // popHeight:0,
-    // popMenu:{
-    //   val:0,
-    //   menu1:0,
-    //   menu2:0,
-    // },
-    // animationData:{},
     coupon:{
       couponId:null,
       couponMoney:0, 
@@ -116,6 +81,10 @@ Page({
   },
   onReady: function (){
     this.popId = this.selectComponent("#popId");
+    //加载外部事件
+    setTimeout(()=>{
+      this.popId.funCouponFrist(this.data.breakfastUl[0].price*this.data.room.timeNum)
+    },100)
   },
   onShow: function () {
     let pages = getCurrentPages()
@@ -203,8 +172,7 @@ Page({
         this.setData({
           fill:fillNew,
         });
-        //加载外部事件
-        this.popId.funCouponFrist(this.data.breakfastUl[0].price*this.data.fill.roomNum*this.data.room.timeNum)
+        
         this.total();
       }).catch((err) => {
         wx.showModal({title: '错误信息',content: err,showCancel: false}); 
@@ -247,111 +215,6 @@ Page({
     });
     this.total();
   },
-  // //优惠劵
-  // coupon(){
-  //   let param = {
-  //     pageNo:1,
-  //     showType:2,
-  //     pageSize:20, 
-  //   };
-  //   console.log(param);
-  //   util.request(api.MemberCouponList , param , 'GET').then(res => {
-  //     let data = res.result.records;
-  //     this.funCouponUl(data);
-  //   }).catch((err) => {
-  //     wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-  //   });
-  // },
-  // //优惠劵列表
-  // funCouponUl(data){
-  //   if(data.length == 0){ return false };
-  //   let c_ul = [];
-  //   let c_li = {};
-  //   let couponUlNew = [];
-  //   let couponY = 0;
-  //   let couponN = 0;
-  //   for(let i=0;i<data.length;i++){
-  //     if(data[i].fullMoney<(this.data.breakfastUl[this.data.breakfastChoose].price*this.data.room.timeNum)){
-  //       couponY ++;
-  //     }else{
-  //       couponN ++;
-  //     }
-  //     c_li = {
-  //       id:data[i].id,
-  //       typeFill:(data[i].fullMoney<(this.data.breakfastUl[this.data.breakfastChoose].price*this.data.room.timeNum))?0:1,
-  //       name:data[i].name,
-  //       startTime:data[i].startTime,
-  //       endTime:data[i].endTime,
-  //       onlyTimeS:this.onlyTimeS(data[i].startTime,data[i].endTime),
-  //       fullMoney:data[i].fullMoney,
-  //       fullMoneyS:(data[i].fullMoney/100),
-  //       money:data[i].money,
-  //       moneyS:(data[i].money/100),
-  //     }
-  //     c_ul.push(c_li)
-  //   }
-  //   couponUlNew = c_ul;
-  //   this.setData({
-  //     couponUl:couponUlNew,
-  //     'popMenu.menu1':couponY,
-  //     'popMenu.menu2':couponN,
-  //   });
-  //   console.log(this.data.couponUl)
-  // },
-  // //pop显示
-  // popShow(e){
-  //   //POP
-  //   this.setData({
-  //     popShow:true
-  //   })
-  //   //获取pop的高度
-  //   let height = null;
-  //   let that = this;
-  //   wx.createSelectorQuery().selectAll('#pop').boundingClientRect(function (rect) {
-  //     height = rect[0].height;
-  //     let animation = wx.createAnimation({
-  //         duration:1000,
-  //         timingFunction:"ease",  //可以看下表1
-  //     });
-  //     animation.translate(0, -height).step();  //动画过程可以看下表2
-  //     that.setData({
-  //       animationData:animation.export()   //设置完毕
-  //     });
-  //   }).exec();
-  // },
-  // //pop隐藏
-  // popHide(){
-  //   let animation = wx.createAnimation({
-  //       duration:1000,
-  //       timingFunction:"ease",  //可以看下表1
-  //   })
-  //   animation.translate(0, 440).step();  //动画过程可以看下表2
-  //   this.setData({
-  //     animationData:animation.export(),   //设置完毕
-  //     popShow:false
-  //   });
-  //   this.total();
-  // },
-  // //优惠劵选择
-  // couponChoose(e){
-  //   let index = e.currentTarget.dataset.index;
-  //   let couponArrNew = 0;
-  //   if(index+1 == this.data.couponArr){
-  //     couponArrNew = 0;
-  //   }else{
-  //     couponArrNew = index+1;
-  //   };
-  //   this.setData({
-  //     couponArr : couponArrNew,
-  //   });
-  // },
-  // //优惠劵类型
-  // bindPopMenu(e){
-  //   let type = e.currentTarget.dataset.type;
-  //   this.setData({
-  //     'popMenu.val' : type,
-  //   });
-  // },
   //总计
   total(){
     //房费
@@ -389,18 +252,6 @@ Page({
     if(!check.checkMobile(this.data.fill.mobile)){return false};
     if(!check.checkMoney(this.data.total.money)){return false};
     if(!check.checkMoney(this.data.room.roomPrice)){return false};
-    // //优惠劵
-    // let couponArrNew = null;
-    // let couponMoney = 0;
-    // let CouponIdNew = '';
-    // if(this.data.couponArr !== 0){
-    //   couponArrNew = this.data.couponArr - 1;
-    //   couponMoney = this.data.couponUl[couponArrNew].money;
-    //   CouponIdNew = this.data.couponUl[couponArrNew].id;
-    // }else{
-    //   couponMoney = 0;
-    //   CouponIdNew = '';
-    // }
     //传递
     let param = {
       hotelId: this.data.room.hotelId,

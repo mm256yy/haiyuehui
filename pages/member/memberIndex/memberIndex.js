@@ -97,7 +97,6 @@ Page({
     let discountNew = 100;
     let scoreTimesNew = 100;
     util.request(api.MemberGet, 'GET').then(res => {
-      console.log(res)
       grade = util.memberGrade(res.result.cardLevel);
       discountNew = res.result.discount?res.result.discount:100;
       scoreTimesNew = res.result.scoreTimes?res.result.scoreTimes:100;

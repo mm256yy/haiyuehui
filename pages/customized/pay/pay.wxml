@@ -27,9 +27,10 @@
     </view>
     <view class="pay_li">
       <text>余额抵扣</text>
+      <text class="pay_li_not" wx:if="{{mode.balance == 0}}">(余额不足)</text>
       <text class="pay_li_r" >-￥{{pay.balanceS}}</text>
     </view>
-    <view class="pay_mode">
+    <view class="pay_mode" wx:if="{{mode.balance!=0}}">
       <!-- <view class="pay_mode_h1">支付方式</view> -->
       <view class="pay_li" bindtap="bindBalanceSRadio">
         <label class="radio" >

@@ -117,7 +117,6 @@ Page({
   },
   //跳转
   orderDetail(e){
-    console.log(e)
     wx.navigateTo({
       url: "../orderDetail/orderDetail?orderId="+e.currentTarget.dataset.orderId
     })
@@ -175,23 +174,6 @@ Page({
     wx.redirectTo({
       url: "/pages/customized/pay/pay?money="+this.data.orderUl[index].orderPrice+"&orderId="+this.data.orderUl[index].id+"&rmdesc="+this.data.orderUl[index].orderRoom
     })
-    // console.log(this.data.orderUl[e.currentTarget.dataset.index])
-    // let param = {
-    //   orderId:this.data.orderUl[e.currentTarget.dataset.index].id,
-    //   rmdesc:this.data.orderUl[e.currentTarget.dataset.index].orderRoom,
-    // }
-    // console.log(param)
-    // pay.usePay(param).then(res => {
-    //   //跳转
-    //   wx.navigateTo({
-    //     url: "/pages/customized/payResult/payResult?result=1&end=0"
-    //   })
-    // }).catch(() => {
-    //   //跳转
-    //   wx.navigateTo({
-    //     url: "/pages/customized/payResult/payResult?result=0&end=0"
-    //   })
-    // });
   },
   //刷新
   refresh(){

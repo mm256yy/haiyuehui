@@ -71,8 +71,8 @@ Page({
           i_abled = true
         }else if(i-oneDay < headDay&&monthState == 2){  //本月之前日
           i_class = "calendar_td_disabled"
-        }else if(monthState == 1){  //之前月
-          i_class = "calendar_td_disabled"
+        // }else if(monthState == 1){  //之前月
+        //   i_class = "calendar_td_disabled"
         }else{
           if(this.selectDay(i_time) == 1){
             i_class = "calendar_td_choose"
@@ -124,7 +124,6 @@ Page({
         setVal : this.data.setVal + 1
       })
     }
-    console.log(this.data.setVal)
     this.afresh()
   },
   //选择日期
