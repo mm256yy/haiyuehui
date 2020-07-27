@@ -26,7 +26,7 @@ Page({
   onLoad: function (option) {
     this.invite(option);
   },
-  onShow: function (e) {
+  onShow: function () {
     this.renderingTime();
     this.fristRegister();
   },
@@ -69,7 +69,6 @@ Page({
   renderingTime(){
     let calendar = wx.getStorageSync("calendar");  //获取数据
     let d_today = new Date();
-    //console.log(calendar);
     if(calendar && (calendar.startTime+1000*60*60*24)>=d_today.getTime()){  //判断是否有储存时间/储存时间大于当前时间 --有
       let d_today = new Date(calendar.startTime);
       let d_tomorrow = new Date(calendar.endTime);

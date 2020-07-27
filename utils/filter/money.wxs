@@ -6,7 +6,6 @@ function moneyFixed(money){
 function moneyInteger(money){
   return (money/100)
 }
-
 module.exports = {
   moneyFixed:moneyFixed,
   moneyInteger:moneyInteger, 
