@@ -1,64 +1,68 @@
 /* *app.wxss* */
-view, image, text, navigator {
+view,
+image,
+text,
+navigator {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
-view, text {
-  font-family: PingFangSC-Light, helvetica, 'Heiti SC';
+
+view,
+text {
   font-size: 28rpx;
   color: #333;
 }
-page{font-size:26rpx;background-color: #fff; color: #333;}
-view{box-sizing:border-box;}
+
+page {
+  background-color: #fff;
+}
+
 /* 多选 */
-checkbox .wx-checkbox-input{border-radius:50%;width:38rpx;height:38rpx;}
-checkbox .wx-checkbox-input.wx-checkbox-input-checked{
-border: 1px solid #e93323 !important;background-color: #e93323 !important;color:#fff!important;}
+checkbox .wx-checkbox-input {
+  border-radius: 50%;
+  width: 38rpx;
+  height: 38rpx;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  border: 1px solid #e93323 !important;
+  background-color: #e93323 !important;
+  color: #fff !important;
+}
+
 /* 单选 */
-radio .wx-radio-input{
-  border-radius:50%;
-  width:20px;height:20px;
+radio .wx-radio-input {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
 }
-radio .wx-radio-input.wx-radio-input-checked{
-  border-color:#039cee !important;
-  background:#039cee !important;
+
+radio .wx-radio-input.wx-radio-input-checked {
+  border-color: #039cee !important;
+  background: #039cee !important;
 }
-radio .wx-radio-input.wx-radio-input-checked::before{
-  border-radius:50%;
-  width:20px;
-  height:20px;
-  line-height:20px;
-  text-align:center;
-  font-size:15px;
-  color:#fff;
-  background:transparent;
-  transform:translate(-50%, -50%) scale(1);
-  -webkit-transform:translate(-50%, -50%) scale(1);
-}
-.font_24{
-  font-size: 24rpx!important;
-}
-/*btn*/
-.wx_btn_DisSuccess{
-  font-size: 28rpx;
-  background: linear-gradient(to right, #039cee , #753ffd);
-  color: #fff;
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
   text-align: center;
-  padding: 20rpx 10rpx;
-  border-radius:50rpx ;
-  margin: 30rpx;
-  opacity: 0.5;
-}
-.wx_btn_success{
-  font-size: 28rpx;
-  background: linear-gradient(to right, #039cee , #753ffd);
+  font-size: 15px;
   color: #fff;
-  text-align: center;
-  padding: 20rpx 10rpx;
-  border-radius:50rpx ;
-  margin: 30rpx;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
 }
+
+.font_24 {
+  font-size: 24rpx !important;
+}
+
+/*success btn*/
+.wx_btn_success{font-size:28rpx;background:linear-gradient(to right,#039cee,#753ffd);color:#fff;text-align:center;padding:20rpx 10rpx;border-radius:50rpx;margin:30rpx;}
+
+
 /*template*/
 @import "/template/template.wxss";
-

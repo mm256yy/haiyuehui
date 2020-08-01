@@ -65,7 +65,6 @@ Page({
     this.setData({
       isDefault:isDefaultNew
     })
-    console.log(this.data.isDefault)
   },
   //清除
   clean(){

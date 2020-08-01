@@ -110,13 +110,6 @@ Page({
             rmtype:res.result[i].rmtype,
             isCis:res.result[i].isCis,
 
-            // priceBefore:res.result[i].price,
-            // priceBeforeS:util.money(res.result[i].price),
-            // priceVip:res.result[i].pricem,
-            // priceVipS:(isLoginNew?util.money(res.result[i].pricem):'？？？'),
-            // ratecode:res.result[i].ratecode,
-            // ratecodem:res.result[i].ratecodem,
-
             wrac:util.importantMoney(res.result[i].wrac),  //门市价
             wec0:util.importantMoney(res.result[i].wec0),  //无早
             wec1:util.importantMoney(res.result[i].wec1),  //单早

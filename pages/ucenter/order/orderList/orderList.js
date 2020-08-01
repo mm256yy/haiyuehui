@@ -24,7 +24,6 @@ Page({
         endTimeS:'2020-05-12',
         orderRoom:'orderRoom',
         orderPrice:60000,
-        orderPriceS:'600.00',
         roomNo:'roomNo',
         show:true,
         canAdd:0,  //判断是否显示续住订单 0 隐藏 1 显示
@@ -63,8 +62,7 @@ Page({
       let o_ul = [];
       let o_li = {};
       let orderUlNew = []
-      if(res.result.records.length == 0){ 
-      }else{
+      if(res.result.records.length != 0){ 
         for(let i=0;i<res.result.records.length;i++){
           o_li = {
             id:res.result.records[i].orderId ,
@@ -78,7 +76,6 @@ Page({
             orderRoom:res.result.records[i].rmdesc,
             orderNum:res.result.records[i].orderId,
             orderPrice:res.result.records[i].money,
-            orderPriceS:(res.result.records[i].money/100).toFixed(2),
             roomNo:res.result.records[i].roomNo,
             show:(res.result.records[i].parentOrderId == ""),
             canAdd:res.result.records[i].canAdd,
@@ -91,14 +88,12 @@ Page({
       if(pull == 1){  //初始化
         orderUlNew = o_ul;
       }else{
+        orderUlNew = this.data.orderUl.concat(o_ul);
         if(res.result.records.length == 0){
-          orderUlNew = this.data.orderUl.concat(o_ul);
           this.setData({
             pageNo:this.data.pageNo - 1
           });
-        }else{
-          orderUlNew = this.data.orderUl.concat(o_ul);
-        };
+        }
       };
       this.setData({
         orderUl:orderUlNew,

@@ -48,3 +48,6 @@ page{
   color: #039cee;
   padding: 10rpx;
 }
+.dis_success{
+  opacity: 0.5;
+}

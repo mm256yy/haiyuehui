@@ -1,4 +1,4 @@
-/* pages/ucenter/orderContinue/orderContinue.wxss */
+
 /*banner*/
 page{background-color: #f1f1f1;}
 .detailed_head{

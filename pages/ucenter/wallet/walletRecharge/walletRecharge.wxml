@@ -7,12 +7,14 @@
       <input class="recharge_money_input" value="{{moneyNum}}" bindinput="bindMoneyInput" onkeyup="value=value.replace(/[^\d]/g,'')" ></input>
     </view>
   </view>
-  <view><template is="label" data="{{text:['金额应该为100的整数倍']}}"/></view>
+  <view>
+    <template is="label" data="{{text:['金额应该为100的整数倍']}}"/>
+  </view>
   <view class="wallet_recharge">
-    <text class="">快捷选择</text>
+    <text>快捷选择</text>
     <view class="money_ul">
       <view class="money_li" wx:for="{{moneyUl}}" bindtap="rechargeFast" data-money="{{item.recharge}}" data-index="{{index}}" wx:key="index">
-        <view class="money_li_val {{moneyLi == index +1?'money_li_val_on':''}}">{{item.moneyS}}</view>
+        <view class="money_li_val {{moneyLi == index + 1?'money_li_val_on':''}}">{{moneyLi == index + 1?item.moneyS:item.moneyOnS}}</view>
       </view>
     </view>
   </view>
@@ -21,6 +23,6 @@
     <text class="wallet_recharge_type">微信支付</text>
   </view>
   <view class="wallet_btn">
-    <view class="{{moneyNum == ''?'wx_btn_DisSuccess':'wx_btn_success'}}" bindtap="successBtn">充值</view>
+    <view class="wx_btn_success {{moneyNum == ''?'dis_success':''}}" bindtap="successBtn">充值</view>
   </view>
 </view>

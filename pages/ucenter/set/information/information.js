@@ -8,7 +8,6 @@ Page({
       name:'',
       mobile:'',
     },
-    hasInfo:false,
     isFirst:false,
   },
   onLoad: function (options) {
@@ -38,16 +37,12 @@ Page({
         }
         this.setData({
           info:infoNew,
-          hasInfo:true,
           isFirst:isFirstNew,
         })
       }).catch((err) => {
         wx.showModal({title: '错误信息',content: err,showCancel: false}); 
       });
     }else{
-      this.setData({
-        hasInfo:false
-      })
       wx.navigateTo({
         url: "/pages/auth/login/login"
       })

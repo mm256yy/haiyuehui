@@ -5,7 +5,7 @@ let api = require('../../../config/api.js');
 Page({
   data: {
     pics:[
-      '/static/images/person.jpg',
+      '/static/images/banner2.jpg',
     ],
     room:{
       hotelId:'',
@@ -13,7 +13,6 @@ Page({
       roomId:'',
       roomName:'',
       roomPrice:0,
-      roomPriceS:0,
       roomDeposit:0,
       roomOther:0,
       startTime:'',
@@ -33,7 +32,6 @@ Page({
       wec3:999900,  //三早
       discount:95,
       coupon:1000,
-
     },
     fill:{
       // roomNum:1,
@@ -46,10 +44,10 @@ Page({
       // scoreTimes:100,
     },
     breakfastUl:[
-      // {price:1200,priceS:'12.00',name:'不选早餐',val:'wec0'},
-      // {price:1200,priceS:'12.00',name:'单人早餐',val:'wec1'},
-      // {price:1200,priceS:'12.00',name:'双人早餐',val:'wec'},
-      // {price:1200,priceS:'12.00',name:'三人早餐',val:'wec3'},
+      // {price:1200,name:'不选早餐',val:'wec0'},
+      // {price:1200,name:'单人早餐',val:'wec1'},
+      // {price:1200,name:'双人早餐',val:'wec'},
+      // {price:1200,name:'三人早餐',val:'wec3'},
     ],
     breakfastChoose:0,
     coupon:{
@@ -58,18 +56,14 @@ Page({
       fullMoney:0,
     },
     total:{
+      timeNum:1,
       roomPrice:999900,
-      roomPriceS:'9999.00',
-      deposit:50000,
-      depositS:'500.00',
+      roomTotalPrice:999900,
       coupon:0,
-      couponS:'0.00',
-      discount:100,
-      discountS:10,
+      discount:0,
+      deposit:100,
       other:0,
-      otherS:'0.00',
       money:999900,
-      moneyS:'9999.00'
     }
   },
   onLoad: function (options) {
@@ -81,6 +75,7 @@ Page({
   },
   onReady: function (){
     this.popId = this.selectComponent("#popId");
+    this.evaluationId = this.selectComponent("#evaluationId");
     //加载外部事件
     setTimeout(()=>{
       this.popId.funCouponFrist(this.data.breakfastUl[0].price*this.data.room.timeNum)
@@ -116,7 +111,6 @@ Page({
       roomId:roomrNew.id,
       roomName:roomrNew.name,
       roomPrice:this.moneyMin(roomrNew.wec0,roomrNew.wec1,roomrNew.wec,roomrNew.wec3),
-      roomPriceS:(this.moneyMin(roomrNew.wec0,roomrNew.wec1,roomrNew.wec,roomrNew.wec3)/100).toFixed(2),
       roomDeposit:hotelNew.deposit,
       roomOther:0,
       startTime:startTime_s,
@@ -136,10 +130,10 @@ Page({
       wec3:roomrNew.wec3,  //三早
     }
     let breakfastUlNew = [
-      {price:roomrNew.wec0,priceS:((roomrNew.wec0)/100).toFixed(2),name:'无早餐',val:'WEC0'},
-      {price:roomrNew.wec1,priceS:((roomrNew.wec1)/100).toFixed(2),name:'单人早餐',val:'WEC1'},
-      {price:roomrNew.wec,priceS:((roomrNew.wec)/100).toFixed(2),name:'双人早餐',val:'WEC'},
-      {price:roomrNew.wec3,priceS:((roomrNew.wec3)/100).toFixed(2),name:'三人早餐',val:'WEC3'},
+      {price:roomrNew.wec0,name:'无早餐',val:'WEC0'},
+      {price:roomrNew.wec1,name:'单人早餐',val:'WEC1'},
+      {price:roomrNew.wec,name:'双人早餐',val:'WEC'},
+      {price:roomrNew.wec3,name:'三人早餐',val:'WEC3'},
     ]
     this.setData({
       room : roomNew,
@@ -175,6 +169,7 @@ Page({
         
         this.total();
       }).catch((err) => {
+        console.log(err)
         wx.showModal({title: '错误信息',content: err,showCancel: false}); 
       });
     }else{
@@ -193,10 +188,10 @@ Page({
     this.setData({
       breakfastChoose: index,
       'room.roomPrice':this.data.breakfastUl[index].price,
-      'room.roomPriceS':((this.data.breakfastUl[index].price)/100).toFixed(2),  
       'room.ratecode':this.data.breakfastUl[index].val,
       'coupon.couponMoney':0,
       'coupon.couponId':null,
+      'coupon.fullMoney':0,
     });
     
     //重新计算
@@ -217,31 +212,26 @@ Page({
   },
   //总计
   total(){
-    //房费
-    let roomPriceNew = this.data.room.roomPrice*this.data.fill.roomNum*this.data.room.timeNum;
-    //押金
+    let timeNumNew = this.data.room.timeNum;
+    let roomPriceNew = this.data.room.roomPrice;
+    let roomTotalPriceNew = this.data.room.roomPrice*this.data.fill.roomNum*this.data.room.timeNum;
     let depositNew = this.data.room.roomDeposit*this.data.fill.roomNum;
-    //优惠劵
     let couponMoney = this.data.coupon.couponMoney;
-    //会员折扣
     let discountNew = this.data.fill.discount;
-    //other
     let otherNew = this.data.room.roomOther;
     //总计
     let totalNew = {
+      timeNum:timeNumNew,
       roomPrice:roomPriceNew,
-      roomPriceS:(roomPriceNew/100).toFixed(2),
-      deposit:depositNew,
-      depositS:(depositNew/100).toFixed(2),
+      roomTotalPrice:roomTotalPriceNew,
       coupon:couponMoney,
-      couponS:(couponMoney/100).toFixed(2),
       discount:discountNew,
-      discountS:discountNew/10,
+      deposit:depositNew,
       other:otherNew,
-      otherS:(otherNew/100).toFixed(2),
-      money:(roomPriceNew-couponMoney+otherNew)*(discountNew/100)+depositNew,
-      moneyS:(((roomPriceNew-couponMoney+otherNew)*(discountNew/100)+depositNew)/100).toFixed(2)
+      money:(roomTotalPriceNew-couponMoney+otherNew)*(discountNew/100)+depositNew,
     } 
+    console.log(totalNew)
+    // this.evaluationId.funTotal(totalNew)
     this.setData({
       total: totalNew
     });
@@ -280,6 +270,7 @@ Page({
         url: "/pages/customized/pay/pay?money="+res.result.money+"&orderId="+res.result.orderId+"&rmdesc="+this.data.room.roomName
       })
     }).catch((err) => {
+      console.log(err)
       wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
@@ -344,25 +335,18 @@ Page({
       'fill.mobile': e.detail.value
     });
   },
-  //剩余时间
-  onlyTimeS(startTime,endTime){
-    let start = new Date(startTime.replace(/-/g,'/')).getTime();
-    let end = new Date(endTime.replace(/-/g,'/')).getTime();
-    let num = (end - start)/(100*60*60*24);
-    return num;
-  },
   //获取房间信息
   pics(){
     let param = {
       hotelId:this.data.room.hotelId,
       rmtype:this.data.room.rmtype,
     }
-    console.log(param)
     util.request(api.CustomizedHotelsRoom , param , 'GET').then(res => {
       this.setData({
-        pics:res.result.imgList.length == 0?['/static/images/person.jpg']:res.result.imgList
+        pics:res.result.imgList.length == 0?['/static/images/banner2.jpg']:res.result.imgList
       })
     }).catch((err) => {
+      console.log(err)
       // wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },

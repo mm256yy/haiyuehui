@@ -16,36 +16,9 @@ Page({
       //   endTimeS:'2020-06-04',
       //   onlyTimeS:4,
       //   fullMoney:20000,
-      //   fullMoneyS:200.00,
       //   price:1000,
-      //   priceS:10.00,
-      // },
-      // {
-      //   id:0,
-      //   type:2,
-      //   name:'酒店价格满500减免',
-      //   startTimeS:'2020-05-04',
-      //   endTimeS:'2020-06-04',
-      //   onlyTimeS:0,
-      //   fullMoney:20000,
-      //   fullMoneyS:200.00,
-      //   price:1000,
-      //   priceS:10.00,
-      // },
-      // {
-      //   id:0,
-      //   type:3,  
-      //   name:'酒店价格满700减免',
-      //   startTimeS:'2020-05-04',
-      //   endTimeS:'2020-06-04',
-      //   onlyTimeS:0,
-      //   fullMoney:20000,
-      //   fullMoneyS:200.00,
-      //   price:1000,
-      //   priceS:10.00,
       // },
     ],
-    
   },
   onLoad: function (options) {
     
@@ -63,7 +36,7 @@ Page({
     })
     this.init(this.data.typeMenu,2)
   },
-  init(showType,pull){  //类型 , 是否初始化
+  init(showType,pull){  //类型 , 是否1初始化 2加载
     let param = {
       pageNo:this.data.pageNo,
       showType:showType,
@@ -75,8 +48,7 @@ Page({
       let c_li = {};
       let couponUlNew = [];
       let data = res.result.records;
-      if(data.length == 0){
-      }else{
+      if(data.length != 0){
         for(let i=0;i<data.length;i++){
           c_li = {
             id:data[i].id,
@@ -86,28 +58,24 @@ Page({
             endTimeS:this.daySplit(data[i].endTime),
             onlyTimeS:this.onlyTimeS(data[i].startTime,data[i].endTime),
             fullMoney:data[i].fullMoney,
-            fullMoneyS:(data[i].fullMoney/100),
             price:data[i].subtractMoney,
-            priceS:(data[i].subtractMoney/100),
           }
           c_ul.push(c_li)
         }
-        if(pull == 1){  //初始化
-          couponUlNew = c_ul;
-        }else{
-          if(data.length == 0){
-            couponUlNew = this.data.couponUl.concat(c_ul);
-            this.setData({
-              pageNo:this.data.pageNo - 1,
-            })
-          }else{
-            couponUlNew = this.data.couponUl.concat(o_ul);
-          };
-        };
-        this.setData({
-          couponUl:couponUlNew
-        });
       }
+      if(pull == 1){  //初始化
+        couponUlNew = c_ul;
+      }else{  //加载
+        couponUlNew = this.data.couponUl.concat(o_ul);
+        if(data.length == 0){
+          this.setData({
+            pageNo:this.data.pageNo - 1,
+          })
+        }
+      };
+      this.setData({
+        couponUl:couponUlNew
+      });
     }).catch((err) => {
       // wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
@@ -135,10 +103,10 @@ Page({
   },
   //剩余时间
   onlyTimeS(startTime,endTime){
-    let start = new Date(startTime.replace(/-/g,'/')).getTime();
+    let start = new Date().getTime();
     let end = new Date(endTime.replace(/-/g,'/')).getTime();
     let num = parseInt((end - start)/(1000*60*60*24));
-    return num;
+    return num+1;
   },
   //跳转到酒店列表
   hotelsList(){
@@ -148,6 +116,15 @@ Page({
   },
   //split
   daySplit(time){
-    return time.split(' ')[0]
+    if(time.split(' ')[1] == "00:00:00"){
+      let date = new Date(time.split(' ')[0].replace(/-/g,'/')).getTime()-1;
+      let year = new Date(date).getFullYear();
+      let month = util.formatNumber(new Date(date).getMonth() + 1);
+      let day = util.formatNumber(new Date(date).getDate());
+      return year + '-' + month + '-' + day;
+      // return time.split(' ')[0];
+    }else{
+      return time.split(' ')[0];
+    }
   },
 })

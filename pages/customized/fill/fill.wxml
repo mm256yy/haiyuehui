@@ -1,5 +1,5 @@
 <view>
-  <wxs src="../../../utils/filter/money.wxs" module="money" />
+  <wxs src="../../../filter/filter.wxs" module="money" />
   <view class="head_banner">
     <swiper 
       autoplay="true"
@@ -71,10 +71,6 @@
       <text>预计到店</text><text>18:00点之前</text>
     </view>
     <popCoupon id="popId" full-money-price="{{total.roomPrice}}" bindcouponTotal="couponTotal"></popCoupon>
-    <!-- <view class="other_li" bindtap="popShow">
-      <text>优惠劵</text><text class="other_li_red" wx:if="{{popMenu.menu1>0}}">[有可使用的优惠劵]</text>
-      <image class="other_li_right" src="/static/images/right.png"></image>
-    </view> -->
   </view>
   <view class="hotels_introduce">
     <view class="introduce_t">温馨提示：</view>
@@ -83,79 +79,35 @@
   <view class="hotels_price">
     <view class="price_li">
       <text>房费</text>
-      <text class="price_li_r">{{money.moneyFixed(total.roomPrice)}}</text>
+      <text class="price_li_r">{{money.moneyFixed(total.roomTotalPrice)}}</text>
       <text class="price_li_rmb">￥</text>
-      <text class="price_li_details">{{room.timeNum + "晚 x 房间单价 " + room.roomPriceS+" 元"}}</text>
+      <text class="price_li_details">{{total.timeNum + "晚 x 房间单价 " + money.moneyFixed(total.roomPrice)+" 元"}}</text>
     </view>
-    <!-- <view class="price_calculation">
-      <view class="calculation_li">
-        <text class="calculation_li_left">房间原单价</text>
-        <text class="calculation_li_right">￥88.88</text>
-      </view>
-      <view class="calculation_li">
-        <text class="calculation_li_left">入住间夜</text>
-        <text class="calculation_li_right">2晚</text>
-      </view>
-    </view> -->
     <view class="price_li price_li_coupon" wx:if="{{total.coupon != 0}}">
       <text>优惠劵</text>
-      <text class="price_li_r">-￥{{total.couponS}}</text>
+      <text class="price_li_r">-￥{{money.moneyFixed(total.coupon)}}</text>
     </view>
     <view class="price_li ">
       <text>会员折扣</text>
-      <text class="price_li_r">{{total.discountS}}折</text>
+      <text class="price_li_r">{{money.moneyDiscount(total.discount)}}折</text>
     </view>
     <view class="price_li">
       <text>押金</text>
-      <text class="price_li_r">{{total.depositS}}</text>
+      <text class="price_li_r">{{money.moneyFixed(total.deposit)}}</text>
       <text class="price_li_rmb">￥</text>
     </view>
     <view class="price_li">
       <text>其他费用</text>
-      <text class="price_li_r">{{total.otherS}}</text>
+      <text class="price_li_r">{{money.moneyFixed(total.other)}}</text>
       <text class="price_li_rmb">￥</text>
     </view>
     <view class="price_li">
       <text>总价：</text>
-      <text class="price_li_r price_red">￥{{total.moneyS}}</text>
+      <text class="price_li_r price_red">￥{{money.moneyFixed(total.money)}}</text>
     </view>
   </view>
+  <!-- <evaluation id="evaluationId"></evaluation> -->
   <view class="hotels_btn" bindtap="placeOrder">
     立即下单
-  </view>
-  <view class="hotels_pop" wx:if="{{popShow}}">
-    <view class="black" bindtap="popHide"></view>
-    <view class="pop_box" >
-      <view class="pop" animation="{{animationData}}" id="pop">
-        <view class="pop_h1">优惠劵</view>
-        <image class="pop_del" bindtap="popHide" src="/static/images/del-b.png"></image>
-        <view class="coupon_menu">
-          <view class="coupon_menu_li {{popMenu.val == 0?'coupon_menu_li_on':''}}" bindtap="bindPopMenu" data-type="0">可用优惠劵</view>
-          <view class="coupon_menu_li {{popMenu.val == 1?'coupon_menu_li_on':''}}" bindtap="bindPopMenu" data-type="1">不可用优惠劵</view>
-        </view>
-        <view class="coupon_ul">
-          <view class="coupon_li" wx:if="{{item.typeFill == popMenu.val}}" wx:for="{{couponUl}}" wx:key="index" bindtap="{{item.typeFill == 0?'couponChoose':''}}" data-index="{{index}}">
-            <view class="coupon_li_b">
-              <view class="coupon_left {{item.typeFill == 0?'':'coupon_left_no'}}">
-                <view class="coupon_val"><text>￥</text><text>{{item.moneyS}}</text></view>
-                <view class="coupon_remarks">满{{item.fullMoneyS}}可用</view>
-              </view>
-              <view class="coupon_right">
-                <view class="coupon_name">{{item.name}}</view>
-                <view class="coupon_time" >{{item.startTime}}至{{item.endTime}}</view>
-                <view class="coupon_detailed" bindtap="detailedShow" data-detailed-id="{{index+1}}">
-                  <text>详细信息</text>
-                  <image class="coupon_go_img" src="/static/images/right.png"></image>
-                </view>
-                <label class="coupon_radio" wx:if="{{item.typeFill == 0}}">
-                  <radio value="r1"  checked="{{couponArr == index+1}}" class="agree_radio" ext-class="agree_radio"/>
-                </label>
-              </view>
-            </view>
-          </view>
-        </view>
-        <view class="hotels_btn" bindtap="popHide">确定</view>
-      </view>
-    </view>
   </view>
 </view>

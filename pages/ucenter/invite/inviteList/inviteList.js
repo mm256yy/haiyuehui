@@ -14,19 +14,19 @@ Page({
     
   },
   onShow: function () {
-    this.init(1,0)
+    this.init(1)
   },
   //上拉刷新
   onReachBottom: function() {
     this.setData({
       pageNo:this.data.pageNo + 1,
     })
-    this.init(this.data.pageNo,1)
+    this.init(2)
   },
   //初始化
-  init(pageNo,add){
+  init(pull){  //1初始化 2下拉加载
     let param = {
-      pageNo:pageNo,
+      pageNo:this.data.pageNo,
       pageSize:15,
     }
     console.log(param)
@@ -34,24 +34,24 @@ Page({
       let inviteListUl = [];
       let inviteListLi = {};
       let inviteListNew = [];
-      for(let i=0;i<res.result.records.length;i++){
-        inviteListLi = {
-          'name':res.result.records[i].nickname,
-          'time':res.result.records[i].addTime
+      if(res.result.records.length != 0){
+        for(let i=0;i<res.result.records.length;i++){
+          inviteListLi = {
+            'name':res.result.records[i].nickname,
+            'time':res.result.records[i].addTime
+          }
+          inviteListUl.push(inviteListLi)
         }
-        inviteListUl.push(inviteListLi)
+        
       }
-
-      if(add == 0){ //初始化
+      if(pull == 0){ //初始化
         inviteListNew = inviteListUl
       }else{
+        inviteListNew = this.data.inviteList.concat(inviteListUl);
         if(res.result.records.length == 0){
-          inviteListNew = this.data.inviteList.concat(inviteListUl);
           this.setData({
-            pageNo:this.data.pageNo - 1
+            pageNo:this.data.pageNo - 1,
           })
-        }else{
-          inviteListNew = this.data.inviteList.concat(inviteListUl)
         }
       }
       this.setData({

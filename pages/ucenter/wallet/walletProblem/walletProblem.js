@@ -24,7 +24,4 @@ Page({
   onShow: function () {
     
   },
-  questionShow(e){
-    let index = e
-  },
 })

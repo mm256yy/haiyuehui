@@ -1,0 +1,42 @@
+<view>
+  <wxs src="../../filter/filter.wxs" module="money" />
+  <view class="hotels_price">
+    <view class="price_li">
+      <text>房费</text>
+      <text class="price_li_r"><text class="price_li_rmb">￥</text>{{money.moneyFixed(total.roomTotalPrice)}}</text>
+      <text class="price_li_details">{{total.timeNum + "晚 x 房间单价 " + money.moneyFixed(total.roomPrice)+" 元"}}</text>
+    </view>
+    <!-- <view class="price_calculation">
+      <view class="calculation_li">
+        <text class="calculation_li_left">房间原单价</text>
+        <text class="calculation_li_right">￥{{money.moneyFixed(total.roomPrice)}}</text>
+      </view>
+      <view class="calculation_li">
+        <text class="calculation_li_left">入住间夜</text>
+        <text class="calculation_li_right">{{total.timeNum}}晚</text>
+      </view>
+    </view> -->
+    <view class="price_li price_li_coupon" wx:if="{{total.coupon != 0}}">
+      <text class="price_li_coupon_text">优惠劵</text>
+      <text class="price_li_coupon_text price_li_r">-￥{{money.moneyFixed(total.coupon)}}</text>
+    </view>
+    <view class="price_li ">
+      <text>会员折扣</text>
+      <text class="price_li_r">{{money.moneyDiscount(total.discount)}}折</text>
+    </view>
+    <view class="price_li">
+      <text>押金</text>
+      <text class="price_li_r"><text class="price_li_rmb">￥</text>{{money.moneyFixed(total.deposit)}}</text>
+      
+    </view>
+    <view class="price_li">
+      <text>其他费用</text>
+      <text class="price_li_r">{{money.moneyFixed(total.other)}}</text>
+      
+    </view>
+    <view class="price_li">
+      <text>总价：</text>
+      <text class="price_li_r price_red">￥{{money.moneyFixed(total.money)}}</text>
+    </view>
+  </view>
+</view>

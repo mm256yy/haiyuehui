@@ -108,7 +108,7 @@
           autoplay="true"
           interval="5000"
           >
-          <block wx:for="{{(room.imgList.length == 0?['/static/images/person.jpg']:room.imgList)}}" wx:key="item">
+          <block wx:for="{{(room.imgList.length == 0?['/static/images/banner2.jpg']:room.imgList)}}" wx:key="item">
             <swiper-item>
               <image src="{{item}}" class="banner_image" />
             </swiper-item>

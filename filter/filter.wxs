@@ -1,0 +1,18 @@
+// 5050 == 50.50
+function moneyFixed(money){
+  return (money/100).toFixed(2);
+};
+//95 == 9.5
+function moneyDiscount(money){
+  return (money/10).toFixed(1);
+};
+//5000 == 50
+function moneyInteger(money){
+  return (parseInt(money/100));
+};
+
+module.exports = {
+  moneyFixed:moneyFixed,
+  moneyDiscount:moneyDiscount,
+  moneyInteger:moneyInteger, 
+};

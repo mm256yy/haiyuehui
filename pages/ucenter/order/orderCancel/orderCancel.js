@@ -9,7 +9,6 @@ Page({
       startTimeS:'2020-00-00',
       endTimeS:'2020-00-00',
       total:'',
-      totalS:'0.00',
       orderId:'0'
     },
     choose:[
@@ -49,7 +48,6 @@ Page({
         startTimeS:data.arr,
         endTimeS:data.dep,
         total:data.money,
-        totalS:(data.money/100).toFixed(2),
         orderId:options.orderId
       }
       this.setData({

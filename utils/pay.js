@@ -4,13 +4,13 @@ let api = require('../config/api.js');
 let app = getApp();
 //订房支付
 function usePay(param){
-  console.log(app.globalData.canPay)
+  console.log(app.globalData.canPay);
   if(!app.globalData.canPay&&app.globalData.canPay != undefined){  //不能支付
-    return false
+    return false;
   }
-  app.globalData.canPay = false
-  let orderIdCallback = param.orderId
-  util.jhxLoadShow("支付中")
+  app.globalData.canPay = false;
+  let orderIdCallback = param.orderId;
+  util.jhxLoadShow("支付中");
   return new Promise(function(resolve, reject){
     util.request(api.CustomizedPay ,param, 'POST').then(res => {
       console.log(res);
@@ -23,8 +23,9 @@ function usePay(param){
         util.jhxLoadHide();
         resolve(true);
       }else{  //微信支付
-        let data = JSON.parse(res.result.respData)  //message
-        console.log(data)
+        let data = JSON.parse(res.result.respData); //message
+        let ssn = res.result.respTxnSsn;
+        console.log(data);
         wx.requestPayment({
           timeStamp: data.timeStamp,
           nonceStr: data.nonceStr,
@@ -32,11 +33,11 @@ function usePay(param){
           signType: data.signType,
           paySign: data.paySign,
           success (res) {
-            console.log(res)
+            console.log(res);
             app.globalData.canPay = true;
             if(res.errMsg == "requestPayment:ok"){  //成功
               //回调支付是否成功
-              util.request(api.CustomizedPayCallback ,{orderId:orderIdCallback}, 'GET').then(function(res) {
+              util.request(api.CustomizedPayCallback ,{orderId:orderIdCallback,ssn:ssn}, 'GET').then(function(res) {
                 console.log(res);
               });
               util.jhxLoadHide();
@@ -55,26 +56,27 @@ function usePay(param){
         })
       }
     }).catch((err) => {
-      app.globalData.canPay = true
-      console.log(err)
+      app.globalData.canPay = true;
+      console.log(err);
       reject(false);
     });
   })
 }
 //充值
 function rechargePay(param){
-  console.log(app.globalData.canPay)
+  console.log(app.globalData.canPay);
   if(!app.globalData.canPay&&app.globalData.canPay != undefined){  //不能支付
-    return false
-  }
-  app.globalData.canPay = false
-  let orderIdCallback = param.rechargeId
-  util.jhxLoadShow("支付中")
+    return false;
+  };
+  app.globalData.canPay = false;
+  let orderIdCallback = param.rechargeId;
+  util.jhxLoadShow("支付中");
   return new Promise(function(resolve, reject){
     util.request(api.MemberRechargePrepay ,param, 'POST').then(res => {
-      console.log(res)
-      let data = JSON.parse(res.result.respData)
-      console.log(data)
+      console.log(res);
+      let data = JSON.parse(res.result.respData);
+      let ssn = res.result.respTxnSsn;
+      console.log(data);
       wx.requestPayment({
         timeStamp: data.timeStamp,
         nonceStr: data.nonceStr,
@@ -82,11 +84,11 @@ function rechargePay(param){
         signType: data.signType,
         paySign: data.paySign,
         success (res) {
-          console.log(res)
-          app.globalData.canPay = true
+          console.log(res);
+          app.globalData.canPay = true;
           if(res.errMsg == "requestPayment:ok"){  //成功
             //回调支付是否成功
-            util.request(api.MemberRechargeCallback ,{rechargeId:orderIdCallback}, 'GET').then(function(res) {
+            util.request(api.MemberRechargeCallback ,{rechargeId:orderIdCallback,ssn:ssn}, 'GET').then(function(res) {
               console.log(res);
             });
             util.jhxLoadHide();
@@ -104,13 +106,13 @@ function rechargePay(param){
         }
       })
     }).catch((err) => {
-      app.globalData.canPay = true
-      console.log(err)
+      app.globalData.canPay = true;
+      console.log(err);
       reject(false);
     });
-  })
+  });
 }
 module.exports = {
   usePay,
   rechargePay,
-}
+};

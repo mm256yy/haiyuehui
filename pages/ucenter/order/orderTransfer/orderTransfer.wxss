@@ -60,7 +60,7 @@
   text-align: center;
   width: 400rpx;
   height: 100rpx;
-  border-radius:50rpx ;
+  border-radius:10rpx;
   padding: 20rpx;
   position: relative;
 }

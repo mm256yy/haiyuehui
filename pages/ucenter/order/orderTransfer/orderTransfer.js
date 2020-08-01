@@ -33,10 +33,14 @@ Page({
       endTime:'',
       endTimeS:'',
       isCis:false,
+      name:'',
+      roomPrice:0,
+      totleRoomPrice:0,
+      deposit:0,
+      money:0,
+      days:0,
       coupon:0,
-      couponS:'0.00',
       discount:100,
-      discountS:10,
     }
   },
   onShow: function () {
@@ -139,30 +143,42 @@ Page({
         name:res.result.name,
         // dayNum:this.dayNum(res.result.arr,res.result.dep),
         roomPrice:res.result.roomPrice,
-        roomPriceS:(res.result.roomPrice/100).toFixed(2),
         totleRoomPrice:res.result.roomPrice*res.result.days,
-        totleRoomPriceS:(res.result.roomPrice*res.result.days/100).toFixed(2),
         deposit:res.result.deposit,
-        depositS:(res.result.deposit/100).toFixed(2),
         money:res.result.money,
-        moneyS:(res.result.money/100).toFixed(2),
         days:res.result.days,
         coupon:res.result.subtractMoney?res.result.subtractMoney:0,
-        couponS:((res.result.subtractMoney?res.result.subtractMoney:0)/100).toFixed(2),
         discount:orderPayInfo.discount,
-        discountS:(orderPayInfo.discount/10).toFixed(1),
       }
       app.globalData.badge = {menu:[1,0,0,0]}
       wx.showModal({ title: '成功',content: '查询成功',showCancel: false , success (res) {
         that.setData({
           processNum:that.data.processNum + 1 ,
           detail:detailNew
-        })
+        });
+        that.member();
       }});
     }).catch((err) => {
       console.log(err)
       wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
+  },
+  //会员信息
+  member(){
+    let type = this.data.detail.status;
+    console.log(type)
+    if(type == 11||type == 12||type == 13||type == 21){
+      //获取名字
+      util.request(api.MemberGet, 'GET').then(res => {
+        let couponNew = Math.round(this.data.detail.totleRoomPrice-((this.data.detail.money-this.data.detail.deposit)/(res.result.discount/100)))
+        this.setData({
+          'detail.coupon':couponNew,
+          'detail.discount':(res.result.discount?res.result.discount:100),
+        });
+      }).catch((err) => {
+        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+      });
+    }
   },
   //OTA订单转移
   otaOrder(){
@@ -199,13 +215,9 @@ Page({
         name:res.result.name,
         // dayNum:this.dayNum(res.result.arr,res.result.dep),
         roomPrice:res.result.roomPrice,
-        roomPriceS:(res.result.roomPrice/100).toFixed(2),
         totleRoomPrice:res.result.roomPrice*res.result.days,
-        totleRoomPriceS:(res.result.roomPrice*res.result.days/100).toFixed(2),
         deposit:res.result.deposit,
-        depositS:(res.result.deposit/100).toFixed(2),
         money:res.result.money,
-        moneyS:(res.result.money/100).toFixed(2),
         days:res.result.days,
       }
       app.globalData.badge = {menu:[1,0,0,0]}

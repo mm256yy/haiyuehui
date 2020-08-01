@@ -1,10 +1,11 @@
 <!--pages/ucenter/orderCancel/orderCancel.wxml-->
 <view>
+  <wxs src="../../../../filter/filter.wxs" module="money" />
   <view class="cancel_info">
     <view class="info_hotelName">{{info.hotelName}}</view>
     <view><text class="info_text info_t1">房型：</text><text class="info_text">{{info.room}}</text></view>
     <view><text class="info_text info_t1">入住时间：</text><text class="info_text">{{info.startTimeS}}至{{info.endTimeS}}</text></view>
-    <view><text class="info_text info_t1">订单金额：</text><text class="info_text">{{info.totalS}}</text></view>
+    <view><text class="info_text info_t1">订单金额：</text><text class="info_text">{{money.moneyFixed(info.total)}}</text></view>
     <view><text class="info_text info_t1">订单编号：</text><text class="info_text">{{info.orderId}}</text></view>
   </view>
   <view class="cancel_choose">

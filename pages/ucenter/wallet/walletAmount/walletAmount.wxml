@@ -1,4 +1,5 @@
 <view>
+  <wxs src="../../../../filter/filter.wxs" module="money"/>
   <view class="wallet_head">
     <view class="amount_money" bindtap="moneyHide">
       <view class="amount_h">
@@ -6,7 +7,7 @@
         <image class="amount_see" src="/static/images/see-{{moneyShow?'y':'no'}}-white.png"></image>
       </view>
       <view class="amount_h">
-        <text class="amount_h2">{{moneyShow?moneyValS:'****'}}</text>
+        <text class="amount_h2">{{moneyShow?money.moneyFixed(moneyVal):'****'}}</text>
       </view>
     </view>
   </view>
@@ -20,7 +21,7 @@
         </view>
         <view class="wallet_li" bindtap="moneyConsume">
           <image class="wallet_li_img" src="/static/images/other/other7.png"></image>
-          <text class="wallet_li_text">消费/积分记录</text>
+          <text class="wallet_li_text">充值/积分记录</text>
           <image class="wallet_li_go" src="/static/images/right.png">></image>
         </view>
       </view>

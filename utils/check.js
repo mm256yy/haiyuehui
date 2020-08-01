@@ -5,8 +5,8 @@ function isValidPhone(str) {
     return false;
   } else {
     return true;
-  }
-}
+  };
+};
 //判断是否是数字 true 数字 false 非数字
 function isNonnum(str){
   let myreg = /^[0-9]*$/;
@@ -14,8 +14,8 @@ function isNonnum(str){
     return true;
   }else{
     return false;
-  }
-}
+  };
+};
 //判断是否存在 true 纯字符串 false 存在空格或者特殊字符
 function spaceNo(str){
   let pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>《》/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
@@ -23,8 +23,8 @@ function spaceNo(str){
     return false;
   }else{
     return true;
-  }
-}
+  };
+};
 
 /*验证并且提示*/
 //手机号码验证
@@ -52,8 +52,8 @@ function checkMobile(mobile){  //使用：if(!check.checkMobile(this.data.mobile
     return false;
   }else{
     return true;
-  }
-}
+  };
+};
 //姓名验证
 function checkName(name){ //使用：if(!check.checkName(this.data.name)){return false}
   if(name.length == 0){
@@ -79,8 +79,8 @@ function checkName(name){ //使用：if(!check.checkName(this.data.name)){return
     return false;
   }else{
     return true;
-  }
-}
+  };
+};
 //身份证验证
 function checkIdentity(identity){  //使用：if(!check.checkIdentity(this.data.identity)){return false}
   if(identity.length == 0){
@@ -113,8 +113,8 @@ function checkIdentity(identity){  //使用：if(!check.checkIdentity(this.data.
     return false;
   }else{
     return true;
-  }
-}
+  };
+};
 //金钱验证
 function checkMoney(money){ //使用：if(!check.checkMoney(this.data.identity)){return false}
   if(money == 999900 ||money == '0' ||money <= 0 ||money == ''||money == null||money == undefined ||money == 'undefined'){
@@ -126,8 +126,8 @@ function checkMoney(money){ //使用：if(!check.checkMoney(this.data.identity))
     return false;
   }else{
     return true;
-  }
-}
+  };
+};
 
 //时间验证 是否是当前时间 0 当前时间 大于0 未来时间 小于0 过去时间
 function checkIsOverdue(day){
@@ -146,8 +146,8 @@ function checkIsOverdue(day){
     return dayNum;
   }else{
     return dayNum;
-  }
-}
+  };
+};
 
 module.exports = {
   isValidPhone,

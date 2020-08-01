@@ -7,22 +7,17 @@ Page({
     order:{
       num:'',
       money:0,
-      moneyS:'0.00',
       time:'',
       timeS:'',
     },
     mode:{
       // balance:0,
-      // balanceS:'0.00',
       // balanceRadio:false,
     },
     pay:{
       payment:0,
-      paymentS:'0.00',
       balance:0,
-      balanceS:'0.00',
       total:0,
-      totalS:'0.00'
     },
     rmdescVal:'',
   },
@@ -39,7 +34,6 @@ Page({
     let orderNew = {
       num:data.orderId,
       money:data.money||0,
-      moneyS:((data.money||0)/100).toFixed(2),
       time:new Date().getTime(),
       timeS:this.formatDateTime(new Date().getTime()),
     }
@@ -54,7 +48,6 @@ Page({
       console.log(res)
       let modeNew = {
         balance:res.result.balance*(-1),
-        balanceS:(res.result.balance*(-1)/100).toFixed(2),
         balanceRadio:false,
       }
       this.setData({
@@ -89,11 +82,8 @@ Page({
     let totalNew = parseInt(this.data.order.money) - parseInt(this.data.pay.payment) - parseInt(balanceNew);
     let payNew = {
       payment:0,
-      paymentS:'0.00',
       balance:balanceNew,
-      balanceS:(balanceNew/100).toFixed(2),
       total:totalNew,
-      totalS:(totalNew/100).toFixed(2),
       way:wayNew,
     };
     this.setData({
@@ -108,10 +98,6 @@ Page({
       balance:this.data.pay.balance,
     }
     console.log(param);
-    //跳转
-    /*wx.navigateTo({
-      url: "/pages/customized/payResult/payResult?result="+'1'
-    })*/
     pay.usePay(param).then(res => {
       //跳转
       wx.navigateTo({

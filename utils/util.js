@@ -1,29 +1,28 @@
 let api = require('../config/api.js');
 let check = require('./check.js')
-
 let app = getApp();
 
 //时间转化 时间戳 ==> 2020-05-14 16:40:08
 function formatTime(date) {
-  let year = date.getFullYear()
-  let month = date.getMonth() + 1
-  let day = date.getDate()
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
 
-  let hour = date.getHours()
-  let minute = date.getMinutes()
-  let second = date.getSeconds()
+  let hour = date.getHours();
+  let minute = date.getMinutes();
+  let second = date.getSeconds();
   
   return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 //时间转化 5 ==> '05'
 function formatNumber(n) {
-  n = n.toString()
-  return n[1] ? n : '0' + n
+  n = n.toString();
+  return n[1] ? n : '0' + n;
 }
 //时间转化 数字转化星期 0 ==> '周日'
 function formatWeek(n){
-  let week = ['周日','周一','周二','周三','周四','周五','周六']
-  return week[new Date(n).getDay()]
+  let week = ['周日','周一','周二','周三','周四','周五','周六'];
+  return week[new Date(n).getDay()];
 }
 /*封封微信的的request*/
 function request(url, data = {}, method = "GET") {
@@ -38,8 +37,8 @@ function request(url, data = {}, method = "GET") {
         'X-HWH-Token': wx.getStorageSync('token')
       },
       success: function(res) {
-        console.log(res.data)
-        jhxLoadHide()
+        console.log(res.data);
+        jhxLoadHide();
         if (res.statusCode == 200) {
           if(res.data.code == 0||res.data == "ok"){  //判断是否成功
             resolve(res.data);
@@ -47,29 +46,18 @@ function request(url, data = {}, method = "GET") {
             if(res.data.message == "未登录"||res.data.message == '请先登陆'){
               wx.navigateTo({
                 url: "/pages/auth/login/login"
-              })
-              reject("未登陆")
+              });
+              reject("未登陆");
             }else if(res.data.message){
-              reject(res.data.message)
+              if(res.data.message == null){
+                console.log(res.data.message)
+              }else{
+                reject(res.data.message)
+              }
             }else{
               reject("未知异常")
             }
           }
-          /*if (res.data.errno == 501) {
-            // 清除登录相关内容
-            try {
-              wx.removeStorageSync('userInfo');
-              wx.removeStorageSync('token');
-            } catch (e) {
-              // Do something when catch error
-            }
-            // 切换到登录页面
-            wx.navigateTo({
-              url: '/pages/auth/login/login'
-            });
-          } else {
-            resolve(res.data);
-          }*/
         } else {
           reject("200+")
           console.log(res.errMsg)
@@ -99,6 +87,7 @@ function showSuccessToast(msg) {
 }
 //加载中效果（显示）
 function jhxLoadShow(message) {
+  wx.setStorageSync("jhxLoadShow", 1);
   if (wx.showLoading) {  // 基础库 1.1.0 微信6.5.6版本开始支持，低版本需做兼容处理
     wx.showLoading({
       title: message, 
@@ -115,10 +104,14 @@ function jhxLoadShow(message) {
 }
 //加载中效果（隐藏）
 function jhxLoadHide() {
-  if (wx.hideLoading) {    // 基础库 1.1.0 微信6.5.6版本开始支持，低版本需做兼容处理
-    wx.hideLoading();
-  } else {
-    wx.hideToast();
+  let jhxLoadShow = wx.getStorageSync("jhxLoadShow");
+  if(jhxLoadShow == 1){
+    wx.setStorageSync("jhxLoadShow", 0);
+    if (wx.hideLoading) {    // 基础库 1.1.0 微信6.5.6版本开始支持，低版本需做兼容处理
+      wx.hideLoading();
+    } else {
+      wx.hideToast();
+    }
   }
 }
 //身份证信息处理 	350102200103077639 ==> 35010*******77639

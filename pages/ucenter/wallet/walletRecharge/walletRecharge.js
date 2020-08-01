@@ -7,14 +7,14 @@ Page({
     moneyNum:'',
     moneyLi:0,
     moneyUl:[
-      {money:10000,moneyS:'100元',recharge:100},
-      {money:20000,moneyS:'200元',recharge:200},
-      {money:50000,moneyS:'500元',recharge:500},
-      {money:100000,moneyS:'1000元',recharge:1000},
-      {money:200000,moneyS:'两千元',recharge:2000},
-      {money:1000000,moneyS:'一万元',recharge:10000},
-      {money:5000000,moneyS:'五万元',recharge:50000},
-      {money:10000000,moneyS:'十万元',recharge:100000},
+      {money:10000,moneyS:'100元',moneyOnS:'100元',recharge:100},
+      {money:20000,moneyS:'200元',moneyOnS:'200元',recharge:200},
+      {money:50000,moneyS:'500元',moneyOnS:'500元',recharge:500},
+      {money:100000,moneyS:'1000元',moneyOnS:'1000元',recharge:1000},
+      {money:200000,moneyS:'两千元',moneyOnS:'银卡',recharge:2000},
+      {money:1000000,moneyS:'一万元',moneyOnS:'金卡',recharge:10000},
+      {money:5000000,moneyS:'五万元',moneyOnS:'白金卡',recharge:50000},
+      {money:10000000,moneyS:'十万元',moneyOnS:'黑金卡',recharge:100000},
     ],
     orderId:'',
   },
@@ -32,7 +32,7 @@ Page({
       return false
     }
     let param = {
-      money:(api.testing?1:this.data.moneyNum*100),
+      money:(api.testing?this.data.moneyNum*100:this.data.moneyNum*100),
     }
     console.log(param)
     util.request(api.MemberRechargeSubmit , param , 'POST').then(res => {

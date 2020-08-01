@@ -40,35 +40,22 @@ Page({
         status:11,
         statusS:'状态',
         subtotal:20000,
-        subtotalS:'200.00',
         detailsShow:false,
         coupon:0,
-        couponS:'0.00',
         discount:100,
-        discountS:10,
         wayWx:0,
-        wayWxS:'0.00',
         wayBalance:0,
-        wayBalanceS:'0.00',
       }*/
     ],
-    money:{
+    total:{
       roomPrice:0,
-      roomPriceS:'0.00',
       deposit:0,
-      depositS:'0.00',
       addition:0,
-      additionS:'0.00',
       coupon:0,
-      couponS:'0.00',
       discount:100,
-      discountS:10,
-      total:0,
-      totalS:'0.00',
+      money:0,
       wayWx:0,
-      wayWxS:'0.00',
       wayBalance:0,
-      wayBalanceS:'0.00',
     },
     pwdVal:123456,
     pwdValS:'******',
@@ -79,7 +66,6 @@ Page({
     this.init(options)
   },
   onReady() {
-
   },
   onShow() {
     this.orderList();
@@ -117,7 +103,7 @@ Page({
     }
     util.request(api.UcenterOrderDetail ,param, 'GET').then(res => {
       let data = res.result;
-      let detailNew = {},personUlNew = [],moneyNew = {};
+      let detailNew = {},personUlNew = [],totalNew = {};
       detailNew = {
         status:data.status,
         statusS:util.orderType(data.status),
@@ -148,23 +134,15 @@ Page({
       }else{
         orderPayInfo = orderPayInfoNew;
       }
-      moneyNew = {
+      totalNew = {
         roomPrice:data.roomPrice*dayNum,
-        roomPriceS:(data.roomPrice/100*dayNum).toFixed(2),
         deposit:data.deposit,
-        depositS:(data.deposit/100).toFixed(2),
         addition:0,   //续住
-        additionS:'0.00',
         coupon:data.subtractMoney?data.subtractMoney:0,
-        couponS:((data.subtractMoney?data.subtractMoney:0)/100).toFixed(2),
         discount:orderPayInfo.discount,
-        discountS:(orderPayInfo.discount/10).toFixed(1),
-        total:data.money,
-        totalS:(data.money/100).toFixed(2),
+        money:data.money,
         wayWx:(data.money-orderPayInfo.balance),
-        wayWxS:((data.money-orderPayInfo.balance)/100).toFixed(2),
         wayBalance:orderPayInfo.balance,
-        wayBalanceS:(orderPayInfo.balance/100).toFixed(2),
       }
       let personsUL = [];
       let personsLi = {};
@@ -181,11 +159,10 @@ Page({
         }
       }
       personUlNew = personsUL;
-      console.log(detailNew)
       this.setData({
         detail:detailNew,
         personUl:personUlNew,
-        money:moneyNew,
+        total:totalNew,
         allowConnect:data.allowConnect
       })
       this.member();
@@ -198,21 +175,18 @@ Page({
   //会员信息
   member(){
     let type = this.data.detail.status;
-    if(type == 11||type == 12||type == 13){
+    if(type == 11||type == 12||type == 13||type == 21){
       //获取名字
       util.request(api.MemberGet, 'GET').then(res => {
-        let couponNew = Math.round((this.data.money.roomPrice-this.data.money.total/(res.result.discount/100)-this.data.money.deposit)/100)
+        let couponNew = Math.round(this.data.total.roomPrice-((this.data.total.money-this.data.total.deposit)/(res.result.discount/100)))
         this.setData({
-          'money.coupon':couponNew,
-          'money.couponS':couponNew,
-          'money.discount':(res.result.discount?res.result.discount:100),
-          'money.discountS':(res.result.discount?res.result.discount:100)/10,
+          'total.coupon':couponNew,
+          'total.discount':(res.result.discount?res.result.discount:100),
         });
       }).catch((err) => {
         wx.showModal({title: '错误信息',content: err,showCancel: false}); 
       });
     }
-    
   },
   //获取续住列表
   addDaysList(){
@@ -229,16 +203,11 @@ Page({
           status:res.result[i].status,
           statusS:util.orderType(res.result[i].status),
           subtotal:res.result[i].money,
-          subtotalS:(res.result[i].money/100).toFixed(2),
           detailsShow:false,
           coupon:0,
-          couponS:'0.00',
           discount:100,
-          discountS:10,
           wayWx:0,
-          wayWxS:'0.00',
           wayBalance:0,
-          wayBalanceS:'0.00',
         }
         additionUlNew.push(additionliNew);
         if(res.result[i].status == 25){
@@ -247,10 +216,8 @@ Page({
       }
       this.setData({
         additionUl:additionUlNew,
-        'money.addition':additionMoney,
-        'money.additionS':(additionMoney/100).toFixed(2),
-        'money.total':additionMoney+this.data.money.total,
-        'money.totalS':((additionMoney+this.data.money.total)/100).toFixed(2),
+        'total.addition':additionMoney,
+        'total.money':additionMoney+this.data.total.money,
       })
     }).catch((err) => {
       wx.showModal({title: '错误信息',content: err,showCancel: false}); 
@@ -377,5 +344,4 @@ Page({
     let arr = val.toString().split("");
     return arr[0]+arr[1]+arr[2]+arr[3]+"-"+arr[4]+arr[5]+"-"+arr[6]+arr[7]
   },
-  
 })

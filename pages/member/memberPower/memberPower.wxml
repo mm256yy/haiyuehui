@@ -59,9 +59,6 @@
           <view class="privilege_li_t1">{{item.text2}}</view>
         </view>
       </view>
-      <view>
-        以上折扣与优惠未必最新
-      </view>
       <!-- <view class="privilege_most" bindtap="funPowerRelease">
         <image class="privilege_most_image {{powerRelease?'privilege_most_image_release':''}}" src="/static/images/power/power_most.png"  mode="widthFix"></image>
       </view> -->

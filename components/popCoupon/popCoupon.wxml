@@ -21,7 +21,10 @@
               <view class="coupon_left {{item.typeFill == 0?'':'coupon_left_no'}}">
                 <view class="coupon_left_flex_box">
                   <view class="coupon_left_flex">
-                    <view class="coupon_val"><text>￥</text><text>{{item.subtractMoneyS}}</text></view>
+                    <view class="coupon_val">
+                      <text class="coupon_val_text">￥</text>
+                      <text class="coupon_val_text">{{item.subtractMoneyS}}</text>
+                    </view>
                     <view class="coupon_remarks">满{{item.fullMoneyS}}可用</view>
                   </view>
                 </view>
@@ -30,7 +33,7 @@
                 <view class="coupon_name">{{item.name}}</view>
                 <view class="coupon_time" >{{item.startTime}}至{{item.endTime}}</view>
                 <view class="coupon_detailed" data-detailed-id="{{index+1}}">
-                  <text>选择优惠劵</text>
+                  <text class="coupon_detailed_text">选择优惠劵</text>
                   <!-- <image class="coupon_go_img" src="/static/images/right.png"></image> -->
                 </view>
                 <label class="coupon_radio" wx:if="{{item.typeFill == 0}}">
