@@ -38,10 +38,11 @@ Page({
     
   },
   onShow: function () {
-    this.init(0,1);
     this.setData({
+      pageNo:1,
       menuVal:0,
     })
+    this.init(0,1);
   },
   // 上拉刷新
   onReachBottom: function() {

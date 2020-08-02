@@ -48,9 +48,10 @@ Page({
     popHeight:0,
   },
   onLoad: function () {
+    this.init();
   },
   onShow: function () {
-    this.init();
+    
   },
   //初始化时间
   init(){

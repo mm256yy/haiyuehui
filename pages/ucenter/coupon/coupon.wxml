@@ -13,7 +13,7 @@
       <view class="coupon_box" >
         <view class="coupon_left {{item.type == 3?'coupon_left_overdue':''}}" bindtap="hotelsList">
           <view class="coupon_val"><text>￥</text><text>{{money.moneyInteger(item.price)}}</text></view>
-          <view class="coupon_remarks">满300可用</view>
+          <view class="coupon_remarks">满{{money.moneyInteger(item.fullMoney)}}可用</view>
           <view class="coupon_btn {{item.type == 3?'coupon_btn_overdue':''}}" >立即使用</view>
         </view>
         <view class="coupon_right">

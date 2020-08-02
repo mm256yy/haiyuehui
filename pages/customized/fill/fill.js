@@ -30,8 +30,7 @@ Page({
       wec1:999900,  //单早
       wec:999900,  //双早
       wec3:999900,  //三早
-      discount:95,
-      coupon:1000,
+      discount:100,
     },
     fill:{
       // roomNum:1,
@@ -60,18 +59,14 @@ Page({
       roomPrice:999900,
       roomTotalPrice:999900,
       coupon:0,
-      discount:0,
-      deposit:100,
+      discount:100,
+      deposit:50000,
       other:0,
       money:999900,
     }
   },
   onLoad: function (options) {
-    this.hotelInfo();
-    this.userInfo();
-    this.pics();
-    //获取优惠劵信息
-    // this.coupon();
+    
   },
   onReady: function (){
     this.popId = this.selectComponent("#popId");
@@ -82,6 +77,9 @@ Page({
     },100)
   },
   onShow: function () {
+    this.hotelInfo();
+    this.userInfo();
+    this.pics();
     let pages = getCurrentPages()
     let currPage = pages[pages.length - 1]  // 当前页
     if(currPage.data.info){
@@ -169,8 +167,25 @@ Page({
         
         this.total();
       }).catch((err) => {
-        console.log(err)
-        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+        if(err == "未找到会员信息"){
+          wx.showModal({ 
+            title: '获取会员失败',
+            content: '你未绑定手机号码',
+            success: function(res) {
+              if (res.confirm) {
+                wx.redirectTo({
+                  url: "/pages/auth/registerWx/registerWx"
+                });
+              } else if (res.cancel) {
+                wx.navigateBack({ 
+                  delta: 1  
+                });
+              }
+            }
+          })
+        }else{
+          wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
+        }
       });
     }else{
       console.log("手机号不存在");

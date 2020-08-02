@@ -1,4 +1,4 @@
-// pages/auth/registerWx/registerWx.js
+
 let util = require('../../../utils/util.js');
 let user = require('../../../utils/user.js');
 let api = require('../../../config/api.js');
@@ -37,7 +37,7 @@ Page({
       })
     }).catch((err) => {
       console.log(err)
-      // wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   }
 })

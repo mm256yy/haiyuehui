@@ -110,8 +110,8 @@
         <text class="detail_t2" wx:if="{{total.coupon != 0}}">-￥{{money.moneyFixed(total.coupon)}}</text>
         <text class="detail_t2" wx:if="{{total.coupon == 0}}">未使用</text>
       </view>
-      <view>
-        <text class="detail_t1">会员折扣：</text>
+      <view wx:if="{{total.discount != 100}}">
+        <text class="detail_t1" >会员折扣：</text>
         <text class="detail_t2">{{money.moneyDiscount(total.discount)}}折</text>
       </view>
       <view>

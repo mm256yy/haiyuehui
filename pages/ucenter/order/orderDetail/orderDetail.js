@@ -126,7 +126,7 @@ Page({
       //
       let orderPayInfo = {};
       let orderPayInfoNew = {
-        discount:0,   
+        discount:100,   
         balance:0,
       };
       if(data.orderPayInfo){
@@ -175,16 +175,43 @@ Page({
   //会员信息
   member(){
     let type = this.data.detail.status;
+    let couponPass = 0;
+    let discountPass = 100;
     if(type == 11||type == 12||type == 13||type == 21){
       //获取名字
       util.request(api.MemberGet, 'GET').then(res => {
         let couponNew = Math.round(this.data.total.roomPrice-((this.data.total.money-this.data.total.deposit)/(res.result.discount/100)))
+        if(couponNew<0){ //兼容过去订单
+          couponPass = 0;
+          discountPass = 100;
+        }else{
+          couponPass = couponNew;
+          discountPass = (res.result.discount?res.result.discount:100);
+        }
         this.setData({
-          'total.coupon':couponNew,
-          'total.discount':(res.result.discount?res.result.discount:100),
+          'total.coupon':couponPass,
+          'total.discount':discountPass,
         });
       }).catch((err) => {
-        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+        if(err == "未找到会员信息"){
+          wx.showModal({ 
+            title: '获取会员失败',
+            content: '你未绑定手机号码',
+            success: function(res) {
+              if (res.confirm) {
+                wx.redirectTo({
+                  url: "/pages/auth/registerWx/registerWx"
+                });
+              } else if (res.cancel) {
+                wx.navigateBack({ 
+                  delta: 1  
+                });
+              }
+            }
+          })
+        }else{
+          wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
+        }
       });
     }
   },

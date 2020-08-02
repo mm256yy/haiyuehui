@@ -55,7 +55,19 @@ Page({
       })
       console.log(modeNew)
     }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
+      if(err == "未找到会员信息"){
+        wx.showModal({ 
+          title: '获取会员失败',
+          content: '你未绑定手机号码',
+          success: function(res) {
+            wx.navigateTo({
+              url: "/pages/auth/registerWx/registerWx"
+            })
+          }
+        })
+      }else{
+        wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
+      }
     });
   },
   //选择支付类型

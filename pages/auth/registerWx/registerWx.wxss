@@ -67,3 +67,7 @@
   color: #008cd7;
   text-decoration: underline;
 }
+.register_service{
+  text-align: center;
+  color: #cdcdcd;
+}

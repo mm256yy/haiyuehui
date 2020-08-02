@@ -6,16 +6,16 @@ Page({
   data: {
     info:{
       avatarUrl:'/static/images/person.jpg',
-      name:'默认',
+      name:'未登录',
       points:0,
       money:0,
       moneyS:'0.00',
       couponNum:0,
       arr:'',
-      dep:'2020-12-12',
+      dep:'2021-12-12',
       cardNo:'1500615615',
       discount:95,  //95%  会员打折
-      scoreTimes:150,  //1.5倍 积分倍数
+      scoreTimes:100,  //1.5倍 积分倍数
       card:{
         baImg:'card5',
         nameC:'贵宾卡',
@@ -58,7 +58,7 @@ Page({
     introduceShow:false,
   },
   onLoad: function (options) {
-
+    
   },
   onShow: function () {
     this.memberInfo();
@@ -125,7 +125,11 @@ Page({
         powerUlShow:powerUlShowNew,
       })
     }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
+      if(err == "未找到会员信息"){
+        wx.showModal({title: '错误信息',content: "尚未绑定手机号" ,showCancel: false}); 
+      }else{
+        wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
+      }
     });
   },
   //跳转到会员信息

@@ -13,9 +13,6 @@ page{
 .ucenter_head{
   margin-bottom: 380rpx;
 }
-.ucenter_head text{
-  color: #fff;
-}
 .ucenter_person{
   margin:90rpx 0rpx 0rpx 200rpx;
   padding: 30rpx;
@@ -23,10 +20,21 @@ page{
 .ucenter_name{
   font-size: 34rpx;
   margin-right: 16rpx;
+  color: #fff;
 }
 .ucenter_vip{
   color: #cdcdcd !important;
   font-size: 22rpx;
+  color: #fff;
+}
+.ucenter_mobile_box{
+  margin-top: 10rpx;
+}
+.ucenter_mobile{
+  color: #999;
+}
+.ucenter_mobile_no{
+  color: #fff;
 }
 .progress_box{
   display: inline-block;

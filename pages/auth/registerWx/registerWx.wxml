@@ -1,4 +1,4 @@
-<!--pages/auth/registerWx/registerWx.wxml-->
+
 <view>
   <view class="login_logo">
     <image class="logo_img" src="/static/images/register.png"></image>
@@ -6,5 +6,7 @@
   <view class="form_box">
     <button class="register_wxbtn register_b" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">绑定微信手机号</button>
     <view class="register_btn register_b" bindtap="startRegister">使用其他号码</view>
+    <view class="register_service">如果你的号码被他人占用</view>
+    <view class="register_service">请联系酒店:0571-88176666</view>
   </view>
 </view>  

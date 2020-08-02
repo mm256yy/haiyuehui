@@ -1,6 +1,8 @@
 // pages/ucenter/index/index.js
 let util = require('../../../utils/util.js');
 let user = require('../../../utils/user.js');
+let api = require('../../../config/api.js');
+let member = require('../../../utils/member.js');
 let app = getApp();
 Page({
   data: {
@@ -10,6 +12,7 @@ Page({
       vip:'贵宾会员',
       progressVal:'0',
       progressTop:'1000',
+      mobile:0,  //判断是否有手机号
     },
     menuUl:[
       {
@@ -97,12 +100,11 @@ Page({
     }
   },
   onLoad: function () {
+    this.login();
     
   },
-  onReady: function () {
-    this.login();
-  },
   onShow: function () {
+    this.member();
     console.log(app.globalData)
     //获取红点
     let badgeNew = app.globalData.badge
@@ -133,6 +135,7 @@ Page({
       vip:'贵宾会员',
       progressVal:'0',
       progressTop:'1000',
+      mobile:this.data.ucenter.mobile,
     }
     this.setData({
       ucenter:ucenterNew
@@ -153,6 +156,33 @@ Page({
       });
     })
   },
+  //判断是否有绑定手机号
+  member(){
+    util.request(api.MemberGet, 'GET').then(res => {
+      this.setData({
+        'ucenter.name':res.result.name,
+        'ucenter.vip':res.result.cardLevelName,
+        'ucenter.mobile':util.mobileCard(res.result.mobile),
+      })
+    }).catch((err) => {
+      if(err == "未找到会员信息"){
+        wx.showModal({ 
+          title: '获取会员失败',
+          content: '你未绑定手机号码',
+          success: function(res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: "/pages/auth/registerWx/registerWx"
+              })
+            }
+          }
+        })
+      }else{
+        console.log(err)
+        wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
+      }
+    });
+  },
   //设置
   set(){
     wx.navigateTo({
@@ -163,6 +193,12 @@ Page({
   sign(){
     wx.navigateTo({
       url: "/pages/auth/login/login"
+    })
+  },
+  //绑定手机号码
+  goRegisterWx(){
+    wx.navigateTo({
+      url: "/pages/auth/registerWx/registerWx"
     })
   },
   //我的订单

@@ -18,7 +18,25 @@ Page({
         moneyVal:money,
       });
     }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
+      if(err == "未找到会员信息"){
+        wx.showModal({ 
+          title: '获取会员失败',
+          content: '你未绑定手机号码',
+          success: function(res) {
+            if (res.confirm) {
+              wx.redirectTo({
+                url: "/pages/auth/registerWx/registerWx"
+              });
+            } else if (res.cancel) {
+              wx.navigateBack({ 
+                delta: 1  
+              });
+            }
+          }
+        })
+      }else{
+        wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
+      }
     });
   },
   //隐藏金额

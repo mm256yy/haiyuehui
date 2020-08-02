@@ -26,6 +26,12 @@ function formatWeek(n){
 }
 /*封封微信的的request*/
 function request(url, data = {}, method = "GET") {
+  let pages = getCurrentPages();
+  let currPage = null;
+  if (pages.length) {
+    currPage = pages[pages.length - 1].route;
+  }
+  let whiteList = [null,"pages/ucenter/index/index","pages/member/memberIndex/memberIndex"];  //跳转白名单
   jhxLoadShow("加载中")
   return new Promise(function(resolve, reject) {
     wx.request({
@@ -44,9 +50,13 @@ function request(url, data = {}, method = "GET") {
             resolve(res.data);
           }else{
             if(res.data.message == "未登录"||res.data.message == '请先登陆'){
-              wx.navigateTo({
-                url: "/pages/auth/login/login"
-              });
+              if(whiteList.indexOf(currPage) >= 0){ //存在
+                console.log("未登录")
+              }else{
+                wx.redirectTo({
+                  url: "/pages/auth/login/login"
+                });
+              }
               reject("未登陆");
             }else if(res.data.message){
               if(res.data.message == null){
@@ -119,6 +129,12 @@ function identityCard(val){
   //let val = JSON.stringify(num)
   let valLength = val.length;
   let valNew = val.substring(0,5) +'**********'+val.substring(valLength-2,valLength)
+  return valNew
+}
+//手机号隐藏
+function mobileCard(val){
+  let valLength = val.length;
+  let valNew = val.substring(0,3) +'******'+val.substring(valLength-2,valLength)
   return valNew
 }
 //订单类型
@@ -205,6 +221,7 @@ module.exports = {
   jhxLoadShow,
   jhxLoadHide,
   identityCard,
+  mobileCard,
   networkManage,
   orderType,
   memberGrade,

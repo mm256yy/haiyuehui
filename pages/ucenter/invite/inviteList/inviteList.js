@@ -14,6 +14,9 @@ Page({
     
   },
   onShow: function () {
+    this.setData({
+      pageNo:1,
+    })
     this.init(1)
   },
   //上拉刷新

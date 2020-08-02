@@ -24,10 +24,11 @@ Page({
     
   },
   onShow: function () {
-    this.init(2,1);
     this.setData({
       typeMenu:2,
+      pageNo:1,
     })
+    this.init(2,1);
   },
   // 上拉刷新
   onReachBottom: function() {
