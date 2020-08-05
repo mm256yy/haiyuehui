@@ -21,7 +21,7 @@ Page({
     
   },
   init(){
-    //获取到当前的手机号
+    //获取到当前的手机号123
     let tel = wx.getStorageSync('userInfoMobile');
     let isFirstNew = null; 
     if(tel){  //如果存在
