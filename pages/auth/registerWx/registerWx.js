@@ -15,8 +15,8 @@ Page({
   },
   //手机注册
   startRegister(){
-    wx.navigateTo({ 
-      url: "../register/register"
+    wx.redirectTo({ 
+      url: "/pages/auth/register/register"
     });
   },
   //微信注册
@@ -31,7 +31,7 @@ Page({
       app.globalData.hasLogin = true;
       app.fristRegister = true;  //首页弹窗
       app.globalData.badge = {menu:[0,0,3,0]};
-      // wx.setStorageSync('userInfoMobile', res.result.mobile);
+      wx.setStorageSync('userInfoMobile', res.result.mobile);
       wx.switchTab({ 
         url:"/pages/index/index"
       })

@@ -62,6 +62,9 @@
           <button wx:if="{{personUl.length == 0}}" class="liveN_btn {{detail.canStay?'':'liveN_btn_n'}}" bindtap="{{detail.canStay?'goOrderChoose':''}}" type='primary'>{{detail.canStay?'办理入住':'请当天办理入住'}}</button>
           <view wx:if="{{personUl.length != 0}}" class="liveN_btn" bindtap="goOrderAddition" data-type="0">+添加同住人</view>
           <text class="detail_t4">{{personUl.length == 0?'办理入住后可扫脸开门':'同住人将赋予同等扫脸开门权限'}}</text>
+          <button class="liveN_share" wx:if="{{personUl.length != 0}}" bindtap='onShareAppMessage' size="default" open-type="share">
+            <image class="liveN_share_img" src="/static/images/share.png"></image>
+          </button>
         </view>
       </view>
     </view>

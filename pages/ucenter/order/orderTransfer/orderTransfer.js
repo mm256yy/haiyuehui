@@ -2,11 +2,12 @@
 let util = require('../../../../utils/util.js');
 let api = require('../../../../config/api.js');
 let pay = require('../../../../utils/pay.js');
+let user = require('../../../../utils/user.js');
 let app = getApp();
 Page({
   data: {
     processNum:1,
-    transferType:'', //1 ota 2 小程序
+    transferType:'', //1 OTA 2 小程序
     processUl:[
       {img:'team7.png',text:'选择类型'},
       {img:'team6.png',text:'编号填写'},
@@ -44,6 +45,10 @@ Page({
     }
   },
   onShow: function () {
+    this.hotels();
+  },
+  //获取酒店列表
+  hotels(){
     let hotelsUl = [];
     let hotelsLi = {};
     util.request(api.CustomizedHotelsList, 'GET').then(res => {
@@ -69,9 +74,6 @@ Page({
       transferType:type,
       processNum:this.data.processNum + 1 ,
     })
-  },
-  transferTypeNo(){
-    util.showErrorToast("暂未开放")
   },
   //上一步
   goBack(){
@@ -169,32 +171,14 @@ Page({
     console.log(type)
     if(type == 11||type == 12||type == 13||type == 21){
       //获取名字
-      util.request(api.MemberGet, 'GET').then(res => {
+      user.memberGetInfo().then(res => {
         let couponNew = Math.round(this.data.detail.totleRoomPrice-((this.data.detail.money-this.data.detail.deposit)/(res.result.discount/100)))
         this.setData({
           'detail.coupon':couponNew,
           'detail.discount':(res.result.discount?res.result.discount:100),
         });
       }).catch((err) => {
-        if(err == "未找到会员信息"){
-          wx.showModal({ 
-            title: '获取会员失败',
-            content: '你未绑定手机号码',
-            success: function(res) {
-              if (res.confirm) {
-                wx.redirectTo({
-                  url: "/pages/auth/registerWx/registerWx"
-                });
-              } else if (res.cancel) {
-                wx.navigateBack({ 
-                  delta: 1  
-                });
-              }
-            }
-          })
-        }else{
-          wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
-        }
+        console.log(err)
       });
     }
   },

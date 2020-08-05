@@ -24,14 +24,22 @@ function formatWeek(n){
   let week = ['周日','周一','周二','周三','周四','周五','周六'];
   return week[new Date(n).getDay()];
 }
-/*封封微信的的request*/
-function request(url, data = {}, method = "GET") {
+//设置白名单（白名单的地址列表不会强制跳转登陆和绑定手机号）
+function whiteList(){
   let pages = getCurrentPages();
   let currPage = null;
   if (pages.length) {
     currPage = pages[pages.length - 1].route;
   }
-  let whiteList = [null,"pages/ucenter/index/index","pages/member/memberIndex/memberIndex"];  //跳转白名单
+  let whiteList = [null,"pages/index/index","pages/ucenter/index/index","pages/member/memberIndex/memberIndex"];  //跳转白名单
+  if(whiteList.indexOf(currPage) >= 0){ //存在
+    return true;
+  }else{
+    return false;
+  }
+}
+/*封封微信的的request*/
+function request(url, data = {}, method = "GET") {
   jhxLoadShow("加载中")
   return new Promise(function(resolve, reject) {
     wx.request({
@@ -48,29 +56,26 @@ function request(url, data = {}, method = "GET") {
         if (res.statusCode == 200) {
           if(res.data.code == 0||res.data == "ok"){  //判断是否成功
             resolve(res.data);
-          }else{
-            if(res.data.message == "未登录"||res.data.message == '请先登陆'){
-              if(whiteList.indexOf(currPage) >= 0){ //存在
-                console.log("未登录")
-              }else{
-                wx.redirectTo({
-                  url: "/pages/auth/login/login"
-                });
-              }
-              reject("未登陆");
-            }else if(res.data.message){
-              if(res.data.message == null){
-                console.log(res.data.message)
-              }else{
-                reject(res.data.message)
-              }
+          }else if(res.data.message == "未登录"||res.data.message == '请先登陆'){
+            let iswhiteList = whiteList();
+            if(iswhiteList){ //存在
+              //未登陆
             }else{
-              reject("未知异常")
+              wx.redirectTo({
+                url: "/pages/auth/login/login"
+              });
             }
+            reject("未登陆");
+          }else if(res.data.message){
+            reject(res.data.message);
+          }else if(res.data.message == null){
+            console.log(res.data.message);
+          }else{
+            reject("未知异常");
           }
         } else {
-          reject("200+")
-          console.log(res.errMsg)
+          reject("200+");
+          console.log(res.errMsg);
         }
       },
       fail: function(err) {
@@ -215,6 +220,8 @@ module.exports = {
   formatTime,
   formatNumber,
   formatWeek,
+
+  whiteList,
   request,
   showErrorToast,
   showSuccessToast,

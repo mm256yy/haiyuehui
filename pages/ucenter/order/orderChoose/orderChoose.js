@@ -49,9 +49,12 @@ Page({
 
   },
   onShow: function () {
+    this.substitution()
+  },
+  //常住人换人
+  substitution(){
     let pages = getCurrentPages()
     let currPage = pages[pages.length - 1]  // 当前页
-    console.log(currPage.data.info)  // data中会含有testdata
     this.setData({
       'info.name':currPage.data.info.name,
       'info.identity':currPage.data.info.identity,
@@ -62,9 +65,6 @@ Page({
     wx.navigateTo({
       url: "/pages/ucenter/set/oftenList/oftenList?oftenType=1"
     })
-  },
-  onHide: function () {
-
   },
   init(options){
     console.log(options)

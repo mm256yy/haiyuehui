@@ -1,7 +1,7 @@
 let check = require('../../../utils/check.js');
 let util = require('../../../utils/util.js');
 let api = require('../../../config/api.js');
-
+let user = require('../../../utils/user.js');
 Page({
   data: {
     pics:[
@@ -30,7 +30,6 @@ Page({
       wec1:999900,  //单早
       wec:999900,  //双早
       wec3:999900,  //三早
-      discount:100,
     },
     fill:{
       // roomNum:1,
@@ -58,15 +57,17 @@ Page({
       timeNum:1,
       roomPrice:999900,
       roomTotalPrice:999900,
-      coupon:0,
-      discount:100,
-      deposit:50000,
+      coupon:0,  //优惠劵
+      discount:100,  //折扣
+      deposit:0,  //押金
       other:0,
       money:999900,
     }
   },
   onLoad: function (options) {
-    
+    this.userInfo();
+    this.pics();
+    this.hotelInfo();
   },
   onReady: function (){
     this.popId = this.selectComponent("#popId");
@@ -77,17 +78,7 @@ Page({
     },100)
   },
   onShow: function () {
-    this.hotelInfo();
-    this.userInfo();
-    this.pics();
-    let pages = getCurrentPages()
-    let currPage = pages[pages.length - 1]  // 当前页
-    if(currPage.data.info){
-      this.setData({
-        'fill.name':currPage.data.info.name,
-        'fill.mobile':currPage.data.info.mobile,
-      })
-    }
+    this.member();
   },
   //酒店信息
   hotelInfo(){
@@ -141,58 +132,65 @@ Page({
   },
   //个人信息
   userInfo(){
-    let tel = wx.getStorageSync('userInfoMobile');
-    if(tel){  //如果存在
-      let fillNew = {};
+    let mobile = wx.getStorageSync('userInfoMobile');
+    if(mobile){  //如果存在
       //获取手机
       this.setData({
-        'fill.mobile':tel,
-        'fill.mobileDisabled':false
-      });
-      //获取名字
-      util.request(api.MemberGet, 'GET').then(res => {
-        fillNew = {
-          roomNum:1,
-          name:(res.result.name != null?res.result.name:''),
-          mobile:tel,
-          mobileDisabled:false,
-          cardLevel:res.result.cardLevel,
-          grade:util.memberGrade(res.result.cardLevel),
-          discount:(res.result.discount?res.result.discount:100),
-          scoreTimes:(res.result.scoreTimes?res.result.scoreTimes:100),
-        }
-        this.setData({
-          fill:fillNew,
-        });
-        
-        this.total();
-      }).catch((err) => {
-        if(err == "未找到会员信息"){
-          wx.showModal({ 
-            title: '获取会员失败',
-            content: '你未绑定手机号码',
-            success: function(res) {
-              if (res.confirm) {
-                wx.redirectTo({
-                  url: "/pages/auth/registerWx/registerWx"
-                });
-              } else if (res.cancel) {
-                wx.navigateBack({ 
-                  delta: 1  
-                });
-              }
-            }
-          })
-        }else{
-          wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
-        }
+        'fill.mobile':mobile,
       });
     }else{
       console.log("手机号不存在");
+    }
+  },
+  //会员信息
+  member(){
+    let fillNew = {};
+    //获取名字
+    user.memberGetInfo().then(res => {
+      fillNew = {
+        roomNum:1,
+        name:(res.result.name != null?res.result.name:''),
+        mobile:res.result.mobile,
+        mobileDisabled:false,
+        cardLevel:res.result.cardLevel,
+        grade:util.memberGrade(res.result.cardLevel),
+        discount:(res.result.discount?res.result.discount:100),
+        scoreTimes:(res.result.scoreTimes?res.result.scoreTimes:100),
+      }
       this.setData({
-        'fill.mobileDisabled':false
+        fill:fillNew,
+      });
+      this.total();
+      this.substitution();
+    }).catch((err) => {
+      console.log(err);
+    });
+  },
+  //常住人换人
+  substitution(){
+    let pages = getCurrentPages();
+    let currPage = pages[pages.length - 1];  // 当前页
+    if(currPage.data.info){
+      this.setData({
+        'fill.name':currPage.data.info.name,
+        'fill.mobile':currPage.data.info.mobile,
       })
     }
+  },
+  //获取房间图片信息
+  pics(){
+    let param = {
+      hotelId:this.data.room.hotelId,
+      rmtype:this.data.room.rmtype,
+    }
+    util.request(api.CustomizedHotelsRoom , param , 'GET').then(res => {
+      this.setData({
+        pics:res.result.imgList.length == 0?['/static/images/banner2.jpg']:res.result.imgList
+      })
+    }).catch((err) => {
+      console.log(err)
+      // wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+    });
   },
   //早餐选择
   breakfastChoose(e){
@@ -327,7 +325,7 @@ Page({
   //房间数量
   room(e){
     let type = e.currentTarget.dataset.type
-    let numNew = this.data.fill.roomNum
+    let numNew = this.data.fill.roomNum  
     if(type == 0&&numNew>1){  //减法
       numNew -- ;
     }else if(type == 1){
@@ -348,21 +346,6 @@ Page({
   bindMobileInput: function(e) {
     this.setData({
       'fill.mobile': e.detail.value
-    });
-  },
-  //获取房间信息
-  pics(){
-    let param = {
-      hotelId:this.data.room.hotelId,
-      rmtype:this.data.room.rmtype,
-    }
-    util.request(api.CustomizedHotelsRoom , param , 'GET').then(res => {
-      this.setData({
-        pics:res.result.imgList.length == 0?['/static/images/banner2.jpg']:res.result.imgList
-      })
-    }).catch((err) => {
-      console.log(err)
-      // wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
   //跳转到常住人

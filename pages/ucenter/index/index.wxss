@@ -14,7 +14,7 @@ page{
   margin-bottom: 380rpx;
 }
 .ucenter_person{
-  margin:90rpx 0rpx 0rpx 200rpx;
+  margin:70rpx 0rpx 0rpx 200rpx;
   padding: 30rpx;
 }
 .ucenter_name{
@@ -24,7 +24,7 @@ page{
 }
 .ucenter_vip{
   color: #cdcdcd !important;
-  font-size: 22rpx;
+  font-size: 26rpx;
   color: #fff;
 }
 .ucenter_mobile_box{

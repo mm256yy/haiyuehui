@@ -112,6 +112,18 @@ page{background-color: #f1f1f1;}
 .liveN_btn_n{
   background: #cdcdcd!important;
 }
+.liveN_share{
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  background-color: #fff;
+  padding: 0rpx;
+  width: 50rpx !important;
+}
+.liveN_share_img{
+  width: 50rpx;
+  height: 50rpx;
+}
 .detail_see{
   width: 50rpx;
   height: 50rpx;

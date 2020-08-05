@@ -1,6 +1,7 @@
 
 let util = require('../../../../utils/util.js');
 let api = require('../../../../config/api.js');
+let user = require('../../../../utils/user.js');
 Page({
   data: {
     pics:[
@@ -76,7 +77,7 @@ Page({
   },
   //个人信息
   userInfo(){
-    util.request(api.MemberGet, 'GET').then(res => {
+    user.memberGetInfo().then(res => {
       let memberNew = {
         cardLevel:res.result.cardLevel,
         discount:(res.result.discount?res.result.discount:100),
@@ -89,25 +90,7 @@ Page({
       this.popId.funCouponFrist(parseInt(this.data.order.roomPrice));
       this.total();
     }).catch((err) => {
-      if(err == "未找到会员信息"){
-        wx.showModal({ 
-          title: '获取会员失败',
-          content: '你未绑定手机号码',
-          success: function(res) {
-            if (res.confirm) {
-              wx.redirectTo({
-                url: "/pages/auth/registerWx/registerWx"
-              });
-            } else if (res.cancel) {
-              wx.navigateBack({ 
-                delta: 1  
-              });
-            }
-          }
-        })
-      }else{
-        wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
-      }
+      console.log(err)
     });
   },
   //统计

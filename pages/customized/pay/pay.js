@@ -2,6 +2,7 @@
 let util = require('../../../utils/util.js');
 let pay = require('../../../utils/pay.js');
 let api = require('../../../config/api.js');
+let user = require('../../../utils/user.js');
 Page({
   data: {
     order:{
@@ -23,17 +24,15 @@ Page({
   },
   onLoad: function (options) {
     this.initialize(options);
-    this.balance();
-    this.total();
   },
   onShow: function () {
-
+    this.member();
   },
   initialize(data){
     console.log(data)
     let orderNew = {
       num:data.orderId,
-      money:data.money||0,
+      money:data.money||999900,
       time:new Date().getTime(),
       timeS:this.formatDateTime(new Date().getTime()),
     }
@@ -42,10 +41,9 @@ Page({
       rmdescVal:data.rmdesc
     })
   },
-  //获取余额
-  balance(){
-    util.request(api.MemberGet, 'GET').then(res => {
-      console.log(res)
+  //获取会员信息余额
+  member(){
+    user.memberGetInfo().then(res => {
       let modeNew = {
         balance:res.result.balance*(-1),
         balanceRadio:false,
@@ -53,21 +51,9 @@ Page({
       this.setData({
         mode:modeNew
       })
-      console.log(modeNew)
+      this.total();
     }).catch((err) => {
-      if(err == "未找到会员信息"){
-        wx.showModal({ 
-          title: '获取会员失败',
-          content: '你未绑定手机号码',
-          success: function(res) {
-            wx.navigateTo({
-              url: "/pages/auth/registerWx/registerWx"
-            })
-          }
-        })
-      }else{
-        wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
-      }
+      console.log(err)
     });
   },
   //选择支付类型

@@ -58,7 +58,6 @@ Component({
   methods: {
     //优惠劵
     coupon(fullMoneyPrice){
-      console.log(fullMoneyPrice)
       let param = {
         pageNo:1,
         showType:2,
@@ -74,8 +73,6 @@ Component({
     },
     //优惠劵列表
     funCouponUl(data,fullMoneyPrice){
-      console.log(data)
-      console.log(fullMoneyPrice)
       if(data.length == 0){ return false };
       let c_ul = [];
       let c_li = {};

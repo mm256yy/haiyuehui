@@ -1,6 +1,6 @@
 let util = require('../../../utils/util.js');
 let api = require('../../../config/api.js');
-let user = require('../../../utils/user');
+let user = require('../../../utils/user.js');
 Page({
   data: {
     isLogin:true,

@@ -1,6 +1,6 @@
 let util = require('../../../../utils/util.js');
 let api = require('../../../../config/api.js');
-
+let user = require('../../../../utils/user.js');
 Page({
   data: {
     moneyShow:true,
@@ -9,34 +9,16 @@ Page({
   onLoad: function (options) {
   },
   onShow: function () {
-    this.init();
+    this.member();
   },
-  init(){
-    util.request(api.MemberGet, 'GET').then(res => {
+  member(){
+    user.memberGetInfo().then(res => {
       let money = res.result.balance*(-1);
       this.setData({
         moneyVal:money,
       });
     }).catch((err) => {
-      if(err == "未找到会员信息"){
-        wx.showModal({ 
-          title: '获取会员失败',
-          content: '你未绑定手机号码',
-          success: function(res) {
-            if (res.confirm) {
-              wx.redirectTo({
-                url: "/pages/auth/registerWx/registerWx"
-              });
-            } else if (res.cancel) {
-              wx.navigateBack({ 
-                delta: 1  
-              });
-            }
-          }
-        })
-      }else{
-        wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
-      }
+      console.log(err);
     });
   },
   //隐藏金额

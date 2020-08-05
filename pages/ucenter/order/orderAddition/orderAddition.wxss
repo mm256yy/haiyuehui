@@ -4,8 +4,6 @@
   text-align: center;
 }
 .logo_img{
-  padding: 20rpx;
-  border-radius:20rpx;
   margin:auto ;
 }
 /*form*/

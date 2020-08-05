@@ -6,12 +6,11 @@ let member = require('../../../utils/member.js');
 let app = getApp();
 Page({
   data: {
+    isLogin:false,
     ucenter:{
       tou:'/static/images/person.jpg',
       name:'点击登陆',
       vip:'贵宾会员',
-      progressVal:'0',
-      progressTop:'1000',
       mobile:0,  //判断是否有手机号
     },
     menuUl:[
@@ -30,16 +29,16 @@ Page({
         img:'/static/images/u-menu3.png',
         text:'我的钱包'
       },
+      // {
+      //   bindtap:'meeting',
+      //   img:'/static/images/u-menu5.png',
+      //   text:'会议与团队'
+      // },
       {
-        bindtap:'meeting',
-        img:'/static/images/u-menu5.png',
-        text:'会议与团队'
-      },
-      /*{
         bindtap:'',
         img:'/static/images/u-menu4.png',
         text:'全民营销'
-      },*/
+      },
     ],
     memberUl:[
       {
@@ -97,58 +96,21 @@ Page({
     ],
     badge:{
       menu:[0,0,0,0,0]
-    }
+    },
   },
   onLoad: function () {
     this.login();
-    
   },
   onShow: function () {
+    this.userInfo();
     this.member();
-    console.log(app.globalData)
-    //获取红点
-    let badgeNew = app.globalData.badge
-    if(badgeNew){
-      this.setData({
-        badge:badgeNew
-      })
-      wx.setTabBarBadge({
-        index: 2,
-        text:'1',
-        success: res => { console.log(res) },
-        fail: res => { console.error }
-      })
-    }
-    //获取用户信息
-    let userInfo = "";
-    let ucenterNew = "";
-    if(wx.getStorageSync("userInfo")){
-      userInfo = wx.getStorageSync("userInfo") 
-    }else if(app.globalData.userInfo){
-      userInfo = app.globalData.userInfo
-    }else{
-      return false
-    }
-    ucenterNew = {
-      tou:userInfo.avatarUrl,
-      name:userInfo.nickName,
-      vip:'贵宾会员',
-      progressVal:'0',
-      progressTop:'1000',
-      mobile:this.data.ucenter.mobile,
-    }
-    this.setData({
-      ucenter:ucenterNew
-    })
+    this.badge();
   },
   //判断登陆
   login(){
     // 判断登录
     user.checkLogin().then(res => {
-      //console.log(res)
-      /*wx.switchTab({ 
-        url:"/pages/index/index"
-      })*/
+      
     }).catch((res) =>{
       console.log(res+'需要登陆');
       wx.navigateTo({ 
@@ -156,32 +118,48 @@ Page({
       });
     })
   },
+  //登陆后获取用户信息
+  userInfo(){
+    let userInfo = "";
+    if(wx.getStorageSync("userInfo")){
+      userInfo = wx.getStorageSync("userInfo") 
+    }else if(app.globalData.userInfo){
+      userInfo = app.globalData.userInfo
+    }else{
+      return false;
+    }
+    this.setData({
+      'ucenter.tou':userInfo.avatarUrl,
+      'ucenter.name':userInfo.nickName,
+      isLogin:true,
+    });
+  },
   //判断是否有绑定手机号
   member(){
-    util.request(api.MemberGet, 'GET').then(res => {
+    user.memberGetInfo().then(res => {
       this.setData({
         'ucenter.name':res.result.name,
         'ucenter.vip':res.result.cardLevelName,
         'ucenter.mobile':util.mobileCard(res.result.mobile),
       })
     }).catch((err) => {
-      if(err == "未找到会员信息"){
-        wx.showModal({ 
-          title: '获取会员失败',
-          content: '你未绑定手机号码',
-          success: function(res) {
-            if (res.confirm) {
-              wx.navigateTo({
-                url: "/pages/auth/registerWx/registerWx"
-              })
-            }
-          }
-        })
-      }else{
-        console.log(err)
-        wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
-      }
+      console.log(err)
     });
+  },
+  //红点
+  badge(){
+    let badgeNew = app.globalData.badge;
+    if(badgeNew){
+      this.setData({
+        badge:badgeNew
+      });
+      wx.setTabBarBadge({
+        index: 2,
+        text:'1',
+        success: res => { console.log(res) },
+        fail: res => { console.error }
+      });
+    }
   },
   //设置
   set(){

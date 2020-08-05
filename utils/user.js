@@ -78,7 +78,40 @@ function checkLogin() {
     });
   });
 }
+/*获取会员信息*/
+function memberGetInfo(){
+  let iswhiteList = util.whiteList();
+  return new Promise(function(resolve, reject) {
+    util.request(api.MemberGet , 'GET').then(res => {
+      resolve(res);
+    }).catch((err) => {
+      if(err == "未找到会员信息"&&iswhiteList){  //白名单
+        wx.showModal({title: '错误信息',content: "尚未绑定手机号" ,showCancel: false}); 
+      }else if(err == "未找到会员信息"&&(!iswhiteList)){
+        wx.showModal({ 
+          title: '获取会员失败',
+          content: '尚未绑定手机号',
+          success: function(res) {
+            if (res.confirm) {
+              wx.redirectTo({
+                url: "/pages/auth/registerWx/registerWx"
+              });
+            } else if (res.cancel) {
+              wx.navigateBack({ 
+                delta: 1  
+              });
+            }
+          }
+        })
+      }else{
+        reject(err);
+        wx.showModal({title: '错误信息',content: err ,showCancel: false});
+      }
+    });
+  });
+}; 
 module.exports = {
   loginByWeixin,
   checkLogin,
+  memberGetInfo,
 };

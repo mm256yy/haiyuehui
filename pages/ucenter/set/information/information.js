@@ -1,6 +1,7 @@
 let util = require('../../../../utils/util.js');
 let check = require('../../../../utils/check.js');
 let api = require('../../../../config/api.js');
+let user = require('../../../../utils/user.js');
 Page({
   data: {
     info:{
@@ -24,7 +25,7 @@ Page({
     let tel = wx.getStorageSync('userInfoMobile');
     let isFirstNew = null; 
     if(tel){  //如果存在
-      util.request(api.MemberGet, 'GET').then(res => {
+      user.memberGetInfo().then(res => {
         let infoNew = {
           ident:res.result.ident != null?res.result.ident:'',
           name:res.result.name != null?res.result.name:'',
@@ -40,25 +41,7 @@ Page({
           isFirst:isFirstNew,
         })
       }).catch((err) => {
-        if(err == "未找到会员信息"){
-          wx.showModal({ 
-            title: '获取会员失败',
-            content: '你未绑定手机号码',
-            success: function(res) {
-              if (res.confirm) {
-                wx.redirectTo({
-                  url: "/pages/auth/registerWx/registerWx"
-                });
-              } else if (res.cancel) {
-                wx.navigateBack({ 
-                  delta: 1  
-                });
-              }
-            }
-          })
-        }else{
-          wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
-        }
+        console.log(err);
       });
     }else{
       wx.redirectTo({

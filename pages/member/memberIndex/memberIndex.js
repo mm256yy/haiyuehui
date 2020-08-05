@@ -1,6 +1,7 @@
 let util = require('../../../utils/util.js');
 let api = require('../../../config/api.js');
 let member = require('../../../utils/member.js');
+let user = require('../../../utils/user.js');
 let app = getApp();
 Page({
   data: {
@@ -58,11 +59,10 @@ Page({
     introduceShow:false,
   },
   onLoad: function (options) {
-    
+    this.init();
   },
   onShow: function () {
     this.memberInfo();
-    this.init();
     this.memberCard();
   },
   //init
@@ -96,7 +96,7 @@ Page({
     let grade = 0;
     let discountNew = 100;
     let scoreTimesNew = 100;
-    util.request(api.MemberGet, 'GET').then(res => {
+    user.memberGetInfo().then(res => {
       grade = util.memberGrade(res.result.cardLevel);
       discountNew = res.result.discount?res.result.discount:100;
       scoreTimesNew = res.result.scoreTimes?res.result.scoreTimes:100;
@@ -125,11 +125,7 @@ Page({
         powerUlShow:powerUlShowNew,
       })
     }).catch((err) => {
-      if(err == "未找到会员信息"){
-        wx.showModal({title: '错误信息',content: "尚未绑定手机号" ,showCancel: false}); 
-      }else{
-        wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
-      }
+      console.log(err)
     });
   },
   //跳转到会员信息

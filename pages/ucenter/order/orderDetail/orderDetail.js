@@ -1,6 +1,7 @@
 let util = require('../../../../utils/util.js');
 let check = require('../../../../utils/check.js');
 let api = require('../../../../config/api.js');
+let user = require('../../../../utils/user.js');
 let pay = require('../../../../utils/pay.js');
 let app = getApp();
 Page({
@@ -71,24 +72,6 @@ Page({
     this.orderList();
     //退出页面时把密码删除
     app.globalData.orderPwd = "";
-  },
-  //点击转发按钮
-  onShareAppMessage: function (ops) {
-    if (ops.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(ops.target);
-    }
-    return {
-      title: '邀请你来入住酒店啦',
-      imageUrl:'/static/images/invite.png',//图片地址
-      path:"/pages/ucenter/order/orderAddition/orderAddition?orderId="+this.data.detail.orderId+"&additionType=0&hotelId="+this.data.detail.hotelId+"&roomNo="+this.data.detail.roomNo,
-      success: function (res) { // 转发成功
-        console.log("转发成功:");
-      },
-      fail: function (res) { // 转发失败
-        console.log("转发失败:");
-      }
-    }
   },
   //初始化
   init(options){
@@ -179,7 +162,7 @@ Page({
     let discountPass = 100;
     if(type == 11||type == 12||type == 13||type == 21){
       //获取名字
-      util.request(api.MemberGet, 'GET').then(res => {
+      user.memberGetInfo().then(res => {
         let couponNew = Math.round(this.data.total.roomPrice-((this.data.total.money-this.data.total.deposit)/(res.result.discount/100)))
         if(couponNew<0){ //兼容过去订单
           couponPass = 0;
@@ -193,25 +176,7 @@ Page({
           'total.discount':discountPass,
         });
       }).catch((err) => {
-        if(err == "未找到会员信息"){
-          wx.showModal({ 
-            title: '获取会员失败',
-            content: '你未绑定手机号码',
-            success: function(res) {
-              if (res.confirm) {
-                wx.redirectTo({
-                  url: "/pages/auth/registerWx/registerWx"
-                });
-              } else if (res.cancel) {
-                wx.navigateBack({ 
-                  delta: 1  
-                });
-              }
-            }
-          })
-        }else{
-          wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
-        }
+        console.log(err)
       });
     }
   },
@@ -286,6 +251,20 @@ Page({
       wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
+  //分享同住人
+  onShareAppMessage(){
+    return {
+      title: '邀请你来入住酒店啦',
+      imageUrl:'/static/images/invite.jpg',//图片地址
+      path:"/pages/ucenter/order/orderAddition/orderAddition?orderId="+this.data.detail.orderId+"&additionType=2&hotelId="+this.data.detail.hotelId+"&roomNo="+this.data.detail.roomNo,// 用户点击首先进入的当前页面
+      success: function (res) { // 转发成功
+        console.log("转发成功:");
+      },
+      fail: function (res) { // 转发失败
+        console.log("转发失败:");
+      }
+    }
+  },
   //取消订单
   orderCancel(e){
     let orderId = e.currentTarget.dataset.orderId;
@@ -316,7 +295,7 @@ Page({
   goOrderAddition(e){
     let additionType = e.currentTarget.dataset.type
     wx.navigateTo({
-      url: "../orderAddition/orderAddition?orderId="+this.data.detail.orderId+"&additionType="+additionType+"&hotelId="+this.data.detail.hotelId+"&roomNo="+this.data.detail.roomNo
+      url: "/pages/ucenter/order/orderAddition/orderAddition?orderId="+this.data.detail.orderId+"&additionType="+additionType+"&hotelId="+this.data.detail.hotelId+"&roomNo="+this.data.detail.roomNo
     })
   },
   //显示隐藏身份证号码

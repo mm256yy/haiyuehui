@@ -3,7 +3,7 @@ let api = require('../../../../config/api.js');
 let check = require('../../../../utils/check.js');
 Page({
   data: {
-    additionType:0,   //0 同住人 1 访客  no2 扫码/分享同住人 3 扫码/分享访客人 4 扫码路人（没有携带参数）
+    additionType:0,   //0 同住人 1 访客  2 分享同住人  // no 3 扫码/分享访客人 4 扫码路人（没有携带参数）
     orderId:0,
     hotelId:0,
     roomNo:0,
@@ -22,6 +22,10 @@ Page({
     })
   },
   onShow() {
+    this.substitution();
+  },
+  //常住人换人
+  substitution(){
     let pages = getCurrentPages()
     let currPage = pages[pages.length - 1]  // 当前页
     console.log(currPage.data.info)  // data中会含有testdata
@@ -47,6 +51,7 @@ Page({
   },
   //添加同住人
   startBtn0(){
+    let that = this;
     console.log(this.data.info)
     if(!check.checkName(this.data.info.name)){return false}
     if(!check.checkIdentity(this.data.info.identity)){return false}
@@ -61,12 +66,14 @@ Page({
     console.log(param)
     util.request(api.UcenterOrderAddPerson , param , 'POST').then(res => {
       wx.showModal({ title: '成功',content: '入住成功',showCancel: false , success (res) {
-        if (res.confirm) {
+        if (that.data.additionType == 2) { //同住人分享
+          wx.switchTab({ 
+            url:"/pages/index/index"
+          })
+        } else{
           wx.navigateBack({
             delta: 1  // 返回上一级页面。
           })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
         }
       }});
     }).catch((err) => {

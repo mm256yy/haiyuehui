@@ -19,17 +19,13 @@ App({
     // 判断登录
     user.checkLogin().then(res => {
       console.log('已经登陆')
-      //console.log(res)
-      /*wx.switchTab({ 
-        url:"/pages/index/index"
-      })*/
     }).catch((res) =>{
       console.log(res+'需要登陆');
       this.globalData.userInfo = '';
       wx.setStorageSync('userInfo', '');
-      // wx.navigateTo({ 
-      //   url: "/pages/auth/login/login"
-      // });
+      wx.navigateTo({ 
+        url: "/pages/auth/login/login"
+      });
     })
     // 获取用户信息
     // wx.getSetting({
