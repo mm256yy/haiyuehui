@@ -87,7 +87,7 @@ function memberGetInfo(){
     }).catch((err) => {
       if(err == "未找到会员信息"&&iswhiteList){  //白名单
         wx.showModal({title: '错误信息',content: "尚未绑定手机号" ,showCancel: false}); 
-      }else if(err == "未找到会员信息"&&(!iswhiteList)){
+      }else if((err == "未找到会员信息"||err == "请先绑定手机号")&&(!iswhiteList)){
         wx.showModal({ 
           title: '获取会员失败',
           content: '尚未绑定手机号',
