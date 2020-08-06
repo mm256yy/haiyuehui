@@ -35,7 +35,6 @@ Page({
       // roomNum:1,
       // name:'',
       // mobile:'',
-      // mobileDisabled:false,
       // cardLevel:'',
       // grade:0,
       // discount:100,
@@ -58,6 +57,7 @@ Page({
       roomPrice:999900,
       roomTotalPrice:999900,
       coupon:0,  //优惠劵
+      allowance:0,
       discount:100,  //折扣
       deposit:0,  //押金
       other:0,
@@ -65,13 +65,12 @@ Page({
     }
   },
   onLoad: function (options) {
-    this.userInfo();
-    this.pics();
+    this.mobileInfo();
     this.hotelInfo();
   },
   onReady: function (){
     this.popId = this.selectComponent("#popId");
-    this.evaluationId = this.selectComponent("#evaluationId");
+    // this.evaluationId = this.selectComponent("#evaluationId");
     //加载外部事件
     setTimeout(()=>{
       this.popId.funCouponFrist(this.data.breakfastUl[0].price*this.data.room.timeNum)
@@ -90,10 +89,10 @@ Page({
     // console.log(roomrNew)
     let s_t = new Date(calendarNew.startTime)
     let e_t = new Date(calendarNew.endTime)
-    let startTime_s = this.dayZero(s_t.getMonth()+1)+'月'+this.dayZero(s_t.getDate())+'日'
-    let endTime_s = this.dayZero(e_t.getMonth()+1)+'月'+this.dayZero(e_t.getDate())+'日'
-    let arrTime = this.dayZero(s_t.getFullYear())+'-'+this.dayZero(s_t.getMonth()+1)+'-'+this.dayZero(s_t.getDate())
-    let depTime = this.dayZero(s_t.getFullYear())+'-'+this.dayZero(e_t.getMonth()+1)+'-'+this.dayZero(e_t.getDate())
+    let startTime_s = util.formatNumber(s_t.getMonth()+1)+'月'+util.formatNumber(s_t.getDate())+'日'
+    let endTime_s = util.formatNumber(e_t.getMonth()+1)+'月'+util.formatNumber(e_t.getDate())+'日'
+    let arrTime = util.formatNumber(s_t.getFullYear())+'-'+util.formatNumber(s_t.getMonth()+1)+'-'+util.formatNumber(s_t.getDate())
+    let depTime = util.formatNumber(s_t.getFullYear())+'-'+util.formatNumber(e_t.getMonth()+1)+'-'+util.formatNumber(e_t.getDate())
     let roomNew = {
       hotelId:hotelNew.id,
       hotelName:hotelNew.name,
@@ -129,12 +128,12 @@ Page({
       breakfastUl:breakfastUlNew,
       breakfastChoose:this.breakfastNum(roomrNew.wec0,roomrNew.wec1,roomrNew.wec,roomrNew.wec3),
     })
+    this.pics();
   },
   //个人信息
-  userInfo(){
+  mobileInfo(){
     let mobile = wx.getStorageSync('userInfoMobile');
-    if(mobile){  //如果存在
-      //获取手机
+    if(mobile){  
       this.setData({
         'fill.mobile':mobile,
       });
@@ -151,7 +150,6 @@ Page({
         roomNum:1,
         name:(res.result.name != null?res.result.name:''),
         mobile:res.result.mobile,
-        mobileDisabled:false,
         cardLevel:res.result.cardLevel,
         grade:util.memberGrade(res.result.cardLevel),
         discount:(res.result.discount?res.result.discount:100),
@@ -179,17 +177,23 @@ Page({
   },
   //获取房间图片信息
   pics(){
+    let picsNew = [];
     let param = {
       hotelId:this.data.room.hotelId,
       rmtype:this.data.room.rmtype,
     }
+    console.log(param)
     util.request(api.CustomizedHotelsRoom , param , 'GET').then(res => {
+      if(res.result.imgList&&res.result.imgList.length != 0){
+        picsNew = res.result.imgList;
+      }else{
+        picsNew = ['/static/images/banner2.jpg']
+      }
       this.setData({
-        pics:res.result.imgList.length == 0?['/static/images/banner2.jpg']:res.result.imgList
+        pics:picsNew
       })
     }).catch((err) => {
       console.log(err)
-      // wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
   //早餐选择
@@ -230,6 +234,7 @@ Page({
     let roomTotalPriceNew = this.data.room.roomPrice*this.data.fill.roomNum*this.data.room.timeNum;
     let depositNew = this.data.room.roomDeposit*this.data.fill.roomNum;
     let couponMoney = this.data.coupon.couponMoney;
+    let allowanceNew = 0;
     let discountNew = this.data.fill.discount;
     let otherNew = this.data.room.roomOther;
     //总计
@@ -238,10 +243,11 @@ Page({
       roomPrice:roomPriceNew,
       roomTotalPrice:roomTotalPriceNew,
       coupon:couponMoney,
+      allowance:allowanceNew,
       discount:discountNew,
       deposit:depositNew,
       other:otherNew,
-      money:(roomTotalPriceNew-couponMoney+otherNew)*(discountNew/100)+depositNew,
+      money:(roomTotalPriceNew-couponMoney-allowanceNew+otherNew)*(discountNew/100)+depositNew,
     } 
     console.log(totalNew)
     // this.evaluationId.funTotal(totalNew)
@@ -312,14 +318,6 @@ Page({
       return 3;
     }else{
       return 999900
-    }
-  },
-  //时间
-  dayZero(val){
-    if(val<=9){
-      return "0"+val
-    }else{
-      return val
     }
   },
   //房间数量

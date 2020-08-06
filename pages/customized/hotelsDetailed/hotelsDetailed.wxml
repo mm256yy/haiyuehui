@@ -17,13 +17,13 @@
       <view class="choose_ba">
         <view class="choose_li choose_li_name" bindtap="goHotelsList">
           <text class="choose_name">{{hotel.name}}</text>
+          <image class="choose_li_down" src="/static/images/down.png"></image>
         </view>
         <view class="choose_li choose_li_time" bindtap="goCalendar">
           <view class="choose_time"><text>{{time.start}}</text></view>
           <view class="choose_time"><text>入住{{time.num}}晚</text></view>
+          <image class="choose_li_down" src="/static/images/down.png"></image>
         </view>
-        <image class="time_down" src="/static/images/down.png"></image>
-        <image class="name_down" src="/static/images/down.png"></image>
       </view>
     </view>
     <view class="head_info" > 

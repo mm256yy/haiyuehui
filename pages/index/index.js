@@ -6,7 +6,7 @@ let app = getApp();
 Page({
   data: {
     bannerUrls:[
-      '/static/images/banner3.jpg',
+      '/static/images/banner1.jpg',
       '/static/images/banner4.jpg',
     ],
     hotelsName:'点击选择酒店',
@@ -32,13 +32,24 @@ Page({
   },
   //传递邀请人
   invite(option){
-    console.log(option);
+    let inviteCode = ""; 
     if(option.inviteCode){
-      wx.setStorageSync('othersInviteCode', option.inviteCode);
+      inviteCode = option.inviteCode;
     }else{
       let scene = decodeURIComponent(option.scene).toString().split('=');
-      let inviteCode = scene[1];
-      wx.setStorageSync('othersInviteCode', inviteCode);
+      inviteCode = scene[1];
+    }
+    wx.setStorageSync('othersInviteCode', inviteCode);
+    console.log(inviteCode);
+    if(inviteCode != ""&&inviteCode != undefined){
+      let param = {
+        inviteCode:inviteCode,
+      };
+      util.request(api.MemberInviteSendAllowance , param , 'GET').then(res => {
+        console.log("津贴获取成功");
+      }).catch((err) => {
+        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+      });
     }
   },
   //跳转酒店详情
@@ -116,6 +127,7 @@ Page({
   },
   //跳转到优惠劵列表
   goCoupon(){
+    this.popHide();
     wx.navigateTo({
       url: "/pages/ucenter/coupon/coupon",
     });

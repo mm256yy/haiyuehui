@@ -54,6 +54,7 @@
    UcenterMemberQuery:WxApiRoot + 'member/query', //会员信息查询
    MemberInviteCode:WxApiRoot + 'member/qrCode',  //会员二维码
    MemberInviteList:WxApiRoot + 'memberInvite/list',  //会员邀请列表
+   MemberInviteSendAllowance:WxApiRoot + 'memberInvite/sendAllowance',  //发送邀请码到后台获取津贴
 
    MemberGet:WxApiRoot + 'member/get', //会员信息获取和余额
    MemberRechargeSubmit:WxApiRoot +'recharge/submit',  //充值下订单

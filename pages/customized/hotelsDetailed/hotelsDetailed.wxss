@@ -24,23 +24,29 @@ swiper{
 .choose_ba{
   background-color: rgba(0,0,0,0.6);
   margin: 40rpx;
-  padding:20rpx 30rpx;
+  padding:20rpx 0rpx;
   border-radius:20rpx ;
+  display: flex;
+}
+.choose_li{
   position: relative;
+  margin-right: 30rpx;
 }
 .choose_li text{
   color: #fff;
+}
+.choose_li_name{
+  padding:0rpx 20rpx;
+  flex: 1 1 auto;
 }
 .choose_name{
   font-size: 34rpx;
   line-height: 70rpx;
 }
 .choose_li_time{
-  width: 150rpx;
+  padding:0rpx 10rpx;
+  width: 170rpx;
   border-left:1px solid #fff ;
-  position: absolute;
-  top: 20rpx;
-  right: 35rpx;
 }
 .choose_time{
   text-align: center;
@@ -48,19 +54,12 @@ swiper{
 .choose_time text{
   font-size: 24rpx;
 }
-.name_down{
+.choose_li_down{
   width: 40rpx;
   height: 40rpx;
   position: absolute;
-  top: 40rpx;
-  right: 15rpx;
-}
-.time_down{
-  width: 40rpx;
-  height: 40rpx;
-  position: absolute;
-  top: 40rpx;
-  right: 205rpx;
+  top: 20rpx;
+  right: -15rpx;
 }
 /*info*/
 .info_val{

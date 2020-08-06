@@ -87,6 +87,10 @@
       <text>优惠劵</text>
       <text class="price_li_r">-￥{{money.moneyFixed(total.coupon)}}</text>
     </view>
+    <view class="price_li price_li_coupon" wx:if="{{total.allowance != 0}}">
+      <text>津贴</text>
+      <text class="price_li_r">-￥{{money.moneyFixed(total.allowance)}}</text>
+    </view>
     <view class="price_li ">
       <text>会员折扣</text>
       <text class="price_li_r">{{money.moneyDiscount(total.discount)}}折</text>

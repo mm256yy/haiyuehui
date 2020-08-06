@@ -5,7 +5,7 @@ let user = require('../../../../utils/user.js');
 Page({
   data: {
     pics:[
-      '/static/images/banner3.jpg',
+      '/static/images/banner1.jpg',
     ],
     order:{
       hotelId:'',
