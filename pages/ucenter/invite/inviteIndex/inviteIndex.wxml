@@ -1,0 +1,29 @@
+<view>
+  <view class="invite_head">
+    <image class="invite_head_img" src="/static/images/invite_ba.jpg"></image>
+  </view>
+  <view class="invite_body">
+    <view class="menu_ul">
+      <view class="menu_li" bindtap="inviteCode">
+        <image class="menu_li_img" src="/static/images/in-1.png"></image>
+        <view class="menu_li_text">邀请他人</view>
+      </view>
+      <view class="menu_li" bindtap="inviteIncome">
+        <image class="menu_li_img" src="/static/images/in-2.png"></image>
+        <view class="menu_li_text">我的收益</view>
+      </view>
+      <view class="menu_li" bindtap="inviteList">
+        <image class="menu_li_img" src="/static/images/in-3.png"></image>
+        <view class="menu_li_text">我的邀请</view>
+      </view>
+    </view>
+  </view>
+  <view class="invite_foot" wx:if="{{true}}">
+    <view class="invite_activity_h1">推广活动</view>
+    <view class="invite_activity_ul">
+      <view class="invite_activity_li">
+        <image class="invite_activity_img"></image>
+      </view>
+    </view>
+  </view>
+</view>

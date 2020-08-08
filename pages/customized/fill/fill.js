@@ -39,6 +39,9 @@ Page({
       // grade:0,
       // discount:100,
       // scoreTimes:100,
+      // memberAllowanceId:0,
+      // allowanceMoney:0,
+      // fromMemberId:0,
     },
     breakfastUl:[
       // {price:1200,name:'不选早餐',val:'wec0'},
@@ -57,7 +60,7 @@ Page({
       roomPrice:999900,
       roomTotalPrice:999900,
       coupon:0,  //优惠劵
-      allowance:0,
+      allowanceMoney:0,
       discount:100,  //折扣
       deposit:0,  //押金
       other:0,
@@ -130,7 +133,7 @@ Page({
     })
     this.pics();
   },
-  //个人信息
+  //手机信息
   mobileInfo(){
     let mobile = wx.getStorageSync('userInfoMobile');
     if(mobile){  
@@ -154,6 +157,9 @@ Page({
         grade:util.memberGrade(res.result.cardLevel),
         discount:(res.result.discount?res.result.discount:100),
         scoreTimes:(res.result.scoreTimes?res.result.scoreTimes:100),
+        memberAllowanceId:(res.result.memberAllowanceId?res.result.memberAllowanceId:''),
+        allowanceMoney:(res.result.allowanceMoney?res.result.allowanceMoney:0),
+        fromMemberId:(res.result.fromMemberId?res.result.fromMemberId:0),
       }
       this.setData({
         fill:fillNew,
@@ -233,8 +239,8 @@ Page({
     let roomPriceNew = this.data.room.roomPrice;
     let roomTotalPriceNew = this.data.room.roomPrice*this.data.fill.roomNum*this.data.room.timeNum;
     let depositNew = this.data.room.roomDeposit*this.data.fill.roomNum;
-    let couponMoney = this.data.coupon.couponMoney;
-    let allowanceNew = 0;
+    let couponMoneyNew = this.data.coupon.couponMoney;
+    let allowanceMoneyNew = this.data.fill.allowanceMoney;
     let discountNew = this.data.fill.discount;
     let otherNew = this.data.room.roomOther;
     //总计
@@ -242,12 +248,12 @@ Page({
       timeNum:timeNumNew,
       roomPrice:roomPriceNew,
       roomTotalPrice:roomTotalPriceNew,
-      coupon:couponMoney,
-      allowance:allowanceNew,
+      coupon:couponMoneyNew,
+      allowanceMoney:allowanceMoneyNew,
       discount:discountNew,
       deposit:depositNew,
       other:otherNew,
-      money:(roomTotalPriceNew-couponMoney-allowanceNew+otherNew)*(discountNew/100)+depositNew,
+      money:(roomTotalPriceNew-couponMoneyNew-allowanceMoneyNew+otherNew)*(discountNew/100)+depositNew,
     } 
     console.log(totalNew)
     // this.evaluationId.funTotal(totalNew)
@@ -281,6 +287,9 @@ Page({
       scoreTimes:this.data.fill.scoreTimes,  //积分倍数
       cardLevel:this.data.fill.cardLevel,  //卡等级
       discount:this.data.fill.discount,  //等级折扣
+      memberAllowanceId:this.data.fill.memberAllowanceId,  //津贴id
+      allowanceMoney:this.data.fill.allowanceMoney, //津贴金额
+      fromMemberId:this.data.fill.fromMemberId, //发送津贴人id
     };
     console.log(param)
     util.request(api.CustomizedHotelsFill ,param, 'POST').then(res => {

@@ -27,6 +27,7 @@ Page({
     this.invite(option);
   },
   onShow: function () {
+    this.getAllowance();
     this.renderingTime();
     this.fristRegister();
   },
@@ -40,13 +41,18 @@ Page({
       inviteCode = scene[1];
     }
     wx.setStorageSync('othersInviteCode', inviteCode);
+  },
+  //获取津贴
+  getAllowance(){
+    let inviteCode = wx.getStorageSync('othersInviteCode')
     console.log(inviteCode);
     if(inviteCode != ""&&inviteCode != undefined){
       let param = {
         inviteCode:inviteCode,
       };
       util.request(api.MemberInviteSendAllowance , param , 'GET').then(res => {
-        console.log("津贴获取成功");
+        wx.showModal({title: '恭喜',content: "成功获取津贴",showCancel: false}); 
+        wx.setStorageSync('othersInviteCode', "");
       }).catch((err) => {
         wx.showModal({title: '错误信息',content: err,showCancel: false}); 
       });

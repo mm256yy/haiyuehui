@@ -108,10 +108,19 @@
         <text class="detail_t1">房间价格：</text>
         <text class="detail_t2">￥{{money.moneyFixed(total.roomPrice)}}</text>
       </view>
+      <view wx:if="{{(detail.status == 11||detail.status == 12||detail.status == 13||detail.status == 21)}}">
+        <text class="detail_t1">优惠劵+津贴：</text>
+        <text class="detail_t2" wx:if="{{total.surplus != 0}}">-￥{{money.moneyFixed(total.surplus)}}</text>
+      </view>
       <view wx:if="{{total.coupon != 0}}">
         <text class="detail_t1">优惠劵使用：</text>
         <text class="detail_t2" wx:if="{{total.coupon != 0}}">-￥{{money.moneyFixed(total.coupon)}}</text>
         <text class="detail_t2" wx:if="{{total.coupon == 0}}">未使用</text>
+      </view>
+      <view wx:if="{{total.allowanceMoney != 0}}">
+        <text class="detail_t1">津贴使用：</text>
+        <text class="detail_t2" wx:if="{{total.allowanceMoney != 0}}">-￥{{money.moneyFixed(total.allowanceMoney)}}</text>
+        <text class="detail_t2" wx:if="{{total.allowanceMoney == 0}}">未使用</text>
       </view>
       <view wx:if="{{total.discount != 100}}">
         <text class="detail_t1" >会员折扣：</text>

@@ -1,0 +1,44 @@
+<view>
+  <view class="income_head">
+    <image class="income_head_img" src="/static/images/income_ba.jpg"></image>
+  </view>
+  <view class="income_total">
+    <view class="total_ul">
+      <view class="total_li">
+        <view>今日收益（元）</view>
+        <view class="total_li_money">88.88</view>
+        <view>共<text class="total_li_num">61</text>单</view>
+      </view>
+      <view class="total_li">
+        <view>历史收益（元）</view>
+        <view class="total_li_money">88.88</view>
+        <view>共<text class="total_li_num">61</text>单</view>
+      </view>
+    </view>
+  </view>
+  <view class="income_list">
+    <view class="income_data">
+      <picker class="income_data_choose" mode="date" fields="month" value="{{chooseDate}}" start="2020-01-01" end="2050-01-01" bindchange="bindDateChange">
+        <view class="picker">选择月份：{{chooseDate}}</view>
+      </picker>
+      <view class="total_li_cash_out">提现 ></view>
+    </view>
+    <view class="income_ul">
+      <view class="income_li">
+        <view class="income_li_type">注册首单</view>
+        <view class="income_li_time">2020-06-12 12:06:06</view>
+        <view class="income_li_money">66.00</view>
+      </view>
+      <view class="income_li">
+        <view class="income_li_type">注册首单</view>
+        <view class="income_li_time">2020-06-12 12:06:06</view>
+        <view class="income_li_money">66.00</view>
+      </view>
+      <view class="income_li">
+        <view class="income_li_type">注册首单</view>
+        <view class="income_li_time">2020-06-12 12:06:06</view>
+        <view class="income_li_money">66.00</view>
+      </view>
+    </view>
+  </view>
+</view>

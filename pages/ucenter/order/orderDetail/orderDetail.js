@@ -52,7 +52,9 @@ Page({
       roomPrice:0,
       deposit:0,
       addition:0,
+      surplus:0,  //优惠劵+津贴
       coupon:0,
+      allowanceMoney:0,
       discount:100,
       money:0,
       wayWx:0,
@@ -111,6 +113,7 @@ Page({
       let orderPayInfoNew = {
         discount:100,   
         balance:0,
+        allowanceMoney:0,
       };
       if(data.orderPayInfo){
         orderPayInfo = data.orderPayInfo;
@@ -121,7 +124,9 @@ Page({
         roomPrice:data.roomPrice*dayNum,
         deposit:data.deposit,
         addition:0,   //续住
-        coupon:data.subtractMoney?data.subtractMoney:0,
+        surplus:0,
+        coupon:(data.subtractMoney?data.subtractMoney:0),
+        allowanceMoney:(orderPayInfo.allowanceMoney?orderPayInfo.allowanceMoney:0),
         discount:orderPayInfo.discount,
         money:data.money,
         wayWx:(data.money-orderPayInfo.balance),
@@ -158,21 +163,21 @@ Page({
   //会员信息
   member(){
     let type = this.data.detail.status;
-    let couponPass = 0;
+    let surplusPass = 0;
     let discountPass = 100;
     if(type == 11||type == 12||type == 13||type == 21){
       //获取名字
       user.memberGetInfo().then(res => {
         let couponNew = Math.round(this.data.total.roomPrice-((this.data.total.money-this.data.total.deposit)/(res.result.discount/100)))
         if(couponNew<0){ //兼容过去订单
-          couponPass = 0;
+          surplusPass = 0;
           discountPass = 100;
         }else{
-          couponPass = couponNew;
+          surplusPass = couponNew;
           discountPass = (res.result.discount?res.result.discount:100);
         }
         this.setData({
-          'total.coupon':couponPass,
+          'total.surplus':surplusPass,
           'total.discount':discountPass,
         });
       }).catch((err) => {

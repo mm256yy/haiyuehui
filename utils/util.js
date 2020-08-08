@@ -160,6 +160,8 @@ function orderType(type){
     return "退款成功"
   }else if(type == 25){  //续租，支付成功
     return "已支付"
+  }else if(type == 26){  //退款失败
+    return "退款失败"
   }else if(type == 31){  //已入住
     return "已入住"
   }else if(type == 32){  //已入住 并且续住

@@ -1,7 +1,10 @@
 {
   "pages":[
-    
     "pages/index/index",
+    "pages/ucenter/invite/inviteIncome/inviteIncome", 
+    "pages/ucenter/invite/inviteIndex/inviteIndex", 
+    
+   
     "pages/ucenter/coupon/coupon",
     "pages/customized/pay/pay",
     "pages/ucenter/set/visitor/visitor",
@@ -32,8 +35,10 @@
     "pages/ucenter/order/orderChoose/orderChoose", 
     "pages/ucenter/order/orderTransfer/orderTransfer", 
 
+    
     "pages/ucenter/invite/inviteList/inviteList", 
     "pages/ucenter/invite/inviteCode/inviteCode", 
+    
     
     "pages/ucenter/set/setIndex/setIndex",
     "pages/ucenter/set/oftenList/oftenList",

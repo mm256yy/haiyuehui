@@ -1,0 +1,43 @@
+/*head*/
+.invite_head_img{
+  width: 100%;
+  height: 600rpx;
+  background-color: #f1f1f1;
+}
+/*body*/
+.menu_ul{
+  display: flex;
+  text-align: center;
+  padding:30rpx 10rpx;
+}
+.menu_li{
+  flex: 1 1 auto;
+  text-align: center;
+  padding:0rpx 0rpx;
+  margin: 15rpx;
+  border-radius:20rpx ;
+  overflow: hidden;
+}
+.menu_li_img{
+  height: 80rpx;
+  width: 80rpx;
+}
+.menu_li_text{
+  padding: 10rpx;
+}
+/*foot*/
+.invite_activity_h1{
+  margin:0rpx 30rpx 30rpx 30rpx;
+  padding: 0rpx 20rpx;
+  border-left: 5rpx solid #fe6f41;
+  font-weight: 800;
+}
+.invite_activity_ul{
+  padding:0rpx 30rpx;
+}
+.invite_activity_img{
+  width: 100%;
+  height: 300rpx;
+  border-radius:20rpx ;
+  background-color: #f1f1f1;
+}
