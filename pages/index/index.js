@@ -82,7 +82,7 @@ Page({
       url: "/pages/ucenter/order/orderTransfer/orderTransfer",
     });
   },
-  //进行日历处理
+  // //进行日历处理
   renderingTime(){
     let calendar = wx.getStorageSync("calendar");  //获取数据
     let d_today = new Date();
@@ -94,17 +94,17 @@ Page({
         endTime:this.dayZero(d_tomorrow.getFullYear())+'-'+this.dayZero(d_tomorrow.getMonth()+1)+'-'+this.dayZero(d_tomorrow.getDate())
       });
     }else{ //--没有
-      let d_tomorrow = new Date(new Date().getTime()+60*60*24*1000);
-      let calendarSto = {};
-      this.setData({
-        startTime:this.dayZero(d_today.getFullYear())+'-'+this.dayZero(d_today.getMonth()+1)+'-'+this.dayZero(d_today.getDate()),
-        endTime:this.dayZero(d_tomorrow.getFullYear())+'-'+this.dayZero(d_tomorrow.getMonth()+1)+'-'+this.dayZero(d_tomorrow.getDate())
-      });
-      calendarSto = {
-        startTime:new Date(new Date().toLocaleDateString()).getTime(),
-        endTime:new Date(new Date().toLocaleDateString()).getTime()+24*60*60*1000,
-      };
-      wx.setStorageSync("calendar", calendarSto);
+      // let d_tomorrow = new Date(new Date().getTime()+60*60*24*1000);
+      // let calendarSto = {};
+      // this.setData({
+      //   startTime:this.dayZero(d_today.getFullYear())+'-'+this.dayZero(d_today.getMonth()+1)+'-'+this.dayZero(d_today.getDate()),
+      //   endTime:this.dayZero(d_tomorrow.getFullYear())+'-'+this.dayZero(d_tomorrow.getMonth()+1)+'-'+this.dayZero(d_tomorrow.getDate())
+      // });
+      // calendarSto = {
+      //   startTime:new Date(new Date().toLocaleDateString()).getTime(),
+      //   endTime:new Date(new Date().toLocaleDateString()).getTime()+24*60*60*1000,
+      // };
+      // wx.setStorageSync("calendar", calendarSto);
     }
     //转化成展示数据
     let calendarNew = wx.getStorageSync("calendar");

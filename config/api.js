@@ -4,9 +4,9 @@
  // 正式线上ip 
  // let WxApiRoot = 'http://124.70.147.182:9001/wx/'; let testing = false; 
  // 测试线上ip 
- // let WxApiRoot = 'http://124.70.132.80:9001/wx/'; let testing = true; 
- // 本机 开发api地址 
- let WxApiRoot = 'http://192.168.133.67:9001/wx/'; let testing = true;    //'http://192.168.188.79:9001/wx/'; 
+ let WxApiRoot = 'http://124.70.132.80:9001/wx/'; let testing = true; 
+ // 本机 开发api地址   
+ // let WxApiRoot = 'http://192.168.133.67:9001/wx/'; let testing = true;    //'http://192.168.188.79:9001/wx/'; 
  // 生产地址 
  // let WxApiRoot = 'https://www.hwhhotels.com/wx/'; let testing = false; 
  
@@ -51,9 +51,13 @@
    UcenterSetPersonEdit:WxApiRoot + 'memberPerson/edit', //常住人编辑
    UcenterSetPersonDelete:WxApiRoot + 'memberPerson/delete', //常住人删除
    UcenterSetPersonQuery:WxApiRoot + 'memberPerson/queryById', //常住人查询
+   
    UcenterMemberQuery:WxApiRoot + 'member/query', //会员信息查询
+
    MemberInviteCode:WxApiRoot + 'member/qrCode',  //会员二维码
    MemberInviteList:WxApiRoot + 'memberInvite/list',  //会员邀请列表
+   MemberInviteOrderBonus:WxApiRoot + 'member/orderBonus',  //会员邀请金额 (收益详情)
+   MemberInviteBonusHistory:WxApiRoot + 'member/bonusHistory',  //会员邀请金额 (余额流水)
    MemberInviteSendAllowance:WxApiRoot + 'memberInvite/sendAllowance',  //发送邀请码到后台获取津贴
 
    MemberGet:WxApiRoot + 'member/get', //会员信息获取和余额

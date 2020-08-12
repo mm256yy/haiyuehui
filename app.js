@@ -1,4 +1,5 @@
 let user = require('./utils/user');
+let util = require('./utils/util');
 //app.js
 App({
   onLaunch: function () { 
@@ -46,11 +47,22 @@ App({
     // })
   },
   onShow: function() {
-    // user.checkLogin().then(res => {
-    //   this.globalData.hasLogin = true;
-    // }).catch(() => {
-    //   this.globalData.hasLogin = false;
-    // });
+    this.renderingTime()
+  },
+  //进行日历处理
+  renderingTime(){
+    let calendar = wx.getStorageSync("calendar");  //获取数据
+    let d_today = new Date();
+    if(calendar && (calendar.startTime+1000*60*60*24)>=d_today.getTime()){  //判断是否有储存时间/储存时间大于当前时间 --有
+
+    }else{ //--没有
+      let calendarSto = {};
+      calendarSto = {
+        startTime:new Date(new Date().toLocaleDateString()).getTime(),
+        endTime:new Date(new Date().toLocaleDateString()).getTime()+24*60*60*1000,
+      };
+      wx.setStorageSync("calendar", calendarSto);
+    }
   },
   globalData: {},  //切勿删除
 })

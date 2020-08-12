@@ -8,7 +8,7 @@
     <view class="type_li {{typeMenu == 3?'type_li_on':''}}" bindtap="typeBind" data-type="3">历史用劵</view>
   </view>
   <view class="coupon_list">
-    <view class="coupon_li" wx:for="{{couponUl}}" wx:key="index" wx:if="{{item.onlyTimeS>0}}">
+    <view class="coupon_li" wx:for="{{couponUl}}" wx:key="index" >
       <!-- <image class="coupon_ba" src="/static/images/coupon.png"></image> -->
       <view class="coupon_box" >
         <view class="coupon_left {{item.type == 3?'coupon_left_overdue':''}}" bindtap="hotelsList">

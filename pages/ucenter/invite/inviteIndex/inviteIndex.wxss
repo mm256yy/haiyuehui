@@ -19,18 +19,20 @@
   overflow: hidden;
 }
 .menu_li_img{
-  height: 80rpx;
-  width: 80rpx;
+  height: 70rpx;
+  width: 70rpx;
 }
 .menu_li_text{
   padding: 10rpx;
 }
 /*foot*/
+.invite_foot{
+  border-top:20rpx solid #f1f1f1 ;
+}
 .invite_activity_h1{
-  margin:0rpx 30rpx 30rpx 30rpx;
+  margin:30rpx 30rpx 30rpx 30rpx;
   padding: 0rpx 20rpx;
   border-left: 5rpx solid #fe6f41;
-  font-weight: 800;
 }
 .invite_activity_ul{
   padding:0rpx 30rpx;

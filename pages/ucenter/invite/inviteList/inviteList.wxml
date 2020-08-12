@@ -9,7 +9,7 @@
       </view>
     </view>
   </view>
-  <view class="invite_btn" bindtap="blackShow">
+  <!-- <view class="invite_btn" bindtap="blackShow">
     <view class="invite_order">邀请下单</view>
   </view>
   <view class="black" wx:if="{{inviteBlackShow}}"></view>
@@ -18,6 +18,6 @@
       <button class="invite_btn_share" bindtap='onShareAppMessage' open-type="share">发给微信好友</button>
       <view class="invite_btn_share" bindtap='onAppCode'>面对面扫码</view>
     </view>
-  </view>
+  </view> -->
   <template is="zero" data="{{list:inviteList}}"/>
 </view>

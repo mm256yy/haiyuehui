@@ -51,23 +51,26 @@ Page({
       let data = res.result.records;
       if(data.length != 0){
         for(let i=0;i<data.length;i++){
-          c_li = {
-            id:data[i].id,
-            type:showType,
-            name:data[i].name,
-            startTimeS:this.daySplit(data[i].startTime),
-            endTimeS:this.daySplit(data[i].endTime),
-            onlyTimeS:this.onlyTimeS(data[i].startTime,data[i].endTime),
-            fullMoney:data[i].fullMoney,
-            price:data[i].subtractMoney,
+          let onlyTimeSVal = this.onlyTimeS(data[i].startTime,data[i].endTime)
+          if(onlyTimeSVal>0||showType != 1){  //判断有没有过期
+            c_li = {
+              id:data[i].id,
+              type:showType,
+              name:data[i].name,
+              startTimeS:this.daySplit(data[i].startTime),
+              endTimeS:this.daySplit(data[i].endTime),
+              onlyTimeS:onlyTimeSVal,
+              fullMoney:data[i].fullMoney,
+              price:data[i].subtractMoney,
+            }
+            c_ul.push(c_li)
           }
-          c_ul.push(c_li)
         }
       }
       if(pull == 1){  //初始化
         couponUlNew = c_ul;
       }else{  //加载
-        couponUlNew = this.data.couponUl.concat(o_ul);
+        couponUlNew = this.data.couponUl.concat(c_ul);
         if(data.length == 0){
           this.setData({
             pageNo:this.data.pageNo - 1,

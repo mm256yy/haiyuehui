@@ -1,0 +1,47 @@
+<view>
+  <view class="strategy_head">
+    <image class="strategy_head_img" src="/static/images/income_ba.jpg" mode="widthFix"></image>
+  </view>
+  <view class="strategy_body">
+    <view class="strategy_title">攻略秘籍</view>
+    <view class="strategy_ul">
+      <view class="strategy_li">
+        <view class="strategy_li_h1">攻略一</view>
+        <view class="strategy_li_box">
+          <view class="strategy_li_h2">新会员扫码24小时内首单入住</view>
+          <view class="strategy_li_h2">发展者奖励10元</view>
+          <view class="strategy_li_h3">（可与攻略3或攻略4叠加） </view>
+        </view>
+      </view>
+      <view class="strategy_li">
+        <view class="strategy_li_h1">攻略二</view>
+        <view class="strategy_li_box">
+          <view class="strategy_li_h2">活动订单扫码，将获得佣金提成5%</view>
+          <view class="strategy_li_h3">（优先级最高）</view>
+        </view>
+      </view>
+      <view class="strategy_li">
+        <view class="strategy_li_h1">攻略三</view>
+        <view class="strategy_li_box">
+          <view class="strategy_li_h2">成为发展者，旗下顾客未来入住酒店</view>
+          <view class="strategy_li_h2">都有佣金提成0.2%</view>
+          <view class="strategy_li_h3">（可与攻略1叠加）</view>
+        </view>
+      </view>
+      <view class="strategy_li">
+        <view class="strategy_li_h1">攻略四</view>
+        <view class="strategy_li_box">
+          <view class="strategy_li_h2">所有顾客扫码入住，佣金提成4%</view>
+          <view class="strategy_li_h3">（可与攻略1叠加）</view>
+        </view>
+      </view>
+    </view>
+    <view class="strategy_problem">
+      <view class="strategy_title">疑惑解答</view>
+      <view class="strategy_problem_text">1.全民营销提现功能暂未开发，请敬请期待</view>
+      <view class="strategy_problem_text">2.发展者是顾客的首位扫码的人员，今后该顾客的消费都将于发展者绑定，拿到对应佣金。</view>
+      <view class="strategy_problem_text">3.攻略四中，若是顾客扫码成功，顾客同样会获得5元津贴</view>
+      <view class="strategy_problem_text">4.最终解释权归本公司所有</view>
+    </view>
+  </view>
+</view>

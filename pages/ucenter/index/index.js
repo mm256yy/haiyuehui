@@ -35,7 +35,7 @@ Page({
       //   text:'会议与团队'
       // },
       {
-        bindtap:'',
+        bindtap:'goInvitation',
         img:'/static/images/u-menu4.png',
         text:'全民营销'
       },
@@ -76,7 +76,7 @@ Page({
     otherIcon:[
       {img:'/static/images/other/other1.png',text:'会员信息',tap:'goInformation'},
       {img:'/static/images/other/other2.png',text:'常住人簿',tap:'goOften'},
-      {img:'/static/images/other/other3.png',text:'邀请下单',tap:'goInvitation'},
+      // {img:'/static/images/other/other3.png',text:'邀请下单',tap:'goInvitation'},
       {img:'/static/images/other/other4.png',text:'隐私条款',tap:'goPrivacy'},
       // {img:'/static/images/other/other5.png',text:'客服热线',tap:'goService'},
     ],
@@ -193,18 +193,24 @@ Page({
       url: "/pages/ucenter/coupon/coupon"
     })
   },
+  //我的钱包
+  wallet(){
+    wx.navigateTo({ 
+      url: "/pages/ucenter/wallet/walletAmount/walletAmount"
+    });
+  },
+  //全民营销
+  goInvitation(){
+    wx.navigateTo({
+      url: "/pages/ucenter/invite/inviteIndex/inviteIndex"
+    })
+  },
   //会议与团队
   meeting(){
     util.showErrorToast("暂未开放")
     /*wx.navigateTo({
       url: "/pages/ucenter/teamNumber/teamNumber"
     })*/
-  },
-  //我的钱包
-  wallet(){
-    wx.navigateTo({ 
-      url: "/pages/ucenter/wallet/walletAmount/walletAmount"
-    });
   },
   //个人信息
   goInformation(){
@@ -217,12 +223,6 @@ Page({
     wx.navigateTo({ 
       url: "/pages/ucenter/set/oftenList/oftenList?oftenType=0"
     });
-  },
-  //邀请下单
-  goInvitation(){
-    wx.navigateTo({
-      url: "/pages/ucenter/invite/inviteList/inviteList"
-    })
   },
   //隐私条款
   goPrivacy(){

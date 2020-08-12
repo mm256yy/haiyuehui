@@ -30,7 +30,7 @@ Page({
     util.request(api.AuthRegisterWx, param, 'POST').then(function(res) {
       app.globalData.hasLogin = true;
       app.fristRegister = true;  //首页弹窗
-      app.globalData.badge = {menu:[0,0,3,0]};
+      app.globalData.badge = {menu:[0,3,0,0]};
       wx.switchTab({ 
         url:"/pages/index/index"
       })

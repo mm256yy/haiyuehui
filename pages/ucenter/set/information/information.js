@@ -25,29 +25,30 @@ Page({
     let tel = wx.getStorageSync('userInfoMobile');
     let isFirstNew = null; 
     if(tel){  //如果存在
-      user.memberGetInfo().then(res => {
-        let infoNew = {
-          ident:res.result.ident != null?res.result.ident:'',
-          name:res.result.name != null?res.result.name:'',
-          mobile:tel,
-        }
-        if(infoNew.ident == ''){
-          isFirstNew = true;
-        }else{
-          isFirstNew = false;
-        }
-        this.setData({
-          info:infoNew,
-          isFirst:isFirstNew,
-        })
-      }).catch((err) => {
-        console.log(err);
-      });
+      console.log("手机号获取到")
     }else{
       wx.redirectTo({
         url: "/pages/auth/login/login"
       })
     }
+    user.memberGetInfo().then(res => {
+      let infoNew = {
+        ident:res.result.ident != null?res.result.ident:'',
+        name:res.result.name != null?res.result.name:'',
+        mobile:res.result.mobile != null?res.result.mobile:'',
+      }
+      if(infoNew.ident == ''){
+        isFirstNew = true;
+      }else{
+        isFirstNew = false;
+      }
+      this.setData({
+        info:infoNew,
+        isFirst:isFirstNew,
+      })
+    }).catch((err) => {
+      console.log(err);
+    });
   },
   //确认信息
   btnSuccess(){

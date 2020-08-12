@@ -1,43 +1,50 @@
 <view>
-  <view class="income_head">
-    <image class="income_head_img" src="/static/images/income_ba.jpg"></image>
+  <import src="/template/template"/> 
+  <wxs src="../../../../filter/filter.wxs" module="filter" />
+  <view class="income_head" bindtap="goStrategy">
+    <image class="income_head_img" mode="widthFix" src="/static/images/income_ba.jpg"></image>
   </view>
   <view class="income_total">
-    <view class="total_ul">
+    <view class="total_money">
+      <view>佣金余额</view>
+      <view class="total_money_val">
+        <text class="total_money_t1">￥</text>
+        <text class="total_money_t2">{{filter.moneyFixed(total.money)}}</text>
+      </view>
+      <!-- <view class="total_money_t3" >去提现 ></view> -->
+    </view>
+    <view class="total_ul" wx:if="{{false}}">
       <view class="total_li">
         <view>今日收益（元）</view>
-        <view class="total_li_money">88.88</view>
-        <view>共<text class="total_li_num">61</text>单</view>
+        <view class="total_li_money">{{filter.moneyFixed(total.todayMoney)}}</view>
+        <view>共<text class="total_li_num">{{total.todayNum}}</text>单</view>
       </view>
       <view class="total_li">
         <view>历史收益（元）</view>
-        <view class="total_li_money">88.88</view>
-        <view>共<text class="total_li_num">61</text>单</view>
+        <view class="total_li_money">{{filter.moneyFixed(total.historyMoney)}}</view>
+        <view>共<text class="total_li_num">{{total.historyNum}}</text>单</view>
       </view>
     </view>
   </view>
   <view class="income_list">
-    <view class="income_data">
+    <!-- <view class="income_data">
       <picker class="income_data_choose" mode="date" fields="month" value="{{chooseDate}}" start="2020-01-01" end="2050-01-01" bindchange="bindDateChange">
         <view class="picker">选择月份：{{chooseDate}}</view>
       </picker>
       <view class="total_li_cash_out">提现 ></view>
+    </view> -->
+    <view class="income_list_h">
+      <view class="income_list_h1">
+        最近收益
+        <text class="income_most" bindtap="incomeMost">更多></text>
+      </view>
     </view>
+    <template is="zeroSmall" data="{{list: orderBonusUl}}"/>
     <view class="income_ul">
-      <view class="income_li">
-        <view class="income_li_type">注册首单</view>
-        <view class="income_li_time">2020-06-12 12:06:06</view>
-        <view class="income_li_money">66.00</view>
-      </view>
-      <view class="income_li">
-        <view class="income_li_type">注册首单</view>
-        <view class="income_li_time">2020-06-12 12:06:06</view>
-        <view class="income_li_money">66.00</view>
-      </view>
-      <view class="income_li">
-        <view class="income_li_type">注册首单</view>
-        <view class="income_li_time">2020-06-12 12:06:06</view>
-        <view class="income_li_money">66.00</view>
+      <view class="income_li" wx:for="{{orderBonusUl}}" wx:key="index">
+        <view class="income_li_type">{{filter.bonusType(item.type)}}</view>
+        <view class="income_li_time">{{item.time}}</view>
+        <view class="income_li_money">{{filter.moneyFixed(item.money)}}</view>
       </view>
     </view>
   </view>

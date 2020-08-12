@@ -32,6 +32,7 @@ function whiteList(){
     currPage = pages[pages.length - 1].route;
   }
   let whiteList = [null,"pages/index/index","pages/ucenter/index/index","pages/member/memberIndex/memberIndex"];  //跳转白名单
+  console.log(currPage)
   if(whiteList.indexOf(currPage) >= 0){ //存在
     return true;
   }else{
@@ -56,7 +57,7 @@ function request(url, data = {}, method = "GET") {
         if (res.statusCode == 200) {
           if(res.data.code == 0||res.data == "ok"){  //判断是否成功
             resolve(res.data);
-          }else if(res.data.message == "未登录"||res.data.message == '请先登陆'){
+          }else if(res.data.message == "未登录"||res.data.message == '请先登录'){
             let iswhiteList = whiteList();
             if(iswhiteList){ //存在
               //未登陆
@@ -74,7 +75,7 @@ function request(url, data = {}, method = "GET") {
             reject("未知异常");
           }
         } else {
-          reject("200+");
+          reject("未连接到服务器200+");
           console.log(res.errMsg);
         }
       },
@@ -170,6 +171,10 @@ function orderType(type){
     return "已申请退房"
   }else if(type == 51){  //已结单
     return "已结单"
+  }else if(type == 61){  //结单后发送了奖励
+    return "已结单"
+  }else{
+    return "未知状态"
   }
 }
 //会员类型

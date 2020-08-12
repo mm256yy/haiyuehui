@@ -11,8 +11,22 @@ function moneyInteger(money){
   return (parseInt(money/100));
 };
 
+//全民营销--推广类型
+function bonusType(type){
+  if(type == 1){  //新会员并下单奖励
+    return "首单奖励";
+  }else if(type == 2){  //推广佣金提成
+    return "推广住店佣金";
+  }else if(type == 3){  //发展会员佣金提成
+    return "发展会员佣金";
+  }else{ 
+    return "其他";
+  }
+}
 module.exports = {
   moneyFixed:moneyFixed,
   moneyDiscount:moneyDiscount,
   moneyInteger:moneyInteger, 
+
+  bonusType:bonusType,
 };

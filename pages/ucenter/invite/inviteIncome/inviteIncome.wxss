@@ -1,6 +1,7 @@
 /*head*/
 .income_head{
-  padding: 30rpx;
+  padding: 30rpx 30rpx 0rpx 30rpx;
+  background-color: #fff;
 }
 .income_head_img{
   width: 100%;
@@ -8,18 +9,45 @@
   border-radius:20rpx ;
 }
 /*total*/
+.income_total{
+  padding: 20rpx;
+}
+.total_money{
+  background-color: #fff9f7;
+  border-radius:20rpx;
+  text-align: center;
+  padding: 30rpx 30rpx 50rpx 30rpx;
+  margin: 10rpx;
+}
+.total_money_val{
+  margin-right: 25rpx;
+  margin-top: 10rpx;
+}
+.total_money_t1{
+  color: #fe6f41;
+  font-size: 24rpx;
+}
+.total_money_t2{
+  color: #fe6f41;
+  font-size: 40rpx;
+}
+.total_money_t3{
+  color: #fe6f41;
+  font-size: 28rpx;
+  float: right;
+}
+.income_total{
+  background-color: #fff;
+}
 .total_ul{
   display: flex;
   width: 100%;
-  padding: 0rpx 20rpx;
-  margin-bottom: 30rpx;
 }
 .total_li{
   flex: 1 1 auto;
   margin: 10rpx;
   padding:20rpx 40rpx;
   border-radius:20rpx;
-  background-color: #f1f1f1;
   background-color: #fff9f7;
   position: relative;
 }
@@ -31,8 +59,19 @@
   color: #fe6f41;
   font-size: 24rpx;
 }
-
 /*list*/
+.income_list{
+  border-top: 20rpx solid #f1f1f1;
+}
+.income_list_h{
+  background-color: #fff;
+  padding: 30rpx;
+  border-bottom:1rpx solid #f1f1f1 ;
+}
+.income_list_h1{
+  border-left:5rpx solid #fe6f41;
+  padding-left:20rpx;
+}
 .income_data{
   background-color: #f1f1f1;
   padding:20rpx 30rpx;
@@ -52,6 +91,7 @@
 }
 .income_ul{
   padding:0rpx 30rpx;
+  background-color: #fff;
 }
 .income_li{
   padding: 20rpx;
@@ -70,4 +110,8 @@
   position: absolute;
   top: 34rpx;
   right: 10rpx;
+}
+.income_most{
+  text-align: right;
+  float: right;
 }

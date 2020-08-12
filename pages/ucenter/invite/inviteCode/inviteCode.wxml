@@ -1,4 +1,7 @@
 <view>
+  <view class="code_share" wx:if="{{closeShareshow}}" bindtap="closeShare">
+    <image class="code_share_img" mode="widthFix" src="/static/images/share-tips.png"></image>
+  </view>
   <view class="code_box">
     <view class="code_qr">
       <image class="code_qr_img" src="data:image/png;base64,{{codeImg}}" mode="widthFix"></image>

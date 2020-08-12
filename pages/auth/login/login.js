@@ -47,7 +47,7 @@ Page({
       }else{
         console.log(res)
         wx.navigateTo({ 
-          url: "../registerWx/registerWx"
+          url: "/pages/auth/registerWx/registerWx"
         });
       }
     }).catch((err) => {
@@ -65,7 +65,7 @@ Page({
   //协议链接
   agreeUrl(){
     wx.navigateTo({ 
-      url: "../memberAgree/memberAgree"
+      url: "/pages/member/memberAgree/memberAgree"
     });
   },
 })

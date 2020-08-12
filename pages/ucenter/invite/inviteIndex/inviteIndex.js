@@ -1,6 +1,6 @@
 Page({
   data: {
-
+    inviteActivity:[],
   },
   onLoad: function (options) {
 

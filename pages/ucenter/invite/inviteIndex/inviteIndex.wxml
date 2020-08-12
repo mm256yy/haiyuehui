@@ -1,4 +1,5 @@
 <view>
+  <import src="/template/template"/> 
   <view class="invite_head">
     <image class="invite_head_img" src="/static/images/invite_ba.jpg"></image>
   </view>
@@ -21,9 +22,10 @@
   <view class="invite_foot" wx:if="{{true}}">
     <view class="invite_activity_h1">推广活动</view>
     <view class="invite_activity_ul">
-      <view class="invite_activity_li">
-        <image class="invite_activity_img"></image>
+      <view class="invite_activity_li" wx:for="{{inviteActivity}}" wx:key="index">
+        <image class="invite_activity_img" src="item.img"></image>
       </view>
     </view>
+    <template is="zeroSmall" data="{{list:inviteActivity}}"/>
   </view>
 </view>

@@ -1,0 +1,41 @@
+<view>
+  <import src="/template/template"/> 
+  <wxs src="../../../../filter/filter.wxs" module="filter" />
+  <view class="choose_box">
+    <view class="choose_type">
+      <view data-index="1" bindtap="funChooseType" class="choose_type_li {{chooseType == 1?'choose_type_li_on':''}}">收益详情</view>
+      <view data-index="2" bindtap="funChooseType" class="choose_type_li {{chooseType == 2?'choose_type_li_on':''}}">余额流水</view>
+    </view>
+    <view class="choose_day">
+      <picker class="choose_time" mode="date" fields="month" value="{{chooseDate}}" start="2020-01-01" end="2050-01-01" bindchange="bindDateChange">
+        <view class="picker">选择月份：{{chooseDate}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class="record_ul" wx:if="{{chooseType == 1}}">
+    <template is="zero" data="{{list: orderBonusUl}}"/>
+    <view class="record_li" wx:for="{{orderBonusUl}}" wx:key="index">
+      <view class="record_li_text">
+        <text class="record_li_t1">{{filter.bonusType(item.type)}}</text>
+        <!-- <text class="record_li_t5">[{{item.orderId}}]</text> -->
+      </view>
+      <view class="record_li_text">
+        <text class="record_li_t3">{{item.time}}</text>
+        <text class="record_li_t4">{{filter.moneyFixed(item.bonus)}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="record_ul" wx:if="{{chooseType == 2}}">
+    <template is="zero" data="{{list: bonusHistoryUl}}"/>
+    <view class="record_li" wx:for="{{bonusHistoryUl}}" wx:key="index">
+      <view class="record_li_text">
+        <text>[{{item.memberId}}]</text>
+        <text class="record_li_t2">前余额：{{filter.moneyFixed(item.balance)}}</text>
+      </view>
+      <view class="record_li_text">
+        <text class="record_li_t3">{{item.time}}</text>
+        <text class="record_li_t4">{{filter.moneyFixed(item.changes)}}</text>
+      </view>
+    </view>
+  </view>
+</view>
