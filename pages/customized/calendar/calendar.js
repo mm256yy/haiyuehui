@@ -37,7 +37,7 @@ Page({
   rendering(d){
     let d_today = new Date()  //现在时间
     let d_new = new Date(d)  //传递过来的时间
-    let monthState = this.monthState(d_new)   //1 过去 2 现在 3 未来 0 错误
+    let monthState = this.monthState(d_new)   //月份 1 过去 2 现在 3 未来 0 错误
     //获取到当前月份的天数
     let dayNum = new Date(d_new.getFullYear(),d_new.getMonth()+1,0).getDate();
     let dayNumBefore = null;
@@ -55,6 +55,7 @@ Page({
       let i_val = null;
       let i_stamp = 0;
       let i_class = null;
+      let i_classb = '';
       let i_abled = false;
       let i_time = "";
       if(i-oneDay<=0){ //上个月
@@ -68,16 +69,22 @@ Page({
         i_time = new Date((d_new.getFullYear()+'-'+(d_new.getMonth()+1)+'-'+(i-oneDay)).replace(/-/g,'/')).getTime()
         if(i-oneDay == headDay&&monthState == 2){ //本月本日 今天
           i_class = "calendar_td_today calendar_td_abled"
-          i_abled = true
+          i_abled = true;
+          if(this.selectDay(i_time) == 1){  //今日是否被选中
+            i_classb = "calendar_days_b_choose_left"
+          }
         }else if(i-oneDay < headDay&&monthState == 2){  //本月之前日
           i_class = "calendar_td_disabled"
-        // }else if(monthState == 1){  //之前月
-        //   i_class = "calendar_td_disabled"
         }else{
           if(this.selectDay(i_time) == 1){
             i_class = "calendar_td_choose"
+            i_classb = "calendar_days_b_choose_left"
           }else if(this.selectDay(i_time) == 2){
             i_class = "calendar_td_choose_pass"
+            i_classb = "calendar_days_b_choose"
+          }else if(this.selectDay(i_time) == 3){
+            i_class = "calendar_td_choose"
+            i_classb = "calendar_days_b_choose_right"
           }else{
             i_class = "calendar_td_abled" 
           }
@@ -87,6 +94,7 @@ Page({
       days_li = {
         val:this.dayZero(i_val),
         class:i_class,
+        classb:i_classb,
         abled:i_abled,
         time:i_time
       }
@@ -260,14 +268,16 @@ Page({
     }
   },
   //判断当前时间戳是否属于选中区域
-  selectDay(time){ //1 选中 2 范围内 0没有选中
+  selectDay(time){ //1 选中开始 2 范围内 3选中结束 0没有选中
     let calendarNew = wx.getStorageSync("calendar");  //获取数据
     let st_t = calendarNew.startTime;
     let end_t = calendarNew.endTime;
-    if(time === st_t||time === end_t){
+    if(time === st_t){
       return 1;
     }else if(time>st_t&&time<end_t){
       return 2;
+    }else if(time === end_t){
+      return 3;
     }else{
       return 0;
     }

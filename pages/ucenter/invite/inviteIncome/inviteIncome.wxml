@@ -11,6 +11,8 @@
         <text class="total_money_t1">￥</text>
         <text class="total_money_t2">{{filter.moneyFixed(total.money)}}</text>
       </view>
+      <image src="/static/images/invite_ba_fan.png" class="invite_ba_fan1"></image>
+      <image src="/static/images/invite_ba_fan.png" class="invite_ba_fan2"></image>
       <!-- <view class="total_money_t3" >去提现 ></view> -->
     </view>
     <view class="total_ul" wx:if="{{false}}">

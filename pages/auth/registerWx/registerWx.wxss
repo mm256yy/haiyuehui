@@ -18,7 +18,7 @@
   text-align: center;
 }
 .logo_img{
-  height: 400rpx;
+  width: 80%;
   padding: 20rpx;
   border-radius:20rpx;
   margin:auto ;

@@ -45,7 +45,7 @@
   <view class="home_recommend">
   </view>
   <view class="home_member">  
-    <image src="/static/images/member-home.jpg" bindtap="aa"></image>
+    <image src="/static/images/member-home.jpg" ></image>
     <view>
     </view>
   </view>

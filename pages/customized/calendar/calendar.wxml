@@ -32,7 +32,7 @@
           </view>
           <view class="body_calendar">
             <block wx:for="{{days}}" wx:key="index3" wx:for-index="index3">
-              <view class="calendar_days_b" bindtap="daysButtom" data-day="{{index3}}">
+              <view class="calendar_days_b {{item.classb}}" bindtap="daysButtom" data-day="{{index3}}">
                 <text class="calendar_days {{item.class}}">{{item.val}}</text>
               </view>
             </block>

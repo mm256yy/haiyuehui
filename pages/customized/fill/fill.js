@@ -253,7 +253,7 @@ Page({
       discount:discountNew,
       deposit:depositNew,
       other:otherNew,
-      money:(roomTotalPriceNew-couponMoneyNew-allowanceMoneyNew+otherNew)*(discountNew/100)+depositNew,
+      money:parseInt((roomTotalPriceNew-couponMoneyNew-allowanceMoneyNew+otherNew)*(discountNew/100)+depositNew),
     } 
     console.log(totalNew)
     // this.evaluationId.funTotal(totalNew)

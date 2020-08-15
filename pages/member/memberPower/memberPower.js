@@ -27,32 +27,6 @@ Page({
     // this.init()
     this.funPowerOpacity()
   },
-  // init(){
-  //   //获取用户信息 / 头像
-  //   let userInfo = '';
-  //   if(wx.getStorageSync("userInfo")){
-  //     userInfo = wx.getStorageSync("userInfo")
-  //   }else if(app.globalData.userInfo){
-  //     userInfo = app.globalData.userInfo
-  //   }
-  //   console.log(userInfo)
-  //   this.setData({
-  //     'info.avatarUrl':userInfo.avatarUrl
-  //   })
-  //   //获取手机号，并且获取会员信息
-  //   let userMobile = wx.getStorageSync('userInfoMobile');
-  //   let param = {
-  //     mobile : userMobile
-  //   }
-  //   console.log(param)
-  //   util.request(api.UcenterMemberQuery, param , 'GET').then(res => {
-  //     // this.setData({
-  //     //   'fill.name':(res.result.name != null?res.result.name:'')
-  //     // })
-  //   }).catch((err) => {
-  //     wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-  //   });
-  // },
   //滑动会员卡
   changeCard(e){
     let index = e.detail.current

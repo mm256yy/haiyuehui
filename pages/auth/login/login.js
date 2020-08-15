@@ -24,7 +24,6 @@ Page({
       util.showErrorToast('微信登录失败');
       return;
     }
-    app.globalData.userInfo = e.detail.userInfo
     wx.setStorageSync('userInfo', e.detail.userInfo);
     this.login(e)
     // user.checkLogin().then(res => {   

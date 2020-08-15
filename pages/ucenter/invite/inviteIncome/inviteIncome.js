@@ -40,7 +40,7 @@ Page({
     let param = {
       startDate:chooseDateNew+'-01', 
       endDate:this.endDate(chooseDateNew)+'-01',
-      pageSize:15,
+      pageSize:5,
       pageNo:1,
     }
     console.log(param)

@@ -1,6 +1,7 @@
 /*用户相关服务*/
 let util = require('../utils/util.js');
 let api = require('../config/api.js');
+let app = getApp();
 // /*Promise封装wx.checkSession登陆是否过期*/
 // function checkSession() {
 //   return new Promise(function(resolve, reject) {
@@ -74,6 +75,8 @@ function checkLogin() {
     util.request(api.AuthCheckToken , 'POST').then(res => {
       resolve(res);
     }).catch((err) => {
+      wx.setStorageSync('userInfo', '');
+      wx.setStorageSync('token', '');
       reject(true);
     });
   });

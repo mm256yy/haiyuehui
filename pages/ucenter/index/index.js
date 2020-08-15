@@ -71,7 +71,6 @@ Page({
         text1:'生日特权',
         text2:'免费蛋糕劵'
       },
-
     ],
     otherIcon:[
       {img:'/static/images/other/other1.png',text:'会员信息',tap:'goInformation'},
@@ -123,8 +122,6 @@ Page({
     let userInfo = "";
     if(wx.getStorageSync("userInfo")){
       userInfo = wx.getStorageSync("userInfo") 
-    }else if(app.globalData.userInfo){
-      userInfo = app.globalData.userInfo
     }else{
       return false;
     }

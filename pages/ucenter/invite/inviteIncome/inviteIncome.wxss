@@ -38,6 +38,7 @@
 }
 .income_total{
   background-color: #fff;
+  position: relative;
 }
 .total_ul{
   display: flex;
@@ -58,6 +59,22 @@
 .total_li_num{
   color: #fe6f41;
   font-size: 24rpx;
+}
+.invite_ba_fan1{
+  width: 240rpx;
+  height: 160rpx;
+  position: absolute;
+  bottom: 30rpx;
+  right: 30rpx;
+  opacity: 0.5;
+}
+.invite_ba_fan2{
+  width: 150rpx;
+  height: 100rpx;
+  position: absolute;
+  top: 60rpx;
+  left: 30rpx;
+  opacity: 0.5;
 }
 /*list*/
 .income_list{

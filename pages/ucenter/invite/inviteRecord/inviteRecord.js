@@ -63,7 +63,7 @@ Page({
     if(this.data.chooseType == 1){
       this.bindorderBonus(1);
     }else{
-      this.bindorderBonus(2);
+      this.bindbonusHistory(1);
     }
   },
   bindorderBonus(pull){//1收益详情 1初始化 2下拉

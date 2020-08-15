@@ -17,7 +17,7 @@
     <view class="record_li" wx:for="{{orderBonusUl}}" wx:key="index">
       <view class="record_li_text">
         <text class="record_li_t1">{{filter.bonusType(item.type)}}</text>
-        <!-- <text class="record_li_t5">[{{item.orderId}}]</text> -->
+        <text class="record_li_t2">[{{item.orderId}}]</text>
       </view>
       <view class="record_li_text">
         <text class="record_li_t3">{{item.time}}</text>

@@ -1,7 +1,7 @@
 <view>
   <import src="/template/template"/> 
   <view class="invite_head">
-    <image class="invite_head_img" src="/static/images/invite_ba.jpg"></image>
+    <image class="invite_head_img"  mode="widthFix" src="/static/images/invite_ba.jpg"></image>
   </view>
   <view class="invite_body">
     <view class="menu_ul">

@@ -79,8 +79,6 @@ Page({
     let userInfo = "";
     if(wx.getStorageSync("userInfo")){
       userInfo = wx.getStorageSync("userInfo") 
-    }else if(app.globalData.userInfo){
-      userInfo = app.globalData.userInfo;
     }else{
       return false;
     }

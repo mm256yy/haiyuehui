@@ -4,7 +4,8 @@
   text-align: center;
 }
 .logo_img{
-  margin:auto ;
+  width: 80%;
+  margin:auto;
 }
 /*form*/
 .form_box {

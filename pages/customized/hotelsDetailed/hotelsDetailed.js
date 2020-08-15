@@ -3,6 +3,7 @@ let api = require('../../../config/api.js');
 let user = require('../../../utils/user.js');
 Page({
   data: {
+    hotelId:0,
     isLogin:true,
     time:{
       start:'05月27日',
@@ -47,21 +48,75 @@ Page({
     animationData:{},
     popHeight:0,
   },
-  onShow: function () {
-    this.init();
-  },
-  //初始化时间
-  init(){
-    let calendar = wx.getStorageSync("calendar")  //获取数据    
-    //整合入当前页面
-    let timeNew = {
-      start:this.dayZero(new Date(calendar.startTime).getMonth()+1)+'月'+this.dayZero(new Date(calendar.startTime).getDate())+'日',
-      end:this.dayZero(new Date(calendar.endTime).getMonth()+1)+'月'+this.dayZero(new Date(calendar.endTime).getDate())+'日',
-      num:parseInt((new Date(calendar.endTime).getTime()-new Date(calendar.startTime).getTime())/60/60/24/1000)
+  onLoad: function (option) {
+    console.log(option.hotelId)
+    if(option.hotelId){
+      this.funHotelId(option);
     }
+  },
+  onShow: function () {
+    this.renderingTime(); //日历
+    this.init();  //房型
+  },
+  funHotelId(option){
+    let hotelIdNew = ""; 
+    if(option.hotelId){
+      hotelIdNew = option.hotelId;
+    }else{
+      let scene = decodeURIComponent(option.scene).toString().split('=');
+      hotelIdNew = scene[1];
+    }
+    let hotelsLi = {};
+    util.request(api.CustomizedHotelsList, 'GET').then(res => {
+      for(let i=0;i<res.result.length;i++){
+        if(res.result[i].id == hotelIdNew){
+          hotelsLi = {
+            id:res.result[i].id,
+            name:res.result[i].name,
+            img:res.result[i].imgList != null?res.result[i].imgList[0]:'/static/images/banner2.jpg',
+            address:res.result[i].address,
+            deposit:res.result[i].deposit,
+            tel:res.result[i].tel,
+            cis:res.result[i].cis,
+            imgList:res.result[i].imgList,
+          }
+        }
+      }
+      wx.setStorageSync("hotel", hotelsLi);
+      this.getAllowance();
+      // this.init();
+    }).catch((err) => {
+      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+    });
+  },
+  //获取津贴
+  getAllowance(){
+    let inviteCode = wx.getStorageSync('othersInviteCode')
+    console.log(inviteCode);
+    if(inviteCode != ""&&inviteCode != undefined){
+      let param = {
+        inviteCode:inviteCode,
+      };
+      util.request(api.MemberInviteSendAllowance , param , 'GET').then(res => {
+        wx.showModal({title: '恭喜',content: "成功获取津贴",showCancel: false}); 
+        wx.setStorageSync('othersInviteCode', "");
+      }).catch((err) => {
+        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+      });
+    }
+  },
+  //初始化
+  init(){
     //获取酒店信息
-    let hotel = wx.getStorageSync("hotel")
-    // console.log(hotel)
+    let hotel = wx.getStorageSync("hotel");
+    if(hotel){
+      hotel = wx.getStorageSync("hotel");
+    }else{
+      wx.navigateTo({
+        url: "/pages/customized/hotelsList/hotelsList"
+      })
+    }
+    console.log(hotel)
       //判断地址
     let hotelVal = '';
     if(hotel.address == null||hotel.address == 'null'||hotel.address == undefined||hotel.address == ''){
@@ -77,11 +132,11 @@ Page({
       telVal = hotel.tel
     }
     this.setData({   
-      time: timeNew,
       'hotel.id':hotel.id,
       'hotel.name':hotel.name,
     })
     //获取房间信息
+    let calendar = wx.getStorageSync("calendar")
     let arrNew = new Date(calendar.startTime).getFullYear() +'-'+ this.dayZero(new Date(calendar.startTime).getMonth()+1)+'-'+this.dayZero(new Date(calendar.startTime).getDate())
     let depNew = new Date(calendar.startTime).getFullYear() +'-'+ this.dayZero(new Date(calendar.endTime).getMonth()+1)+'-'+this.dayZero(new Date(calendar.endTime).getDate())
     let param = {
@@ -140,31 +195,52 @@ Page({
     })
     console.log(this.data.hotel)
   },
-  //判断是否云智住
-  isCis(){
-    let canCis = [
-      {
-        hotelId:"H000001",
-        room:[0,2,5]
-      }
-    ]
-    let hotelCisNew = this.data.hotel
-    for(let i=0;i<canCis.length;i++){
-      if(canCis[i].hotelId == this.data.hotel.id){
-        for(let j=0;j<canCis[i].room.length;j++){
-          hotelCisNew.room[canCis[i].room[j]].isCis = true;
-        }
-      }
+  //时间
+  renderingTime(){
+    let calendar = wx.getStorageSync("calendar")  //获取数据    
+    //整合入当前页面
+    let timeNew = {
+      start:this.dayZero(new Date(calendar.startTime).getMonth()+1)+'月'+this.dayZero(new Date(calendar.startTime).getDate())+'日',
+      end:this.dayZero(new Date(calendar.endTime).getMonth()+1)+'月'+this.dayZero(new Date(calendar.endTime).getDate())+'日',
+      num:parseInt((new Date(calendar.endTime).getTime()-new Date(calendar.startTime).getTime())/60/60/24/1000)
     }
     this.setData({
-      hotel:hotelCisNew
+      time: timeNew,
     })
   },
+  //判断是否云智住
+  // isCis(){
+  //   let canCis = [
+  //     {
+  //       hotelId:"H000001",
+  //       room:[0,2,5]
+  //     }
+  //   ]
+  //   let hotelCisNew = this.data.hotel
+  //   for(let i=0;i<canCis.length;i++){
+  //     if(canCis[i].hotelId == this.data.hotel.id){
+  //       for(let j=0;j<canCis[i].room.length;j++){
+  //         hotelCisNew.room[canCis[i].room[j]].isCis = true;
+  //       }
+  //     }
+  //   }
+  //   this.setData({
+  //     hotel:hotelCisNew
+  //   })
+  // },
   /*选择酒店*/
   goHotelsList(){
-    wx.navigateBack({
-      delta: 1
-    })
+    let pages = getCurrentPages();
+    console.log(pages.length)
+    if(pages.length == 1){
+      wx.navigateTo({
+        url: "/pages/customized/hotelsList/hotelsList"
+      })
+    }else{
+      wx.navigateBack({
+        delta: 1
+      })
+    }
   },
   /*选择日历*/ 
   goCalendar(){

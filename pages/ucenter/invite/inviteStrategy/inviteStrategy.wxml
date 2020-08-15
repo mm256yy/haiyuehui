@@ -10,22 +10,23 @@
         <view class="strategy_li_box">
           <view class="strategy_li_h2">新会员扫码24小时内首单入住</view>
           <view class="strategy_li_h2">发展者奖励10元</view>
-          <view class="strategy_li_h3">（可与攻略3或攻略4叠加） </view>
+          <view class="strategy_li_h3">（可与攻略4叠加） </view>
         </view>
       </view>
       <view class="strategy_li">
         <view class="strategy_li_h1">攻略二</view>
         <view class="strategy_li_box">
           <view class="strategy_li_h2">活动订单扫码，将获得佣金提成5%</view>
-          <view class="strategy_li_h3">（优先级最高）</view>
+          <view class="strategy_li_h3">（优先级最高，不可以与其他攻略叠加进行）</view>  
         </view>
       </view>
       <view class="strategy_li">
         <view class="strategy_li_h1">攻略三</view>
         <view class="strategy_li_box">
           <view class="strategy_li_h2">成为发展者，旗下顾客未来入住酒店</view>
-          <view class="strategy_li_h2">都有佣金提成0.2%</view>
-          <view class="strategy_li_h3">（可与攻略1叠加）</view>
+          <view class="strategy_li_h2">都有佣金提成0.5%</view>
+          <view class="strategy_li_h3">(旗下顾客可以在“我的邀请”查看)</view>
+          <view class="strategy_li_h3">(有限期1年)</view>
         </view>
       </view>
       <view class="strategy_li">

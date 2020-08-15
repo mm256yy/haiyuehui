@@ -24,7 +24,7 @@ Page({
     popShow:false,
   },
   onLoad: function (option) {
-    this.invite(option);
+    // this.invite(option);
   },
   onShow: function () {
     this.getAllowance();
@@ -32,16 +32,17 @@ Page({
     this.fristRegister();
   },
   //传递邀请人
-  invite(option){
-    let inviteCode = ""; 
-    if(option.inviteCode){
-      inviteCode = option.inviteCode;
-    }else{
-      let scene = decodeURIComponent(option.scene).toString().split('=');
-      inviteCode = scene[1];
-    }
-    wx.setStorageSync('othersInviteCode', inviteCode);
-  },
+  // invite(option){
+  //   console.log(option)
+  //   let inviteCode = ""; 
+  //   if(option.inviteCode){
+  //     inviteCode = option.inviteCode;
+  //   }else{
+  //     let scene = decodeURIComponent(option.scene).toString().split('=');
+  //     inviteCode = scene[1];
+  //   }
+  //   wx.setStorageSync('othersInviteCode', inviteCode);
+  // },
   //获取津贴
   getAllowance(){
     let inviteCode = wx.getStorageSync('othersInviteCode')
