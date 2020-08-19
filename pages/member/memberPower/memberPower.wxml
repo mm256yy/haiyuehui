@@ -67,7 +67,7 @@
   <view class="member_black" wx:if="{{introduceShow}}" data-index="0" bindtap="introduceValShow">
     <view class="black_flex">
       <view class="black_tip_box">
-        <view class="black_tip_val">{{introduceVal}}</view>
+        <rich-text class="black_tip_val" nodes="{{introduceVal}}"></rich-text>
       </view>
     </view>
   </view>

@@ -56,9 +56,22 @@ function usePay(param){
         })
       }
     }).catch((err) => {
-      app.globalData.canPay = true;
       console.log(err);
-      reject(false);
+      wx.showModal({
+        title: '失败',
+        content: err,
+        success: function(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            app.globalData.canPay = true;
+            reject(false);
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+            app.globalData.canPay = true;
+            reject(false);
+          }
+        }
+      })
     });
   })
 }
@@ -106,9 +119,22 @@ function rechargePay(param){
         }
       })
     }).catch((err) => {
-      app.globalData.canPay = true;
       console.log(err);
-      reject(false);
+      wx.showModal({
+        title: '失败',
+        content: err,
+        success: function(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            app.globalData.canPay = true;
+            reject(false);
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+            app.globalData.canPay = true;
+            reject(false);
+          }
+        }
+      })
     });
   });
 }

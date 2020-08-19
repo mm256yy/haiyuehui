@@ -63,6 +63,13 @@ function checkName(name){ //使用：if(!check.checkName(this.data.name)){return
       showCancel: false
     });
     return false;
+  }else if(name.length > 8){
+    wx.showModal({
+      title: '错误信息',
+      content: '姓名不能过长',
+      showCancel: false
+    });
+    return false;
   }else if(isNonnum(name)){
     wx.showModal({
       title: '错误信息',

@@ -192,6 +192,14 @@ Page({
       });
       return false;
     }
+    if(this.data.info.orderNo == ''){
+      wx.showModal({
+        title: '错误信息',
+        content: '请输入订单编号',
+        showCancel: false
+      });
+      return false;
+    }
     let that = this;
     let param = {
       hotelId:this.data.hotelsUl[this.data.info.hotelsId].hotelId,
