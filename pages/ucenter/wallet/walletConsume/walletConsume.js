@@ -51,25 +51,35 @@ Page({
     util.request(apiType, param , 'GET').then(res => {
       let ul=[];
       let li={};
+      let liType = '';
+      let liMoney = '';
+      let liRef = '';
       for(let i=0;i<res.result.length;i++){
-        let liType = '';
-        let liMoney = '';
-        let liRef = '';
-        if(res.result[i].credit != 0){  //充值
+        let li_credit = (res.result[i].credit != 0);  //充值
+        let li_charge = (res.result[i].charge != 0);  //消费
+        let li_ref = (res.result[i].ref||res.result[i].ref == '');  //余额
+        let li_descript = (res.result[i].descript||res.result[i].descript == '');  //积分
+
+        if(li_credit&&li_ref){  //余额充值
+          liType = '充值';  
+          liMoney = '+'+(res.result[i].credit/100).toFixed(2);
+          liRef = res.result[i].ref == ''?'(未备注)':res.result[i].ref;
+        }else if(li_charge&&li_ref){ //余额消费
+          liType = '消费';  
+          liMoney = '-'+Math.abs(res.result[i].charge/100).toFixed(2);
+          liRef = res.result[i].ref == ''?'(未备注)':res.result[i].ref;
+        }else if(li_credit&&li_descript){  //积分充值
           liType = '充值';  
           liMoney = '+'+res.result[i].credit;
-        }else if(res.result.charge != 0){  //消费
-          liType = '消费';
-          liMoney = '-'+res.result[i].charge;
-        }else{  //异常
-          liType = '异常';
-          liMoney = '异常';
-        }
-        if(res.result[i].ref||res.result[i].ref == ''){  //余额
-          liRef = res.result[i].ref == ''?'(未备注)':res.result[i].ref;
-          liMoney = (liMoney/100).toFixed(2)
-        }else{
           liRef = res.result[i].descript == ''?'(未备注)':res.result[i].descript
+        }else if(li_charge&&li_descript){  //积分消费
+          liType = '消费';  
+          liMoney = '-'+Math.abs(res.result[i].charge);
+          liRef = res.result[i].descript == ''?'(未备注)':res.result[i].descript
+        }else{
+          liType = '异常';  
+          liMoney = '异常';
+          liRef = '异常';
         }
         li = {
           type:liType,

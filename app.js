@@ -34,7 +34,7 @@ App({
     let inviteCode = ""; 
     if(option.inviteCode){
       inviteCode = option.inviteCode;
-    }else{
+    }else if(option.scene){
       let scene = decodeURIComponent(option.scene).toString().split('=');
       inviteCode = scene[1];
     }

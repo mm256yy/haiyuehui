@@ -105,7 +105,9 @@ Page({
         contactsTel:data.mobile,
         isCis:data.isCis,
         isOverdue:(check.checkIsOverdue(data.dep) < 0),
-        canStay:(check.checkIsOverdue(data.arr) === 0)
+        canStay:(check.checkIsOverdue(data.arr) === 0),
+        otaId:data.otaId?data.otaId:'',
+        otaRestype:data.otaRestype?data.otaRestype:'',
       }
       let dayNum = (new Date(data.dep) - new Date(data.arr))/1000/60/60/24;
       //
@@ -163,9 +165,10 @@ Page({
   //会员信息
   member(){
     let type = this.data.detail.status;
+    let ota = this.data.detail.otaId;
     let surplusPass = 0;
     let discountPass = 100;
-    if(type == 11||type == 12||type == 13||type == 21){
+    if((type == 11||type == 12||type == 13||type == 21)&&(ota == "")){
       user.memberGetInfo().then(res => {
         let couponNew = Math.round(this.data.total.roomPrice-((this.data.total.money-this.data.total.deposit)/(res.result.discount/100)))
         if(couponNew<0){ //兼容过去订单

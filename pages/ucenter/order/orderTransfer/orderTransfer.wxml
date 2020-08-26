@@ -1,7 +1,7 @@
 <!--pages/ucenter/orderTransfer/orderTransfer.wxml-->
 <view>
-  <wxs src="../../../../filter/filter.wxs" module="money" />
-  <import src="/template/template.wxml"/>
+	<wxs src="../../../../filter/filter.wxs" module="money" />
+	<import src="/template/template.wxml"/>
   <view class="transfer_head">
     <image class="transfer_ba" src="/static/images/team_ba.png"></image>
     <view class="transfer_process {{processNum == 3?'transfer_process3':''}}">
@@ -73,12 +73,12 @@
           <text class="order_t1">￥{{money.moneyFixed(detail.totleRoomPrice)}}</text>
           <text class="order_details">{{detail.days + "晚 x 房间单价 " + money.moneyFixed(detail.roomPrice)+" 元"}}</text>
         </view>
-        <view class="order_text">
+        <view class="order_text" wx:if="{{detail.coupon&&detail.coupon != 0}}">
           <text class="order_t0">优惠劵+津贴：</text>
           <text class="order_t1" wx:if="{{detail.coupon != 0}}">￥{{money.moneyFixed(detail.coupon)}}</text>
           <text class="order_t1" wx:if="{{detail.coupon == 0}}">未使用</text>
         </view>
-        <view class="order_text">
+        <view class="order_text" wx:if="{{detail.discount&&detail.discount != 0&&detail.discount != 100}}">
           <text class="order_t0">会员折扣：</text>
           <text class="order_t1">{{money.moneyDiscount(detail.discount)}}折</text>
         </view>
@@ -86,8 +86,12 @@
           <text class="order_t0">房间押金：</text>
           <text class="order_t1">￥{{money.moneyFixed(detail.deposit)}}</text>
         </view>
+        <view class="order_text" wx:if="{{detail.otaId != ''}}">
+          <text class="order_t0">预定类型：</text>
+          <text class="order_t1">{{money.otaType(detail.otaRestype)}}</text>
+        </view>
         <view class="order_text">
-          <text class="order_t0">房间总价：</text>
+          <text class="order_t0">{{detail.otaId == ''?'总价：':'应付金额：'}}</text>
           <text class="order_t1 order_t_red">￥{{money.moneyFixed(detail.money)}}</text>
         </view>
       </view>

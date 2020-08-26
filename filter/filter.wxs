@@ -23,10 +23,25 @@ function bonusType(type){
     return "其他";
   }
 }
+//OTA订单类型
+function otaType(type){
+  if(type == 'CC'){
+    return "现付有担保";
+  }else if(type == 'CPD'){
+    return "闪住无担保";
+  }else if(type == 'CPG'){
+    return "闪住有担保";
+  }else if(type == 'OTACASH'){
+    return "现付无担保";
+  }else if(type == 'OTAPREPAY'){
+    return "预付";
+  }
+}
 module.exports = {
   moneyFixed:moneyFixed,
   moneyDiscount:moneyDiscount,
   moneyInteger:moneyInteger, 
 
   bonusType:bonusType,
+  otaType:otaType,
 };

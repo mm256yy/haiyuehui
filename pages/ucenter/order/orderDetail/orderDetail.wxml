@@ -89,8 +89,8 @@
           <view><text class="detail_t1">续住总金额：</text><text class="detail_t0">￥{{money.moneyFixed(item.subtotal)}}</text></view>
         </view>
         <view class="addition_details" wx:if="{{item.detailsShow}}">
-          <view><text class="detail_t1">优惠劵：</text><text class="detail_t2">￥{{money.moneyFixed(item.coupon)}}</text></view>
-          <view><text class="detail_t1">会员折扣：</text><text class="detail_t2">￥{{money.moneyDiscount(item.discount)}}</text></view>
+          <view><text class="detail_t1" wx:if="{{detail.otaId == ''}}">优惠劵：</text><text class="detail_t2">￥{{money.moneyFixed(item.coupon)}}</text></view>
+          <view><text class="detail_t1" wx:if="{{item.discount != 0&&item.discount != 100&&detail.otaId == ''}}">会员折扣：</text><text class="detail_t2">￥{{money.moneyDiscount(item.discount)}}</text></view>
           <view><text class="detail_t1">余额支付：</text><text class="detail_t2">￥{{money.moneyFixed(item.wayBalance)}}</text></view>
           <view><text class="detail_t1">微信支付：</text><text class="detail_t2">￥{{money.moneyFixed(item.wayWx)}}</text></view>
         </view>
@@ -108,21 +108,21 @@
         <text class="detail_t1">房间价格：</text>
         <text class="detail_t2">￥{{money.moneyFixed(total.roomPrice)}}</text>
       </view>
-      <view wx:if="{{(detail.status == 11||detail.status == 12||detail.status == 13||detail.status == 21)&&total.surplus != 0}}">
+      <view wx:if="{{(detail.status == 11||detail.status == 12||detail.status == 13||detail.status == 21)&&total.surplus != 0&&detail.otaId == ''}}">
         <text class="detail_t1">优惠劵+津贴：</text>
         <text class="detail_t2" >-￥{{money.moneyFixed(total.surplus)}}</text>
       </view>
-      <view wx:if="{{total.coupon != 0}}">
+      <view wx:if="{{total.coupon != 0&&detail.otaId == ''}}">
         <text class="detail_t1">优惠劵使用：</text>
         <text class="detail_t2" wx:if="{{total.coupon != 0}}">-￥{{money.moneyFixed(total.coupon)}}</text>
         <text class="detail_t2" wx:if="{{total.coupon == 0}}">未使用</text>
       </view>
-      <view wx:if="{{total.allowanceMoney != 0}}">
+      <view wx:if="{{total.allowanceMoney != 0&&detail.otaId == ''}}">
         <text class="detail_t1">津贴使用：</text>
         <text class="detail_t2" wx:if="{{total.allowanceMoney != 0}}">-￥{{money.moneyFixed(total.allowanceMoney)}}</text>
         <text class="detail_t2" wx:if="{{total.allowanceMoney == 0}}">未使用</text>
       </view>
-      <view wx:if="{{total.discount != 100}}">
+      <view wx:if="{{total.discount != 100&&detail.otaId == ''}}">
         <text class="detail_t1" >会员折扣：</text>
         <text class="detail_t2">{{money.moneyDiscount(total.discount)}}折</text>
       </view>
@@ -134,7 +134,11 @@
         <text class="detail_t1">续住小计：</text>
         <text class="detail_t2">￥{{money.moneyFixed(total.addition)}}</text>
       </view>
-      <view><text class="detail_t1">总价：</text><text class="detail_t3">￥{{money.moneyFixed(total.money)}}</text></view>
+      <view wx:if="{{detail.otaId != ''}}">
+        <text class="detail_t1">预定类型：</text>
+        <text class="detail_t2">{{money.otaType(detail.otaRestype)}}</text>
+      </view>
+      <view><text class="detail_t1">{{detail.otaId == ''?'总价：':'应付金额：'}}</text><text class="detail_t3">￥{{money.moneyFixed(total.money)}}</text></view>
     </view>
   </view>
   <view class="money_box" wx:if="{{(detail.status == 22||detail.status == 23||detail.status == 24||detail.status == 31||detail.status == 41||detail.status == 51)}}">

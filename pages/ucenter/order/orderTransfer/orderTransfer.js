@@ -121,7 +121,7 @@ Page({
       //获取到订单信息
       let orderPayInfo = {};
       let orderPayInfoNew = {
-        discount:0,   
+        discount:100,
         balance:0,
       };
       if(res.result.orderPayInfo){
@@ -151,6 +151,8 @@ Page({
         days:res.result.days,
         coupon:res.result.subtractMoney?res.result.subtractMoney:0,
         discount:orderPayInfo.discount,
+        otaId:res.result.otaId?res.result.otaId:'',
+        otaRestype:res.result.otaRestype?res.result.otaRestype:'',
       }
       app.globalData.badge = {menu:[1,0,0,0]}
       wx.showModal({ title: '成功',content: '查询成功',showCancel: false , success (res) {
@@ -229,6 +231,8 @@ Page({
         deposit:res.result.deposit,
         money:res.result.money,
         days:res.result.days,
+        otaId:res.result.otaId?res.result.otaId:'',
+        otaRestype:res.result.otaRestype?res.result.otaRestype:'',
       }
       app.globalData.badge = {menu:[1,0,0,0]}
       wx.showModal({ title: '成功',content: '查询成功',showCancel: false , success (res) {

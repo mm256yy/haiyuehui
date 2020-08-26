@@ -53,7 +53,6 @@
     <view class="black"></view>
     <view class="pop_coupon">
       <view class="pop_img_box" bindtap="goCoupon"><image class="pop_img" src="/static/images/pop_coupon.png"></image></view>
-      <image class="pop_del" bindtap="popHide" src="/static/images/del-w.png"></image>
     </view>
   </view>
   <!--<view>
