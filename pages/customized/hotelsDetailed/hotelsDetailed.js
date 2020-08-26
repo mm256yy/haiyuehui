@@ -162,7 +162,6 @@ Page({
             avail:res.result[i].avail,
             rmtype:res.result[i].rmtype,
             isCis:res.result[i].isCis,
-
             wrac:util.importantMoney(res.result[i].wrac),  //门市价
             wec0:util.importantMoney(res.result[i].wec0),  //无早
             wec1:util.importantMoney(res.result[i].wec1),  //单早
@@ -173,7 +172,6 @@ Page({
           }
           roomNew.push(roomLi)
         }
-        // console.log(hotel)
         let hotelNew = {
           id:hotel.id,
           name:hotel.name,   
