@@ -42,6 +42,9 @@ Page({
       days:0,
       coupon:0,
       discount:100,
+      otaId:'', //ota的id
+      otaRestype:'',  //ota的类型
+      roomNo:'',
     }
   },
   onShow: function () {
@@ -146,22 +149,22 @@ Page({
         // dayNum:this.dayNum(res.result.arr,res.result.dep),
         roomPrice:res.result.roomPrice,
         totleRoomPrice:res.result.roomPrice*res.result.days,
-        deposit:res.result.deposit,
+        deposit:res.result.deposit?res.result.deposit:0,
         money:res.result.money,
         days:res.result.days,
         coupon:res.result.subtractMoney?res.result.subtractMoney:0,
         discount:orderPayInfo.discount,
         otaId:res.result.otaId?res.result.otaId:'',
         otaRestype:res.result.otaRestype?res.result.otaRestype:'',
+        roomNo:res.result.roomNo?res.result.roomNo:'',
       }
       app.globalData.badge = {menu:[1,0,0,0]}
-      wx.showModal({ title: '成功',content: '查询成功',showCancel: false , success (res) {
-        that.setData({
-          processNum:that.data.processNum + 1 ,
-          detail:detailNew
-        });
-        that.member();
-      }});
+      //
+      that.setData({
+        processNum:that.data.processNum + 1 ,
+        detail:detailNew
+      });
+      that.member();
     }).catch((err) => {
       console.log(err)
       wx.showModal({title: '错误信息',content: err,showCancel: false}); 
@@ -233,14 +236,14 @@ Page({
         days:res.result.days,
         otaId:res.result.otaId?res.result.otaId:'',
         otaRestype:res.result.otaRestype?res.result.otaRestype:'',
+        roomNo:res.result.roomNo?res.result.roomNo:'',
       }
       app.globalData.badge = {menu:[1,0,0,0]}
-      wx.showModal({ title: '成功',content: '查询成功',showCancel: false , success (res) {
-        that.setData({
-          processNum:that.data.processNum + 1 ,
-          detail:detailNew
-        })
-      }});
+      //
+      that.setData({
+        processNum:that.data.processNum + 1 ,
+        detail:detailNew
+      })
     }).catch((err) => {
       wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
@@ -260,7 +263,7 @@ Page({
       success (res) {
         if(res['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'] == "accept"){
           wx.redirectTo({
-            url: "../orderChoose/orderChoose?arr="+that.data.detail.startTimeS+"&dep="+that.data.detail.endTimeS+"&hotelId="+that.data.detail.hotelId+"&rmtype="+that.data.detail.rmtype+"&orderId="+that.data.detail.orderId
+            url: "../orderChoose/orderChoose?arr="+that.data.detail.startTimeS+"&dep="+that.data.detail.endTimeS+"&hotelId="+that.data.detail.hotelId+"&rmtype="+that.data.detail.rmtype+"&orderId="+that.data.detail.orderId+"&roomNo="+that.data.detail.roomNo
           })
         }else if(res['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'] == "reject"){
           wx.showModal({title: '错误信息',content: "请确认退房通知提醒",showCancel: false});

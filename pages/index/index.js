@@ -53,7 +53,7 @@ Page({
         inviteCode:inviteCode,
       };
       util.request(api.MemberInviteSendAllowance , param , 'GET').then(res => {
-        wx.showModal({title: '恭喜',content: "成功获取津贴",showCancel: false}); 
+        wx.showModal({title: '恭喜',content: "成功获取5元津贴",showCancel: false}); 
         wx.setStorageSync('othersInviteCode', "");
         wx.setStorageSync('othersInviteCodeFrist', false);
       }).catch((err) => {
@@ -179,4 +179,9 @@ Page({
     };
     return ret;
   },
+  // aa(){
+  //   wx.navigateTo({
+  //     url: "/pages/activity/actList/actList",
+  //   });
+  // }
 });

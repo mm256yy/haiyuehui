@@ -9,7 +9,8 @@ Page({
       dep:'',
       hotelId:'',
       rmtype:'',
-      orderId:''
+      orderId:'',
+      roomNo:'',
     },
     floorUl: [
       {code:'',name:'全部楼层'},
@@ -101,15 +102,19 @@ Page({
       wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
     //获取酒店信息
+    let roomNoNew = (options.roomNo == "null"?'':options.roomNo)
     let hotelNew = {
       arr:options.arr,
       dep:options.dep,
       hotelId:options.hotelId,
       rmtype:options.rmtype,
-      orderId:options.orderId
+      orderId:options.orderId,
+      roomNo:roomNoNew,
     };
+    let chooseNumNew = (roomNoNew == ""?1:2)
     this.setData({
-      hotel:hotelNew
+      hotel:hotelNew,
+      chooseNum:chooseNumNew
     })
   },
   //选择类型
@@ -169,7 +174,6 @@ Page({
       roomArr: e.currentTarget.dataset.index,
       roomVal:this.data.roomUl[e.currentTarget.dataset.index]
     });
-
   },
    //input
   bindNameInput(e){
@@ -192,15 +196,23 @@ Page({
     if(!check.checkName(this.data.info.name)){return false}
     if(!check.checkIdentity(this.data.info.identity)){return false}
     if(!check.checkMobile(this.data.info.mobile)){return false}
+    let roomNoNew = (this.data.hotel.roomNo == ''?this.data.roomVal.roomNo:this.data.hotel.roomNo)
+    if(roomNoNew == ''){
+      x.showModal({
+        title: '错误信息',
+        content: '房间号为空',
+        showCancel: false
+      });
+      return false;
+    }
     let param = {
       orderId:this.data.hotel.orderId,
-      roomNo:this.data.roomVal.roomNo,
+      roomNo:roomNoNew,
       name:this.data.info.name,
       ident:this.data.info.identity,
       mobile:this.data.info.mobile
     }
     //this.onLoad(this.data.detail.orderId)
-    let that = this
     wx.showModal({ //cancelColor（取消按钮的文字颜色）confirmColor（确定按钮的文字颜色）
       title: '办理入住',
       content: '请确认入住信息填写正确无误',

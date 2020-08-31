@@ -73,7 +73,7 @@
           <text class="order_t1">￥{{money.moneyFixed(detail.totleRoomPrice)}}</text>
           <text class="order_details">{{detail.days + "晚 x 房间单价 " + money.moneyFixed(detail.roomPrice)+" 元"}}</text>
         </view>
-        <view class="order_text" wx:if="{{detail.coupon&&detail.coupon != 0}}">
+        <view class="order_text" wx:if="{{detail.coupon&&detail.coupon > 0}}">
           <text class="order_t0">优惠劵+津贴：</text>
           <text class="order_t1" wx:if="{{detail.coupon != 0}}">￥{{money.moneyFixed(detail.coupon)}}</text>
           <text class="order_t1" wx:if="{{detail.coupon == 0}}">未使用</text>

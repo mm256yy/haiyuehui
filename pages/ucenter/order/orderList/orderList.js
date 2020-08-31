@@ -29,6 +29,8 @@ Page({
         canAdd:0,  //判断是否显示续住订单 0 隐藏 1 显示
         isCis:true,
         isOverdue:true,  //是否超时
+        payMoney:0,
+        otaId:'',
       }*/
     ],
     pageNo:1,
@@ -77,11 +79,13 @@ Page({
             orderRoom:res.result.records[i].rmdesc,
             orderNum:res.result.records[i].orderId,
             orderPrice:res.result.records[i].money,
-            roomNo:res.result.records[i].roomNo,
+            roomNo:res.result.records[i].roomNo?res.result.records[i].roomNo:'',
             show:(res.result.records[i].parentOrderId == ""),
             canAdd:res.result.records[i].canAdd,
             isCis:res.result.records[i].isCis,
             isOverdue:(check.checkIsOverdue(res.result.records[i].dep) < 0),
+            payMoney:res.result.records[i].payMoney?res.result.records[i].payMoney:0,
+            otaId:res.result.records[i].otaId?res.result.records[i].otaId:'',
           }
           o_ul.push(o_li)
         }

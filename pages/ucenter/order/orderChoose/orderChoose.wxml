@@ -13,7 +13,7 @@
         <view class="process_text">选择房间</view>
       </view> -->
     </view>
-    <view class="choose_one" wx:if="{{chooseNum == 1}}">
+    <view class="choose_one" wx:if="{{chooseNum == 1&&hotel.roomNo == ''}}">
       <view class="choose_option">
         <picker mode="selector" value="{{floorArr}}" range="{{floorUl}}" range-key="{{'name'}}" bindchange="bindChange">
           <view >选择楼层（单选）：<text class="floor_val">{{floorUl[floorArr].name}}</text></view>
@@ -28,7 +28,7 @@
       </view>
     </view>
     <view class="choose_two" wx:if="{{chooseNum == 2}}">
-      <view class="room_ul">
+      <view class="room_ul" wx:if="{{hotel.roomNo == ''}}">
         <view class="room_detail">查询到以下房间</view>
         <view class="room_ul">
           <view class="room_li" wx:for="{{roomUl}}" wx:key="index">
@@ -66,8 +66,8 @@
     </view>
   </view>
   <view class="choose_btn" >
-    <view wx:if="{{chooseNum == 1}}" class="btn_define" bindtap="query">查询</view>
+    <view wx:if="{{chooseNum == 1&&hotel.roomNo == ''}}" class="btn_define" bindtap="query">查询</view>
     <view wx:if="{{chooseNum == 2}}" class="btn_define" bindtap="infoBtnFrist">办理入住{{roomUl[roomArr].isCis?'(云智住)':''}}</view>
-    <view class="btn_again" bindtap="again" wx:if="{{chooseNum == 2}}">重新选择</view>
+    <view class="btn_again" bindtap="again" wx:if="{{chooseNum == 2&&hotel.roomNo == ''}}">重新选择</view>
   </view>
 </view>

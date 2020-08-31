@@ -10,20 +10,35 @@
     <view class="detail_ul">
       <view class="detail_hotel">{{detail.hotelName}}</view>
       <view><text class="detail_t1">房型名称：</text><text class="detail_t0">{{detail.rmdesc}}</text></view>
-      <view wx:if="{{((detail.status == 31)||(detail.status == 41)||(detail.status == 51))&&(detail.roomNo!=null)&&detail.isCis}}"><text class="detail_t1" >入住房号：</text><text class="detail_t0">{{detail.roomNo}}</text></view>
-      <view wx:if="{{false}}"><text class="detail_t1" >房型编号：</text><text class="detail_t0">{{detail.rmtype}}</text></view>
-      <view><text class="detail_t1">入住时间：</text><text class="detail_t0">{{detail.startTimeS}}至{{detail.endTimeS}}</text></view>
+      <view wx:if="{{(detail.status == 31||detail.status == 41||detail.status == 51)||(detail.roomNo != '')}}">
+        <text class="detail_t1" >入住房号：</text>
+        <text class="detail_t0">{{detail.roomNo}}</text>
+      </view>
+      <view wx:if="{{false}}">
+        <text class="detail_t1" >房型编号：</text>
+        <text class="detail_t0">{{detail.rmtype}}</text>
+      </view>
+      <view>
+        <text class="detail_t1">入住时间：</text>
+        <text class="detail_t0">{{detail.startTimeS}}至{{detail.endTimeS}}</text>
+      </view>
       <view class="detail_relative">
         <text class="detail_t1">订单编号：</text><text class="detail_t0">{{detail.orderId}}</text>
-        <view class="detail_float" wx:if="{{(detail.status == 11||detail.status == 22)&&(!detail.isOverdue)}}" bindtap="copy" data-text="{{detail.orderNo}}">
+        <view class="detail_float" wx:if="{{(detail.status == 11||detail.status == 22)&&(!detail.isOverdue)&&(detail.contactsTel != '')}}" bindtap="copy" data-text="{{detail.orderNo}}">
           <text class="{{allowConnect == 0?'detail_share_n':'detail_share_y'}}">{{allowConnect == 0?'授权已关闭':'授权已开启'}}</text>
           <image class="detail_copy" src="/static/images/copy_{{allowConnect == 0?'n':'y'}}.png"></image>
         </view>
+        <view class="detail_float" wx:else bindtap="shareCopy" data-text="{{detail.orderNo}}">
+          <image class="detail_copy_val" src="/static/images/copy.png"></image>
+        </view>
       </view>
     </view>
-    <view class="detail_copy_i" wx:if="{{(detail.status == 11||detail.status == 22)&&(!detail.isOverdue)}}">
+    <view class="detail_copy_i" wx:if="{{(detail.status == 11||detail.status == 22)&&(!detail.isOverdue)&&(detail.contactsTel != '')}}">
       <view class="detail_copy_i_view">点击订单授权按钮可以打开转移订单的授权，并且复制，可把订单转移给他人</view>
       <view class="detail_copy_i_view">注：若房间自己入住，请关闭订单的授权</view>
+    </view>
+    <view class="detail_copy_i" wx:if="{{(detail.status == 11||detail.status == 22)&&(!detail.isOverdue)&&(detail.contactsTel == '')}}">
+      <view class="detail_copy_i_view">注：第三方订单不支持转接他人</view>
     </view>
     <view class="detail_ul" wx:if="{{(detail.status == 31||detail.status == 32)&&(personUl.length != 0)&&detail.isCis}}">
       <view><text class="detail_t1">房间密码：</text><text class="detail_t0">{{pwdValS}}</text></view>
@@ -32,7 +47,7 @@
     </view>
     <view class="detail_ul">
       <view><text class="detail_t1">联系人：</text><text class="detail_t0">{{detail.contactsName}}</text></view>
-      <view wx:if="{{detail.contactsTel != null}}"><text class="detail_t1">联系电话：</text><text class="detail_t0">{{detail.contactsTel}}</text></view>
+      <view wx:if="{{detail.contactsTel != ''}}"><text class="detail_t1">联系电话：</text><text class="detail_t0">{{detail.contactsTel}}</text></view>
     </view>
   </view> 
   <view class="isCis_person" wx:if="{{(detail.status == 22||detail.status == 31)&&!detail.isCis}}">
@@ -108,16 +123,16 @@
         <text class="detail_t1">房间价格：</text>
         <text class="detail_t2">￥{{money.moneyFixed(total.roomPrice)}}</text>
       </view>
-      <view wx:if="{{(detail.status == 11||detail.status == 12||detail.status == 13||detail.status == 21)&&total.surplus != 0&&detail.otaId == ''}}">
+      <view wx:if="{{(detail.status == 11||detail.status == 12||detail.status == 13||detail.status == 21)&&total.surplus > 0&&detail.otaId == ''}}">
         <text class="detail_t1">优惠劵+津贴：</text>
         <text class="detail_t2" >-￥{{money.moneyFixed(total.surplus)}}</text>
       </view>
-      <view wx:if="{{total.coupon != 0&&detail.otaId == ''}}">
+      <view wx:if="{{total.coupon > 0&&detail.otaId == ''}}">
         <text class="detail_t1">优惠劵使用：</text>
         <text class="detail_t2" wx:if="{{total.coupon != 0}}">-￥{{money.moneyFixed(total.coupon)}}</text>
         <text class="detail_t2" wx:if="{{total.coupon == 0}}">未使用</text>
       </view>
-      <view wx:if="{{total.allowanceMoney != 0&&detail.otaId == ''}}">
+      <view wx:if="{{total.allowanceMoney > 0&&detail.otaId == ''}}">
         <text class="detail_t1">津贴使用：</text>
         <text class="detail_t2" wx:if="{{total.allowanceMoney != 0}}">-￥{{money.moneyFixed(total.allowanceMoney)}}</text>
         <text class="detail_t2" wx:if="{{total.allowanceMoney == 0}}">未使用</text>

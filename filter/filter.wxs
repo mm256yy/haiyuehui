@@ -28,13 +28,13 @@ function otaType(type){
   if(type == 'CC'){
     return "现付有担保";
   }else if(type == 'CPD'){
-    return "闪住无担保";
-  }else if(type == 'CPG'){
-    return "闪住有担保";
+    return "闪住";
   }else if(type == 'OTACASH'){
     return "现付无担保";
   }else if(type == 'OTAPREPAY'){
     return "预付";
+  }else{
+    return "其他类型";
   }
 }
 module.exports = {

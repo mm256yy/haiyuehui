@@ -2,6 +2,7 @@
   "pages":[
     "pages/index/index",
     
+    "pages/activity/actList/actList",
     "pages/ucenter/coupon/coupon",
     "pages/customized/pay/pay",
     "pages/ucenter/set/visitor/visitor",
@@ -53,7 +54,7 @@
     "pages/ucenter/teamNumber/teamNumber",
     "pages/pop/calendar/index",
     "pages/logs/logs",
-    "pages/activity/actList/actList",
+    
     "pages/activity/actDetailed/actDetailed"
     
   ],

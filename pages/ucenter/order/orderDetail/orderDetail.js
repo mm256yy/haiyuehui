@@ -22,7 +22,9 @@ Page({
       contactsTel:'',
       isCis:false,
       isOverdue:null,  //是否超时
-      canStay:false,
+      canStay:false,   //是否可以入住
+      otaId:'',  //ota订单
+      otaRestype:'',  //ota类型
     },
     personUl:[
       /*{    
@@ -95,14 +97,14 @@ Page({
         hotelId:data.hotelId,
         hotelName:data.hotelName,
         rmtype:data.rmtype,
-        roomNo:data.roomNo,
+        roomNo:data.roomNo?data.roomNo:'',
         startTimeS:data.arr,
         endTimeS:data.dep,
         rmdesc:data.rmdesc,
         orderId:this.data.detail.orderId,
         orderNo:data.orderNo,
         contactsName:data.name,
-        contactsTel:data.mobile,
+        contactsTel:data.mobile?data.mobile:'',
         isCis:data.isCis,
         isOverdue:(check.checkIsOverdue(data.dep) < 0),
         canStay:(check.checkIsOverdue(data.arr) === 0),
@@ -110,7 +112,7 @@ Page({
         otaRestype:data.otaRestype?data.otaRestype:'',
       }
       let dayNum = (new Date(data.dep) - new Date(data.arr))/1000/60/60/24;
-      //
+      //总额
       let orderPayInfo = {};
       let orderPayInfoNew = {
         discount:100,   
@@ -134,6 +136,7 @@ Page({
         wayWx:(data.money-orderPayInfo.balance),
         wayBalance:orderPayInfo.balance,
       }
+      //人员
       let personsUL = [];
       let personsLi = {};
       if(data.persons != null){
@@ -156,7 +159,7 @@ Page({
         allowConnect:data.allowConnect
       })
       this.member();
-      this.addDaysList();
+      // this.addDaysList(); 续租
     }).catch((err) => {
       console.log(err)
       // wx.showModal({title: '错误信息',content: err,showCancel: false}); 
@@ -258,6 +261,13 @@ Page({
       wx.showModal({title: '错误信息',content: err,showCancel: false}); 
     });
   },
+  shareCopy(e){
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.text,
+      success: function (res) {
+      }
+    })
+  },
   //分享同住人
   onShareAppMessage(){
     return {
@@ -287,8 +297,9 @@ Page({
       tmplIds: ['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'],
       success (res) {
         if(res['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'] == "accept"){
+          console.log(that.data.detail.roomNo)
           wx.navigateTo({
-            url: "../orderChoose/orderChoose?arr="+that.data.detail.startTimeS+"&dep="+that.data.detail.endTimeS+"&hotelId="+that.data.detail.hotelId+"&rmtype="+that.data.detail.rmtype+"&orderId="+that.data.detail.orderId
+            url: "../orderChoose/orderChoose?arr="+that.data.detail.startTimeS+"&dep="+that.data.detail.endTimeS+"&hotelId="+that.data.detail.hotelId+"&rmtype="+that.data.detail.rmtype+"&orderId="+that.data.detail.orderId+"&roomNo="+that.data.detail.roomNo
           })
         }else if(res['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'] == "reject"){
           wx.showModal({title: '错误信息',content: "请确认退房通知提醒",showCancel: false});
