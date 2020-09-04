@@ -33,7 +33,7 @@ Page({
     }
     let param = {
       money:(api.testing?this.data.moneyNum*100:this.data.moneyNum*100),
-    }
+    }  
     console.log(param)
     util.request(api.MemberRechargeSubmit , param , 'POST').then(res => {
       console.log(res)
@@ -41,9 +41,7 @@ Page({
         rechargeId:res.result
       })
       this.rechargePay(res.result)
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //调起支付
   rechargePay(rechargeId){

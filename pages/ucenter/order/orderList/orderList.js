@@ -104,7 +104,9 @@ Page({
         orderUl:orderUlNew,
       })
     }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
+      this.setData({
+        orderUl:[]
+      })
     });
   },
   //选择类型
@@ -138,7 +140,7 @@ Page({
   // 退房
   checkout(e){
     let that = this
-    wx.showModal({ //cancelColor（取消按钮的文字颜色）confirmColor（确定按钮的文字颜色）
+    wx.showModal({    
       title: '退房手续',
       content: '请确认未在房间遗留随身物品',
       success: function(res) {
@@ -149,11 +151,9 @@ Page({
           }
           console.log(param)
           util.request(api.UcenterOrderCheckOut , param , 'POST').then(res => {
-            wx.showModal({ title: '成功',content: '退房申请成功',showCancel: false });
+            wx.showToast({title: "退房申请成功" ,image:'/static/images/icon_success.png'})
             that.init(0,1);
-          }).catch((err) => {
-            wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-          });
+          }).catch((err) => {});
         } else if (res.cancel) {
           console.log('用户点击取消')
         }

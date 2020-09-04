@@ -17,13 +17,13 @@ swiper{
 /*choose*/
 .head_choose{
   position: absolute;
-  top: 20rpx;
+  top: 0rpx;
   left: 0rpx;
   width: 100%;
 }
 .choose_ba{
   background-color: rgba(0,0,0,0.6);
-  margin: 40rpx;
+  margin: 30rpx;
   padding:20rpx 0rpx;
   border-radius:20rpx ;
   display: flex;
@@ -82,6 +82,32 @@ swiper{
   top: 0rpx;
   right: 0rpx;
 }
+.head_other{
+  position: absolute;
+  bottom: 20rpx;
+  left: 30rpx;
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 20rpx;
+  padding: 20rpx;
+}
+.other_box{
+  display: inline-block;
+  width: 80rpx;
+  height: 60rpx;
+  text-align: center;
+}
+.other_box:first-child{
+  border-right: 1rpx solid #fff;
+  padding-right: 20rpx;
+}
+.other_box:last-child{
+  padding-left: 20rpx;
+}
+.other_box_img{
+  width: 60rpx;
+  height: 60rpx;
+  margin: auto;
+}
 /*menu*/
 .detailed_menu{
   display: flex;
@@ -112,6 +138,7 @@ swiper{
 /*room*/
 .room_ul{
   padding: 20rpx 0rpx;
+  margin-bottom: 90rpx;
 }
 .availZero{
   opacity: 0.5;
@@ -120,7 +147,7 @@ swiper{
   padding: 20rpx;
   overflow: hidden;
   background-color: #fff;
-  margin-bottom: 20rpx;
+  margin-bottom: 5rpx;
   position: relative;
 }
 .room_li_img{
@@ -142,21 +169,25 @@ swiper{
   font-weight:800 ;
 }
 .room_label1{
-  color: #039cee;
-  font-size: 24rpx;
+  display: inline-block;
+  color: #008cd7;
+  font-size: 22rpx;
+  background-color: #d8f1ff;
+  border-radius: 10rpx;
+  padding: 5rpx 10rpx;
+  margin-top: 3rpx;
 }
 .room_attr{
   width: 300rpx;
 }
 .room_attr_val{
   display: inline-block;
-  font-size: 20rpx;
-  line-height: 20rpx;
-  padding: 8rpx 10rpx;
-  border: 1rpx solid #c9b4ff;
-  border-radius:5rpx ;
+  font-size: 22rpx;
+  padding: 5rpx 10rpx;
+  background-color: #ede6ff;
+  border-radius:10rpx ;
   color: #753ffd;
-  margin: 8rpx 10rpx 8rpx 0rpx;
+  margin-top: 3rpx;
 }
 .room_avail{
   color: #999;
@@ -181,7 +212,7 @@ swiper{
   bottom: 0rpx;
   left: 20rpx;
   text-align: center;
-  font-size: 28rpx;
+  font-size: 24rpx;
 }
 .room_price_before_y{
   text-decoration: line-through;
@@ -319,4 +350,36 @@ swiper{
   display: inline-block;
   width: 100%;
   padding: 10rpx;
+}
+/*quick*/
+.detailed_quick{
+  position: fixed;
+  bottom: 0rpx;
+  left: 0rpx;
+  width: 100%;
+}
+.quick_box{
+  display: flex;
+  border-top: 2rpx solid #cdcdcd;
+}
+.quick_div{
+  flex: 1 1 auto;
+  text-align: center;
+}
+.quick_down{
+  background-color: rgba(0,0,0,0.6);
+}
+.quick_down_img{
+  width: 54rpx;
+  height: 54rpx;
+}
+.quick_user,.quick_order,.quick_index{
+  background-color: #fff;
+  padding-top: 10rpx;
+  padding-bottom: 5rpx;
+}
+.quick_div_text{
+  color: #666;
+  font-size: 22rpx;
+  margin-top: -5rpx;
 }

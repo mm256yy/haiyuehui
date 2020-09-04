@@ -35,9 +35,6 @@ Page({
         url:"/pages/index/index"
       })
       wx.setStorageSync('userInfoMobile', res.result.mobile||"未获取到手机号");
-    }).catch((err) => {
-      console.log(err)
-      wx.showModal({title: '错误信息',content: "绑定手机号失败",showCancel: false}); 
-    });
+    }).catch((err) => {});
   }
 })

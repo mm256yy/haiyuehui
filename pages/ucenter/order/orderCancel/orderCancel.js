@@ -54,9 +54,7 @@ Page({
         info:infoNew,
         payType:options.pay
       })
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //点击选择类型
   radioChange(e){
@@ -69,7 +67,7 @@ Page({
   //点击 1取消订单/ 2退款
   cancel(){
     if(this.data.textarea.length>100){
-      wx.showModal({ title: '错误' , content: "填写原因字数过长" ,showCancel: false });
+      wx.showToast({title: "字数过长" ,image:'/static/images/icon_error.png'})
       return false
     }
     let parma = {
@@ -82,29 +80,25 @@ Page({
         wx.showModal({ title: '成功' , content: '订单取消申请成功',showCancel: false , success (res) {
           if (res.confirm) {
             wx.switchTab({ 
-              url:"/pages/ucenter/index/index"
+              url:"/pages/ucenter/order/orderList/orderList"
             })
           } else if (res.cancel) {
             console.log('用户点击取消')
           }
         }});
-      }).catch((err) => {
-        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-      });
+      }).catch((err) => {});
     }else if(this.data.payType == 2){
       util.request(api.UcenterOrderRefund , parma , 'POST').then(res2 => {
         wx.showModal({ title: '成功' , content: '订单退款申请成功',showCancel: false , success (res) {
           if (res.confirm) {
             wx.switchTab({ 
-              url:"/pages/ucenter/index/index"
+              url:"/pages/ucenter/order/orderList/orderList"
             })
           } else if (res.cancel) {
             console.log('用户点击取消')
           }
         }});
-      }).catch((err2) => {
-        wx.showModal({title: '错误信息',content: err2,showCancel: false}); 
-      });
+      }).catch((err2) => {});
     }
   },
   //发起退款

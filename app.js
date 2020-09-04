@@ -77,7 +77,8 @@ App({
     let calendar = wx.getStorageSync("calendar");  //获取数据
     let d_today = new Date();
     if(calendar && (calendar.startTime+1000*60*60*24)>=d_today.getTime()){  //判断是否有储存时间/储存时间大于当前时间 --有
-
+      // console.log(calendar.startTime+1000*60*60*24)
+      // console.log(d_today.getTime())
     }else{ //--没有
       let calendarSto = {};
       calendarSto = {

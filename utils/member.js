@@ -113,7 +113,7 @@ let powerUl = [
     text1:'延迟退房',
     text2:'14：00',
     introduce:'视当日房态，享受延迟退房至对应时间',
-    show:true,
+    show:false,
     grade:[
       {arr:0,text1:'延迟退房',text2:'14：00',use:true},
       {arr:1,text1:'延迟退房',text2:'14：00',use:true},

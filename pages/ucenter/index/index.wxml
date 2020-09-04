@@ -7,20 +7,10 @@
       </view>
       <view class="ucenter_mobile_box">
         <text class="ucenter_mobile" wx:if="{{ucenter.mobile != 0}}">绑定手机号：{{ucenter.mobile}}</text>
-        <text class="ucenter_mobile_no" wx:if="{{ucenter.mobile == 0&&isLogin}}" bindtap="goRegisterWx">尚未绑定手机号（点击绑定）</text>
-      </view>
-      <view wx:if="{{false}}">
-        <view class="progress_box">
-          <view class="progress_val"></view>
-          <text class="ucenter_text progress_text">{{ucenter.progressVal}}/{{ucenter.progressTop}}</text>
-        </view>
-      </view>
-      <view wx:if="{{false}}">
-        <text class="ucenter_text">下一等级会员需要{{ucenter.progressTop}}积分</text>
+        <text class="ucenter_mobile_no" wx:if="{{ucenter.mobile == 0&&ucenter.name != '点击登陆'}}" bindtap="goRegisterWx">尚未绑定手机号（点击绑定）</text>
       </view>
       <image class="ucenter_ba" src="/static/images/ucenter_ba.jpg"></image>
       <image class="ucenter_tou" src="{{ucenter.tou}}"></image>
-      <image wx:if="{{false}}" class="ucenter_set" bindtap="set" src="/static/images/set.png" ></image>
     </view>
     <view class="ucenter_menu">
       <view class="menu_box">

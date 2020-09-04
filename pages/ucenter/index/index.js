@@ -1,8 +1,7 @@
-// pages/ucenter/index/index.js
+
 let util = require('../../../utils/util.js');
 let user = require('../../../utils/user.js');
-let api = require('../../../config/api.js');
-let member = require('../../../utils/member.js');
+let check = require('../../../utils/check.js');
 let app = getApp();
 Page({
   data: {
@@ -14,10 +13,15 @@ Page({
       mobile:0,  //判断是否有手机号
     },
     menuUl:[
+      // {
+      //   bindtap:'orderList',
+      //   img:'/static/images/u-menu1.png',
+      //   text:'我的订单'
+      // },
       {
-        bindtap:'orderList',
-        img:'/static/images/u-menu1.png',
-        text:'我的订单'
+        bindtap:'wallet',
+        img:'/static/images/u-menu3.png',
+        text:'我的钱包'
       },
       {
         bindtap:'coupon',
@@ -25,59 +29,24 @@ Page({
         text:'我的劵包'
       },
       {
-        bindtap:'wallet',
-        img:'/static/images/u-menu3.png',
-        text:'我的钱包'
+        bindtap:'meeting',
+        img:'/static/images/u-menu5.png',
+        text:'会议与团队'
       },
-      // {
-      //   bindtap:'meeting',
-      //   img:'/static/images/u-menu5.png',
-      //   text:'会议与团队'
-      // },
       {
         bindtap:'goInvitation',
         img:'/static/images/u-menu4.png',
         text:'全民营销'
       },
     ],
-    memberUl:[
-      {
-        power:0,
-        img:'/static/images/power/power0.png',
-        text1:'生日特权',
-        text2:'免费蛋糕劵'
-      },
-      {
-        power:0,
-        img:'/static/images/power/power0.png',
-        text1:'生日特权',
-        text2:'免费蛋糕劵'
-      },
-      {
-        power:0,
-        img:'/static/images/power/power0.png',
-        text1:'生日特权',
-        text2:'免费蛋糕劵'
-      },
-      {
-        power:0,
-        img:'/static/images/power/power0.png',
-        text1:'生日特权',
-        text2:'免费蛋糕劵'
-      },
-      {
-        power:0,
-        img:'/static/images/power/power0.png',
-        text1:'生日特权',
-        text2:'免费蛋糕劵'
-      },
-    ],
     otherIcon:[
-      {img:'/static/images/other/other1.png',text:'会员信息',tap:'goInformation'},
+      {img:'/static/images/other/other1.png',text:'身份信息',tap:'goInformation'},
+      {img:'/static/images/other/other8.png',text:'会员权益',tap:'goMember'},
       {img:'/static/images/other/other2.png',text:'常住人簿',tap:'goOften'},
       // {img:'/static/images/other/other3.png',text:'邀请下单',tap:'goInvitation'},
       {img:'/static/images/other/other4.png',text:'隐私条款',tap:'goPrivacy'},
       // {img:'/static/images/other/other5.png',text:'客服热线',tap:'goService'},
+      {img:'/static/images/other/other9.png',text:'设置',tap:'goSet'},
     ],
     serviceIcon:[
       {img:'/static/images/service/service0.png',text:'住房延期'},
@@ -94,7 +63,7 @@ Page({
       {img:'/static/images/service/service11.png',text:'叫醒服务'},
     ],
     badge:{
-      menu:[0,0,0,0,0]
+      menu:[0,0,0,0]
     },
   },
   onLoad: function () {
@@ -111,7 +80,7 @@ Page({
     user.checkLogin().then(res => {
       
     }).catch((res) =>{
-      console.log(res+'需要登陆');
+      console.log('需要登陆');
       wx.navigateTo({ 
         url: "/pages/auth/login/login"
       });
@@ -121,15 +90,23 @@ Page({
   userInfo(){
     let userInfo = "";
     if(wx.getStorageSync("userInfo")){
-      userInfo = wx.getStorageSync("userInfo") 
+      userInfo = wx.getStorageSync("userInfo"); 
+      this.setData({
+        'ucenter.tou':userInfo.avatarUrl,
+        'ucenter.name':userInfo.nickName,
+      });
     }else{
+      let ucenterNew = {
+        tou:'/static/images/person.jpg',
+        name:'点击登陆',
+        vip:'贵宾会员',
+        mobile:0,  
+      }
+      this.setData({
+        ucenter:ucenterNew
+      })
       return false;
     }
-    this.setData({
-      'ucenter.tou':userInfo.avatarUrl,
-      'ucenter.name':userInfo.nickName,
-      isLogin:true,
-    });
   },
   //判断是否有绑定手机号
   member(){
@@ -137,7 +114,7 @@ Page({
       this.setData({
         'ucenter.name':res.result.name,
         'ucenter.vip':res.result.cardLevelName,
-        'ucenter.mobile':util.mobileCard(res.result.mobile),
+        'ucenter.mobile':res.result.mobile,
       })
     }).catch((err) => {
       console.log(err)
@@ -204,10 +181,15 @@ Page({
   },
   //会议与团队
   meeting(){
-    util.showErrorToast("暂未开放")
+    check.showErrorToast("暂未开放")
     /*wx.navigateTo({
       url: "/pages/ucenter/teamNumber/teamNumber"
     })*/
+  },
+  goMember(){
+    wx.navigateTo({ 
+      url: "/pages/member/memberIndex/memberIndex"
+    });
   },
   //个人信息
   goInformation(){
@@ -227,6 +209,11 @@ Page({
       url: "/pages/member/memberAgree/memberAgree"
     });
   }, 
+  goSet(){
+    wx.navigateTo({ 
+      url: "/pages/ucenter/set/setIndex/setIndex"
+    });
+  },
   //客服热线
   goService(){
     wx.makePhoneCall({

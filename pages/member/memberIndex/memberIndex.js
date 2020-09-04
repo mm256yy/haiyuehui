@@ -29,9 +29,9 @@ Page({
     powerUl:[],
     powerUlShow:[
       {img:'power0',text1:'订房折扣',text2:'9.5折'},
+      {img:'power1',text1:'餐饮折扣',text2:'9.5折'},
+      {img:'power2',text1:'娱乐折扣',text2:'9.5折'},
       {img:'power3',text1:'积分奖励',text2:'1倍'},
-      {img:'power18',text1:'延迟退房',text2:'14:00'},
-      {img:'power20',text1:'夜床服务',text2:''},
     ],
     couponUl:[
       // {
@@ -114,9 +114,9 @@ Page({
       }
       let powerUlShowNew = [
         {img:'power0',text1:'订房折扣',text2:(discountNew/10)+'折'},
+        {img:'power1',text1:'餐饮折扣',text2:(discountNew/10)+'折'},
+        {img:'power2',text1:'娱乐折扣',text2:(discountNew/10)+'折'},
         {img:'power3',text1:'积分奖励',text2:(scoreTimesNew/100)+'倍'},
-        {img:'power18',text1:'延迟退房',text2:member.powerUl[5].grade[grade].text2},
-        {img:'power20',text1:'夜床服务',text2:''},
       ]
       this.setData({
         info:infoNew,

@@ -61,7 +61,7 @@ Page({
     }
     console.log(param)
     if(this.data.isFirst&&this.data.info.ident!=''){
-      wx.showModal({   //cancelColor（取消按钮的文字颜色）confirmColor（确定按钮的文字颜色）
+      wx.showModal({   
         title: '确认信息',
         content: '身份证信息填写后将不允许修改',
         success: function(res) {
@@ -82,9 +82,7 @@ Page({
       wx.navigateBack({ 
         delta: 1  
       }); 
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //input焦点
   bindNameInput(e) {

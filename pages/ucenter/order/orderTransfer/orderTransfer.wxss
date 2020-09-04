@@ -55,37 +55,27 @@
 }
 /*body*/
 /*type*/
+.order_type{
+  display: flex;
+  padding: 60rpx;
+}
 .order_type_li{
-  margin:0rpx auto;
+  flex: 1 1 auto;
+  margin:20rpx;
   text-align: center;
-  width: 400rpx;
-  height: 100rpx;
-  border-radius:10rpx;
-  padding: 20rpx;
-  position: relative;
+  width: 300rpx;
+  height: 370rpx;
+  border-radius:20rpx;
+  background-color: #039cee;
+  overflow: hidden;
 }
 .order_type_ba{
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0rpx;
-  left: 0rpx;
 }
-.order_type_li1{
-  background: linear-gradient(to right, #753ffd , #956cfc);
-  /* background-color: #cdcdcd; */
-}  
-.order_type_li2{
-  margin-top: 80rpx;
-  background: linear-gradient(to right, #039cee , #29aff7);
-}
-.order_type_text{
-  color: #fff;
-  line-height: 60rpx;
-}
-.order_type_label{
-  width: 430rpx;
-  margin: auto;
+.order_type_i{
+  text-align: center;
+  color: #666;
 }
 /*input*/
 .choose_hotel{

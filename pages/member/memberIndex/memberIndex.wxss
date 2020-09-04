@@ -137,12 +137,12 @@ page{
   height: 90rpx;
   background: linear-gradient(to right, #039cee , #346ae8);
   border-radius: 100rpx;
-  padding: 5rpx;
+  padding: 10rpx;
   margin:10rpx auto;
 }
 .power_li_img{
-  width: 80rpx;
-  height: 80rpx;
+  width: 70rpx;
+  height: 70rpx;
 }
 .power_li_text{
   font-size: 24rpx;

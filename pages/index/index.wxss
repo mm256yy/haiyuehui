@@ -16,7 +16,7 @@
 /*预定*/
 .home_booking{
   position: absolute;
-  top: 350rpx;
+  top: 400rpx;
   right: 0rpx;
   width: 100%;
 }
@@ -74,11 +74,11 @@
 }
 /*精品推荐*/
 .home_recommend{
-  margin-top: 250rpx;
+  margin-top: 300rpx;
 }
 /*会员介绍*/
 .home_member{
-  padding:30rpx 20rpx;
+  padding:40rpx 20rpx 20rpx 20rpx;
 }
 .home_member image{
   width: 100%;

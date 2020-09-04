@@ -52,11 +52,7 @@ Page({
     if(!check.checkIdentity(this.data.info.ident)){return false}
     if(!check.checkMobile(this.data.info.mobile)){return false}
     if(this.data.info.roomNo.length == 0){
-      wx.showModal({
-        title: '错误信息',
-        content: '房间号不能为空',
-        showCancel: false
-      });
+      wx.showToast({title: "房间号不能为空" ,image:'/static/images/icon_error.png'})
       return false;
     }
     let param = {
@@ -74,9 +70,7 @@ Page({
           url: "/pages/index/index"
         })
       }}); 
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //同住人簿
   person(){

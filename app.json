@@ -52,7 +52,6 @@
     "pages/ucenter/wallet/walletProblem/walletProblem",
     
     "pages/ucenter/teamNumber/teamNumber",
-    "pages/pop/calendar/index",
     "pages/logs/logs",
     
     "pages/activity/actDetailed/actDetailed"
@@ -77,10 +76,10 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/member/memberIndex/memberIndex",
-        "iconPath": "static/images/tab/member2.png",
-        "selectedIconPath": "static/images/tab/member1.png",
-        "text": "会员"
+        "pagePath": "pages/ucenter/order/orderList/orderList",
+        "iconPath": "static/images/tab/order2.png",
+        "selectedIconPath": "static/images/tab/order1.png",
+        "text": "订单"
       },
       {
         "pagePath": "pages/ucenter/index/index",

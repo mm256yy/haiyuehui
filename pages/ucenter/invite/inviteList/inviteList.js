@@ -61,7 +61,6 @@ Page({
         inviteList:inviteListNew
       })
     }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
       this.setData({
         pageNo:this.data.pageNo - 1,
       })

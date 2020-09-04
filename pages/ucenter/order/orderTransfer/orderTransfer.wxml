@@ -14,17 +14,15 @@
     </view>
   </view>
   <view class="transfer_body">
-    <view class="order_type" wx:if="{{processNum == 1}}" >
-      <view class="order_type_li order_type_li1" bindtap="transferType" data-type="1">
-        <image class="order_type_ba" src="/static/images/type-ba1.png"></image>
-        <view class="order_type_text">第三方接入订单</view>
-      </view>
-      <view class="order_type_label">
-        <template is="label" data="{{text:['携程，美团等第三方平台订单']}}"/>
-      </view>
-      <view class="order_type_li order_type_li2" bindtap="transferType" data-type="2">
-        <image class="order_type_ba" src="/static/images/type-ba2.png"></image>
-        <view class="order_type_text">海外海小程序订单</view>
+    <view wx:if="{{processNum == 1}}">
+      <view class="order_type_i">请选择接受订单的类型</view>
+      <view class="order_type"  >
+        <view class="order_type_li order_type_li2" bindtap="transferType" data-type="2">
+          <image class="order_type_ba" src="/static/images/type-ba3.jpg"></image>
+        </view>
+        <view class="order_type_li order_type_li1" bindtap="transferType" data-type="1">
+          <image class="order_type_ba" src="/static/images/type-ba4.jpg"></image>
+        </view>
       </view>
     </view>
     <view class="form_box" wx:if="{{processNum == 2}}">
@@ -102,6 +100,6 @@
     <view class="btn_again" wx:if="{{processNum == 2}}" bindtap="goBack">上一步</view>
     <view class="btn_define" wx:if="{{processNum == 3&&detail.status == 11}}" bindtap="goPay">立即支付</view>
     <view class="btn_define" wx:if="{{(processNum == 3&&detail.status == 22)&&detail.isCis}}" bindtap="goOrderChoose">立即入住</view>
-    <view class="btn_again" wx:if="{{processNum == 3}}" bindtap="goIndex">返回个人中心</view>
+    <view class="btn_again" wx:if="{{processNum == 3}}" bindtap="goIndex">返回订单列表</view>
   </view>
 </view>

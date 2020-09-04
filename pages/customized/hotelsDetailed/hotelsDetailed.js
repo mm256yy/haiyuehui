@@ -47,6 +47,7 @@ Page({
     infoPop:false,
     animationData:{},
     popHeight:0,
+    quickDownVal:0,  //0 收缩 1 展开 2 隐藏 3显示
   },
   onLoad: function (option) {
     console.log(option.hotelId)
@@ -85,9 +86,7 @@ Page({
       wx.setStorageSync("hotel", hotelsLi);
       this.getAllowance();
       // this.init();
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //获取津贴
   getAllowance(){
@@ -100,9 +99,7 @@ Page({
       util.request(api.MemberInviteSendAllowance , param , 'GET').then(res => {
         wx.showModal({title: '恭喜',content: "成功获取5元津贴",showCancel: false}); 
         wx.setStorageSync('othersInviteCode', "");
-      }).catch((err) => {
-        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-      });
+      }).catch((err) => {});
     }
   },
   //初始化
@@ -187,9 +184,7 @@ Page({
           hotel:hotelNew,
           isLogin:isLoginNew
         })
-      }).catch((err) => {
-        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-      });
+      }).catch((err) => {});
     })
     console.log(this.data.hotel)
   },
@@ -273,7 +268,7 @@ Page({
         });
       }
     }else{  //已满员
-      wx.showModal({title: '错误信息',content: '房间已经满房',showCancel: false});
+      wx.showToast({title: "房间已经满房" ,image:'/static/images/icon_error.png'})
     }
   },
   //pop显示
@@ -289,9 +284,7 @@ Page({
       this.setData({
         room:roomNew
       })
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
     //POP
     this.setData({
       infoPop:true
@@ -322,6 +315,24 @@ Page({
     this.setData({
       animationData:animation.export(),   //设置完毕
       infoPop:false
+    })
+  },
+  //个人中心
+  goUser(){
+    wx.switchTab({ 
+      url:"/pages/ucenter/index/index"
+    })
+  },
+  //订单列表
+  goOrder(){
+    wx.switchTab({ 
+      url:"/pages/ucenter/order/orderList/orderList"
+    })
+  },
+  //首页
+  goIndex(){
+    wx.switchTab({ 
+      url:"/pages/index/index"
     })
   },
   //money

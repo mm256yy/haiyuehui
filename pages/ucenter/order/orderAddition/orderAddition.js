@@ -76,9 +76,7 @@ Page({
           })
         }
       }});
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
     
   },
   //添加访客
@@ -106,9 +104,7 @@ Page({
           console.log('用户点击取消')
         }
       }});
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },  
   //同住人簿
   person(){

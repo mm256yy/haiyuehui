@@ -29,10 +29,8 @@ Page({
       mobile: that.data.mobile
     }
     util.request(api.AuthRegisterCaptcha,param,'POST').then(function(res) {
-      wx.showModal({title: '发送成功',content: '验证码已发送',showCancel: false});
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+      wx.showToast({title: '验证码已发送' , image:'/static/images/icon_success.png'})
+    }).catch((err) => {});
     let timeNum = 60
     let time = setInterval(()=>{
       timeNum = timeNum-1
@@ -65,7 +63,7 @@ Page({
     let that = this;
     if(!check.checkMobile(this.data.mobile)){return false}
     if (this.data.code.length == 0) {
-      wx.showModal({title: '错误信息',content: '验证码不能为空',showCancel: false});
+      wx.showToast({title: "验证码不能为空" ,image:'/static/images/icon_error.png'})
       return false;
     }
 
@@ -73,7 +71,7 @@ Page({
       success: function(res) {
         console.log(res)
         if (!res.code) {
-          wx.showModal({title: '错误信息',content: '注册失败',showCancel: false});
+          wx.showToast({title: "注册失败" ,image:'/static/images/icon_error.png'})
         }
         that.requestRegister(res.code);
       }
@@ -91,14 +89,12 @@ Page({
     util.request(api.AuthRegister,param,'POST').then(function(res) {
       app.globalData.hasLogin = true;
       app.fristRegister = true; //首页弹窗
-      app.globalData.badge = {menu:[0,0,3,0]};
+      app.globalData.badge = {menu:[0,3,0,0]};
       wx.setStorageSync('userInfoMobile', that.data.mobile);
       //wx.setStorageSync('userInfo', res.data.data.userInfo);
       wx.switchTab({ 
         url:"/pages/index/index"
       })
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
 })

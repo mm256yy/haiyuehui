@@ -62,10 +62,7 @@ Page({
       this.setData({
         orderBonusUl:o_ul,
       })
-    }).catch((err) => {
-      console.log(err)
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //收益详情
   incomeMost(){

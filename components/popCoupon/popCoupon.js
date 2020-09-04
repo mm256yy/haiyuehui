@@ -68,7 +68,6 @@ Component({
         this.funCouponUl(data,fullMoneyPrice);
       }).catch((err) => {
         this.funCouponUl(this.data.couponUl,fullMoneyPrice);
-        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
       });
     },
     //优惠劵列表

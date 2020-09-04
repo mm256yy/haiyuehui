@@ -160,10 +160,7 @@ Page({
       })
       this.member();
       // this.addDaysList(); 续租
-    }).catch((err) => {
-      console.log(err)
-      // wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //会员信息
   member(){
@@ -221,9 +218,7 @@ Page({
         'total.addition':additionMoney,
         'total.money':additionMoney+this.data.total.money,
       })
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //续租订单支付
   perpay(e){
@@ -257,9 +252,7 @@ Page({
       this.setData({
         allowConnect : allowConnectNew
       })
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   shareCopy(e){
     wx.setClipboardData({
@@ -351,9 +344,7 @@ Page({
           this.setData({
             pwdValS : pwdValNew,
           })
-        }).catch((err) => {
-          wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-        });
+        }).catch((err) => {});
       }
     }else{
       pwdValNew = "******"

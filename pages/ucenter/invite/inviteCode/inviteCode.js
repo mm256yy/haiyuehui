@@ -17,9 +17,7 @@ Page({
       that.setData({
         codeImg:res.result
       })
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   closeShare(){
     this.setData({

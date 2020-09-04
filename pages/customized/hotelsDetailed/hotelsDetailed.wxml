@@ -1,137 +1,155 @@
 <view>
-  <import src="/template/template"/> 
-  <view class="detailed_head">
-    <view class="head_banner">
-      <swiper 
-        autoplay="true"
-        interval="5000"
-        >
-        <block wx:for="{{hotel.pics}}" wx:key="item">
-          <swiper-item>
-            <image src="{{item}}" class="banner_image" />
-          </swiper-item>
-        </block>
-      </swiper>
-    </view>
-    <view class="head_choose">
-      <view class="choose_ba">
-        <view class="choose_li choose_li_name" bindtap="goHotelsList">
-          <text class="choose_name">{{hotel.name}}</text>
-          <image class="choose_li_down" src="/static/images/down.png"></image>
-        </view>
-        <view class="choose_li choose_li_time" bindtap="goCalendar">
-          <view class="choose_time"><text>{{time.start}}</text></view>
-          <view class="choose_time"><text>入住{{time.num}}晚</text></view>
-          <image class="choose_li_down" src="/static/images/down.png"></image>
-        </view>
-      </view>
-    </view>
-    <view class="head_info" > 
-      <view class="info_val" bindtap="goMap">
-        <image src="/static/images/address.png"></image>
-        <text>{{hotel.address}}</text>
-        <image src="/static/images/hotel-address.png"></image>
-      </view>
-      <view class="info_val" bindtap="goTel">
-        <image src="/static/images/tel.png"></image>
-        <text>{{hotel.tel}}</text>
-        <image src="/static/images/hotel-tel.png"></image>
-      </view>
-    </view>
-  </view>
-  <view class="detailed_menu" wx:if="{{false}}">
-    <view class="menu_li" bindtap="infoShow">
-      <view class="menu_icon">
-        <image src="/static/images/room-menu1.png"></image>
-      </view>
-      <text>健身房</text>
-    </view>
-    <view class="menu_li" bindtap="infoShow">
-      <view class="menu_icon">
-        <image src="/static/images/room-menu2.png"></image>
-      </view>
-      <text>酒廊</text>
-    </view>
-    <view class="menu_li" bindtap="infoShow">
-      <view class="menu_icon">
-        <image src="/static/images/room-menu3.png"></image>
-      </view>
-      <text>餐厅</text>
-    </view>
-    <view class="menu_li" bindtap="infoShow">
-      <view class="menu_icon">
-        <image src="/static/images/room-menu4.png"></image>
-      </view>
-      <text>会议厅</text>
-    </view>
-  </view>
-  <view class="detailed_room">
-    <view class="room_ul">
-      <view class="room_li {{item.avail <= 0?'availZero':''}}" wx:if="{{item.wec0S != 9999}}" wx:for="{{hotel.room}}" wx:key="index">
-        <image class="room_li_img" src="{{item.img}}" bindtap="infoShow" data-rmtype="{{item.rmtype}}"></image>
-        <image wx:if="{{item.isCis&&false}}" src="/static/images/cis_ba.png" class="cis_ba"></image>
-        <image wx:if="{{item.isCis}}" src="/static/images/cis.png" class="cis"></image>
-        <view class="room_text" bindtap="room" data-arr="{{index}}">
-          <view class="room_name">
-            <text>{{item.name}}</text>
-          </view>
-          <view class="room_avail" wx:if="{{item.avail>=0&&item.avail<=5}}">仅剩{{item.avail}}间</view>
-          <!--<view class="room_breakfast">
+	<import src="/template/template" />
+	<view class="detailed_head">
+		<view class="head_banner">
+			<swiper autoplay="true" interval="5000">
+				<block wx:for="{{hotel.pics}}" wx:key="item">
+					<swiper-item>
+						<image src="{{item}}" class="banner_image" />
+					</swiper-item>
+				</block>
+			</swiper>
+		</view>
+		<view class="head_choose">
+			<view class="choose_ba">
+				<view class="choose_li choose_li_name" bindtap="goHotelsList">
+					<text class="choose_name">{{hotel.name}}</text>
+					<image class="choose_li_down" src="/static/images/down.png"></image>
+				</view>
+				<view class="choose_li choose_li_time" bindtap="goCalendar">
+					<view class="choose_time"><text>{{time.start}}</text></view>
+					<view class="choose_time"><text>入住{{time.num}}晚</text></view>
+					<image class="choose_li_down" src="/static/images/down.png"></image>
+				</view>
+			</view>
+		</view>
+		<view class="head_other">
+			<view class="other_box">
+				<image class="other_box_img" bindtap="goMap" src="/static/images/address1.png"></image>
+			</view>
+			<view class="other_box">
+				<image class="other_box_img" bindtap="goTel" src="/static/images/tel1.png"></image>
+			</view>
+		</view>
+		<!-- <view class="head_info" wx:if="{{false}}">
+			<view class="info_val" bindtap="goMap">
+				<image src="/static/images/address.png"></image>
+				<text>{{hotel.address}}</text>
+				<image src="/static/images/hotel-address.png"></image>
+			</view>
+			<view class="info_val" bindtap="goTel">
+				<image src="/static/images/tel.png"></image>
+				<text>{{hotel.tel}}</text>
+				<image src="/static/images/hotel-tel.png"></image>
+			</view>
+		</view> -->
+	</view>
+	<view class="detailed_menu" wx:if="{{false}}">
+		<view class="menu_li" bindtap="infoShow">
+			<view class="menu_icon">
+				<image src="/static/images/room-menu1.png"></image>
+			</view>
+			<text>健身房</text>
+		</view>
+		<view class="menu_li" bindtap="infoShow">
+			<view class="menu_icon">
+				<image src="/static/images/room-menu2.png"></image>
+			</view>
+			<text>酒廊</text>
+		</view>
+		<view class="menu_li" bindtap="infoShow">
+			<view class="menu_icon">
+				<image src="/static/images/room-menu3.png"></image>
+			</view>
+			<text>餐厅</text>
+		</view>
+		<view class="menu_li" bindtap="infoShow">
+			<view class="menu_icon">
+				<image src="/static/images/room-menu4.png"></image>
+			</view>
+			<text>会议厅</text>
+		</view>
+	</view>
+	<view class="detailed_room" wx:if="{{hotel.room.length != 0}}">
+		<view class="room_ul" >
+			<view class="room_li {{item.avail <= 0?'availZero':''}}" wx:if="{{item.wec0S != 9999}}" wx:for="{{hotel.room}}" wx:key="index">
+				<image class="room_li_img" src="{{item.img}}" bindtap="infoShow" data-rmtype="{{item.rmtype}}"></image>
+				<image wx:if="{{item.isCis&&false}}" src="/static/images/cis_ba.png" class="cis_ba"></image>
+				<image wx:if="{{item.isCis}}" src="/static/images/cis.png" class="cis"></image>
+				<view class="room_text" bindtap="room" data-arr="{{index}}">
+					<view class="room_name">
+						<text>{{item.name}}</text>
+					</view>
+					<view class="room_avail" wx:if="{{item.avail>=0&&item.avail<=5}}">仅剩{{item.avail}}间</view>
+					<!--<view class="room_breakfast">
             <image src="/static/images/breakfast.png"></image>
             <text>可选择早餐</text>
           </view>-->
-          <view class="room_label1">今天18点前可免费取消</view>
-          <view class="room_attr" wx:if="{{item.isCis}}">
-            <text class="room_attr_val">含有云智住房间</text>
-          </view>
-          <view class="room_price_before {{isLogin?'room_price_before_y':'room_price_before_n'}}">门市价￥{{item.wracS}}/晚</view>
-          <view class=" {{item.avail <= 0?'room_price_vip_zero':''}} {{item.isCis?'room_price_sic':'room_price_vip'}}" >
-            <view class="vip_name"><text>{{item.isCis?'会员价低至':'会员价低至'}}</text></view>
-            <view class="vip_price {{item.avail <= 0?'vip_price_zero':''}} {{item.isCis?'sic_price':''}}" >
-              <text class="rmb">￥</text>
-              <text wx:if="{{item.avail <= 0}}">已满房</text>
-              <text wx:if="{{item.avail > 0}}">{{item.wec0S}}<text class="font_24">/晚</text></text>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-  <template is="zero" data="{{list: hotel.room}}"/>
-  <view class="detailed_pop" wx:if="{{infoPop}}" >
-    <view class="black" bindtap="infoHide"></view>
-    <view class="pop_box" animation="{{animationData}}" id="pop">
-      <view class="pop">
-        <view class="pop_h1">{{room.name}}</view>
-        <image class="pop_del" bindtap="infoHide" src="/static/images/del.png"></image>
-        <swiper 
-          autoplay="true"
-          interval="5000"
-          >
-          <block wx:for="{{(room.imgList.length == 0?['/static/images/banner2.jpg']:room.imgList)}}" wx:key="item">
-            <swiper-item>
-              <image src="{{item}}" class="banner_image" />
-            </swiper-item>
-          </block>
-        </swiper>
-        <view class="info_body">
-          <view class="info_body1">
-            <text class="info_attr_s info_attr"><text class="info_attr_val">面积</text><text>{{room.square == null?'':room.square}}</text></text>
-            <text class="info_attr_s info_attr"><text class="info_attr_val">楼层</text><text>{{room.floor == null?'':room.floor}}</text></text>
-            <text class="info_attr_s info_attr"><text class="info_attr_val">加床</text><text>{{room.addBed == null?'':room.addBed}}</text></text>
-            <text class="info_attr_s info_attr"><text class="info_attr_val">吸烟</text><text>{{room.smoke == null?'':room.smoke}}</text></text>
-            <text class="info_attr_s info_attr"><text class="info_attr_val">窗户</text><text>{{room.windowType == null?'':room.windowType}}</text></text>
-            <text class="info_attr_s info_attr"><text class="info_attr_val">其他</text><text></text></text>
-          </view>
-          <view class="info_body2">
-            <text class="info_attr_b info_attr"><text class="info_attr_val">宽带</text><text>有</text></text>
-            <text class="info_attr_b info_attr"><text class="info_attr_val">浴室</text><text></text></text>
-            <text class="info_attr_b info_attr"><text class="info_attr_val">床品</text><text>席梦思</text></text>
-            <text class="info_attr_b info_attr"><text class="info_attr_val">食品饮品</text><text>方便面饮料小食</text></text>
-            <text class="info_attr_b info_attr"><text class="info_attr_val">便利设施</text><text>雨伞，书桌，熨衣设备，多种规格电源插座，空调，闹钟，针线包，220V电压插座，遮光窗帘，手动窗帘。</text></text>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
+					<view class="room_label1">今天18点前可免费取消</view>
+					<view class="room_attr" wx:if="{{item.isCis}}">
+						<text class="room_attr_val">含有云智住房间</text>
+					</view>
+					<view class="room_price_before {{isLogin?'room_price_before_y':'room_price_before_n'}}">门市价￥{{item.wracS}}/晚</view>
+					<view class=" {{item.avail <= 0?'room_price_vip_zero':''}} {{item.isCis?'room_price_sic':'room_price_vip'}}">
+						<view class="vip_name"><text>{{item.isCis?'会员价低至':'会员价低至'}}</text></view>
+						<view class="vip_price {{item.avail <= 0?'vip_price_zero':''}} {{item.isCis?'sic_price':''}}">
+							<text class="rmb">￥</text>
+							<text wx:if="{{item.avail <= 0}}">已满房</text>
+							<text wx:if="{{item.avail > 0}}">{{item.wec0S}}<text class="font_24">/晚</text></text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<template is="zero" data="{{list: hotel.room}}" />
+	<view class="detailed_pop" wx:if="{{infoPop}}">
+		<view class="black" bindtap="infoHide"></view>
+		<view class="pop_box" animation="{{animationData}}" id="pop">
+			<view class="pop">
+				<view class="pop_h1">{{room.name}}</view>
+				<image class="pop_del" bindtap="infoHide" src="/static/images/del.png"></image>
+				<swiper autoplay="true" interval="5000">
+					<block wx:for="{{(room.imgList.length == 0?['/static/images/banner2.jpg']:room.imgList)}}" wx:key="item">
+						<swiper-item>
+							<image src="{{item}}" class="banner_image" />
+						</swiper-item>
+					</block>
+				</swiper>
+				<view class="info_body">
+					<view class="info_body1">
+						<text class="info_attr_s info_attr"><text class="info_attr_val">面积</text><text>{{room.square == null?'':room.square}}</text></text>
+						<text class="info_attr_s info_attr"><text class="info_attr_val">楼层</text><text>{{room.floor == null?'':room.floor}}</text></text>
+						<text class="info_attr_s info_attr"><text class="info_attr_val">加床</text><text>{{room.addBed == null?'':room.addBed}}</text></text>
+						<text class="info_attr_s info_attr"><text class="info_attr_val">吸烟</text><text>{{room.smoke == null?'':room.smoke}}</text></text>
+						<text class="info_attr_s info_attr"><text class="info_attr_val">窗户</text><text>{{room.windowType == null?'':room.windowType}}</text></text>
+						<text class="info_attr_s info_attr"><text class="info_attr_val">其他</text><text></text></text>
+					</view>
+					<view class="info_body2">
+						<text class="info_attr_b info_attr"><text class="info_attr_val">宽带</text><text>有</text></text>
+						<text class="info_attr_b info_attr"><text class="info_attr_val">浴室</text><text></text></text>
+						<text class="info_attr_b info_attr"><text class="info_attr_val">床品</text><text>席梦思</text></text>
+						<text class="info_attr_b info_attr"><text class="info_attr_val">食品饮品</text><text>方便面饮料小食</text></text>
+						<text class="info_attr_b info_attr"><text class="info_attr_val">便利设施</text><text>雨伞，书桌，熨衣设备，多种规格电源插座，空调，闹钟，针线包，220V电压插座，遮光窗帘，手动窗帘。</text></text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="detailed_quick" wx:if="true">
+		<view class="quick_box">
+			<view class="quick_index quick_div">
+				<image src="/static/images/tab/index2.png" bindtap="goIndex" class="quick_down_img"></image>
+				<view class="quick_div_text">首页</view>
+			</view>
+			<view class="quick_order quick_div">
+				<image src="/static/images/tab/order2.png" bindtap="goOrder" class="quick_down_img"></image>
+				<view class="quick_div_text">订单</view>
+			</view>
+      <view class="quick_user quick_div">
+				<image src="/static/images/tab/ucenter2.png" bindtap="goUser" class="quick_down_img"></image>
+				<view class="quick_div_text">我的</view>
+			</view>
+		</view>
+	</view>
 </view>

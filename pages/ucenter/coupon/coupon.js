@@ -80,9 +80,7 @@ Page({
       this.setData({
         couponUl:couponUlNew
       });
-    }).catch((err) => {
-      // wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //使用规则
   detailedShow(e){

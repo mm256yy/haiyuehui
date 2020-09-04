@@ -31,7 +31,7 @@ function whiteList(){
   if (pages.length) {
     currPage = pages[pages.length - 1].route;
   }
-  let whiteList = [null,"pages/index/index","pages/ucenter/index/index","pages/member/memberIndex/memberIndex"];  //跳转白名单
+  let whiteList = [null,"pages/index/index","pages/ucenter/index/index","pages/ucenter/order/orderList/orderList"];  //跳转白名单
   console.log(currPage)
   if(whiteList.indexOf(currPage) >= 0){ //存在
     return true;
@@ -66,41 +66,33 @@ function request(url, data = {}, method = "GET") {
                 url: "/pages/auth/login/login"
               });
             }
+            wx.showToast({title: "未登陆" ,image:'/static/images/icon_error.png'})
             reject("未登陆");
           }else if(res.data.message){
+            wx.showToast({title: res.data.message ,image:'/static/images/icon_error.png'})
             reject(res.data.message);
           }else if(res.data.message == null){
             console.log(res.data.message);
           }else{
+            wx.showToast({title: "未知异常" ,image:'/static/images/icon_error.png'})
             reject("未知异常");
           }
         } else {
+          wx.showToast({title: "未连接到服务器" ,image:'/static/images/icon_error.png'})
           reject("未连接到服务器200+");
           console.log(res.errMsg);
         }
       },
       fail: function(err) {
         jhxLoadHide()
+        wx.showToast({title: "网络连接失败" ,image:'/static/images/icon_error.png'})
         reject("网络连接失败")
         console.log(err)
       }
     })
   });
 }
-//半透明黑色提示(失败)
-function showErrorToast(msg) {
-  wx.showToast({
-    title: msg,
-    image:'/static/images/icon_error.png'
-  })
-}
-//半透明黑色提示(成功)
-function showSuccessToast(msg) {
-  wx.showToast({
-    title: msg,
-    image:'/static/images/icon_success.png'
-  })
-}
+
 //加载中效果（显示）
 function jhxLoadShow(message) {
   wx.setStorageSync("jhxLoadShow", 1);
@@ -230,8 +222,7 @@ module.exports = {
 
   whiteList,
   request,
-  showErrorToast,
-  showSuccessToast,
+
   jhxLoadShow,
   jhxLoadHide,
   identityCard,

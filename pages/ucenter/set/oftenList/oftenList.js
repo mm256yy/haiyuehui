@@ -42,9 +42,7 @@ Page({
       this.setData({  
         often: oftenUl
       })
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //选择同住人
   chooseOften(e){
@@ -103,9 +101,7 @@ Page({
           console.log('用户点击确定')
           util.request(api.UcenterSetPersonDelete, param, 'GET').then(res => {
             that.onShow();
-          }).catch((err) => {
-            wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-          });
+          }).catch((err) => {});
         } else if (res.cancel) {
           console.log('用户点击取消')
         }

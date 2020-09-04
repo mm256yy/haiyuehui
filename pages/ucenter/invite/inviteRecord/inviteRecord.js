@@ -104,10 +104,7 @@ Page({
       this.setData({
         orderBonusUl:incomeUlNew,
       })
-    }).catch((err) => {
-      console.log(err)
-      wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   bindbonusHistory(pull){//2余额流水 1初始化 2下拉
     let chooseDateNew = this.data.chooseDate;
@@ -148,10 +145,7 @@ Page({
       this.setData({
         bonusHistoryUl:incomeUlNew,
       })
-    }).catch((err) => {
-      console.log(err)
-      wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   endDate(endDate){
     let endDateNew = endDate.split("-");

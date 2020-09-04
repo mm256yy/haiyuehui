@@ -50,9 +50,7 @@ Page({
         info:infoNew,
         isDefault:res.result.isDefault
       })
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //点击是否默认
   agree(){
@@ -87,9 +85,7 @@ Page({
       wx.navigateBack({ 
         delta: 1  
       }); 
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //input焦点
   bindNameInput(e) {
@@ -128,9 +124,7 @@ Page({
         wx.navigateBack({ 
           delta: 1  
         }); 
-      }).catch((err) => {
-        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-      });
+      }).catch((err) => {});
     }else{  //新增
       param = {
         name:this.data.info.name,
@@ -143,9 +137,7 @@ Page({
         wx.navigateBack({ 
           delta: 1  
         }); 
-      }).catch((err) => {
-        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-      });
+      }).catch((err) => {});
     }
     
   },

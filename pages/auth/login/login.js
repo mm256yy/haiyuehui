@@ -1,10 +1,11 @@
 let util = require('../../../utils/util.js');
+let check = require('../../../utils/check.js');
 let user = require('../../../utils/user.js');
 
 let app = getApp();
 Page({
   data: {
-    agreeRadio:false,
+    agreeRadio:true,
   },
   onLoad: function (options) {
 
@@ -16,12 +17,12 @@ Page({
   wxLogin(e){
     console.log(e)
     if (!this.data.agreeRadio) {
-      util.showErrorToast('请勾选协议');
+      check.showErrorToast('请勾选协议');
       return false;
     }
     if (e.detail.userInfo == undefined) {
       app.globalData.hasLogin = false;
-      util.showErrorToast('微信登录失败');
+      check.showErrorToast('微信登录失败');
       return;
     }
     wx.setStorageSync('userInfo', e.detail.userInfo);
@@ -50,9 +51,7 @@ Page({
         });
       }
     }).catch((err) => {
-      console.log(err)
       app.globalData.hasLogin = false;
-      util.showErrorToast('网络连接失败');
     });
   },
   //点击协议

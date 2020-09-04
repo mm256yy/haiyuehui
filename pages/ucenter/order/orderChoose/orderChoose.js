@@ -98,9 +98,7 @@ Page({
       this.setData({
         checkboxUl:checkboxUlNew
       })
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
     //获取酒店信息
     let roomNoNew = (options.roomNo == "null"?'':options.roomNo)
     let hotelNew = {
@@ -154,7 +152,7 @@ Page({
     console.log(param)
     util.request(api.UcenterMoveInto ,param, 'POST').then(res => {
       if(res.result.length == 0){  //没有房间
-        wx.showModal({title: '查询',content: '并没有查询到要求类型的房间',showCancel: false});
+        wx.showToast({title: "未查询到房间" ,image:'/static/images/icon_error.png'})
       }else{ //有房间
         this.setData({
           chooseNum:2,
@@ -162,9 +160,7 @@ Page({
           roomVal:res.result[0],
         })
       }
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
     
   },
   //选择房间
@@ -212,21 +208,18 @@ Page({
       ident:this.data.info.identity,
       mobile:this.data.info.mobile
     }
-    //this.onLoad(this.data.detail.orderId)
-    wx.showModal({ //cancelColor（取消按钮的文字颜色）confirmColor（确定按钮的文字颜色）
+    wx.showModal({ 
       title: '办理入住',
       content: '请确认入住信息填写正确无误',
       success: function(resV) {
         if (resV.confirm) {
           console.log('用户点击确定')
           util.request(api.UcenterOrderCheckin , param , 'POST').then(res => {
-            wx.showModal({ title: '成功',content: '入住成功',showCancel: false });
+            wx.showToast({title: "入住成功" ,image:'/static/images/icon_success.png'})
             wx.navigateBack({
               delta: 1  // 返回上一级页面。
             })
-          }).catch((err) => {
-            wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-          });
+          }).catch((err) => {});
         } else if (resV.cancel) {
           console.log('用户点击取消')
         }

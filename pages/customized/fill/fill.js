@@ -297,10 +297,7 @@ Page({
       wx.redirectTo({
         url: "/pages/customized/pay/pay?money="+res.result.money+"&orderId="+res.result.orderId+"&rmdesc="+this.data.room.roomName
       })
-    }).catch((err) => {
-      console.log(err)
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //money
   moneyMin(wec0,wec1,wec,wec3){

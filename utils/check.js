@@ -25,30 +25,31 @@ function spaceNo(str){
     return true;
   };
 };
-
+//半透明黑色提示(失败)
+function showErrorToast(msg) {
+  wx.showToast({
+    title: msg,
+    image:'/static/images/icon_error.png'
+  })
+}
+//半透明黑色提示(成功)
+function showSuccessToast(msg) {
+  wx.showToast({
+    title: msg,
+    image:'/static/images/icon_success.png'
+  })
+}
 /*验证并且提示*/
 //手机号码验证
 function checkMobile(mobile){  //使用：if(!check.checkMobile(this.data.mobile)){return false}
   if(mobile.length == 0){
-    wx.showModal({
-      title: '错误信息',
-      content: '手机号不能为空',
-      showCancel: false
-    });
+    showErrorToast('手机号不能空');
     return false;
   }else if(!isValidPhone(mobile)){
-    wx.showModal({
-      title: '错误信息',
-      content: '手机号输入不正确',
-      showCancel: false
-    });
+    showErrorToast('手机号不正确');
     return false;
   }else if(!spaceNo(mobile)){
-    wx.showModal({
-      title: '错误信息',
-      content: '手机号不能存在空格或者特殊字符',
-      showCancel: false
-    });
+    showErrorToast('不能存在特殊字符');
     return false;
   }else{
     return true;
@@ -57,32 +58,16 @@ function checkMobile(mobile){  //使用：if(!check.checkMobile(this.data.mobile
 //姓名验证
 function checkName(name){ //使用：if(!check.checkName(this.data.name)){return false}
   if(name.length == 0){
-    wx.showModal({
-      title: '错误信息',
-      content: '姓名不能为空',
-      showCancel: false
-    });
+    showErrorToast('姓名不能为空');
     return false;
   }else if(name.length > 8){
-    wx.showModal({
-      title: '错误信息',
-      content: '姓名不能过长',
-      showCancel: false
-    });
+    showErrorToast('姓名不能过长');
     return false;
   }else if(isNonnum(name)){
-    wx.showModal({
-      title: '错误信息',
-      content: '姓名不能为数字',
-      showCancel: false
-    });
+    showErrorToast('姓名不能为数字');
     return false;
   }else if(!spaceNo(name)){
-    wx.showModal({
-      title: '错误信息',
-      content: '姓名不能存在空格或者特殊字符',
-      showCancel: false
-    });
+    showErrorToast('不能存在特殊字符');
     return false;
   }else{
     return true;
@@ -91,32 +76,16 @@ function checkName(name){ //使用：if(!check.checkName(this.data.name)){return
 //身份证验证
 function checkIdentity(identity){  //使用：if(!check.checkIdentity(this.data.identity)){return false}
   if(identity.length == 0){
-    wx.showModal({
-      title: '错误信息',
-      content: '身份证不能为空',
-      showCancel: false
-    });
+    showErrorToast('身份证不能为空');
     return false;
   }else if(identity.length < 18){
-    wx.showModal({
-      title: '错误信息',
-      content: '身份证不能小于18位',
-      showCancel: false
-    });
+    showErrorToast('不能小于18位');
     return false;
   }else if(identity.length > 18){
-    wx.showModal({
-      title: '错误信息',
-      content: '身份证不能大于18位',
-      showCancel: false
-    });
+    showErrorToast('不能大于18位');
     return false;
   }else if(!spaceNo(identity)){
-    wx.showModal({
-      title: '错误信息',
-      content: '身份证不能存在空格或者特殊字符',
-      showCancel: false
-    });
+    showErrorToast('不能存在特殊字符');
     return false;
   }else{
     return true;
@@ -125,11 +94,7 @@ function checkIdentity(identity){  //使用：if(!check.checkIdentity(this.data.
 //金钱验证
 function checkMoney(money){ //使用：if(!check.checkMoney(this.data.identity)){return false}
   if(money == 999900 ||money == '0' ||money <= 0 ||money == ''||money == null||money == undefined ||money == 'undefined'){
-    wx.showModal({
-      title: '错误信息',
-      content: '金额错误',
-      showCancel: false
-    });
+    showErrorToast('金额错误');
     return false;
   }else{
     return true;
@@ -160,6 +125,9 @@ module.exports = {
   isValidPhone,
   isNonnum,
   spaceNo,
+
+  showErrorToast,
+  showSuccessToast,
 
   checkMobile,
   checkName,

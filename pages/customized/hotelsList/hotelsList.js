@@ -26,9 +26,7 @@ Page({
       this.setData({  
         hotels: hotelsUl
       })
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   onShow: function () {
 

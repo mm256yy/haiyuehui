@@ -71,9 +71,7 @@ Page({
       this.setData({
         order:orderNew
       })
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //个人信息
   userInfo(){
@@ -156,9 +154,7 @@ Page({
       wx.redirectTo({
         url: "/pages/customized/pay/pay?money="+res.result.money+"&orderId="+res.result.orderId+"&rmdesc="+this.data.order.roomName
       })
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //快捷选天数
   dayBtn(e){

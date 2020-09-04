@@ -56,9 +56,7 @@ Page({
         wx.showModal({title: '恭喜',content: "成功获取5元津贴",showCancel: false}); 
         wx.setStorageSync('othersInviteCode', "");
         wx.setStorageSync('othersInviteCodeFrist', false);
-      }).catch((err) => {
-        wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-      });
+      }).catch((err) => {});
     }
   },
   //跳转酒店详情

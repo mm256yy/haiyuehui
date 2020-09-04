@@ -66,9 +66,7 @@ Page({
       this.setData({  
         hotelsUl: hotelsUl
       })
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //选择类型
   transferType(e){
@@ -100,11 +98,7 @@ Page({
   //查询订单
   queryOrder(){
     if(this.data.info.orderNo.length == 0){
-      wx.showModal({
-        title: '错误信息',
-        content: '订单编号不能为空',
-        showCancel: false
-      });
+      wx.showToast({title: "订单编号为空" ,image:'/static/images/icon_error.png'})
       return false;
     }
     if(this.data.transferType == 1){
@@ -158,17 +152,13 @@ Page({
         otaRestype:res.result.otaRestype?res.result.otaRestype:'',
         roomNo:res.result.roomNo?res.result.roomNo:'',
       }
-      app.globalData.badge = {menu:[1,0,0,0]}
       //
       that.setData({
         processNum:that.data.processNum + 1 ,
         detail:detailNew
       });
       that.member();
-    }).catch((err) => {
-      console.log(err)
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //会员信息
   member(){
@@ -190,19 +180,11 @@ Page({
   //OTA订单转移
   otaOrder(){
     if(this.data.info.hotelsId == ''){
-      wx.showModal({
-        title: '错误信息',
-        content: '请点击选择酒店',
-        showCancel: false
-      });
+      wx.showToast({title: "请点击选择酒店" ,image:'/static/images/icon_error.png'})
       return false;
     }
     if(this.data.info.orderNo == ''){
-      wx.showModal({
-        title: '错误信息',
-        content: '请输入订单编号',
-        showCancel: false
-      });
+      wx.showToast({title: "请输入订单编号" ,image:'/static/images/icon_error.png'})
       return false;
     }
     let that = this;
@@ -238,15 +220,12 @@ Page({
         otaRestype:res.result.otaRestype?res.result.otaRestype:'',
         roomNo:res.result.roomNo?res.result.roomNo:'',
       }
-      app.globalData.badge = {menu:[1,0,0,0]}
       //
       that.setData({
         processNum:that.data.processNum + 1 ,
         detail:detailNew
       })
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   //支付
   goPay(){
@@ -273,11 +252,11 @@ Page({
       }
     })
   },
-  //返回个人中心
+  //返回订单列表
   goIndex(){
     //跳转
     wx.switchTab({ 
-      url:"/pages/ucenter/index/index"
+      url:"/pages/ucenter/order/orderList/orderList"
     })
   },
   // dayNum(startTime,endTime){

@@ -93,9 +93,7 @@ Page({
       this.setData({
         consumeUl : ul
       })
-    }).catch((err) => {
-      wx.showModal({title: '错误信息',content: err ,showCancel: false}); 
-    });
+    }).catch((err) => {});
   },
   endDate(endDate){
     let endDateNew = endDate.split("-");
