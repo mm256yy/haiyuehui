@@ -27,10 +27,11 @@ function spaceNo(str){
 };
 //半透明黑色提示(失败)
 function showErrorToast(msg) {
-  wx.showToast({
-    title: msg,
-    image:'/static/images/icon_error.png'
-  })
+  if(msg.length <= 7){
+    wx.showToast({title: msg,image:'/static/images/icon_error.png'})
+  }else{
+    wx.showToast({title: msg ,icon:'none'})
+  }
 }
 //半透明黑色提示(成功)
 function showSuccessToast(msg) {
@@ -64,10 +65,10 @@ function checkName(name){ //使用：if(!check.checkName(this.data.name)){return
     showErrorToast('姓名不能过长');
     return false;
   }else if(isNonnum(name)){
-    showErrorToast('姓名不能为数字');
+    showErrorToast('姓名存在数字');
     return false;
   }else if(!spaceNo(name)){
-    showErrorToast('不能存在特殊字符');
+    showErrorToast('不能有特殊字符');
     return false;
   }else{
     return true;
@@ -79,10 +80,10 @@ function checkIdentity(identity){  //使用：if(!check.checkIdentity(this.data.
     showErrorToast('身份证不能为空');
     return false;
   }else if(identity.length < 18){
-    showErrorToast('不能小于18位');
+    showErrorToast('身份证不能小于18位');
     return false;
   }else if(identity.length > 18){
-    showErrorToast('不能大于18位');
+    showErrorToast('身份证不能大于18位');
     return false;
   }else if(!spaceNo(identity)){
     showErrorToast('不能存在特殊字符');

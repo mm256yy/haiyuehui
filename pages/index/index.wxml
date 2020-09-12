@@ -15,7 +15,7 @@
     </view>
     <view class="home_booking">
       <view class="booking_box">
-        <view class="booking_hotels" >选择入住时间</view>
+        <!-- <view class="booking_hotels" >选择入住时间</view> -->
         <view class="booking_ul" bindtap="calendarShow">
           <view class="booking_li">
             <view class="booking_li_h5">入住时间</view>

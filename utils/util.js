@@ -69,7 +69,13 @@ function request(url, data = {}, method = "GET") {
             wx.showToast({title: "未登陆" ,image:'/static/images/icon_error.png'})
             reject("未登陆");
           }else if(res.data.message){
-            wx.showToast({title: res.data.message ,image:'/static/images/icon_error.png'})
+            if(res.data.message.length <= 7){
+              wx.showToast({title: res.data.message ,image:'/static/images/icon_error.png'})
+            }else if(res.data.message.length <= 14&&res.data.message.length>7){
+              wx.showToast({title: res.data.message ,icon:'none'})
+            }else{
+              wx.showModal({title: '提示',content: res.data.message})
+            }
             reject(res.data.message);
           }else if(res.data.message == null){
             console.log(res.data.message);
@@ -78,7 +84,7 @@ function request(url, data = {}, method = "GET") {
             reject("未知异常");
           }
         } else {
-          wx.showToast({title: "未连接到服务器" ,image:'/static/images/icon_error.png'})
+          wx.showToast({title: "未连接服务器" ,image:'/static/images/icon_error.png'})
           reject("未连接到服务器200+");
           console.log(res.errMsg);
         }

@@ -16,7 +16,7 @@
 /*预定*/
 .home_booking{
   position: absolute;
-  top: 400rpx;
+  top: 480rpx;
   right: 0rpx;
   width: 100%;
 }

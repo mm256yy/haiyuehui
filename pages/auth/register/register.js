@@ -66,7 +66,6 @@ Page({
       wx.showToast({title: "验证码不能为空" ,image:'/static/images/icon_error.png'})
       return false;
     }
-
     wx.login({
       success: function(res) {
         console.log(res)
