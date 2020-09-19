@@ -1,0 +1,49 @@
+<view>
+  <image src="/static/images/cis_title.jpg" mode="widthFix" class="cis_title" wx:if="{{hotel.roomNo != ''}}"></image>
+	<view >
+		<view class="choose_four" wx:if="{{hotel.roomNo == ''}}">
+			<view class="choose_four_head">
+				<text class="room_introduce room_type_room"></text><text class="room_introduce_name">空余房间</text>
+				<text class="room_introduce room_type_stairs"></text><text class="room_introduce_name">楼梯/安全通道</text>
+				<text class="room_introduce room_type_elevator"></text><text class="room_introduce_name">电梯</text>
+				<text class="room_introduce room_type_occupy"></text><text class="room_introduce_name">被占有房间</text>
+			</view>
+			<view class="choose_four_body">
+				<table class="room_table" style="width:{{68*(roomImgUl[0].length)}}rpx">
+					<tr class="room_li_tr" wx:for="{{roomImgUl}}" wx:key="index1" wx:for-index="index1" wx:for-item="item1">
+						<td class="room_type {{item2.class}}" :class="" wx:for="{{item1}}" wx:key="index2" wx:for-index="index2" wx:for-item="item2" bindtap="roomOn" data-index1="{{index1}}" data-index2="{{index2}}">
+							<!-- <text class="room_type_number" WX:if="{{item2.class == 'room_type_room_on'}}">{{item2.room1}}</text> -->
+							<image src="{{item2.img}}" class="room_type_img"></image>
+						</td>
+					</tr>
+				</table>
+			</view>
+		</view>
+		<view class="choose_four_room_val" wx:if="{{hotel.roomPitch != ''}}">已选择房号：{{hotel.roomPitch}}</view>
+		<view class="live_input">
+			<view class="form_ul">
+				<view class="form_left">
+					<view class="input_li">
+						<input placeholder="请输入真实姓名" value="{{info.name}}" bindinput="bindNameInput"></input>
+					</view>
+					<view class="input_li">
+						<input placeholder="请输入身份证" value="{{info.identity}}" bindinput="bindIdentityInput"></input>
+					</view>
+				</view>
+				<view class="form_right" bindtap="person">
+					<view class="form_person">
+						<image class="person_img" src="/static/images/selected.png"></image>
+						<view class="person_text">常住人簿</view>
+					</view>
+				</view>
+			</view>
+			<view class="input_li">
+				<input placeholder="请输入手机号" value="{{info.mobile}}" bindinput="bindTelInput"></input>
+			</view>
+		</view>
+		<view class="live_red">注:请确认真实的姓名与身份证正确，否则无法入住</view>
+	</view>
+	<view class="reside_btn">
+		<view class="btn_define" bindtap="infoBtnFrist">办理入住</view>
+	</view>
+</view>

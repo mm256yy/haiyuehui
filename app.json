@@ -23,14 +23,14 @@
     "pages/customized/hotelsDetailed/hotelsDetailed",
     "pages/customized/hotelsMap/hotelsMap",
     
-    
     "pages/ucenter/index/index",
     "pages/ucenter/order/orderCancel/orderCancel",
     "pages/ucenter/order/orderAddition/orderAddition",
     "pages/ucenter/order/orderDetail/orderDetail",
     "pages/ucenter/order/orderList/orderList",
+    "pages/ucenter/order/orderReside/orderReside",
+    "pages/ucenter/order/orderChoose/orderChoose",
     "pages/ucenter/order/orderContinue/orderContinue",
-    "pages/ucenter/order/orderChoose/orderChoose", 
     "pages/ucenter/order/orderTransfer/orderTransfer", 
 
     

@@ -1,4 +1,3 @@
-// pages/ucenter/orderChoose/orderChoose.js
 let util = require('../../../../utils/util.js');
 let api = require('../../../../config/api.js');
 let check = require('../../../../utils/check.js');
@@ -11,95 +10,27 @@ Page({
       rmtype:'',
       orderId:'',
       roomNo:'',
+      roomPitch:'',
     },
-    floorUl: [
-      {code:'',name:'全部楼层'},
-      {code:'22',name:'22层'},
-      /*{code:'02',name:'2F'}*/
+    floorThree:[
+      // {floor:'02',roomNum:12},
+      // {floor:'02',roomNum:12},
     ],
-    checkboxUl:[
-      /*{val:false,code:'NE',name:'靠近电梯'},
-      {val:false,code:'NE',name:'靠近电梯'},*/
+    screenUl:[
+      // {val:false,code:'NE',name:'靠近电梯'},
     ],
-    chooseNum:1,   //入住顺序
-    floorArr:0,    //楼层顺序
-    floorVal:'',   //选中楼层
-    roomUl:[
-      /*{
-        roomNo:11003,
-        isCis:true
-      },
-      {
-        roomNo:12002,
-        isCis:false
-      }*/
-    ],     //房间列表
-    roomArr:0,
-    roomVal:[],
-    info:{
-      name:'',
-      identity:'',
-      mobile:'',
-    }
+    checkboxUl:[],
+    popShow:false,
   },
 
   onLoad: function (options) {
-    this.init(options)
+    this.funHotel(options);
+    this.funfeature();
+    this.funFloor();
   },
-  onReady: function () {
-
-  },
-  onShow: function () {
-    this.substitution()
-  },
-  //常住人换人
-  substitution(){
-    let pages = getCurrentPages()
-    let currPage = pages[pages.length - 1]  // 当前页
-    this.setData({
-      'info.name':currPage.data.info.name,
-      'info.identity':currPage.data.info.identity,
-      'info.mobile':currPage.data.info.mobile,
-    })
-  },
-  person(){
-    wx.navigateTo({
-      url: "/pages/ucenter/set/oftenList/oftenList?oftenType=1"
-    })
-  },
-  init(options){
-    console.log(options)
-    let floorUlNew = [{code:'',name:'全部楼层'}];
-    let checkboxUlNew = [];
-    let li = {};
-    //post
-    let param = {
-      hotelId:options.hotelId
-    }
-    console.log(param)
-    util.request(api.UcenterSystemBaseCode ,param, 'GET').then(res => {
-      let data = res.result
-      for(let i=0;i<data.length;i++){
-        if(data[i].type == 1){  //楼层
-          li = {
-            code:data[i].code,
-            name:data[i].name
-          };
-          floorUlNew.push(li)
-        }else{  //类型
-          li = {
-            val:false,
-            code:data[i].code,
-            name:data[i].name
-          };
-          checkboxUlNew.push(li)
-        }
-      }
-      this.setData({
-        checkboxUl:checkboxUlNew
-      })
-    }).catch((err) => {});
-    //获取酒店信息
+  onShow: function () {},
+  //获取酒店信息
+  funHotel(options){
     let roomNoNew = (options.roomNo == "null"?'':options.roomNo)
     let hotelNew = {
       arr:options.arr,
@@ -108,128 +39,145 @@ Page({
       rmtype:options.rmtype,
       orderId:options.orderId,
       roomNo:roomNoNew,
+      roomPitch:roomNoNew,
     };
-    let chooseNumNew = (roomNoNew == ""?1:2)
     this.setData({
       hotel:hotelNew,
-      chooseNum:chooseNumNew
+    })
+  },
+  //初始获取房间类型
+  funfeature(){
+    let param = {
+      hotelId:this.data.hotel.hotelId,
+      type:2,
+    }
+    console.log(param)
+    util.request(api.UcenterSystemBaseCodeType ,param, 'GET').then(res => {
+      let screenUlNew = [];
+      let screen_li = {};
+      let data = res.result;
+      for(let i=0;i<data.length;i++){
+        screen_li = {
+          val:false,
+          code:data[i].code,
+          name:data[i].name
+        }
+        screenUlNew.push(screen_li)
+      }
+      this.setData({
+        screenUl : screenUlNew
+      })
+    }).catch((err) => {});
+  },
+  //如果是云智住
+  funFloor(){
+    let featureNew = this.gainFeature()
+    let param = {
+      hotelid:this.data.hotel.hotelId,
+      arr:this.data.hotel.arr,
+      dep:this.data.hotel.dep,
+      floor:'',
+      feature:featureNew,
+      rmtype:'SJ' //this.data.hotel.rmtype
+    }
+    console.log(param)
+    util.request(api.UcenterOrderFloorRoomNum ,param, 'POST').then(res => {
+      let floor_ul = [];
+      let floor_li = {};
+      for(let i=0;i<res.result.length;i++){
+        floor_li = {
+          floor:res.result[i].floor,
+          roomNum:res.result[i].roomNum,
+        }
+        floor_ul.push(floor_li)
+      }
+      this.setData({
+        floorThree:floor_ul
+      })
+    }).catch((err) => {});
+  },
+  //pop
+  hidePop(){
+    this.setData({
+      popShow:false
+    })
+  },
+  showPop(){
+    this.setData({
+      popShow:!this.data.popShow
+    })
+  },
+  //清空
+  screenZero(){
+    let screenUlNew = this.data.screenUl;
+    for(let i=0;i<screenUlNew.length;i++){
+      screenUlNew[i].val = false
+    }
+    this.setData({
+      screenUl:screenUlNew,
     })
   },
   //选择类型
-  option(e){
+  screenOn(e){
     let index = e.currentTarget.dataset.index;
-    let checkboxUlNew = this.data.checkboxUl;
-    checkboxUlNew[index].val = !checkboxUlNew[index].val;
+    let screenUlNew = this.data.screenUl;
+    screenUlNew[index].val = !screenUlNew[index].val;
     this.setData({
-      checkboxUl : checkboxUlNew
+      screenUl : screenUlNew
     })
+  },
+  //确定选择类型
+  screenSuccess(){
+    this.funFloor();
+    this.hidePop();
   },
   //选择楼层
-  bindChange(e){
-    this.setData({
-      floorArr: e.detail.value
+  funFloorOn(e){
+    let floor = e.currentTarget.dataset.floor;
+    let that = this;
+    wx.navigateTo({
+      url: "/pages/ucenter/order/orderReside/orderReside?arr="+that.data.hotel.arr+
+      "&dep="+that.data.hotel.dep+
+      "&hotelId="+that.data.hotel.hotelId+
+      "&rmtype="+that.data.hotel.rmtype+
+      "&orderId="+that.data.hotel.orderId+
+      "&roomNo="+that.data.hotel.roomNo+
+      "&floor="+floor
     })
   },
-  //查询
-  query(){
-    //获取类型
+  //获取类型
+  gainFeature(){
     let chooseType = '';
-    let check = this.data.checkboxUl
+    let check = this.data.screenUl
     for(let i=0;i<check.length;i++){
       if(check[i].val){
         chooseType += check[i].code + ','
       }
     }
-    //post
-    let param = {
-      hotelid:this.data.hotel.hotelId,
-      arr:this.data.hotel.arr,
-      dep:this.data.hotel.dep,
-      floor:(api.testing?this.data.floorUl[this.data.floorArr].code:22),
-      feature:chooseType.substring(0, chooseType.length - 1),
-      rmtype:this.data.hotel.rmtype
-    }
-    console.log(param)
-    util.request(api.UcenterMoveInto ,param, 'POST').then(res => {
-      if(res.result.length == 0){  //没有房间
-        wx.showToast({title: "未查询到房间" ,image:'/static/images/icon_error.png'})
-      }else{ //有房间
-        this.setData({
-          chooseNum:2,
-          roomUl:res.result,
-          roomVal:res.result[0],
-        })
-      }
-    }).catch((err) => {});
-    
+    let chooseTypeNew = chooseType.substring(0, chooseType.length - 1)
+    return chooseTypeNew
   },
-  //选择房间
-  roomChoose(e){
-    console.log(e)
-    this.setData({
-      roomArr: e.currentTarget.dataset.index,
-      roomVal:this.data.roomUl[e.currentTarget.dataset.index]
-    });
-  },
-   //input
-  bindNameInput(e){
-    this.setData({
-      'info.name': e.detail.value
-    });
-  },
-  bindIdentityInput(e){
-    this.setData({
-      'info.identity': e.detail.value
-    });
-  },
-  bindTelInput(e){
-    this.setData({
-      'info.mobile': e.detail.value
-    });
-  },
-  //办理入住
-  infoBtnFrist(){
-    if(!check.checkName(this.data.info.name)){return false}
-    if(!check.checkIdentity(this.data.info.identity)){return false}
-    if(!check.checkMobile(this.data.info.mobile)){return false}
-    let roomNoNew = (this.data.hotel.roomNo == ''?this.data.roomVal.roomNo:this.data.hotel.roomNo)
-    if(roomNoNew == ''){
-      x.showModal({
-        title: '错误信息',
-        content: '房间号为空',
-        showCancel: false
-      });
+  roomOn(e){
+    let index1 = e.currentTarget.dataset.index1;
+    let index2 = e.currentTarget.dataset.index2;
+    let roomImgUlNew = this.data.roomImgUl;
+    let pre = this.data.roomPre;
+    if(roomImgUlNew[index1][index2].type!=1){
       return false;
     }
-    let param = {
-      orderId:this.data.hotel.orderId,
-      roomNo:roomNoNew,
-      name:this.data.info.name,
-      ident:this.data.info.identity,
-      mobile:this.data.info.mobile
+    if(pre[0]||pre[0] == 0){
+      roomImgUlNew[pre[0]][pre[1]].class = "room_type_room"
+      roomImgUlNew[index1][index2].class = "room_type_room_on"
+    }else{
+      roomImgUlNew[index1][index2].class = "room_type_room_on"
     }
-    wx.showModal({ 
-      title: '办理入住',
-      content: '请确认入住信息填写正确无误',
-      success: function(resV) {
-        if (resV.confirm) {
-          console.log('用户点击确定')
-          util.request(api.UcenterOrderCheckin , param , 'POST').then(res => {
-            wx.showToast({title: "入住成功" ,image:'/static/images/icon_success.png'})
-            wx.navigateBack({
-              delta: 1  // 返回上一级页面。
-            })
-          }).catch((err) => {});
-        } else if (resV.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-    
-  },
-  again(){
+    pre[0] = index1;pre[1] = index2;
+    console.log(roomImgUlNew)
+    console.log(pre)
     this.setData({
-      chooseNum: 1
-    });
-  }
+      roomImgUl:roomImgUlNew,
+      roomPre:pre,
+      'hotel.roomPitch':roomImgUlNew[index1][index2].room
+    })
+  },
 })

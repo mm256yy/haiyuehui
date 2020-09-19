@@ -4,9 +4,9 @@
  // 正式线上ip 
  // let WxApiRoot = 'http://124.70.147.182:9001/wx/'; let testing = false; 
  // 测试线上ip 
- let WxApiRoot = 'http://124.70.132.80:9001/wx/'; let testing = true; 
+ // let WxApiRoot = 'http://124.70.132.80:9001/wx/'; let testing = true; 
  // 本机 开发api地址   
- // let WxApiRoot = 'http://192.168.133.67:9002/wx/'; let testing = true;    //'http://192.168.188.79:9001/wx/'; 
+ let WxApiRoot = 'http://192.168.133.67:9002/wx/'; let testing = true;    //'http://192.168.188.79:9001/wx/'; 
  // 生产地址 
  // let WxApiRoot = 'https://www.hwhhotels.com/wx/'; let testing = false; 
  
@@ -31,6 +31,10 @@
    UcenterOrderRefund: WxApiRoot + 'order/refund', //发起退款 hwh
    UcenterOrderCheckin: WxApiRoot + 'order/checkin', //办理入住 hwh
    UcenterSystemBaseCode: WxApiRoot +  'system/baseCode',  //入住选择查询，获取类型 hwh
+   UcenterSystemBaseCodeType: WxApiRoot +  'system/baseCodeType',  //获取类型  
+   UcenterOrderFloorRoomNum: WxApiRoot + 'hotel/getFloorRoomNum', //获取房间数量 
+   UcenterOrderFloorRoomPosition: WxApiRoot + 'hotel/getFloorRoomPosition', //获取房间坐标 
+
    UcenterMoveInto: WxApiRoot + 'hotel/getAvailableRoomNo', // 入住查询房间 hwh
    UcenterOrderAddPerson: WxApiRoot + 'order/addPerson', //添加同住 hwh
    UcenterOrderCheckOut: WxApiRoot + 'order/checkout', //退房 hwh

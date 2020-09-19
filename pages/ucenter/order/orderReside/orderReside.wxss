@@ -1,118 +1,6 @@
-page{
-  background-color: #f1f1f1;
-}
-/*head*/
-.choose_head{
-  width: 100%;
-  position: absolute;
-  top: 0rpx;
-  left: 0rpx;
-  z-index: 10;
-}
-.choose_head_w{
-  background-color: #fff;
-}
+/*img*/
 .cis_title{
   width: 100%;
-}
-.head_menu{
-  padding:20rpx 30rpx 24rpx 30rpx;
-  background-color: #fff;
-}
-.head_menu_t2{
-  float: right;
-}
-.floor_screen{
-  padding: 30rpx;
-  background-color: #fff;
-  border-bottom-left-radius: 20rpx;
-  border-bottom-right-radius: 20rpx;
-  overflow: hidden;
-}
-.screen_ul{
-  overflow: hidden;
-}
-.screen_li{
-  width: 33%;
-  padding: 10rpx;
-  float: left;
-}
-.screen_li_name{
-  display: inline-block;
-  width: 100%;
-  color: #008cd7;
-  font-size: 22rpx;
-  border: 1rpx solid #d8f1ff;
-  background-color: #fff;
-  border-radius: 10rpx;
-  text-align: center;
-  padding: 15rpx 15rpx;
-  
-}
-.screen_li_name_on{
-  background-color: #008cd7;
-  color: #fff;
-}
-.screen_btn{
-  display: flex;
-  margin-top: 20rpx;
-}
-.screen_btn_li{
-  flex: 1 1 auto;
-  text-align: center;
-  padding: 10rpx 10rpx;
-}
-.screen_btn_zero{
-  border: 2rpx solid #cdcdcd;
-  padding:20rpx;
-  border-radius:50rpx;
-  font-size: 26rpx;
-}
-.screen_btn_success{
-  background: linear-gradient(to right, #039cee , #346ae8);
-  color: #fff;
-  padding:20rpx;
-  border-radius:50rpx;
-  font-size: 26rpx;
-}
-/*choose*/
-.choose_box{
-  /* padding:30rpx; */
-}
-.choose_process{
-  text-align: center;
-  margin-bottom: 80rpx;
-}
-.checkbox_li{
-  overflow: hidden;
-  margin: 20rpx;
-  padding-top: 20rpx;
-}
-.checkbox_val{
-  display: inline-block;
-  width: 40rpx;
-  height: 40rpx;
-  border: 15rpx solid #cdcdcd;
-  border-radius: 10rpx;
-  float: left;
-}
-.checkbox_val_on{
-  border: 15rpx solid #008cd7;
-}
-.checkbox_text{
-  float: left;
-  padding-left: 30rpx;
-}
-.choose_option{
-  margin: 40rpx 0rpx;
-}
-.floor_val{
-  font-size: 24rpx;
-  padding: 20rpx 100rpx;
-  border: 1px solid #008cd7;
-  color: #008cd7;
-  border-radius:10rpx ;
-  width: 200rpx;
 }
 /*two*/
 .live_input{
@@ -216,54 +104,6 @@ page{
   background-color: #fff;
   padding: 0rpx 30rpx;
 }
-/*three*/
-.black{
-  background-color: rgba(0,0,0,0.6);
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0rpx;
-  left: 0rpx;
-  z-index: 2;
-}
-.choose_three{
-  background-color: #f1f1f1;
-  margin-top: 490rpx;
-}
-
-.floor_ul{
-  background-color: #f1f1f1;
-  padding: 30rpx 30rpx;
-}
-.floor_li{
-  background-color: #fff;
-  border-radius: 20rpx;
-  padding: 25rpx;
-  display: flex;
-  margin-bottom: 20rpx;
-}
-.floor_li_floor{
-  flex: 1 1 auto;
-}
-.floor_li_flex{
-  flex: 1 1 auto;
-}
-.floor_li_right{
-  text-align: right;
-}
-.floor_li_roomNum{
-  color: #cdcdcd;
-  font-size: 24rpx;
-  text-align: right;
-  margin-left: 20rpx;
-}
-.floor_li_choose{
-  color: #008cd7;
-  font-size: 22rpx;
-  background-color: #d8f1ff;
-  border-radius: 10rpx;
-  padding: 10rpx 15rpx
-}
 /*four*/
 .choose_four_head{
   text-align: center;
@@ -282,6 +122,7 @@ page{
 }
 .choose_four_body{
   overflow-x: scroll;
+  margin: 0rpx 20rpx;
 }
 .room_table{
   display: block;
@@ -294,12 +135,13 @@ page{
 }
 .room_type{
   display: inline-block;
-  width: 50rpx;
-  height: 50rpx;
+  width: 60rpx;
+  height: 60rpx;
   text-align: center;
   background-color: #fff;
   border-radius:5px;
   margin: 2px;
+  position: relative;
 }
 .room_type_room{
   background-color: #c2e1ff;
@@ -308,21 +150,22 @@ page{
   background-color: #1890ff;
 }
 .room_type_stairs{
-  background-color: rgb(176, 192, 176);
+  background-color: #a6c5a7;
 }
 .room_type_elevator{
-  background-color: rgb(255, 236, 201);
+  background-color: #ffce73;
 }
 .room_type_aisle{
   background-color: #fff;
-  border-radius:0px ;
 }
 .room_type_nothing{
-  background-color: #fff;
-  border-radius:0px ;
+  background-color: #cdcdcd;
 }
 .room_type_occupy{
-  background-color: rosybrown;
+  background-color: #dfacac;
+}
+.room_type_other{
+  background-color: #f1f1f1;
 }
 .room_type_number{
   color: #fff;
@@ -333,6 +176,13 @@ page{
   text-align: center;
   color: #999;
   font-size: 28rpx;
+}
+.room_type_img{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 7rpx;
+  left: 7rpx;
 }
 /*btn*/
 .choose_btn{
@@ -353,4 +203,7 @@ page{
   text-align: center;
   padding: 20rpx;
   margin: 20rpx;
+}
+.reside_btn{
+  margin-top: 50rpx;
 }
