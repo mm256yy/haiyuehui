@@ -138,7 +138,13 @@ swiper{
 /*room*/
 .room_ul{
   padding: 20rpx 0rpx;
-  margin-bottom: 90rpx;
+  padding-bottom: 110rpx;
+}
+.room_ul_more{
+  font-size: 24rpx;
+  color: #cdcdcd;
+  text-align: center;
+  padding: 10rpx;
 }
 .availZero{
   opacity: 0.5;

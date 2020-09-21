@@ -47,10 +47,10 @@ Page({
       arr:options.arr,
       dep:options.dep,
       hotelId:options.hotelId,
-      rmtype:options.rmtype,
+      rmtype:api.testing?'SJ':options.rmtype,
       orderId:options.orderId,
       roomNo:roomNoNew,
-      floor:options.floor,
+      floor:api.testing?'07':22,//options.floor,
       roomPitch:roomNoNew,
     };
     this.setData({
@@ -63,8 +63,8 @@ Page({
       hotelid:this.data.hotel.hotelId,
       arr:this.data.hotel.arr,
       dep:this.data.hotel.dep,
-      floor:api.testing?'07':22,//this.data.hotel.floor,
-      rmtype:api.testing?'SJ':this.data.hotel.rmtype
+      floor:this.data.hotel.floor,
+      rmtype:this.data.hotel.rmtype
     }
     console.log(param)
     util.request(api.UcenterOrderFloorRoomPosition ,param, 'POST').then(res => {

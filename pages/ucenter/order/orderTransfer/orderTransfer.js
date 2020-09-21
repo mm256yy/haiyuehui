@@ -242,7 +242,13 @@ Page({
       success (res) {
         if(res['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'] == "accept"){
           wx.redirectTo({
-            url: "../orderChoose/orderChoose?arr="+that.data.detail.startTimeS+"&dep="+that.data.detail.endTimeS+"&hotelId="+that.data.detail.hotelId+"&rmtype="+that.data.detail.rmtype+"&orderId="+that.data.detail.orderId+"&roomNo="+that.data.detail.roomNo
+            url: "/pages/ucenter/order/orderReside/orderReside?arr="+that.data.detail.startTimeS+
+              "&dep="+that.data.detail.endTimeS+
+              "&hotelId="+that.data.detail.hotelId+
+              "&rmtype="+that.data.detail.rmtype+
+              "&orderId="+that.data.detail.orderId+
+              "&roomNo="+that.data.detail.roomNo+
+              "&floor=22"
           })
         }else if(res['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'] == "reject"){
           wx.showModal({title: '错误信息',content: "请确认退房通知提醒",showCancel: false});

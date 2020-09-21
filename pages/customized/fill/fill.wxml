@@ -72,10 +72,6 @@
     </view>
     <popCoupon id="popId" full-money-price="{{total.roomPrice}}" bindcouponTotal="couponTotal"></popCoupon>
   </view>
-  <view class="hotels_introduce">
-    <view class="introduce_t">温馨提示：</view>
-    <view class="introduce_t introduce_t1">亲爱的顾客，欢迎您来到美丽的城市，并选择入住本酒店。为响应政府倡议，自从2019年12月起，酒店客房内不再主动提供牙刷、牙膏、浴液、肥皂、梳子、拖鞋等一次性日用品。为了您的便利，请您自带上述用品，感谢您的配合。希望您在这里度过美好的时光！祝您生活及工作愉快！</view>
-  </view>
   <view class="hotels_price">
     <view class="price_li">
       <text>房费</text>
@@ -113,5 +109,9 @@
   <!-- <evaluation id="evaluationId"></evaluation> -->
   <view class="hotels_btn" bindtap="placeOrder">
     立即下单
+  </view>
+  <view class="hotels_introduce">
+    <view class="introduce_t">温馨提示：</view>
+    <view class="introduce_t introduce_t1">亲爱的顾客，欢迎您来到美丽的城市，并选择入住本酒店。为响应政府倡议，自从2019年12月起，酒店客房内不再主动提供牙刷、牙膏、浴液、肥皂、梳子、拖鞋等一次性日用品。为了您的便利，请您自带上述用品，感谢您的配合。希望您在这里度过美好的时光！祝您生活及工作愉快！</view>
   </view>
 </view>

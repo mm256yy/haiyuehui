@@ -194,7 +194,7 @@
   border-radius: 40rpx;
   text-align: center;
   padding: 20rpx;
-  margin: 20rpx;
+  margin:0rpx 20rpx;
 }
 .btn_again{
   background-color: #e6e4e4;
@@ -205,5 +205,5 @@
   margin: 20rpx;
 }
 .reside_btn{
-  margin-top: 50rpx;
+  padding: 50rpx 0rpx 50rpx;
 }

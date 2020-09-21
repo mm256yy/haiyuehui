@@ -1,5 +1,5 @@
 <view>
-  <image src="/static/images/cis_title.jpg" mode="widthFix" class="cis_title" wx:if="{{hotel.roomNo != ''}}"></image>
+  <image src="/static/images/cis_title.jpg" mode="widthFix" class="cis_title" wx:if="{{hotel.roomNo != ''||true}}"></image>
 	<view >
 		<view class="choose_four" wx:if="{{hotel.roomNo == ''}}">
 			<view class="choose_four_head">
@@ -7,6 +7,7 @@
 				<text class="room_introduce room_type_stairs"></text><text class="room_introduce_name">楼梯/安全通道</text>
 				<text class="room_introduce room_type_elevator"></text><text class="room_introduce_name">电梯</text>
 				<text class="room_introduce room_type_occupy"></text><text class="room_introduce_name">被占有房间</text>
+				<text class="room_introduce room_type_nothing"></text><text class="room_introduce_name">墙体</text>
 			</view>
 			<view class="choose_four_body">
 				<table class="room_table" style="width:{{68*(roomImgUl[0].length)}}rpx">
@@ -24,10 +25,10 @@
 			<view class="form_ul">
 				<view class="form_left">
 					<view class="input_li">
-						<input placeholder="请输入真实姓名" value="{{info.name}}" bindinput="bindNameInput"></input>
+						<input placeholder="请输入真实姓名" cursor-spacing="40rpx" value="{{info.name}}" bindinput="bindNameInput"></input>
 					</view>
 					<view class="input_li">
-						<input placeholder="请输入身份证" value="{{info.identity}}" bindinput="bindIdentityInput"></input>
+						<input placeholder="请输入身份证" cursor-spacing="40rpx" value="{{info.identity}}" bindinput="bindIdentityInput"></input>
 					</view>
 				</view>
 				<view class="form_right" bindtap="person">
@@ -38,7 +39,7 @@
 				</view>
 			</view>
 			<view class="input_li">
-				<input placeholder="请输入手机号" value="{{info.mobile}}" bindinput="bindTelInput"></input>
+				<input placeholder="请输入手机号" cursor-spacing="40rpx" value="{{info.mobile}}" bindinput="bindTelInput"></input>
 			</view>
 		</view>
 		<view class="live_red">注:请确认真实的姓名与身份证正确，否则无法入住</view>
