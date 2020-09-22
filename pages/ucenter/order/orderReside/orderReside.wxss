@@ -124,6 +124,11 @@
   overflow-x: scroll;
   margin: 0rpx 20rpx;
 }
+.room_table_dis{
+  text-align: center;
+  color: #999;
+  padding: 50rpx;
+}
 .room_table{
   display: block;
   padding: 10rpx;

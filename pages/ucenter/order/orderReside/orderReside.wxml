@@ -1,6 +1,7 @@
 <view>
+	<import src="/template/template"/> 
   <image src="/static/images/cis_title.jpg" mode="widthFix" class="cis_title" wx:if="{{hotel.roomNo != ''||true}}"></image>
-	<view >
+	<view  wx:if="{{roomImgUl.length}}">
 		<view class="choose_four" wx:if="{{hotel.roomNo == ''}}">
 			<view class="choose_four_head">
 				<text class="room_introduce room_type_room"></text><text class="room_introduce_name">空余房间</text>
@@ -10,7 +11,7 @@
 				<text class="room_introduce room_type_nothing"></text><text class="room_introduce_name">墙体</text>
 			</view>
 			<view class="choose_four_body">
-				<table class="room_table" style="width:{{68*(roomImgUl[0].length)}}rpx">
+				<table class="room_table" style="width:{{68*(roomImgUl[0].length)}}rpx" >
 					<tr class="room_li_tr" wx:for="{{roomImgUl}}" wx:key="index1" wx:for-index="index1" wx:for-item="item1">
 						<td class="room_type {{item2.class}}" :class="" wx:for="{{item1}}" wx:key="index2" wx:for-index="index2" wx:for-item="item2" bindtap="roomOn" data-index1="{{index1}}" data-index2="{{index2}}">
 							<!-- <text class="room_type_number" WX:if="{{item2.class == 'room_type_room_on'}}">{{item2.room1}}</text> -->
@@ -21,7 +22,7 @@
 			</view>
 		</view>
 		<view class="choose_four_room_val" wx:if="{{hotel.roomPitch != ''}}">已选择房号：{{hotel.roomPitch}}</view>
-		<view class="live_input">
+		<view class="live_input" >
 			<view class="form_ul">
 				<view class="form_left">
 					<view class="input_li">
@@ -44,7 +45,11 @@
 		</view>
 		<view class="live_red">注:请确认真实的姓名与身份证正确，否则无法入住</view>
 	</view>
-	<view class="reside_btn">
+	<view wx:if="{{!roomImgUl.length}}">
+		<view class="room_table_dis" >未找到可选云智住房间，请到前台办理</view>
+		<template is="zero" data="{{list:roomImgUl}}"/>
+	</view>
+	<view class="reside_btn" wx:if="{{roomImgUl.length}}">
 		<view class="btn_define" bindtap="infoBtnFrist">办理入住</view>
 	</view>
 </view>

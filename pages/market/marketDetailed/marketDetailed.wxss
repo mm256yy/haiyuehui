@@ -1,0 +1,7 @@
+/*banner*/
+.home_swiper>swiper{
+  height: 550rpx;
+}
+.banner_image{
+  width: 100%;
+}

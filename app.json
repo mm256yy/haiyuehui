@@ -1,12 +1,12 @@
 {
   "pages":[
-    "pages/index/index",
     
-    "pages/activity/actList/actList",
-    "pages/ucenter/coupon/coupon",
-    "pages/customized/pay/pay",
-    "pages/ucenter/set/visitor/visitor",
-
+    "pages/index/index",
+    "pages/market/marketDetailed/marketDetailed",
+    "pages/market/marketList/marketList",
+    "pages/market/shoppingCart/shoppingCart",
+    "pages/ucenter/order/orderReside/orderReside",
+    
     "pages/member/memberIndex/memberIndex",
     "pages/member/memberPower/memberPower",
     "pages/member/memberAgree/memberAgree",
@@ -19,6 +19,7 @@
     "pages/customized/calendar/calendar",
     "pages/customized/fill/fill",
     "pages/customized/hotelsList/hotelsList",
+    "pages/customized/pay/pay",
     "pages/customized/payResult/payResult",
     "pages/customized/hotelsDetailed/hotelsDetailed",
     "pages/customized/hotelsMap/hotelsMap",
@@ -28,10 +29,13 @@
     "pages/ucenter/order/orderAddition/orderAddition",
     "pages/ucenter/order/orderDetail/orderDetail",
     "pages/ucenter/order/orderList/orderList",
-    "pages/ucenter/order/orderReside/orderReside",
+    
     "pages/ucenter/order/orderChoose/orderChoose",
     "pages/ucenter/order/orderContinue/orderContinue",
     "pages/ucenter/order/orderTransfer/orderTransfer", 
+
+    "pages/ucenter/coupon/coupon",
+    "pages/ucenter/set/visitor/visitor",
 
     
     "pages/ucenter/invite/inviteList/inviteList", 
@@ -52,10 +56,7 @@
     "pages/ucenter/wallet/walletProblem/walletProblem",
     
     "pages/ucenter/teamNumber/teamNumber",
-    "pages/logs/logs",
-    
-    "pages/activity/actDetailed/actDetailed"
-    
+    "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",

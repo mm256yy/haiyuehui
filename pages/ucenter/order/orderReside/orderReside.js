@@ -14,16 +14,16 @@ Page({
       roomPitch:'',
     },
     roomImgUl:[
-      [
-        {type:1,room:'1101',class:'room_type_room',img:''},
-        {type:2,room:'',class:'room_type_stairs',img:'/static/images/room_safe.png'},
-        {type:3,room:'',class:'room_type_elevator',img:'/static/images/room_elevator.png'},
-      ],
-      [
-        {type:1,room:'1101',class:'room_type_room',img:''},
-        {type:0,room:'',class:'room_type_nothing',img:''},
-        {type:5,room:'',class:'room_type_occupy',img:''},
-      ],
+      // [
+      //   {type:1,room:'1101',class:'room_type_room',img:''},
+      //   {type:2,room:'',class:'room_type_stairs',img:'/static/images/room_safe.png'},
+      //   {type:3,room:'',class:'room_type_elevator',img:'/static/images/room_elevator.png'},
+      // ],
+      // [
+      //   {type:1,room:'1101',class:'room_type_room',img:''},
+      //   {type:0,room:'',class:'room_type_nothing',img:''},
+      //   {type:5,room:'',class:'room_type_occupy',img:''},
+      // ],
     ],
     roomPre:[],
     info:{
@@ -43,6 +43,16 @@ Page({
   funHotel(options){
     console.log(options)
     let roomNoNew = ((options.roomNo == ''||!options.roomNo)?'':options.roomNo)
+    // let hotelNew = {
+    //   arr:'2020-09-22',
+    //   dep:'2020-09-23',
+    //   hotelId:'H000001',
+    //   rmtype:"KFT",//"TFT",
+    //   orderId:222222,
+    //   roomNo:'',
+    //   floor:22,
+    //   roomPitch:'',
+    // };
     let hotelNew = {
       arr:options.arr,
       dep:options.dep,
@@ -70,71 +80,73 @@ Page({
     util.request(api.UcenterOrderFloorRoomPosition ,param, 'POST').then(res => {
       let data = res.result;
       let x_ul = [];let y_ul = [];let y_li = {};
-      for(let i=0;i<data.ynum;i++){
-        for(let j=0;j<data.xnum;j++){
-          y_li = {
-            type:0,
-            room:'',
-            class:'room_type_aisle',
-            img:''
+      if(data.rooms){
+        for(let i=0;i<data.ynum;i++){
+          for(let j=0;j<data.xnum;j++){
+            y_li = {
+              type:0,
+              room:'',
+              class:'room_type_other',
+              img:''
+            }
+            y_ul.push(y_li)
           }
-          y_ul.push(y_li)
+          x_ul.push(y_ul);
+          y_ul = [];
         }
-        x_ul.push(y_ul);
-        y_ul = [];
-      }
-      let x_arr = null;let y_arr = null;
-      for(let z=0;z<data.rooms.length;z++){
-        x_arr = data.rooms[z].x;
-        y_arr = data.rooms[z].y;
-        if(data.rooms[z].roomNo == 'elevator'){
-          x_ul[y_arr][x_arr] = {
-            type:3,
-            room:'',
-            class:'room_type_elevator',
-            img:'/static/images/room_elevator.png'
-          }
-        }else if(data.rooms[z].roomNo == 'safe'){
-          x_ul[y_arr][x_arr] = {
-            type:2,
-            room:'',
-            class:'room_type_stairs',
-            img:'/static/images/room_safe.png'
-          }
-        }else if(data.rooms[z].roomNo == 'wall'){
-          x_ul[y_arr][x_arr] = {
-            type:0,
-            room:'',
-            class:'room_type_nothing',
-            img:''
-          }
-        }else if(data.rooms[z].roomNo == 'other'){
-          x_ul[y_arr][x_arr] = {
-            type:6,
-            room:'',
-            class:'room_type_other',
-            img:''
-          }
-        }else if(data.rooms[z].roomNo&&data.rooms[z].available == 0){
-          x_ul[y_arr][x_arr] = {
-            type:5,
-            room:data.rooms[z].roomNo,
-            class:'room_type_occupy',
-            img:''
-          }
-        }else if(data.rooms[z].roomNo&&data.rooms[z].available == 1){
-          x_ul[y_arr][x_arr] = {
-            type:1,
-            room:data.rooms[z].roomNo,
-            class:'room_type_room',
-            img:''
-          }
-        }else{
-          x_ul[y_arr][x_arr] = {
-            type:4,
-            room:data.rooms[z].roomNo,
-            class:'',
-            img:''
+        let x_arr = null;let y_arr = null;
+        for(let z=0;z<data.rooms.length;z++){
+          x_arr = data.rooms[z].x;
+          y_arr = data.rooms[z].y;
+          if(data.rooms[z].roomNo == 'elevator'){
+            x_ul[y_arr][x_arr] = {
+              type:3,
+              room:'',
+              class:'room_type_elevator',
+              img:'/static/images/room_elevator.png'
+            }
+          }else if(data.rooms[z].roomNo == 'safe'){
+            x_ul[y_arr][x_arr] = {
+              type:2,
+              room:'',
+              class:'room_type_stairs',
+              img:'/static/images/room_safe.png'
+            }
+          }else if(data.rooms[z].roomNo == 'wall'){
+            x_ul[y_arr][x_arr] = {
+              type:0,
+              room:'',
+              class:'room_type_nothing',
+              img:''
+            }
+          }else if(data.rooms[z].roomNo == 'other'){
+            x_ul[y_arr][x_arr] = {
+              type:6,
+              room:'',
+              class:'room_type_other',
+              img:''
+            }
+          }else if(data.rooms[z].roomNo&&data.rooms[z].available == 0){
+            x_ul[y_arr][x_arr] = {
+              type:5,
+              room:data.rooms[z].roomNo,
+              class:'room_type_occupy',
+              img:''
+            }
+          }else if(data.rooms[z].roomNo&&data.rooms[z].available == 1){
+            x_ul[y_arr][x_arr] = {
+              type:1,
+              room:data.rooms[z].roomNo,
+              class:'room_type_room',
+              img:''
+            }
+          }else{
+            x_ul[y_arr][x_arr] = {
+              type:4,
+              room:data.rooms[z].roomNo,
+              class:'',
+              img:''
+            }
           }
         }
       }
