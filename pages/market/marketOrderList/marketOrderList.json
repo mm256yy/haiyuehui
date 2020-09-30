@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "商城",
+  "navigationBarTitleText": "订单列表",
   "usingComponents": {
     "marketTab":"/components/marketTab/marketTab"
   }

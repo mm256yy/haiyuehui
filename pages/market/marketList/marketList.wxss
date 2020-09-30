@@ -23,11 +23,13 @@ page{
 }
 .menu_li_text_on{
   color: #666;
-  border-bottom: 5rpx solid #039cee;
+  border-bottom: 5rpx solid #fe6f41;
 }
 /*goods*/
 .market_ul{
-  margin-top: 80rpx;
+  padding-top: 80rpx;
+  padding-bottom: 120rpx;
+  overflow: hidden;
 }
 .maket_li{
   width: 50%;
@@ -43,6 +45,7 @@ page{
 }
 .goods_img{
   width: 100%;
+  height: 340rpx;
   background-color: #f1f1f1;
 }
 .goods_text{

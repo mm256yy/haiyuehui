@@ -1,2 +1,40 @@
-<!--pages/market/shoppingCart/shoppingCart.wxml-->
-<text>pages/market/shoppingCart/shoppingCart.wxml</text>
+<view>
+	<wxs src="../../../filter/filter.wxs" module="money"/>
+	<import src="/template/template"/> 
+	<view class="shop_body">
+		<view class="shop_ul">
+			<view class="shop_li" wx:for="{{shopUl}}" wx:key="index" >
+				<view class="shop_goods_choose" bindtap="goodsChoose" data-index="{{index}}">
+					<image src="/static/images/gou{{item.choose?'2':'1'}}.png" class="goods_choose"></image>
+				</view>
+				<view class="shop_goods_img" bindtap="goodsChoose" data-index="{{index}}">
+					<image src="{{item.img}}" class="goods_img"></image>
+				</view>
+				<view class="shop_li_div shop_goods_text" bindtap="goodsChoose" data-index="{{index}}">
+					<view class="goods_name">{{item.name}}</view>
+					<view class="goods_price">￥{{money.moneyFixed(item.salePrice)}}</view>
+				</view>
+				<view class="shop_goods_num">
+					<view class="num_view num_add" bindtap="goodsNum" data-val="1" data-index="{{index}}">+</view>
+					<view class="num_view num_num">{{item.num}}</view>
+					<view class="num_view num_reduce" bindtap="goodsNum" data-val="0" data-index="{{index}}">-</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="shop_foot">
+		<view class="foot_ul">
+			<view class="foot_li" bindtap="totleChoose">
+				<image src="/static/images/gou{{totle.choose?'2':'1'}}.png" class="totle_choose"></image>
+			</view>
+			<view class="foot_li">
+				<view>合计：{{money.moneyFixed(totle.money)}}</view>
+			</view>
+			<view class="foot_li">
+				<view class="foot_li_pay" bindtap="goPay">提交订单</view>
+			</view>
+		</view>
+	</view>
+	<marketTab id="tabValId" tab-val="2"></marketTab>
+	<template is="zero" data="{{list:shopUl}}"/>
+</view>

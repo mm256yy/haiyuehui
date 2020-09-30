@@ -1,0 +1,93 @@
+page {
+  background-color: #f1f1f1;
+}
+/*menu*/
+.menu_ul{
+  display: flex;
+  background-color: #fff;
+  width: 100%;
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  z-index: 1;
+}
+.menu_li{
+  flex: 1 1 auto;
+  padding: 30rpx 10rpx;
+  text-align: center;
+}
+.menu_li_text{
+  padding: 10rpx 0rpx;
+  border-bottom: 10rpx solid #fff;
+  color: #998;
+  text-align: center;
+}
+.menu_li_text_on{
+  color: #666;
+  border-bottom: 5rpx solid #039cee;
+}
+/*order*/
+.order_ul{
+  padding: 100rpx 0rpx;
+}
+.order_li_box{
+  margin: 20rpx;
+  padding: 0rpx 30rpx;
+  box-shadow: 0rpx 5rpx 8rpx #f1f1f1;
+  border-radius: 30rpx;
+  background-color: #fff;
+}
+.order_head{
+  padding: 20rpx 0rpx;
+}
+.order_orderId{
+  color: #999;
+}
+.order_state{
+  float: right;
+  color: #999;
+}
+.order_li {
+  position: relative;
+  display: flex;
+  padding-top: 30rpx;
+}
+.order_img{
+  width: 160rpx;
+  height: 160rpx;
+  margin-right:20rpx;
+  margin-bottom: 20rpx;
+  background-color: #f1f1f1;
+}
+.order_li_name{
+  flex: 1 1 auto;
+}
+.order_li_money{
+  position: absolute;
+  left: 180rpx;
+  bottom: 20rpx;
+}
+.order_li_num{
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  color: #999;
+}
+.order_li_btn{
+  border-top: 1rpx solid #cdcdcd;
+  overflow: hidden;
+}
+.order_btn{
+  width: 180rpx;
+  text-align: center;
+  padding: 13rpx;
+  margin: 25rpx 0rpx 25rpx 20rpx;
+  color: #fff;
+  background: linear-gradient(to right, #039cee , #346ae8);
+  border-radius: 50rpx;
+  float: right;
+  font-size: 24rpx;
+}
+.refund_order{
+
+}

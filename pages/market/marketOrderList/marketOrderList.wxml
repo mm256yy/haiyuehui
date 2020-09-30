@@ -1,0 +1,33 @@
+<view>
+	<wxs src="../../../filter/filter.wxs" module="filter" />
+	<import src="/template/template"/>
+  <view class="menu_ul">
+    <view class="menu_li" wx:for="{{menuUl}}" wx:key="index" data-index="{{index}}" bindtap="menuOn">
+      <text class="menu_li_text {{menuVal == item.val?'menu_li_text_on':''}}">{{item.name}}</text>
+    </view>
+  </view>
+  <view class="order_ul">
+    <view class="order_li_box" wx:for="{{orderUl}}" wx:key="index1" wx:for-index="index1" wx:for-item="item1">
+      <view class="order_head" bindtap="orderDetail" data-order-id="{{item1.orderId}}">
+        <text class="order_orderId">订单号：{{item1.orderId}}</text>
+        <text class="order_state">{{filter.marketType(item1.state)}}</text>
+      </view>
+      <view class="order_li" bindtap="orderDetail" data-order-id="{{item1.orderId}}" wx:for="{{item1.goods}}" wx:key="index2" wx:for-index="index2" wx:for-item="item2">
+        <view class="order_li_img">
+          <image src="{{item2.img}}" class="order_img"></image>
+        </view>
+        <view class="order_li_name">{{item2.name}}</view>
+        <view class="order_li_money">￥{{filter.moneyFixed(item2.price)}}</view>
+        <view class="order_li_num">X{{item2.num}}</view>
+      </view>
+      <view class="order_li_btn">
+        <view class="order_btn detailed_order">订单详情</view>
+        <view class="order_btn refund_order" wx:if="{{item1.state == 2}}" bindtap="orderCancel" data-index="{{index1}}" data-order-id="{{item1.orderId}}">订单退款</view>
+        <view class="order_btn cancel_order" wx:if="{{item1.state == 0}}" bindtap="orderCancel" data-index="{{index1}}" data-order-id="{{item1.orderId}}">订单取消</view>
+        <view class="order_btn cancel_order" wx:if="{{item1.state == 0}}">立即支付</view>
+      </view>
+    </view>
+  </view>
+  <marketTab id="tabValId" tab-val="3"></marketTab>
+	<template is="zero" data="{{list:orderUl}}"/>
+</view>

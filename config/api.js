@@ -4,11 +4,11 @@
  // 正式线上ip 
  // let WxApiRoot = 'http://124.70.147.182:9001/wx/'; let testing = false; 
  // 测试线上ip 
- // let WxApiRoot = 'http://124.70.132.80:9001/wx/'; let testing = true; 
+ let WxApiRoot = 'http://124.70.132.80:9001/wx/'; let testing = true;
  // 本机 开发api地址   
  // let WxApiRoot = 'http://192.168.133.67:9002/wx/'; let testing = true;    //'http://192.168.188.79:9001/wx/'; 
  // 生产地址 
- let WxApiRoot = 'https://www.hwhhotels.com/wx/'; let testing = false; 
+ // let WxApiRoot = 'https://www.hwhhotels.com/wx/'; let testing = false; 
  
  module.exports = {
    testing,  //判断是否是测试环境
@@ -72,4 +72,15 @@
    MemberPointHistory:WxApiRoot +'member/pointHistory', //积分查询
 
    MemberCouponList:WxApiRoot +'memberCoupon/list',//优惠劵列表
+
+   MallCategory:WxApiRoot +'mall/category',  //商城类别
+   MallGoods:WxApiRoot +'mall/goods',  //商城商品列表
+   MallGoodsDetail:WxApiRoot +'mall/goodsDetail',  //商品详细
+   MallOrderSubmit:WxApiRoot +'mall/order/submit', //提交订单
+   MallPay: WxApiRoot + 'mall/order/prepay', //商城预支付 hwh
+   MallPayCallback: WxApiRoot + 'mall/order/callback/doCallback', //商城支付成功回调 hwh
+   MallOrderList:WxApiRoot +'mall/order/list', //订单列表
+   MallOrderDetail:WxApiRoot +'mall/order/detail', //订单详细
+   MallOrderCancel:WxApiRoot +'mall/order/cancel', //取消订单
+   MallOrderRefund:WxApiRoot +'mall/order/refund', //订单退款
  }

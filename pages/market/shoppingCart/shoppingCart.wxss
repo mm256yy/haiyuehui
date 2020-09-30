@@ -1,1 +1,85 @@
-/* pages/market/shoppingCart/shoppingCart.wxss */
+page{
+  background-color: #f1f1f1;
+}
+/*body*/
+.shop_li{
+  margin: 20rpx;
+  border-radius:20rpx ;
+  border-bottom: 1rpx solid #f1f1f1;
+  display: flex;
+  background-color: #fff;
+  padding: 20rpx;
+  position: relative;
+}
+.shop_li_div{
+  flex: 1 1 auto;
+}
+.goods_img{
+  width: 160rpx;
+  height: 160rpx;
+  margin:0rpx 20rpx;
+}
+.shop_goods_choose{
+  width: 50rpx;
+  margin: auto;
+}
+.goods_choose{
+  display: block;
+  width: 50rpx;
+  height: 50rpx;
+}
+.goods_name{
+  font-size: 28rpx;
+}
+.goods_price{
+  position: absolute;
+  bottom: 30rpx;
+  left: 300rpx;
+  font-weight: 800;
+}
+.shop_goods_num{
+  position: absolute;
+  bottom: 20rpx;
+  right: 20rpx;
+}
+.num_view{
+  width: 80rpx;
+  height: 60rpx;
+  background-color: #f1f1f1;
+  text-align: center;
+  float: right;
+  line-height: 60rpx;
+  border-right: 1rpx solid #fff;
+}
+/*shop_foot*/
+.shop_foot{
+  position: fixed;
+  width: 100%;
+  left: 0rpx;
+  bottom: 100rpx;
+  background-color: #fff;
+  padding: 20rpx;
+  border-top: 2rpx solid #cdcdcd;
+}
+.foot_ul{
+  display: flex;
+}
+.foot_li{
+  flex: 1 1 auto;
+  margin: auto ;
+}
+.totle_choose{
+  display: block;
+  width: 50rpx;
+  height: 50rpx;
+  margin: auto 0rpx;
+}
+.foot_li_pay{
+  float: right;
+  width: 300rpx;
+  background-color: #fe6f41;
+  color: #fff;
+  text-align: center;
+  border-radius: 50rpx;
+  padding: 20rpx;
+}

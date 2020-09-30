@@ -33,6 +33,10 @@ Page({
       wx.navigateBack({
         delta: 2
       })
+    }else if(val == 2){  //商城支付
+      wx.switchTab({ 
+        url:"/pages/market/marketOrderList/marketOrderList"
+      })
     }
   }
 

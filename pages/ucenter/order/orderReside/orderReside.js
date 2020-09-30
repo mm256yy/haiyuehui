@@ -44,8 +44,8 @@ Page({
     console.log(options)
     let roomNoNew = ((options.roomNo == ''||!options.roomNo)?'':options.roomNo)
     // let hotelNew = {
-    //   arr:'2020-09-22',
-    //   dep:'2020-09-23',
+    //   arr:'2020-09-28',
+    //   dep:'2020-09-29',
     //   hotelId:'H000001',
     //   rmtype:"KFT",//"TFT",
     //   orderId:222222,
@@ -86,7 +86,7 @@ Page({
             y_li = {
               type:0,
               room:'',
-              class:'room_type_other',
+              class:'room_type_aisle',
               img:''
             }
             y_ul.push(y_li)

@@ -1,14 +1,99 @@
 <view>
+	<wxs src="../../../filter/filter.wxs" module="money"/>
+	<import src="/template/template"/> 
 	<view class="home_swiper">
 		<swiper indicator-dots="false" autoplay="false" interval="5000">
 			<block wx:for="{{bannerUrls}}" wx:key="item">
 				<swiper-item>
-					<image src="{{item}}" mode="widthFix" class="banner_image" />
+					<image src="{{item}}" class="banner_image" />
 				</swiper-item>
 			</block>
 		</swiper>
 	</view>
-  <view class="">
-  
-  </view>
+	<view class="goods_body">
+		<view class="body_list">
+			<view class="body_li">
+				<text class="body_price1">￥</text>
+				<text class="body_price2">{{money.moneyFixed(detailed.salePrice)}}</text>
+				<!-- <text class="body_price1">.00</text> -->
+			</view>
+			<view class="body_li body_name">{{detailed.name}}</view>
+			<view class="body_li body_introduce">{{detailed.introduce}}</view>
+		</view>
+		
+		<view class="body_list body_flex">
+			<view class="body_icon">
+				<view class="body_other_t2">{{detailed.browse}}</view>
+				<view class="body_other_t1">浏览量</view>
+			</view>
+			<view class="body_icon">
+				<view class="body_other_t2">{{detailed.sales}}</view>
+				<view class="body_other_t1">销售量</view>
+			</view>
+			<view class="body_icon">
+				<view class="body_other_t2">{{detailed.amount}}</view>
+				<view class="body_other_t1">库存量</view>
+			</view>
+		</view>
+		<view class="body_list">
+			<view class="body_li body_choose" bindtap="popShow">规格数量选择</view>
+		</view>
+		<view class="body_list body_flex">
+			<view class="body_icon">
+				<image class="body_icon_img" src="/static/images/gou3.png"></image>
+				<text class="body_icon_text">海悦会</text>
+			</view>
+			<view class="body_icon">
+				<image class="body_icon_img" src="/static/images/gou3.png"></image>
+				<text class="body_icon_text">100%正品</text>
+			</view>
+			<view class="body_icon">
+				<!-- <image class="body_icon_img" src="/static/images/gou3.png"></image> -->
+				<text class="body_icon_text"></text>
+			</view>
+		</view>
+	</view>
+	<view class="goods_foot">
+		<view class="goods_foot_li" bindtap="goShopingCart">
+			<image src="/static/images/shopingcart.png" class="shoping_cart_img"></image>
+			<view class="shoping_cart_text">购物车</view>
+		</view>
+		<view class="goods_foot_li goods_foot_btn goods_foot_shop" bindtap="popShow">
+			<view class="goods_foot_btn_t">加入购物车</view>
+		</view>
+		<view class="goods_foot_li goods_foot_btn goods_foot_pay" bindtap="addShopingCart">
+			<view class="goods_foot_btn_t">立即购买</view>
+		</view>
+	</view>
+	<view class="goods_pop" wx:if="{{pop}}">
+		<view class="pop_black" bindtap="popShow"></view>
+		<view class="pop_box">
+			<view class="pop_background">
+				<view class="pop_li pop_li_">
+					<image src="{{bannerUrls[0]}}" class="goods_img"></image>
+					<image src="/static/images/del-b.png" class="pop_del" bindtap="popShow"></image>
+					<view class="pop_price">
+						<text class="body_price1">￥</text>
+						<text class="body_price2">{{money.moneyFixed(detailed.salePrice)}}</text>
+						<!-- <text class="body_price1">.00</text> -->
+					</view>
+				</view>
+				<view class="pop_li pop_num_box">
+					<view class="pop_purchase">
+						<text>购买数量</text>
+						<text class="pop_purchase_stock">（库存{{detailed.amount}}件）</text>
+					</view>
+					<view class="pop_num">
+						<view class="num_view num_add" bindtap="goodsNum" data-val="1">+</view>
+						<view class="num_view num_num">{{goodsNum}}</view>
+						<view class="num_view num_reduce" bindtap="goodsNum" data-val="0">-</view>
+					</view>
+				</view>
+				<view class="pop_btn">
+					<view class="pop_btn_li goods_foot_shop" bindtap="addShopingCart">加入购物车</view>
+					<view class="pop_btn_li goods_foot_pay">立即购买</view>
+				</view>
+			</view>
+		</view>
+	</view>
 </view>

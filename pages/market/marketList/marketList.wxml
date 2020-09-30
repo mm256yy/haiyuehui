@@ -4,27 +4,31 @@
 			<web-view src="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzA3OTE4NjcwOQ==#wechat_redirect"></web-view>
 		</view>
 	</view> -->
-  <view>
+	<wxs src="../../../filter/filter.wxs" module="money" />
+	<import src="/template/template"/> 
+  <view class="body">
     <view class="menu_ul">
-      <view class="menu_li" wx:for="{{menuUl}}" wx:key="index1">
+      <view class="menu_li" wx:for="{{menuUl}}" wx:key="index" bindtap="menuOn" data-index="{{index}}">
         <text class="menu_li_text {{menuVal == item.val?'menu_li_text_on':''}}">{{item.name}}</text>
       </view>
     </view>
     <view class="market_ul">
-      <view class="maket_li" wx:for="{{goodsUl}}" wx:key="index" bindtap="goGoodsDetailed">
+      <view class="maket_li" wx:for="{{goodsUl}}" wx:key="index" bindtap="goGoodsDetailed" data-id="{{item.id}}">
         <view class="maket_li_product">
           <view class="goods_img_box">
-            <image class="goods_img" mode="widthFix" src="{{item.img}}"></image>
+            <image class="goods_img" src="{{item.img}}"></image>
           </view>
           <view class="goods_text">
             <view class="goods_t1">{{item.name}}</view>
             <view>
-              <text class="goods_t2">￥{{item.salePrice}}</text>
-              <text class="goods_t3">￥{{item.price}}</text>
+              <text class="goods_t2">￥{{money.moneyFixed(item.salePrice)}}</text>
+              <text class="goods_t3">￥{{money.moneyFixed(item.price)}}</text>
             </view>
           </view>
         </view>
       </view>
     </view>
   </view>
+  <marketTab id="tabValId" tab-val="1"></marketTab>
+  <template is="zero" data="{{list:goodsUl}}"/>
 </view>

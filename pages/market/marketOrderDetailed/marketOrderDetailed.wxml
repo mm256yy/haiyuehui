@@ -1,0 +1,49 @@
+<view>
+	<wxs src="../../../filter/filter.wxs" module="filter" />
+	<import src="/template/template"/> 
+  <view class="order_type">
+    <image class="order_type_img" src="/static/images/order_ba.jpg"></image>
+    <text>{{filter.marketType(detail.status)}}</text>
+  </view>
+  <view class="order_detail">
+    <view class="detail_ul">
+      <view class="detail_li">
+        <text class="detail_t1" >交易时间：</text>
+        <text class="detail_t0">{{detail.createTime}}</text>
+      </view>
+      <view class="detail_relative">
+        <text class="detail_t1">订单编号：</text><text class="detail_t0">{{detail.id}}</text>
+        <view class="detail_float" bindtap="shareCopy" data-text="{{detail.id}}">
+          <image class="detail_copy_val" src="/static/images/copy.png"></image>
+        </view>
+      </view>
+    </view>
+    <view class="goods_ul">
+      <view class="goods_li" wx:for="{{detail.goods}}" wx:key="index1" wx:for-index="index1" wx:for-item="item1">
+        <view class="goods_li_body">
+          <view class="goods_img_box">
+            <image src="{{item1.img}}" class="goods_img"></image>
+          </view>
+          <view class="goods_flex">
+            <view class="goods_name">{{item1.name}}</view>
+          </view>
+          <view class="goods_price">￥{{filter.moneyFixed(item1.salePrice)}}</view>
+          <view class="goods_num">X{{item1.num}}</view>
+        </view>
+        <view class="goods_li_foot" wx:if="{{item1.codes != null}}">
+          <view class="goods_code_li" wx:for="{{item1.codes}}" wx:key="index2" wx:for-index="index2" wx:for-item="item2">
+            <text class="goods_code_li_left">兑换码：{{item2.code}}</text>
+            <text class="goods_code_li_right">{{item2.used == 0?'未使用':'已使用'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="money_box">
+      <view class="order_h1">订单金额详情</view>
+      <view class="order_money">
+        <view><text class="detail_t1">总价：</text><text class="detail_t3">￥{{filter.moneyFixed(detail.money)}}</text></view>
+      </view>
+    </view>
+  </view>
+  <template is="label" data="{{text:['取消政策','支付后，订单将会保留，支付后一个小时内可免费取消']}}"/>
+</view>

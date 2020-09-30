@@ -6,7 +6,7 @@ let user = require('../../../utils/user.js');
 Page({
   data: {
     order:{
-      num:'',
+      orderId:'',
       money:0,
       time:'',
       timeS:'',
@@ -31,7 +31,7 @@ Page({
   initialize(data){
     console.log(data)
     let orderNew = {
-      num:data.orderId,
+      orderId:data.orderId,
       money:data.money||999900,
       time:new Date().getTime(),
       timeS:this.formatDateTime(new Date().getTime()),
@@ -91,7 +91,7 @@ Page({
   //预支付
   perpay(){
     let param = {
-      orderId:this.data.order.num,
+      orderId:this.data.order.orderId,
       rmdesc:this.data.rmdescVal,
       balance:this.data.pay.balance,
     }
@@ -99,12 +99,12 @@ Page({
     pay.usePay(param).then(res => {
       //跳转
       wx.navigateTo({
-        url: "../payResult/payResult?result=1&end=0"
+        url: "/pages/customized/payResult/payResult?result=1&end=0"
       });
     }).catch(() => {
       //跳转
       wx.navigateTo({
-        url: "../payResult/payResult?result=0&end=0"
+        url: "/pages/customized/payResult/payResult?result=0&end=0"
       });
     });
   },

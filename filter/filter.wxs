@@ -37,6 +37,27 @@ function otaType(type){
     return "其他类型";
   }
 }
+
+//market订单类型
+function marketType(type){
+  if(type == 0){
+    return '未支付';
+  }else if(type == 1){
+    return '已取消';
+  }else if(type == 2){
+    return '已支付';
+  }else if(type == 3){
+    return '已发货';
+  }else if(type == 4){
+    return '申请退款';
+  }else if(type == 5){
+    return '退款失败';
+  }else if(type == 6){
+    return '以结单';
+  }else{
+    return '未知状态'
+  }
+}
 module.exports = {
   moneyFixed:moneyFixed,
   moneyDiscount:moneyDiscount,
@@ -44,4 +65,5 @@ module.exports = {
 
   bonusType:bonusType,
   otaType:otaType,
+  marketType:marketType,
 };

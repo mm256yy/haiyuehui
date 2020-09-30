@@ -1,0 +1,10 @@
+<view>
+  <view class="foot">
+    <view class="foot_ul">
+      <view class="foot_li" wx:for="{{footUl}}" wx:key="index" bindtap="{{tabVal != index?item.bindtap:''}}">
+        <image src="{{tabVal == index?item.img1:item.img2}}" class="foot_li_img"></image>
+        <view class="foot_li_name">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+</view>

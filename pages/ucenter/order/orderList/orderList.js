@@ -120,7 +120,7 @@ Page({
   //跳转
   orderDetail(e){
     wx.navigateTo({
-      url: "../orderDetail/orderDetail?orderId="+e.currentTarget.dataset.orderId
+      url: "/pages/ucenter/order/orderDetail/orderDetail?orderId="+e.currentTarget.dataset.orderId
     })
   },
   //取消订单

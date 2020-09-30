@@ -1,11 +1,16 @@
 {
   "pages":[
+    "pages/market/marketOrderList/marketOrderList",
+    "pages/market/marketOrderDetailed/marketOrderDetailed",
+    "pages/market/marketOrderCancel/marketOrderCancel",
     
-    "pages/index/index",
-    "pages/market/marketDetailed/marketDetailed",
+    
     "pages/market/marketList/marketList",
     "pages/market/shoppingCart/shoppingCart",
-    "pages/ucenter/order/orderReside/orderReside",
+    "pages/market/markePay/marketPay",
+    "pages/market/marketDetailed/marketDetailed",
+    "pages/index/index",
+
     
     "pages/member/memberIndex/memberIndex",
     "pages/member/memberPower/memberPower",
@@ -29,7 +34,7 @@
     "pages/ucenter/order/orderAddition/orderAddition",
     "pages/ucenter/order/orderDetail/orderDetail",
     "pages/ucenter/order/orderList/orderList",
-    
+    "pages/ucenter/order/orderReside/orderReside",
     "pages/ucenter/order/orderChoose/orderChoose",
     "pages/ucenter/order/orderContinue/orderContinue",
     "pages/ucenter/order/orderTransfer/orderTransfer", 
@@ -74,7 +79,13 @@
         "pagePath": "pages/index/index",
         "iconPath": "static/images/tab/index2.png",
         "selectedIconPath": "static/images/tab/index1.png",
-        "text": "首页"
+        "text": "酒店"
+      },
+      {
+        "pagePath": "pages/market/marketList/marketList",
+        "iconPath": "static/images/tab/mall2.png",
+        "selectedIconPath": "static/images/tab/mall1.png",
+        "text": "商城"
       },
       {
         "pagePath": "pages/ucenter/order/orderList/orderList",
