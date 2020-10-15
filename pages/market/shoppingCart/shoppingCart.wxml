@@ -2,6 +2,13 @@
 	<wxs src="../../../filter/filter.wxs" module="money"/>
 	<import src="/template/template"/> 
 	<view class="shop_body">
+		<view class="shop_title">
+			<view class="title_h1">
+				<!-- <text class="title_h1_t1">全部</text> -->
+				<text class="title_h1_t2">海外海商品</text>
+				<text class="title_manage" bindtap="manage">{{manageType?'完成':'管理'}}</text>
+			</view>
+		</view>
 		<view class="shop_ul">
 			<view class="shop_li" wx:for="{{shopUl}}" wx:key="index" >
 				<view class="shop_goods_choose" bindtap="goodsChoose" data-index="{{index}}">
@@ -31,10 +38,10 @@
 				<view>合计：{{money.moneyFixed(totle.money)}}</view>
 			</view>
 			<view class="foot_li">
-				<view class="foot_li_pay" bindtap="goPay">提交订单</view>
+				<view class="{{manageType?'foot_li_del':'foot_li_pay'}}" bindtap="{{manageType?'goDel':'goPay'}}">{{manageType?'删除':'提交订单'}}</view>
 			</view>
 		</view>
 	</view>
-	<marketTab id="tabValId" tab-val="2"></marketTab>
+	<marketTab id="tabValId" tab-val="1"></marketTab>
 	<template is="zero" data="{{list:shopUl}}"/>
 </view>

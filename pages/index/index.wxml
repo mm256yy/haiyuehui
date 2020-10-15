@@ -44,7 +44,9 @@
   </view>
   <view class="home_recommend">
   </view>
+  
   <view class="home_member">  
+    <!-- <image src="/static/images/market-home.jpg" mode="widthFix"></image> -->
     <image src="/static/images/member-home.jpg" mode="widthFix"></image>
   </view>
   <view class="pop" wx:if="{{popShow}}" bindtap="popHide">

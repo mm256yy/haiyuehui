@@ -11,9 +11,9 @@
         <text class="detail_t1" >交易时间：</text>
         <text class="detail_t0">{{detail.createTime}}</text>
       </view>
-      <view class="detail_relative">
+      <view class="detail_relative" bindtap="shareCopy" data-text="{{detail.id}}">
         <text class="detail_t1">订单编号：</text><text class="detail_t0">{{detail.id}}</text>
-        <view class="detail_float" bindtap="shareCopy" data-text="{{detail.id}}">
+        <view class="detail_float" >
           <image class="detail_copy_val" src="/static/images/copy.png"></image>
         </view>
       </view>
@@ -30,9 +30,9 @@
           <view class="goods_price">￥{{filter.moneyFixed(item1.salePrice)}}</view>
           <view class="goods_num">X{{item1.num}}</view>
         </view>
-        <view class="goods_li_foot" wx:if="{{item1.codes != null}}">
+        <view class="goods_li_foot" wx:if="{{item1.codes != null&&item1.codes != 0}}">
           <view class="goods_code_li" wx:for="{{item1.codes}}" wx:key="index2" wx:for-index="index2" wx:for-item="item2">
-            <text class="goods_code_li_left">兑换码：{{item2.code}}</text>
+            <text class="goods_code_li_left">兑换码：{{filter.numSpace(item2.code)}}</text>
             <text class="goods_code_li_right">{{item2.used == 0?'未使用':'已使用'}}</text>
           </view>
         </view>

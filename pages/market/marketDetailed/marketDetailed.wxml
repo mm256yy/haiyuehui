@@ -18,9 +18,11 @@
 				<!-- <text class="body_price1">.00</text> -->
 			</view>
 			<view class="body_li body_name">{{detailed.name}}</view>
-			<view class="body_li body_introduce">{{detailed.introduce}}</view>
+			<view class="body_li body_introduce">{{detailed.content}}</view>
 		</view>
-		
+		<view class="body_list">
+			<view class="body_li">{{detailed.introduce}}</view>
+		</view>
 		<view class="body_list body_flex">
 			<view class="body_icon">
 				<view class="body_other_t2">{{detailed.browse}}</view>
@@ -56,12 +58,18 @@
 	<view class="goods_foot">
 		<view class="goods_foot_li" bindtap="goShopingCart">
 			<image src="/static/images/shopingcart.png" class="shoping_cart_img"></image>
-			<view class="shoping_cart_text">购物车</view>
+			<view class="shoping_cart_text">
+				购物车
+				<view class="red_tip" wx:if="{{redTip != 0}}">{{redTip}}</view>
+				<view class="animation">
+					<view style="opacity: {{numTipShow}};" animation="{{animationData}}" class="red_tip_animation" wx:if="{{redTip != 0}}">{{redTip}}</view>
+				</view>
+			</view>
 		</view>
-		<view class="goods_foot_li goods_foot_btn goods_foot_shop" bindtap="popShow">
+		<view class="goods_foot_li goods_foot_btn goods_foot_shop" bindtap="popShow" data-mode="0">
 			<view class="goods_foot_btn_t">加入购物车</view>
 		</view>
-		<view class="goods_foot_li goods_foot_btn goods_foot_pay" bindtap="addShopingCart">
+		<view class="goods_foot_li goods_foot_btn goods_foot_pay" bindtap="popShow" data-mode="1">
 			<view class="goods_foot_btn_t">立即购买</view>
 		</view>
 	</view>
@@ -90,8 +98,8 @@
 					</view>
 				</view>
 				<view class="pop_btn">
-					<view class="pop_btn_li goods_foot_shop" bindtap="addShopingCart">加入购物车</view>
-					<view class="pop_btn_li goods_foot_pay">立即购买</view>
+					<view class="pop_btn_li goods_foot_pay" bindtap="{{buyMode == 0?'addShopingCart':'buy'}}">{{buyMode == 0?'加入购物车':'立即购买'}}</view>
+					<!-- <view class="pop_btn_li goods_foot_pay">立即购买</view> -->
 				</view>
 			</view>
 		</view>

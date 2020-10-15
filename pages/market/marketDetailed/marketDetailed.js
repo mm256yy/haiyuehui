@@ -25,9 +25,12 @@ Page({
     },
     pop:false,
     goodsNum:1,
+    redTip:1,
+    buyMode:0, //0 加入购物车 1 立即购买
+    numTipShow:0,
   },
   onLoad: function (options) {
-    this.init(options)
+    this.init(options);
   },
   onShow: function () {
 
@@ -63,14 +66,36 @@ Page({
         detailed:detailedNew,
         bannerUrls:bannerUrlsNew,
       })
+      this.redTipNum();
       console.log(bannerUrlsNew)
     }).catch((err) => {});
   },
+  //判断商品购物车数量
+  redTipNum(){
+    let shoppingCartUl = [];
+    let num = 0;
+    if(wx.getStorageSync("shoppingCart")){
+      shoppingCartUl = wx.getStorageSync("shoppingCart");
+    }
+    if(shoppingCartUl.length>0){
+      for(let i=0;i<shoppingCartUl.length;i++){
+        if(shoppingCartUl[i].id == this.data.detailed.id){
+          num = shoppingCartUl[i].num;
+        }
+      }
+    }
+    console.log(num)
+    this.setData({
+      redTip:num
+    })
+  },
+  //去购物车
   goShopingCart(){
     wx.navigateTo({
       url: "/pages/market/shoppingCart/shoppingCart"
     })
   },
+  //添加购物车
   addShopingCart(){
     let shoppingCartUl = [];
     let isExist = false;
@@ -78,7 +103,6 @@ Page({
     if(wx.getStorageSync("shoppingCart")){
       shoppingCartUl = wx.getStorageSync("shoppingCart");
     }
-    console.log(this.data.detailed.id)
     if(shoppingCartUl.length>0){
       for(let i=0;i<shoppingCartUl.length;i++){
         if(shoppingCartUl[i].id == this.data.detailed.id){
@@ -87,9 +111,8 @@ Page({
         }
       }
     }
-    console.log(isExist)
     if(isExist){
-      shoppingCartUl[index].num += this.data.goodsNum
+      shoppingCartUl[index].num += this.data.goodsNum;
     }else{
       let shoppingCartLi = {
         choose:false,
@@ -102,15 +125,84 @@ Page({
       }
       shoppingCartUl.push(shoppingCartLi);
     }
-    console.log(shoppingCartUl)
     wx.setStorageSync("shoppingCart", shoppingCartUl)
-    this.goShopingCart()
-  },  
-  popShow(){
+    this.popShow(null);
     this.setData({
-      pop:!this.data.pop
+      redTip:this.data.redTip += this.data.goodsNum
+    });
+    this.animation();
+  },  
+  //添加购物车动画效果
+  animation(){
+    this.setData({
+      numTipShow:1,  
+    })
+    let that = this;
+    setTimeout(function(){
+      var animation = wx.createAnimation({
+        duration:200,
+        timingFunction:"ease",  
+      })
+      animation.translate(-50, 50).opacity(0).step();  
+      that.setData({
+        animationData:animation.export(),   //设置完毕
+      })
+      setTimeout(function(){
+        animation.translate(0, 0).step();
+        that.setData({
+          animationData:animation.export()
+        })
+      },1000)
+    },100)
+  },
+  //立即购买
+  buy(){
+    let goodsNewUl = [];
+    let goodsNewLi = {
+      goodsId:this.data.detailed.id,
+      // goodsTitle:this.data.detailed.name,
+      unitPrice:this.data.detailed.salePrice,
+      amount:this.data.goodsNum,
+      totalPrice:this.data.goodsNum*this.data.detailed.salePrice
+    };
+    goodsNewUl.push(goodsNewLi)
+    let param = {
+      goods:goodsNewUl,
+      money:this.data.goodsNum*this.data.detailed.salePrice
+    }
+    console.log(param)
+    util.request(api.MallOrderSubmit , param , 'POST').then(res => {
+      let shopPayNew = [];
+      let shopPayLi = {
+        choose:false,
+        id:this.data.detailed.id,
+        name:this.data.detailed.name,
+        img:this.data.detailed.img,
+        salePrice:this.data.detailed.salePrice,
+        amount:this.data.detailed.amount,
+        num:this.data.goodsNum,
+      };
+      shopPayNew.push(shopPayLi)
+      wx.setStorageSync("shopPay", shopPayNew)
+
+      //跳转
+      wx.redirectTo({
+        url: "/pages/market/markePay/marketPay?money="+res.result.money+"&orderId="+res.result.orderId
+      })
+    }).catch((err) => {});
+  },
+  //弹窗显示
+  popShow(e){
+    let mode = 0;
+    if(e){
+      mode = e.currentTarget.dataset.mode
+    }
+    this.setData({
+      pop:!this.data.pop,
+      buyMode:mode
     })
   },
+  //商品数量加减
   goodsNum(e){
     let val = e.currentTarget.dataset.val;
     let num = this.data.goodsNum

@@ -8,7 +8,6 @@ Page({
   data: {
     detail:{
       status:31,
-      statusS:'',
       hotelId:0,
       hotelName:'',
       rmtype:"",
@@ -41,7 +40,6 @@ Page({
         rmdesc:'',
         time:'2020-08-16至2020-08-19',
         status:11,
-        statusS:'状态',
         subtotal:20000,
         detailsShow:false,
         coupon:0,
@@ -93,7 +91,6 @@ Page({
       let detailNew = {},personUlNew = [],totalNew = {};
       detailNew = {
         status:data.status,
-        statusS:util.orderType(data.status),
         hotelId:data.hotelId,
         hotelName:data.hotelName,
         rmtype:data.rmtype,
@@ -200,7 +197,6 @@ Page({
           rmdesc:res.result[i].rmdesc,
           time:this.TimeR(res.result[i].inDay)+'至'+this.TimeR(res.result[i].outDay),
           status:res.result[i].status,
-          statusS:util.orderType(res.result[i].status),
           subtotal:res.result[i].money,
           detailsShow:false,
           coupon:0,
@@ -256,7 +252,7 @@ Page({
   },
   shareCopy(e){
     wx.setClipboardData({
-      data: e.currentTarget.dataset.text,
+      data: e.currentTarget.dataset.text.substring(0,14),
       success: function (res) {
       }
     })

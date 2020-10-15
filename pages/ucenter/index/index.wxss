@@ -4,16 +4,24 @@ page{
 /*head*/
 .ucenter_ba{
   width: 100%;
+  /* position: absolute;
+  top: 0rpx;
+  left: 0rpx; 
+  z-index: -1;*/
+}
+.ucenter_head{
+  z-index: -1;
   position: absolute;
   top: 0rpx;
   left: 0rpx;
-  z-index: -1;
-}
-.ucenter_head{
-  margin-bottom: 50rpx;
+  width: 100%;
+  /* margin-bottom: 50rpx; */
 }
 .ucenter_person{
-  margin:140rpx 0rpx 0rpx 200rpx;
+  position: absolute;
+  top: 140rpx;
+  left: 200rpx;
+  /* margin:140rpx 0rpx 0rpx 200rpx; */
   padding: 30rpx;
 }
 .ucenter_name{
@@ -65,8 +73,8 @@ page{
   height: 150rpx;
   border-radius:150rpx ;
   position: absolute;
-  top: 140rpx;
-  left: 40rpx;
+  top: 0rpx;
+  left: -160rpx;
 }
 .ucenter_set{
   width: 60rpx;
@@ -77,8 +85,9 @@ page{
 }
 /*menu*/
 .ucenter_menu{
-  margin-top: 100rpx;
+  margin-top: 400rpx;
   width: 100%;
+  z-index: 2;
 }
 .menu_box{
   margin: 20rpx;
@@ -167,6 +176,61 @@ page{
   color: #fff;
   font-size: 22rpx;
 }
+/*商城*/
+.ucenter_market{
+  background-color: #fff;
+  margin: 20rpx;
+  padding: 20rpx;
+  border-radius:20rpx ;
+  box-shadow: 0rpx 5rpx 8rpx #f1f1f1;
+  overflow: hidden;
+}
+.market_head{
+  padding: 10rpx 0rpx;
+}
+.head_h1{
+  font-size: 30rpx;
+}
+.head_h2{
+  float: right;
+}
+.market_ul{
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #f1f1f1;
+}
+.maket_li{
+  width: 33%;
+  float: left;
+}
+.maket_li_product{
+  padding: 10rpx;
+  background-color: #fff;
+}
+.goods_img_box{
+  width: 100%;
+}
+.goods_img{
+  width: 100%;
+  height: 200rpx;
+  background-color: #f1f1f1;
+}
+.goods_text{
+  overflow: hidden;
+}
+.goods_t1{
+  height: 3em;
+  color: #666;
+  overflow: hidden;
+}
+.goods_t2{
+  color: #e66465;
+}
+.goods_t3{
+  text-decoration: line-through;
+  color: #cdcdcd;
+  padding-left: 20rpx;
+}
 /*other*/
 .ucenter_other{
   background-color: #fff;
@@ -176,6 +240,7 @@ page{
 }
 .other_ul{
   padding: 0rpx 20rpx;
+  margin-bottom: 60rpx;
 }
 .other_li{
   padding: 30rpx 0rpx;

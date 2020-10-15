@@ -27,7 +27,7 @@ page{
 }
 /*goods*/
 .market_ul{
-  padding-top: 80rpx;
+  padding-top: 100rpx;
   padding-bottom: 120rpx;
   overflow: hidden;
 }

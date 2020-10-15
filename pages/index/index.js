@@ -27,7 +27,7 @@ Page({
     wx.setStorageSync('othersInviteCodeFrist', true);
   },
   onShow: function () {
-    wx.showTabBar()
+    // wx.showTabBar()
     this.getAllowance();
     this.renderingTime();
     this.fristRegister();

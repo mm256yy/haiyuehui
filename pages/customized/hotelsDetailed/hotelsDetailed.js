@@ -296,14 +296,13 @@ Page({
       height = rect[0].height
       let animation = wx.createAnimation({
           duration:1000,
-          timingFunction:"ease",  //可以看下表1
+          timingFunction:"linear",  
       })
-      animation.translate(0, -height).step();  //动画过程可以看下表2
+      animation.translate(0, -height).step();  
       that.setData({
-        animationData:animation.export()   //设置完毕
+        animationData:animation.export()   
       })
     }).exec();
-    
   },
   //pop隐藏
   infoHide(){
@@ -333,6 +332,12 @@ Page({
   goIndex(){
     wx.switchTab({ 
       url:"/pages/index/index"
+    })
+  },
+  //去商城
+  goMarket(){
+    wx.redirectTo({ 
+      url:"/pages/market/marketList/marketList"
     })
   },
   //money

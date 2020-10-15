@@ -1,16 +1,15 @@
 {
   "pages":[
+    
+    "pages/index/index",
+    "pages/market/shoppingCart/shoppingCart",
     "pages/market/marketOrderList/marketOrderList",
     "pages/market/marketOrderDetailed/marketOrderDetailed",
     "pages/market/marketOrderCancel/marketOrderCancel",
-    
-    
     "pages/market/marketList/marketList",
-    "pages/market/shoppingCart/shoppingCart",
+    
     "pages/market/markePay/marketPay",
     "pages/market/marketDetailed/marketDetailed",
-    "pages/index/index",
-
     
     "pages/member/memberIndex/memberIndex",
     "pages/member/memberPower/memberPower",
@@ -80,12 +79,6 @@
         "iconPath": "static/images/tab/index2.png",
         "selectedIconPath": "static/images/tab/index1.png",
         "text": "酒店"
-      },
-      {
-        "pagePath": "pages/market/marketList/marketList",
-        "iconPath": "static/images/tab/mall2.png",
-        "selectedIconPath": "static/images/tab/mall1.png",
-        "text": "商城"
       },
       {
         "pagePath": "pages/ucenter/order/orderList/orderList",

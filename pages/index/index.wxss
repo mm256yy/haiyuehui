@@ -76,6 +76,7 @@
 .home_recommend{
   margin-top: 300rpx;
 }
+
 /*会员介绍*/
 .home_member{
   padding:40rpx 20rpx 20rpx 20rpx;

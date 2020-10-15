@@ -29,6 +29,6 @@
       </view>
     </view>
   </view>
-  <marketTab id="tabValId" tab-val="1"></marketTab>
+  <marketTab id="tabValId" tab-val="0"></marketTab>
   <template is="zero" data="{{list:goodsUl}}"/>
 </view>

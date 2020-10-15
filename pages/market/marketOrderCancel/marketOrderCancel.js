@@ -10,6 +10,7 @@ Page({
     choose:[
       {val:'我不再有这个订单需求',name:'我不再有这个订单需求'},
       {val:'我找到了更加优惠的商品',name:'我找到了更加优惠的商品'},
+      {val:'订单内有部分商品需要退款',name:'订单内有部分商品需要退款'},
     ],
     chooseVal:0,
     cause:'我不再有这个订单需求',
@@ -62,7 +63,7 @@ Page({
       util.request(api.MallOrderCancel , parma , 'POST').then(res => {
         wx.showModal({ title: '成功' , content: '订单取消申请成功',showCancel: false , success (res) {
           if (res.confirm) {
-            wx.navigateTo({ 
+            wx.reLaunch({ 
               url:"/pages/market/marketOrderList/marketOrderList"
             })
           } else if (res.cancel) {
@@ -74,7 +75,7 @@ Page({
       util.request(api.MallOrderRefund , parma , 'POST').then(res2 => {
         wx.showModal({ title: '成功' , content: '订单退款申请成功',showCancel: false , success (res) {
           if (res.confirm) {
-            wx.navigateTo({ 
+            wx.reLaunch({ 
               url:"/pages/market/marketOrderList/marketOrderList"
             })
           } else if (res.cancel) {

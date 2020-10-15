@@ -15,8 +15,7 @@ Page({
       /*{
         id:0,
         hotelName:'hotelName',
-        type:21,
-        typeS:'待入住',
+        status:21,
         custName:'custName',
         startTime:0,
         startTimeS:'2020-05-11',
@@ -70,8 +69,7 @@ Page({
           o_li = {
             id:res.result.records[i].orderId ,
             hotelName:res.result.records[i].hotelName||'暂无获取到酒店名字',
-            type:res.result.records[i].status,
-            typeS:util.orderType(res.result.records[i].status),
+            status:res.result.records[i].status,
             startTime:new Date(res.result.records[i].arr).getTime(),
             startTimeS:res.result.records[i].arr,
             endTime:new Date(res.result.records[i].dep).getTime(),
@@ -128,9 +126,9 @@ Page({
     let arr = e.currentTarget.dataset.index
     console.log(e.currentTarget.dataset.index)
     let pay = 0; //1 未支付  2已支付
-    if(this.data.orderUl[arr].type === 11){
+    if(this.data.orderUl[arr].status === 11){
       pay = 1
-    }else if(this.data.orderUl[arr].type === 22){
+    }else if(this.data.orderUl[arr].status === 22){
       pay = 2
     }
     wx.navigateTo({
@@ -159,7 +157,6 @@ Page({
         }
       }
     })
-    /**/
   },
   //续住
   continue(e){

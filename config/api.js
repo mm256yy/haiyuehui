@@ -4,11 +4,11 @@
  // 正式线上ip 
  // let WxApiRoot = 'http://124.70.147.182:9001/wx/'; let testing = false; 
  // 测试线上ip 
- let WxApiRoot = 'http://124.70.132.80:9001/wx/'; let testing = true;
- // 本机 开发api地址   
+ // let WxApiRoot = 'http://124.70.132.80:9001/wx/'; let testing = true;
+ // 本机 开发api地址
  // let WxApiRoot = 'http://192.168.133.67:9002/wx/'; let testing = true;    //'http://192.168.188.79:9001/wx/'; 
  // 生产地址 
- // let WxApiRoot = 'https://www.hwhhotels.com/wx/'; let testing = false; 
+ let WxApiRoot = 'https://www.hwhhotels.com/wx/'; let testing = false; 
  
  module.exports = {
    testing,  //判断是否是测试环境
@@ -23,7 +23,7 @@
    CustomizedHotelsList: WxApiRoot + 'hotel/list', //获取酒店列表 hwh
    CustomizedHotelsFill: WxApiRoot + 'order/submit', //下订单 hwh
    CustomizedPay: WxApiRoot + 'order/prepay', //预支付 hwh
-   CustomizedPayCallback: WxApiRoot + 'order/callback/doCallback', //支付成功回调 hwh
+   CustomizedPayCallback: WxApiRoot + 'order/callback', //支付成功回调 hwh
 
    UcenterOrderList: WxApiRoot + 'order/list', //订单列表 hwh
    UcenterOrderDetail: WxApiRoot + 'order/detail', //订单详情 hwh
@@ -67,7 +67,7 @@
    MemberGet:WxApiRoot + 'member/get', //会员信息获取和余额
    MemberRechargeSubmit:WxApiRoot +'recharge/submit',  //充值下订单
    MemberRechargePrepay:WxApiRoot +'recharge/prepay',  //充值调起
-   MemberRechargeCallback:WxApiRoot +'recharge/callback/doCallback',  //充值返回
+   MemberRechargeCallback:WxApiRoot +'recharge/callback',  //充值返回
    MemberRechargeHistory:WxApiRoot +'recharge/history', //余额查询
    MemberPointHistory:WxApiRoot +'member/pointHistory', //积分查询
 
@@ -78,7 +78,7 @@
    MallGoodsDetail:WxApiRoot +'mall/goodsDetail',  //商品详细
    MallOrderSubmit:WxApiRoot +'mall/order/submit', //提交订单
    MallPay: WxApiRoot + 'mall/order/prepay', //商城预支付 hwh
-   MallPayCallback: WxApiRoot + 'mall/order/callback/doCallback', //商城支付成功回调 hwh
+   MallPayCallback: WxApiRoot + 'mall/order/callback', //商城支付成功回调 hwh
    MallOrderList:WxApiRoot +'mall/order/list', //订单列表
    MallOrderDetail:WxApiRoot +'mall/order/detail', //订单详细
    MallOrderCancel:WxApiRoot +'mall/order/cancel', //取消订单

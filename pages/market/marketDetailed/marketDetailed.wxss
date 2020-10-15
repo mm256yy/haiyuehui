@@ -90,6 +90,30 @@ page{
 .shoping_cart_text{
   color: #666;
   font-size: 20rpx;
+  position: relative;
+}
+.red_tip{
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  top: -50rpx;
+  right: 60rpx;
+  background-color: #fe6f41;
+  color: #fff;
+  border-radius:20rpx ;
+  font-size: 20rpx;
+}
+.red_tip_animation{
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  top: -150rpx;
+  right: -40rpx;
+  background-color: #fe6f41;
+  color: #fff;
+  border-radius:20rpx ;
+  font-size: 20rpx;
+  
 }
 .goods_foot_btn{
   display: flex;

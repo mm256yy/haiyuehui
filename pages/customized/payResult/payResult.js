@@ -34,7 +34,7 @@ Page({
         delta: 2
       })
     }else if(val == 2){  //商城支付
-      wx.switchTab({ 
+      wx.reLaunch({ 
         url:"/pages/market/marketOrderList/marketOrderList"
       })
     }

@@ -4,7 +4,6 @@ let api = require('../config/api.js');
 let app = getApp();
 //订房支付
 function usePay(param){
-  console.log(app.globalData.canPay);
   if(!app.globalData.canPay&&app.globalData.canPay != undefined){  //不能支付
     return false;
   }
@@ -77,7 +76,6 @@ function usePay(param){
 }
 //充值
 function rechargePay(param){
-  console.log(app.globalData.canPay);
   if(!app.globalData.canPay&&app.globalData.canPay != undefined){  //不能支付
     return false;
   };
@@ -140,7 +138,6 @@ function rechargePay(param){
 }
 //商城支付
 function mallPay(param){
-  console.log(app.globalData.canPay);
   if(!app.globalData.canPay&&app.globalData.canPay != undefined){  //不能支付
     return false;
   }
@@ -151,13 +148,13 @@ function mallPay(param){
     util.request(api.MallPay ,param, 'POST').then(res => {
       console.log(res);
       if(res.result == null){  //余额支付
-        // app.globalData.canPay = true;
-        // //回调支付是否成功
-        // util.request(api.CustomizedPayCallback ,{orderId:orderIdCallback}, 'GET').then(function(res) {
-        //   console.log(res);
-        // });
-        // util.jhxLoadHide();
-        // resolve(true);
+        app.globalData.canPay = true;
+        //回调支付是否成功
+        util.request(api.MallPayCallback ,{orderId:orderIdCallback}, 'GET').then(function(res) {
+          console.log(res);
+        });
+        util.jhxLoadHide();
+        resolve(true);
       }else{  //微信支付
         let data = JSON.parse(res.result.respData); //message
         let ssn = res.result.respTxnSsn;

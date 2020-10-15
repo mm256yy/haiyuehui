@@ -1,28 +1,39 @@
 let api = require('../../../config/api.js');
 let util = require('../../../utils/util.js');
+let user = require('../../../utils/user.js');
 Page({
   data: {
     menuUl:[
       {name:' 全部 ',val:''},
     ],
     goodsUl:[
-      {img:'/static/images/logo.png',name:'测试产品123123',introduce:'这是一个测试产品打扫打扫打扫的大事',categoryId:'',price:'123',salePrice:'110',content:'',shareUrl:'',},
-      {img:'/static/images/logo.png',name:'测试产品123123',introduce:'这是一个测试产品打扫打扫打扫的大事',categoryId:'',price:'123',salePrice:'110',content:'',shareUrl:'',},
+      // {img:'/static/images/logo.png',name:'测试产品123123',introduce:'这是一个测试产品打扫打扫打扫的大事',categoryId:'',price:'123',salePrice:'110',content:'',shareUrl:'',},
     ],
     pageNo:1,
     menuVal:0,
   },
   onLoad: function (options) {
-    
+    // this.login();
   },
   onShow: function () {
-    wx.hideTabBar()
+    // wx.hideTabBar()
     this.menu()
     this.setData({
       pageNo:1,
       menuVal:0,
     })
-    this.init(0,1);
+  },
+  //判断登陆
+  login(){
+    // 判断登录
+    user.checkLogin().then(res => {
+      
+    }).catch((res) =>{
+      console.log('需要登陆');
+      wx.navigateTo({ 
+        url: "/pages/auth/login/login"
+      });
+    })
   },
   // 上拉刷新
   onReachBottom: function() {
@@ -46,6 +57,7 @@ Page({
       this.setData({
         menuUl:menuUlNew
       })
+      this.init(0,1);
     }).catch((err) => {});
   },
   //加载商品

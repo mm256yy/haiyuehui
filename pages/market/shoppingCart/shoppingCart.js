@@ -17,7 +17,8 @@ Page({
     totle:{
       choose:false,
       money:0,
-    }
+    },
+    manageType:false,
   },
   onLoad: function (options) {
 
@@ -32,6 +33,12 @@ Page({
       shopUl:shoppingCart
     })
     this.totleMoney();
+  },
+  //管理
+  manage(){
+    this.setData({
+      manageType:!this.data.manageType
+    })
   },
   //单选
   goodsChoose(e){
@@ -159,5 +166,28 @@ Page({
         url: "/pages/market/markePay/marketPay?money="+res.result.money+"&orderId="+res.result.orderId
       })
     }).catch((err) => {});
+  },
+  //删除
+  goDel(){
+    let that = this
+    wx.showModal({    
+      title: '删除',
+      content: '删除购物车商品',
+      success: function(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          let shopUlNew = that.data.shopUl;
+          for(let i=shopUlNew.length-1;i>=0;i--){
+            if(shopUlNew[i].choose){
+              shopUlNew.splice(i,1);
+            }
+          }
+          wx.setStorageSync("shoppingCart", shopUlNew);
+          that.onShow();
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
 })

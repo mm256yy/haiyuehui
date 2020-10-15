@@ -8,7 +8,7 @@ Component({
   },
   data: {
     footUl:[
-      {img1:'/static/images/tab/index1.png',img2:'/static/images/tab/index2.png',name:'酒店',bindtap:'goIndex'},
+      // {img1:'/static/images/tab/index1.png',img2:'/static/images/tab/index2.png',name:'酒店',bindtap:'goIndex'},
       {img1:'/static/images/tab/mall1.png',img2:'/static/images/tab/mall2.png',name:'商城',bindtap:'goMarket'},
       {img1:'/static/images/tab/shopingcart1.png',img2:'/static/images/tab/shopingcart2.png',name:'购物车',bindtap:'goShopingCart'},
       {img1:'/static/images/tab/order1.png',img2:'/static/images/tab/order2.png',name:'订单',bindtap:'goOrder'},
@@ -16,26 +16,26 @@ Component({
   },
   methods: {
     //酒店首页
-    goIndex(){
-      wx.switchTab({
-        url: "/pages/index/index"
-      })
-    },
+    // goIndex(){
+    //   wx.switchTab({
+    //     url: "/pages/index/index"
+    //   })
+    // },
     //商城
     goMarket(){
-      wx.switchTab({
+      wx.redirectTo({
         url: "/pages/market/marketList/marketList"
       })
     },
     //购物车
     goShopingCart(){
-      wx.navigateTo({
+      wx.redirectTo({
         url: "/pages/market/shoppingCart/shoppingCart"
       })
     },
     //订单
     goOrder(){
-      wx.navigateTo({
+      wx.redirectTo({
         url: "/pages/market/marketOrderList/marketOrderList"
       })
     },

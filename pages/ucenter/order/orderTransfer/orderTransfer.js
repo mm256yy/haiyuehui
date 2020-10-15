@@ -23,7 +23,6 @@ Page({
     },
     detail:{
       status:'',
-      statusS:'',
       orderId:'',
       hotelId:'',
       hotelName:'',
@@ -128,7 +127,6 @@ Page({
       }
       let detailNew = {
         status:res.result.status,
-        statusS:util.orderType(res.result.status),
         orderId:res.result.orderId,
         hotelId:res.result.hotelId,
         hotelName:res.result.hotelName,
@@ -198,7 +196,6 @@ Page({
       console.log(res.result.days)
       let detailNew = {
         status:res.result.status,
-        statusS:util.orderType(res.result.status),
         orderId:res.result.orderId,
         hotelId:res.result.hotelId,
         hotelName:res.result.hotelName,

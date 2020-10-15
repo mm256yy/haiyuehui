@@ -4,17 +4,17 @@ Page({
   data: {
     detail:{
       status:1,
-      createTime:'3213213',
-      id:'123123123',
+      createTime:'',
+      id:'',
       goods:[
         {
           id:0,
           img:'/static/images/logo.png',
-          name:'五等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',
-          salePrice:'2400',
-          num:'2',
+          name:'',
+          salePrice:'0',
+          num:'1',
           codes:[
-            {code:'4564564',used:0}
+            // {code:'4564564',used:0}
           ]
         },
       ]
@@ -68,5 +68,12 @@ Page({
         detail:detailNew
       })
     }).catch((err) => {});
-  }
+  },
+  shareCopy(e){
+    wx.setClipboardData({
+      data: String(e.currentTarget.dataset.text),
+      success: function (res) {
+      },
+    })
+  },
 })
