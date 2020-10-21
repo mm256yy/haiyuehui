@@ -75,7 +75,7 @@ Page({
     this.userInfo();
     this.member();
     this.badge();
-    // this.goods();
+    this.goods();
   },
   //判断登陆
   login(){

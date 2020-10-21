@@ -151,7 +151,7 @@ Page({
     user.memberGetInfo().then(res => {
       fillNew = {
         roomNum:1,
-        name:(res.result.name != null?res.result.name:''),
+        name:((res.result.name != null && res.result.name != '微信')?res.result.name:''),
         mobile:res.result.mobile,
         cardLevel:res.result.cardLevel,
         grade:util.memberGrade(res.result.cardLevel),

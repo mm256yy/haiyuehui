@@ -104,7 +104,7 @@ Page({
     let param = {
       orderId:this.data.totle.orderId,
       rmdesc:this.data.totle.orderId,
-      balance:1,//this.data.pay.balance,
+      balance:this.data.pay.balance,
     }
     console.log(param);
     pay.mallPay(param).then(res => {

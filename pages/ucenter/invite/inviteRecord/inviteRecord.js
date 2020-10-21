@@ -26,7 +26,7 @@ Page({
     this.setData({
       pageNo:this.data.pageNo + 1,
     });
-    if(chooseType == 1){
+    if(this.data.chooseType == 1){
       this.bindorderBonus(2)
     }else{
       this.bindbonusHistory(2)
@@ -94,7 +94,7 @@ Page({
       if(pull == 1){  //初始化
         incomeUlNew = o_ul;
       }else{
-        incomeUlNew = this.data.orderUl.concat(o_ul);
+        incomeUlNew = this.data.orderBonusUl.concat(o_ul);
         if(data.length == 0){
           this.setData({
             pageNo:this.data.pageNo - 1
@@ -107,6 +107,7 @@ Page({
     }).catch((err) => {});
   },
   bindbonusHistory(pull){//2余额流水 1初始化 2下拉
+    let that = this;
     let chooseDateNew = this.data.chooseDate;
     let param = {
       startDate:chooseDateNew+'-01', 
@@ -131,13 +132,17 @@ Page({
           o_ul.push(o_li)
         }
       }
+      console.log(pull)
       if(pull == 1){  //初始化
         incomeUlNew = o_ul;
       }else{
-        incomeUlNew = this.data.orderUl.concat(o_ul);
+        console.log(data.length == 0)
+        incomeUlNew = that.data.bonusHistoryUl.concat(o_ul);
+        console.log(data.length == 0)
         if(data.length == 0){
-          this.setData({
-            pageNo:this.data.pageNo - 1
+          console.log(666)
+          that.setData({
+            pageNo:that.data.pageNo - 1
           });
         }
       };
