@@ -166,6 +166,10 @@ Page({
             wec3:util.importantMoney(res.result[i].wec3),  //三早
             wracS:(util.importantMoney(res.result[i].wrac)/100),  
             wec0S:(isLoginNew?(this.moneyMin(res.result[i].wec0,res.result[i].wec1,res.result[i].wec,res.result[i].wec3)/100):'???? '), 
+            wec0s:res.result[i].wec0s,
+            wec1s:res.result[i].wec1s,
+            wecs:res.result[i].wecs,
+            wec3s:res.result[i].wec3s,
           }
           roomNew.push(roomLi)
         }

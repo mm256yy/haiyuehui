@@ -1,6 +1,6 @@
 <view>
-  <wxs src="../../../filter/filter.wxs" module="money" />
-  <view class="head_banner">
+	<wxs src="../../../filter/filter.wxs" module="money" />
+	<view class="head_banner">
     <swiper 
       autoplay="true"
       interval="5000"
@@ -72,7 +72,7 @@
     </view>
     <popCoupon id="popId" full-money-price="{{total.roomPrice}}" bindcouponTotal="couponTotal"></popCoupon>
   </view>
-  <view class="hotels_price">
+  <!-- <view class="hotels_price">
     <view class="price_li">
       <text>房费</text>
       <text class="price_li_r">{{money.moneyFixed(total.roomTotalPrice)}}</text>
@@ -105,45 +105,71 @@
       <text>总价：</text>
       <text class="price_li_r price_red">￥{{money.moneyFixed(total.money)}}</text>
     </view>
-  </view>
+  </view> -->
   <!-- <evaluation id="evaluationId"></evaluation> -->
-  <view class="hotels_btn" bindtap="placeOrder">
+  <!-- <view class="hotels_btn"  bindtap="placeOrder">
     立即下单
-  </view>
+  </view> -->
   <view class="hotels_introduce">
     <view class="introduce_t">温馨提示：</view>
     <view class="introduce_t introduce_t1">亲爱的顾客，欢迎您来到美丽的城市，并选择入住本酒店。为响应政府倡议，自从2019年12月起，酒店客房内不再主动提供牙刷、牙膏、浴液、肥皂、梳子、拖鞋等一次性日用品。为了您的便利，请您自带上述用品，感谢您的配合。希望您在这里度过美好的时光！祝您生活及工作愉快！</view>
   </view>
-  <!-- <view class="hotels_foot" wx:if="{{true}}">
-    <view class="black" bindtap="popHide"></view>
-    <view class="pop_box" animation="{{animationData}}" id="pop">
-			<view class="pop">
-				<view class="pop_h1">{{room.name}}</view>
-				<image class="pop_del" bindtap="infoHide" src="/static/images/del.png"></image>
-				<view class="info_body">
-					<view class="info_body1">
-						<text class="info_attr_s info_attr"><text class="info_attr_val">面积</text><text>{{room.square == null?'':room.square}}</text></text>
-						<text class="info_attr_s info_attr"><text class="info_attr_val">楼层</text><text>{{room.floor == null?'':room.floor}}</text></text>
-						<text class="info_attr_s info_attr"><text class="info_attr_val">加床</text><text>{{room.addBed == null?'':room.addBed}}</text></text>
-						<text class="info_attr_s info_attr"><text class="info_attr_val">吸烟</text><text>{{room.smoke == null?'':room.smoke}}</text></text>
-						<text class="info_attr_s info_attr"><text class="info_attr_val">窗户</text><text>{{room.windowType == null?'':room.windowType}}</text></text>
-						<text class="info_attr_s info_attr"><text class="info_attr_val">其他</text><text></text></text>
-					</view>
-					<view class="info_body2">
-						<text class="info_attr_b info_attr"><text class="info_attr_val">宽带</text><text>有</text></text>
-						<text class="info_attr_b info_attr"><text class="info_attr_val">浴室</text><text></text></text>
-						<text class="info_attr_b info_attr"><text class="info_attr_val">床品</text><text>席梦思</text></text>
-						<text class="info_attr_b info_attr"><text class="info_attr_val">食品饮品</text><text>方便面饮料小食</text></text>
-						<text class="info_attr_b info_attr"><text class="info_attr_val">便利设施</text><text>雨伞，书桌，熨衣设备，多种规格电源插座，空调，闹钟，针线包，220V电压插座，遮光窗帘，手动窗帘。</text></text>
-					</view>
-				</view>
-			</view>
-		</view>
-    <view class="">
-      <view></view>
-      <view>
-        <view></view>
+  <view class="hotels_foot" wx:if="{{true}}">
+    <view class="hotels_foot_pop" wx:if="{{infoPop}}">
+      <view class="black" bindtap="infoShow"></view>
+      <view class="pop_box">
+        <view class="pop">
+          <view class="pop_h1">房费详细</view>
+          <view class="info_body">
+            <view class="info_price_ul">
+              <view class="price_li" wx:for="{{infoPrice}}" wx:key="index">
+                <text class="info_price_data">{{item.date}}</text>
+                <text class="price_li_r">￥{{money.moneyFixed(item.price)}}</text>
+              </view>
+            </view>
+            <view class="info_price_ul">
+              <view class="price_li">
+                <text>房费小计</text>
+                <text class="price_li_r price_subtotal">{{money.moneyFixed(total.roomTotalPrice)}}</text>
+                <text class="price_li_rmb price_subtotal">￥</text>
+                <text class="price_li_details">{{room.timeNum + "晚，1间共"}}</text>
+              </view>
+              <view class="price_li price_li_coupon" wx:if="{{total.coupon != 0}}">
+                <text>优惠劵</text>
+                <text class="price_li_r">-￥{{money.moneyFixed(coupon.couponMoney)}}</text>
+              </view>
+              <view class="price_li price_li_coupon" wx:if="{{total.allowanceMoney != 0}}">
+                <text>津贴</text>
+                <text class="price_li_r">-￥{{money.moneyFixed(fill.allowanceMoney)}}</text>
+              </view>
+              <view class="price_li ">
+                <text>会员折扣</text>
+                <text class="price_li_r">{{money.moneyDiscount(fill.discount)}}折</text>
+              </view>
+              <view class="price_li">
+                <text>押金</text>
+                <text class="price_li_r">{{money.moneyFixed(room.roomDeposit)}}</text>
+                <text class="price_li_rmb">￥</text>
+              </view>
+              <view class="price_li">
+                <text>其他费用</text>
+                <text class="price_li_r">{{money.moneyFixed(room.roomOther)}}</text>
+                <text class="price_li_rmb">￥</text>
+              </view>
+            </view>
+            
+          </view>
+        </view>
       </view>
     </view>
-  </view> -->
+    <view class="hotels_foot_btn">
+      <view class="foot_btn_flex foot_btn_money">
+        <text class="btn_money_t1">在线支付</text>
+        <text class="btn_money_t2">￥</text>
+        <text class="btn_money_t3">{{money.moneyFixed(total.money)}}</text>
+      </view>
+      <view class="foot_btn_flex foot_btn_details" bindtap="infoShow">明细</view>
+      <view class="foot_btn_flex foot_btn_order" bindtap="placeOrder">立即下单</view>
+    </view>
+  </view>
 </view>

@@ -2,14 +2,6 @@
   "pages":[
     
     "pages/index/index",
-    "pages/market/shoppingCart/shoppingCart",
-    "pages/market/marketOrderList/marketOrderList",
-    "pages/market/marketOrderDetailed/marketOrderDetailed",
-    "pages/market/marketOrderCancel/marketOrderCancel",
-    "pages/market/marketList/marketList",
-    
-    "pages/market/markePay/marketPay",
-    "pages/market/marketDetailed/marketDetailed",
     
     "pages/member/memberIndex/memberIndex",
     "pages/member/memberPower/memberPower",
@@ -58,6 +50,14 @@
     "pages/ucenter/wallet/walletConsume/walletConsume",
     "pages/ucenter/wallet/walletRecharge/walletRecharge",
     "pages/ucenter/wallet/walletProblem/walletProblem",
+
+    "pages/market/shoppingCart/shoppingCart",
+    "pages/market/marketOrderList/marketOrderList",
+    "pages/market/marketOrderDetailed/marketOrderDetailed",
+    "pages/market/marketOrderCancel/marketOrderCancel",
+    "pages/market/marketList/marketList",
+    "pages/market/markePay/marketPay",
+    "pages/market/marketDetailed/marketDetailed",
     
     "pages/ucenter/teamNumber/teamNumber",
     "pages/logs/logs"

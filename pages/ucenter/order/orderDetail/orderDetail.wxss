@@ -196,6 +196,19 @@ page{background-color: #f1f1f1;}
   background-color: #fff;
   padding: 20rpx;
 }
+.date_ul{
+  background-color: #f1f1f1;
+  padding:10rpx 20rpx;
+}
+.date_li_t1{
+  color: #999;
+  font-size: 24rpx;
+}
+.date_li_t2{
+  color: #999;
+  font-size: 24rpx;
+  float: right;
+}
 .detail_t2{
   display: inline-block;
   float: right;

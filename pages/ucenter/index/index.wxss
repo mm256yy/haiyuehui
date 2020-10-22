@@ -245,6 +245,7 @@ page{
 .other_li{
   padding: 30rpx 0rpx;
   border-bottom:1rpx solid #f1f1f1 ;
+  position: relative;
 }
 .other_li_img{
   width: 40rpx;
@@ -253,6 +254,17 @@ page{
 }
 .other_li_text{
   padding-left: 20rpx;
+}
+.other_li_badge{
+  display: inline-block;
+  margin: 10rpx;
+  width: 20rpx;
+  height: 20rpx;
+  border-radius:430rpx ;
+  border: 1px solid #f00000;
+  background-color: #f00000;
+  color: #fff !important;
+  float: right;
 }
 .other_li_go{
   width: 40rpx;

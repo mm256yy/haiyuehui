@@ -30,6 +30,10 @@ Page({
       wec1:999900,  //单早
       wec:999900,  //双早
       wec3:999900,  //三早
+      wec0s:[],
+      wec1s:[],
+      wecs:[],
+      wec3s:[],
     },
     fill:{
       // roomNum:1,
@@ -57,7 +61,7 @@ Page({
     },
     total:{
       timeNum:1,
-      roomPrice:999900,
+      // roomPrice:999900,
       roomTotalPrice:999900,
       coupon:0,  //优惠劵
       allowanceMoney:0,
@@ -65,7 +69,13 @@ Page({
       deposit:0,  //押金
       other:0,
       money:999900,
-    }
+    },
+    infoPop:false,
+    infoPrice:[  //日历房展示
+      {date:'16-29',price:51800},
+      {date:'16-29',price:51800},
+      {date:'16-29',price:51800},
+    ],
   },
   onLoad: function (options) {
     this.mobileInfo();
@@ -119,6 +129,10 @@ Page({
       wec1:roomrNew.wec1,  //单早
       wec:roomrNew.wec,  //双早
       wec3:roomrNew.wec3,  //三早
+      wec0s:roomrNew.wec0s,
+      wec1s:roomrNew.wec1s,
+      wecs:roomrNew.wecs,
+      wec3s:roomrNew.wec3s,
     }
     let breakfastUlNew = [
       {price:roomrNew.wec0,name:'无早餐',val:'WEC0'},
@@ -126,12 +140,16 @@ Page({
       {price:roomrNew.wec,name:'双人早餐',val:'WEC'},
       {price:roomrNew.wec3,name:'三人早餐',val:'WEC3'},
     ]
+    //早餐选择
+    let breakfastChooseNew = this.breakfastNum(roomrNew.wec0,roomrNew.wec1,roomrNew.wec,roomrNew.wec3)
+    //赋值
     this.setData({
       room : roomNew,
       breakfastUl:breakfastUlNew,
-      breakfastChoose:this.breakfastNum(roomrNew.wec0,roomrNew.wec1,roomrNew.wec,roomrNew.wec3),
+      breakfastChoose:breakfastChooseNew,
     })
     this.pics();
+    this.funInfoPrice(breakfastChooseNew);
   },
   //手机信息
   mobileInfo(){
@@ -202,12 +220,34 @@ Page({
       console.log(err)
     });
   },
+  //日历房
+  funInfoPrice(index){
+    //明细日历房
+    let infoPriceNew = [];
+    let infoPriceParamNew = [];
+    if(index == 0){
+      infoPriceNew = this.data.room.wec0s.slice(0, -1);
+    }else if(index == 1){
+      infoPriceNew = this.data.room.wec1s.slice(0, -1);
+    }else if(index == 2){
+      infoPriceNew = this.data.room.wecs.slice(0, -1);
+    }else if(index == 3){
+      infoPriceNew = this.data.room.wec3s.slice(0, -1);
+    }
+    console.log(infoPriceNew)
+    this.setData({
+      infoPrice:infoPriceNew,
+    })
+  },
   //早餐选择
   breakfastChoose(e){
+    //日历房
+    this.funInfoPrice(index);
+    //重新计算
+    this.total();
     let index = e.currentTarget.dataset.index;
-    //传递值进pop
-    this.popId.funCouponList(this.data.breakfastUl[index].price*this.data.fill.roomNum*this.data.room.timeNum)
-    
+    //传递值进优惠劵pop
+    this.popId.funCouponList(this.total.money)
     this.setData({
       breakfastChoose: index,
       'room.roomPrice':this.data.breakfastUl[index].price,
@@ -216,9 +256,6 @@ Page({
       'coupon.couponId':null,
       'coupon.fullMoney':0,
     });
-    
-    //重新计算
-    this.total();
   },
   //couponTotal
   couponTotal(e){
@@ -235,9 +272,15 @@ Page({
   },
   //总计
   total(){
+    let roomTotalPriceNew = 0;
+    let infoPrice = this.data.infoPrice
+    for(let i=0;i<infoPrice.length;i++){
+      roomTotalPriceNew += infoPrice[i].price
+    }
+    
     let timeNumNew = this.data.room.timeNum;
     let roomPriceNew = this.data.room.roomPrice;
-    let roomTotalPriceNew = this.data.room.roomPrice*this.data.fill.roomNum*this.data.room.timeNum;
+    //roomTotalPriceNew
     let depositNew = this.data.room.roomDeposit*this.data.fill.roomNum;
     let couponMoneyNew = this.data.coupon.couponMoney;
     let allowanceMoneyNew = this.data.fill.allowanceMoney;
@@ -290,6 +333,7 @@ Page({
       memberAllowanceId:this.data.fill.memberAllowanceId,  //津贴id
       allowanceMoney:this.data.fill.allowanceMoney, //津贴金额
       fromMemberId:this.data.fill.fromMemberId, //发送津贴人id
+      datePrices:this.data.infoPrice  //日历房
     };
     console.log(param)
     util.request(api.CustomizedHotelsFill ,param, 'POST').then(res => {
@@ -361,5 +405,11 @@ Page({
   dayNum(calendarNew){
     let num = calendarNew.endTime-calendarNew.startTime
     return parseInt(num/60/60/24/1000)
-  }
+  },
+  //pop显示
+  infoShow(){
+    this.setData({
+      infoPop:!this.data.infoPop
+    })
+  },
 })

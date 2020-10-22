@@ -64,6 +64,11 @@ Page({
     pwdValS:'******',
     pwdSeeIdent:false,
     allowConnect:0, //0 不允许 1 允许
+    datePrices:[
+      {date:'2020-09-11',price:2200},
+      {date:'2020-09-11',price:2200},
+    ],  //日历房
+    datePricesShow:true,
   },
   onLoad(options) {
     this.init(options)

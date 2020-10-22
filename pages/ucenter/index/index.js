@@ -41,13 +41,13 @@ Page({
       },
     ],
     otherIcon:[
-      {img:'/static/images/other/other1.png',text:'身份信息',tap:'goInformation'},
-      {img:'/static/images/other/other8.png',text:'会员权益',tap:'goMember'},
-      {img:'/static/images/other/other2.png',text:'常住人簿',tap:'goOften'},
-      // {img:'/static/images/other/other3.png',text:'邀请下单',tap:'goInvitation'},
-      {img:'/static/images/other/other4.png',text:'隐私条款',tap:'goPrivacy'},
-      // {img:'/static/images/other/other5.png',text:'客服热线',tap:'goService'},
-      {img:'/static/images/other/other9.png',text:'设置',tap:'goSet'},
+      {img:'/static/images/other/other1.png',text:'身份信息',tap:'goInformation',badge:false},
+      {img:'/static/images/other/other8.png',text:'会员权益',tap:'goMember',badge:false},
+      {img:'/static/images/other/other2.png',text:'常住人簿',tap:'goOften',badge:false},
+      // {img:'/static/images/other/other3.png',text:'邀请下单',tap:'goInvitation',badge:false},
+      {img:'/static/images/other/other4.png',text:'隐私条款',tap:'goPrivacy',badge:false},
+      // {img:'/static/images/other/other5.png',text:'客服热线',tap:'goService',badge:false},
+      {img:'/static/images/other/other9.png',text:'设置',tap:'goSet',badge:false},
     ],
     serviceIcon:[
       {img:'/static/images/service/service0.png',text:'住房延期'},
@@ -111,13 +111,14 @@ Page({
       return false;
     }
   },
-  //判断是否有绑定手机号
+  //获取会员信息
   member(){
     user.memberGetInfo().then(res => {
       this.setData({
         'ucenter.name':res.result.name,
         'ucenter.vip':res.result.cardLevelName,
         'ucenter.mobile':res.result.mobile,
+        'otherIcon[0].badge':(res.result.name == ''||res.result.name == '微信'?true:false)
       })
     }).catch((err) => {
       console.log(err)

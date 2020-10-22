@@ -34,7 +34,7 @@ Page({
     user.memberGetInfo().then(res => {
       let infoNew = {
         ident:res.result.ident != null?res.result.ident:'',
-        name:res.result.name != null?res.result.name:'',
+        name:(res.result.name != null&&res.result.name != '微信')?res.result.name:'',
         mobile:res.result.mobile != null?res.result.mobile:'',
       }
       if(infoNew.ident == ''){
