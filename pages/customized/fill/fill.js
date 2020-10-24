@@ -72,9 +72,15 @@ Page({
     },
     infoPop:false,
     infoPrice:[  //日历房展示
+<<<<<<< HEAD
       {date:'16-29',price:51800},
       {date:'16-29',price:51800},
       {date:'16-29',price:51800},
+=======
+      // {date:'16-29',price:51800},
+      // {date:'16-29',price:51800},
+      // {date:'16-29',price:51800},
+>>>>>>> 2020-10-24版本1.4.2
     ],
   },
   onLoad: function (options) {
@@ -222,9 +228,15 @@ Page({
   },
   //日历房
   funInfoPrice(index){
+<<<<<<< HEAD
     //明细日历房
     let infoPriceNew = [];
     let infoPriceParamNew = [];
+=======
+    console.log(index)
+    //明细日历房
+    let infoPriceNew = [];
+>>>>>>> 2020-10-24版本1.4.2
     if(index == 0){
       infoPriceNew = this.data.room.wec0s.slice(0, -1);
     }else if(index == 1){
@@ -246,8 +258,14 @@ Page({
     //重新计算
     this.total();
     let index = e.currentTarget.dataset.index;
+<<<<<<< HEAD
     //传递值进优惠劵pop
     this.popId.funCouponList(this.total.money)
+=======
+    //日历房
+    this.funInfoPrice(index);
+    
+>>>>>>> 2020-10-24版本1.4.2
     this.setData({
       breakfastChoose: index,
       'room.roomPrice':this.data.breakfastUl[index].price,
@@ -256,6 +274,13 @@ Page({
       'coupon.couponId':null,
       'coupon.fullMoney':0,
     });
+<<<<<<< HEAD
+=======
+    //重新计算
+    this.total();
+    //传递值进优惠劵pop
+    this.popId.funCouponList(this.data.total.money)
+>>>>>>> 2020-10-24版本1.4.2
   },
   //couponTotal
   couponTotal(e){

@@ -121,7 +121,11 @@
         <view class="pop">
           <view class="pop_h1">房费详细</view>
           <view class="info_body">
+<<<<<<< HEAD
             <view class="info_price_ul">
+=======
+            <view class="info_price_ul info_price_date">
+>>>>>>> 2020-10-24版本1.4.2
               <view class="price_li" wx:for="{{infoPrice}}" wx:key="index">
                 <text class="info_price_data">{{item.date}}</text>
                 <text class="price_li_r">￥{{money.moneyFixed(item.price)}}</text>

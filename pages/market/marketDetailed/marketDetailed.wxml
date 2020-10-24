@@ -1,5 +1,5 @@
 <view>
-	<wxs src="../../../filter/filter.wxs" module="money"/>
+	<wxs src="../../../filter/filter.wxs" module="money" />
 	<import src="/template/template"/> 
 	<view class="home_swiper">
 		<swiper indicator-dots="false" autoplay="false" interval="5000">
@@ -19,9 +19,6 @@
 			</view>
 			<view class="body_li body_name">{{detailed.name}}</view>
 			<view class="body_li body_introduce">{{detailed.content}}</view>
-		</view>
-		<view class="body_list">
-			<view class="body_li">{{detailed.introduce}}</view>
 		</view>
 		<view class="body_list body_flex">
 			<view class="body_icon">
@@ -52,6 +49,35 @@
 			<view class="body_icon">
 				<!-- <image class="body_icon_img" src="/static/images/gou3.png"></image> -->
 				<text class="body_icon_text"></text>
+			</view>
+		</view>
+		<view class="body_list">
+			<view class="notice_li_head"><text class="notice_li_h1">订购须知</text></view>
+			<view class="notice_ul">
+				<view class="notice_li">
+					<view class="notice_li_t notice_li_t1">购买限制</view>
+					<view class="notice_li_t notice_li_t2">爱大叔大叔的啥打算打算</view>
+				</view>
+				<view class="notice_li">
+					<view class="notice_li_t notice_li_t1">退款规则</view>
+					<view class="notice_li_t notice_li_t2">爱大叔大叔的叔大叔的啥叔大叔的啥叔大叔的啥叔大叔的啥叔大叔的啥叔大叔的啥叔大叔的啥叔大叔的啥叔大叔的啥叔大叔的啥啥打算打算</view>
+				</view>
+				<view class="notice_li">
+					<view class="notice_li_t notice_li_t1">有限期限</view>
+					<view class="notice_li_t notice_li_t2">叔大啥打算打算</view>
+				</view>
+				<view class="notice_li">
+					<view class="notice_li_t notice_li_t1">使用规则</view>
+					<view class="notice_li_t notice_li_t2">爱大叔大叔的啥打算打算</view>
+				</view>
+				<view class="notice_li">
+					<view class="notice_li_t notice_li_t1">温馨提示</view>
+					<view class="notice_li_t notice_li_t2">爱大叔大叔的啥打算打算</view>
+				</view>
+			</view>
+			<view class="notice_li_head"><text class="notice_li_h1">图文详情</text></view>
+			<view class="notice_content">
+			
 			</view>
 		</view>
 	</view>

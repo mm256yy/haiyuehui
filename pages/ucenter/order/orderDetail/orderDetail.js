@@ -68,7 +68,11 @@ Page({
       {date:'2020-09-11',price:2200},
       {date:'2020-09-11',price:2200},
     ],  //日历房
+<<<<<<< HEAD
     datePricesShow:true,
+=======
+    datePricesShow:false,
+>>>>>>> 2020-10-24版本1.4.2
   },
   onLoad(options) {
     this.init(options)
@@ -114,6 +118,22 @@ Page({
         otaRestype:data.otaRestype?data.otaRestype:'',
       }
       let dayNum = (new Date(data.dep) - new Date(data.arr))/1000/60/60/24;
+      //日历房
+      let datePricesNew = [];
+      let datePricesLi = {};
+      let roomPriceNew = 0;
+      if(data.datePrices.length == 0){
+        roomPriceNew = data.roomPrice*dayNum
+      }else{
+        for(let i=0;i<data.datePrices.length;i++){
+          roomPriceNew += data.datePrices[i].price
+          datePricesLi = {
+            date:data.datePrices[i].date,
+            price:data.datePrices[i].price
+          }
+          datePricesNew.push(datePricesLi)
+        }
+      }
       //总额
       let orderPayInfo = {};
       let orderPayInfoNew = {
@@ -127,7 +147,7 @@ Page({
         orderPayInfo = orderPayInfoNew;
       }
       totalNew = {
-        roomPrice:data.roomPrice*dayNum,
+        roomPrice:roomPriceNew,
         deposit:data.deposit,
         addition:0,   //续住
         surplus:0,
@@ -154,11 +174,13 @@ Page({
         }
       }
       personUlNew = personsUL;
+      
       this.setData({
         detail:detailNew,
         personUl:personUlNew,
         total:totalNew,
-        allowConnect:data.allowConnect
+        allowConnect:data.allowConnect,
+        datePrices:datePricesNew,
       })
       this.member();
       // this.addDaysList(); 续租
@@ -332,6 +354,12 @@ Page({
     let additionType = e.currentTarget.dataset.type
     wx.navigateTo({
       url: "/pages/ucenter/order/orderAddition/orderAddition?orderId="+this.data.detail.orderId+"&additionType="+additionType+"&hotelId="+this.data.detail.hotelId+"&roomNo="+this.data.detail.roomNo
+    })
+  },
+  //订单明细显示
+  funDatePricesShow(){
+    this.setData({
+      datePricesShow:!this.data.datePricesShow
     })
   },
   //显示隐藏身份证号码
