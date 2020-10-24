@@ -283,13 +283,11 @@ page{background-color: #f1f1f1;}
   padding: 10rpx 0rpx;
   border-bottom: 1rpx solid #cdcdcd;
 }
-<<<<<<< HEAD
-=======
+
 .info_price_date{
   max-height: 420rpx;
   overflow-x: scroll;
 }
->>>>>>> 2020-10-24版本1.4.2
 .info_price_ul:last-child{
   border:0rpx;
 }

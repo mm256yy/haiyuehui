@@ -68,11 +68,7 @@ Page({
       {date:'2020-09-11',price:2200},
       {date:'2020-09-11',price:2200},
     ],  //日历房
-<<<<<<< HEAD
-    datePricesShow:true,
-=======
     datePricesShow:false,
->>>>>>> 2020-10-24版本1.4.2
   },
   onLoad(options) {
     this.init(options)

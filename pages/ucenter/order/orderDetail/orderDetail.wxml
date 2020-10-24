@@ -133,21 +133,9 @@
           <text class="date_li_t2">￥{{filter.moneyFixed(item.price)}}</text>
         </view>
       </view>
-<<<<<<< HEAD
-      <view>
-        <view class="date_ul" wx:if="{{datePricesShow}}">
-          <view class="date_li" wx:for="{{datePrices}}" wx:key="index">
-            <text class="date_li_t1">{{item.date}}</text>
-            <text class="date_li_t2">￥{{filter.moneyFixed(item.price)}}</text>
-          </view>
-        </view>
-      </view>
-      <view wx:if="{{(detail.status == 11||detail.status == 12||detail.status == 13||detail.status == 21)&&total.surplus > 0&&detail.otaId == ''}}">
-=======
     </view>
     <view class="order_money">
       <view class="order_money_li" wx:if="{{(detail.status == 11||detail.status == 12||detail.status == 13||detail.status == 21)&&total.surplus > 0&&detail.otaId == ''}}">
->>>>>>> 2020-10-24版本1.4.2
         <text class="detail_t1">优惠劵+津贴：</text>
         <text class="detail_t2" >-￥{{filter.moneyFixed(total.surplus)}}</text>
       </view>
