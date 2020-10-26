@@ -59,7 +59,6 @@ Page({
       showType:typeVal,
       pageSize:15,
     }
-    console.log(param)
     util.request(api.UcenterOrderList , param , 'GET').then(res => {
       let o_ul = [];
       let o_li = {};
@@ -124,7 +123,6 @@ Page({
   //取消订单
   orderCancel(e){
     let arr = e.currentTarget.dataset.index
-    console.log(e.currentTarget.dataset.index)
     let pay = 0; //1 未支付  2已支付
     if(this.data.orderUl[arr].status === 11){
       pay = 1

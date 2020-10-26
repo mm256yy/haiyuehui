@@ -112,7 +112,6 @@ Page({
     let param = {
       orderNo:this.data.info.orderNo,
     }
-    console.log(param)
     util.request(api.UcenterConnectOrder , param , 'GET').then(res => {
       //获取到订单信息
       let orderPayInfo = {};
@@ -124,6 +123,15 @@ Page({
         orderPayInfo = res.result.orderPayInfo;
       }else{
         orderPayInfo = orderPayInfoNew;
+      }
+      //总房价
+      let totleRoomPriceNew = 0;
+      if(res.result.datePrices.length > 0){
+        for(let i=0;i<res.result.datePrices.length;i++){
+          totleRoomPriceNew += res.result.datePrices[i].price
+        }
+      }else{
+        totleRoomPriceNew = res.result.roomPrice*res.result.days
       }
       let detailNew = {
         status:res.result.status,
@@ -138,9 +146,8 @@ Page({
         endTimeS:res.result.dep,
         isCis:res.result.isCis,
         name:res.result.name,
-        // dayNum:this.dayNum(res.result.arr,res.result.dep),
         roomPrice:res.result.roomPrice,
-        totleRoomPrice:res.result.roomPrice*res.result.days,
+        totleRoomPrice:totleRoomPriceNew,
         deposit:res.result.deposit?res.result.deposit:0,
         money:res.result.money,
         days:res.result.days,
