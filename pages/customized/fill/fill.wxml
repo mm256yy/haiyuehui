@@ -70,7 +70,7 @@
     <view class="other_li">
       <text>预计到店</text><text>18:00点之前</text>
     </view>
-    <popCoupon id="popId" full-money-price="{{total.roomPrice}}" bindcouponTotal="couponTotal"></popCoupon>
+    <popCoupon id="popId" full-money-price="{{total.roomTotalPrice}}" bindcouponTotal="couponTotal"></popCoupon>
   </view>
   <!-- <view class="hotels_price">
     <view class="price_li">

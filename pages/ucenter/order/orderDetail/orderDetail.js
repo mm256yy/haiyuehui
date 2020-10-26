@@ -118,9 +118,7 @@ Page({
       let datePricesNew = [];
       let datePricesLi = {};
       let roomPriceNew = 0;
-      if(data.datePrices.length == 0){
-        roomPriceNew = data.roomPrice*dayNum
-      }else{
+      if(data.datePrices.length > 0){
         for(let i=0;i<data.datePrices.length;i++){
           roomPriceNew += data.datePrices[i].price
           datePricesLi = {
@@ -129,6 +127,8 @@ Page({
           }
           datePricesNew.push(datePricesLi)
         }
+      }else{
+        roomPriceNew = data.roomPrice*dayNum
       }
       //总额
       let orderPayInfo = {};

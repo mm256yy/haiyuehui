@@ -61,7 +61,7 @@ Page({
     },
     total:{
       timeNum:1,
-      // roomPrice:999900,
+      roomPrice:999900,
       roomTotalPrice:999900,
       coupon:0,  //优惠劵
       allowanceMoney:0,
@@ -81,14 +81,6 @@ Page({
     this.mobileInfo();
     this.hotelInfo();
   },
-  onReady: function (){
-    this.popId = this.selectComponent("#popId");
-    // this.evaluationId = this.selectComponent("#evaluationId");
-    //加载外部事件
-    setTimeout(()=>{
-      this.popId.funCouponFrist(this.data.breakfastUl[0].price*this.data.room.timeNum)
-    },100)
-  },
   onShow: function () {
     this.member();
   },
@@ -97,9 +89,6 @@ Page({
     let calendarNew = wx.getStorageSync("calendar")
     let hotelNew = wx.getStorageSync("hotel")
     let roomrNew = wx.getStorageSync("room")
-    // console.log(calendarNew)
-    // console.log(hotelNew)
-    // console.log(roomrNew)
     let s_t = new Date(calendarNew.startTime)
     let e_t = new Date(calendarNew.endTime)
     let startTime_s = util.formatNumber(s_t.getMonth()+1)+'月'+util.formatNumber(s_t.getDate())+'日'
@@ -222,7 +211,6 @@ Page({
   },
   //日历房
   funInfoPrice(index){
-    console.log(index)
     //明细日历房
     let infoPriceNew = [];
     if(index == 0){
@@ -234,7 +222,6 @@ Page({
     }else if(index == 3){
       infoPriceNew = this.data.room.wec3s.slice(0, -1);
     }
-    console.log(infoPriceNew)
     this.setData({
       infoPrice:infoPriceNew,
     })
@@ -299,11 +286,11 @@ Page({
       other:otherNew,
       money:parseInt((roomTotalPriceNew-couponMoneyNew-allowanceMoneyNew+otherNew)*(discountNew/100)+depositNew),
     } 
-    console.log(totalNew)
     // this.evaluationId.funTotal(totalNew)
     this.setData({
       total: totalNew
     });
+    this.funCouponFrist(roomTotalPriceNew)
   },
   //立即下单
   placeOrder(){
@@ -336,13 +323,21 @@ Page({
       fromMemberId:this.data.fill.fromMemberId, //发送津贴人id
       datePrices:this.data.infoPrice  //日历房
     };
-    console.log(param)
     util.request(api.CustomizedHotelsFill ,param, 'POST').then(res => {
       //跳转
       wx.redirectTo({
         url: "/pages/customized/pay/pay?money="+res.result.money+"&orderId="+res.result.orderId+"&rmdesc="+this.data.room.roomName
       })
     }).catch((err) => {});
+  },
+  //优惠劵传值
+  funCouponFrist(roomTotalPriceNew){
+    this.popId = this.selectComponent("#popId");
+    // this.evaluationId = this.selectComponent("#evaluationId");
+    //加载外部事件
+    setTimeout(()=>{
+      this.popId.funCouponFrist(roomTotalPriceNew)
+    },100)
   },
   //money
   moneyMin(wec0,wec1,wec,wec3){
