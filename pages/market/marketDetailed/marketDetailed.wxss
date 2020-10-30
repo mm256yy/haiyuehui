@@ -31,6 +31,12 @@ page{
   font-size: 40rpx;
   font-weight: 800;
 }
+.body_price3{
+  color: #999;
+  font-size: 26rpx;
+  text-decoration: line-through;
+  margin-left: 10rpx;
+}
 .body_name{
   font-weight: 800;
 }
@@ -71,6 +77,8 @@ page{
   font-size: 30rpx;
   text-align: center;
   font-weight: 800;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #f1f1f1;
 }
 .notice_li{
   padding:20rpx;
@@ -78,14 +86,9 @@ page{
 }
 .notice_li_head{
   text-align: center;
-  margin: 40rpx 0rpx;
-}
-.notice_li_h1{
-  padding: 20rpx;
-  border-bottom: 1rpx solid #f1f1f1;
+  margin: 50rpx 0rpx;
 }
 .notice_li_t{
-  display: inline-block;
   color: #999;
 }
 .notice_li_t1{

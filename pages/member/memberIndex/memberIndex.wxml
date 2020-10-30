@@ -1,5 +1,6 @@
 <view>
   <import src="/template/template"/> 
+  <wxs src="../../../filter/filter.wxs" module="filter"/>
   <view class="member_head">
     <image class="member_head_ba" mode="widthFix" src="/static/images/member_ba.jpg"></image>
     <view class="member_card">
@@ -19,6 +20,7 @@
           </view>
           <view class="card_bottom_left">
             <view class="card_cardno">NO:{{info.cardNo}}</view>
+            <view class="card_endtime" wx:if="{{info.fromMobile != ''}}">INVITE:{{filter.MobileFour(info.fromMobile)}}</view>
             <view class="card_endtime">有效期至：{{info.dep}}</view>
           </view>
         </view>

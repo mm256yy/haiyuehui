@@ -50,7 +50,9 @@ page{
   height: 50rpx;
 }
 .goods_name{
+  height: 3em;
   font-size: 28rpx;
+  overflow: hidden;
 }
 .goods_price{
   position: absolute;
@@ -107,9 +109,28 @@ page{
 .foot_li_del{
   float: right;
   width: 300rpx;
-  background-color: #999;
-  color: #fff;
+  background-color: #fff;
+  color: #fe6f41;
+  text-align: center;
+  border-radius: 50rpx;
+  border: 1rpx solid #fe6f41;
+  padding: 20rpx;
+}
+.foot_li_paynot{
+  float: right;
+  width: 300rpx;
   text-align: center;
   border-radius: 50rpx;
   padding: 20rpx;
+  background-color: #cdcdcd ;
+}
+.foot_li_delnot{
+  float: right;
+  width: 300rpx;
+  text-align: center;
+  border-radius: 50rpx;
+  padding: 20rpx;
+  background-color: #fff;
+  border: 1rpx solid #cdcdcd;
+  color: #666;
 }

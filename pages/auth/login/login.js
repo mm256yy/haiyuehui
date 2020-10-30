@@ -27,11 +27,6 @@ Page({
     }
     wx.setStorageSync('userInfo', e.detail.userInfo);
     this.login(e)
-    // user.checkLogin().then(res => {   
-    //   this.login(e)
-    // }).catch((res) => {
-    //   this.login(e)
-    // })
   },
   login(e){
     user.loginByWeixin(e.detail.userInfo).then(res => {

@@ -10,6 +10,10 @@ function moneyDiscount(money){
 function moneyInteger(money){
   return (parseInt(money/100));
 };
+//正常除以100
+function moneyNatural(money){
+  return money/100;
+}
 
 //全民营销--推广类型
 function bonusType(type){
@@ -63,19 +67,24 @@ function marketType(type){
     default: return '未知状态';
   }
 }
-
-function numSpace(num){  //返回数字每四个空一格子
+//返回数字每四个空一格子
+function numSpace(num){  
   var arr = ''
   for(var i=0;i<parseInt(num.length/4)+1;i++){
     arr += num.substring(0+i*4,4+i*4)+' '
   }
   return arr
 }
+//返回手机尾号四位
+function MobileFour(mobile){
+  return mobile.slice(7,11)
+}
 
 module.exports = {
   moneyFixed:moneyFixed,
   moneyDiscount:moneyDiscount,
-  moneyInteger:moneyInteger, 
+  moneyInteger:moneyInteger,
+  moneyNatural:moneyNatural,
 
   bonusType:bonusType,
   roomType:roomType,
@@ -83,4 +92,5 @@ module.exports = {
   marketType:marketType,
 
   numSpace:numSpace,
+  MobileFour:MobileFour,
 };

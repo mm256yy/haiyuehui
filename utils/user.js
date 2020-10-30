@@ -112,8 +112,21 @@ function memberGetInfo(){
     });
   });
 }; 
+//跳转登陆验证
+function goToLogin(){
+  checkLogin().then(res => {
+    console.log('已经登陆')
+  }).catch((res) =>{
+    console.log(res+'需要登陆');
+    wx.setStorageSync('userInfo', '');
+    wx.navigateTo({ 
+      url: "/pages/auth/login/login"
+    });
+  })
+};
 module.exports = {
   loginByWeixin,
   checkLogin,
   memberGetInfo,
+  goToLogin,
 };

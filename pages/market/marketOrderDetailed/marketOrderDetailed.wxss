@@ -74,6 +74,9 @@ page{background-color: #f1f1f1;}
 }
 .goods_name{
   margin-left: 20rpx;
+  height: 3em;
+  font-size: 28rpx;
+  overflow: hidden;
 }
 .goods_price{
   position: absolute;
@@ -98,6 +101,10 @@ page{background-color: #f1f1f1;}
 .goods_code_li_right{
   float: right;
   color: #999;
+}
+.goods_code_li_copy{
+  float: right;
+  color: #039cee;
 }
 /*money*/
 .order_money{

@@ -38,7 +38,7 @@
 				<view>合计：{{money.moneyFixed(totle.money)}}</view>
 			</view>
 			<view class="foot_li">
-				<view class="{{manageType?'foot_li_del':'foot_li_pay'}}" bindtap="{{manageType?'goDel':'goPay'}}">{{manageType?'删除':'提交订单'}}</view>
+				<view class="{{manageType?(haveChoose?'foot_li_del':'foot_li_delnot'):(haveChoose?'foot_li_pay':'foot_li_paynot')}}" bindtap="{{manageType?'goDel':'goPay'}}">{{manageType?'删除':'提交订单'}}</view>
 			</view>
 		</view>
 	</view>

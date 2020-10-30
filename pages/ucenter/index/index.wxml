@@ -1,5 +1,5 @@
 <view>
-  <wxs src="../../../filter/filter.wxs" module="money" />
+  <wxs src="../../../filter/filter.wxs" module="filter" />
   <view class="ucenter_head">
     <image class="ucenter_ba" src="/static/images/ucenter_ba.jpg"></image>
     <view class="ucenter_person" bindtap="{{ucenter.name == '点击登陆'?'sign':''}}">
@@ -27,7 +27,16 @@
       </view>
     </view>
   </view>
-  <view class="ucenter_member" wx:if="{{false}}">
+  <view class="ucenter_news" wx:if="{{ucenter.allowanceMoney != 0&&ucenter.allowanceMoney}}" bindtap="goHotelsList">
+    <view class="news_box">
+      <view class="news_title">海悦会送你无门槛{{filter.moneyNatural(ucenter.allowanceMoney)}}元现金津贴</view>
+      <view class="news_label" wx:if="{{ucenter.endTime == 0}}">激活后24小时内，可无限次使用！</view>
+      <view class="news_btn" wx:if="{{ucenter.endTime == 0}}">激活使用</view>
+      <view class="news_label" wx:if="{{ucenter.endTime != 0}}">已激活，截止至{{ucenter.endTime}}</view>
+      <view class="news_btn" wx:if="{{ucenter.endTime != 0}}">继续使用</view>
+    </view>
+  </view>
+  <!-- <view class="ucenter_member" wx:if="{{false}}">
     <view class="member_h1">海悦会特权</view>
     <image class="member_kind" src="/static/images/king.png"></image>
     <view class="member_ul">
@@ -37,8 +46,8 @@
         <view class="member_li_text">{{item.text2}}</view>
       </view>
     </view>
-  </view>
-  <view class="ucenter_market" wx:if="{{goodsUl.length != 0}}">
+  </view> -->
+  <!-- <view class="ucenter_market" wx:if="{{goodsUl.length != 0}}">
     <view class="market_head" bindtap="goMarket">
       <text class="head_h1">海外海商城</text>
       <text class="head_h2">更多</text>
@@ -52,14 +61,13 @@
           <view class="goods_text">
             <view class="goods_t1">{{item.name}}</view>
             <view>
-              <text class="goods_t2">￥{{money.moneyFixed(item.salePrice)}}</text>
-              <!-- <text class="goods_t3">￥{{money.moneyFixed(item.price)}}</text> -->
+              <text class="goods_t2">￥{{filter.moneyFixed(item.salePrice)}}</text>
             </view>
           </view>
         </view>
       </view>
     </view>
-  </view>
+  </view> -->
   <view class="ucenter_other">
     <view class="other_ul">
       <view class="other_li" wx:for="{{otherIcon}}" wx:key="index" bindtap="{{item.tap}}">

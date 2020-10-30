@@ -2,14 +2,12 @@ let api = require('../../../config/api.js');
 let util = require('../../../utils/util.js');
 Page({
   data: {
-    bannerUrls:[
-      // '/static/images/logo.png',
-    ],
     detailed:{
       // id:1,
       // name:'五芳斋月饼礼盒中秋节双蛋黄莲蓉等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',
       // categoryId:2,
       // img:'',
+      // sliderImg:[],
       // price:23000,
       // salePrice:22000,
       // content:'这是一个测试产品打扫打扫打扫的大事',
@@ -22,6 +20,11 @@ Page({
       // isOnSale:1, //1 上架 0下架
       // browse:2300,  //浏览量
       // sales:55,
+      // noticeLimit:[],
+      // noticeRefund:[],
+      // noticeDate:[],
+      // noticeRule:[],
+      // noticePoint:[],
     },
     pop:false,
     goodsNum:1,
@@ -35,6 +38,24 @@ Page({
   onShow: function () {
 
   },
+  //点击转发按钮
+  onShareAppMessage: function (ops) {
+    if (ops.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(ops.target);
+    }
+    return {
+      title: '邀请你来入住酒店啦',
+      imageUrl:'/static/images/invite.jpg',//图片地址
+      path:'/pages/index/index?inviteCode='+inviteCode,// 用户点击首先进入的当前页面
+      success: function (res) { // 转发成功
+        console.log("转发成功:");
+      },
+      fail: function (res) { // 转发失败
+        console.log("转发失败:");
+      }
+    }
+  },
   init(options){
     let orderId = options.orderId;
     let param = {
@@ -42,14 +63,26 @@ Page({
     }
     util.request(api.MallGoodsDetail , param , 'GET').then(res => {
       let data = res.result;
+      //轮播图
+      let sliderImgNew = data.sliderImg.split(',');
+      //订购须知
+      let noticeUl = [];
+      let noticeLi = [];
+      noticeLi = data.orderingInfo.split('|');
+      for(let i=0;i<noticeLi.length;i++){
+        noticeUl[i] = noticeLi[i].split('\n');
+      }
+      //图文详情
+      let contentNew = data.content.replace(/width="300"/g,'width="100%"').replace(/display: block/g,'display: block;padding-bottom: 10px;').replace(/height="300"/g,'');
       let detailedNew = {
         id:data.id,
         name:data.title,
         categoryId:data.categoryId,
         img:data.img,
+        sliderImg:sliderImgNew,
         price:data.price,
         salePrice:data.salePrice,
-        content:data.content,
+        content:contentNew, //图片详情
         shareUrl:data.shareUrl,
         introduce:data.instruction,
         sort:data.sort,
@@ -59,12 +92,14 @@ Page({
         isOnSale:data.isOnSale, //1 上架 0下架
         browse:data.browse,  //浏览量
         sales:data.sales,
+        noticeLimit:noticeUl[0],
+        noticeRefund:noticeUl[1],
+        noticeDate:noticeUl[2],
+        noticeRule:noticeUl[3],
+        noticePoint:noticeUl[4],
       };
-      let bannerUrlsNew = [];
-      bannerUrlsNew[0] = data.detailImg
       this.setData({
         detailed:detailedNew,
-        bannerUrls:bannerUrlsNew,
       })
       this.redTipNum();
       console.log(bannerUrlsNew)

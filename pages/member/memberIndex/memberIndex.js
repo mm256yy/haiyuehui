@@ -17,6 +17,9 @@ Page({
       cardNo:'1500615615',
       discount:95,  //95%  会员打折
       scoreTimes:100,  //1.5倍 积分倍数
+      fromMemberId:'',  //邀请人会员号
+      fromMobile:'',  //邀请人手机号
+      endTime:'',  //津贴剩余时间
       card:{
         baImg:'card5',
         nameC:'贵宾卡',
@@ -110,7 +113,10 @@ Page({
         cardNo:res.result.cardno,
         card:member.memberCard[grade],
         discount:discountNew,  
-        scoreTimes:scoreTimesNew, 
+        scoreTimes:scoreTimesNew,
+        fromMemberId:res.result.fromMemberId?res.result.fromMemberId:'',  //邀请人会员号
+        fromMobile:res.result.fromMobile?res.result.fromMobile:'',  //邀请人手机号
+        endTime:res.result.endTime?res.result.endTime:'',  //津贴剩余时间
       }
       let powerUlShowNew = [
         {img:'power0',text1:'订房折扣',text2:(discountNew/10)+'折'},

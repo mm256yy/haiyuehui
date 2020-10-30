@@ -3,7 +3,7 @@
 	<import src="/template/template"/> 
 	<view class="home_swiper">
 		<swiper indicator-dots="false" autoplay="false" interval="5000">
-			<block wx:for="{{bannerUrls}}" wx:key="item">
+			<block wx:for="{{detailed.sliderImg}}" wx:key="item">
 				<swiper-item>
 					<image src="{{item}}" class="banner_image" />
 				</swiper-item>
@@ -15,27 +15,19 @@
 			<view class="body_li">
 				<text class="body_price1">￥</text>
 				<text class="body_price2">{{money.moneyFixed(detailed.salePrice)}}</text>
-				<!-- <text class="body_price1">.00</text> -->
+				<text class="body_price3">￥{{money.moneyFixed(detailed.price)}}</text>
 			</view>
 			<view class="body_li body_name">{{detailed.name}}</view>
-			<view class="body_li body_introduce">{{detailed.content}}</view>
 		</view>
 		<view class="body_list body_flex">
 			<view class="body_icon">
-				<view class="body_other_t2">{{detailed.browse}}</view>
-				<view class="body_other_t1">浏览量</view>
+				<view class="body_other_t2">{{detailed.amount}}</view>
+				<view class="body_other_t1">库存量</view>
 			</view>
 			<view class="body_icon">
 				<view class="body_other_t2">{{detailed.sales}}</view>
 				<view class="body_other_t1">销售量</view>
 			</view>
-			<view class="body_icon">
-				<view class="body_other_t2">{{detailed.amount}}</view>
-				<view class="body_other_t1">库存量</view>
-			</view>
-		</view>
-		<view class="body_list">
-			<view class="body_li body_choose" bindtap="popShow">规格数量选择</view>
 		</view>
 		<view class="body_list body_flex">
 			<view class="body_icon">
@@ -56,28 +48,38 @@
 			<view class="notice_ul">
 				<view class="notice_li">
 					<view class="notice_li_t notice_li_t1">购买限制</view>
-					<view class="notice_li_t notice_li_t2">爱大叔大叔的啥打算打算</view>
+					<view class="notice_li_t2" wx:for="{{detailed.noticeLimit}}" wx:key="index">
+						<view class="notice_li_t">{{item}}</view>
+					</view>
 				</view>
 				<view class="notice_li">
 					<view class="notice_li_t notice_li_t1">退款规则</view>
-					<view class="notice_li_t notice_li_t2">爱大叔大叔的叔大叔的啥叔大叔的啥叔大叔的啥叔大叔的啥叔大叔的啥叔大叔的啥叔大叔的啥叔大叔的啥叔大叔的啥叔大叔的啥啥打算打算</view>
+					<view class="notice_li_t2" wx:for="{{detailed.noticeRefund}}" wx:key="index">
+						<view class="notice_li_t">{{item}}</view>
+					</view>
 				</view>
 				<view class="notice_li">
 					<view class="notice_li_t notice_li_t1">有限期限</view>
-					<view class="notice_li_t notice_li_t2">叔大啥打算打算</view>
+					<view class="notice_li_t2" wx:for="{{detailed.noticeDate}}" wx:key="index">
+						<view class="notice_li_t">{{item}}</view>
+					</view>
 				</view>
 				<view class="notice_li">
 					<view class="notice_li_t notice_li_t1">使用规则</view>
-					<view class="notice_li_t notice_li_t2">爱大叔大叔的啥打算打算</view>
+					<view class="notice_li_t2" wx:for="{{detailed.noticeRule}}" wx:key="index">
+						<view class="notice_li_t">{{item}}</view>
+					</view>
 				</view>
 				<view class="notice_li">
 					<view class="notice_li_t notice_li_t1">温馨提示</view>
-					<view class="notice_li_t notice_li_t2">爱大叔大叔的啥打算打算</view>
+					<view class="notice_li_t2" wx:for="{{detailed.noticePoint}}" wx:key="index">
+						<view class="notice_li_t">{{item}}</view>
+					</view>
 				</view>
 			</view>
 			<view class="notice_li_head"><text class="notice_li_h1">图文详情</text></view>
 			<view class="notice_content">
-			
+				<rich-text space="true" nodes="{{detailed.content}}"></rich-text>
 			</view>
 		</view>
 	</view>
@@ -104,7 +106,7 @@
 		<view class="pop_box">
 			<view class="pop_background">
 				<view class="pop_li pop_li_">
-					<image src="{{bannerUrls[0]}}" class="goods_img"></image>
+					<image src="{{detailed.img}}" class="goods_img"></image>
 					<image src="/static/images/del-b.png" class="pop_del" bindtap="popShow"></image>
 					<view class="pop_price">
 						<text class="body_price1">￥</text>

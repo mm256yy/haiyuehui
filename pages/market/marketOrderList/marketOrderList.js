@@ -1,5 +1,6 @@
 let api = require('../../../config/api.js');
 let util = require('../../../utils/util.js');
+let user = require('../../../utils/user.js');
 Page({
   data: {
     menuUl:[
@@ -9,30 +10,21 @@ Page({
       {name:'待退款',val:'3'},
     ],
     orderUl:[
-      {
-        orderId:0,
-        money:0,
-        state:'1',
-        goods:[
-          // {id:2,img:'/static/images/person.png',name:'五等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',price:'2400',num:2},
-          // {id:2,img:'/static/images/person.png',name:'五等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',price:'2400',num:2}
-        ],
-      },
-      {
-        orderId:456789,
-        money:6500,
-        state:'1',
-        goods:[
-          {id:2,img:'/static/images/logo.png',name:'五等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',price:'2400',num:2},
-          {id:2,img:'/static/images/logo.png',name:'五等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',price:'2400',num:2}
-        ],
-      },
+      // {
+      //   orderId:456789,
+      //   money:6500,
+      //   state:'1',
+      //   goods:[
+      //     {id:2,img:'/static/images/logo.png',name:'五等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',price:'2400',num:2},
+      //     {id:2,img:'/static/images/logo.png',name:'五等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',price:'2400',num:2}
+      //   ],
+      // },
     ],
     pageNo:1,
     menuVal:0,
   },
   onLoad: function (options) {
-
+    user.goToLogin();
   },
   onShow: function () {
     this.init(0,1);
@@ -140,7 +132,7 @@ Page({
     console.log(g_ul)
     wx.setStorageSync("shopPay", g_ul);
     //跳转
-    wx.redirectTo({
+    wx.navigateTo({
       url: "/pages/market/markePay/marketPay?money="+this.data.orderUl[index].money+"&orderId="+this.data.orderUl[index].orderId
     })
   },

@@ -1,5 +1,6 @@
 let api = require('../../../config/api.js');
 let util = require('../../../utils/util.js');
+let user = require('../../../utils/user.js');
 let check = require('../../../utils/check.js');
 Page({
   data: {
@@ -14,25 +15,40 @@ Page({
       //   amount:450
       // },
     ],
+    info:{
+      mobile:'',
+    },
     totle:{
       choose:false,
       money:0,
     },
     manageType:false,
+    haveChoose:true,
   },
   onLoad: function (options) {
-
+    user.goToLogin();
+    this.member();
   },
   onShow: function () {
     this.init();
   },
   init(){
     let shoppingCart = wx.getStorageSync("shoppingCart");
-    console.log(shoppingCart)
     this.setData({
       shopUl:shoppingCart
     })
     this.totleMoney();
+    this.istotleChoose();
+  },
+  //会员
+  member(){
+    user.memberGetInfo().then(res => {
+      this.setData({
+        'info.mobile':res.result.mobile,
+      })
+    }).catch((err) => {
+      console.log(err);
+    });
   },
   //管理
   manage(){
@@ -69,30 +85,33 @@ Page({
       'totle.choose' : !this.data.totle.choose
     })
     this.totleMoney();
+    this.istotleChoose();
   },
-  //判断是否全选
+  //判断是否全选 / 是否有一个选择
   istotleChoose(){
     let shopUlNew = this.data.shopUl;
     let len = shopUlNew.length;
     let num = 0;
     let val = false;
+    let have = false;
     for(let i=0;i<len;i++){
       if(shopUlNew[i].choose){
-        num ++
+        num ++;
+        have = true
       }
     }
-    if(num == len){
+    if(num == len&&len != 0){
       val = true;
     }else{
       val = false;
     }
     this.setData({
-      'totle.choose':val
+      'totle.choose':val,
+      haveChoose:have
     })
   },
   //计算钱
   totleMoney(){
-    console.log(this.data.shopUl)
     let shopUlNew = this.data.shopUl;
     let totleMoney = 0;
     for(let i=0;i<shopUlNew.length;i++){
@@ -144,9 +163,9 @@ Page({
     }
     let param = {
       goods:goodsNewUl,
+      mobile:this.data.info.mobile,
       money:this.data.totle.money
     }
-    console.log(param)
     util.request(api.MallOrderSubmit , param , 'POST').then(res => {
       let shopPayNew = [];
       //删除购物车

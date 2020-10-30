@@ -112,12 +112,12 @@ Page({
   },
   //跳转到酒店列表
   hotelsList(){
-    wx.navigateTo({ 
+    wx.reLaunch({ 
       url: "/pages/customized/hotelsList/hotelsList"
     });
   },
   //split
-  daySplit(time){
+  daySplit(time){   
     if(time.split(' ')[1] == "00:00:00"){
       let date = new Date(time.split(' ')[0].replace(/-/g,'/')).getTime()-1;
       let year = new Date(date).getFullYear();

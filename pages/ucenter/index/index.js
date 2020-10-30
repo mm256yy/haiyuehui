@@ -12,6 +12,11 @@ Page({
       name:'点击登陆',
       vip:'贵宾会员',
       mobile:0,  //判断是否有手机号
+      fromMobile:'',
+      fromMemberId:'',
+      endTime:'',  //津贴剩余时间
+      memberAllowanceId:'',  //津贴id
+      allowanceMoney:0,  //津贴金额
     },
     menuUl:[
       // {
@@ -69,25 +74,14 @@ Page({
     goodsUl:[],
   },
   onLoad: function () {
-    this.login();
+    user.goToLogin();
   },
   onShow: function () {
+    console.log(this.data.ucenter.allowanceMoney)
     this.userInfo();
     this.member();
     this.badge();
-    this.goods();
-  },
-  //判断登陆
-  login(){
-    // 判断登录
-    user.checkLogin().then(res => {
-      
-    }).catch((res) =>{
-      console.log('需要登陆');
-      wx.navigateTo({ 
-        url: "/pages/auth/login/login"
-      });
-    })
+    // this.goods();
   },
   //登陆后获取用户信息
   userInfo(){
@@ -114,11 +108,20 @@ Page({
   //获取会员信息
   member(){
     user.memberGetInfo().then(res => {
+      let ucenterNew = {
+        tou:this.data.ucenter.tou,
+        name:res.result.name,
+        vip:res.result.cardLevelName,
+        mobile:res.result.mobile,
+        fromMobile:res.result.fromMobile?res.result.fromMobile:'',
+        fromMemberId:res.result.fromMemberId?res.result.fromMemberId:'',
+        endTime:res.result.endTime?res.result.endTime:'',
+        memberAllowanceId:res.result.memberAllowanceId?res.result.memberAllowanceId:'',  
+        allowanceMoney:res.result.allowanceMoney?res.result.allowanceMoney:0,
+      }
       this.setData({
-        'ucenter.name':res.result.name,
-        'ucenter.vip':res.result.cardLevelName,
-        'ucenter.mobile':res.result.mobile,
-        'otherIcon[0].badge':(res.result.name == ''||res.result.name == '微信'?true:false)
+        ucenter:ucenterNew,
+        'otherIcon[0].badge':(res.result.name == ''||res.result.name == '微信'?true:false),
       })
     }).catch((err) => {
       console.log(err)
@@ -236,48 +239,48 @@ Page({
       fail: res => { console.error }
     })
   },
-  goods(){
-    let param = {
-      pageNo:1,
-      categoryId:0,
-      pageSize:3,
-    }
-    util.request(api.MallGoods , param , 'GET').then(res => {
-      let o_ul = [];
-      let o_li = {};
-      let goodsUlNew = [];
-      for(let i=0;i<res.result.records.length;i++){
-        let data = res.result.records[i]
-        o_li = {
-          id:data.id,
-          name:data.title,
-          categoryId:data.categoryId,
-          img:data.img,
-          price:data.price,
-          salePrice:data.salePrice,
-          content:data.content,
-          shareUrl:data.shareUrl,
-          introduce:data.instruction,
-          sort:data.sort,
-          amount:data.amount,  //库存
-          isNew:data.isNew, //1 是 0 否
-          isHot:data.isHot, //1 是 0 否
-          isOnSale:data.isOnSale, //1 上架 0下架
-          browse:data.browse,  //浏览量
-          sales:data.sales,  //销售量
-        }
-        o_ul.push(o_li)
-      }
-      goodsUlNew = o_ul;
-      this.setData({
-        goodsUl:goodsUlNew
-      })
-    }).catch((err) => {
-      this.setData({
-        goodsUl:[]
-      })
-    });
-  },
+  // goods(){
+  //   let param = {
+  //     pageNo:1,
+  //     categoryId:0,
+  //     pageSize:3,
+  //   }
+  //   util.request(api.MallGoods , param , 'GET').then(res => {
+  //     let o_ul = [];
+  //     let o_li = {};
+  //     let goodsUlNew = [];
+  //     for(let i=0;i<res.result.records.length;i++){
+  //       let data = res.result.records[i]
+  //       o_li = {
+  //         id:data.id,
+  //         name:data.title,
+  //         categoryId:data.categoryId,
+  //         img:data.img,
+  //         price:data.price,
+  //         salePrice:data.salePrice,
+  //         content:data.content,
+  //         shareUrl:data.shareUrl,
+  //         introduce:data.instruction,
+  //         sort:data.sort,
+  //         amount:data.amount,  //库存
+  //         isNew:data.isNew, //1 是 0 否
+  //         isHot:data.isHot, //1 是 0 否
+  //         isOnSale:data.isOnSale, //1 上架 0下架
+  //         browse:data.browse,  //浏览量
+  //         sales:data.sales,  //销售量
+  //       }
+  //       o_ul.push(o_li)
+  //     }
+  //     goodsUlNew = o_ul;
+  //     this.setData({
+  //       goodsUl:goodsUlNew
+  //     })
+  //   }).catch((err) => {
+  //     this.setData({
+  //       goodsUl:[]
+  //     })
+  //   });
+  // },
   //商品详细
   goGoodsDetailed(e){
     let orderId = e.currentTarget.dataset.id;
@@ -290,5 +293,11 @@ Page({
     wx.navigateTo({
       url: "/pages/market/marketList/marketList"
     })
+  },
+  //跳转到酒店列表
+  goHotelsList(){
+    wx.navigateTo({ 
+      url: "/pages/customized/hotelsList/hotelsList"
+    });
   }
 })

@@ -43,8 +43,8 @@ Page({
       // grade:0,
       // discount:100,
       // scoreTimes:100,
-      // memberAllowanceId:0,
-      // allowanceMoney:0,
+      // memberAllowanceId:0,  //津贴
+      // allowanceMoney:0, //津贴金额
       // fromMemberId:0,
     },
     breakfastUl:[

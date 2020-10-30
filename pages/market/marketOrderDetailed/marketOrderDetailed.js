@@ -18,7 +18,8 @@ Page({
           ]
         },
       ]
-    }
+    },
+    detailCopy:{},
   },
   onLoad: function (options) {
     this.init(options);
@@ -41,6 +42,7 @@ Page({
             c_li = {
               code:data.goods[i].codes[j].code,
               used:data.goods[i].codes[j].used,
+              copy:0,
             }
             c_ul.push(c_li)
           }
@@ -65,15 +67,46 @@ Page({
       }
       console.log(detailNew)
       this.setData({
-        detail:detailNew
+        detail:detailNew,
+        detailCopy:detailNew,
       })
     }).catch((err) => {});
   },
   shareCopy(e){
+    let that = this;
+    let index1 = e.currentTarget.dataset.index1;
+    let index2 = e.currentTarget.dataset.index2;
+    let detailNew = that.data.detail;
     wx.setClipboardData({
       data: String(e.currentTarget.dataset.text),
       success: function (res) {
+        if(index1||index1 == 0){
+          detailNew.goods[index1].codes[index2].copy = 1;
+          that.setData({
+            detail:detailNew,
+          })
+        }
       },
     })
   },
+  // longShareCopy(e){
+  //   let code = e.currentTarget.dataset.text;
+  //   let codeCopy = '';
+  //   let num = 0
+  //   for(let i=0;i<code.length;i++){
+  //     if(code[i].used == 0){
+  //       codeCopy += code[i].code + ';'
+  //       num ++
+  //     }
+  //   }
+  //   if(num == 0){
+  //     wx.showToast({title: "兑换码都已使用" ,icon:'none'})
+  //   }else{
+  //     wx.setClipboardData({
+  //       data: String(codeCopy.substr(0, codeCopy.length - 1)),
+  //       success: function (res) {
+  //       },
+  //     })
+  //   }
+  // }
 })

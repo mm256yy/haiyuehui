@@ -54,6 +54,7 @@ page{
 .goods_t1{
   height: 3em;
   color: #666;
+  overflow: hidden;
 }
 .goods_t2{
   color: #e66465;

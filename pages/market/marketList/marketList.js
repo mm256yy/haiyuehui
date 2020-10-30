@@ -13,7 +13,7 @@ Page({
     menuVal:0,
   },
   onLoad: function (options) {
-    // this.login();
+    user.goToLogin();
   },
   onShow: function () {
     // wx.hideTabBar()
@@ -21,18 +21,6 @@ Page({
     this.setData({
       pageNo:1,
       menuVal:0,
-    })
-  },
-  //判断登陆
-  login(){
-    // 判断登录
-    user.checkLogin().then(res => {
-      
-    }).catch((res) =>{
-      console.log('需要登陆');
-      wx.navigateTo({ 
-        url: "/pages/auth/login/login"
-      });
     })
   },
   // 上拉刷新

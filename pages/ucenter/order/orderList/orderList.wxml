@@ -7,7 +7,7 @@
     </view>
   </view>
   <view class="order_ul">
-    <block wx:for="{{orderUl}}" wx:key="index" wx:if="{{item.show}}">
+    <block wx:for="{{orderUl}}" wx:key="index">
       <view class="order_li">
         <view bindtap="orderDetail" data-order-id="{{item.id}}">
           <view class="order_head">
