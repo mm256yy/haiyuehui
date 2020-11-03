@@ -80,12 +80,7 @@
         "selectedIconPath": "static/images/tab/index1.png",
         "text": "酒店"
       },
-      {
-        "pagePath": "pages/market/marketIndex/marketIndex",
-        "iconPath": "static/images/tab/mall2.png",
-        "selectedIconPath": "static/images/tab/mall1.png",
-        "text": "商城"
-      },
+      
       {
         "pagePath": "pages/ucenter/order/orderList/orderList",
         "iconPath": "static/images/tab/order2.png",

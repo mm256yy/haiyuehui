@@ -76,3 +76,9 @@ App({
   //
   globalData: {},  //切勿删除
 }) 
+// {
+//   "pagePath": "pages/market/marketIndex/marketIndex",
+//   "iconPath": "static/images/tab/mall2.png",
+//   "selectedIconPath": "static/images/tab/mall1.png",
+//   "text": "商城"
+// },
