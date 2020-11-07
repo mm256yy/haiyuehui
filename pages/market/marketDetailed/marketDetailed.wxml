@@ -39,8 +39,8 @@
 				<text class="body_icon_text">100%正品</text>
 			</view>
 			<view class="body_icon">
-				<!-- <image class="body_icon_img" src="/static/images/gou3.png"></image> -->
-				<text class="body_icon_text"></text>
+				<image class="body_icon_img" src="/static/images/gou3.png"></image>
+				<text class="body_icon_text">超值优惠</text>
 			</view>
 		</view>
 		<view class="body_list">

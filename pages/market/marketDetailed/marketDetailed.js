@@ -1,7 +1,9 @@
 let api = require('../../../config/api.js');
 let util = require('../../../utils/util.js');
+let user = require('../../../utils/user.js');     
 Page({
   data: {
+    id:1,
     detailed:{
       // id:1,
       // name:'五芳斋月饼礼盒中秋节双蛋黄莲蓉等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',
@@ -31,23 +33,31 @@ Page({
     redTip:1,
     buyMode:0, //0 加入购物车 1 立即购买
     numTipShow:0,
+    info:{
+      mobile:'',
+    },
   },
   onLoad: function (options) {
-    this.init(options);
+    this.setData({
+      id:options.id
+    })
   },
   onShow: function () {
-
+    // user.goToLogin();
+    this.member();
+    this.init();
   },
   //点击转发按钮
   onShareAppMessage: function (ops) {
+    let that = this;
     if (ops.from === 'button') {
       // 来自页面内转发按钮
       console.log(ops.target);
     }
     return {
-      title: '邀请你来入住酒店啦',
-      imageUrl:'/static/images/invite.jpg',//图片地址
-      path:'/pages/index/index?inviteCode='+inviteCode,// 用户点击首先进入的当前页面
+      title: (that.data.detailed.name).slice(0,30)+'...',
+      imageUrl:that.data.detailed.sliderImg[0],//图片地址
+      path:'/pages/market/marketDetailed/marketDetailed?id='+that.data.detailed.id,// 用户点击首先进入的当前页面
       success: function (res) { // 转发成功
         console.log("转发成功:");
       },
@@ -56,10 +66,9 @@ Page({
       }
     }
   },
-  init(options){
-    let orderId = options.orderId;
+  init(){
     let param = {
-      id:orderId
+      id:this.data.id
     }
     util.request(api.MallGoodsDetail , param , 'GET').then(res => {
       let data = res.result;
@@ -104,6 +113,16 @@ Page({
       this.redTipNum();
       console.log(bannerUrlsNew)
     }).catch((err) => {});
+  },
+  //会员
+  member(){
+    user.memberGetInfo().then(res => {
+      this.setData({
+        'info.mobile':res.result.mobile,
+      })
+    }).catch((err) => {
+      console.log(err);
+    });
   },
   //判断商品购物车数量
   redTipNum(){
@@ -203,6 +222,7 @@ Page({
     goodsNewUl.push(goodsNewLi)
     let param = {
       goods:goodsNewUl,
+      mobile:this.data.info.mobile,
       money:this.data.goodsNum*this.data.detailed.salePrice
     }
     console.log(param)

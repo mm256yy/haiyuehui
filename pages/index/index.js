@@ -1,6 +1,8 @@
 //index.js
+let user = require('../../utils/user.js');
 let util = require('../../utils/util.js');
 let api = require('../../config/api.js');
+
 let app = getApp();
 
 Page({
@@ -25,6 +27,7 @@ Page({
   },
   onLoad: function (option) {
     wx.setStorageSync('othersInviteCodeFrist', true);
+    user.goToLogin()
   },
   onShow: function () {
     // wx.showTabBar()

@@ -6,7 +6,6 @@ let check = require('../../../utils/check.js');
 let app = getApp();
 Page({
   data: {
-    isLogin:false,
     ucenter:{
       tou:'/static/images/person.jpg',
       name:'点击登陆',
@@ -71,7 +70,6 @@ Page({
     badge:{
       menu:[0,0,0,0]
     },
-    goodsUl:[],
   },
   onLoad: function () {
     user.goToLogin();
@@ -81,7 +79,6 @@ Page({
     this.userInfo();
     this.member();
     this.badge();
-    // this.goods();
   },
   //登陆后获取用户信息
   userInfo(){
@@ -237,61 +234,6 @@ Page({
       index: 2,
       success: res => { console.log(res) },
       fail: res => { console.error }
-    })
-  },
-  // goods(){
-  //   let param = {
-  //     pageNo:1,
-  //     categoryId:0,
-  //     pageSize:3,
-  //   }
-  //   util.request(api.MallGoods , param , 'GET').then(res => {
-  //     let o_ul = [];
-  //     let o_li = {};
-  //     let goodsUlNew = [];
-  //     for(let i=0;i<res.result.records.length;i++){
-  //       let data = res.result.records[i]
-  //       o_li = {
-  //         id:data.id,
-  //         name:data.title,
-  //         categoryId:data.categoryId,
-  //         img:data.img,
-  //         price:data.price,
-  //         salePrice:data.salePrice,
-  //         content:data.content,
-  //         shareUrl:data.shareUrl,
-  //         introduce:data.instruction,
-  //         sort:data.sort,
-  //         amount:data.amount,  //库存
-  //         isNew:data.isNew, //1 是 0 否
-  //         isHot:data.isHot, //1 是 0 否
-  //         isOnSale:data.isOnSale, //1 上架 0下架
-  //         browse:data.browse,  //浏览量
-  //         sales:data.sales,  //销售量
-  //       }
-  //       o_ul.push(o_li)
-  //     }
-  //     goodsUlNew = o_ul;
-  //     this.setData({
-  //       goodsUl:goodsUlNew
-  //     })
-  //   }).catch((err) => {
-  //     this.setData({
-  //       goodsUl:[]
-  //     })
-  //   });
-  // },
-  //商品详细
-  goGoodsDetailed(e){
-    let orderId = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: "/pages/market/marketDetailed/marketDetailed?orderId="+orderId
-    })
-  },
-  //去商城
-  goMarket(){
-    wx.navigateTo({
-      url: "/pages/market/marketList/marketList"
     })
   },
   //跳转到酒店列表

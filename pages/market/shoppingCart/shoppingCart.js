@@ -27,9 +27,9 @@ Page({
   },
   onLoad: function (options) {
     user.goToLogin();
-    this.member();
   },
   onShow: function () {
+    this.member();
     this.init();
   },
   init(){

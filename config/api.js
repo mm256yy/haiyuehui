@@ -73,9 +73,9 @@
 
    MemberCouponList:WxApiRoot +'memberCoupon/list',//优惠劵列表
 
-   MallCategory:WxApiRoot +'mall/category',  //商城类别
-   MallGoods:WxApiRoot +'mall/goods',  //商城商品列表
-   MallGoodsDetail:WxApiRoot +'mall/goodsDetail',  //商品详细
+   MallCategory:WxApiRoot +'mall/main/category',  //商城类别
+   MallGoods:WxApiRoot +'mall/main/goods',  //商城商品列表
+   MallGoodsDetail:WxApiRoot +'mall/main/goodsDetail',  //商品详细
    MallOrderSubmit:WxApiRoot +'mall/order/submit', //提交订单
    MallPay: WxApiRoot + 'mall/order/prepay', //商城预支付 hwh
    MallPayCallback: WxApiRoot + 'mall/order/callback', //商城支付成功回调 hwh

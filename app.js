@@ -9,7 +9,6 @@ App({
   onShow: function(data) {
     this.renderingTime();  //日历
     this.invite(data);  //邀请人
-    user.goToLogin() // 判断登录
   },
   //判断是否有更新内容
   update(){
@@ -76,9 +75,3 @@ App({
   //
   globalData: {},  //切勿删除
 }) 
-// {
-//   "pagePath": "pages/market/marketIndex/marketIndex",
-//   "iconPath": "static/images/tab/mall2.png",
-//   "selectedIconPath": "static/images/tab/mall1.png",
-//   "text": "商城"
-// },

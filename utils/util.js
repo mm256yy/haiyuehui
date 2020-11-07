@@ -31,7 +31,7 @@ function whiteList(){
   if (pages.length) {
     currPage = pages[pages.length - 1].route;
   }
-  let whiteList = [null,"pages/index/index","pages/ucenter/index/index","pages/ucenter/order/orderList/orderList","pages/market/marketOrderList/marketOrderList","pages/market/shoppingCart/shoppingCart","pages/market/marketList/marketList"];  //跳转白名单
+  let whiteList = [null,"pages/index/index","pages/ucenter/index/index","pages/ucenter/order/orderList/orderList","pages/market/marketOrderList/marketOrderList","pages/market/shoppingCart/shoppingCart","pages/market/marketList/marketList","pages/market/marketDetailed/marketDetailed"];  //跳转白名单
   console.log(currPage)
   if(whiteList.indexOf(currPage) >= 0){ //存在
     return true;

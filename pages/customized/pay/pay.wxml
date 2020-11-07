@@ -5,7 +5,7 @@
   <view class="pay_ul">
     <view class="pay_li">
       <text class="pay_li_h">订单编号</text>
-      <text>{{order.num}}</text>
+      <text>{{order.orderId}}</text>
     </view>
     <!-- <view class="pay_li">
       <text class="pay_li_h">订单类型</text>

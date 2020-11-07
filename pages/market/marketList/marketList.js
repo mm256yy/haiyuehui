@@ -13,7 +13,7 @@ Page({
     menuVal:0,
   },
   onLoad: function (options) {
-    user.goToLogin();
+    // user.goToLogin();
   },
   onShow: function () {
     // wx.hideTabBar()
@@ -111,9 +111,9 @@ Page({
   },
   //商品详细
   goGoodsDetailed(e){
-    let orderId = e.currentTarget.dataset.id;
+    let id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: "/pages/market/marketDetailed/marketDetailed?orderId="+orderId
+      url: "/pages/market/marketDetailed/marketDetailed?id="+id
     })
   },
 })
