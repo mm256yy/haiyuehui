@@ -1,0 +1,29 @@
+<view>
+  <view class="written">
+    <view class="form_ul">
+      <view class="form_li">
+        <text class="form_li_t">车辆位置</text>
+        <input class="form_input_sm form_li_border" bindinput="carWashAddress1Input"  placeholder-class="placeholder" value="{{info.mobile}}" placeholder="场馆"/>
+        <text class="form_input_tail">馆</text>
+        <input class="form_input_sm form_li_border" bindinput="carWashAddress2Input" placeholder-class="placeholder" value="{{info.mobile}}" placeholder="楼层"/>
+        <text class="form_input_tail">层</text>
+        <input class="form_input_sm form_li_border" bindinput="carWashAddress3Input" placeholder-class="placeholder" value="{{info.mobile}}" placeholder="位号"/>
+        <text class="form_input_tail">号</text>
+      </view>
+      <view class="form_li form_li_border">
+        <input class="form_input" bindinput="carWashAddress4Input" placeholder-class="placeholder" placeholder="其他位置详细"/>
+      </view>
+      <view class="form_li form_li_border">
+        <text class="form_li_t">联系人名</text>
+        <input class="form_input" bindinput="carWashNameInput" placeholder-class="placeholder" placeholder="请输入姓名"/>
+      </view>
+      <view class="form_li form_li_border">
+        <text class="form_li_t">手机号码</text>
+        <input class="form_input" bindinput="carWashMobileInput" placeholder-class="placeholder" placeholder="请输入手机号"/>
+      </view>
+    </view>
+  </view>
+  <view class="btn_box">
+    <view class="btn_success" bindtap="btnSuccess">立即提交</view>
+  </view>
+</view>

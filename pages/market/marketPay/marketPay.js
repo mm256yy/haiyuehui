@@ -1,22 +1,15 @@
+
+let util = require('../../../utils/util.js');
 let pay = require('../../../utils/pay.js');
+let api = require('../../../config/api.js');
 let user = require('../../../utils/user.js');
 Page({
   data: {
-    shopUl:[
-      // {
-      //   choose:false,
-      //   id:'',
-      //   img:'/static/images/logo.png',
-      //   name:'五等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',
-      //   salePrice:2400,
-      //   num:2,
-      //   amount:450
-      // },
-    ],
-    totle:{
-      orderId:456454546,
-      num:0,
+    order:{
+      orderId:'',
       money:0,
+      time:'',
+      timeS:'',
     },
     mode:{
       // balance:0,
@@ -27,32 +20,28 @@ Page({
       balance:0,
       total:0,
     },
+    rmdescVal:'',
   },
   onLoad: function (options) {
-    this.init(options);
+    this.initialize(options);
   },
   onShow: function () {
     this.member();
   },
-  init(options){
-    let shoppingCart = wx.getStorageSync("shopPay");
-    let numNew = 0;
-    let moneyNew = 0;
-    for(let i=0;i<shoppingCart.length;i++){
-      numNew += shoppingCart[i].num;
-      moneyNew += shoppingCart[i].num*shoppingCart[i].salePrice;
-    } 
-    let totleNew = {
-      orderId:options.orderId,
-      num:numNew,
-      money:options.money?options.money:moneyNew,
+  initialize(data){
+    console.log(data)
+    let orderNew = {
+      orderId:data.orderId,
+      money:data.money||999900,
+      time:new Date().getTime(),
+      timeS:this.formatDateTime(new Date().getTime()),
     }
     this.setData({
-      shopUl:shoppingCart,
-      totle:totleNew
+      order:orderNew,
+      rmdescVal:data.rmdesc
     })
   },
-  //会员余额
+  //获取会员信息余额
   member(){
     user.memberGetInfo().then(res => {
       let modeNew = {
@@ -78,17 +67,17 @@ Page({
   total(){
     let balanceNew = 0;
     let wayNew = '微信支付'
-    if(this.data.totle.money <= this.data.mode.balance&&this.data.mode.balanceRadio){
-      balanceNew = this.data.totle.money;
+    if(this.data.order.money <= this.data.mode.balance&&this.data.mode.balanceRadio){
+      balanceNew = this.data.order.money;
       wayNew = '余额支付';
-    }else if(this.data.totle.money>this.data.mode.balance&&this.data.mode.balanceRadio){
+    }else if(this.data.order.money>this.data.mode.balance&&this.data.mode.balanceRadio){
       balanceNew = this.data.mode.balance;
       wayNew = '微信支付 + 余额支付';
     }else{
       balanceNew = 0;
       wayNew = '微信支付';
     };
-    let totalNew = parseInt(this.data.totle.money) - parseInt(this.data.pay.payment) - parseInt(balanceNew);
+    let totalNew = parseInt(this.data.order.money) - parseInt(this.data.pay.payment) - parseInt(balanceNew);
     let payNew = {
       payment:0,
       balance:balanceNew,
@@ -100,10 +89,10 @@ Page({
     });
   },
   //预支付
-  perpay(){
+  perpay(orderId){
     let param = {
-      orderId:this.data.totle.orderId,
-      rmdesc:this.data.totle.orderId,
+      orderId:this.data.order.orderId,
+      rmdesc:this.data.order.orderId,
       balance:this.data.pay.balance,
     }
     console.log(param);
@@ -119,4 +108,5 @@ Page({
       });
     });
   },
+  formatDateTime(inputTime) { let date = new Date(inputTime); let y = date.getFullYear(); let m = date.getMonth() + 1; m = m < 10 ? ('0' + m) : m; let d = date.getDate(); d = d < 10 ? ('0' + d) : d; let h = date.getHours(); h = h < 10 ? ('0' + h) : h; let minute = date.getMinutes(); let second = date.getSeconds(); minute = minute < 10 ? ('0' + minute) : minute; second = second < 10 ? ('0' + second) : second; return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second; }
 })

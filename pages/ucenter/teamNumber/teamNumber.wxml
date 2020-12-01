@@ -22,7 +22,7 @@
     </view>
     <view class="team_number" wx:if="{{chooseNum == 1}}">
       <view class="number_input">
-        <input  placeholder="请输入团队编号" bindblur="bindNumInput" bindinput="bindNumInput"></input>
+        <input placeholder-class="placeholder"  placeholder="请输入团队编号" bindblur="bindNumInput" bindinput="bindNumInput"></input>
       </view>
     </view>
     <view class="team_pwd" wx:if="{{chooseNum == 2}}">
@@ -55,15 +55,15 @@
       <view class="info_ul">
         <view class="info_li">
           <view class="info_li_title">用户信息一</view>
-          <input class="number_input" placeholder="请输入真实姓名" bindblur="bindNameInput" bindinput="bindNameInput"></input>
-          <input class="number_input" placeholder="请输入身份证号" bindblur="bindIdentityInput" bindinput="bindIdentityInput"></input>
-          <input class="number_input" placeholder="请输入手机号码（选填）" bindblur="bindMobileInput" bindinput="bindMobileInput"></input>
+          <input class="number_input" placeholder-class="placeholder" placeholder="请输入真实姓名" bindblur="bindNameInput" bindinput="bindNameInput"></input>
+          <input class="number_input" placeholder-class="placeholder" placeholder="请输入身份证号" bindblur="bindIdentityInput" bindinput="bindIdentityInput"></input>
+          <input class="number_input" placeholder-class="placeholder" placeholder="请输入手机号码（选填）" bindblur="bindMobileInput" bindinput="bindMobileInput"></input>
         </view>
         <view class="info_li" wx:if="{{peopleType == 2}}">
           <view class="info_li_title">用户信息二</view>
-          <input class="number_input" placeholder="请输入真实姓名" bindblur="bindPwdInput" bindinput="bindNumInput"></input>
-          <input class="number_input" placeholder="请输入身份证号" bindblur="bindPwdInput" bindinput="bindNumInput"></input>
-          <input class="number_input" placeholder="请输入手机号码（选填）" bindblur="bindPwdInput" bindinput="bindNumInput"></input>
+          <input class="number_input" placeholder-class="placeholder" placeholder="请输入真实姓名" bindblur="bindPwdInput" bindinput="bindNumInput"></input>
+          <input class="number_input" placeholder-class="placeholder" placeholder="请输入身份证号" bindblur="bindPwdInput" bindinput="bindNumInput"></input>
+          <input class="number_input" placeholder-class="placeholder" placeholder="请输入手机号码（选填）" bindblur="bindPwdInput" bindinput="bindNumInput"></input>
         </view>
       </view>
     </view>

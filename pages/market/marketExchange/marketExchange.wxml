@@ -1,0 +1,48 @@
+<view>
+  <wxs src="../../../filter/filter.wxs" module="filter" />
+	<import src="/template/template"/>
+  <view>
+    <view class="type">
+      <view class="type_li {{typeMenu == 0?'type_li_on':''}}" bindtap="typeTap" data-used="0">未使用</view>
+      <view class="type_li {{typeMenu == 1?'type_li_on':''}}" bindtap="typeTap" data-used="1">已使用</view>
+    </view>
+    <view class="exchange_ul" wx:if="{{exchangeList.length != 0}}">
+      <view class="exchange_li" wx:for="{{exchangeList}}" wx:key="index" bindtap="{{item.used == 0?'exchangeChoose':''}}" data-index="{{index}}">
+        <view class="exchange_li_left">
+          <image src="/static/images/gou{{item.choose?'4':'1'}}.png" class="exchange_choose" ></image>
+          <text class="{{item.used == 0?'exchange_code_can':'exchange_code_no'}}" >兑换码：{{filter.numSpace(item.code)}}</text>
+        </view>
+        <view class="exchange_li_rigth">
+          <view class="exchange_li_head">
+            <text class="exchange_status">{{filter.exchangeStatus(item.used)}}</text>
+          </view>
+          <view class="exchange_li_body">
+            <view class="{{item.used == 0?'exchange_name_can':'exchange_name_no'}}">{{item.name}}</view>
+            <view class="exchange_spec" wx:if="{{item.spec}}">{{filter.specDivision(item.spec)}}</view>
+          </view>
+          <view  class="exchange_li_foot" wx:if="{{item.used == 0}}">
+            <text class="{{item.used == 0?'exchange_btn_can':'exchange_btn_no'}}" wx:if="{{item.tap != ''}}" catchtap="{{item.used == 0?item.tap:''}}" data-id="{{item.id}}" data-org="{{item.orgCode}}">立即使用</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="foot" wx:if="{{typeMenu == 0}}">
+      <view class="foot_ul">
+        <view class="foot_li_left" bindtap="totleChoose">
+          <image src="/static/images/gou{{totle.choose?'4':'1'}}.png" class="exchange_choose"></image>
+          <text class="exchange_choose_text">全选</text>
+        </view>
+        <view class="foot_li_right" wx:if="{{totle.num != 0}}">
+          <button class="liveN_share" size="default" open-type="share">
+            <view class="share_btn">分享好友({{totle.num}})</view>
+          </button>
+        </view>
+        <view class="foot_li_right" wx:if="{{totle.num == 0}}" bindtap="totleChooseZero">
+          <view class="share_btn_zero">分享好友({{totle.num}})</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <marketTab id="tabValId" tab-val="2"></marketTab>
+	<template is="zero" data="{{list:exchangeList}}"/>
+</view>

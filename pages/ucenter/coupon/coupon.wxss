@@ -1,4 +1,3 @@
-/* pages/ucenter/coupon/coupon.wxss */
 page{background-color: #f1f1f1;}
 .coupon_type{
   background-color: #fff;

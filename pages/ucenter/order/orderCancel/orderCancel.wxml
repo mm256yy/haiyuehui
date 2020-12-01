@@ -17,7 +17,7 @@
         <view class="choose_radio {{chooseVal == 4?'choose_radio_on':''}}"></view>
         <view class="choose_val">其他原因</view>
         <view class="textarea_box">
-          <textarea class="cancel_textarea" bindinput="bindTextareaInput" placeholder="请输入其他内容" nodes="{{nodes}}" />
+          <textarea class="cancel_textarea" placeholder-class="placeholder" bindinput="bindTextareaInput" placeholder="请输入其他内容" nodes="{{nodes}}" />
         </view>
       </view>
     </view>

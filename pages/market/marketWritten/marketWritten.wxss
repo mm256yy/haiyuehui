@@ -1,0 +1,62 @@
+/*from*/
+.form_ul {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding: 0 30rpx;
+  background: #fff;
+}
+.form_li{
+  height: 96rpx;
+  position: relative;
+  display: flex;
+}
+.form_li_border{
+  border-bottom:1rpx solid #f1f1f1;
+}
+.form_li_t{
+  width: 150rpx;
+  line-height: 95rpx;
+}
+.form_input{
+  flex: 1 1 auto;
+  display: block;
+  height: 60rpx;
+  margin-top: 15rpx;
+  padding-left: 15rpx;
+  color: #333;
+  font-size: 30rpx;
+  background-color: #FFF;
+}
+.form_li_flex{
+  flex: 1 1 auto;
+}
+.form_input_sm{
+  width: 100rpx;
+  height: 60rpx;
+  margin-top: 15rpx;
+  color: #333;
+  font-size: 30rpx;
+  background-color: #FFF;
+  border-radius: 10rpx;
+  text-align: center;
+}
+.form_input_tail{
+  line-height: 95rpx;
+  margin:0rpx 20rpx 0rpx 20rpx;
+}
+/*btn*/
+.btn_box{
+  padding:0rpx 30rpx;
+}
+.btn_success{
+  margin: 60rpx 0rpx 40rpx 0rpx;
+  padding: 20rpx 10rpx;
+  border-radius:50rpx ;
+  color: #fff;
+  font-size: 30rpx;
+  width: 100%;
+  border-radius: 50rpx;
+  background: linear-gradient(to right, #039cee , #753ffd);
+  text-align: center;
+}

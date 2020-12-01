@@ -39,6 +39,7 @@ page{
   height: 160rpx;
   margin:0rpx 20rpx;
   background-color: #f1f1f1;
+  border-radius: 10rpx;
 }
 .shop_goods_choose{
   width: 50rpx;
@@ -50,9 +51,18 @@ page{
   height: 50rpx;
 }
 .goods_name{
-  height: 3em;
+  height: 1.4em;
   font-size: 28rpx;
   overflow: hidden;
+}
+.goods_spec{
+  display: inline-block;
+  font-size: 24rpx;
+  color: #999;
+  background-color: #f1f1f1;
+  padding: 5rpx 10rpx;
+  border-radius: 5rpx;
+  margin: 10rpx 0rpx;
 }
 .goods_price{
   position: absolute;
@@ -123,6 +133,7 @@ page{
   border-radius: 50rpx;
   padding: 20rpx;
   background-color: #cdcdcd ;
+  color: #fff;
 }
 .foot_li_delnot{
   float: right;

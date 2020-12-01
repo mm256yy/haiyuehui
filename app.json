@@ -56,8 +56,11 @@
     "pages/market/marketOrderDetailed/marketOrderDetailed",
     "pages/market/marketOrderCancel/marketOrderCancel",
     "pages/market/marketList/marketList",
-    "pages/market/markePay/marketPay",
+    "pages/market/markeConfirm/marketConfirm",
+    "pages/market/marketPay/marketPay",
     "pages/market/marketDetailed/marketDetailed",
+    "pages/market/marketExchange/marketExchange",
+    "pages/market/marketWritten/marketWritten",
 
     "pages/ucenter/teamNumber/teamNumber",
     "pages/logs/logs"

@@ -1,5 +1,6 @@
 let api = require('../../../config/api.js');
 let util = require('../../../utils/util.js');
+let check = require('../../../utils/check.js');
 let user = require('../../../utils/user.js');     
 Page({
   data: {
@@ -10,13 +11,11 @@ Page({
       // categoryId:2,
       // img:'',
       // sliderImg:[],
-      // price:23000,
-      // salePrice:22000,
       // content:'这是一个测试产品打扫打扫打扫的大事',
       // shareUrl:'',
       // introduce:'这是一个测试产品打扫打扫打扫的大事',
       // sort:'',
-      // amount:320,  //库存
+      // amount:320,  //库存 值为-1 时为不限制
       // isNew:0, //1 是 0 否
       // isHot:0, //1 是 0 否
       // isOnSale:1, //1 上架 0下架
@@ -27,14 +26,38 @@ Page({
       // noticeDate:[],
       // noticeRule:[],
       // noticePoint:[],
+      // orgCode:'',  //商品属于哪个部门
+      // isSingle:0,  //是否单独购买 1 是(不能加入购物车) 0 否 null 否\
     },
     pop:false,
     goodsNum:1,
     redTip:1,
     buyMode:0, //0 加入购物车 1 立即购买
     numTipShow:0,
+    total:{
+      // price:23000,  //优惠前
+      // salePrice:22000, //优惠后
+      // discount:95,  //折扣 
+      // money:'',
+    },
+    specList:[
+      // {
+      //   name:"颜色",
+      //   list:[
+      //     {name:'黑色',choose:false,can:true},
+      //     {name:'白色',choose:false,can:true}
+      //   ]
+      // },
+    ],
+    productList:[
+      // {spec:'白色,150ml',price:100,amount:1},
+      // {spec:'白色,250ml',price:200,amount:1},
+      // {spec:'黑色,150ml',price:300,amount:1},
+      // {spec:'黑色,250ml',price:400,amount:1},
+    ],
+    specChoose:[],
     info:{
-      mobile:'',
+      cardLevel:'',
     },
   },
   onLoad: function (options) {
@@ -43,9 +66,7 @@ Page({
     })
   },
   onShow: function () {
-    // user.goToLogin();
     this.member();
-    this.init();
   },
   //点击转发按钮
   onShareAppMessage: function (ops) {
@@ -66,9 +87,21 @@ Page({
       }
     }
   },
+  //会员
+  member(){
+    user.memberGetInfoStorage().then(res => {
+      this.setData({
+        'info.cardLevel':res.result.cardLevel
+      })
+      this.init();
+    }).catch((err) => {
+      console.log(err)
+    });
+  },
   init(){
     let param = {
-      id:this.data.id
+      id:this.data.id,
+      cardLevel:this.data.info.cardLevel
     }
     util.request(api.MallGoodsDetail , param , 'GET').then(res => {
       let data = res.result;
@@ -89,13 +122,11 @@ Page({
         categoryId:data.categoryId,
         img:data.img,
         sliderImg:sliderImgNew,
-        price:data.price,
-        salePrice:data.salePrice,
         content:contentNew, //图片详情
         shareUrl:data.shareUrl,
         introduce:data.instruction,
         sort:data.sort,
-        amount:data.amount,  //库存
+        amount:data.amount == -1?'不限制':data.amount,  //库存
         isNew:data.isNew, //1 是 0 否
         isHot:data.isHot, //1 是 0 否
         isOnSale:data.isOnSale, //1 上架 0下架
@@ -106,23 +137,78 @@ Page({
         noticeDate:noticeUl[2],
         noticeRule:noticeUl[3],
         noticePoint:noticeUl[4],
+        orgCode:data.orgCode,
+        isSingle:data.isSingle,
       };
+      //规格
+      let specListNew = '';
+      let spec_o_ul = [];
+      let spec_o_li = {};
+      let spec_i_ul = [];
+      let spec_i_li = {};
+      if(data.specList){
+        for(let i=0;i<data.specList.length;i++){
+          for(let j=0;j<data.specList[i].list.length;j++){
+            spec_i_li = {
+              name:data.specList[i].list[j],
+              choose:false,
+              can:true,
+            }
+            spec_i_ul.push(spec_i_li)
+          }
+          spec_o_li = {
+            name:data.specList[i].name,
+            list:spec_i_ul,
+          }
+          spec_i_ul = [];
+          spec_o_ul.push(spec_o_li)
+        }
+        specListNew = spec_o_ul;
+      }
+      //规格组合
+      let productListNew = [];
+      let product_o_ul = [];
+      let product_o_li = {};
+      if(data.productList){
+        for(let i=0;i<data.productList.length;i++){
+          product_o_li = {
+            spec:data.productList[i].spec,
+            price:data.productList[i].price,
+            amount:data.productList[i].amount == -1?'不限制':data.productList[i].amount,
+          }
+          product_o_ul.push(product_o_li)
+        }
+        productListNew = product_o_ul;
+      }
+      //价格
+      let totalNew = {
+        price:data.price,
+        salePrice:data.salePrice,
+        discount:data.discount,
+        money:0,
+      }
       this.setData({
         detailed:detailedNew,
+        total:totalNew,
+        specList:specListNew,
+        productList:productListNew,
       })
       this.redTipNum();
-      console.log(bannerUrlsNew)
+      this.total();
     }).catch((err) => {});
   },
-  //会员
-  member(){
-    user.memberGetInfo().then(res => {
-      this.setData({
-        'info.mobile':res.result.mobile,
-      })
-    }).catch((err) => {
-      console.log(err);
-    });
+  //总计
+  total(){
+    let moneyNew = 0;
+    if(this.data.total.discount > 0){
+      moneyNew = parseInt(this.data.total.discount)/100*this.data.total.salePrice
+    }else{
+      moneyNew = this.data.total.salePrice
+    }
+    
+    this.setData({
+      'total.money':moneyNew
+    })
   },
   //判断商品购物车数量
   redTipNum(){
@@ -138,7 +224,6 @@ Page({
         }
       }
     }
-    console.log(num)
     this.setData({
       redTip:num
     })
@@ -151,40 +236,47 @@ Page({
   },
   //添加购物车
   addShopingCart(){
-    let shoppingCartUl = [];
-    let isExist = false;
-    let index = 0;
-    if(wx.getStorageSync("shoppingCart")){
-      shoppingCartUl = wx.getStorageSync("shoppingCart");
-    }
-    if(shoppingCartUl.length>0){
-      for(let i=0;i<shoppingCartUl.length;i++){
-        if(shoppingCartUl[i].id == this.data.detailed.id){
-          isExist = true;
-          index = i;
+    let can = this.funChooseCan();
+    if(can){
+      let shoppingCartUl = [];
+      let isExist = false;
+      let index = 0;
+      if(wx.getStorageSync("shoppingCart")){
+        shoppingCartUl = wx.getStorageSync("shoppingCart");
+      }
+      if(shoppingCartUl.length>0){
+        for(let i=0;i<shoppingCartUl.length;i++){
+          if(shoppingCartUl[i].id == this.data.detailed.id){
+            isExist = true;
+            index = i;
+          }
         }
       }
-    }
-    if(isExist){
-      shoppingCartUl[index].num += this.data.goodsNum;
-    }else{
-      let shoppingCartLi = {
-        choose:false,
-        id:this.data.detailed.id,
-        name:this.data.detailed.name,
-        img:this.data.detailed.img,
-        salePrice:this.data.detailed.salePrice,
-        amount:this.data.detailed.amount,
-        num:this.data.goodsNum,
+      if(isExist){  //是否存在同等商品
+        shoppingCartUl[index].num += this.data.goodsNum;
+      }else{
+        let shoppingCartLi = {
+          choose:false,
+          id:this.data.detailed.id,
+          name:this.data.detailed.name,
+          img:this.data.detailed.img,
+          salePrice:this.data.total.salePrice,
+          amount:this.data.detailed.amount,
+          num:this.data.goodsNum,
+          orgCode:this.data.detailed.orgCode,
+          spec:this.data.specChoose.join("$"),
+        }
+        shoppingCartUl.push(shoppingCartLi);
       }
-      shoppingCartUl.push(shoppingCartLi);
+      wx.setStorageSync("shoppingCart", shoppingCartUl)
+      this.popShow(null);
+      this.setData({
+        redTip:this.data.redTip += this.data.goodsNum
+      });
+      this.animation();
+    }else{
+      check.showErrorToast('请选择商品规格')
     }
-    wx.setStorageSync("shoppingCart", shoppingCartUl)
-    this.popShow(null);
-    this.setData({
-      redTip:this.data.redTip += this.data.goodsNum
-    });
-    this.animation();
   },  
   //添加购物车动画效果
   animation(){
@@ -211,40 +303,31 @@ Page({
   },
   //立即购买
   buy(){
-    let goodsNewUl = [];
-    let goodsNewLi = {
-      goodsId:this.data.detailed.id,
-      // goodsTitle:this.data.detailed.name,
-      unitPrice:this.data.detailed.salePrice,
-      amount:this.data.goodsNum,
-      totalPrice:this.data.goodsNum*this.data.detailed.salePrice
-    };
-    goodsNewUl.push(goodsNewLi)
-    let param = {
-      goods:goodsNewUl,
-      mobile:this.data.info.mobile,
-      money:this.data.goodsNum*this.data.detailed.salePrice
-    }
-    console.log(param)
-    util.request(api.MallOrderSubmit , param , 'POST').then(res => {
+    let can = this.funChooseCan();
+    if(can){
+      //添加入支付储存
       let shopPayNew = [];
       let shopPayLi = {
         choose:false,
         id:this.data.detailed.id,
         name:this.data.detailed.name,
         img:this.data.detailed.img,
-        salePrice:this.data.detailed.salePrice,
+        salePrice:this.data.total.salePrice,
         amount:this.data.detailed.amount,
         num:this.data.goodsNum,
+        orgCode:this.data.detailed.orgCode,
+        spec:this.data.specChoose.join("$"),
       };
       shopPayNew.push(shopPayLi)
       wx.setStorageSync("shopPay", shopPayNew)
 
       //跳转
       wx.redirectTo({
-        url: "/pages/market/markePay/marketPay?money="+res.result.money+"&orderId="+res.result.orderId
+        url: "/pages/market/markeConfirm/marketConfirm?discount="+this.data.total.discount
       })
-    }).catch((err) => {});
+    }else{
+      check.showErrorToast('请选择商品规格')
+    }
   },
   //弹窗显示
   popShow(e){
@@ -261,13 +344,80 @@ Page({
   goodsNum(e){
     let val = e.currentTarget.dataset.val;
     let num = this.data.goodsNum
+    let amount = this.data.detailed.amount
     if(val == 0&&num>1){
       num --
-    }else if(val == 1){
+    }else if(val == 1&&(num<amount||amount == "不限制")){
       num ++
     }
     this.setData({
       goodsNum : num
     })
+  },
+  goWalletRecharge(){
+    wx.navigateTo({
+      url: "/pages/ucenter/wallet/walletRecharge/walletRecharge"
+    })
+  },
+  //规格选择
+  funSpecChoose(e){
+    let index1 = e.currentTarget.dataset.index1;
+    let index2 = e.currentTarget.dataset.index2;
+    let specListNew = this.data.specList;
+    let specChooseNew = this.data.specChoose;
+    for(let i=0;i<specListNew[index1].list.length;i++){
+      specListNew[index1].list[i].choose = false;
+    }
+    specListNew[index1].list[index2].choose = true;
+    specChooseNew[index1] = specListNew[index1].list[index2].name;
+    this.setData({
+      specList:specListNew,
+      specChoose:specChooseNew
+    })
+    //判断生成价格
+    let can = this.funChooseCan();
+    let productListNew = this.data.productList;
+    let salePrice = this.data.total.salePrice;
+    if(can){
+      for(let i=0;i<productListNew.length;i++){
+        if(specChooseNew.join("$") == productListNew[i].spec){
+          salePrice = productListNew[i].price
+        }
+      }
+      this.setData({
+        'total.salePrice':salePrice
+      })
+    }
+    //判断是否有这个规格组合
+    // let name = specListNew[index1].list[index2].name
+    // for(let i=0;i<productListNew.length;i++){
+    //   if(productListNew[i].spec.split('$')[index1] == name){
+    //     for(let j=0;j<specListNew[index1].list.length;j++){
+    //       if(specListNew[index1].list[j].name == productListNew[i].spec.split('$')[index1]){
+
+    //       }else{
+
+    //       }
+    //     }
+    //   }else{
+
+    //   }
+    // }
+  },
+  //判断规格是否全部选中
+  funChooseCan(){
+    let len = this.data.specList.length;
+    let specChooseNew = this.data.specChoose;
+    let num = 0;
+    for(let i=0;i<len;i++){
+      if(specChooseNew[i]){
+        num ++
+      }
+    }
+    if(num == len){
+      return true;
+    }else{
+      return false;
+    }
   }
 })

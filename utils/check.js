@@ -25,6 +25,14 @@ function spaceNo(str){
     return true;
   };
 };
+//判断是否存在值 存在true 不存在 false
+function existValue(val){
+  if(val&&val != null&&val != 'null'&&val != 'undefined'&&val != undefined){
+    return true;
+  }else{
+    return false;
+  }
+}
 //半透明黑色提示(失败)
 function showErrorToast(msg) {
   if(msg.length <= 7){
@@ -126,6 +134,7 @@ module.exports = {
   isValidPhone,
   isNonnum,
   spaceNo,
+  existValue,
 
   showErrorToast,
   showSuccessToast,

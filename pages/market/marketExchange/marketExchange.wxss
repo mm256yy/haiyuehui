@@ -1,0 +1,171 @@
+page{background-color: #f1f1f1;}
+.type{
+  background-color: #fff;
+  display: flex;
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  z-index: 100;
+}
+.type_li{
+  padding: 30rpx;
+  flex: 1 1 auto;
+  text-align: center;
+}
+.type_li_on{
+  color: #008cd7;
+  border-bottom: 1px solid #008cd7;
+}
+/*exchange*/
+.exchange_ul{
+  padding:20rpx 20rpx 220rpx 20rpx;
+  margin-top: 100rpx;
+}
+.exchange_li{
+  background-color: #fff;
+  border-radius:10rpx;
+  margin-bottom: 20rpx;
+  padding: 0rpx;
+  position: relative;
+}
+.exchange_li_left{
+  position: absolute;
+  top: 14rpx;
+  left:20rpx;
+}
+.exchange_choose{
+  width: 50rpx;
+  height: 50rpx;
+  margin: auto;
+}
+.exchange_li_rigth{
+}
+.exchange_li_head{
+  overflow: hidden;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #f1f1f1;
+}
+.exchange_li_body{
+  padding: 20rpx;
+  border-bottom: 1rpx solid #f1f1f1;
+}
+.exchange_li_foot{
+  overflow: hidden;
+  padding: 0rpx;
+}
+.exchange_status{
+  float: right;
+  color: #999;
+}
+.exchange_spec{
+  font-size: 24rpx;
+  display: inline-block;  
+  background-color: #f1f1f1;
+  color: #999;
+  min-width: 100rpx;
+  padding: 5rpx 10rpx;
+  text-align: center;
+  margin-top: 10rpx;
+  border-radius:5rpx ;
+}
+.exchange_name_can{
+  margin-right: 50rpx;
+}
+.exchange_name_no{
+  margin-right: 50rpx;
+  color: #999;
+}
+.exchange_code_can{
+  float: left;
+  color: #008cd7;
+  margin-left: 20rpx;
+  line-height: 50rpx;
+}
+.exchange_code_no{
+  float: left;
+  color: #999;
+  margin-left: 20rpx;
+  line-height: 50rpx;
+}
+.exchange_btn_can{
+  width: 180rpx;
+  text-align: center;
+  padding: 13rpx;
+  margin: 15rpx 20rpx;
+  color: #fff;
+  background: linear-gradient(to right, #039cee , #346ae8);
+  border-radius: 50rpx;
+  float: right;
+  font-size: 24rpx;
+}
+.exchange_btn_no{
+  width: 180rpx;
+  text-align: center;
+  padding: 13rpx;
+  margin: 15rpx 20rpx;
+  color: #fff;
+  background-color: #cdcdcd;
+  border-radius: 50rpx;
+  float: right;
+  font-size: 24rpx;
+}
+/*foot*/
+.foot{
+  position: fixed;
+  width: 100%;
+  left: 0rpx;
+  bottom: 100rpx;
+  background-color: #fff;
+  padding: 20rpx;
+  border-top: 2rpx solid #cdcdcd;
+}
+.foot_li_choose{
+  text-align: left;
+}
+.exchange_choose{
+  float: left;
+}
+.exchange_choose_text{
+  float: left;
+}
+.exchange_choose_text{
+  display: inline-block;
+  padding: 10rpx;
+}
+.share_btn{
+  float: right;
+  width: 300rpx;
+  background: linear-gradient(to right, #039cee , #346ae8);
+  color: #fff;
+  text-align: center;
+  border-radius: 50rpx;
+  padding: 20rpx;
+}
+.share_btn_zero{
+  float: right;
+  width: 300rpx;
+  background-color: #cdcdcd;
+  color: #fff;
+  text-align: center;
+  border-radius: 50rpx;
+  padding: 20rpx;
+}
+.liveN_share{
+  width: 150rpx ;
+  background-color: #fff;
+  margin: 0rpx !important;
+  padding: 0rpx !important;
+  font-weight: 400;
+}
+.foot_ul{
+  position: relative;
+}
+.foot_li_left{
+  position: absolute;
+  top: 10rpx;
+  left: 0rpx;
+}
+.foot_li_right{
+  float: right;
+}

@@ -2,7 +2,7 @@
 let user = require('../../utils/user.js');
 let util = require('../../utils/util.js');
 let api = require('../../config/api.js');
-
+let check = require('../../utils/check.js');
 let app = getApp();
 
 Page({
@@ -24,6 +24,9 @@ Page({
     },
     calendarShow:false,
     popShow:false,
+    info:{
+      memberId:'',
+    }
   },
   onLoad: function (option) {
     wx.setStorageSync('othersInviteCodeFrist', true);
@@ -31,9 +34,12 @@ Page({
   },
   onShow: function () {
     // wx.showTabBar()
-    this.getAllowance();
-    this.renderingTime();
-    this.fristRegister();
+    this.marketGo();  //跳转到商城
+    this.getAllowance();  //津贴
+    this.renderingTime();  //日历
+    this.fristRegister();  //优惠券  
+    this.member();
+    
   },
   //传递邀请人
   // invite(option){
@@ -62,6 +68,36 @@ Page({
         wx.setStorageSync('othersInviteCodeFrist', false);
       }).catch((err) => {});
     }
+  },
+  //获取兑换码
+  getExchange(){
+    let exchangeCode = wx.getStorageSync('exchangeCode');
+    if(check.existValue(exchangeCode)){
+      let param = {
+        ids:exchangeCode,
+        memberId:this.data.info.memberId,
+      };
+      util.request(api.MallMemberGoodsConnect , param , 'GET').then(res => {
+        wx.showModal({title: '恭喜',content: "成功获取对方赠与的兑换码",showCancel: false}); 
+        wx.setTabBarBadge({
+          index: 1,
+          text: '1'
+        })
+        wx.setStorageSync('marketBadge', [0,0,1,0]);
+        wx.setStorageSync('exchangeCode', "");
+      }).catch((err) => {});
+    }
+  },
+  //获取会员信息
+  member(){
+    user.memberGetInfoStorage().then(res => {
+      this.setData({
+        'info.memberId':res.result.cardno,
+      })
+      this.getExchange();
+    }).catch((err) => {
+      console.log(err);
+    });
   },
   //跳转酒店详情
   hotelsDetailed(){
@@ -181,9 +217,13 @@ Page({
     };
     return ret;
   },
-  // aa(){
-  //   wx.navigateTo({
-  //     url: "/pages/activity/actList/actList",
-  //   });
-  // }
+  marketGo(){
+    let canGoMarket = wx.getStorageSync("canGoMarket");
+    if(canGoMarket == 1){
+      wx.navigateTo({
+        url: "/pages/market/marketList/marketList",
+      });
+      wx.setStorageSync('canGoMarket', 0);
+    }
+  }
 });

@@ -1,5 +1,5 @@
 <view>
-	<wxs src="../../../filter/filter.wxs" module="money"/>
+	<wxs src="../../../filter/filter.wxs" module="filter"/>
 	<import src="/template/template"/> 
 	<view class="shop_body">
 		<view class="shop_title">
@@ -19,7 +19,8 @@
 				</view>
 				<view class="shop_li_div shop_goods_text" bindtap="goodsChoose" data-index="{{index}}">
 					<view class="goods_name">{{item.name}}</view>
-					<view class="goods_price">￥{{money.moneyFixed(item.salePrice)}}</view>
+					<view class="goods_spec" wx:if="{{item.spec}}">{{filter.specDivision(item.spec)}}</view>
+					<view class="goods_price">￥{{filter.moneyFixed(item.salePrice)}}</view>
 				</view>
 				<view class="shop_goods_num">
 					<view class="num_view num_add" bindtap="goodsNum" data-val="1" data-index="{{index}}">+</view>
@@ -35,7 +36,7 @@
 				<image src="/static/images/gou{{totle.choose?'2':'1'}}.png" class="totle_choose"></image>
 			</view>
 			<view class="foot_li">
-				<view>合计：{{money.moneyFixed(totle.money)}}</view>
+				<view>合计：{{filter.moneyFixed(totle.money)}}</view>
 			</view>
 			<view class="foot_li">
 				<view class="{{manageType?(haveChoose?'foot_li_del':'foot_li_delnot'):(haveChoose?'foot_li_pay':'foot_li_paynot')}}" bindtap="{{manageType?'goDel':'goPay'}}">{{manageType?'删除':'提交订单'}}</view>

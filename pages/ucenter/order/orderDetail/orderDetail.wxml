@@ -165,7 +165,7 @@
         <text class="detail_t1">预定类型：</text>
         <text class="detail_t2">{{filter.otaType(detail.otaRestype)}}</text>
       </view>
-      <view class="order_money_li"><text class="detail_t1">{{detail.otaId == ''?'总价：':'应付金额：'}}</text><text class="detail_t3">￥{{filter.moneyFixed(total.money)}}</text></view>
+      <view class="order_money_li"><text class="detail_t1">付款金额</text><text class="detail_t3">￥{{filter.moneyFixed(total.money)}}</text></view>
     </view>
   </view>
   <view class="money_box" wx:if="{{(detail.status == 22||detail.status == 23||detail.status == 24||detail.status == 31||detail.status == 41||detail.status == 51)}}">

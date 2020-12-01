@@ -43,11 +43,11 @@
       </view>
       <view class="fill_li">
         <text>联系人</text>
-        <input placeholder="请输入真实姓名" value="{{fill.name}}" bindblur="bindNameInput" bindinput="bindNameInput"></input>
+        <input placeholder="请输入真实姓名" placeholder-class="placeholder" value="{{fill.name}}" bindblur="bindNameInput" bindinput="bindNameInput"></input>
       </view>
       <view class="fill_li">
         <text>手机号码</text>
-        <input value="{{fill.mobile}}" placeholder="请输入手机号码" bindblur="bindMobileInput" bindinput="bindMobileInput"></input>
+        <input value="{{fill.mobile}}" placeholder="请输入手机号码" placeholder-class="placeholder" bindblur="bindMobileInput" bindinput="bindMobileInput"></input>
       </view>
     </view>
     <view class="person_selected">

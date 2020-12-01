@@ -30,6 +30,7 @@ page{
 }
 .rule_up{
   color: #fff;
+  font-size: 26rpx;
 }
 .member_card_tou{
   position: absolute;

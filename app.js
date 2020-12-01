@@ -9,6 +9,7 @@ App({
   onShow: function(data) {
     this.renderingTime();  //日历
     this.invite(data);  //邀请人
+    this.exchange(data); //兑换码转接
   },
   //判断是否有更新内容
   update(){
@@ -38,6 +39,12 @@ App({
       inviteCode = scene[1];
     }
     wx.setStorageSync('othersInviteCode', inviteCode);
+  },
+  //转接兑换码
+  exchange(data){
+    let option = data.query;
+    let exchangeCode = option.ids;
+    wx.setStorageSync('exchangeCode', exchangeCode);
   },
   //获取用户信息
   userInfo(){

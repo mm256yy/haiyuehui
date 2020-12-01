@@ -26,6 +26,7 @@
           </view>
           <view class="goods_flex">
             <view class="goods_name">{{item1.name}}</view>
+            <view class="goods_spec" wx:if="{{item1.spec != ''}}">{{filter.specDivision(item1.spec)}}</view>
           </view>
           <view class="goods_price">￥{{filter.moneyFixed(item1.salePrice)}}</view>
           <view class="goods_num">X{{item1.num}}</view>
@@ -42,7 +43,21 @@
     <view class="money_box">
       <view class="order_h1">订单金额详情</view>
       <view class="order_money">
-        <view><text class="detail_t1">总价：</text><text class="detail_t3">￥{{filter.moneyFixed(detail.money)}}</text></view>
+        <view class="order_money_li">
+          <text class="detail_t1">订单总金额：</text><text class="detail_t2">￥{{filter.moneyFixed(detail.money)}}</text>
+        </view>
+        <view class="order_money_li" wx:if="{{detail.discount != 100}}">
+          <text class="detail_t1">会员折扣：</text><text class="detail_t2">{{filter.moneyDiscount(detail.discount)}}折</text>
+        </view>
+        <view class="order_money_li" wx:if="{{detail.payMoney != 0}}">
+          <text class="detail_t1">付款金额：</text><text class="detail_t3">￥{{filter.moneyFixed(detail.payMoney)}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="remark_box">
+      <view class="order_h1">备注</view>
+      <view class="remark_text">
+        <view class="remark_text_li" wx:for="{{detail.remark}}" wx:key="index">{{item}}</view>
       </view>
     </view>
   </view>

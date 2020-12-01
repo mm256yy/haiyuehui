@@ -15,7 +15,9 @@ text {
   font-size: 28rpx;
   color: #333;
 }
-
+.placeholder {
+  color: #cdcdcd;
+}
 page {
   background-color: #fff;
 }

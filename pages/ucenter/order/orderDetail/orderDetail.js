@@ -189,7 +189,7 @@ Page({
     let surplusPass = 0;
     let discountPass = 100;
     if((type == 11||type == 12||type == 13||type == 21)&&(ota == "")){
-      user.memberGetInfo().then(res => {
+      user.memberGetInfoStorage().then(res => {
         let couponNew = Math.round(this.data.total.roomPrice-((this.data.total.money-this.data.total.deposit)/(res.result.discount/100)))
         if(couponNew<0){ //兼容过去订单
           surplusPass = 0;

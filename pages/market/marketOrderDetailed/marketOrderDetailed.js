@@ -1,11 +1,16 @@
 let api = require('../../../config/api.js');
 let util = require('../../../utils/util.js');
+let user = require('../../../utils/user.js');   
 Page({
   data: {
     detail:{
       status:1,
       createTime:'',
       id:'',
+      remark:['未写备注'],
+      payMoney:0,
+      discount:100,
+      money:'',
       goods:[
         {
           id:0,
@@ -13,6 +18,7 @@ Page({
           name:'',
           salePrice:'0',
           num:'1',
+          spec:'',
           codes:[
             // {code:'4564564',used:0}
           ]
@@ -23,13 +29,13 @@ Page({
   },
   onLoad: function (options) {
     this.init(options);
+    this.member();
   },
   onShow: function () {
     
   },
   init(options){
     let orderId = options.orderId;
-    console.log(orderId)
     let param = {
       orderId:orderId
     }
@@ -40,7 +46,7 @@ Page({
         if(data.goods[i].codes){
           for(let j=0;j<data.goods[i].codes.length;j++){
             c_li = {
-              code:data.goods[i].codes[j].code,
+              code:data.goods[i].codes[j].code?data.goods[i].codes[j].code:'',
               used:data.goods[i].codes[j].used,
               copy:0,
             }
@@ -51,21 +57,25 @@ Page({
           id:data.goods[i].goodsId,
           img:data.goods[i].goodsImg,
           name:data.goods[i].goodsTitle,
-          salePrice:data.goods[i].totalPrice,
+          salePrice:data.goods[i].unitPrice,
           num:data.goods[i].amount,
+          spec:data.goods[i].spec?data.goods[i].spec:'',
           codes:c_ul
         }
         c_ul = [];
         g_ul.push(g_li)
       }
+      let remarkNew = data.remark == null?["尚未备注"]:data.remark.split('\n');
       let detailNew = {
         status:data.status,
         createTime:data.createTime,
         id:data.id,
+        discount:100,
         money:data.money,
+        payMoney:data.payMoney,
+        remark:remarkNew,
         goods:g_ul,
       }
-      console.log(detailNew)
       this.setData({
         detail:detailNew,
         detailCopy:detailNew,
@@ -88,6 +98,16 @@ Page({
         }
       },
     })
+  },
+  //会员
+  member(){
+    user.memberGetInfoStorage().then(res => {
+      this.setData({
+        'detail.discount':res.result.discount
+      })
+    }).catch((err) => {
+      console.log(err)
+    });
   },
   // longShareCopy(e){
   //   let code = e.currentTarget.dataset.text;

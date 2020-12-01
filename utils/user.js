@@ -81,11 +81,12 @@ function checkLogin() {
     });
   });
 }
-/*获取会员信息*/
+/*获取会员信息 不会存储 （经常用在下订单页面，需要更新用户信息）*/
 function memberGetInfo(){
   let iswhiteList = util.whiteList();
   return new Promise(function(resolve, reject) {
     util.request(api.MemberGet , 'GET').then(res => {
+      getApp().globalData.memberInfo = res;
       resolve(res);
     }).catch((err) => {
       if((err == "未找到会员信息"||err == "请先绑定手机号")&&iswhiteList){  //白名单
@@ -112,6 +113,22 @@ function memberGetInfo(){
     });
   });
 }; 
+/*获取会员信息  并且储存（常用在拿到简单的会员信息页面）*/
+function memberGetInfoStorage(){
+  let that = this;
+  return new Promise(function(resolve, reject) {
+    let memberInfo = getApp().globalData.memberInfo;
+    if(memberInfo){
+      resolve(memberInfo);
+    }else{
+      that.memberGetInfo().then(res => {
+        resolve(res);
+      }).catch((err) => {
+        reject(err)
+      });
+    }
+  });
+}; 
 //跳转登陆验证
 function goToLogin(){
   checkLogin().then(res => {
@@ -128,5 +145,6 @@ module.exports = {
   loginByWeixin,
   checkLogin,
   memberGetInfo,
+  memberGetInfoStorage,
   goToLogin,
 };

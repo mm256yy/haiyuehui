@@ -79,10 +79,6 @@
   font-size: 35rpx;
   margin-top: 20rpx;
 }
-.number_input>input::-webkit-input-placeholder{
-  color: #f1f1f1;
-  padding: 10rpx;
-}
 /*pwd*/
 .team_pwd{
   padding: 60rpx 20rpx 20rpx 20rpx;

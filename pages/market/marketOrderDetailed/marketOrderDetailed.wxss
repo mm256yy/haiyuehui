@@ -74,9 +74,21 @@ page{background-color: #f1f1f1;}
 }
 .goods_name{
   margin-left: 20rpx;
-  height: 3em;
+  height: 1.2em;
   font-size: 28rpx;
   overflow: hidden;
+}
+.goods_spec{
+  display: inline-block;
+  background-color: #f1f1f1;
+  color: #999;
+  min-width: 100rpx;
+  padding: 5rpx 10rpx;
+  text-align: center;
+  margin-top: 10rpx;
+  margin-left: 20rpx;
+  border-radius: 5rpx;
+  font-size: 24rpx;
 }
 .goods_price{
   position: absolute;
@@ -91,7 +103,7 @@ page{background-color: #f1f1f1;}
 }
 .goods_li_foot{
   margin-top: 20rpx;
-  border-top: 1rpx solid #cdcdcd;
+  border-top: 1rpx solid #f1f1f1;
   padding-top: 20rpx;
 }
 .goods_code_li{
@@ -124,4 +136,13 @@ page{background-color: #f1f1f1;}
   color: #cc0000;
   font-size: 26rpx;
   padding: 10rpx 0rpx;
+}
+/*remark_text*/
+.remark_text{
+  background-color: #fff;
+  padding: 20rpx;
+}
+.remark_text_li{
+  color:#999 ;
+  word-wrap:break-word ;
 }

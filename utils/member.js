@@ -10,28 +10,28 @@ let memberCard = [
     baImg:'card2',
     nameC:'银卡',
     nameE:'Silver Member',
-    upRule:'满足以下下任意条件：<br/>年消费满2000元<br/>官方渠道预定间夜量达5<br/>充值满2000元',
+    upRule:'满足以下条件升级：<br/>充值满2000元<br/>满足以下任意条件保级：<br/>年消费满2000元<br/>官方渠道预定间夜量达5',
     validityRule:'一年',
   },
   {
     baImg:'card3',
     nameC:'金卡',
     nameE:'Gold Member',
-    upRule:'满足以下下任意条件：<br/>年消费满10000元<br/>官方渠道预定间夜量达30<br/>充值满10000元',
+    upRule:'满足以下条件升级：<br/>充值满10000元<br/>满足以下任意条件保级：<br/>年消费满10000元<br/>官方渠道预定间夜量达30',
     validityRule:'一年',
   },
   {
     baImg:'card6',
     nameC:'白金卡',
     nameE:'Platinum Member',
-    upRule:'满足以下下任意条件：<br/>年消费满50000元<br/>官方渠道预定间夜量达150<br/>充值满50000元',
+    upRule:'满足以下条件升级：<br/>充值满50000元<br/>满足以下任意条件保级：<br/>年消费满50000元<br/>官方渠道预定间夜量达150',
     validityRule:'一年',
   },
   {
     baImg:'card7',
     nameC:'黑金卡',
     nameE:'Diamond Member',
-    upRule:'满足以下下任意条件：<br/>年消费满100000元<br/>官方渠道预定间夜量达300<br/>充值满100000元',
+    upRule:'满足以下条件升级：<br/>充值满100000元<br/>满足以下任意条件保级：<br/>年消费满100000元<br/>官方渠道预定间夜量达300',
     validityRule:'一年',
   }
 ]

@@ -59,11 +59,24 @@ page {
   margin-bottom: 20rpx;
   background-color: #f1f1f1;
 }
-.order_li_name{
+.order_li_text{
   flex: 1 1 auto;
-  height: 3em;
+}
+.order_li_name{
+  height: 1.2em;
   font-size: 28rpx;
   overflow: hidden;
+}
+.order_li_spec{
+  display: inline-block;
+  background-color: #f1f1f1;
+  color: #999;
+  min-width: 100rpx;
+  padding: 5rpx 10rpx;
+  text-align: center;
+  margin-top: 10rpx;
+  border-radius: 5rpx;
+  font-size: 24rpx;
 }
 .order_li_money{
   position: absolute;

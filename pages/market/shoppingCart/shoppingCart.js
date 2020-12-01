@@ -12,7 +12,9 @@ Page({
       //   name:'五等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',
       //   salePrice:2400,
       //   num:2,
-      //   amount:450
+      //   amount:450,
+      //   orgCode:'',
+      //   spec:'',
       // },
     ],
     info:{
@@ -42,7 +44,7 @@ Page({
   },
   //会员
   member(){
-    user.memberGetInfo().then(res => {
+    user.memberGetInfoStorage().then(res => {
       this.setData({
         'info.mobile':res.result.mobile,
       })
@@ -129,9 +131,10 @@ Page({
     let index = e.currentTarget.dataset.index;
     let shopUlNew = this.data.shopUl;
     let num = shopUlNew[index].num;
+    let amount = shopUlNew[index].amount;
     if(val == 0&&num>1){
       shopUlNew[index].num --
-    }else if(val == 1&&num<shopUlNew[index].amount){
+    }else if(val == 1&&(num<amount||amount == "不限制")){
       shopUlNew[index].num ++
     }
     wx.setStorageSync("shoppingCart", shopUlNew)
@@ -152,7 +155,8 @@ Page({
           // goodsTitle:shopUlNew[i].name,
           unitPrice:shopUlNew[i].salePrice,
           amount:shopUlNew[i].num,
-          totalPrice:shopUlNew[i].num*shopUlNew[i].salePrice
+          totalPrice:shopUlNew[i].num*shopUlNew[i].salePrice,
+          orgCode:shopUlNew[i].orgCode,
         }
         goodsNewUl.push(goodsNewLi)
       }
@@ -161,30 +165,23 @@ Page({
       check.showErrorToast('请勾选商品');
       return false;
     }
-    let param = {
-      goods:goodsNewUl,
-      mobile:this.data.info.mobile,
-      money:this.data.totle.money
-    }
-    util.request(api.MallOrderSubmit , param , 'POST').then(res => {
-      let shopPayNew = [];
-      //删除购物车
-      for(let i=0;i<goodsNewUl.length;i++){
-        for(let j=0;j<shopUlNew.length;j++){
-          if(goodsNewUl[i].goodsId == shopUlNew[j].id){
-            shopPayNew.push(shopUlNew[j])
-            shopUlNew.splice(j,1);
-          }
+    //删除购物车/添加入支付储存
+    let shopPayNew = [];
+    for(let i=0;i<goodsNewUl.length;i++){
+      for(let j=0;j<shopUlNew.length;j++){
+        if(goodsNewUl[i].goodsId == shopUlNew[j].id){
+          shopPayNew.push(shopUlNew[j])
+          shopUlNew.splice(j,1);
         }
       }
-      wx.setStorageSync("shoppingCart", shopUlNew);
-      wx.setStorageSync("shopPay", shopPayNew)
+    }
+    wx.setStorageSync("shoppingCart", shopUlNew);
+    wx.setStorageSync("shopPay", shopPayNew)
 
-      //跳转
-      wx.redirectTo({
-        url: "/pages/market/markePay/marketPay?money="+res.result.money+"&orderId="+res.result.orderId
-      })
-    }).catch((err) => {});
+    //跳转
+    wx.redirectTo({
+      url: "/pages/market/markeConfirm/marketConfirm"
+    })
   },
   //删除
   goDel(){

@@ -67,13 +67,29 @@ function marketType(type){
     default: return '未知状态';
   }
 }
+//market兑换码状态
+function exchangeStatus(status){
+  switch (status) {
+    case 0 : return "未使用";
+    default: return '已使用';
+  }
+}
+//market规格值
+function specDivision(val){
+  return val.replace("$","，");
+}
 //返回数字每四个空一格子
 function numSpace(num){  
   var arr = ''
-  for(var i=0;i<parseInt(num.length/4)+1;i++){
-    arr += num.substring(0+i*4,4+i*4)+' '
+  if(num){
+    for(var i=0;i<parseInt(num.length/4)+1;i++){
+      arr += num.substring(0+i*4,4+i*4)+' '
+    }
+    return arr
+  }else{
+    return '';
   }
-  return arr
+  
 }
 //返回手机尾号四位
 function MobileFour(mobile){
@@ -90,6 +106,9 @@ module.exports = {
   roomType:roomType,
   otaType:otaType,
   marketType:marketType,
+  exchangeStatus:exchangeStatus,
+
+  specDivision:specDivision,
 
   numSpace:numSpace,
   MobileFour:MobileFour,

@@ -171,7 +171,7 @@ Page({
     console.log(type)
     if(type == 11||type == 12||type == 13||type == 21){
       //获取名字
-      user.memberGetInfo().then(res => {
+      user.memberGetInfoStorage().then(res => {
         let couponNew = Math.round(this.data.detail.totleRoomPrice-((this.data.detail.money-this.data.detail.deposit)/(res.result.discount/100)))
         this.setData({
           'detail.coupon':couponNew,

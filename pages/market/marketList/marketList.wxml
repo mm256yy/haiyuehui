@@ -9,7 +9,7 @@
   <view class="body">
     <view class="menu_ul">
       <view class="menu_li" wx:for="{{menuUl}}" wx:key="index" bindtap="menuOn" data-index="{{index}}">
-        <text class="menu_li_text {{menuVal == item.val?'menu_li_text_on':''}}">{{item.name}}</text>
+        <text class="menu_li_text {{menuVal == index?'menu_li_text_on':''}}">{{item.name}}</text>
       </view>
     </view>
     <view class="market_ul">

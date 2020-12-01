@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "兑换码",
+  "usingComponents": {
+    "marketTab":"/components/marketTab/marketTab"
+  }
+}

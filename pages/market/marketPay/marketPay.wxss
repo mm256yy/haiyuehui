@@ -1,0 +1,67 @@
+
+page{background-color: #f1f1f1;}
+.pay_pop{
+  margin: 20rpx;
+  padding: 20rpx;
+  background-color: #313848;
+  color: #fff;
+  border-radius:10rpx ;
+}
+/*订单类型*/
+.pay_ul{
+  background-color: #fff;
+  padding:0rpx 20rpx ;
+  margin-bottom: 20rpx;
+}
+.pay_li{
+  border-bottom:1px solid #f1f1f1 ;
+  padding: 20rpx 0rpx;
+}
+.pay_li:last-child{
+  border-bottom:0rpx ;
+}
+.pay_li_h{
+  margin-right: 30rpx;
+}
+.pay_li_r{
+  float: right;
+}
+.pay_li_totle{
+  font-size: 36rpx;
+  color: #cc0000;
+}
+.pay_li_green{
+  color:#179B16 ;
+}
+.pay_label{
+  text-align: center;
+  color: #999;
+}
+.pay_btn{
+  margin: 20rpx;
+  padding: 20rpx;
+  background: linear-gradient(to right, #039cee , #753ffd);
+  color: #fff;
+  border-radius:50rpx ;
+  text-align: center;
+}
+/*支付类型*/
+.pay_mode{
+  background-color: #f1f1f1;
+  padding:10rpx 20rpx;
+  margin-bottom: 20rpx;
+}
+.pay_li_not{
+  margin-left: 20rpx;
+  color: #cc0000;
+}
+.pay_mode_h1{
+  font-weight: 800;
+}
+.pay_li_l{
+  margin-left: 20rpx;
+}
+.pay_li_balance{
+  font-size: 36rpx;
+  color: #039cee;
+}

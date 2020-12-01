@@ -13,6 +13,45 @@ page{
 .goods_body{
   padding-bottom: 100rpx;
 }
+.body_member{
+  background-color: #fe6f41;
+  overflow: hidden;
+  padding: 20rpx;
+}
+.member_left{
+  float: left;
+  margin: 20rpx 0rpx;
+}
+.member_right{
+  float: right;
+  text-align: center;
+  padding-left: 20rpx;
+  border-left:1rpx solid #ff936f ;
+}
+.member_t{
+  color: #fff;
+}
+.member_t1{
+  line-height: 50rpx;
+}
+.member_t2{
+  font-size: 40rpx;
+  font-weight: 800;
+}
+.member_t3{
+  font-size: 24rpx;
+  padding: 5rpx 20rpx;
+  background-color: #ff4e14;
+  border-radius:20rpx ;
+  margin: 20rpx;
+}
+.member_t4{
+  font-size: 40rpx;
+}
+.member_t5{
+  font-size: 28rpx;
+  text-decoration: underline;
+}
 .body_list{
   background-color: #fff;
   margin-bottom: 20rpx;
@@ -181,7 +220,7 @@ page{
 .pop_background{
   background-color: #fff;
   position: relative;
-  padding-bottom: 200rpx;
+  padding-bottom: 120rpx;
 }
 .pop_li{
   padding: 20rpx;
@@ -213,7 +252,6 @@ page{
 .pop_num_box{
   display: flex;
   padding: 40rpx 20rpx;
-  border-top: 1rpx solid #f1f1f1;
 }
 .pop_purchase{
   line-height: 60rpx;
@@ -240,4 +278,30 @@ page{
   color: #fff;
   padding: 30rpx;
   text-align: center;
+}
+.spec_type{
+  overflow: hidden;
+  padding: 20rpx 0rpx;
+  border-bottom: 1rpx solid #f1f1f1;
+}
+.spec_name{
+  padding-bottom: 20rpx;
+}
+.spec_val{
+  min-width: 200rpx;
+  background-color: #f1f1f1;
+  border-radius:10rpx ;
+  text-align: center;
+  float: left;
+  padding: 10rpx 40rpx;
+  margin: 10rpx;
+  border: 1rpx solid #f1f1f1;
+}
+.spec_val_on{
+  border: 1rpx solid #fe6f41;
+  color: #fe6f41;
+  background-color: #fff7f4;
+}
+.spec_val_cant{
+  color: #cdcdcd;
 }

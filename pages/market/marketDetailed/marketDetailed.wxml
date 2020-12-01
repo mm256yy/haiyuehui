@@ -11,11 +11,22 @@
 		</swiper>
 	</view>
 	<view class="goods_body">
+		<!-- <view class="body_member" wx:if="{{false}}">
+			<view class="member_left">
+				<text class="member_t1 member_t">￥</text>
+				<text class="member_t2 member_t">{{total.money}}</text>
+				<text class="member_t3 member_t">{{total.discount}}折</text>
+			</view>
+			<view class="member_right" bindtap="goWalletRecharge">
+				<view class="member_t4 member_t">会员再优惠</view>
+				<view class="member_t5 member_t">充值升级</view>
+			</view>
+		</view> -->
 		<view class="body_list">
 			<view class="body_li">
 				<text class="body_price1">￥</text>
-				<text class="body_price2">{{money.moneyFixed(detailed.salePrice)}}</text>
-				<text class="body_price3">￥{{money.moneyFixed(detailed.price)}}</text>
+				<text class="body_price2">{{money.moneyFixed(total.salePrice)}}</text>
+				<text class="body_price3">￥{{money.moneyFixed(total.price)}}</text>
 			</view>
 			<view class="body_li body_name">{{detailed.name}}</view>
 		</view>
@@ -94,11 +105,11 @@
 				</view>
 			</view>
 		</view>
-		<view class="goods_foot_li goods_foot_btn goods_foot_shop" bindtap="popShow" data-mode="0">
+		<view wx:if="{{detailed.isSingle != 1}}" class="goods_foot_li goods_foot_btn goods_foot_shop" bindtap="popShow" data-mode="0">
 			<view class="goods_foot_btn_t">加入购物车</view>
 		</view>
 		<view class="goods_foot_li goods_foot_btn goods_foot_pay" bindtap="popShow" data-mode="1">
-			<view class="goods_foot_btn_t">立即购买</view>
+			<view class="goods_foot_btn_t">立即抢购</view>
 		</view>
 	</view>
 	<view class="goods_pop" wx:if="{{pop}}">
@@ -110,8 +121,13 @@
 					<image src="/static/images/del-b.png" class="pop_del" bindtap="popShow"></image>
 					<view class="pop_price">
 						<text class="body_price1">￥</text>
-						<text class="body_price2">{{money.moneyFixed(detailed.salePrice)}}</text>
-						<!-- <text class="body_price1">.00</text> -->
+						<text class="body_price2">{{money.moneyFixed(total.salePrice)}}</text>
+					</view>
+				</view>
+				<view class="pop_li">
+					<view class="spec_type" wx:for="{{specList}}" wx:key="index1" wx:for-index="index1" wx:for-item="item1">
+						<view class="spec_name">{{item1.name}}</view>
+						<view class="spec_val {{item2.choose?'spec_val_on':''}} {{item2.can?'':'spec_val_cant'}}" bindtap="{{item2.can?'funSpecChoose':''}}" data-index1="{{index1}}" data-index2="{{index2}}" wx:for="{{item1.list}}" wx:key="index2" wx:for-index="index2" wx:for-item="item2">{{item2.name}}</view>
 					</view>
 				</view>
 				<view class="pop_li pop_num_box">

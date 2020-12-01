@@ -15,8 +15,8 @@ Page({
       //   money:6500,
       //   state:'1',
       //   goods:[
-      //     {id:2,img:'/static/images/logo.png',name:'五等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',price:'2400',num:2},
-      //     {id:2,img:'/static/images/logo.png',name:'五等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',price:'2400',num:2}
+      //     {id:2,img:'/static/images/logo.png',name:'五等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',price:'2400',spec:'',num:2},
+      //     {id:2,img:'/static/images/logo.png',name:'五等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',price:'2400',spec:'',num:2}
       //   ],
       // },
     ],
@@ -27,6 +27,10 @@ Page({
     user.goToLogin();
   },
   onShow: function () {
+    this.setData({
+      pageNo:1,
+      menuVal:0
+    })
     this.init(0,1);
   },
   // 上拉刷新
@@ -55,7 +59,8 @@ Page({
             id:data[i].goods[j].id,
             img:data[i].goods[j].goodsImg,
             name:data[i].goods[j].goodsTitle,
-            price:data[i].goods[j].totalPrice,
+            price:data[i].goods[j].unitPrice,
+            spec:data[i].goods[j].spec?data[i].goods[j].spec:'',
             num:data[i].goods[j].amount,
           }
           g_ul.push(g_li)
@@ -104,7 +109,7 @@ Page({
     let pay = 0; //1 未支付  2已支付
     if(this.data.orderUl[arr].state === 0){
       pay = 1
-    }else if(this.data.orderUl[arr].state === 2){
+    }else if(this.data.orderUl[arr].state === 3){
       pay = 2
     }
     wx.navigateTo({
@@ -114,26 +119,9 @@ Page({
   //订单支付
   orderPay(e){
     let index = e.currentTarget.dataset.index;
-    let g_ul = [];let g_li = {};
-    let goods = this.data.orderUl[index].goods
-    console.log(this.data.orderUl[index])
-    for(let i=0;i<goods.length;i++){
-      g_li = {
-        choose:false,
-        id:goods[i].id,
-        img:goods[i].img,
-        name:goods[i].name,
-        salePrice:goods[i].price,
-        num:goods[i].num,
-        amount:goods[i].num
-      }
-      g_ul.push(g_li)
-    }
-    console.log(g_ul)
-    wx.setStorageSync("shopPay", g_ul);
     //跳转
     wx.navigateTo({
-      url: "/pages/market/markePay/marketPay?money="+this.data.orderUl[index].money+"&orderId="+this.data.orderUl[index].orderId
+      url: "/pages/market/marketPay/marketPay?money="+this.data.orderUl[index].money+"&orderId="+this.data.orderUl[index].orderId+"&rmdesc="+this.data.orderUl[index].orderId
     })
   },
   //跳转

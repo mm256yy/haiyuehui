@@ -18,6 +18,7 @@ Page({
   onShow: function () {
     this.setData({
       pageNo:1,
+      chooseType:1,
     })
     this.bindorderBonus(1);
   },
