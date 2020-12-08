@@ -28,6 +28,7 @@ Page({
       // noticePoint:[],
       // orgCode:'',  //商品属于哪个部门
       // isSingle:0,  //是否单独购买 1 是(不能加入购物车) 0 否 null 否\
+      // startBuy:'',  //开卖时间 null 值为没有限制 
     },
     pop:false,
     goodsNum:1,
@@ -95,6 +96,7 @@ Page({
       })
       this.init();
     }).catch((err) => {
+      this.init();
       console.log(err)
     });
   },
@@ -139,6 +141,7 @@ Page({
         noticePoint:noticeUl[4],
         orgCode:data.orgCode,
         isSingle:data.isSingle,
+        startBuy:data.startBuy?data.startBuy:'',
       };
       //规格
       let specListNew = '';
@@ -274,8 +277,6 @@ Page({
         redTip:this.data.redTip += this.data.goodsNum
       });
       this.animation();
-    }else{
-      check.showErrorToast('请选择商品规格')
     }
   },  
   //添加购物车动画效果
@@ -325,8 +326,6 @@ Page({
       wx.redirectTo({
         url: "/pages/market/markeConfirm/marketConfirm?discount="+this.data.total.discount
       })
-    }else{
-      check.showErrorToast('请选择商品规格')
     }
   },
   //弹窗显示
@@ -375,10 +374,16 @@ Page({
       specChoose:specChooseNew
     })
     //判断生成价格
-    let can = this.funChooseCan();
     let productListNew = this.data.productList;
     let salePrice = this.data.total.salePrice;
-    if(can){
+    let len = specListNew.length;
+    let num = 0;
+    for(let i=0;i<len;i++){
+      if(specChooseNew[i]){
+        num ++
+      }
+    }
+    if(num == len){
       for(let i=0;i<productListNew.length;i++){
         if(specChooseNew.join("$") == productListNew[i].spec){
           salePrice = productListNew[i].price
@@ -388,24 +393,10 @@ Page({
         'total.salePrice':salePrice
       })
     }
-    //判断是否有这个规格组合
-    // let name = specListNew[index1].list[index2].name
-    // for(let i=0;i<productListNew.length;i++){
-    //   if(productListNew[i].spec.split('$')[index1] == name){
-    //     for(let j=0;j<specListNew[index1].list.length;j++){
-    //       if(specListNew[index1].list[j].name == productListNew[i].spec.split('$')[index1]){
-
-    //       }else{
-
-    //       }
-    //     }
-    //   }else{
-
-    //   }
-    // }
   },
-  //判断规格是否全部选中
-  funChooseCan(){
+  //判断规格是否全部选中,并且判断是否再可卖的时间段
+  funChooseCan(){ 
+    //规格选中
     let len = this.data.specList.length;
     let specChooseNew = this.data.specChoose;
     let num = 0;
@@ -414,10 +405,26 @@ Page({
         num ++
       }
     }
-    if(num == len){
-      return true;
-    }else{
+    //时间段是否可卖
+    let startBuy = true;
+    if(this.data.detailed.startBuy != ''){
+      let nowDate = new Date().getTime()
+      let buyDate = parseInt(this.data.detailed.startBuy)
+      if(nowDate >= buyDate){
+        startBuy = true;
+      }else{
+        startBuy = false;
+      }
+    }
+    //判断
+    if(num != len){
+      check.showErrorToast('请选择商品规格')
       return false;
+    }else if(!startBuy){
+      check.showErrorToast('活动时间未到')
+      return false;
+    }{
+      return true;
     }
   }
 })

@@ -8,7 +8,7 @@ Page({
     info:{
       avatarUrl:'/static/images/person.jpg',
       name:'未登录',
-      points:0,
+      points:0,  //积分数量
       money:0,
       moneyS:'0.00',
       couponNum:0,
