@@ -61,8 +61,8 @@
       "list": [
         {
           "name": "pages/index/index",
-          "pathName": "pages/index/index",
-          "query": "ids=334,335,336",
+          "pathName": "pages/market/marketDetailed/marketDetailed.html",
+          "query": "id=25",
           "scene": null
         }
       ]

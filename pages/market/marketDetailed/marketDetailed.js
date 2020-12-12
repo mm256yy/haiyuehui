@@ -223,7 +223,7 @@ Page({
     if(shoppingCartUl.length>0){
       for(let i=0;i<shoppingCartUl.length;i++){
         if(shoppingCartUl[i].id == this.data.detailed.id){
-          num = shoppingCartUl[i].num;
+          num += shoppingCartUl[i].num;
         }
       }
     }
@@ -249,7 +249,7 @@ Page({
       }
       if(shoppingCartUl.length>0){
         for(let i=0;i<shoppingCartUl.length;i++){
-          if(shoppingCartUl[i].id == this.data.detailed.id){
+          if(shoppingCartUl[i].id == this.data.detailed.id&&shoppingCartUl[i].spec == can){
             isExist = true;
             index = i;
           }
@@ -424,7 +424,7 @@ Page({
       check.showErrorToast('活动时间未到')
       return false;
     }{
-      return true;
+      return specChooseNew.join('$');
     }
   }
 })

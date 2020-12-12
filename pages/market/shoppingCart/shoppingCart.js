@@ -157,6 +157,7 @@ Page({
           amount:shopUlNew[i].num,
           totalPrice:shopUlNew[i].num*shopUlNew[i].salePrice,
           orgCode:shopUlNew[i].orgCode,
+          spec:shopUlNew[i].spec,
         }
         goodsNewUl.push(goodsNewLi)
       }
@@ -169,7 +170,7 @@ Page({
     let shopPayNew = [];
     for(let i=0;i<goodsNewUl.length;i++){
       for(let j=0;j<shopUlNew.length;j++){
-        if(goodsNewUl[i].goodsId == shopUlNew[j].id){
+        if(goodsNewUl[i].goodsId == shopUlNew[j].id&&goodsNewUl[i].spec == shopUlNew[j].spec){
           shopPayNew.push(shopUlNew[j])
           shopUlNew.splice(j,1);
         }
