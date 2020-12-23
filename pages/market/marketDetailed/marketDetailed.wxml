@@ -27,6 +27,9 @@
 				<text class="body_price1">￥</text>
 				<text class="body_price2">{{money.moneyFixed(total.salePrice)}}</text>
 				<text class="body_price3">￥{{money.moneyFixed(total.price)}}</text>
+				<view class="body_li_countdown" wx:if="{{detailed.countdown}}">
+					{{detailed.countdown}}
+				</view>
 			</view>
 			<view class="body_li body_name">{{detailed.name}}</view>
 		</view>
@@ -99,7 +102,7 @@
 			<image src="/static/images/shopingcart.png" class="shoping_cart_img"></image>
 			<view class="shoping_cart_text">
 				购物车
-				<view class="red_tip" wx:if="{{redTip != 0}}">{{redTip}}</view>
+				<!-- <view class="red_tip" wx:if="{{redTip != 0}}">{{redTip}}</view> -->
 				<view class="animation">
 					<view style="opacity: {{numTipShow}};" animation="{{animationData}}" class="red_tip_animation" wx:if="{{redTip != 0}}">{{redTip}}</view>
 				</view>
@@ -127,7 +130,7 @@
 				<view class="pop_li">
 					<view class="spec_type" wx:for="{{specList}}" wx:key="index1" wx:for-index="index1" wx:for-item="item1">
 						<view class="spec_name">{{item1.name}}</view>
-						<view class="spec_val {{item2.choose?'spec_val_on':''}} {{item2.can?'':'spec_val_cant'}}" bindtap="{{item2.can?'funSpecChoose':''}}" data-index1="{{index1}}" data-index2="{{index2}}" wx:for="{{item1.list}}" wx:key="index2" wx:for-index="index2" wx:for-item="item2">{{item2.name}}</view>
+						<view class="spec_val {{item2.choose?'spec_val_on':''}} {{item2.abled?'':'spec_val_disabled'}}" bindtap="{{item2.abled?'funSpecChoose':''}}" data-index1="{{index1}}" data-index2="{{index2}}" wx:for="{{item1.list}}" wx:key="index2" wx:for-index="index2" wx:for-item="item2">{{item2.name}}</view>
 					</view>
 				</view>
 				<view class="pop_li pop_num_box">

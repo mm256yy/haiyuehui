@@ -98,12 +98,12 @@ Page({
     console.log(param);
     pay.usePay(param).then(res => {
       //跳转
-      wx.navigateTo({
+      wx.redirectTo({
         url: "/pages/customized/payResult/payResult?result=1&end=0"
       });
     }).catch(() => {
       //跳转
-      wx.navigateTo({
+      wx.redirectTo({
         url: "/pages/customized/payResult/payResult?result=0&end=0"
       });
     });

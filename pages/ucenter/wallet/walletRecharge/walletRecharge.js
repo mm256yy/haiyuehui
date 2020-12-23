@@ -32,7 +32,7 @@ Page({
       return false
     }
     let param = {
-      money:(api.testing?this.data.moneyNum*100:this.data.moneyNum*100),
+      money:(api.testing?Math.round(this.data.moneyNum*100):Math.round(this.data.moneyNum*100)),
     }  
     console.log(param)
     util.request(api.MemberRechargeSubmit , param , 'POST').then(res => {
@@ -51,12 +51,12 @@ Page({
     console.log(param)
     pay.rechargePay(param).then(res => {
       //跳转
-      wx.navigateTo({
+      wx.redirectTo({
         url: "/pages/customized/payResult/payResult?result=1&end=1"
       })
     }).catch(() => {
       //跳转
-      wx.navigateTo({
+      wx.redirectTo({
         url: "/pages/customized/payResult/payResult?result=0&end=1"
       })
     });

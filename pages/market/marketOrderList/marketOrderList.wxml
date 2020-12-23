@@ -2,7 +2,7 @@
 	<wxs src="../../../filter/filter.wxs" module="filter" />
 	<import src="/template/template"/>
   <view class="menu_ul">
-    <view class="menu_li" wx:for="{{menuUl}}" wx:key="index" data-index="{{index}}" bindtap="menuOn">
+    <view class="menu_li" wx:for="{{menuUl}}" wx:key="index" data-index="{{item.val}}" bindtap="menuOn">
       <text class="menu_li_text {{menuVal == item.val?'menu_li_text_on':''}}">{{item.name}}</text>
     </view>
   </view>

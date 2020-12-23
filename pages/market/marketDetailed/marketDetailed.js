@@ -29,6 +29,7 @@ Page({
       // orgCode:'',  //商品属于哪个部门
       // isSingle:0,  //是否单独购买 1 是(不能加入购物车) 0 否 null 否\
       // startBuy:'',  //开卖时间 null 值为没有限制 
+      // countdown:'',  //倒计时
     },
     pop:false,
     goodsNum:1,
@@ -45,8 +46,8 @@ Page({
       // {
       //   name:"颜色",
       //   list:[
-      //     {name:'黑色',choose:false,can:true},
-      //     {name:'白色',choose:false,can:true}
+      //     {name:'黑色',choose:false,abled:true},
+      //     {name:'白色',choose:false,abled:true}
       //   ]
       // },
     ],
@@ -108,7 +109,7 @@ Page({
     util.request(api.MallGoodsDetail , param , 'GET').then(res => {
       let data = res.result;
       //轮播图
-      let sliderImgNew = data.sliderImg.split(',');
+      let sliderImgNew = data.sliderImg?data.sliderImg.split(','):'';
       //订购须知
       let noticeUl = [];
       let noticeLi = [];
@@ -117,15 +118,16 @@ Page({
         noticeUl[i] = noticeLi[i].split('\n');
       }
       //图文详情
-      let contentNew = data.content.replace(/width="300"/g,'width="100%"').replace(/display: block/g,'display: block;padding-bottom: 10px;').replace(/height="300"/g,'');
+      let contentNew = data.content?data.content:''
+      contentNew = contentNew.replace(/width="300"/g,'width="100%"').replace(/display: block/g,'display: block;padding-bottom: 10px;').replace(/height="300"/g,'');
       let detailedNew = {
         id:data.id,
         name:data.title,
         categoryId:data.categoryId,
         img:data.img,
-        sliderImg:sliderImgNew,
+        sliderImg:sliderImgNew?sliderImgNew:'',
         content:contentNew, //图片详情
-        shareUrl:data.shareUrl,
+        shareUrl:data.shareUrl?data.shareUrl:'',
         introduce:data.instruction,
         sort:data.sort,
         amount:data.amount == -1?'不限制':data.amount,  //库存
@@ -142,6 +144,7 @@ Page({
         orgCode:data.orgCode,
         isSingle:data.isSingle,
         startBuy:data.startBuy?data.startBuy:'',
+        countdown:this.funCountdown(data.startBuy),  //倒计时
       };
       //规格
       let specListNew = '';
@@ -155,7 +158,7 @@ Page({
             spec_i_li = {
               name:data.specList[i].list[j],
               choose:false,
-              can:true,
+              abled:true,
             }
             spec_i_ul.push(spec_i_li)
           }
@@ -187,7 +190,7 @@ Page({
       let totalNew = {
         price:data.price,
         salePrice:data.salePrice,
-        discount:data.discount,
+        discount:data.discount?data.discount:100,
         money:0,
       }
       this.setData({
@@ -240,6 +243,7 @@ Page({
   //添加购物车
   addShopingCart(){
     let can = this.funChooseCan();
+    let specChooseVal = this.data.specChoose.join('$');
     if(can){
       let shoppingCartUl = [];
       let isExist = false;
@@ -249,14 +253,19 @@ Page({
       }
       if(shoppingCartUl.length>0){
         for(let i=0;i<shoppingCartUl.length;i++){
-          if(shoppingCartUl[i].id == this.data.detailed.id&&shoppingCartUl[i].spec == can){
+          if(shoppingCartUl[i].id == this.data.detailed.id&&shoppingCartUl[i].spec == specChooseVal){
             isExist = true;
             index = i;
           }
         }
       }
       if(isExist){  //是否存在同等商品
-        shoppingCartUl[index].num += this.data.goodsNum;
+        // shoppingCartUl[index].num += this.data.goodsNum;
+        if(shoppingCartUl[index].num + this.data.goodsNum > this.data.detailed.amount){
+          check.showErrorToast('添加的商品超过库存')
+        }else{
+          shoppingCartUl[index].num += this.data.goodsNum;
+        }
       }else{
         let shoppingCartLi = {
           choose:false,
@@ -373,9 +382,10 @@ Page({
       specList:specListNew,
       specChoose:specChooseNew
     })
-    //判断生成价格
+    //判断生成价格/库存
     let productListNew = this.data.productList;
     let salePrice = this.data.total.salePrice;
+    let amount = this.data.total.amount;
     let len = specListNew.length;
     let num = 0;
     for(let i=0;i<len;i++){
@@ -387,12 +397,47 @@ Page({
       for(let i=0;i<productListNew.length;i++){
         if(specChooseNew.join("$") == productListNew[i].spec){
           salePrice = productListNew[i].price
+          amount = productListNew[i].amount
         }
       }
       this.setData({
-        'total.salePrice':salePrice
+        'total.salePrice':salePrice,
+        'detailed.amount':amount
       })
     }
+    //进行分割规格组合
+    // this.specCompose(index1,index2)
+  },
+  specCompose(index1,index2){
+    let productList = this.data.productList;
+    let specList = this.data.specList;
+    let chooseVal = specList[index1].list[index2].name;
+    let proArr = [];
+    let chun = 0
+    for(let i=0;i<productList.length;i++){
+      proArr = productList[i].spec.split('$')
+      if(proArr[index1] == chooseVal){
+        console.log(i) //相符的productList的第几位
+        for(let j=0;j<specList.length;j++){
+          if(j != index1){
+            for(let k=0;k<specList[j].list.length;k++){
+              console.log(specList[j].list[k].name)
+              console.log(proArr[j])
+              if(specList[j].list[k].name != proArr[j]){
+                chun ++
+              }
+            }
+            if(chun == specList[j].list.length){
+              specList[j].list[chun].abled = true;
+              chun = ''
+            }
+          }
+        }
+      }
+    }
+    this.setData({
+      specList:specList
+    })
   },
   //判断规格是否全部选中,并且判断是否再可卖的时间段
   funChooseCan(){ 
@@ -424,7 +469,31 @@ Page({
       check.showErrorToast('活动时间未到')
       return false;
     }{
-      return specChooseNew.join('$');
+      return true;
     }
-  }
+  },
+  //倒计时
+  funCountdown(startBuy){
+    if(startBuy){
+      let nowDate = new Date().getTime()
+      let buyDate = parseInt(startBuy)
+      let time = 0
+      if(buyDate > nowDate){
+        time = parseInt((buyDate - nowDate)/1000/60/60)
+        if(time == 0){
+          return '活动在一小时内即将开始'
+        }else if(time > 0 && time < 24){
+          return '开卖时间还剩' + time + '小时'
+        }else{
+          let h = time % 24
+          let d = parseInt(time / 24)
+          return '开卖时间还剩' + d + '天' + h + '小时'
+        }
+      }else{
+        return false
+      }
+    }else{
+      return false
+    }
+  },
 })

@@ -76,6 +76,14 @@ page{
   text-decoration: line-through;
   margin-left: 10rpx;
 }
+.body_li_countdown{
+  display: inline-block;
+  float: right;
+  background-color: #ff936f;
+  color: #fff;
+  border-radius:10rpx;
+  padding:5rpx 20rpx;
+}
 .body_name{
   font-weight: 800;
 }
@@ -302,6 +310,6 @@ page{
   color: #fe6f41;
   background-color: #fff7f4;
 }
-.spec_val_cant{
+.spec_val_disabled{
   color: #cdcdcd;
 }
