@@ -1,7 +1,7 @@
 
 <view>
   <wxs src="../../../filter/filter.wxs" module="money" />
-  <view class="pay_pop">客房已经锁定，订单将为你保留30分钟</view>
+  <view class="pay_pop">商品已经锁定，订单将为你保留30分钟</view>
   <view class="pay_ul">
     <view class="pay_li">
       <text class="pay_li_h">订单编号</text>

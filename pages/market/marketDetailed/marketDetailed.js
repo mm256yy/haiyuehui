@@ -46,16 +46,22 @@ Page({
       // {
       //   name:"颜色",
       //   list:[
-      //     {name:'黑色',choose:false,abled:true},
-      //     {name:'白色',choose:false,abled:true}
+      //     {name:'白色',choose:false,abled:true,hide:true},
+      //     {name:'黑色',choose:false,abled:true,hide:true}
+      //   ]
+      // },
+      // {
+      //   name:"大小",
+      //   list:[
+      //     {name:'150ml',choose:false,abled:true,hide:true},
+      //     {name:'250ml',choose:false,abled:true,hide:true}
       //   ]
       // },
     ],
     productList:[
-      // {spec:'白色,150ml',price:100,amount:1},
-      // {spec:'白色,250ml',price:200,amount:1},
-      // {spec:'黑色,150ml',price:300,amount:1},
-      // {spec:'黑色,250ml',price:400,amount:1},
+      // {spec:'白色$150ml',price:100,amount:1},
+      // {spec:'白色$250ml',price:200,amount:1},
+      // {spec:'黑色$150ml',price:300,amount:1},
     ],
     specChoose:[],
     info:{
@@ -159,6 +165,7 @@ Page({
               name:data.specList[i].list[j],
               choose:false,
               abled:true,
+              hide:true,
             }
             spec_i_ul.push(spec_i_li)
           }
@@ -175,6 +182,7 @@ Page({
       let productListNew = [];
       let product_o_ul = [];
       let product_o_li = {};
+      let amountTotal = detailedNew.amount;
       if(data.productList){
         for(let i=0;i<data.productList.length;i++){
           product_o_li = {
@@ -185,6 +193,18 @@ Page({
           product_o_ul.push(product_o_li)
         }
         productListNew = product_o_ul;
+        //判断是否有规格组合，若是有，总库存设置为规格的总数
+        if(productListNew.length > 0){
+          amountTotal = 0;
+          for(let i=0;i<productListNew.length;i++){
+            if(productListNew[i].amount == '不限制'){
+              amountTotal = '不限制'
+              break;
+            }else{
+              amountTotal += productListNew[i].amount
+            }
+          }
+        }
       }
       //价格
       let totalNew = {
@@ -198,9 +218,11 @@ Page({
         total:totalNew,
         specList:specListNew,
         productList:productListNew,
+        'detailed.amount':amountTotal
       })
       this.redTipNum();
       this.total();
+      this.delSpec(specListNew,productListNew);
     }).catch((err) => {});
   },
   //总计
@@ -373,11 +395,20 @@ Page({
     let index2 = e.currentTarget.dataset.index2;
     let specListNew = this.data.specList;
     let specChooseNew = this.data.specChoose;
+    let chooseValOn = specListNew[index1].list[index2].choose
     for(let i=0;i<specListNew[index1].list.length;i++){
       specListNew[index1].list[i].choose = false;
     }
-    specListNew[index1].list[index2].choose = true;
-    specChooseNew[index1] = specListNew[index1].list[index2].name;
+    if(specChooseNew.length == 0){
+      specChooseNew[this.data.specList.length - 1] = null
+    }
+    if(chooseValOn){
+      specListNew[index1].list[index2].choose = false;
+      specChooseNew[index1] = null
+    }else{
+      specListNew[index1].list[index2].choose = true;
+      specChooseNew[index1] = specListNew[index1].list[index2].name;
+    }
     this.setData({
       specList:specListNew,
       specChoose:specChooseNew
@@ -406,34 +437,106 @@ Page({
       })
     }
     //进行分割规格组合
-    // this.specCompose(index1,index2)
+    this.specCompose()
   },
-  specCompose(index1,index2){
-    let productList = this.data.productList;
-    let specList = this.data.specList;
-    let chooseVal = specList[index1].list[index2].name;
-    let proArr = [];
-    let chun = 0
-    for(let i=0;i<productList.length;i++){
-      proArr = productList[i].spec.split('$')
-      if(proArr[index1] == chooseVal){
-        console.log(i) //相符的productList的第几位
-        for(let j=0;j<specList.length;j++){
-          if(j != index1){
-            for(let k=0;k<specList[j].list.length;k++){
-              console.log(specList[j].list[k].name)
-              console.log(proArr[j])
-              if(specList[j].list[k].name != proArr[j]){
-                chun ++
-              }
+  specCompose(){
+    let specChoose = this.data.specChoose
+    let productList = this.data.productList
+    let v_productList = []
+    let j_ul = []
+    let j_li = []
+    let cho_ul = []
+    //输出选中列表productList的值
+    if(specChoose.length != 0){
+      for(let i=0;i<specChoose.length;i++){
+        if(specChoose[i]){  //i代表specChoose第几位
+          for(let j=0;j<productList.length;j++){
+            v_productList = productList[j].spec.split('$') //j代表productList第几位
+            if(v_productList[i] == specChoose[i]){
+              j_li.push(j)
             }
-            if(chun == specList[j].list.length){
-              specList[j].list[chun].abled = true;
-              chun = ''
+          }
+          j_ul.push(j_li)
+          j_li = []
+          cho_ul.push(i)
+        }else{
+          cho_ul.push(i)
+        }
+      }
+      let v_ul = [];
+      let v_num = 0
+      if(j_ul.length > 1){
+        for(let i=0;i<j_ul[0].length;i++){
+          for(let j=0;j<j_ul.length;j++){
+            if(j_ul[j].indexOf(j_ul[0][i]) != -1){
+              v_num ++
+            }
+          }
+          if(v_num == j_ul.length){
+            v_ul.push(j_ul[0][i])
+          }
+          v_num = 0
+        }
+      }else{
+        v_ul = j_ul[0]
+      }
+      // console.log(v_ul)
+      // console.log(cho_ul)
+      //进行隐藏未被选到的specList
+      let specList = this.data.specList
+      if(v_ul){
+        for(let i=0;i<specList.length;i++){
+          for(let j=0;j<specList[i].list.length;j++){
+            specList[i].list[j].abled = false
+          }
+        }
+        for(let i=0;i<cho_ul.length;i++){
+          for(let j=0;j<v_ul.length;j++){
+            for(let k=0;k<specList[cho_ul[i]].list.length;k++){
+              // console.log(specList[cho_ul[i]].list[k].name)
+              // console.log(productList[v_ul[j]].spec.split('$')[cho_ul[i]])
+              // console.log('--')
+              if(specList[cho_ul[i]].list[k].name == productList[v_ul[j]].spec.split('$')[cho_ul[i]]){
+                specList[cho_ul[i]].list[k].abled = true
+              }
             }
           }
         }
+      }else{
+        for(let i=0;i<specList.length;i++){
+          for(let j=0;j<specList[i].list.length;j++){
+            specList[i].list[j].abled = true
+          }
+        }
       }
+      this.setData({
+        specList:specList
+      })
+    }
+  },
+  //删除规格
+  delSpec(specList,productList){
+    for(let i=0;i<productList.length;i++){
+      let prod_val = productList[i].spec.split('$')
+      for(let j=0;j<prod_val.length;j++){
+        for(let k=0;k<specList[j].list.length;k++){
+          if(prod_val[j] == specList[j].list[k].name){
+            specList[j].list[k].hide = false
+          }
+        }
+      }
+    }
+    let hideNum = 0
+    for(let i=0;i<specList.length;i++){
+      for(let j=0;j<specList[i].list.length;j++){
+        if(specList[i].list[j].hide == true){
+          hideNum ++
+        }
+      }
+      if(hideNum == specList[i].list.length){
+        specList.splice(i,1)
+      }
+      hideNum = 0
     }
     this.setData({
       specList:specList
@@ -467,6 +570,9 @@ Page({
       return false;
     }else if(!startBuy){
       check.showErrorToast('活动时间未到')
+      return false;
+    }else if(this.data.detailed.amount <= 0){
+      check.showErrorToast('当前规格库存不足')
       return false;
     }{
       return true;

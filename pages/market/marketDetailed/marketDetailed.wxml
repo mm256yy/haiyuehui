@@ -127,10 +127,10 @@
 						<text class="body_price2">{{money.moneyFixed(total.salePrice)}}</text>
 					</view>
 				</view>
-				<view class="pop_li">
+				<view class="pop_li pop_li_scroll">
 					<view class="spec_type" wx:for="{{specList}}" wx:key="index1" wx:for-index="index1" wx:for-item="item1">
 						<view class="spec_name">{{item1.name}}</view>
-						<view class="spec_val {{item2.choose?'spec_val_on':''}} {{item2.abled?'':'spec_val_disabled'}}" bindtap="{{item2.abled?'funSpecChoose':''}}" data-index1="{{index1}}" data-index2="{{index2}}" wx:for="{{item1.list}}" wx:key="index2" wx:for-index="index2" wx:for-item="item2">{{item2.name}}</view>
+						<view wx:if="{{!item2.hide}}" class="spec_val {{item2.choose?'spec_val_on':''}} {{item2.abled?'':'spec_val_disabled'}}" bindtap="{{item2.abled?'funSpecChoose':''}}" data-index1="{{index1}}" data-index2="{{index2}}" wx:for="{{item1.list}}" wx:key="index2" wx:for-index="index2" wx:for-item="item2">{{item2.name}}</view>
 					</view>
 				</view>
 				<view class="pop_li pop_num_box">

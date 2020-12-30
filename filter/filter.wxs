@@ -76,7 +76,7 @@ function exchangeStatus(status){
 }
 //market规格值
 function specDivision(val){
-  return val.replace("$","，");
+  return val.split('$').join("，");
 }
 //返回数字每四个空一格子
 function numSpace(num){  

@@ -8,7 +8,7 @@
 	<import src="/template/template"/> 
   <view class="body">
     <view class="menu_ul">
-      <view class="menu_li" wx:for="{{menuUl}}" wx:key="index" bindtap="menuOn" data-index="{{index}}">
+      <view class="menu_li" wx:for="{{menuUl}}" wx:key="index" bindtap="menuOn" data-index="{{index}}" data-id="{{item.id}}">
         <text class="menu_li_text {{menuVal == index?'menu_li_text_on':''}}">{{item.name}}</text>
       </view>
     </view>

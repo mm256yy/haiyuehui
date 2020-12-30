@@ -313,3 +313,7 @@ page{
 .spec_val_disabled{
   color: #cdcdcd;
 }
+.pop_li_scroll{
+  overflow-y: scroll;
+  max-height: 550rpx;
+}

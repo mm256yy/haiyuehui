@@ -4,7 +4,7 @@ let user = require('../../../utils/user.js');
 Page({
   data: {
     menuUl:[
-      {name:' 全部 ',val:''},
+      {name:' 全部 ',id:0},
     ],
     goodsUl:[
       // {img:'/static/images/logo.png',name:'测试产品123123',introduce:'这是一个测试产品打扫打扫打扫的大事',categoryId:'',price:'123',salePrice:'110',content:'',shareUrl:'',},
@@ -33,12 +33,12 @@ Page({
   //加载类型
   menu(){
     util.request(api.MallCategory , 'GET').then(res => {
-      let menuUlNew = [{name:' 全部 ', val:0}];
+      let menuUlNew = [{name:' 全部 ', id: 0 }];
       let menuli = {};
       for(let i=0;i<res.result.length;i++){
         menuli = {
           name:res.result[i].name,
-          val:res.result[i].id
+          id:res.result[i].id
         }
         menuUlNew.push(menuli)
       }
@@ -103,11 +103,12 @@ Page({
   //选择类型
   menuOn(e){
     let index = e.currentTarget.dataset.index
+    let id = e.currentTarget.dataset.id
     this.setData({
       menuVal:index,
       pageNo:1
     })
-    this.init(index,1)
+    this.init(id,1)
   },
   //商品详细
   goGoodsDetailed(e){

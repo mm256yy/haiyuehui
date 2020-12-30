@@ -60,9 +60,9 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/index/index",
-          "pathName": "pages/market/marketDetailed/marketDetailed.html",
-          "query": "id=25",
+          "name": "pages/market/marketDetailed/marketDetailed",
+          "pathName": "pages/market/marketDetailed/marketDetailed",
+          "query": "id=11&cardLevel=BJK",
           "scene": null
         }
       ]
