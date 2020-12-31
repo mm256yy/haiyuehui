@@ -94,7 +94,7 @@ Page({
     let startTime_s = util.formatNumber(s_t.getMonth()+1)+'月'+util.formatNumber(s_t.getDate())+'日'
     let endTime_s = util.formatNumber(e_t.getMonth()+1)+'月'+util.formatNumber(e_t.getDate())+'日'
     let arrTime = util.formatNumber(s_t.getFullYear())+'-'+util.formatNumber(s_t.getMonth()+1)+'-'+util.formatNumber(s_t.getDate())
-    let depTime = util.formatNumber(s_t.getFullYear())+'-'+util.formatNumber(e_t.getMonth()+1)+'-'+util.formatNumber(e_t.getDate())
+    let depTime = util.formatNumber(e_t.getFullYear())+'-'+util.formatNumber(e_t.getMonth()+1)+'-'+util.formatNumber(e_t.getDate())
     let roomNew = {
       hotelId:hotelNew.id,
       hotelName:hotelNew.name,
@@ -298,6 +298,8 @@ Page({
     if(!check.checkMobile(this.data.fill.mobile)){return false};
     if(!check.checkMoney(this.data.total.money)){return false};
     if(!check.checkMoney(this.data.room.roomPrice)){return false};
+    console.log(this.data.room.arr)
+    console.log(this.data.room.dep)
     //传递
     let param = {
       hotelId: this.data.room.hotelId,

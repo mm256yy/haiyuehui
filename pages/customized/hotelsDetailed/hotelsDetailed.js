@@ -135,7 +135,7 @@ Page({
     //获取房间信息
     let calendar = wx.getStorageSync("calendar")
     let arrNew = new Date(calendar.startTime).getFullYear() +'-'+ this.dayZero(new Date(calendar.startTime).getMonth()+1)+'-'+this.dayZero(new Date(calendar.startTime).getDate())
-    let depNew = new Date(calendar.startTime).getFullYear() +'-'+ this.dayZero(new Date(calendar.endTime).getMonth()+1)+'-'+this.dayZero(new Date(calendar.endTime).getDate())
+    let depNew = new Date(calendar.endTime).getFullYear() +'-'+ this.dayZero(new Date(calendar.endTime).getMonth()+1)+'-'+this.dayZero(new Date(calendar.endTime).getDate())
     let param = {
       arr: arrNew,
       dep: depNew,
