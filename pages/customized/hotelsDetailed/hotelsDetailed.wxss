@@ -174,26 +174,28 @@ swiper{
   font-size: 34rpx;
   font-weight:800 ;
 }
-.room_label1{
-  display: inline-block;
-  color: #008cd7;
-  font-size: 22rpx;
-  background-color: #d8f1ff;
-  border-radius: 10rpx;
-  padding: 5rpx 10rpx;
-  margin-top: 3rpx;
-}
 .room_attr{
-  width: 300rpx;
+  width: 320rpx;
 }
-.room_attr_val{
+.room_attr_li{
   display: inline-block;
   font-size: 22rpx;
   padding: 5rpx 10rpx;
-  background-color: #ede6ff;
   border-radius:10rpx ;
-  color: #753ffd;
   margin-top: 3rpx;
+  margin-right: 3rpx;
+}
+.room_attr_out{
+  color: #008cd7;
+  background-color: #d8f1ff;
+}
+.room_attr_cis{
+  background-color: #ede6ff;
+  color: #753ffd;
+}
+.room_attr_act{
+  background-color: #ffe6e6;
+  color: #e42a2a;
 }
 .room_avail{
   color: #999;
@@ -242,7 +244,7 @@ swiper{
   right: 0rpx;
 }
 .room_price_vip{
-  width: 180rpx;
+  width: 160rpx;
   position: absolute;
   bottom: 0rpx;
   right: 0rpx;
@@ -252,7 +254,7 @@ swiper{
   text-align: center;
 }
 .room_price_sic{
-  width: 180rpx;
+  width: 160rpx;
   position: absolute;
   bottom: 0rpx;
   right: 0rpx;
@@ -326,7 +328,7 @@ swiper{
   width: 100%;
 }
 .info_body{
-  margin: 40rpx 0rpx;
+  margin: 20rpx 0rpx;
   height: 400rpx;
   overflow-y: scroll;
 }
@@ -335,7 +337,7 @@ swiper{
   border-bottom: 1rpx solid #cdcdcd;
 }
 .info_body2{
-  padding:20rpx 20rpx 20rpx 20rpx;
+  padding:20rpx 20rpx 140rpx 20rpx;
 }
 .info_body text{
   font-size: 24rpx;

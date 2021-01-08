@@ -85,9 +85,10 @@
             <image src="/static/images/breakfast.png"></image>
             <text>可选择早餐</text>
           </view>-->
-					<view class="room_label1">今天18点前可免费取消</view>
-					<view class="room_attr" wx:if="{{item.isCis}}">
-						<text class="room_attr_val">含有云智住房间</text>
+					<view class="room_attr">
+						<text class="room_attr_li room_attr_out">今天18点前可免费取消</text>
+						<text class="room_attr_li room_attr_cis" wx:if="{{item.isCis}}">含有云智住房间</text>
+						<text class="room_attr_li room_attr_act" wx:if="{{item.hasSale}}">热门活动</text>
 					</view>
 					<view class="room_price_before {{isLogin?'room_price_before_y':'room_price_before_n'}}">门市价￥{{item.wracS}}/晚</view>
 					<view class=" {{item.avail <= 0?'room_price_vip_zero':''}} {{item.isCis?'room_price_sic':'room_price_vip'}}">
@@ -124,7 +125,7 @@
 						<text class="info_attr_s info_attr"><text class="info_attr_val">加床</text><text>{{room.addBed == null?'':room.addBed}}</text></text>
 						<text class="info_attr_s info_attr"><text class="info_attr_val">吸烟</text><text>{{room.smoke == null?'':room.smoke}}</text></text>
 						<text class="info_attr_s info_attr"><text class="info_attr_val">窗户</text><text>{{room.windowType == null?'':room.windowType}}</text></text>
-						<text class="info_attr_s info_attr"><text class="info_attr_val">其他</text><text></text></text>
+						<text class="info_attr_s info_attr"><text class="info_attr_val">其他</text><text>{{room.detail == null?'':room.detail}}</text></text>
 					</view>
 					<view class="info_body2">
 						<text class="info_attr_b info_attr"><text class="info_attr_val">宽带</text><text>有</text></text>

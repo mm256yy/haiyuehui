@@ -37,6 +37,7 @@ Page({
         //   wec3:1100,  //三早
         //   wracS:'16.00',  
         //   wec0S:'8.00',  
+        //   hasSale:'', //是否有优惠信息
         // }
       ]
     },
@@ -170,6 +171,7 @@ Page({
             wec1s:res.result[i].wec1s,
             wecs:res.result[i].wecs,
             wec3s:res.result[i].wec3s,
+            hasSale:res.result[i].hasSale,
           }
           roomNew.push(roomLi)
         }

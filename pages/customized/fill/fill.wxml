@@ -12,6 +12,11 @@
       </block>
     </swiper>
   </view>
+  <view class="hotels_news" wx:if="{{room.hasSale && room.sale.length > 0}}">
+    <view class="news_ul">
+      <view class="news_li" wx:for="{{room.sale}}" wx:key="index">{{item}}</view>
+    </view>
+  </view>
   <view class="hotels_info">
     <view>
       <text class="hotels_name">{{room.hotelName}}</text>

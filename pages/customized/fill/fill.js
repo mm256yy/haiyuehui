@@ -34,6 +34,8 @@ Page({
       wec1s:[],
       wecs:[],
       wec3s:[],
+      hasSale:0,
+      sale:[],
     },
     fill:{
       // roomNum:1,
@@ -122,6 +124,7 @@ Page({
       wec1s:roomrNew.wec1s,
       wecs:roomrNew.wecs,
       wec3s:roomrNew.wec3s,
+      hasSale:roomrNew.hasSale,
     }
     let breakfastUlNew = [
       {price:roomrNew.wec0,name:'无早餐',val:'WEC0'},
@@ -203,7 +206,8 @@ Page({
         picsNew = ['/static/images/banner2.jpg']
       }
       this.setData({
-        pics:picsNew
+        pics:picsNew,
+        'room.sale':this.funSale(res.result.sale),
       })
     }).catch((err) => {
       console.log(err)
@@ -409,5 +413,14 @@ Page({
     this.setData({
       infoPop:!this.data.infoPop
     })
+  },
+  //促销活动计算
+  funSale(sale){
+    if(sale){
+      let sale_ul = sale.split('\n')
+      return sale_ul;
+    }else{
+      return [];
+    }
   },
 })
