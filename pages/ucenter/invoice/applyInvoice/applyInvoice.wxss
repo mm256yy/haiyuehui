@@ -1,0 +1,132 @@
+page{
+  background-color: #f1f1f1;
+}
+/*body*/
+.company{
+  background-color: #fff;
+  display: flex;
+  padding:20rpx ;
+  margin-top:5rpx ;
+}
+.company_logo{
+  width: 80rpx;
+  height: 80rpx;
+  margin-right:20rpx ;
+}
+.company_name{
+  flex: 1 1 auto;
+  font-size: 36rpx;
+  font-weight: 800;
+  margin:auto ;
+}
+.invoice_bill{
+  background-color:#fff ;
+  padding:0rpx 20rpx ;
+  margin-top:10rpx ;
+}
+.invoice_money{
+  font-size: 60rpx;
+  font-weight: 800;
+  text-align: center;
+  padding: 40rpx;
+}
+.invoice_order{
+  border-top:1rpx solid #f1f1f1;
+  padding:25rpx 0rpx;
+}
+.invoice_order_num{
+  float: right;
+}
+.invoice_title{
+  margin-top: 10rpx;
+  background-color: #fff;
+  padding:25rpx ;
+}
+.invoice_right{
+  float: right;
+}
+.invoice_right_img{
+  width: 40rpx;
+  height: 40rpx;
+}
+/*foot*/
+.invoice_foot{
+  padding:20rpx ;
+}
+.invoice_btn{
+  background:linear-gradient(to right, #039cee , #753ffd);
+  color: #fff;
+  text-align: center;
+  padding:20rpx;
+  border-radius:50rpx ;
+}
+.invoice_btn_no{
+  background-color: #039cee;
+  color: #fff;
+  text-align: center;
+  padding:20rpx;
+  border-radius:50rpx ;
+  opacity: 0.5;
+}
+/*pop*/
+.black{
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 1;
+}
+.pop{
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  text-align: center;
+}
+.pop_box{
+  margin: 200rpx 50rpx;
+  background-color: #fff;
+  border-radius:20rpx;
+}
+.pop_head{
+  padding:20rpx ;
+  background-color: #f1f1f1;
+  border-radius:20rpx;
+}
+.pop_ul{
+  padding:20rpx ;
+}
+.pop_li{
+  padding:10rpx ;
+  text-align: left;
+  display: flex;
+}
+.pop_li_t1{
+  width: 300rpx;
+  color:#999;
+}
+.pop_li_t2{
+  flex: 1 1 auto;
+  float: right;
+  text-align: right ;
+}
+.pop_foot{
+  border-top:1rpx solid #f1f1f1 ;
+  display: flex;
+}
+.pop_btn{
+  flex: 1 1 auto;
+  padding:20rpx;
+  font-size: 32rpx;
+}
+.pop_btn_return{
+  color: #999;
+  border-right:1rpx solid #f1f1f1;
+}
+.pop_btn_confirm{
+  color: #039cee;
+}

@@ -1,0 +1,147 @@
+page{
+  background-color: #095084;
+}
+/*head*/
+.luck_head_img{
+  width: 100%;
+}
+/*body*/
+.luck_body{
+  margin: 50rpx;
+}
+.luck_flex{
+  margin:50rpx 0rpx ;
+  display: flex;
+}
+.luck_flex_li{
+  flex: 1 1 auto;
+}
+.flex_li_b{
+  background-color:#fff0d3;
+  border:5rpx solid #a53716 ;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius:20rpx ;
+  margin:auto ;
+  padding:10rpx ;
+  text-align:center ;
+}
+.flex_li_go{
+  background-color:#a53716;
+  border:5rpx solid #a53716 ;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius:20rpx ;
+  margin:auto ;
+  padding:30rpx ;
+  text-align:center ;
+}
+.flex_li_b_on{
+  background-color:#ffbe30;
+}
+.flex_li_img{
+  width: 100rpx;
+  height: 100rpx;
+}
+.flex_li_text{
+  color: #a53716;
+  font-size: 25rpx;
+}
+/*rule*/
+.luck_rule{
+  margin:80rpx 40rpx;
+  padding:10rpx ;
+  border:1rpx solid #ffbe30 ;
+  border-radius:20rpx ;
+  background-color:#fff0d3;
+}
+.rule_box{
+  border:1rpx solid #ffbe30 ;
+  border-radius:20rpx ;
+  padding:20rpx ;
+}
+.rule_title{
+  text-align:center ;
+  font-weight: 800;
+  font-size: 40rpx;
+  color: #a53716;
+  border-radius:5rpx ;
+}
+.rule_text{
+  margin:10rpx 0rpx;
+}
+.rule_t1{
+  background-color: #ffbe30;
+  color: #095084;
+  border-radius:20rpx ;
+  padding:5rpx 20rpx;
+  line-height: 50rpx;
+}
+.rule_t2{
+  color: #a53716;
+  padding-left:20rpx ;
+  line-height: 50rpx;
+}
+/*pop*/
+.luck_pop{
+
+}
+.black{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  background-color: rgba(0,0,0,0.6);
+}
+.pop_box{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+}
+.pop_b{
+  margin-top:300rpx ;
+  width: 100%;
+}
+.pop_luck_text{
+  background-color: #fff0d3;
+  margin:50rpx ;
+  padding:50rpx ;
+  text-align: center;
+  border-radius:20rpx ;
+  border:5rpx solid #a53716 ;
+  position: relative;
+}
+.pop_luck_t1{
+  color: #a53716;
+  font-size:40rpx;
+  margin-bottom:20rpx ;
+}
+.pop_luck_t2{
+  color: #61210d;
+  font-size:30rpx;
+}
+.pop_luck_btn{
+  margin-top:20rpx;
+  padding:15rpx;
+  color: #fff;
+  background-color: #a53716;
+  border-radius:5rpx ;
+}
+.pop_del{
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+  top: -40rpx;
+  right: -40rpx;
+  border-radius:100rpx;
+  background-color: #a53716;
+  text-align:center ;
+}
+.pop_del_img{
+  width: 50rpx;
+  height: 50rpx;
+  margin: 15rpx ;
+}

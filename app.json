@@ -2,11 +2,12 @@
   "pages":[
     
     "pages/index/index",
+    "pages/member/activity/memberLuck/memberLuck",
     
     "pages/member/memberIndex/memberIndex",
     "pages/member/memberPower/memberPower",
     "pages/member/memberAgree/memberAgree",
-
+    
     "pages/auth/login/login",
     "pages/auth/loginAgree/loginAgree",
     "pages/auth/registerWx/registerWx",
@@ -32,6 +33,13 @@
 
     "pages/ucenter/coupon/coupon",
     "pages/ucenter/set/visitor/visitor",
+    
+    "pages/ucenter/invoice/billList/billList",
+    "pages/ucenter/invoice/applyResult/applyResult",
+    "pages/ucenter/invoice/applyInvoice/applyInvoice",
+    "pages/ucenter/invoice/invoiceTitle/invoiceTitle",
+    "pages/ucenter/invoice/invoiceTitleDetail/invoiceTitleDetail",
+    "pages/ucenter/invoice/invoiceTitleEdit/invoiceTitleEdit",
 
     "pages/ucenter/invite/inviteList/inviteList",
     "pages/ucenter/invite/inviteCode/inviteCode",

@@ -1,0 +1,29 @@
+page{
+  background-color: #f1f1f1;
+}
+/*title*/
+.title_li{
+  background-color: #fff;
+  margin:20rpx;
+  padding: 0rpx 20rpx ;
+}
+.company_name{
+  padding: 25rpx 0rpx ;
+  border-bottom:1rpx solid #f1f1f1 ;
+  font-weight: 800;
+}
+.company_num{
+  padding: 25rpx 0rpx ;
+  color: #999;
+}
+/*foot*/
+.invoice_foot{
+  padding:20rpx ;
+}
+.invoice_btn{
+  background:linear-gradient(to right, #039cee , #753ffd);
+  color: #fff;
+  text-align: center;
+  padding:20rpx;
+  border-radius:50rpx ;
+}

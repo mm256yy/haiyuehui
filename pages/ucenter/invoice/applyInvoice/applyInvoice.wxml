@@ -1,0 +1,51 @@
+<view>
+  <wxs src="../../../../filter/filter.wxs" module="filter" />
+  <view class="invoice_body">
+    <view class="company">
+      <image class="company_logo" src="/static/images/logo.png" alt="logo" />
+      <view class="company_name">海外海集团</view>
+    </view>
+    <view class="invoice_bill">
+      <view class="invoice_money">￥{{filter.moneyFixed(invoice.money)}}</view>
+      <view class="invoice_order">订单号：
+        <text class="invoice_order_num">{{invoice.orderNum}}</text>
+      </view>
+    </view>
+    <view class="invoice_title" bindtap="goInvoiceTitle">
+      <text>抬头</text>
+      <image class="invoice_right_img invoice_right" src="/static/images/right.png" alt="logo" />
+      <text class="invoice_right">{{invoice.company != ''?invoice.company:'请选择'}}</text>
+    </view>
+  </view>
+  <view class="invoice_foot">
+    <view class="{{invoice.company != ''?'invoice_btn':'invoice_btn_no'}}" bindtap="{{invoice.company != ''?'invoice':'invoiceNo'}}">确认申请</view>
+  </view>
+  <view class="black" wx:if="{{popShow}}"></view>
+  <view class="pop" wx:if="{{popShow}}">
+    <view class="pop_box">
+      <view class="pop_head">确认发票信息</view>
+      <view class="pop_ul">
+        <view class="pop_li">
+          <text class="pop_li_t1">发票抬头</text>
+          <text class="pop_li_t2">{{invoice.company}}</text>
+        </view>
+        <view class="pop_li">
+          <text class="pop_li_t1">纳税人识别号</text>
+          <text class="pop_li_t2">{{invoice.taxNum}}</text>
+        </view>
+        <view class="pop_li">
+          <text class="pop_li_t1">邮箱</text>
+          <text class="pop_li_t2">{{invoice.email}}</text>
+        </view>
+        <view class="pop_li">
+          <text class="pop_li_t1">手机号</text>
+          <text class="pop_li_t2">{{invoice.mobile}}</text>
+        </view>
+      </view>
+      <view class="pop_foot">
+        <view class="pop_btn pop_btn_return" bindtap="popReturn">返回修改</view>
+        <view class="pop_btn pop_btn_confirm" bindtap="popConfirm">确认开票</view>
+      </view>
+    </view>
+  </view>
+</view>

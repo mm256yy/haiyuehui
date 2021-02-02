@@ -100,6 +100,18 @@ function checkIdentity(identity){  //使用：if(!check.checkIdentity(this.data.
     return true;
   };
 };
+//邮箱地址验证
+function checkEmail(email){ //使用：if(!check.checkEmail(this.data.email)){return false}
+  let re = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/
+  if(email == ''){
+    showErrorToast('请正确填写邮箱地址');
+  }else if(re.test(email)){
+    return true;
+  }else {
+    showErrorToast('邮箱地址格式错误');
+    return false;
+  }
+}
 //金钱验证
 function checkMoney(money){ //使用：if(!check.checkMoney(this.data.identity)){return false}
   if(money == 999900 ||money == '0' ||money <= 0 ||money == ''||money == null||money == undefined ||money == 'undefined'){
@@ -142,6 +154,7 @@ module.exports = {
   checkMobile,
   checkName,
   checkIdentity,
+  checkEmail,
   checkMoney,
 
   checkIsOverdue,

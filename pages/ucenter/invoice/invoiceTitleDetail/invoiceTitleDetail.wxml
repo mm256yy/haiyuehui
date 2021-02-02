@@ -1,0 +1,35 @@
+<view>
+  <view class="invoice_from">
+    <view class="form_li">
+      <text class="form_li_t">名称</text>
+      <input class="form_input" placeholder-class="placeholder" disabled="{{true}}" value="{{detail.name}}" placeholder="请输入手机号码"/>
+    </view>
+    <view class="form_li">
+      <text class="form_li_t">税号</text>
+      <input class="form_input" placeholder-class="placeholder" disabled="{{true}}" value="{{detail.num}}" placeholder="请输入手机号码"/>
+    </view>
+    <view class="form_li">
+      <text class="form_li_t">公司地址</text>
+      <input class="form_input" placeholder-class="placeholder" disabled="{{true}}" value="{{detail.address}}" placeholder="请输入手机号码"/>
+    </view>
+    <view class="form_li">
+      <text class="form_li_t">电话号码</text>
+      <input class="form_input" placeholder-class="placeholder" disabled="{{true}}" value="{{detail.tel}}" placeholder="请输入手机号码"/>
+    </view>
+    <view class="form_li">
+      <text class="form_li_t">手机号</text>
+      <input class="form_input" placeholder-class="placeholder" disabled="{{true}}" value="{{detail.mobile}}" placeholder="请输入手机号码"/>
+    </view>
+    <view class="form_li">
+      <text class="form_li_t">邮箱</text>
+      <input class="form_input" placeholder-class="placeholder" disabled="{{true}}" value="{{detail.email}}" placeholder="请输入手机号码"/>
+    </view>
+  </view>
+  <view class="invoive_tip">
+    <text class="invoive_tip_t">请确认抬头信息，确认后将开启出行自动开票服务</text>
+  </view>
+  <view class="invoice_btn">
+    <view class="invoice_btn_define" bindtap="titleDefine">确认</view>
+    <view class="invoice_btn_edit" bindtap="titleEdit">编辑</view>
+  </view>
+</view>

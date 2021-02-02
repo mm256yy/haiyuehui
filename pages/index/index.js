@@ -11,6 +11,16 @@ Page({
       '/static/images/banner1.jpg',
       '/static/images/banner4.jpg',
     ],
+    recommendUrls:[
+      {
+        img:'/static/images/member-luck.jpg',
+        bindtap:'goLuck',
+      },
+      // {
+      //   img:'/static/images/member-home.jpg',
+      //   bindtap:'',
+      // },
+    ],
     hotelsName:'点击选择酒店',
     hotelsId:'hotelsId',
     startTime:'startTime',
@@ -225,5 +235,10 @@ Page({
       });
       wx.setStorageSync('canGoMarket', 0);
     }
+  },
+  goLuck(){
+    wx.navigateTo({
+      url: "/pages/member/activity/memberLuck/memberLuck",
+    });
   }
 });

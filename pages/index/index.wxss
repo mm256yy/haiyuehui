@@ -74,9 +74,17 @@
 }
 /*精品推荐*/
 .home_recommend{
-  margin-top: 300rpx;
+  margin-top: 340rpx;
+  padding: 20rpx;
 }
-
+.home_recommend>swiper{
+  height: 350rpx;
+}
+.recommend_image{
+  width: 100%;
+  height: 350rpx;
+  border-radius:20rpx;
+}
 /*会员介绍*/
 .home_member{
   padding:40rpx 20rpx 20rpx 20rpx;

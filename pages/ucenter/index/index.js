@@ -48,7 +48,7 @@ Page({
       {img:'/static/images/other/other1.png',text:'身份信息',tap:'goInformation',badge:false},
       {img:'/static/images/other/other8.png',text:'会员权益',tap:'goMember',badge:false},
       {img:'/static/images/other/other2.png',text:'常住人簿',tap:'goOften',badge:false},
-      // {img:'/static/images/other/other3.png',text:'邀请下单',tap:'goInvitation',badge:false},
+      // {img:'/static/images/other/other3.png',text:'账单开票',tap:'goInvoice',badge:false},
       {img:'/static/images/other/other4.png',text:'隐私条款',tap:'goPrivacy',badge:false},
       // {img:'/static/images/other/other5.png',text:'客服热线',tap:'goService',badge:false},
       {img:'/static/images/other/other9.png',text:'设置',tap:'goSet',badge:false},
@@ -205,6 +205,12 @@ Page({
   goOften(){
     wx.navigateTo({ 
       url: "/pages/ucenter/set/oftenList/oftenList?oftenType=0"
+    });
+  },
+  //账单开票
+  goInvoice(){
+    wx.navigateTo({ 
+      url: "/pages/ucenter/invoice/billList/billList"
     });
   },
   //隐私条款

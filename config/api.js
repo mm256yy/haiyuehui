@@ -10,7 +10,7 @@
  // 生产地址 
  let WxApiRoot = 'https://hotels.hwhautomall.com/wx/'; let testing = false;  // let WxApiRoot = 'https://www.hwhhotels.com/wx/';
  
- module.exports = {
+module.exports = {
    testing,  //判断是否是测试环境
    AuthCheckToken: WxApiRoot + 'auth/checkToken', //判断token是否过期 hwh
    AuthLoginByWeixin: WxApiRoot + 'auth/wxLogin', //微信登录 hwh
@@ -87,4 +87,6 @@
    MallMemberGoodsList:WxApiRoot +'mall/memberGoods/list', //兑换码列表
    MallMemberGoodsConnect:WxApiRoot +'mall/memberGoods/connect', //兑换码转接
    MallCarWashStart:WxApiRoot +'mall/memberGoods/carWashStart', //洗车信息填写
+
+   ActivityDraw:WxApiRoot +'activity/draw', // 抽奖活动
  }

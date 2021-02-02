@@ -1,0 +1,13 @@
+<view>
+  <import src="/template/template"/> 
+  <view class="title_ul">
+    <template is="zero" data="{{list: titleUl}}"/>
+    <view class="title_li" wx:for="{{titleUl}}" wx:key="index" bindtap="goInvoiceTitleDetail" data-id="item.id">
+      <view class="company_name">{{item.name}}</view>
+      <view class="company_num">税号：{{item.num}}</view>
+    </view>
+  </view>
+  <view class="invoice_foot">
+    <view class="invoice_btn" bindtap="addInvoiceTitle">新增</view>
+  </view>
+</view>
