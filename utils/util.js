@@ -62,9 +62,16 @@ function request(url, data = {}, method = "GET") {
             if(iswhiteList){ //存在
               //未登陆
             }else{
-              wx.redirectTo({
-                url: "/pages/auth/login/login"
-              });
+              let pages = getCurrentPages();
+              if(pages.length <= 1){
+                wx.navigateTo({
+                  url: "/pages/auth/login/login"
+                });
+              }else{
+                wx.redirectTo({
+                  url: "/pages/auth/login/login"
+                });
+              }
             }
             wx.showToast({title: "未登陆" ,image:'/static/images/icon_error.png'})
             reject("未登陆");

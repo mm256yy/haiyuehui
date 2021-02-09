@@ -354,7 +354,7 @@ Page({
       wx.setStorageSync("shopPay", shopPayNew)
 
       //跳转
-      wx.redirectTo({
+      wx.navigateTo({
         url: "/pages/market/markeConfirm/marketConfirm?discount="+this.data.total.discount
       })
     }

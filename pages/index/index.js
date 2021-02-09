@@ -12,14 +12,14 @@ Page({
       '/static/images/banner4.jpg',
     ],
     recommendUrls:[
-      {
-        img:'/static/images/member-luck.jpg',
-        bindtap:'goLuck',
-      },
       // {
-      //   img:'/static/images/member-home.jpg',
-      //   bindtap:'',
+      //   img:'/static/images/member-luck.jpg',
+      //   bindtap:'goLuck',
       // },
+      {
+        img:'/static/images/member-home.jpg',
+        bindtap:'',
+      },
     ],
     hotelsName:'点击选择酒店',
     hotelsId:'hotelsId',

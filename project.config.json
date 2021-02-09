@@ -65,6 +65,18 @@
           "pathName": "pages/market/marketDetailed/marketDetailed",
           "query": "id=11&cardLevel=BJK",
           "scene": null
+        },
+        {
+          "name": "抽奖",
+          "pathName": "pages/member/activity/memberLuck/memberLuck",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "商城",
+          "pathName": "pages/market/marketDetailed/marketDetailed",
+          "query": "id=8",
+          "scene": null
         }
       ]
     }

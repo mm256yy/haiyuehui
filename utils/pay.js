@@ -1,5 +1,6 @@
 /*支付*/
 let util = require('../utils/util.js');
+let check = require('../utils/check.js');
 let api = require('../config/api.js');
 let app = getApp();
 //订房支付
@@ -22,6 +23,11 @@ function usePay(param){
         util.jhxLoadHide();
         resolve(true);
       }else{  //微信支付
+        // if(!res.result.respData){
+        //   check.showErrorToast(res.result.respMsg)
+        //   reject(false);
+        //   return false
+        // }
         let data = JSON.parse(res.result.respData); //message
         let ssn = res.result.respTxnSsn;
         console.log(data);
@@ -85,6 +91,11 @@ function rechargePay(param){
   return new Promise(function(resolve, reject){
     util.request(api.MemberRechargePrepay ,param, 'POST').then(res => {
       console.log(res);
+      // if(!res.result.respData){
+      //   check.showErrorToast('支付失败')
+      //   reject(false);
+      //   return false
+      // }
       let data = JSON.parse(res.result.respData);
       let ssn = res.result.respTxnSsn;
       console.log(data);
@@ -156,6 +167,11 @@ function mallPay(param){
         util.jhxLoadHide();
         resolve(true);
       }else{  //微信支付
+        // if(!res.result.respData){
+        //   check.showErrorToast(res.result.respMsg)
+        //   reject(false);
+        //   return false
+        // }
         let data = JSON.parse(res.result.respData); //message
         let ssn = res.result.respTxnSsn;
         console.log(data);
