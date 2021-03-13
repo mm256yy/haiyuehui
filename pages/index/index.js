@@ -16,10 +16,10 @@ Page({
       //   img:'/static/images/member-luck.jpg',
       //   bindtap:'goLuck',
       // },
-      {
-        img:'/static/images/member-home.jpg',
-        bindtap:'',
-      },
+      // {
+      //   img:'/static/images/member-home.jpg',
+      //   bindtap:'',
+      // },
     ],
     hotelsName:'点击选择酒店',
     hotelsId:'hotelsId',
@@ -49,7 +49,7 @@ Page({
     this.renderingTime();  //日历
     this.fristRegister();  //优惠券  
     this.member();
-    
+    this.activity();  //活动入口判断
   },
   //传递邀请人
   // invite(option){
@@ -193,6 +193,30 @@ Page({
   popHide(){
     this.setData({
       popShow:false
+    })
+  },
+  //活动时间判断
+  activity(){
+    let date = (new Date()).getTime();
+    let recommendUrlsNew = [];
+    console.log(date)
+    if(date <= 1615910399000){ //活动日子
+      recommendUrlsNew = [
+        {
+          img:'/static/images/member-luck2.jpg',
+          bindtap:'goLuck',
+        },
+      ]
+    }else{
+      recommendUrlsNew = [
+        {
+          img:'/static/images/member-home.jpg',
+          bindtap:'',
+        },
+      ]
+    }
+    this.setData({
+      recommendUrls:recommendUrlsNew
     })
   },
   dayZero(val){

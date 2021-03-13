@@ -73,7 +73,7 @@
 					</view>
 				</view>
 				<view class="notice_li">
-					<view class="notice_li_t notice_li_t1">有限期限</view>
+					<view class="notice_li_t notice_li_t1">有效期限</view>
 					<view class="notice_li_t2" wx:for="{{detailed.noticeDate}}" wx:key="index">
 						<view class="notice_li_t">{{item}}</view>
 					</view>

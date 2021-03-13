@@ -198,7 +198,7 @@ Page({
   },
   //立即使用的存在
   tapType(orgCode){
-    if(orgCode == "A01A02A01A01"){
+    if(orgCode == "A01A02A01A01"){ //A01A01A06A01 测试环境
       return "goExchangeWritten"
     }else{
       return ""

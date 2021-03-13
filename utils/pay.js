@@ -11,6 +11,7 @@ function usePay(param){
   app.globalData.canPay = false;
   let orderIdCallback = param.orderId;
   util.jhxLoadShow("支付中");
+  console.log("支付中");
   return new Promise(function(resolve, reject){
     util.request(api.CustomizedPay ,param, 'POST').then(res => {
       console.log(res);

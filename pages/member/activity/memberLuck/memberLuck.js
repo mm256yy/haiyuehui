@@ -7,45 +7,45 @@ Page({
       [
         {
           img:'/static/images/luck/luck1.png',
-          text:'早餐周卡',
-          animationVal:1,
-          bindtap:'',
-          class:'flex_li_b',
-          prize:'早餐周卡兑换券（海外海国际酒店、海外海纳川大酒店、海外海通信大厦选其一）',
-          route:'/pages/market/marketExchange/marketExchange',
-        },
-        {
-          img:'/static/images/luck/luck2.png',
-          text:'健身周卡',
-          animationVal:2,
-          bindtap:'',
-          class:'flex_li_b',
-          prize:'游泳健身周卡兑换券（千岛湖海外海假日酒店）',
-          route:'/pages/market/marketExchange/marketExchange',
-        },
-        {
-          img:'/static/images/luck/luck1.png',
-          text:'下午茶周卡',
-          animationVal:3,
-          bindtap:'',
-          class:'flex_li_b',
-          prize:'下午茶周卡兑换券（杭州海外海皇冠大酒店大堂吧）',
-          route:'/pages/market/marketExchange/marketExchange',
-        },
-      ],
-      [
-        {
-          img:'/static/images/luck/luck2.png',
           text:'100元优惠券',
-          animationVal:8,
+          animationVal:1,
           bindtap:'',
           class:'flex_li_b',
           prize:'100元满减优惠券（共计3张）',
           route:'/pages/ucenter/coupon/coupon',
         },
         {
+          img:'/static/images/luck/luck2.png',
+          text:'5张免房券',
+          animationVal:2,
+          bindtap:'',
+          class:'flex_li_b',
+          prize:'同酒店免房券5张',
+          route:'/pages/market/marketExchange/marketExchange',
+        },
+        {
+          img:'/static/images/luck/luck1.png',
+          text:'100元优惠券',
+          animationVal:3,
+          bindtap:'',
+          class:'flex_li_b',
+          prize:'100元满减优惠券（共计3张）',
+          route:'/pages/ucenter/coupon/coupon',
+        },
+      ],
+      [
+        {
+          img:'/static/images/luck/luck2.png',
+          text:'5张免房券',
+          animationVal:8,
+          bindtap:'',
+          class:'flex_li_b',
+          prize:'同酒店免房券5张',
+          route:'/pages/market/marketExchange/marketExchange',
+        },
+        {
           img:'/static/images/luck/luck3.png',
-          text:'点击抽奖',
+          text:'共三次机会',
           animationVal:9,
           bindtap:'luckDraw',
           class:'flex_li_go',
@@ -54,41 +54,41 @@ Page({
         },
         {
           img:'/static/images/luck/luck2.png',
-          text:'100元优惠券',
+          text:'5张免房券',
           animationVal:4,
           bindtap:'',
           class:'flex_li_b',
-          prize:'100元满减优惠券（共计3张）',
-          route:'/pages/ucenter/coupon/coupon',
+          prize:'同酒店免房券5张',
+          route:'/pages/market/marketExchange/marketExchange',
         },
       ],
       [
         {
           img:'/static/images/luck/luck1.png',
-          text:'下午茶次卡',
+          text:'100元优惠券',
           animationVal:7,
           bindtap:'',
           class:'flex_li_b',
-          prize:'下午茶次卡兑换券（杭州海外海皇冠大酒店）',
-          route:'/pages/market/marketExchange/marketExchange',
+          prize:'100元满减优惠券（共计3张）',
+          route:'/pages/ucenter/coupon/coupon',
         },
         {
-          img:'/static/images/luck/luck1.png',
-          text:'健身次卡',
+          img:'/static/images/luck/luck2.png',
+          text:'5张免房券',
           animationVal:6,
           bindtap:'',
           class:'flex_li_b',
-          prize:'游泳健身次卡兑换券（千岛湖海外海假日酒店）',
+          prize:'同酒店免房券5张',
           route:'/pages/market/marketExchange/marketExchange',
         },
         {
           img:'/static/images/luck/luck1.png',
-          text:'早餐次卡',
+          text:'100元优惠券',
           animationVal:5,
           bindtap:'',
           class:'flex_li_b',
-          prize:'早餐次卡兑换券（海外海国际酒店、海外海纳川大酒店、海外海通信大厦选其一）',
-          route:'/pages/market/marketExchange/marketExchange',
+          prize:'100元满减优惠券（共计3张）',
+          route:'/pages/ucenter/coupon/coupon',
         },
       ],
     ],
@@ -110,7 +110,9 @@ Page({
     this.setData({
       tap:false
     })
-    // this.luckDrawAnimation(2);
+    // let val = this.funGetValId(9)
+    // console.log(val)
+    // this.luckDrawAnimation(val);
     util.request(api.ActivityDraw , 'GET').then(res => {
       console.log(res)
       let val = this.funGetValId(res.result)
@@ -119,7 +121,6 @@ Page({
       this.setData({
         tap:true
       })
-      // check.showErrorToast(err)
     });
   },
   //抽奖内部代码
@@ -164,7 +165,7 @@ Page({
       route:routeNew,
     });
   },
-  //获取到luck
+  //获取到luck-弹窗
   funGetLuck(luck){
     let luckUl = this.data.luckUl
     switch (luck) {
@@ -188,15 +189,14 @@ Page({
   },
   //转换传过来的id
   funGetValId(id){
-    switch (id) {
-      case 1: return 0;
-      case 2: return 1;
-      case 3: return 2;
-      case 4: return 4;
-      case 5: return 5;
-      case 6: return 6;
-      case 7: return 3;
-      default: return 3;
+    if(id == 9){ //满减
+      let arr = [0,2,4,6];
+      return arr[Math.floor((Math.random()*arr.length))];
+    }else if(id == 8){
+      let arr = [1,3,5,7];
+      return arr[Math.floor((Math.random()*arr.length))];
+    }else{
+      return 0;
     }
   },
 })

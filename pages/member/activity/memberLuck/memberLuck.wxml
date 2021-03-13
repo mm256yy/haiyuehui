@@ -1,6 +1,6 @@
 <view>
   <view class="luck_head">
-    <image class="luck_head_img" src="/static/images/member-luck.jpg" mode="widthFix"></image>
+    <image class="luck_head_img" src="/static/images/member-luck2.jpg" mode="widthFix"></image>
   </view>
   <view class="luck_body">
     <view class="luck_flex" wx:for="{{luckUl}}" wx:key="index1" wx:for-index="index1" wx:for-item="item1">
@@ -18,38 +18,40 @@
       <view class="rule_content">
         <view class="rule_text">
           <text class="rule_t1">活动时间</text>
-          <text class="rule_t2">2021年2月3日---2月7日</text>
+          <text class="rule_t2">2021年3月15日</text>
         </view>
         <view class="rule_text">
           <text class="rule_t1">活动参与</text>
-          <text class="rule_t2">关注海外海酒店公众号的海悦会会员</text>
+          <text class="rule_t2">关注海外海酒店公众号的海悦会会员，限2021年3月9日——3月14日，通过小程序预定，2021年3月14入住的预订者</text>
         </view>
         <view class="rule_text">
           <text class="rule_t1">抽奖规则</text>
-          <text class="rule_t2">活动期间每日可抽奖1次</text>
+          <text class="rule_t2">抽奖仅2021年3月15日当天，参与每人可抽奖3次，100%中奖；</text>
         </view>
         <view class="rule_text">
           <text class="rule_t1">奖品有效期</text>
-          <view class="rule_t2">兑换券有效期从2021年2月11日至2021年2月17日（春节假期期间）；</view>
-          <view class="rule_t2">满减优惠券有效期3个月，至2021年5月8日</view>
+          <view class="rule_t2">百元优惠券有效期为：</view>
+          <view class="rule_t2">2021年3月15日——2021年6月15日；</view>
+          <view class="rule_t2">同酒店免房券有效期为：</view>
+          <view class="rule_t2">2021年3月15日——2021年12月31日；</view>
         </view>
         <view class="rule_text">
           <text class="rule_t1">奖品预约规则</text>
-          <view class="rule_t2">至少提前1天预约（周卡需每日预约）</view>
+          <view class="rule_t2">至少提前1天预约</view>
         </view>
         <view class="rule_text">
-          <text class="rule_t1">奖品使用时间</text>
-          <view class="rule_t2">国际早餐开放时间为周一至周五6：30-9：30，周末6：30-10：00；</view>
-          <view class="rule_t2">纳川早餐开放时间为6：30-9：30</view>
-          <view class="rule_t2">通信早餐开放时间为6：30-9：30；</view>
-          <view class="rule_t2">千岛湖健身房开放时间为13：30-22：00；</view>
-          <view class="rule_t2">杭州皇冠大堂吧下午茶开放时间为13：00-17：00；</view>
+          <text class="rule_t1">同酒店免房券（所有酒店选其一）</text>
+          <view class="rule_t2">杭州海外海皇冠大酒店高级大床房；</view>
+          <view class="rule_t2">马鞍山海外海皇冠大酒店高级大床房；</view>
+          <view class="rule_t2">杭州海外海国际酒店高级大床房；</view>
+          <view class="rule_t2">杭州海外海纳川酒店高级大床房；</view>
+          <view class="rule_t2">杭州海外海通信大厦高级大床房；</view>
+          <view class="rule_t2">千岛湖海外海假日酒店温馨大床房；</view>
         </view>
         <view class="rule_text">
           <text class="rule_t1">奖品其他规则</text>
-          <view class="rule_t2">1、周卡为一次性核销，首次使用在所选酒店，后续不可更换酒店；</view>
-          <view class="rule_t2">2、仅限本人或转赠亲友使用，杜绝二次售卖，如若错误转赠他人导致核销失败概不负责；</view>
-          <view class="rule_t2">3、奖品均不开具发票，不兑换现金。</view>
+          <view class="rule_t2">1、仅限本人或转赠亲友使用，杜绝二次售卖，如若错误转赠他人导致核销失败概不负责；</view>
+          <view class="rule_t2">2、奖品均不开具发票，不兑换现金。</view>
         </view>
       </view>
     </view>
@@ -59,7 +61,7 @@
     <view class="pop_box">
       <view class="pop_b">
         <view class="pop_luck_text">
-          <view class="pop_luck_t1">恭喜您中奖了</view> 
+          <view class="pop_luck_t1">恭喜您中奖了</view>
           <view class="pop_luck_t2">奖品：{{prize}}</view>
           <view class="pop_luck_btn" bindtap="funRoute">立即查看</view>
           <view class="pop_del" bindtap="funPopShow">

@@ -73,7 +73,7 @@ page {
   color: #999;
   min-width: 100rpx;
   padding: 5rpx 10rpx;
-  text-align: center;
+  text-align: left;
   margin-top: 10rpx;
   border-radius: 5rpx;
   font-size: 24rpx;
