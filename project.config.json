@@ -61,8 +61,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/market/marketDetailed/marketDetailed",
-          "pathName": "pages/market/marketDetailed/marketDetailed",
+          "name": "关注页",
+          "pathName": "pages/member/memberFollow/memberFollow",
           "query": "id=11&cardLevel=BJK",
           "scene": null
         },

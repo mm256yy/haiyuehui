@@ -32,7 +32,7 @@ page{
   background-color: #d8f1ff;
   color: #008cd7;
   padding: 5rpx 10rpx;
-  border-radius:10rpx ;
+  border-radius:10rpx;
   margin-right: 10rpx;
 }
 .hotels_text_cis{
@@ -42,7 +42,7 @@ page{
   background-color: #ede6ff;
   color: #753ffd;
   padding: 5rpx 10rpx;
-  border-radius:10rpx ;
+  border-radius:10rpx;
   margin-right: 10rpx;
 }
 /*cis*/

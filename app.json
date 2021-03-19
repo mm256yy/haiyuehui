@@ -7,6 +7,7 @@
     "pages/member/memberIndex/memberIndex",
     "pages/member/memberPower/memberPower",
     "pages/member/memberAgree/memberAgree",
+    "pages/member/memberFollow/memberFollow",
     
     "pages/auth/login/login",
     "pages/auth/loginAgree/loginAgree",

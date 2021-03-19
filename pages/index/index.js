@@ -200,7 +200,7 @@ Page({
     let date = (new Date()).getTime();
     let recommendUrlsNew = [];
     console.log(date)
-    if(date <= 1615910399000){ //活动日子
+    if(date <= 1615823999000){ //活动日子
       recommendUrlsNew = [
         {
           img:'/static/images/member-luck2.jpg',
@@ -210,8 +210,8 @@ Page({
     }else{
       recommendUrlsNew = [
         {
-          img:'/static/images/member-home.jpg',
-          bindtap:'',
+          img:'/static/images/member-home1.jpg',
+          bindtap:'goFollow',
         },
       ]
     }
@@ -264,5 +264,10 @@ Page({
     wx.navigateTo({
       url: "/pages/member/activity/memberLuck/memberLuck",
     });
-  }
+  },
+  goFollow(){
+    wx.navigateTo({
+      url: "/pages/member/memberFollow/memberFollow",
+    });
+  },
 });
