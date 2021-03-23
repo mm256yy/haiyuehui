@@ -28,22 +28,45 @@ page{
 .hotels_text_attr{
   margin-top: 20rpx;
   display: inline-block;
-  font-size: 24rpx;
-  background-color: #d8f1ff;
-  color: #008cd7;
-  padding: 5rpx 10rpx;
+  font-size: 26rpx;
+  padding: 5rpx 15rpx;
   border-radius:10rpx;
   margin-right: 10rpx;
 }
+.hotels_text_address{
+  background-color: #d8f1ff;
+  color: #008cd7;
+  border:1rpx solid #91d5ff;
+}
 .hotels_text_cis{
-  margin-top: 20rpx;
-  display: inline-block;
-  font-size: 24rpx;
-  background-color: #ede6ff;
-  color: #753ffd;
-  padding: 5rpx 10rpx;
-  border-radius:10rpx;
-  margin-right: 10rpx;
+  background-color: #f9f0ff;
+  color: #722ed1;
+  border:1rpx solid #d3adf7;
+}
+.hotels_text_1{
+  background-color: #fff7e6;
+  color: #fa8c16;
+  border:1rpx solid #ffd591;
+}
+.hotels_text_2{
+  background-color: #fff1f0;
+  color: #f5222d;
+  border:1rpx solid #ffa39e;
+}
+.hotels_text_3{
+  background-color: #e6fffb;
+  color: #13c2c2;
+  border:1rpx solid #87e8de;
+}
+.hotels_text_4{
+  background-color: #f6ffed;
+  color: #52c41a;
+  border:1rpx solid #b7eb8f;
+}
+.hotels_text_5{
+  background-color: #fff0f6;
+  color: #eb2f96;
+  border:1rpx solid #ffadd2;
 }
 /*cis*/
 .cis{

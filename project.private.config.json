@@ -1,0 +1,42 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "关注页",
+          "pathName": "pages/member/memberFollow/memberFollow",
+          "query": "id=11&cardLevel=BJK",
+          "scene": null
+        },
+        {
+          "name": "抽奖",
+          "pathName": "pages/member/activity/memberLuck/memberLuck",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "商城",
+          "pathName": "pages/market/marketDetailed/marketDetailed",
+          "query": "id=8",
+          "scene": null
+        },
+        {
+          "name": "pages/customized/hotelsList/hotelsList",
+          "pathName": "pages/customized/hotelsDetailed/hotelsDetailed",
+          "query": "hotelId=H000003",
+          "scene": null
+        }
+      ]
+    }
+  }
+}
