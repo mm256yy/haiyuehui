@@ -48,6 +48,22 @@ Page({
       }); 
     }).catch((err) => {});
   },
+  //立即提交-跳过
+  btnSuccessSkip(){
+    let param = {
+      id:this.data.id,
+      address:'暂未填写',
+      name:'暂未填写',
+      mobile:'暂未填写',
+    };
+    util.request(api.MallCarWashStart , param , 'POST').then(res => {
+      wx.navigateBack({ 
+        delta: 1  
+      }); 
+    }).catch((err) => {});
+  },
+  //
+  
   //input焦点
   carWashAddress1Input: function(e) {
     this.setData({

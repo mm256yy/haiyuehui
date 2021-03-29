@@ -32,11 +32,12 @@ Page({
 
   },
   hotelsDetailed(e){
+    let hotelVal = this.data.hotels[e.currentTarget.dataset.arr]
     //存储到缓存
-    wx.setStorageSync("hotel", this.data.hotels[e.currentTarget.dataset.arr])
+    wx.setStorageSync("hotel", hotelVal)
     //跳转
     wx.navigateTo({
-      url: "../hotelsDetailed/hotelsDetailed"
+      url: "../hotelsDetailed/hotelsDetailed?hotelId="+hotelVal.id
     })
   }
 })

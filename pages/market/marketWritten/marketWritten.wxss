@@ -60,3 +60,14 @@
   background: linear-gradient(to right, #039cee , #753ffd);
   text-align: center;
 }
+.btn_success_skip{
+  margin: 20rpx 0rpx 40rpx 0rpx;
+  padding: 20rpx 10rpx;
+  border-radius:50rpx ;
+  color: #039cee;
+  font-size: 30rpx;
+  width: 100%;
+  border:1rpx solid #039cee ;
+  border-radius: 50rpx;
+  text-align: center;
+}

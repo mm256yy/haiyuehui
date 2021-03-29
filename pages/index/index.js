@@ -199,14 +199,8 @@ Page({
   activity(){
     let date = (new Date()).getTime();
     let recommendUrlsNew = [];
-    console.log(date)
     if(date <= 1615823999000){ //活动日子
-      recommendUrlsNew = [
-        {
-          img:'/static/images/member-luck2.jpg',
-          bindtap:'goLuck',
-        },
-      ]
+
     }else{
       recommendUrlsNew = [
         {

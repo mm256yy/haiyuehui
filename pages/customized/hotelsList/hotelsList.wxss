@@ -7,7 +7,7 @@ page{
 }
 .hotels_li{
   background-color: #fff;
-  border-radius:20rpx ;
+  border-radius:20rpx;
   margin-bottom: 60rpx;
 }
 .hotels_li>image{
@@ -43,25 +43,26 @@ page{
   color: #722ed1;
   border:1rpx solid #d3adf7;
 }
+
 .hotels_text_1{
-  background-color: #fff7e6;
-  color: #fa8c16;
-  border:1rpx solid #ffd591;
-}
-.hotels_text_2{
   background-color: #fff1f0;
   color: #f5222d;
   border:1rpx solid #ffa39e;
 }
-.hotels_text_3{
-  background-color: #e6fffb;
-  color: #13c2c2;
-  border:1rpx solid #87e8de;
+.hotels_text_2{
+  background-color: #fff7e6;
+  color: #fa8c16;
+  border:1rpx solid #ffd591;
 }
-.hotels_text_4{
+.hotels_text_3{
   background-color: #f6ffed;
   color: #52c41a;
   border:1rpx solid #b7eb8f;
+}
+.hotels_text_4{
+  background-color: #e6fffb;
+  color: #13c2c2;
+  border:1rpx solid #87e8de;
 }
 .hotels_text_5{
   background-color: #fff0f6;

@@ -1,11 +1,11 @@
 let api = require('../../../config/api.js');
 let util = require('../../../utils/util.js');
 let check = require('../../../utils/check.js');
-let user = require('../../../utils/user.js');     
+let user = require('../../../utils/user.js');
 Page({
   data: {
-    id:1,
-    detailed:{
+    id: 1,
+    detailed: {
       // id:1,
       // name:'五芳斋月饼礼盒中秋节双蛋黄莲蓉等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',
       // categoryId:2,
@@ -31,18 +31,18 @@ Page({
       // startBuy:'',  //开卖时间 null 值为没有限制 
       // countdown:'',  //倒计时
     },
-    pop:false,
-    goodsNum:1,
-    redTip:1,
-    buyMode:0, //0 加入购物车 1 立即购买
-    numTipShow:0,
-    total:{
+    pop: false,
+    goodsNum: 1,
+    redTip: 1,
+    buyMode: 0, //0 加入购物车 1 立即购买
+    numTipShow: 0,
+    total: {
       // price:23000,  //优惠前
       // salePrice:22000, //优惠后
       // discount:95,  //折扣 
       // money:'',
     },
-    specList:[
+    specList: [
       // {
       //   name:"颜色",
       //   list:[
@@ -58,19 +58,21 @@ Page({
       //   ]
       // },
     ],
-    productList:[
+    productList: [
       // {spec:'白色$150ml',price:100,amount:1},
       // {spec:'白色$250ml',price:200,amount:1},
       // {spec:'黑色$150ml',price:300,amount:1},
     ],
-    specChoose:[],
-    info:{
-      cardLevel:'',
+    specChoose: [],
+    info: {
+      cardLevel: '',
     },
+    canvasShow: false,
+    saveImagePath:'',
   },
   onLoad: function (options) {
     this.setData({
-      id:options.id
+      id: options.id
     })
   },
   onShow: function () {
@@ -81,12 +83,11 @@ Page({
     let that = this;
     if (ops.from === 'button') {
       // 来自页面内转发按钮
-      console.log(ops.target);
     }
     return {
-      title: (that.data.detailed.name).slice(0,30)+'...',
-      imageUrl:that.data.detailed.sliderImg[0],//图片地址
-      path:'/pages/market/marketDetailed/marketDetailed?id='+that.data.detailed.id,// 用户点击首先进入的当前页面
+      title: (that.data.detailed.name).slice(0, 30) + '...',
+      imageUrl: that.data.detailed.sliderImg[0], //图片地址
+      path: '/pages/market/marketDetailed/marketDetailed?id=' + that.data.detailed.id, // 用户点击首先进入的当前页面
       success: function (res) { // 转发成功
         console.log("转发成功:");
       },
@@ -96,10 +97,10 @@ Page({
     }
   },
   //会员
-  member(){
+  member() {
     user.memberGetInfoStorage().then(res => {
       this.setData({
-        'info.cardLevel':res.result.cardLevel
+        'info.cardLevel': res.result.cardLevel
       })
       this.init();
     }).catch((err) => {
@@ -107,50 +108,50 @@ Page({
       console.log(err)
     });
   },
-  init(){
+  init() {
     let param = {
-      id:this.data.id,
-      cardLevel:this.data.info.cardLevel
+      id: this.data.id,
+      cardLevel: this.data.info.cardLevel
     }
-    util.request(api.MallGoodsDetail , param , 'GET').then(res => {
+    util.request(api.MallGoodsDetail, param, 'GET').then(res => {
       let data = res.result;
       //轮播图
-      let sliderImgNew = data.sliderImg?data.sliderImg.split(','):'';
+      let sliderImgNew = data.sliderImg ? data.sliderImg.split(',') : '';
       //订购须知
       let noticeUl = [];
       let noticeLi = [];
       noticeLi = data.orderingInfo.split('|');
-      for(let i=0;i<noticeLi.length;i++){
+      for (let i = 0; i < noticeLi.length; i++) {
         noticeUl[i] = noticeLi[i].split('\n');
       }
       //图文详情
-      let contentNew = data.content?data.content:''
-      contentNew = contentNew.replace(/width="300"/g,'width="100%"').replace(/display: block/g,'display: block;padding-bottom: 10px;').replace(/height="300"/g,'');
+      let contentNew = data.content ? data.content : ''
+      contentNew = contentNew.replace(/width="300"/g, 'width="100%"').replace(/display: block/g, 'display: block;padding-bottom: 10px;').replace(/height="300"/g, '');
       let detailedNew = {
-        id:data.id,
-        name:data.title,
-        categoryId:data.categoryId,
-        img:data.img,
-        sliderImg:sliderImgNew?sliderImgNew:'',
-        content:contentNew, //图片详情
-        shareUrl:data.shareUrl?data.shareUrl:'',
-        introduce:data.instruction,
-        sort:data.sort,
-        amount:data.amount == -1?'不限制':data.amount,  //库存
-        isNew:data.isNew, //1 是 0 否
-        isHot:data.isHot, //1 是 0 否
-        isOnSale:data.isOnSale, //1 上架 0下架
-        browse:data.browse,  //浏览量
-        sales:data.sales,
-        noticeLimit:noticeUl[0],
-        noticeRefund:noticeUl[1],
-        noticeDate:noticeUl[2],
-        noticeRule:noticeUl[3],
-        noticePoint:noticeUl[4],
-        orgCode:data.orgCode,
-        isSingle:data.isSingle,
-        startBuy:data.startBuy?data.startBuy:'',
-        countdown:this.funCountdown(data.startBuy),  //倒计时
+        id: data.id,
+        name: data.title,
+        categoryId: data.categoryId,
+        img: data.img,
+        sliderImg: sliderImgNew ? sliderImgNew : '',
+        content: contentNew, //图片详情
+        shareUrl: data.shareUrl ? data.shareUrl : '',
+        introduce: data.instruction,
+        sort: data.sort,
+        amount: data.amount == -1 ? '不限制' : data.amount, //库存
+        isNew: data.isNew, //1 是 0 否
+        isHot: data.isHot, //1 是 0 否
+        isOnSale: data.isOnSale, //1 上架 0下架
+        browse: data.browse, //浏览量
+        sales: data.sales,
+        noticeLimit: noticeUl[0],
+        noticeRefund: noticeUl[1],
+        noticeDate: noticeUl[2],
+        noticeRule: noticeUl[3],
+        noticePoint: noticeUl[4],
+        orgCode: data.orgCode,
+        isSingle: data.isSingle,
+        startBuy: data.startBuy ? data.startBuy : '',
+        countdown: this.funCountdown(data.startBuy), //倒计时
       };
       //规格
       let specListNew = '';
@@ -158,20 +159,20 @@ Page({
       let spec_o_li = {};
       let spec_i_ul = [];
       let spec_i_li = {};
-      if(data.specList){
-        for(let i=0;i<data.specList.length;i++){
-          for(let j=0;j<data.specList[i].list.length;j++){
+      if (data.specList) {
+        for (let i = 0; i < data.specList.length; i++) {
+          for (let j = 0; j < data.specList[i].list.length; j++) {
             spec_i_li = {
-              name:data.specList[i].list[j],
-              choose:false,
-              abled:true,
-              hide:true,
+              name: data.specList[i].list[j],
+              choose: false,
+              abled: true,
+              hide: true,
             }
             spec_i_ul.push(spec_i_li)
           }
           spec_o_li = {
-            name:data.specList[i].name,
-            list:spec_i_ul,
+            name: data.specList[i].name,
+            list: spec_i_ul,
           }
           spec_i_ul = [];
           spec_o_ul.push(spec_o_li)
@@ -183,24 +184,24 @@ Page({
       let product_o_ul = [];
       let product_o_li = {};
       let amountTotal = detailedNew.amount;
-      if(data.productList){
-        for(let i=0;i<data.productList.length;i++){
+      if (data.productList) {
+        for (let i = 0; i < data.productList.length; i++) {
           product_o_li = {
-            spec:data.productList[i].spec,
-            price:data.productList[i].price,
-            amount:data.productList[i].amount == -1?'不限制':data.productList[i].amount,
+            spec: data.productList[i].spec,
+            price: data.productList[i].price,
+            amount: data.productList[i].amount == -1 ? '不限制' : data.productList[i].amount,
           }
           product_o_ul.push(product_o_li)
         }
         productListNew = product_o_ul;
         //判断是否有规格组合，若是有，总库存设置为规格的总数
-        if(productListNew.length > 0){
+        if (productListNew.length > 0) {
           amountTotal = 0;
-          for(let i=0;i<productListNew.length;i++){
-            if(productListNew[i].amount == '不限制'){
+          for (let i = 0; i < productListNew.length; i++) {
+            if (productListNew[i].amount == '不限制') {
               amountTotal = '不限制'
               break;
-            }else{
+            } else {
               amountTotal += productListNew[i].amount
             }
           }
@@ -208,210 +209,210 @@ Page({
       }
       //价格
       let totalNew = {
-        price:data.price,
-        salePrice:data.salePrice,
-        discount:data.discount?data.discount:100,
-        money:0,
+        price: data.price,
+        salePrice: data.salePrice,
+        discount: data.discount ? data.discount : 100,
+        money: 0,
       }
       this.setData({
-        detailed:detailedNew,
-        total:totalNew,
-        specList:specListNew,
-        productList:productListNew,
-        'detailed.amount':amountTotal
+        detailed: detailedNew,
+        total: totalNew,
+        specList: specListNew,
+        productList: productListNew,
+        'detailed.amount': amountTotal
       })
       this.redTipNum();
       this.total();
-      this.delSpec(specListNew,productListNew);
+      this.delSpec(specListNew, productListNew);
     }).catch((err) => {});
   },
   //总计
-  total(){
+  total() {
     let moneyNew = 0;
-    if(this.data.total.discount > 0){
-      moneyNew = parseInt(this.data.total.discount)/100*this.data.total.salePrice
-    }else{
+    if (this.data.total.discount > 0) {
+      moneyNew = parseInt(this.data.total.discount) / 100 * this.data.total.salePrice
+    } else {
       moneyNew = this.data.total.salePrice
     }
-    
+
     this.setData({
-      'total.money':moneyNew
+      'total.money': moneyNew
     })
   },
   //判断商品购物车数量
-  redTipNum(){
+  redTipNum() {
     let shoppingCartUl = [];
     let num = 0;
-    if(wx.getStorageSync("shoppingCart")){
+    if (wx.getStorageSync("shoppingCart")) {
       shoppingCartUl = wx.getStorageSync("shoppingCart");
     }
-    if(shoppingCartUl.length>0){
-      for(let i=0;i<shoppingCartUl.length;i++){
-        if(shoppingCartUl[i].id == this.data.detailed.id){
+    if (shoppingCartUl.length > 0) {
+      for (let i = 0; i < shoppingCartUl.length; i++) {
+        if (shoppingCartUl[i].id == this.data.detailed.id) {
           num += shoppingCartUl[i].num;
         }
       }
     }
     this.setData({
-      redTip:num
+      redTip: num
     })
   },
   //去购物车
-  goShopingCart(){
+  goShopingCart() {
     wx.navigateTo({
       url: "/pages/market/shoppingCart/shoppingCart"
     })
   },
   //添加购物车
-  addShopingCart(){
+  addShopingCart() {
     let can = this.funChooseCan();
     let specChooseVal = this.data.specChoose.join('$');
-    if(can){
+    if (can) {
       let shoppingCartUl = [];
       let isExist = false;
       let index = 0;
-      if(wx.getStorageSync("shoppingCart")){
+      if (wx.getStorageSync("shoppingCart")) {
         shoppingCartUl = wx.getStorageSync("shoppingCart");
       }
-      if(shoppingCartUl.length>0){
-        for(let i=0;i<shoppingCartUl.length;i++){
-          if(shoppingCartUl[i].id == this.data.detailed.id&&shoppingCartUl[i].spec == specChooseVal){
+      if (shoppingCartUl.length > 0) {
+        for (let i = 0; i < shoppingCartUl.length; i++) {
+          if (shoppingCartUl[i].id == this.data.detailed.id && shoppingCartUl[i].spec == specChooseVal) {
             isExist = true;
             index = i;
           }
         }
       }
-      if(isExist){  //是否存在同等商品
+      if (isExist) { //是否存在同等商品
         // shoppingCartUl[index].num += this.data.goodsNum;
-        if(shoppingCartUl[index].num + this.data.goodsNum > this.data.detailed.amount){
+        if (shoppingCartUl[index].num + this.data.goodsNum > this.data.detailed.amount) {
           check.showErrorToast('添加的商品超过库存')
-        }else{
+        } else {
           shoppingCartUl[index].num += this.data.goodsNum;
         }
-      }else{
+      } else {
         let shoppingCartLi = {
-          choose:false,
-          id:this.data.detailed.id,
-          name:this.data.detailed.name,
-          img:this.data.detailed.img,
-          salePrice:this.data.total.salePrice,
-          amount:this.data.detailed.amount,
-          num:this.data.goodsNum,
-          orgCode:this.data.detailed.orgCode,
-          spec:this.data.specChoose.join("$"),
+          choose: false,
+          id: this.data.detailed.id,
+          name: this.data.detailed.name,
+          img: this.data.detailed.img,
+          salePrice: this.data.total.salePrice,
+          amount: this.data.detailed.amount,
+          num: this.data.goodsNum,
+          orgCode: this.data.detailed.orgCode,
+          spec: this.data.specChoose.join("$"),
         }
         shoppingCartUl.push(shoppingCartLi);
       }
       wx.setStorageSync("shoppingCart", shoppingCartUl)
       this.popShow(null);
       this.setData({
-        redTip:this.data.redTip += this.data.goodsNum
+        redTip: this.data.redTip += this.data.goodsNum
       });
       this.animation();
     }
-  },  
+  },
   //添加购物车动画效果
-  animation(){
+  animation() {
     this.setData({
-      numTipShow:1,  
+      numTipShow: 1,
     })
     let that = this;
-    setTimeout(function(){
+    setTimeout(function () {
       var animation = wx.createAnimation({
-        duration:200,
-        timingFunction:"ease",  
+        duration: 200,
+        timingFunction: "ease",
       })
-      animation.translate(-50, 50).opacity(0).step();  
+      animation.translate(-50, 50).opacity(0).step();
       that.setData({
-        animationData:animation.export(),   //设置完毕
+        animationData: animation.export(), //设置完毕
       })
-      setTimeout(function(){
+      setTimeout(function () {
         animation.translate(0, 0).step();
         that.setData({
-          animationData:animation.export()
+          animationData: animation.export()
         })
-      },1000)
-    },100)
+      }, 1000)
+    }, 100)
   },
   //立即购买
-  buy(){
+  buy() {
     let can = this.funChooseCan();
-    if(can){
+    if (can) {
       //添加入支付储存
       let shopPayNew = [];
       let shopPayLi = {
-        choose:false,
-        id:this.data.detailed.id,
-        name:this.data.detailed.name,
-        img:this.data.detailed.img,
-        salePrice:this.data.total.salePrice,
-        amount:this.data.detailed.amount,
-        num:this.data.goodsNum,
-        orgCode:this.data.detailed.orgCode,
-        spec:this.data.specChoose.join("$"),
+        choose: false,
+        id: this.data.detailed.id,
+        name: this.data.detailed.name,
+        img: this.data.detailed.img,
+        salePrice: this.data.total.salePrice,
+        amount: this.data.detailed.amount,
+        num: this.data.goodsNum,
+        orgCode: this.data.detailed.orgCode,
+        spec: this.data.specChoose.join("$"),
       };
       shopPayNew.push(shopPayLi)
       wx.setStorageSync("shopPay", shopPayNew)
 
       //跳转
       wx.navigateTo({
-        url: "/pages/market/markeConfirm/marketConfirm?discount="+this.data.total.discount
+        url: "/pages/market/markeConfirm/marketConfirm?discount=" + this.data.total.discount
       })
     }
   },
   //弹窗显示
-  popShow(e){
+  popShow(e) {
     let mode = 0;
-    if(e){
+    if (e) {
       mode = e.currentTarget.dataset.mode
     }
     this.setData({
-      pop:!this.data.pop,
-      buyMode:mode
+      pop: !this.data.pop,
+      buyMode: mode
     })
   },
   //商品数量加减
-  goodsNum(e){
+  goodsNum(e) {
     let val = e.currentTarget.dataset.val;
     let num = this.data.goodsNum
     let amount = this.data.detailed.amount
-    if(val == 0&&num>1){
-      num --
-    }else if(val == 1&&(num<amount||amount == "不限制")){
-      num ++
+    if (val == 0 && num > 1) {
+      num--
+    } else if (val == 1 && (num < amount || amount == "不限制")) {
+      num++
     }
     this.setData({
-      goodsNum : num
+      goodsNum: num
     })
   },
-  goWalletRecharge(){
+  goWalletRecharge() {
     wx.navigateTo({
       url: "/pages/ucenter/wallet/walletRecharge/walletRecharge"
     })
   },
   //规格选择
-  funSpecChoose(e){
+  funSpecChoose(e) {
     let index1 = e.currentTarget.dataset.index1;
     let index2 = e.currentTarget.dataset.index2;
     let specListNew = this.data.specList;
     let specChooseNew = this.data.specChoose;
     let chooseValOn = specListNew[index1].list[index2].choose
-    for(let i=0;i<specListNew[index1].list.length;i++){
+    for (let i = 0; i < specListNew[index1].list.length; i++) {
       specListNew[index1].list[i].choose = false;
     }
-    if(specChooseNew.length == 0){
+    if (specChooseNew.length == 0) {
       specChooseNew[this.data.specList.length - 1] = null
     }
-    if(chooseValOn){
+    if (chooseValOn) {
       specListNew[index1].list[index2].choose = false;
       specChooseNew[index1] = null
-    }else{
+    } else {
       specListNew[index1].list[index2].choose = true;
       specChooseNew[index1] = specListNew[index1].list[index2].name;
     }
     this.setData({
-      specList:specListNew,
-      specChoose:specChooseNew
+      specList: specListNew,
+      specChoose: specChooseNew
     })
     //判断生成价格/库存
     let productListNew = this.data.productList;
@@ -419,27 +420,27 @@ Page({
     let amount = this.data.total.amount;
     let len = specListNew.length;
     let num = 0;
-    for(let i=0;i<len;i++){
-      if(specChooseNew[i]){
-        num ++
+    for (let i = 0; i < len; i++) {
+      if (specChooseNew[i]) {
+        num++
       }
     }
-    if(num == len){
-      for(let i=0;i<productListNew.length;i++){
-        if(specChooseNew.join("$") == productListNew[i].spec){
+    if (num == len) {
+      for (let i = 0; i < productListNew.length; i++) {
+        if (specChooseNew.join("$") == productListNew[i].spec) {
           salePrice = productListNew[i].price
           amount = productListNew[i].amount
         }
       }
       this.setData({
-        'total.salePrice':salePrice,
-        'detailed.amount':amount
+        'total.salePrice': salePrice,
+        'detailed.amount': amount
       })
     }
     //进行分割规格组合
     this.specCompose()
   },
-  specCompose(){
+  specCompose() {
     let specChoose = this.data.specChoose
     let productList = this.data.productList
     let v_productList = []
@@ -447,159 +448,263 @@ Page({
     let j_li = []
     let cho_ul = []
     //输出选中列表productList的值
-    if(specChoose.length != 0){
-      for(let i=0;i<specChoose.length;i++){
-        if(specChoose[i]){  //i代表specChoose第几位
-          for(let j=0;j<productList.length;j++){
+    if (specChoose.length != 0) {
+      for (let i = 0; i < specChoose.length; i++) {
+        if (specChoose[i]) { //i代表specChoose第几位
+          for (let j = 0; j < productList.length; j++) {
             v_productList = productList[j].spec.split('$') //j代表productList第几位
-            if(v_productList[i] == specChoose[i]){
+            if (v_productList[i] == specChoose[i]) {
               j_li.push(j)
             }
           }
           j_ul.push(j_li)
           j_li = []
           cho_ul.push(i)
-        }else{
+        } else {
           cho_ul.push(i)
         }
       }
       let v_ul = [];
       let v_num = 0
-      if(j_ul.length > 1){
-        for(let i=0;i<j_ul[0].length;i++){
-          for(let j=0;j<j_ul.length;j++){
-            if(j_ul[j].indexOf(j_ul[0][i]) != -1){
-              v_num ++
+      if (j_ul.length > 1) {
+        for (let i = 0; i < j_ul[0].length; i++) {
+          for (let j = 0; j < j_ul.length; j++) {
+            if (j_ul[j].indexOf(j_ul[0][i]) != -1) {
+              v_num++
             }
           }
-          if(v_num == j_ul.length){
+          if (v_num == j_ul.length) {
             v_ul.push(j_ul[0][i])
           }
           v_num = 0
         }
-      }else{
+      } else {
         v_ul = j_ul[0]
       }
-      // console.log(v_ul)
-      // console.log(cho_ul)
       //进行隐藏未被选到的specList
       let specList = this.data.specList
-      if(v_ul){
-        for(let i=0;i<specList.length;i++){
-          for(let j=0;j<specList[i].list.length;j++){
+      if (v_ul) {
+        for (let i = 0; i < specList.length; i++) {
+          for (let j = 0; j < specList[i].list.length; j++) {
             specList[i].list[j].abled = false
           }
         }
-        for(let i=0;i<cho_ul.length;i++){
-          for(let j=0;j<v_ul.length;j++){
-            for(let k=0;k<specList[cho_ul[i]].list.length;k++){
-              // console.log(specList[cho_ul[i]].list[k].name)
-              // console.log(productList[v_ul[j]].spec.split('$')[cho_ul[i]])
-              // console.log('--')
-              if(specList[cho_ul[i]].list[k].name == productList[v_ul[j]].spec.split('$')[cho_ul[i]]){
+        for (let i = 0; i < cho_ul.length; i++) {
+          for (let j = 0; j < v_ul.length; j++) {
+            for (let k = 0; k < specList[cho_ul[i]].list.length; k++) {
+              if (specList[cho_ul[i]].list[k].name == productList[v_ul[j]].spec.split('$')[cho_ul[i]]) {
                 specList[cho_ul[i]].list[k].abled = true
               }
             }
           }
         }
-      }else{
-        for(let i=0;i<specList.length;i++){
-          for(let j=0;j<specList[i].list.length;j++){
+      } else {
+        for (let i = 0; i < specList.length; i++) {
+          for (let j = 0; j < specList[i].list.length; j++) {
             specList[i].list[j].abled = true
           }
         }
       }
       this.setData({
-        specList:specList
+        specList: specList
       })
     }
   },
   //删除规格
-  delSpec(specList,productList){
-    for(let i=0;i<productList.length;i++){
+  delSpec(specList, productList) {
+    for (let i = 0; i < productList.length; i++) {
       let prod_val = productList[i].spec.split('$')
-      for(let j=0;j<prod_val.length;j++){
-        for(let k=0;k<specList[j].list.length;k++){
-          if(prod_val[j] == specList[j].list[k].name){
+      for (let j = 0; j < prod_val.length; j++) {
+        for (let k = 0; k < specList[j].list.length; k++) {
+          if (prod_val[j] == specList[j].list[k].name) {
             specList[j].list[k].hide = false
           }
         }
       }
     }
     let hideNum = 0
-    for(let i=0;i<specList.length;i++){
-      for(let j=0;j<specList[i].list.length;j++){
-        if(specList[i].list[j].hide == true){
-          hideNum ++
+    for (let i = 0; i < specList.length; i++) {
+      for (let j = 0; j < specList[i].list.length; j++) {
+        if (specList[i].list[j].hide == true) {
+          hideNum++
         }
       }
-      if(hideNum == specList[i].list.length){
-        specList.splice(i,1)
+      if (hideNum == specList[i].list.length) {
+        specList.splice(i, 1)
       }
       hideNum = 0
     }
     this.setData({
-      specList:specList
+      specList: specList
     })
   },
   //判断规格是否全部选中,并且判断是否再可卖的时间段
-  funChooseCan(){ 
+  funChooseCan() {
     //规格选中
     let len = this.data.specList.length;
     let specChooseNew = this.data.specChoose;
     let num = 0;
-    for(let i=0;i<len;i++){
-      if(specChooseNew[i]){
-        num ++
+    for (let i = 0; i < len; i++) {
+      if (specChooseNew[i]) {
+        num++
       }
     }
     //时间段是否可卖
     let startBuy = true;
-    if(this.data.detailed.startBuy != ''){
+    if (this.data.detailed.startBuy != '') {
       let nowDate = new Date().getTime()
       let buyDate = parseInt(this.data.detailed.startBuy)
-      if(nowDate >= buyDate){
+      if (nowDate >= buyDate) {
         startBuy = true;
-      }else{
+      } else {
         startBuy = false;
       }
     }
     //判断
-    if(num != len){
+    if (num != len) {
       check.showErrorToast('请选择商品规格')
       return false;
-    }else if(!startBuy){
+    } else if (!startBuy) {
       check.showErrorToast('活动时间未到')
       return false;
-    }else if(this.data.detailed.amount <= 0){
+    } else if (this.data.detailed.amount <= 0) {
       check.showErrorToast('当前规格库存不足')
       return false;
-    }{
+    } {
       return true;
     }
   },
   //倒计时
-  funCountdown(startBuy){
-    if(startBuy){
+  funCountdown(startBuy) {
+    if (startBuy) {
       let nowDate = new Date().getTime()
       let buyDate = parseInt(startBuy)
       let time = 0
-      if(buyDate > nowDate){
-        time = parseInt((buyDate - nowDate)/1000/60/60)
-        if(time == 0){
+      if (buyDate > nowDate) {
+        time = parseInt((buyDate - nowDate) / 1000 / 60 / 60)
+        if (time == 0) {
           return '活动在一小时内即将开始'
-        }else if(time > 0 && time < 24){
+        } else if (time > 0 && time < 24) {
           return '开卖时间还剩' + time + '小时'
-        }else{
+        } else {
           let h = time % 24
           let d = parseInt(time / 24)
           return '开卖时间还剩' + d + '天' + h + '小时'
         }
-      }else{
+      } else {
         return false
       }
-    }else{
+    } else {
       return false
     }
+  },
+  //获取背景图片
+  backgroundImg() {
+    let that = this;
+    var p = new Promise(function (resolve, reject) {
+      wx.downloadFile({
+        url: that.data.detailed.sliderImg[0], //仅为示例，并非真实的资源
+        success(res) {
+          if (res.statusCode === 200) {
+            resolve(res.tempFilePath);
+          }
+        }
+      })
+    });
+    return p;
+  },
+  //获取二维码
+  codeImg() {
+    let that = this;
+    var p = new Promise(function (resolve, reject) {
+      wx.downloadFile({
+        url: that.data.detailed.sliderImg[0], //仅为示例，并非真实的资源
+        success(res) {
+          if (res.statusCode === 200) {
+            resolve(res.tempFilePath);
+          }
+        }
+      })
+    });
+    return p;
+  },
+  //绘图
+  createdImage() {
+    console.log(12)
+    util.jhxLoadShow("图片生成中");
+    let that = this;
+    Promise
+      .all([this.backgroundImg(), this.codeImg()])
+      .then(function (results) {
+        //进行绘制
+        const ctx = wx.createCanvasContext('shareFrends');
+        ctx.drawImage(results[0], 0, 0, 300, 300);
+        ctx.font = "14px Georgia";
+        ctx.fillText('长按二维码', 120, 441)
+        ctx.draw()
+        // 3. canvas画布转成图片
+        wx.canvasToTempFilePath({
+          x: 0,
+          y: 0,
+          width: 300,
+          height: 500,
+          destWidth: 600,
+          destHeight: 1000,
+          canvasId: 'shareFrends',
+          success: function (res) {
+            console.log(34)
+            util.jhxLoadHide();
+            if (!res.tempFilePath) {
+              wx.showModal({
+                title: '提示',
+                content: '图片绘制中，请稍后重试',
+                showCancel: false
+              })
+            }
+            that.setData({
+              saveImagePath:res.tempFilePath
+            })
+          },
+          fail: function (res) {
+            check.showErrorToast(res)
+          }
+        })
+      });
+
+    this.setData({
+      canvasShow: true
+    })
+  },
+  //保存图片
+  saveImage() {
+    let that = this;
+    //4. 当用户点击分享到朋友圈时，将图片保存到相册
+    wx.saveImageToPhotosAlbum({
+      filePath: that.data.saveImagePath,
+      success(res) {
+        wx.showModal({
+          title: '图片保存成功',
+          content: '图片成功保存到相册了，去发圈噻~',
+          showCancel: false,
+          confirmText: '好哒',
+          confirmColor: '#72B9C3',
+          success: function (res) {
+            that.setData({
+              saveImagePath:res.tempFilePath,
+              canvasShow: false
+            })
+          }
+        })
+      },
+      fail: function (res) {
+        check.showErrorToast(res)
+      }
+    })
+  },
+  //取消绘图
+  cancelmage() {
+    this.setData({
+      canvasShow: false
+    })
   },
 })

@@ -51,27 +51,20 @@ Page({
     quickDownVal:0,  //0 收缩 1 展开 2 隐藏 3显示
   },
   onLoad: function (option) {
-    console.log(option.hotelId)
-    if(option.hotelId){
-      this.funHotelId(option);
-    }
+    this.setData({
+      hotelId:option.hotelId,
+    })
   },
   onShow: function () {
     this.renderingTime(); //日历
-    this.init();  //房型
+    this.funHotelId(this.data.hotelId);
   },
-  funHotelId(option){
-    let hotelIdNew = ""; 
-    if(option.hotelId){
-      hotelIdNew = option.hotelId;
-    }else{
-      let scene = decodeURIComponent(option.scene).toString().split('=');
-      hotelIdNew = scene[1];
-    }
+  // 获取id
+  funHotelId(hotelId){
     let hotelsLi = {};
     util.request(api.CustomizedHotelsList, 'GET').then(res => {
       for(let i=0;i<res.result.length;i++){
-        if(res.result[i].id == hotelIdNew){
+        if(res.result[i].id == hotelId){
           hotelsLi = {
             id:res.result[i].id,
             name:res.result[i].name,
@@ -86,7 +79,7 @@ Page({
       }
       wx.setStorageSync("hotel", hotelsLi);
       this.getAllowance();
-      // this.init();
+      this.init();
     }).catch((err) => {});
   },
   //获取津贴
@@ -192,7 +185,6 @@ Page({
         })
       }).catch((err) => {});
     })
-    console.log(this.data.hotel)
   },
   //时间
   renderingTime(){
@@ -207,30 +199,9 @@ Page({
       time: timeNew,
     })
   },
-  //判断是否云智住
-  // isCis(){
-  //   let canCis = [
-  //     {
-  //       hotelId:"H000001",
-  //       room:[0,2,5]
-  //     }
-  //   ]
-  //   let hotelCisNew = this.data.hotel
-  //   for(let i=0;i<canCis.length;i++){
-  //     if(canCis[i].hotelId == this.data.hotel.id){
-  //       for(let j=0;j<canCis[i].room.length;j++){
-  //         hotelCisNew.room[canCis[i].room[j]].isCis = true;
-  //       }
-  //     }
-  //   }
-  //   this.setData({
-  //     hotel:hotelCisNew
-  //   })
-  // },
   /*选择酒店*/
   goHotelsList(){
     let pages = getCurrentPages();
-    console.log(pages.length)
     if(pages.length == 1){
       wx.navigateTo({
         url: "/pages/customized/hotelsList/hotelsList"
@@ -284,7 +255,6 @@ Page({
       hotelId:this.data.hotel.id,
       rmtype:e.currentTarget.dataset.rmtype,
     }
-    console.log(param)
     util.request(api.CustomizedHotelsRoom , param , 'GET').then(res => {
       let roomNew = res.result;
       this.setData({

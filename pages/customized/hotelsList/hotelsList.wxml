@@ -6,13 +6,13 @@
       <image src="{{item.img}}"></image>
       <view class="hotels_text">
         <view>{{item.name}}</view>
+        <!-- <view class="hotels_text_attr hotels_text_1">毗邻西湖</view>
+        <view class="hotels_text_attr hotels_text_2">毗邻西湖</view>
+        <view class="hotels_text_attr hotels_text_3">毗邻西湖</view>
+        <view class="hotels_text_attr hotels_text_4">毗邻西湖</view> -->
         <view class="hotels_text_attr hotels_text_address">{{item.address}}</view>
         <text class="hotels_text_attr hotels_text_cis" wx:if="{{item.cis == 1}}">云智住</text>
-        <!-- <view class="hotels_text_attr hotels_text_1">{{item.address}}</view>
-        <view class="hotels_text_attr hotels_text_2">{{item.address}}</view>
-        <view class="hotels_text_attr hotels_text_3">{{item.address}}</view>
-        <view class="hotels_text_attr hotels_text_4">{{item.address}}</view>
-        <view class="hotels_text_attr hotels_text_5">{{item.address}}</view> -->
+        <view class="hotels_text_attr hotels_text_5" wx:if="{{item.id == 'H000001'}}">毗邻西湖</view>
         <image wx:if="{{item.cis == 1}}" src="/static/images/cis.png" class="cis"></image>
       </view>
     </view>
