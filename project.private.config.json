@@ -33,7 +33,7 @@
         {
           "name": "pages/customized/hotelsList/hotelsList",
           "pathName": "pages/customized/hotelsDetailed/hotelsDetailed",
-          "query": "hotelId=H000003",
+          "query": "hotelId=H000001",
           "scene": null
         }
       ]

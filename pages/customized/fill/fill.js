@@ -111,7 +111,7 @@ Page({
       endWeek:util.formatWeek(calendarNew.endTime),
       timeNum:this.dayNum(calendarNew),
       rmtype:roomrNew.rmtype,
-      ratecode:'WEC0',
+      ratecode:this.ratecodeMin(roomrNew.wec0,roomrNew.wec1,roomrNew.wec,roomrNew.wec3),
       arr:arrTime,
       dep:depTime,
       cis:(roomrNew.isCis?1:0), //1是 0否
@@ -357,6 +357,20 @@ Page({
       return wec3;
     }else{
       return 999900
+    }
+  },
+  //ratecode
+  ratecodeMin(wec0,wec1,wec,wec3){
+    if(util.importantMoney(wec0) != 999900){
+      return 'WEC0';
+    }else if(util.importantMoney(wec1) != 999900){
+      return 'WEC1';
+    }else if(util.importantMoney(wec) != 999900){
+      return 'WEC';
+    }else if(util.importantMoney(wec3) != 999900){
+      return 'WEC3';
+    }else{
+      check.showErrorToast('错误-房间已满')
     }
   },
   breakfastNum(wec0,wec1,wec,wec3){
