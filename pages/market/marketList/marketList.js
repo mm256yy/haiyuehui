@@ -80,11 +80,11 @@ Page({
           sales:data.sales,  //销售量
         }
         o_ul.push(o_li)
-      }
-      if(pull == 1){  //初始化
-        goodsUlNew = o_ul;
+      } 
+      if(pull == 1){  //初始化 
+        goodsUlNew = o_ul; 
       }else{
-        goodsUlNew = this.data.goodsUl.concat(o_ul);
+        goodsUlNew = this.data.goodsUl.concat(o_ul); 
         if(res.result.records.length == 0){
           this.setData({
             pageNo:this.data.pageNo - 1

@@ -23,11 +23,11 @@
 .booking_box{
   margin: 20rpx;
   padding:20rpx 40rpx;
-  border: 1px solid #f1f1f1;
+  border: 1px solid #ddd1d1;
   border-radius:40rpx ;
   width: 100;
-  background-color: #fff;
-  box-shadow: 0rpx 5rpx 8rpx #f1f1f1;
+  background-color: rgb(253, 249, 249);
+  box-shadow: 0rpx 5rpx 8rpx #c9bfbf;
 }
 .booking_hotels{
   font-size: 35rpx;

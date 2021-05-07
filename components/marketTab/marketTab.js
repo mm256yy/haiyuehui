@@ -3,7 +3,7 @@ Component({
   properties: {
     tabVal:{
       type:String,
-      value:'',
+      value:'', 
     }
   },
   data: {
