@@ -48,6 +48,7 @@
     "pages/ucenter/invite/inviteRecord/inviteRecord",
     "pages/ucenter/invite/inviteIndex/inviteIndex",
     "pages/ucenter/invite/inviteIncome/inviteIncome",
+    "pages/ucenter/invite/inviteRedPack/inviteRedPack",
 
     "pages/ucenter/set/setIndex/setIndex",
     "pages/ucenter/set/oftenList/oftenList",

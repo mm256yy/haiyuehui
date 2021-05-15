@@ -1,0 +1,18 @@
+<view>
+  <wxs src="../../../../filter/filter.wxs" module="filter" />
+  <view class="wallet_recharge">
+    <view>提现金额（单位：元）</view>
+    <view class="recharge_money">
+      <text class="recharge_money_text">￥</text>
+      <input class="recharge_money_input" value="{{moneyNum}}" bindinput="bindMoneyInput"  placeholder-class="placeholder" placeholder="最多可提现{{filter.moneyFixed(moneyMax)}}元" ></input>
+      <text class="recharge_money_total" bindtap="totlaMoney">全部</text>
+    </view>
+  </view>
+  <view class="wallet_recharge">
+    <text class="">提现方式</text>
+    <text class="wallet_recharge_type">微信到账</text>
+  </view>
+  <view class="wallet_btn">
+    <view class="wx_btn_success {{moneyNum == ''?'dis_success':''}}" bindtap="successBtn">提现</view>
+  </view>
+</view>

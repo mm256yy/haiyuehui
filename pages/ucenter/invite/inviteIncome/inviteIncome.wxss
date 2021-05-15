@@ -64,7 +64,7 @@
   width: 240rpx;
   height: 160rpx;
   position: absolute;
-  bottom: 30rpx;
+  bottom: 140rpx;
   right: 30rpx;
   opacity: 0.5;
 }
@@ -75,6 +75,14 @@
   top: 60rpx;
   left: 30rpx;
   opacity: 0.5;
+}
+.withdrawal_btn{
+  margin:40rpx 0rpx 20rpx 0rpx;
+  background-color: #fe6f41;
+  color: #fff;
+  border-radius:50rpx;
+  padding: 20rpx;
+  text-align: center;
 }
 /*list*/
 .income_list{

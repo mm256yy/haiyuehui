@@ -2,7 +2,7 @@ let app = getApp();
 Page({
   data: {
     second:5,
-    result:1,   //0失败  1成功
+    result:1,   //0支付失败 1支付成功 2提现成功 3提现失败
     time:null
   },
   onLoad: function (options) {
@@ -36,6 +36,10 @@ Page({
     }else if(val == 2){  //商城支付
       wx.reLaunch({ 
         url:"/pages/market/marketOrderList/marketOrderList"
+      })
+    }else if(val == 3){ //提现
+      wx.navigateBack({
+        delta: 2
       })
     }
   }

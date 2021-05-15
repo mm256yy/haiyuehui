@@ -89,4 +89,6 @@ module.exports = {
    MallCarWashStart:WxApiRoot +'mall/memberGoods/carWashStart', //洗车信息填写
 
    ActivityDraw:WxApiRoot +'activity/draw', // 抽奖活动
+   HongbaocashOut:WxApiRoot +'hongbao/cashOut', //红包提现
+
  }
