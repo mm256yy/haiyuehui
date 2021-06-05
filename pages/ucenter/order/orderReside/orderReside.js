@@ -41,8 +41,7 @@ Page({
   },
   //加载hotel参数
   funHotel(options){
-    console.log(options)
-    let roomNoNew = ((options.roomNo == ''||!options.roomNo)?'':options.roomNo)
+    let roomNoNew = ((options.roomNo == ''||!options.roomNo||options.roomNo == 'undefined')?'':options.roomNo)
     // let hotelNew = {
     //   arr:'2020-09-28',
     //   dep:'2020-09-29',
@@ -76,7 +75,6 @@ Page({
       floor:this.data.hotel.floor,
       rmtype:this.data.hotel.rmtype
     }
-    console.log(param)
     util.request(api.UcenterOrderFloorRoomPosition ,param, 'POST').then(res => {
       let data = res.result;
       let x_ul = [];let y_ul = [];let y_li = {};

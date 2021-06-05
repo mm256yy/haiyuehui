@@ -35,7 +35,7 @@ module.exports = {
    UcenterOrderFloorRoomNum: WxApiRoot + 'hotel/getFloorRoomNum', //获取房间数量 
    UcenterOrderFloorRoomPosition: WxApiRoot + 'hotel/getFloorRoomPosition', //获取房间坐标 
 
-   UcenterMoveInto: WxApiRoot + 'hotel/getAvailableRoomNo', // 入住查询房间 hwh
+  //  UcenterMoveInto: WxApiRoot + 'hotel/getAvailableRoomNo', // 入住查询房间 hwh
    UcenterOrderAddPerson: WxApiRoot + 'order/addPerson', //添加同住 hwh
    UcenterOrderCheckOut: WxApiRoot + 'order/checkout', //退房 hwh
    UcenterOrderDaysSubmit: WxApiRoot + 'order/addDaysSubmit', //续住下订单 hwh

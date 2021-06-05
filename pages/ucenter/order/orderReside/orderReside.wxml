@@ -22,7 +22,7 @@
 			</view>
 		</view>
 		<view class="choose_four_room_val" wx:if="{{hotel.roomPitch != ''}}">已选择房号：{{hotel.roomPitch}}</view>
-		<view class="live_input" >
+		<view class="live_input">
 			<view class="form_ul">
 				<view class="form_left">
 					<view class="input_li">
@@ -40,7 +40,7 @@
 				</view>
 			</view>
 			<view class="input_li">
-				<input placeholder="请输入手机号" cursor-spacing="40rpx" value="{{info.mobile}}" bindinput="bindTelInput"></input>
+				<input placeholder="请输入手机号" placeholder-class="placeholder" cursor-spacing="40rpx" value="{{info.mobile}}" bindinput="bindTelInput"></input>
 			</view>
 		</view>
 		<view class="live_red">注:请确认真实的姓名与身份证正确，否则无法入住</view>

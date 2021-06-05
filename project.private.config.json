@@ -35,6 +35,12 @@
           "pathName": "pages/ucenter/invite/inviteRedPack/inviteRedPack",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "选择楼层",
+          "pathName": "pages/ucenter/order/orderChoose/orderChoose",
+          "query": "arr=2021-05-27&dep=2021-05-29&hotelId=H000030&rmtype=Dj",
+          "scene": null
         }
       ]
     }
