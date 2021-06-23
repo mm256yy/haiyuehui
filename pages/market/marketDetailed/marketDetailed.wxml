@@ -156,16 +156,6 @@
 			<image src="/static/images/del-b.png" class="goods_share_del"></image>
 		</view> -->
 		<view class="goods_share_text">他人下单即得佣金</view>
-		<view class="goods_share_btn" bindtap="createdImage">立即分享</view>
-	</view>
-	<view class="goods_pop" wx:if="{{canvasShow}}">
-		<view class="pop_black"></view>
-		<view class="canvas_screen">
-			<view class="canvas_box">
-				<canvas canvas-id='shareFrends' style='width:300px;height:500px'></canvas>
-			</view>
-			<view class="created_image" bindtap="saveImage">保存图片进行分享</view>
-			<view class="cance_image" bindtap="cancelmage">取消</view>
-		</view>
+		<view class="goods_share_btn" bindtap="goMarketShare">立即分享</view>
 	</view>
 </view>

@@ -77,7 +77,7 @@ Page({
       dep:this.data.hotel.dep,
       floor:'',
       feature:featureNew,
-      rmtype:'SJ' //this.data.hotel.rmtype
+      rmtype:this.data.hotel.rmtype
     }
     util.request(api.UcenterOrderFloorRoomNum ,param, 'POST').then(res => {
       let floor_ul = [];

@@ -1,0 +1,39 @@
+.canvas_btn{
+  position: fixed;
+  bottom: 20rpx;
+  left: 0rpx;
+  z-index: 120;
+}
+.created_image{
+  background-color: #fe6f41;
+  color: #fff;
+  border-radius:100rpx;
+  padding:20rpx 50rpx;
+  margin:20rpx ;
+  text-align: center;
+}
+.cance_image{
+  background-color: #fff;
+  color: #000;
+  border-radius:100rpx;
+  padding:20rpx 50rpx;
+  margin:20rpx ;
+  text-align: center;
+}
+.canvas_screen{
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  z-index: 100;
+}
+.canvas_box{
+  height: 470px;
+  width: 300px;
+  box-shadow: 0rpx 0rpx 20rpx #cdcdcd;
+  background-color: #f1f1f1;
+  /* border-radius:20rpx; */
+  z-index: 120;
+  margin:50rpx auto;
+  overflow: hidden;
+}

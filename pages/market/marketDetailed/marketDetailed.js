@@ -67,8 +67,6 @@ Page({
     info: {
       cardLevel: '',
     },
-    canvasShow: false,
-    saveImagePath:'',
   },
   onLoad: function (options) {
     this.setData({
@@ -598,113 +596,16 @@ Page({
       return false
     }
   },
-  //获取背景图片
-  backgroundImg() {
-    let that = this;
-    var p = new Promise(function (resolve, reject) {
-      wx.downloadFile({
-        url: that.data.detailed.sliderImg[0], //仅为示例，并非真实的资源
-        success(res) {
-          if (res.statusCode === 200) {
-            resolve(res.tempFilePath);
-          }
-        }
-      })
-    });
-    return p;
-  },
-  //获取二维码
-  codeImg() {
-    let that = this;
-    var p = new Promise(function (resolve, reject) {
-      wx.downloadFile({
-        url: that.data.detailed.sliderImg[0], //仅为示例，并非真实的资源
-        success(res) {
-          if (res.statusCode === 200) {
-            resolve(res.tempFilePath);
-          }
-        }
-      })
-    });
-    return p;
-  },
-  //绘图
-  createdImage() {
-    console.log(12)
-    util.jhxLoadShow("图片生成中");
-    let that = this;
-    Promise
-      .all([this.backgroundImg(), this.codeImg()])
-      .then(function (results) {
-        //进行绘制
-        const ctx = wx.createCanvasContext('shareFrends');
-        ctx.drawImage(results[0], 0, 0, 300, 300);
-        ctx.font = "14px Georgia";
-        ctx.fillText('长按二维码', 120, 441)
-        ctx.draw()
-        // 3. canvas画布转成图片
-        wx.canvasToTempFilePath({
-          x: 0,
-          y: 0,
-          width: 300,
-          height: 500,
-          destWidth: 600,
-          destHeight: 1000,
-          canvasId: 'shareFrends',
-          success: function (res) {
-            console.log(34)
-            util.jhxLoadHide();
-            if (!res.tempFilePath) {
-              wx.showModal({
-                title: '提示',
-                content: '图片绘制中，请稍后重试',
-                showCancel: false
-              })
-            }
-            that.setData({
-              saveImagePath:res.tempFilePath
-            })
-          },
-          fail: function (res) {
-            check.showErrorToast(res)
-          }
-        })
-      });
+  //立即分享
+  goMarketShare(){
+    let img = this.data.detailed.sliderImg[0];
+    let code = this.data.detailed.sliderImg[0];
+    let name = this.data.detailed.name;
+    let price = this.data.detailed.sliderImg[0];
 
-    this.setData({
-      canvasShow: true
-    })
-  },
-  //保存图片
-  saveImage() {
-    let that = this;
-    //4. 当用户点击分享到朋友圈时，将图片保存到相册
-    wx.saveImageToPhotosAlbum({
-      filePath: that.data.saveImagePath,
-      success(res) {
-        wx.showModal({
-          title: '图片保存成功',
-          content: '图片成功保存到相册了，去发圈噻~',
-          showCancel: false,
-          confirmText: '好哒',
-          confirmColor: '#72B9C3',
-          success: function (res) {
-            that.setData({
-              saveImagePath:res.tempFilePath,
-              canvasShow: false
-            })
-          }
-        })
-      },
-      fail: function (res) {
-        check.showErrorToast(res)
-      }
-    })
-  },
-  //取消绘图
-  cancelmage() {
-    this.setData({
-      canvasShow: false
+    wx.navigateTo({
+      url: "/pages/market/marketShare/marketShare?img="
+      +img+'&code='+code+'&name='+name+'&price='+price
     })
   },
 })

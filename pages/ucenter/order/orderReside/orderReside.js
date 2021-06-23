@@ -56,10 +56,10 @@ Page({
       arr:options.arr,
       dep:options.dep,
       hotelId:options.hotelId,
-      rmtype:api.testing?'SJ':options.rmtype,
-      orderId:options.orderId,
+      rmtype:api.testing?options.rmtype:options.rmtype,
+      orderId:options.orderId, 
       roomNo:roomNoNew,
-      floor:api.testing?'07':22,//options.floor,
+      floor:api.testing?options.floor:options.floor,
       roomPitch:roomNoNew,
     };
     this.setData({
@@ -236,7 +236,7 @@ Page({
           util.request(api.UcenterOrderCheckin , param , 'POST').then(res => {
             wx.showToast({title: "入住成功" ,image:'/static/images/icon_success.png'})
             wx.navigateBack({
-              delta: 1  // 返回上一级页面。
+              delta: 2  
             })
           }).catch((err) => {});
         } else if (resV.cancel) {

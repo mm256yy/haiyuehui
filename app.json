@@ -71,6 +71,7 @@
     "pages/market/marketDetailed/marketDetailed",
     "pages/market/marketExchange/marketExchange",
     "pages/market/marketWritten/marketWritten",
+    "pages/market/marketShare/marketShare",
 
     "pages/ucenter/teamNumber/teamNumber",
     "pages/logs/logs"
