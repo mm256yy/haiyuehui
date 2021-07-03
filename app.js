@@ -31,14 +31,23 @@ App({
   //邀请人
   invite(data){
     let option = data.query;
-    let inviteCode = ""; 
+    let inviteCode = "";
+    let goodsId = "";
+    console.log(this.sceneSplit(option.scene,0))
+    //用户id
     if(option.inviteCode){
       inviteCode = option.inviteCode;
     }else if(option.scene){
-      let scene = decodeURIComponent(option.scene).toString().split('=');
-      inviteCode = scene[1];
+      inviteCode = this.sceneSplit(option.scene,0)
+    }
+    // 商城id
+    if(option.goodsId){
+      goodsId = option.goodsId;
+    }else if(option.scene){
+      goodsId = this.sceneSplit(option.scene,1)
     }
     wx.setStorageSync('othersInviteCode', inviteCode);
+    wx.setStorageSync('othersgoodsId', goodsId);
   },
   //转接兑换码
   exchange(data){
@@ -78,6 +87,12 @@ App({
       };
       wx.setStorageSync("calendar", calendarSto);
     }
+  },
+  //切割scene
+  sceneSplit(date,val){
+    let str = decodeURIComponent(date).toString().split('&');
+    let pa = str[val].toString().split('=');
+    return pa[1]
   },
   //
   globalData: {},  //切勿删除

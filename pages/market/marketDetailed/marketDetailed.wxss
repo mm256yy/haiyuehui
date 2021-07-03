@@ -211,6 +211,9 @@ page{
 .goods_foot_pay{
   background-color: #fe6f41;
 }
+.goods_foot_pay_no{
+  background-color: #cdcdcd;
+}
 /*pop*/
 .pop_black{
   background-color: rgba(0,0,0,0.6);
@@ -262,7 +265,14 @@ page{
 }
 .pop_num_box{
   display: flex;
-  padding: 40rpx 20rpx;
+  padding: 40rpx 20rpx 0rpx 20rpx;
+}
+.pop_canAmount_box{
+  text-align:right ;
+  padding:10px ;
+}
+.pop_canAmount{
+  color: #fe6f41;
 }
 .pop_purchase{
   line-height: 60rpx;

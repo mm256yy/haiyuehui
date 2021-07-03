@@ -27,7 +27,7 @@
         {
           "name": "商城",
           "pathName": "pages/market/marketDetailed/marketDetailed",
-          "query": "id=8",
+          "query": "id=53",
           "scene": null
         },
         {
@@ -40,6 +40,12 @@
           "name": "选择楼层",
           "pathName": "pages/ucenter/order/orderChoose/orderChoose",
           "query": "arr=2021-05-27&dep=2021-05-29&hotelId=H000030&rmtype=Dj",
+          "scene": null
+        },
+        {
+          "name": "pages/member/memberPower/memberPower",
+          "pathName": "pages/member/memberPower/memberPower",
+          "query": "",
           "scene": null
         }
       ]

@@ -25,7 +25,7 @@
       </view>
       <view class="order_li_btn">
         <view class="order_btn detailed_order" bindtap="orderDetail" data-order-id="{{item1.orderId}}">订单详情</view>
-        <view class="order_btn refund_order" wx:if="{{item1.state == 3}}" bindtap="orderCancel" data-index="{{index1}}" data-order-id="{{item1.orderId}}">订单退款</view>
+        <view class="order_btn refund_order" wx:if="{{item1.state == 3 && item1.canRefund}}" bindtap="orderCancel" data-index="{{index1}}" data-order-id="{{item1.orderId}}">订单退款</view>
         <view class="order_btn cancel_order" wx:if="{{item1.state == 0}}" bindtap="orderCancel" data-index="{{index1}}" data-order-id="{{item1.orderId}}">订单取消</view>
         <view class="order_btn cancel_order" wx:if="{{item1.state == 0}}" bindtap="orderPay" data-index="{{index1}}" data-order-id="{{item1.orderId}}">立即支付</view>
       </view>

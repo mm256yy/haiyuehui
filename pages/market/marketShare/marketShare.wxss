@@ -19,6 +19,7 @@
   padding:20rpx 50rpx;
   margin:20rpx ;
   text-align: center;
+  border:1rpx solid #cdcdcd ;
 }
 .canvas_screen{
   position: fixed;
@@ -28,7 +29,7 @@
   z-index: 100;
 }
 .canvas_box{
-  height: 470px;
+  height: 500px;
   width: 300px;
   box-shadow: 0rpx 0rpx 20rpx #cdcdcd;
   background-color: #f1f1f1;

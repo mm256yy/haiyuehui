@@ -13,18 +13,28 @@ Page({
     saveImagePath: '',
   },
   onLoad: function (options) {
-    console.log(options)
     this.init(options);
   },
   onShow: function () {
 
   },
   init(options) {
-    let detailed = options
+    console.log(options)
     this.setData({
-      detailed: detailed
+      'detailed.name': options.name,
+      'detailed.price': options.price,
     })
-    this.createdImage()
+    let param = {
+      id: options.id,
+    }
+    util.request(api.MallGoodsInviteImg , param , 'GET').then(res => {
+      let data = res.result
+      this.setData({
+        'detailed.img': data[1],
+        'detailed.code': data[0],
+      })
+      this.createdImage()
+    }).catch((err) => {});
   },
   //获取背景图片
   backgroundImg() {
@@ -46,7 +56,7 @@ Page({
     let that = this;
     var p = new Promise(function (resolve, reject) {
       wx.downloadFile({
-        url: that.data.detailed.img, //仅为示例，并非真实的资源
+        url: that.data.detailed.code,
         success(res) {
           if (res.statusCode === 200) {
             resolve(res.tempFilePath);
@@ -58,23 +68,21 @@ Page({
   },
   //绘图
   createdImage() {
-    console.log(12)
     util.jhxLoadShow("图片生成中");
     let that = this;
     Promise
       .all([this.backgroundImg(), this.codeImg()])
       .then(function (results) {
-        console.log(results)
         //进行绘制
         const ctx = wx.createCanvasContext('shareFrends');
-        // ctx.fillStyle = '#fff';
-        // ctx.fillRect(0, 0, 300, 580);
-        ctx.drawImage(results[0], 0, 0, 300, 300);
-        ctx.drawImage(results[1], 190, 330, 100, 100);
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, 300, 500);
+        ctx.drawImage(results[0], 0, 0, 300, 350);
+        ctx.drawImage(results[1], 100, 370, 100, 100);
         ctx.font = "12px Georgia";
         ctx.fillStyle = "#666";
-        ctx.fillText('扫码或长按二维码', 190, 450)
-        that.drawText(ctx, that.data.detailed.name, 10, 350, 11);
+        ctx.fillText('———— 扫码或长按二维码 ————',55, 490)
+        // that.drawText(ctx, that.data.detailed.name, 10, 310, 18);
 
         ctx.draw()
         util.jhxLoadHide();
@@ -85,7 +93,6 @@ Page({
   },
   //文字换行
   drawText(ctx, t, x, y, w) {
-    console.log(t)
     var chr = t.split("");
     var temp = "";
     var row = [];
@@ -105,7 +112,6 @@ Page({
         temp += chr[a - 1]
       }
     }
-    console.log(row)
     for (var b = 0; b < row.length; b++) {
       ctx.fillText(row[b], x, y + (b + 1) * 18);
     }
@@ -117,9 +123,9 @@ Page({
       x: 0,
       y: 0,
       width: 300,
-      height: 470,
-      destWidth: 600,
-      destHeight: 940,
+      height: 500,
+      destWidth: 900,
+      destHeight: 1500,
       canvasId: 'shareFrends',
       success: function (res) {
         if (!res.tempFilePath) {
@@ -132,7 +138,7 @@ Page({
         that.setData({
           saveImagePath: res.tempFilePath
         })
-        this.saveImage()
+        that.saveImage(res.tempFilePath)
       },
       fail: function (res) {
         check.showErrorToast(res)
@@ -140,10 +146,9 @@ Page({
     })
   },
   //保存图片
-  saveImage() {
+  saveImage(tempFilePath) {
     let that = this;
     //4. 当用户点击分享到朋友圈时，将图片保存到相册
-    console.log(that.data.saveImagePath, )
     wx.saveImageToPhotosAlbum({
       filePath: that.data.saveImagePath,
       success: function (data) {
@@ -164,7 +169,6 @@ Page({
             success: modalSuccess => {
               wx.openSetting({
                 success(settingdata) {
-                  console.log("settingdata", settingdata)
                   if (settingdata.authSetting['scope.writePhotosAlbum']) {
                     wx.showModal({
                       title: '提示',
@@ -194,29 +198,11 @@ Page({
         wx.hideLoading()
       }
     })
-    // wx.saveImageToPhotosAlbum({
-    //   filePath: that.data.saveImagePath,
-    //   success(res) {
-    //     console.log("成功")
-    //     wx.showModal({
-    //       title: '图片保存成功!',
-    //       content: '图片成功保存到相册了，去发圈噻~',
-    //       showCancel: false,
-    //       confirmText: '好哒',
-    //       confirmColor: '#72B9C3',
-    //       success: function (res) {
-    //         that.setData({
-    //           saveImagePath: res.tempFilePath,
-    //         })
-    //       }
-    //     })
-    //   },
-    //   fail: function (res) {
-    //     console.log(res)
-    //     // check.showErrorToast(res)
-    //   }
-    // })
   },
   //取消绘图
-  cancelmage() {},
+  cancelmage() {
+    wx.navigateBack({ 
+      delta: 1  
+  }); 
+  },
 })

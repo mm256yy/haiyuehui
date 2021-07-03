@@ -14,6 +14,7 @@ Page({
       //   orderId:456789,
       //   money:6500,
       //   state:'1',
+      //   canRefund:0, //1支持退款 0不支持退款
       //   goods:[
       //     {id:2,img:'/static/images/logo.png',name:'五等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',price:'2400',spec:'',num:2},
       //     {id:2,img:'/static/images/logo.png',name:'五等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',price:'2400',spec:'',num:2}
@@ -69,6 +70,7 @@ Page({
           orderId:data[i].id,
           money:data[i].money,
           state:data[i].status,
+          canRefund:this.funcanRefund(data[i].canRefund),
           goods:g_ul,
         }
         g_ul = [];
@@ -115,6 +117,16 @@ Page({
     wx.navigateTo({
       url: "/pages/market/marketOrderCancel/marketOrderCancel?orderId="+orderId+"&pay="+pay
     })
+  },
+  //是否支持退款
+  funcanRefund(val){
+    if(val == 0){
+      return false
+    }else if(val == 0){
+      return true
+    }else{
+      return true
+    }
   },
   //订单支付
   orderPay(e){

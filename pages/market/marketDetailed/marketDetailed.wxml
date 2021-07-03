@@ -108,7 +108,7 @@
 				</view>
 			</view>
 		</view>
-		<view wx:if="{{detailed.isSingle != 1}}" class="goods_foot_li goods_foot_btn goods_foot_shop" bindtap="popShow" data-mode="0">
+		<view wx:if="{{detailed.isSingle != 1 && detailed.actual != 1}}" class="goods_foot_li goods_foot_btn goods_foot_shop" bindtap="popShow" data-mode="0">
 			<view class="goods_foot_btn_t">加入购物车</view>
 		</view>
 		<view class="goods_foot_li goods_foot_btn goods_foot_pay" bindtap="popShow" data-mode="1">
@@ -144,18 +144,23 @@
 						<view class="num_view num_reduce" bindtap="goodsNum" data-val="0">-</view>
 					</view>
 				</view>
+				<view class="pop_canAmount_box" wx:if="{{detailed.canAmount > 0}}">
+					<text class="pop_canAmount">（单人限购{{detailed.canAmount}}件）</text>
+				</view>
 				<view class="pop_btn">
-					<view class="pop_btn_li goods_foot_pay" bindtap="{{buyMode == 0?'addShopingCart':'buy'}}">{{buyMode == 0?'加入购物车':'立即购买'}}</view>
+					<view class="pop_btn_li goods_foot_pay" wx:if="{{buyMode == 0 && detailed.cardLevelCan && detailed.canBuy}}" bindtap="addShopingCart">加入购物车</view>
+					<view class="pop_btn_li goods_foot_pay" wx:if="{{buyMode != 0 && detailed.cardLevelCan && detailed.canBuy}}" bindtap="buy">立即购买</view>
+					<view class="pop_btn_li goods_foot_pay_no" wx:if="{{buyMode != 0 && !detailed.cardLevelCan && detailed.canBuy}}" bindtap="">当前会员等级不能购买</view>
 					<!-- <view class="pop_btn_li goods_foot_pay">立即购买</view> -->
 				</view>
 			</view>
 		</view>
 	</view>
-	<view class="goods_share" wx:if="{{false}}">
+	<view class="goods_share" wx:if="{{detailed.actual == 1}}" bindtap="goMarketShare">
 		<!-- <view class="">
 			<image src="/static/images/del-b.png" class="goods_share_del"></image>
 		</view> -->
 		<view class="goods_share_text">他人下单即得佣金</view>
-		<view class="goods_share_btn" bindtap="goMarketShare">立即分享</view>
+		<view class="goods_share_btn">立即分享</view>
 	</view>
 </view>

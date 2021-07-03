@@ -46,29 +46,18 @@ Page({
     // wx.showTabBar()
     this.marketGo();  //跳转到商城
     this.getAllowance();  //津贴
+    this.getMarketDetailed();  //商城佣金
     this.renderingTime();  //日历
     this.fristRegister();  //优惠券  
     this.member();
     this.activity();  //活动入口判断
   },
-  //传递邀请人
-  // invite(option){
-  //   console.log(option)
-  //   let inviteCode = ""; 
-  //   if(option.inviteCode){
-  //     inviteCode = option.inviteCode;
-  //   }else{
-  //     let scene = decodeURIComponent(option.scene).toString().split('=');
-  //     inviteCode = scene[1];
-  //   }
-  //   wx.setStorageSync('othersInviteCode', inviteCode);
-  // },
   //获取津贴
   getAllowance(){
     let inviteCode = wx.getStorageSync('othersInviteCode');
     let inviteCodeFrist = wx.getStorageSync('othersInviteCodeFrist')
-    console.log(inviteCode);
-    if(inviteCode != ""&&inviteCode != undefined&&inviteCodeFrist){
+    let goodsId = wx.getStorageSync('othersgoodsId');
+    if(inviteCode != ""&&inviteCode != undefined&&inviteCodeFrist&&(!goodsId)){
       let param = {
         inviteCode:inviteCode,
       };
@@ -77,6 +66,15 @@ Page({
         wx.setStorageSync('othersInviteCode', "");
         wx.setStorageSync('othersInviteCodeFrist', false);
       }).catch((err) => {});
+    }
+  },
+  //商城佣金
+  getMarketDetailed(){
+    let goodsId = wx.getStorageSync('othersgoodsId');
+    if(goodsId){
+      wx.navigateTo({
+        url: "/pages/market/marketDetailed/marketDetailed?id="+goodsId
+      })
     }
   },
   //获取兑换码

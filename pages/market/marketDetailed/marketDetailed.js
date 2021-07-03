@@ -30,6 +30,9 @@ Page({
       // isSingle:0,  //是否单独购买 1 是(不能加入购物车) 0 否 null 否\
       // startBuy:'',  //开卖时间 null 值为没有限制 
       // countdown:'',  //倒计时
+      // actual:0, //是否有佣金体系 0否 1 是
+      // canAmount:0, //最多购买数量
+      // cardLevelCan:0, //购买卡等级限制
     },
     pop: false,
     goodsNum: 1,
@@ -107,9 +110,12 @@ Page({
     });
   },
   init() {
+    let inviteCode = wx.getStorageSync('othersInviteCode');
+    console.log(inviteCode)
     let param = {
       id: this.data.id,
-      cardLevel: this.data.info.cardLevel
+      cardLevel: this.data.info.cardLevel,
+      inviteCode:inviteCode
     }
     util.request(api.MallGoodsDetail, param, 'GET').then(res => {
       let data = res.result;
@@ -150,6 +156,10 @@ Page({
         isSingle: data.isSingle,
         startBuy: data.startBuy ? data.startBuy : '',
         countdown: this.funCountdown(data.startBuy), //倒计时
+        actual:data.actual, //是否有佣金体系
+        canAmount:data.canAmount,
+        cardLevelCan:this.funcardLevelCan(data.cardLevel),
+        canBuy:this.funcanBuy(data.canBuy),
       };
       //规格
       let specListNew = '';
@@ -222,6 +232,9 @@ Page({
       this.redTipNum();
       this.total();
       this.delSpec(specListNew, productListNew);
+      //清除index穿进来的两个本地存储值
+      wx.removeStorage({key: 'othersInviteCode'})
+      wx.removeStorage({key: 'othersgoodsId'})
     }).catch((err) => {});
   },
   //总计
@@ -374,9 +387,10 @@ Page({
     let val = e.currentTarget.dataset.val;
     let num = this.data.goodsNum
     let amount = this.data.detailed.amount
+    let canAmount = this.data.detailed.canAmount //佣金商品限定数量 null 和 -1 都是为无限期
     if (val == 0 && num > 1) {
       num--
-    } else if (val == 1 && (num < amount || amount == "不限制")) {
+    } else if (val == 1 && (num < amount || amount == "不限制") && (num < canAmount || !canAmount || canAmount == -1)) {
       num++
     }
     this.setData({
@@ -598,14 +612,42 @@ Page({
   },
   //立即分享
   goMarketShare(){
-    let img = this.data.detailed.sliderImg[0];
-    let code = this.data.detailed.sliderImg[0];
+    let id = this.data.detailed.id
     let name = this.data.detailed.name;
     let price = this.data.detailed.sliderImg[0];
 
     wx.navigateTo({
-      url: "/pages/market/marketShare/marketShare?img="
-      +img+'&code='+code+'&name='+name+'&price='+price
+      url: '/pages/market/marketShare/marketShare?name='+name+'&price='+price+'&id='+id
     })
+  },
+  //判断是否可以购买
+  funcardLevelCan(level){
+    let cardLevel = this.data.info.cardLevel;
+    if(cardLevel == 'BJK'){
+      cardLevel = 0
+    }else if(cardLevel == 'YK'){
+      cardLevel = 1
+    }else if(cardLevel == 'JK'){
+      cardLevel = 2
+    }else if(cardLevel == 'BJK'){
+      cardLevel = 3
+    }else if(cardLevel == 'HJK'){
+      cardLevel = 4
+    }
+    if(level > cardLevel || level == null){
+      return true
+    }else{
+      return false
+    }
+  },
+  //是否能购买
+  funcanBuy(val){
+    if(val == null){
+      return true
+    }else if(val == 0){
+      return false
+    }else{
+      return true
+    }
   },
 })

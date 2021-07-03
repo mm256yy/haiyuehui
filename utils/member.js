@@ -1,7 +1,7 @@
 let memberCard = [
   {
     baImg:'card5',
-    nameC:'贵宾卡',
+    nameC:' 普 卡 ',
     nameE:'Common Member',
     upRule:'注册即会员',
     validityRule:'长久',
@@ -10,30 +10,30 @@ let memberCard = [
     baImg:'card2',
     nameC:'银卡',
     nameE:'Silver Member',
-    upRule:'满足以下条件升级：<br/>充值满2000元<br/>满足以下任意条件保级：<br/>年消费满2000元<br/>官方渠道预定间夜量达5',
+    upRule:'满足以下条件升级：<br/>充值满2000元<br/>购买9.9入会礼包',
     validityRule:'一年',
   },
   {
     baImg:'card3',
     nameC:'金卡',
     nameE:'Gold Member',
-    upRule:'满足以下条件升级：<br/>充值满10000元<br/>满足以下任意条件保级：<br/>年消费满10000元<br/>官方渠道预定间夜量达30',
+    upRule:'满足以下条件升级：<br/>充值满5000元<br/>购买199入会礼包',
     validityRule:'一年',
   },
   {
     baImg:'card6',
     nameC:'白金卡',
     nameE:'Platinum Member',
-    upRule:'满足以下条件升级：<br/>充值满50000元<br/>满足以下任意条件保级：<br/>年消费满50000元<br/>官方渠道预定间夜量达150',
+    upRule:'满足以下条件升级：<br/>充值满10000元<br/>购买399入会礼包',
     validityRule:'一年',
   },
-  {
-    baImg:'card7',
-    nameC:'黑金卡',
-    nameE:'Diamond Member',
-    upRule:'满足以下条件升级：<br/>充值满100000元<br/>满足以下任意条件保级：<br/>年消费满100000元<br/>官方渠道预定间夜量达300',
-    validityRule:'一年',
-  }
+  // {
+  //   baImg:'card7',
+  //   nameC:'黑金卡',
+  //   nameE:'Diamond Member',
+  //   upRule:'满足以下条件升级：<br/>老板赠送<br/>',
+  //   validityRule:'一年',
+  // }
 ]
 
 let powerUl = [
@@ -51,34 +51,34 @@ let powerUl = [
       {arr:4,text1:'订房折扣',text2:'8.5折',use:true},
     ],
   },
-  {
-    img:'power1',
-    text1:'餐饮折扣',
-    text2:'9.5折',
-    introduce:'餐饮享受会员价',
-    show:true,
-    grade:[
-      {arr:0,text1:'餐饮折扣',text2:'9.5折',use:true},
-      {arr:1,text1:'餐饮折扣',text2:'9折',use:true},
-      {arr:2,text1:'餐饮折扣',text2:'9折',use:true},
-      {arr:3,text1:'餐饮折扣',text2:'8.8折',use:true},
-      {arr:4,text1:'餐饮折扣',text2:'8.8折',use:true},
-    ],
-  },
-  {
-    img:'power2',
-    text1:'娱乐折扣',
-    text2:'9.5折',
-    introduce:'娱乐享受会员价',
-    show:true,
-    grade:[
-      {arr:0,text1:'娱乐折扣',text2:'9.5折',use:true},
-      {arr:1,text1:'娱乐折扣',text2:'9折',use:true},
-      {arr:2,text1:'娱乐折扣',text2:'9折',use:true},
-      {arr:3,text1:'娱乐折扣',text2:'8.8折',use:true},
-      {arr:4,text1:'娱乐折扣',text2:'8.8折',use:true},
-    ],
-  },
+  // {
+  //   img:'power1',
+  //   text1:'餐饮折扣',
+  //   text2:'9.5折',
+  //   introduce:'餐饮享受会员价',
+  //   show:true,
+  //   grade:[
+  //     {arr:0,text1:'餐饮折扣',text2:'9.5折',use:true},
+  //     {arr:1,text1:'餐饮折扣',text2:'9折',use:true},
+  //     {arr:2,text1:'餐饮折扣',text2:'9折',use:true},
+  //     {arr:3,text1:'餐饮折扣',text2:'8.8折',use:true},
+  //     {arr:4,text1:'餐饮折扣',text2:'8.8折',use:true},
+  //   ],
+  // },
+  // {
+  //   img:'power2',
+  //   text1:'娱乐折扣',
+  //   text2:'9.5折',
+  //   introduce:'娱乐享受会员价',
+  //   show:true,
+  //   grade:[
+  //     {arr:0,text1:'娱乐折扣',text2:'9.5折',use:true},
+  //     {arr:1,text1:'娱乐折扣',text2:'9折',use:true},
+  //     {arr:2,text1:'娱乐折扣',text2:'9折',use:true},
+  //     {arr:3,text1:'娱乐折扣',text2:'8.8折',use:true},
+  //     {arr:4,text1:'娱乐折扣',text2:'8.8折',use:true},
+  //   ],
+  // },
   {
     img:'power3',
     text1:'积分奖励',
