@@ -158,7 +158,7 @@ Page({
         countdown: this.funCountdown(data.startBuy), //倒计时
         actual:data.actual, //是否有佣金体系
         canAmount:data.canAmount,
-        cardLevelCan:this.funcardLevelCan(data.cardLevel),
+        cardLevelCan:data.cardLevel,
         canBuy:this.funcanBuy(data.canBuy),
       };
       //规格
@@ -619,26 +619,6 @@ Page({
     wx.navigateTo({
       url: '/pages/market/marketShare/marketShare?name='+name+'&price='+price+'&id='+id
     })
-  },
-  //判断是否可以购买
-  funcardLevelCan(level){
-    let cardLevel = this.data.info.cardLevel;
-    if(cardLevel == 'BJK'){
-      cardLevel = 0
-    }else if(cardLevel == 'YK'){
-      cardLevel = 1
-    }else if(cardLevel == 'JK'){
-      cardLevel = 2
-    }else if(cardLevel == 'BJK'){
-      cardLevel = 3
-    }else if(cardLevel == 'HJK'){
-      cardLevel = 4
-    }
-    if(level > cardLevel || level == null){
-      return true
-    }else{
-      return false
-    }
   },
   //是否能购买
   funcanBuy(val){

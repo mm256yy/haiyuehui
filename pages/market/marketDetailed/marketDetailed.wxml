@@ -148,9 +148,9 @@
 					<text class="pop_canAmount">（单人限购{{detailed.canAmount}}件）</text>
 				</view>
 				<view class="pop_btn">
-					<view class="pop_btn_li goods_foot_pay" wx:if="{{buyMode == 0 && detailed.cardLevelCan && detailed.canBuy}}" bindtap="addShopingCart">加入购物车</view>
-					<view class="pop_btn_li goods_foot_pay" wx:if="{{buyMode != 0 && detailed.cardLevelCan && detailed.canBuy}}" bindtap="buy">立即购买</view>
-					<view class="pop_btn_li goods_foot_pay_no" wx:if="{{buyMode != 0 && !detailed.cardLevelCan && detailed.canBuy}}" bindtap="">当前会员等级不能购买</view>
+					<view class="pop_btn_li goods_foot_pay" wx:if="{{buyMode == 0 && detailed.canBuy}}" bindtap="addShopingCart">加入购物车</view>
+					<view class="pop_btn_li goods_foot_pay" wx:if="{{buyMode != 0 && detailed.canBuy}}" bindtap="buy">立即购买</view>
+					<view class="pop_btn_li goods_foot_pay_no" wx:if="{{buyMode != 0 && !detailed.canBuy}}" bindtap="">当前会员等级不能购买</view>
 					<!-- <view class="pop_btn_li goods_foot_pay">立即购买</view> -->
 				</view>
 			</view>
