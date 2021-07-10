@@ -30,8 +30,7 @@ Page({
     util.request(api.MallGoodsInviteImg , param , 'GET').then(res => {
       let data = res.result
       this.setData({
-        'detailed.img': data[1],
-        'detailed.code': data[0],
+        'detailed.img': data,
       })
       this.createdImage()
     }).catch((err) => {});
@@ -51,70 +50,28 @@ Page({
     });
     return p;
   },
-  //获取二维码
-  codeImg() {
-    let that = this;
-    var p = new Promise(function (resolve, reject) {
-      wx.downloadFile({
-        url: that.data.detailed.code,
-        success(res) {
-          if (res.statusCode === 200) {
-            resolve(res.tempFilePath);
-          }
-        }
-      })
-    });
-    return p;
-  },
   //绘图
   createdImage() {
     util.jhxLoadShow("图片生成中");
     let that = this;
     Promise
-      .all([this.backgroundImg(), this.codeImg()])
+      .all([that.backgroundImg()])
       .then(function (results) {
         //进行绘制
         const ctx = wx.createCanvasContext('shareFrends');
         ctx.fillStyle = '#fff';
-        ctx.fillRect(0, 0, 300, 500);
-        ctx.drawImage(results[0], 0, 0, 300, 350);
-        ctx.drawImage(results[1], 100, 370, 100, 100);
-        ctx.font = "12px Georgia";
-        ctx.fillStyle = "#666";
-        ctx.fillText('———— 扫码或长按二维码 ————',55, 490)
-        // that.drawText(ctx, that.data.detailed.name, 10, 310, 18);
+        ctx.fillRect(0, 0, 600, 1500);
+        ctx.drawImage(results[0], 0, 0, 300, 500);
+        // ctx.font = "12px Georgia";
+        // ctx.fillStyle = "#666";
+        // ctx.fillText('———— 扫码或长按二维码 ————',55, 490)
 
         ctx.draw()
         util.jhxLoadHide();
       });
-    this.setData({
+    that.setData({
       canvasShow: true
     })
-  },
-  //文字换行
-  drawText(ctx, t, x, y, w) {
-    var chr = t.split("");
-    var temp = "";
-    var row = [];
-
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "black";
-    ctx.textBaseline = "middle";
-
-    for (var a = 1; a <= chr.length; a++) {
-      if (a % w == 0 && a != chr.length) {
-        row.push(temp);
-        temp = ''
-      } else if (a == chr.length) {
-        row.push(temp);
-        temp = ''
-      } else {
-        temp += chr[a - 1]
-      }
-    }
-    for (var b = 0; b < row.length; b++) {
-      ctx.fillText(row[b], x, y + (b + 1) * 18);
-    }
   },
   saveImageInit(){
     let that = this;

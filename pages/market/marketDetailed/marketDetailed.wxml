@@ -156,7 +156,7 @@
 			</view>
 		</view>
 	</view>
-	<view class="goods_share" wx:if="{{detailed.actual == 1}}" bindtap="goMarketShare">
+	<view class="goods_share" wx:if="{{detailed.actual == 1}}" bindtap="{{detailed.browse == 111?'goMarketShareTwo':'goMarketShare'}}">
 		<!-- <view class="">
 			<image src="/static/images/del-b.png" class="goods_share_del"></image>
 		</view> -->
