@@ -52,7 +52,7 @@ Page({
     this.init(this.data.menuVal,2)
   },
   //初始化
-  init(typeVal,pull){  //pull 1为初始化 2为下拉
+  init(typeVal,pull,back){  //pull 1为初始化 2为下拉 back 1 刷新成功
     let param = {
       pageNo:this.data.pageNo,
       showType:typeVal,
@@ -98,6 +98,10 @@ Page({
       this.setData({
         orderUl:orderUlNew,
       })
+      //判断刷新
+      if(back == 1){
+        wx.showToast({title: "刷新成功" ,image:'/static/images/icon_success.png'})
+      }
     }).catch((err) => {
       this.setData({
         orderUl:[]
@@ -171,5 +175,14 @@ Page({
   //刷新
   refresh(){
     this.onShow()
+  },
+  //回调银行
+  orderPayCallback(e){
+    let that = this;
+    let orderIdCallback = e.currentTarget.dataset.orderId
+    util.request(api.CustomizedPayCallback ,{orderId:orderIdCallback}, 'GET').then(function(res) {
+      wx.showToast({title: "刷新成功" ,image:'/static/images/icon_success.png'})
+      that.init(that.data.menuVal,1,1)
+    });
   },
 })

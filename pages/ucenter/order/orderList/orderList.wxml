@@ -24,8 +24,9 @@
           </view>
         </view>
         <view class="order_foot">
-          <view class="order_btn" bindtap="orderDetail" data-order-id="{{item.id}}">查看详情</view>
+          <view class="order_btn" wx:if="{{item.status !== 11}}" bindtap="orderDetail" data-order-id="{{item.id}}">查看详情</view>
           <view class="order_btn" wx:if="{{item.status === 21}}" bindtap="refresh">刷新订单</view>
+          <view class="order_btn" wx:if="{{item.status === 11&&(!item.isOverdue)}}" bindtap="orderPayCallback" data-index="{{index}}" data-order-id="{{item.id}}">刷新状态</view>
           <view class="order_btn" wx:if="{{item.status === 11&&(!item.isOverdue)}}" bindtap="orderPay" data-index="{{index}}">立即支付</view>
           <view class="order_btn" wx:if="{{item.status === 22&&item.isCis&&(!item.isOverdue)}}" bindtap="orderDetail" data-order-id="{{item.id}}">办理入住</view>
           <view class="order_btn" wx:if="{{(item.status === 11)&&(item.otaId == '')}}" bindtap="orderCancel" data-order-id="{{item.id}}" data-index="{{index}}">订单取消</view>

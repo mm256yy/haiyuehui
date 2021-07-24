@@ -611,15 +611,15 @@ Page({
     }
   },
   //立即分享
-  goMarketShare(){
-    let id = this.data.detailed.id
-    let name = this.data.detailed.name;
-    let price = this.data.detailed.sliderImg[0];
+  // goMarketShare(){
+  //   let id = this.data.detailed.id
+  //   let name = this.data.detailed.name;
+  //   let price = this.data.detailed.sliderImg[0];
 
-    wx.navigateTo({
-      url: '/pages/market/marketShare/marketShare?name='+name+'&price='+price+'&id='+id
-    })
-  },
+  //   wx.navigateTo({
+  //     url: '/pages/market/marketShare/marketShare?name='+name+'&price='+price+'&id='+id
+  //   })
+  // },
   //是否能购买
   funcanBuy(val){
     if(val == null){

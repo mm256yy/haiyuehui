@@ -179,7 +179,7 @@ Page({
         datePrices:datePricesNew,
       })
       this.member();
-      // this.addDaysList(); 续租
+      // this.addDaysList(); //续租
     }).catch((err) => {});
   },
   //会员信息

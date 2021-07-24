@@ -21,7 +21,9 @@
 				</table>
 			</view>
 		</view>
-		<view class="choose_four_room_val" wx:if="{{hotel.roomPitch != ''}}">已选择房号：{{hotel.roomPitch}}</view>
+	</view>
+	<view wx:if="{{hotel.roomPitch != ''}}">
+		<view class="choose_four_room_val" >已选择房号：{{hotel.roomPitch}}</view>
 		<view class="live_input">
 			<view class="form_ul">
 				<view class="form_left">
@@ -45,11 +47,11 @@
 		</view>
 		<view class="live_red">注:请确认真实的姓名与身份证正确，否则无法入住</view>
 	</view>
-	<view wx:if="{{!roomImgUl.length}}">
+	<view wx:if="{{!roomImgUl.length && hotel.roomPitch == ''}}">
 		<view class="room_table_dis" >未找到可选云智住房间，请到前台办理</view>
 		<template is="zero" data="{{list:roomImgUl}}"/>
 	</view>
-	<view class="reside_btn" wx:if="{{roomImgUl.length}}">
+	<view class="reside_btn" wx:if="{{hotel.roomPitch != ''}}">
 		<view class="btn_define" bindtap="infoBtnFrist">办理入住</view>
 	</view>
 </view>

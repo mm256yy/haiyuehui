@@ -33,7 +33,6 @@ App({
     let option = data.query;
     let inviteCode = "";
     let goodsId = "";
-    console.log(this.sceneSplit(option.scene,0))
     //用户id
     if(option.inviteCode){
       inviteCode = option.inviteCode;
