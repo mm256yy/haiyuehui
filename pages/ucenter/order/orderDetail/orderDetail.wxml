@@ -92,6 +92,17 @@
       </view>
     </view>
   </view>
+  <!-- <view class="park_box">
+    <view class="order_h1">免费停车</view>
+    <view class="park_ul">
+      <view class="person_li">
+        <view class="liveN" wx:if="{{!item.live}}">
+          <view class="liveN_btn" bindtap="goOrderPark" data-type="1">+ 添加车牌</view>
+          <text class="detail_t4">每笔订单最多能提交3块车牌</text>
+        </view>
+      </view>
+    </view>
+  </view> -->
   <view class="addition_box" wx:if="{{(detail.status == 31||detail.status == 41||detail.status == 51)&&(additionUl.length != 0)&&detail.isCis}}">
     <view class="order_h1">续住订单</view>
     <view class="addition_ul">

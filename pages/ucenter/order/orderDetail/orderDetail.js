@@ -352,6 +352,12 @@ Page({
       url: "/pages/ucenter/order/orderAddition/orderAddition?orderId="+this.data.detail.orderId+"&additionType="+additionType+"&hotelId="+this.data.detail.hotelId+"&roomNo="+this.data.detail.roomNo
     })
   },
+  // 停车车牌
+  // goOrderPark(){
+  //   wx.navigateTo({
+  //     url: "/pages/ucenter/order/orderPark/orderPark?orderId="+this.data.detail.orderId+"&hotelId="+this.data.detail.hotelId+"&roomNo="+this.data.detail.roomNo
+  //   })
+  // },
   //订单明细显示
   funDatePricesShow(){
     this.setData({

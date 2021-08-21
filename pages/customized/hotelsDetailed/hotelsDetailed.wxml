@@ -92,7 +92,7 @@
 					</view>
 					<view class="room_price_before {{isLogin?'room_price_before_y':'room_price_before_n'}}">门市价￥{{item.wracS}}/晚</view>
 					<view class=" {{item.avail <= 0?'room_price_vip_zero':''}} {{item.isCis?'room_price_sic':'room_price_vip'}}">
-						<view class="vip_name"><text>{{item.isCis?'会员价低至':'会员价低至'}}</text></view>
+						<view class="vip_name"><text>{{item.isCis?'普通会员价':'普通会员价'}}</text></view>
 						<view class="vip_price {{item.avail <= 0?'vip_price_zero':''}} {{item.isCis?'sic_price':''}}">
 							<text class="rmb">￥</text>
 							<text wx:if="{{item.avail <= 0}}">已满房</text>

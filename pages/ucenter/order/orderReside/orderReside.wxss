@@ -34,8 +34,14 @@
   height: 80rpx;
 }
 .person_text{
-  color: #999;
+  background-color: #1890ff;
+  border-radius: 10rpx;
+  margin: 5px;
+  padding:10px 0px;
+  text-align: center;
+  color: #fff;
   font-size: 24rpx;
+  width: 150rpx;
 }
 .input_li{
   position: relative;
@@ -97,6 +103,13 @@
 }
 .room_choose_right{
   right: 0rpx;
+}
+.live_blue{
+  color: #008cd7;
+  font-size: 28rpx;
+  background-color: #fff;
+  padding: 40rpx 30rpx;
+  text-align: center;
 }
 .live_red{
   color: #cc0000;

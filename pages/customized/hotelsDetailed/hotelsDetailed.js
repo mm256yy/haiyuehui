@@ -319,13 +319,13 @@ Page({
   //money
   moneyMin(wec0,wec1,wec,wec3){
     if(util.importantMoney(wec0) != 999900){
-      return wec0;
+      return wec0*0.95;
     }else if(util.importantMoney(wec1) != 999900){
-      return wec1;
+      return wec1*0.95;
     }else if(util.importantMoney(wec) != 999900){
-      return wec;
+      return wec*0.95;
     }else if(util.importantMoney(wec3) != 999900){
-      return wec3;
+      return wec3*0.95;
     }else{
       return 999900
     }

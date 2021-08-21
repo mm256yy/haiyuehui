@@ -66,21 +66,21 @@
           <text class="order_t1">{{detail.startTimeS}}至{{detail.endTimeS}}</text>
           <text class="order_details">共{{detail.days}}晚</text>
         </view>
-        <view class="order_text">
+        <view class="order_text" wx:if="{{detail.otaRestype == 'OTACASH'||detail.otaRestype == 'CC'}}">
           <text class="order_t0">房间价格：</text>
           <text class="order_t1">￥{{filter.moneyFixed(detail.totleRoomPrice)}}</text>
           <!-- <text class="order_details">{{detail.days + "晚 x 房间单价 " + filter.moneyFixed(detail.roomPrice)+" 元"}}</text> -->
         </view>
-        <view class="order_text" wx:if="{{detail.coupon&&detail.coupon > 0}}">
+        <view class="order_text" wx:if="{{detail.coupon&&detail.coupon > 0&&(detail.otaRestype == 'OTACASH'||detail.otaRestype == 'CC')}}">
           <text class="order_t0">优惠劵+津贴：</text>
           <text class="order_t1" wx:if="{{detail.coupon != 0}}">￥{{filter.moneyFixed(detail.coupon)}}</text>
           <text class="order_t1" wx:if="{{detail.coupon == 0}}">未使用</text>
         </view>
-        <view class="order_text" wx:if="{{detail.discount&&detail.discount != 0&&detail.discount != 100}}">
+        <view class="order_text" wx:if="{{detail.discount&&detail.discount != 0&&detail.discount != 100&&(detail.otaRestype == 'OTACASH'||detail.otaRestype == 'CC')}}">
           <text class="order_t0">会员折扣：</text>
           <text class="order_t1">{{filter.moneyDiscount(detail.discount)}}折</text>
         </view>
-        <view class="order_text">
+        <view class="order_text" wx:if="{{detail.otaRestype == 'OTACASH'||detail.otaRestype == 'CC'}}">
           <text class="order_t0">房间押金：</text>
           <text class="order_t1">￥{{filter.moneyFixed(detail.deposit)}}</text>
         </view>
@@ -88,7 +88,7 @@
           <text class="order_t0">预定类型：</text>
           <text class="order_t1">{{filter.otaType(detail.otaRestype)}}</text>
         </view>
-        <view class="order_text">
+        <view class="order_text" wx:if="{{detail.otaRestype == 'OTACASH'||detail.otaRestype == 'CC'}}">
           <text class="order_t0">{{detail.otaId == ''?'总价：':'应付金额：'}}</text>
           <text class="order_t1 order_t_red">￥{{filter.moneyFixed(detail.money)}}</text>
         </view>

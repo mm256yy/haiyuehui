@@ -24,6 +24,9 @@
 	</view>
 	<view wx:if="{{hotel.roomPitch != ''}}">
 		<view class="choose_four_room_val" >已选择房号：{{hotel.roomPitch}}</view>
+		<view>
+			<view class="live_blue">按照法律规定入住酒店必须填写身份证信息</view>
+		</view>
 		<view class="live_input">
 			<view class="form_ul">
 				<view class="form_left">
@@ -34,10 +37,11 @@
 						<input placeholder="请输入身份证" placeholder-class="placeholder" cursor-spacing="40rpx" value="{{info.identity}}" bindinput="bindIdentityInput"></input>
 					</view>
 				</view>
-				<view class="form_right" bindtap="person">
+				<view class="form_right">
 					<view class="form_person">
-						<image class="person_img" src="/static/images/selected.png"></image>
-						<view class="person_text">常住人簿</view>
+						<!-- <image class="person_img" src="/static/images/selected.png"></image> -->
+						<view class="person_text" bindtap="person">常住人簿</view>
+						<view class="person_text" bindtap="park">身份证识别</view>
 					</view>
 				</view>
 			</view>

@@ -138,9 +138,13 @@ function jhxLoadHide() {
 //身份证信息处理 	350102200103077639 ==> 35010*******77639
 function identityCard(val){  
   //let val = JSON.stringify(num)
-  let valLength = val.length;
-  let valNew = val.substring(0,5) +'**********'+val.substring(valLength-2,valLength)
-  return valNew
+  if(val){
+    let valLength = val.length;
+    let valNew = val.substring(0,5) +'**********'+val.substring(valLength-2,valLength)
+    return valNew
+  }else{
+    return '未查询到身份证信息'
+  }
 }
 //手机号隐藏
 function mobileCard(val){

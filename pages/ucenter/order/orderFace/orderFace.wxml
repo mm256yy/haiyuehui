@@ -1,0 +1,12 @@
+<view>
+  <image class="face_top" src="/static/images/face.png" style="width: 100%; height: 300px;"></image>
+  <view>
+    <camera device-position="front" flash="off" binderror="error" style="width: 100%; height: 300px;"></camera>
+  </view>
+  <view class="face_button_box">
+    <view wx:if="{{btnVal == 0}}" class="face_button face_button_start" bindtap="startRecord">人脸识别</view>
+    <view wx:if="{{btnVal == 1}}" class="face_button face_button_loding" bindtap="startRecord">识别中..</view>
+    <view wx:if="{{btnVal == 2}}" class="face_button face_button_err" bindtap="startRecord">重新开始</view>
+  </view>
+  <video wx:if="{{videoSrc}}" class="video" src="{{videoSrc}}"></video>
+</view>

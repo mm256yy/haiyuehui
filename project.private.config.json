@@ -31,8 +31,8 @@
           "scene": null
         },
         {
-          "name": "pages/customized/hotelsList/hotelsList",
-          "pathName": "pages/ucenter/invite/inviteRedPack/inviteRedPack",
+          "name": "pages/ucenter/order/orderPark/orderPark",
+          "pathName": "pages/ucenter/order/orderPark/orderPark",
           "query": "",
           "scene": null
         },

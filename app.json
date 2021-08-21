@@ -31,6 +31,8 @@
     "pages/ucenter/order/orderChoose/orderChoose",
     "pages/ucenter/order/orderContinue/orderContinue",
     "pages/ucenter/order/orderTransfer/orderTransfer",
+    "pages/ucenter/order/orderFace/orderFace",
+    "pages/ucenter/order/orderPark/orderPark",
 
     "pages/ucenter/coupon/coupon",
     "pages/ucenter/set/visitor/visitor",
@@ -54,6 +56,8 @@
     "pages/ucenter/set/oftenList/oftenList",
     "pages/ucenter/set/oftenEdit/oftenEdit",
     "pages/ucenter/set/information/information",
+
+    "pages/ucenter/service/serviceIndex/serviceIndex",
 
     "pages/ucenter/wallet/walletAmount/walletAmount",
     "pages/ucenter/wallet/walletConsume/walletConsume",

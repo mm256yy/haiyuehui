@@ -50,7 +50,7 @@ Page({
       {img:'/static/images/other/other2.png',text:'常住人簿',tap:'goOften',badge:false},
       // {img:'/static/images/other/other3.png',text:'账单开票',tap:'goInvoice',badge:false},
       {img:'/static/images/other/other4.png',text:'隐私条款',tap:'goPrivacy',badge:false},
-      // {img:'/static/images/other/other5.png',text:'客服热线',tap:'goService',badge:false},
+      {img:'/static/images/other/other5.png',text:'客服帮助',tap:'goService',badge:false},
       {img:'/static/images/other/other9.png',text:'设置',tap:'goSet',badge:false},
     ],
     serviceIcon:[
@@ -224,11 +224,14 @@ Page({
       url: "/pages/ucenter/set/setIndex/setIndex"
     });
   },
-  //客服热线
+  //客服帮助
   goService(){
-    wx.makePhoneCall({
-      phoneNumber:'057188173811'
-    })
+    wx.navigateTo({ 
+      url: "/pages/ucenter/service/serviceIndex/serviceIndex"
+    });
+    // wx.makePhoneCall({
+    //   phoneNumber:'057188173811'
+    // })
   },
   //清除红点
   cleanBadge(){

@@ -34,6 +34,7 @@ module.exports = {
    UcenterSystemBaseCodeType: WxApiRoot +  'system/baseCodeType',  //获取类型  
    UcenterOrderFloorRoomNum: WxApiRoot + 'hotel/getFloorRoomNum', //获取房间数量 
    UcenterOrderFloorRoomPosition: WxApiRoot + 'hotel/getFloorRoomPosition', //获取房间坐标 
+   UcenterOrderPark: WxApiRoot + 'member/ocrIdent', // 上传身份证
 
   //  UcenterMoveInto: WxApiRoot + 'hotel/getAvailableRoomNo', // 入住查询房间 hwh
    UcenterOrderAddPerson: WxApiRoot + 'order/addPerson', //添加同住 hwh
