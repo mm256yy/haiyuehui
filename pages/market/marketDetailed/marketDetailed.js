@@ -30,8 +30,8 @@ Page({
       // isSingle:0,  //是否单独购买 1 是(不能加入购物车) 0 否 null 否\
       // startBuy:'',  //开卖时间 null 值为没有限制 
       // countdown:'',  //倒计时
-      // actual:0, //是否有佣金体系 0否 1 是
-      // canAmount:0, //最多购买数量
+      // actual:0, //是否虚拟产品 0（有兑换码） 1（没有兑换码）
+      // canAmount:0, //最多购买数量 null 和 -1 都是为无限期
       // cardLevelCan:0, //购买卡等级限制
     },
     pop: false,
@@ -130,7 +130,7 @@ Page({
       }
       //图文详情
       let contentNew = data.content ? data.content : ''
-      contentNew = contentNew.replace(/width="300"/g, 'width="100%"').replace(/display: block/g, 'display: block;padding-bottom: 10px;').replace(/height="300"/g, '');
+      contentNew = contentNew.replace(/width="300"/g, 'width="100%"').replace(/width="600"/g, 'width="100%"').replace(/display: block/g, 'display: block;padding-bottom: 10px;').replace(/height="300"/g, '').replace(/height="600"/g, '');
       let detailedNew = {
         id: data.id,
         name: data.title,
@@ -156,10 +156,12 @@ Page({
         isSingle: data.isSingle,
         startBuy: data.startBuy ? data.startBuy : '',
         countdown: this.funCountdown(data.startBuy), //倒计时
-        actual:data.actual, //是否有佣金体系
+        actual:data.actual, //是否是虚拟产品
+        bonusRate:data.bonusRate,  //佣金比例
         canAmount:data.canAmount,
         cardLevelCan:data.cardLevel,
         canBuy:this.funcanBuy(data.canBuy),
+        canRefund:data.canRefund,
       };
       //规格
       let specListNew = '';

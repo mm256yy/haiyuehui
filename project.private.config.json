@@ -31,9 +31,9 @@
           "scene": null
         },
         {
-          "name": "pages/ucenter/order/orderPark/orderPark",
-          "pathName": "pages/ucenter/order/orderPark/orderPark",
-          "query": "",
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "inviteCode=SM6T7P42JK",
           "scene": null
         },
         {

@@ -108,7 +108,7 @@
 				</view>
 			</view>
 		</view>
-		<view wx:if="{{detailed.isSingle != 1 && detailed.actual != 1}}" class="goods_foot_li goods_foot_btn goods_foot_shop" bindtap="popShow" data-mode="0">
+		<view wx:if="{{detailed.isSingle != 1 && !detailed.bonusRate}}" class="goods_foot_li goods_foot_btn goods_foot_shop" bindtap="popShow" data-mode="0">
 			<view class="goods_foot_btn_t">加入购物车</view>
 		</view>
 		<view class="goods_foot_li goods_foot_btn goods_foot_pay" bindtap="popShow" data-mode="1">
@@ -145,6 +145,7 @@
 					</view>
 				</view>
 				<view class="pop_canAmount_box" wx:if="{{detailed.canAmount > 0}}">
+					<text class="pop_canAmount" wx:if="{{detailed.canRefund == 0}}">（此产品不支持退款）</text>
 					<text class="pop_canAmount">（单人限购{{detailed.canAmount}}件）</text>
 				</view>
 				<view class="pop_btn">
@@ -156,7 +157,7 @@
 			</view>
 		</view>
 	</view>
-	<view class="goods_share" wx:if="{{detailed.actual == 1}}" bindtap="goMarketShareTwo">
+	<view class="goods_share" wx:if="{{detailed.bonusRate}}" bindtap="goMarketShareTwo">
 		<!-- <view class="">
 			<image src="/static/images/del-b.png" class="goods_share_del"></image>
 		</view> -->

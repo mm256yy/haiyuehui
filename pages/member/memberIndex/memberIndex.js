@@ -31,10 +31,8 @@ Page({
     memberCard:[],
     powerUl:[],
     powerUlShow:[
-      {img:'power0',text1:'订房折扣',text2:'9.5折'},
-      {img:'power1',text1:'餐饮折扣',text2:'9.5折'},
-      {img:'power2',text1:'娱乐折扣',text2:'9.5折'},
-      {img:'power3',text1:'积分奖励',text2:'1倍'},
+      // {img:'power0',text1:'订房折扣',text2:'9.5折'},
+      // {img:'power3',text1:'积分奖励',text2:'1倍'},
     ],
     couponUl:[
       // {
@@ -120,9 +118,9 @@ Page({
       }
       let powerUlShowNew = [
         {img:'power0',text1:'订房折扣',text2:(discountNew/10)+'折'},
-        {img:'power1',text1:'餐饮折扣',text2:(discountNew/10)+'折'},
-        {img:'power2',text1:'娱乐折扣',text2:(discountNew/10)+'折'},
         {img:'power3',text1:'积分奖励',text2:(scoreTimesNew/100)+'倍'},
+        {img:'power21',text1:'生日礼',text2:"领取蛋糕劵"},
+        {img:'power4',text1:'入住退房',text2:"免查房"},
       ]
       this.setData({
         info:infoNew,

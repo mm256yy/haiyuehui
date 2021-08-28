@@ -61,5 +61,4 @@
       </view>
     </view>
   </view>
-  <template is="label" data="{{text:['取消政策','支付后，订单将会保留，支付后一个小时内可免费取消']}}"/>
 </view>

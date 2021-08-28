@@ -67,6 +67,7 @@ Page({
       }
       let remarkNew = data.remark == null?["尚未备注"]:data.remark.split('\n');
       let detailNew = {
+        canRefund:data.canRefund,
         status:data.status,
         createTime:data.createTime,
         id:data.id,
