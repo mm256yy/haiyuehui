@@ -39,7 +39,7 @@ module.exports = {
   //  UcenterMoveInto: WxApiRoot + 'hotel/getAvailableRoomNo', // 入住查询房间 hwh
    UcenterOrderAddPerson: WxApiRoot + 'order/addPerson', //添加同住 hwh
    UcenterOrderCheckOut: WxApiRoot + 'order/checkout', //退房 hwh
-   UcenterOrderDaysSubmit: WxApiRoot + 'order/addDaysSubmit', //续住下订单 hwh
+   UcenterOrderDaysSubmit: WxApiRoot + 'order/submitAdds', //续住下订单 hwh
    UcenterAddDaysList: WxApiRoot + 'order/addDaysList', //查询续住列表 hwh
    
    //UcenterVisitorSendMobile: WxApiRoot + 'visitor/sendMobile', //访客发起手机号 

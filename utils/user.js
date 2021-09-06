@@ -101,9 +101,7 @@ function memberGetInfo(){
                 url: "/pages/auth/registerWx/registerWx"
               });
             } else if (res.cancel) {
-              wx.navigateBack({ 
-                delta: 1  
-              });
+              wx.navigateBack({ delta: 1 });
             }
           }
         })

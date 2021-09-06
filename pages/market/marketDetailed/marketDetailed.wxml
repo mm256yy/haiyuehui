@@ -157,7 +157,7 @@
 			</view>
 		</view>
 	</view>
-	<view class="goods_share" wx:if="{{detailed.bonusRate}}" bindtap="goMarketShareTwo">
+	<view class="goods_share" wx:if="{{detailed.bonusRate}}" bindtap="goMarketShareTwo" bindlongpress="handleLongPress">
 		<!-- <view class="">
 			<image src="/static/images/del-b.png" class="goods_share_del"></image>
 		</view> -->

@@ -10,7 +10,7 @@
     <view class="detail_ul">
       <view class="detail_hotel">{{detail.hotelName}}</view>
       <view><text class="detail_t1">房型名称：</text><text class="detail_t0">{{detail.rmdesc}}</text></view>
-      <view wx:if="{{(detail.status == 31||detail.status == 41||detail.status == 51)||(detail.roomNo != '')}}">
+      <view wx:if="{{(detail.status == 31||detail.status == 41||detail.status == 51)&&(detail.roomNo != '')}}">
         <text class="detail_t1" >入住房号：</text>
         <text class="detail_t0">{{detail.roomNo}}</text>
       </view>
@@ -53,7 +53,7 @@
   <view class="isCis_person" wx:if="{{(detail.status == 22||detail.status == 31)&&!detail.isCis}}">
     <view class="isCis_person_text">非云智住暂不支持入住，请到前台办理</view>
   </view>
-  <view class="order_person" wx:if="{{(detail.status == 22||detail.status == 31||detail.status == 41||detail.status == 51)&&detail.isCis}}">
+  <view class="order_person" wx:if="{{(detail.status == 22||detail.status == 31||detail.status == 41||detail.status == 51)&&(detail.isCis)&&(!detail.pid)}}">
     <view class="order_h1">入住人信息</view>
     <view class="person_ul" wx:for="{{personUl}}" wx:key="index">
       <view class="person_li">

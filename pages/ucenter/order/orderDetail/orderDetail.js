@@ -24,6 +24,7 @@ Page({
       canStay:false,   //是否可以入住
       otaId:'',  //ota订单
       otaRestype:'',  //ota类型
+      pid:null,//是否是续租订单
     },
     personUl:[
       /*{    
@@ -112,6 +113,7 @@ Page({
         canStay:(check.checkIsOverdue(data.arr) === 0),
         otaId:data.otaId?data.otaId:'',
         otaRestype:data.otaRestype?data.otaRestype:'',
+        pid:data.pid,
       }
       let dayNum = (new Date(data.dep) - new Date(data.arr))/1000/60/60/24;
       //日历房
@@ -179,7 +181,7 @@ Page({
         datePrices:datePricesNew,
       })
       this.member();
-      // this.addDaysList(); //续租
+      // this.addDaysList(); //续住
     }).catch((err) => {});
   },
   //会员信息
@@ -239,7 +241,7 @@ Page({
       })
     }).catch((err) => {});
   },
-  //续租订单支付
+  //续住订单支付
   perpay(e){
     let index = e.currentTarget.dataset.index;
     //

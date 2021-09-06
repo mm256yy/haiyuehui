@@ -168,7 +168,7 @@ function mobileCard(val){
 //     return "退款申请中"
 //   }else if(type == 24){  //管理员执行退款操作，确认退款成功
 //     return "退款成功"
-//   }else if(type == 25){  //续租，支付成功
+//   }else if(type == 25){  //续住，支付成功
 //     return "已支付"
 //   }else if(type == 26){  //退款失败
 //     return "退款失败"

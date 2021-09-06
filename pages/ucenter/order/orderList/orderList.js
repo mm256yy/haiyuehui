@@ -29,6 +29,7 @@ Page({
         isOverdue:true,  //是否超时
         payMoney:0,
         otaId:'',
+        pid:null, //有值为续租订单
       }*/
     ],
     pageNo:1,
@@ -81,6 +82,7 @@ Page({
             isOverdue:(check.checkIsOverdue(res.result.records[i].dep) < 0),
             payMoney:res.result.records[i].payMoney?res.result.records[i].payMoney:0,
             otaId:res.result.records[i].otaId?res.result.records[i].otaId:'',
+            pid:res.result.records[i].pid,
           }
           o_ul.push(o_li)
         }

@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "续住房间",
   "usingComponents": {
-    "popCoupon":"/components/popCoupon/popCoupon",
     "evaluation":"/components/evaluation/evaluation"
   }
 }

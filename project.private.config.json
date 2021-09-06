@@ -43,8 +43,8 @@
           "scene": null
         },
         {
-          "name": "pages/member/memberPower/memberPower",
-          "pathName": "pages/member/memberPower/memberPower",
+          "name": "pages/ucenter/order/orderContinue/orderContinue",
+          "pathName": "pages/ucenter/order/orderContinue/orderContinue",
           "query": "",
           "scene": null
         }

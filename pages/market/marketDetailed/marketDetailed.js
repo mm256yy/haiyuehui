@@ -105,8 +105,13 @@ Page({
       })
       this.init();
     }).catch((err) => {
-      this.init();
-      console.log(err)
+      if(err == '未登陆'){
+        wx.navigateTo({
+          url: "/pages/auth/login/login"
+        });
+      }else{
+        this.init();
+      }
     });
   },
   init() {
@@ -636,6 +641,19 @@ Page({
   goMarketShareTwo(){
     let param = {
       id: this.data.detailed.id,
+    }
+    util.request(api.MallGoodsInviteImg , param , 'GET').then(res => {
+      let data = res.result
+      wx.previewImage({
+        current: data, // 当前显示图片的http链接
+        urls: [data] // 需要预览的图片http链接列表
+      })
+    }).catch((err) => {});
+  },
+  handleLongPress(){
+    let param = {
+      id: this.data.detailed.id,
+      reset:true,
     }
     util.request(api.MallGoodsInviteImg , param , 'GET').then(res => {
       let data = res.result
