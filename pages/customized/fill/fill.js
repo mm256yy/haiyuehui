@@ -216,15 +216,23 @@ Page({
   //日历房
   funInfoPrice(index){
     //明细日历房
+    let infoPriceArr = [];
     let infoPriceNew = [];
+    let room = this.data.room
     if(index == 0){
-      infoPriceNew = this.data.room.wec0s.slice(0, -1);
+      infoPriceArr = room.wec0s
     }else if(index == 1){
-      infoPriceNew = this.data.room.wec1s.slice(0, -1);
+      infoPriceArr = room.wec1s
     }else if(index == 2){
-      infoPriceNew = this.data.room.wecs.slice(0, -1);
+      infoPriceArr = room.wecs
     }else if(index == 3){
-      infoPriceNew = this.data.room.wec3s.slice(0, -1);
+      infoPriceArr = room.wec3s
+    }
+
+    if(infoPriceArr.length >= 2){
+      infoPriceNew = infoPriceArr.slice(0, -1);
+    }else {
+      infoPriceNew = infoPriceArr
     }
     this.setData({
       infoPrice:infoPriceNew,
