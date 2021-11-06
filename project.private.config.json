@@ -43,8 +43,8 @@
           "scene": null
         },
         {
-          "name": "pages/ucenter/order/orderContinue/orderContinue",
-          "pathName": "pages/ucenter/order/orderContinue/orderContinue",
+          "name": "pages/market/marketList/marketList",
+          "pathName": "pages/market/marketList/marketList",
           "query": "",
           "scene": null
         }

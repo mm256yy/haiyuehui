@@ -197,8 +197,17 @@ Page({
   activity(){
     let date = (new Date()).getTime();
     let recommendUrlsNew = [];
-    if(date <= 1615823999000){ //活动日子
-
+    if(date <= 1636646402000){ //活动日子
+      recommendUrlsNew = [
+        {
+          img:'/static/images/member-home2.jpg',
+          bindtap:'marketIndex',
+        },
+        {
+          img:'/static/images/member-home1.jpg',
+          bindtap:'goFollow',
+        },
+      ]
     }else{
       recommendUrlsNew = [
         {
@@ -260,6 +269,11 @@ Page({
   goFollow(){
     wx.navigateTo({
       url: "/pages/member/memberFollow/memberFollow",
+    });
+  },
+  marketIndex(){
+    wx.switchTab({
+      url: "/pages/market/marketIndex/marketIndex",
     });
   },
 });

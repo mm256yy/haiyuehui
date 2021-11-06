@@ -48,6 +48,7 @@ Page({
       // memberAllowanceId:0,  //津贴
       // allowanceMoney:0, //津贴金额
       // fromMemberId:0,
+      // cardno:0, //会员卡号
     },
     breakfastUl:[
       // {price:1200,name:'不选早餐',val:'wec0'},
@@ -170,6 +171,7 @@ Page({
         memberAllowanceId:(res.result.memberAllowanceId?res.result.memberAllowanceId:''),
         allowanceMoney:(res.result.allowanceMoney?res.result.allowanceMoney:0),
         fromMemberId:(res.result.fromMemberId?res.result.fromMemberId:0),
+        cardno:res.result.cardno,
       }
       this.setData({
         fill:fillNew,
@@ -335,7 +337,8 @@ Page({
       memberAllowanceId:this.data.fill.memberAllowanceId,  //津贴id
       allowanceMoney:this.data.fill.allowanceMoney, //津贴金额
       fromMemberId:this.data.fill.fromMemberId, //发送津贴人id
-      datePrices:this.data.infoPrice  //日历房
+      datePrices:this.data.infoPrice,  //日历房
+      cardno:this.data.fill.cardno, //会员卡号
     };
     util.request(api.CustomizedHotelsFill ,param, 'POST').then(res => {
       //跳转

@@ -50,7 +50,6 @@
     </view>
   </view>
   <view>
-    <view class="pay_label">入住日前1天12:00过后订单不可取消</view>
     <view class="pay_btn" bindtap="perpay">立即支付</view>
   </view>
 </view>
