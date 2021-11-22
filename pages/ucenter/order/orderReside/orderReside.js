@@ -13,6 +13,13 @@ Page({
       floor:'',
       roomPitch:'',
     },
+    menuUl:[
+      {name:"选择房间"},
+      {name:"实名认证"},
+      // {name:"实人认证"},
+      {name:"完成登记"},
+    ],
+    menuChoose:0,
     roomImgUl:[
       // [
       //   {type:1,room:'1101',class:'room_type_room',img:''},
@@ -30,9 +37,11 @@ Page({
       name:'',
       identity:'',
       mobile:'',
+      file:'',
     },
   },
   onLoad: function (options) {
+    this.ctx = wx.createCameraContext()
     this.funHotel(options);
     this.roomImg();
   },
@@ -41,7 +50,7 @@ Page({
   },
   //加载hotel参数
   funHotel(options){
-    let roomNoNew = ((options.roomNo == ''||!options.roomNo||options.roomNo == 'undefined')?'':options.roomNo)
+    let roomNoNew = (options.roomNo?options.roomNo:'')
     // let hotelNew = {
     //   arr:'2020-09-28',
     //   dep:'2020-09-29',
@@ -62,8 +71,15 @@ Page({
       floor:api.testing?options.floor:options.floor,
       roomPitch:roomNoNew,
     };
+    let menuChoose = 0
+    if(roomNoNew == ''){
+      menuChoose = 0
+    }else{
+      menuChoose = 1
+    }
     this.setData({
       hotel:hotelNew,
+      menuChoose:menuChoose,
     })
   },
   //生成房间图
@@ -179,7 +195,6 @@ Page({
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
-        console.log('本地图片的路径:', tempFilePaths)
         that.upload(that, tempFilePaths)
       }
     })
@@ -209,6 +224,72 @@ Page({
       'hotel.roomPitch':roomImgUlNew[index1][index2].room
     })
   },
+  
+  //下一步/办理入住
+  resideBtn(){
+    var that = this;
+    let choose = this.data.menuChoose
+    if(choose < 2){
+      if(choose == 0){
+        let roomNoNew = (this.data.hotel.roomPitch == ''?this.data.hotel.roomNo:this.data.hotel.roomPitch)
+        if(roomNoNew == ''){
+          check.showErrorToast('请选择房间')
+          return false
+        }
+        this.setData({
+          menuChoose : choose + 1
+        })
+      }else if(choose == 1){
+        if(!check.checkName(that.data.info.name)){return false}
+        if(!check.checkIdentity(that.data.info.identity)){return false}
+        if(!check.checkMobile(that.data.info.mobile)){return false}
+        wx.showModal({ 
+          title: '办理入住',
+          content: '请确认入住信息填写正确无误',
+          success: function(resV) {
+            if (resV.confirm) {
+              console.log('用户点击确定')
+              that.setData({
+                menuChoose : choose + 1
+              })
+            } else if (resV.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+
+      }else if(choose == 2){
+        this.ctx.takePhoto({
+          quality: 'high',
+          success: (res) => {
+            console.log(res)
+            var tempImagePath = res.tempImagePath;
+            that.Imgupload(that, tempImagePath)
+          }
+        })
+      }
+    }else{
+      that.infoBtnFrist()
+    }
+  },
+  
+  //办理入住
+  infoBtnFrist(){
+    let roomNoNew = (this.data.hotel.roomPitch == ''?this.data.hotel.roomNo:this.data.hotel.roomPitch)
+    let param = {
+      orderId:this.data.hotel.orderId,
+      roomNo:roomNoNew,
+      name:this.data.info.name,
+      ident:this.data.info.identity,
+      mobile:this.data.info.mobile
+    }
+    util.request(api.UcenterOrderCheckin , param , 'POST').then(res => {
+      wx.showToast({title: "入住成功" ,image:'/static/images/icon_success.png'})
+      wx.navigateBack({
+        delta: 2  
+      })
+    }).catch((err) => {});
+  },
   //input
   bindNameInput(e){
     this.setData({
@@ -224,41 +305,6 @@ Page({
     this.setData({
       'info.mobile': e.detail.value
     });
-  },
-  //办理入住
-  infoBtnFrist(){
-    if(!check.checkName(this.data.info.name)){return false}
-    if(!check.checkIdentity(this.data.info.identity)){return false}
-    if(!check.checkMobile(this.data.info.mobile)){return false}
-    let roomNoNew = (this.data.hotel.roomPitch == ''?this.data.hotel.roomNo:this.data.hotel.roomPitch)
-    if(roomNoNew == ''){
-      wx.showToast({title: '房间号为空',image:'/static/images/icon_error.png'})
-      return false;
-    }
-    let param = {
-      orderId:this.data.hotel.orderId,
-      roomNo:roomNoNew,
-      name:this.data.info.name,
-      ident:this.data.info.identity,
-      mobile:this.data.info.mobile
-    }
-    wx.showModal({ 
-      title: '办理入住',
-      content: '请确认入住信息填写正确无误',
-      success: function(resV) {
-        if (resV.confirm) {
-          console.log('用户点击确定')
-          util.request(api.UcenterOrderCheckin , param , 'POST').then(res => {
-            wx.showToast({title: "入住成功" ,image:'/static/images/icon_success.png'})
-            wx.navigateBack({
-              delta: 2  
-            })
-          }).catch((err) => {});
-        } else if (resV.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
   },
   upload(page, path) {
     let that = this;
@@ -296,5 +342,53 @@ Page({
         wx.hideToast(); //隐藏Toast
       }
     })
-  }
+  },
+  Imgupload(page, path) {
+    let that = this;
+    wx.showToast({
+      icon: "loading",
+      title: "正在上传"
+    }),
+    wx.uploadFile({
+      url: api.SystemUpload,
+      filePath: path,
+      name: 'file',
+      header: {
+        "Content-Type": "multipart/form-data",
+        'X-HWH-Token': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        //上传成功返回数据
+        let data = JSON.parse(res.data)
+        if (data.code == 0) {
+          that.setData({
+            'info.file':data.result
+          })
+          let roomNoNew = (that.data.hotel.roomPitch == ''?that.data.hotel.roomNo:that.data.hotel.roomPitch)
+          let url = api.UcenterOrderCheckPerson +'?orderId='+ that.data.hotel.orderId
+          + '&roomNo=' + roomNoNew
+          + '&name=' + that.data.info.name
+          + '&ident=' + that.data.info.identity
+          + '&mobile=' + that.data.info.mobile
+          + '&filePath=' + data.result
+          util.requestPOST( url , 'POST').then(res => {
+            check.showSuccessToast("上传成功")
+          }).catch((err) => {});
+        }else{
+          check.showErrorToast("上传失败");
+          return;
+        }
+      },
+      fail: function (e) {
+        console.log(e);
+        check.showErrorToast("上传失败");
+      },
+      complete: function () {
+        wx.hideToast(); //隐藏Toast
+        that.setData({
+          menuChoose : 3
+        })
+      }
+    })
+  },
 })

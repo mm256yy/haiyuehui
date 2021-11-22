@@ -27,13 +27,13 @@ let memberCard = [
     upRule:'满足以下条件升级：<br/>充值满10000元<br/>购买399入会礼包',
     validityRule:'长期',
   },
-  // {
-  //   baImg:'card7',
-  //   nameC:'黑金卡',
-  //   nameE:'Diamond Member',
-  //   upRule:'满足以下条件升级：<br/>老板赠送<br/>',
-  //   validityRule:'一年',
-  // }
+  {
+    baImg:'card7',
+    nameC:'黑金卡',
+    nameE:'Diamond Member',
+    upRule:'满足以下条件升级：<br/>老板赠送<br/>',
+    validityRule:'一年',
+  }
 ]
 
 let powerUl = [

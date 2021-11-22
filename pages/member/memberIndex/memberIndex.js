@@ -139,7 +139,7 @@ Page({
   //更多权益
   powerMost(){
     wx.navigateTo({ 
-      url: "/pages/member/memberPower/memberPower"
+      url: "/pages/member/memberPower/memberPower?member="+this.data.info.card.nameC
     });
   },
   //我的余额

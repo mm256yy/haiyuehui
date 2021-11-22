@@ -1,11 +1,58 @@
+page{
+  background-color: #f1f1f1;
+}
 /*img*/
 .cis_title{
   width: 100%;
 }
+/*menu*/
+.menu_box{
+  padding: 40rpx 20rpx;
+}
+.menu_ul{
+  display: flex;
+}
+.menu_li{
+  flex: 1 1 auto;
+  text-align: center;
+}
+.menu_li_num{
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius:50rpx;
+  background-color: #cdcdcd;
+  color: #fff;
+  margin: auto;
+}
+.menu_li_num_on{
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius:50rpx;
+  background-color: #1890ff;
+  color: #fff;
+  margin: auto;
+}
+.menu_li_name{
+  font-size: 24rpx;
+  margin-top: 10rpx;
+  color: #cdcdcd;
+}
+.menu_li_name_on{
+  font-size: 24rpx;
+  margin-top: 10rpx;
+  color: #1890ff;
+}
 /*two*/
+.live_box{
+  background-color: #fff;
+  padding: 40rpx 0rpx;
+}
 .live_input{
   padding: 20rpx 30rpx;
-  background-color: #fff;
 }
 .live_title{
   text-align: center;
@@ -107,7 +154,6 @@
 .live_blue{
   color: #008cd7;
   font-size: 28rpx;
-  background-color: #fff;
   padding: 40rpx 30rpx;
   text-align: center;
 }
@@ -118,6 +164,9 @@
   padding: 0rpx 30rpx;
 }
 /*four*/
+.choose_box{
+  background-color: #fff;
+}
 .choose_four_head{
   text-align: center;
   padding: 20rpx;
@@ -201,6 +250,28 @@
   position: absolute;
   top: 7rpx;
   left: 7rpx;
+}
+/*park*/
+.park_box{
+  background-color: #fff;
+  text-align: center;
+  position: relative;
+}
+.face_top{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+}
+/*success*/
+.success_box{
+  background-color: #fff;
+  text-align: center;
+  padding: 20rpx;
+}
+.success_text{
+  color: #008cd7;
+  font-size: 36rpx;
+  font-weight: 800;
 }
 /*btn*/
 .choose_btn{

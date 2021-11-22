@@ -31,20 +31,20 @@
           "scene": null
         },
         {
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
-          "query": "inviteCode=SM6T7P42JK",
+          "name": "企鹅",
+          "pathName": "pages/ucenter/order/orderReside/orderReside",
+          "query": "arr=2021-11-18&dep=2021-11-19&floor=07&hotelId=H000030&orderId=21111930000001&rmtype=SJ&roomNo=1101",
           "scene": null
         },
         {
-          "name": "选择楼层",
-          "pathName": "pages/ucenter/order/orderChoose/orderChoose",
-          "query": "arr=2021-05-27&dep=2021-05-29&hotelId=H000030&rmtype=Dj",
+          "name": "pages/member/memberUpHJK/memberUpHJK",
+          "pathName": "pages/member/memberUpHJK/memberUpHJK",
+          "query": "",
           "scene": null
         },
         {
-          "name": "pages/market/marketList/marketList",
-          "pathName": "pages/market/marketList/marketList",
+          "name": "pages/ucenter/order/orderFace/orderFace",
+          "pathName": "pages/ucenter/order/orderFace/orderFace",
           "query": "",
           "scene": null
         }

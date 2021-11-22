@@ -17,11 +17,19 @@ Page({
     powerRelease:true, //下拉 / 后缩
   },
   onLoad: function (options) {
-    
+    let memberCard = {}
+    if(options.member == '黑金卡'){
+      memberCard = member.memberCard
+    }else{
+      memberCard = member.memberCard.splice(0,4);
+    }
+    console.log(memberCard)
+    this.setData({
+      memberCard : memberCard,
+    })
   },
   onShow: function () {
     this.setData({
-      memberCard : member.memberCard,
       powerUl :　member.powerUl,
     })
     // this.init()

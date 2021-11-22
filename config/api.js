@@ -17,6 +17,7 @@ module.exports = {
    AuthRegisterCaptcha: WxApiRoot + 'auth/sendSmsCode', //验证码 hwh
    AuthRegister: WxApiRoot + 'auth/bindMobile', //绑定手机号 hwh
    AuthRegisterWx: WxApiRoot + 'auth/bindWxMobile', //用微信默认手机号/绑定手机号 hwh
+   SystemUpload: WxApiRoot + 'system/upload', //上传图片
    
    CustomizedHotelsDetailed: WxApiRoot + 'hotel/getRoomPrice', //获取酒店房间信息 hwh
    CustomizedHotelsRoom: WxApiRoot + 'hotel/room', //获取房间详情 hwh
@@ -35,6 +36,7 @@ module.exports = {
    UcenterOrderFloorRoomNum: WxApiRoot + 'hotel/getFloorRoomNum', //获取房间数量 
    UcenterOrderFloorRoomPosition: WxApiRoot + 'hotel/getFloorRoomPosition', //获取房间坐标 
    UcenterOrderPark: WxApiRoot + 'member/ocrIdent', // 上传身份证
+   UcenterOrderCheckPerson: WxApiRoot + 'order/checkPerson', // 人脸识别认证
 
   //  UcenterMoveInto: WxApiRoot + 'hotel/getAvailableRoomNo', // 入住查询房间 hwh
    UcenterOrderAddPerson: WxApiRoot + 'order/addPerson', //添加同住 hwh
@@ -71,7 +73,8 @@ module.exports = {
    MemberRechargeCallback:WxApiRoot +'recharge/callback',  //充值返回
    MemberRechargeHistory:WxApiRoot +'recharge/history', //余额查询
    MemberPointHistory:WxApiRoot +'member/pointHistory', //积分查询
-
+   MemberUpToHJK:WxApiRoot +'member/upToHJK', //兑换黑金卡
+   
    MemberCouponList:WxApiRoot +'memberCoupon/list',//优惠劵列表
 
    MallCategory:WxApiRoot +'mall/main/category',  //商城类别

@@ -105,6 +105,72 @@ function request(url, data = {}, method = "GET") {
     })
   });
 }
+/*封封微信的的request*/
+function requestPOST(url, data = {}, method = "POST") {
+  jhxLoadShow("加载中")
+  return new Promise(function(resolve, reject) {
+    wx.request({
+      url: url,
+      data: data,
+      method: method,
+      header: {
+        'Content-Type': 'application/json',
+        'X-HWH-Token': wx.getStorageSync('token')
+      },
+      success: function(res) {
+        // console.log(res.data);
+        jhxLoadHide();
+        if (res.statusCode == 200) {
+          if(res.data.code == 0||res.data == "ok"){  //判断是否成功
+            resolve(res.data);
+          }else if(res.data.message == "未登录"||res.data.message == '请先登录'){
+            let iswhiteList = whiteList();
+            if(iswhiteList){ //存在
+              //未登陆
+            }else{
+              let pages = getCurrentPages();
+              if(pages.length <= 1){
+                wx.navigateTo({
+                  url: "/pages/auth/login/login"
+                });
+              }else{
+                wx.redirectTo({
+                  url: "/pages/auth/login/login"
+                });
+              }
+            }
+            wx.showToast({title: "未登陆" ,image:'/static/images/icon_error.png'})
+            reject("未登陆");
+          }else if(res.data.message){
+            if(res.data.message.length <= 7){
+              wx.showToast({title: res.data.message ,image:'/static/images/icon_error.png'})
+            }else if(res.data.message.length <= 14&&res.data.message.length>7){
+              wx.showToast({title: res.data.message ,icon:'none'})
+            }else{
+              wx.showModal({title: '提示',content: res.data.message})
+            }
+            reject(res.data.message);
+          }else if(res.data.message == null){
+            console.log(res.data.message);
+          }else{
+            wx.showToast({title: "未知异常" ,image:'/static/images/icon_error.png'})
+            reject("未知异常");
+          }
+        } else {
+          wx.showToast({title: "未连接服务器" ,image:'/static/images/icon_error.png'})
+          reject("未连接到服务器200+");
+          console.log(res.errMsg);
+        }
+      },
+      fail: function(err) {
+        jhxLoadHide()
+        wx.showToast({title: "网络连接失败" ,image:'/static/images/icon_error.png'})
+        reject("网络连接失败")
+        console.log(err)
+      }
+    })
+  });
+}
 
 //加载中效果（显示）
 function jhxLoadShow(message) {
@@ -230,6 +296,7 @@ module.exports = {
 
   whiteList,
   request,
+  requestPOST,
 
   jhxLoadShow,
   jhxLoadHide,

@@ -1,7 +1,15 @@
-<view>
+   <view>
 	<import src="/template/template"/> 
-  <image src="/static/images/cis_title.jpg" mode="widthFix" class="cis_title" wx:if="{{hotel.roomNo != ''||true}}"></image>
-	<view  wx:if="{{roomImgUl.length}}">
+  <!-- <image src="/static/images/cis_title.jpg" mode="widthFix" class="cis_title" wx:if="{{hotel.roomNo != ''||true}}"></image> -->
+	<view class="menu_box">
+		<view class="menu_ul">
+			<view class="menu_li" wx:for="{{menuUl}}" wx:key="index" >
+				<view class="{{menuChoose >= index?'menu_li_num_on':'menu_li_num'}}">{{index+1}}</view>
+				<view class="{{menuChoose >= index?'menu_li_name_on':'menu_li_name'}}">{{item.name}}</view>
+			</view>
+		</view>
+	</view>
+	<view class="choose_box" wx:if="{{roomImgUl.length >= 1 && menuChoose == 0}}">
 		<view class="choose_four" wx:if="{{hotel.roomNo == ''}}">
 			<view class="choose_four_head">
 				<text class="room_introduce room_type_room"></text><text class="room_introduce_name">空余房间</text>
@@ -22,11 +30,9 @@
 			</view>
 		</view>
 	</view>
-	<view wx:if="{{hotel.roomPitch != ''}}">
+	<view class="live_box" wx:if="{{menuChoose == 1}}">
 		<view class="choose_four_room_val" >已选择房号：{{hotel.roomPitch}}</view>
-		<view>
-			<view class="live_blue">按照法律规定入住酒店必须填写身份证信息</view>
-		</view>
+		<view class="live_blue">按照法律规定入住酒店必须填写身份证信息</view>
 		<view class="live_input">
 			<view class="form_ul">
 				<view class="form_left">
@@ -51,11 +57,19 @@
 		</view>
 		<view class="live_red">注:请确认真实的姓名与身份证正确，否则无法入住</view>
 	</view>
+	<view class="park_box" wx:if="{{menuChoose == 2 && false}}">
+		<camera device-position="front" flash="off" binderror="error" style="width: 100%; height: 250px;"></camera>
+		<image class="face_top" src="/static/images/face.png" style="width: 100%; height: 250px;"></image>
+	</view>
+	<view class="success_box" wx:if="{{menuChoose == 2}}">
+		<image mode="widthFix" style="width: 100px; height: 100px;" src="/static/images/face-gou.jpg"></image>
+		<view class="success_text">完成登记</view>
+	</view>
 	<view wx:if="{{!roomImgUl.length && hotel.roomPitch == ''}}">
-		<view class="room_table_dis" >未找到可选云智住房间，请到前台办理</view>
+		<view class="room_table_dis" >未找到可选云智住房间，请到前台办理</view>   
 		<template is="zero" data="{{list:roomImgUl}}"/>
 	</view>
-	<view class="reside_btn" wx:if="{{hotel.roomPitch != ''}}">
-		<view class="btn_define" bindtap="infoBtnFrist">办理入住</view>
+	<view class="reside_btn">
+		<view class="btn_define" bindtap="resideBtn">{{menuChoose == 2?'办理入住':'下一步'}}</view>
 	</view>
 </view>

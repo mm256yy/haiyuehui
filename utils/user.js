@@ -97,9 +97,16 @@ function memberGetInfo(){
           content: '尚未绑定手机号',
           success: function(res) {
             if (res.confirm) {
-              wx.redirectTo({
-                url: "/pages/auth/registerWx/registerWx"
-              });
+              let pages = getCurrentPages();
+              if(pages.length <= 1){
+                wx.navigateTo({
+                  url: "/pages/auth/registerWx/registerWx"
+                });
+              }else{
+                wx.redirectTo({
+                  url: "/pages/auth/registerWx/registerWx"
+                });
+              }
             } else if (res.cancel) {
               wx.navigateBack({ delta: 1 });
             }

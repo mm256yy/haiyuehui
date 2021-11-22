@@ -54,7 +54,7 @@ function upload(page, path) {
       success: function (res) {
         //上传成功返回数据
         console.log('上传成功返回的数据', JSON.parse(res.data).data);
-        if (res.code != 0) {
+        if (res.code == 0) {
           check.showSuccessToast("上传成功")
         }else{
           check.showErrorToast("上传失败");

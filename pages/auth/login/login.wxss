@@ -96,3 +96,15 @@
   color: #fff;
   position: relative;
 }
+.wx_login_cancel{
+  margin: 40rpx 0 40rpx 0;
+  border-radius: 60rpx;
+  background-color: #eeeeee;
+  padding: 18rpx;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 3rpx;
+  width: 100% !important;
+  box-shadow: 0rpx 0rpx 8rpx 5rpx #f1f1f1;
+}
