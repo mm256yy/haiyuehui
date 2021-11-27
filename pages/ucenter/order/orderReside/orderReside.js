@@ -16,7 +16,7 @@ Page({
     menuUl:[
       {name:"选择房间"},
       {name:"实名认证"},
-      // {name:"实人认证"},
+      {name:"实人认证"},
       {name:"完成登记"},
     ],
     menuChoose:0,
@@ -229,7 +229,7 @@ Page({
   resideBtn(){
     var that = this;
     let choose = this.data.menuChoose
-    if(choose < 2){
+    if(choose < 3){
       if(choose == 0){
         let roomNoNew = (this.data.hotel.roomPitch == ''?this.data.hotel.roomNo:this.data.hotel.roomPitch)
         if(roomNoNew == ''){
@@ -373,6 +373,9 @@ Page({
           + '&filePath=' + data.result
           util.requestPOST( url , 'POST').then(res => {
             check.showSuccessToast("上传成功")
+            that.setData({
+              menuChoose : 3
+            })
           }).catch((err) => {});
         }else{
           check.showErrorToast("上传失败");
@@ -385,9 +388,6 @@ Page({
       },
       complete: function () {
         wx.hideToast(); //隐藏Toast
-        that.setData({
-          menuChoose : 3
-        })
       }
     })
   },
