@@ -90,8 +90,12 @@ App({
   //切割scene
   sceneSplit(date,val){
     let str = decodeURIComponent(date).toString().split('&');
-    let pa = str[val].toString().split('=');
-    return pa[1]
+    if(str[val]){
+      let pa = str[val].split('=');
+      return pa[1]
+    }else{
+      return null
+    }
   },
   //
   globalData: {},  //切勿删除

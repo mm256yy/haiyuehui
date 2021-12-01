@@ -121,7 +121,6 @@ Page({
   },
   //选择月份
   calendarButtom(e){
-    console.log(e)
     let val = e.currentTarget.dataset.val;
     if(val == 1&&this.data.setVal>0){  //后退
       this.setData({

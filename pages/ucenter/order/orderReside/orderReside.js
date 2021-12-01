@@ -39,6 +39,8 @@ Page({
       mobile:'',
       file:'',
     },
+    //
+    cameraErr:'',
   },
   onLoad: function (options) {
     this.ctx = wx.createCameraContext()
@@ -374,17 +376,28 @@ Page({
           util.requestPOST( url , 'POST').then(res => {
             check.showSuccessToast("上传成功")
             that.setData({
-              menuChoose : 3
+              menuChoose : 3,
+              cameraErr:'',
             })
-          }).catch((err) => {});
+          }).catch((err) => {
+            that.setData({
+              cameraErr : '悉点接口调用失败'
+            })
+          });
         }else{
-          check.showErrorToast("上传失败");
+          check.showErrorToast(data.message);
+          that.setData({
+            cameraErr : data.message
+          })
           return;
         }
       },
       fail: function (e) {
         console.log(e);
-        check.showErrorToast("上传失败");
+        that.setData({
+          cameraErr : JSON.stringify(e)
+        })
+        check.showErrorToast("照片上传失败");
       },
       complete: function () {
         wx.hideToast(); //隐藏Toast

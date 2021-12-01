@@ -98,7 +98,6 @@ page{
   width: 120rpx;
   line-height: 45rpx;
   text-align: right;
-  float: left;
   padding-top:10rpx ;
 }
 .input_li input{
@@ -295,4 +294,10 @@ page{
 }
 .reside_btn{
   padding: 50rpx 0rpx 50rpx;
+}
+/**/
+.camera_err{
+  color: #cc0000;
+  text-align: center;
+  padding: 10rpx;
 }

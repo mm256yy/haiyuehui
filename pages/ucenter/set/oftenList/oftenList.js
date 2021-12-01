@@ -88,11 +88,9 @@ Page({
     let that = this;
     let index = e.currentTarget.dataset.index;
     let data = this.data.often[index]
-    console.log(e)
     let param = {
       id:data.id,
     }
-    console.log(param)
     wx.showModal({ 
       title: '删除常住人',
       content: '请确认要删除常住人？',
