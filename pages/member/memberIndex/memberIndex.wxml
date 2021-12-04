@@ -21,7 +21,8 @@
           <view class="card_bottom_left">
             <view class="card_cardno">NO:{{info.cardNo}}</view>
             <view class="card_endtime" wx:if="{{info.fromMobile != ''}}">INVITE:{{filter.MobileFour(info.fromMobile)}}</view>
-            <view class="card_endtime">有效期至：{{info.dep}}</view>
+            <view class="card_endtime" wx:if="{{!info.levelsEndTime}}">有效期至：长期</view>
+            <view class="card_endtime" wx:if="{{info.levelsEndTime}}">有效期至：{{info.levelsEndTime}}</view>
           </view>
         </view>
       </view>

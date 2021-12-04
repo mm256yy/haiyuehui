@@ -14,6 +14,7 @@ Page({
       couponNum:0,
       arr:'',
       dep:'2021-12-12',
+      levelsEndTime:'', //黑金卡过期时间
       cardNo:'1500615615',
       discount:95,  //95%  会员打折
       scoreTimes:100,  //1.5倍 积分倍数
@@ -108,6 +109,7 @@ Page({
         couponNum:0,
         arr:res.result.arr,
         dep:res.result.dep,
+        levelsEndTime:res.result.levelsEndTime,
         cardNo:res.result.cardno,
         card:member.memberCard[grade],
         discount:discountNew,  

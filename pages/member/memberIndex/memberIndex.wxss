@@ -83,7 +83,7 @@ page{
 }
 .card_endtime{
   color: #cdcdcd;
-  font-size: 24rpx;
+  font-size: 20rpx;
 }
 /*wallet*/
 .wallet_ul{
