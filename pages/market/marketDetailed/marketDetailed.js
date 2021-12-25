@@ -135,7 +135,7 @@ Page({
       }
       //图文详情
       let contentNew = data.content ? data.content : ''
-      contentNew = contentNew.replace(/width="300"/g, 'width="100%"').replace(/width="600"/g, 'width="100%"').replace(/display: block/g, 'display: block;padding-bottom: 10px;').replace(/height="300"/g, '').replace(/height="600"/g, '');
+      contentNew = contentNew.replace(/width="800"/g, 'width="100%"').replace(/width="300"/g, 'width="100%"').replace(/width="600"/g, 'width="100%"').replace(/display: block/g, 'display: block;padding-bottom: 10px;').replace(/height="300"/g, '').replace(/height="600"/g, '');
       let detailedNew = {
         id: data.id,
         name: data.title,
@@ -228,6 +228,19 @@ Page({
         salePrice: data.salePrice,
         discount: data.discount ? data.discount : 100,
         money: 0,
+      }
+      //判断是否下架
+      if(detailedNew.isOnSale != 1){
+        wx.showModal({
+          title: '错误提醒',
+          content: '该产品已经下架或失效',
+          success: function(res) {
+            wx.redirectTo({
+              url: "/pages/market/marketList/marketList"
+            })
+          }
+        })
+        return false
       }
       this.setData({
         detailed: detailedNew,
@@ -463,7 +476,7 @@ Page({
     let specChoose = this.data.specChoose
     let productList = this.data.productList
     let v_productList = []
-    let j_ul = []
+    let j_ul = [] //拥有选中类型的规格组合arr
     let j_li = []
     let cho_ul = []
     //输出选中列表productList的值
@@ -483,7 +496,7 @@ Page({
           cho_ul.push(i)
         }
       }
-      let v_ul = [];
+      let v_ul = []; //精确到哪个规格组合,例[6]，没有显示undefined
       let v_num = 0
       if (j_ul.length > 1) {
         for (let i = 0; i < j_ul[0].length; i++) {

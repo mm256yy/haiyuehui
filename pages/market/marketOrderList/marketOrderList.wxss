@@ -58,6 +58,7 @@ page {
   margin-right:20rpx;
   margin-bottom: 20rpx;
   background-color: #f1f1f1;
+  border-radius: 5rpx;
 }
 .order_li_text{
   flex: 1 1 auto;

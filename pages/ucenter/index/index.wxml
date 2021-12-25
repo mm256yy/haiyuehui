@@ -46,13 +46,4 @@
       </view>
     </view>
   </view>
-  <view class="ucenter_service" wx:if="{{false}}">
-    <view class="ucenter_service_h1">我的服务</view>
-    <view class="service_ul">
-      <view class="service_li" wx:for="{{serviceIcon}}" wx:key="index">
-        <image class="service_img" src="{{item.img}}"></image>
-        <view class="service_text">{{item.text}}</view>
-      </view>
-    </view>
-  </view>
 </view>

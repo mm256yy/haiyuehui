@@ -150,6 +150,12 @@ Page({
       url: "/pages/ucenter/wallet/walletAmount/walletAmount"
     });
   },
+  //我的积分
+  goPointsMarket(){
+    wx.navigateTo({ 
+      url: "/pages/ucenter/points/pointsMarket/pointsMarket"
+    });
+  },
   //优惠劵
   coupon(){
     wx.navigateTo({ 

@@ -33,7 +33,6 @@
     "pages/ucenter/order/orderContinue/orderContinue",
     "pages/ucenter/order/orderTransfer/orderTransfer",
     "pages/ucenter/order/orderFace/orderFace",
-    "pages/ucenter/order/orderPark/orderPark",
 
     "pages/ucenter/coupon/coupon",
     "pages/ucenter/set/visitor/visitor",
@@ -64,6 +63,7 @@
     "pages/ucenter/wallet/walletConsume/walletConsume",
     "pages/ucenter/wallet/walletRecharge/walletRecharge",
     "pages/ucenter/wallet/walletProblem/walletProblem",
+    "pages/ucenter/wallet/walletHistory/walletHistory",
 
     "pages/market/marketIndex/marketIndex",
     "pages/market/shoppingCart/shoppingCart",
@@ -77,6 +77,12 @@
     "pages/market/marketExchange/marketExchange",
     "pages/market/marketWritten/marketWritten",
     "pages/market/marketShare/marketShare",
+
+    "pages/ucenter/points/pointsMarket/pointsMarket",
+    "pages/ucenter/points/pointsDetail/pointsDetail",
+    "pages/ucenter/points/pointsReside/pointsReside",
+    "pages/ucenter/points/pointsHistory/pointsHistory",
+    "pages/ucenter/points/pointsExchange/pointsExchange",
 
     "pages/ucenter/teamNumber/teamNumber",
     "pages/logs/logs"

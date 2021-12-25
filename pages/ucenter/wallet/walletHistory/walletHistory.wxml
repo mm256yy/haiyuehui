@@ -1,0 +1,24 @@
+<view>
+  <import src="/template/template"/> 
+  <view class="choose_box" bindtap="chooseTime">
+    <view class="choose_day">
+      <picker class="choose_time" mode="date" fields="month" value="{{chooseDate}}" start="2020-01-01" end="2050-01-01" bindchange="bindDateChange">
+        <view class="picker">选择月份：{{chooseDate}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class="consume_ul">
+    <template is="zero" data="{{list: consumeUl}}"/>
+    <view class="consume_li" wx:for="{{consumeUl}}" wx:key="index">
+      <view class="consume_li_text">
+        <text class="consume_li_t1">{{item.type}}</text>
+        <text class="consume_li_t5">[{{item.hotelName}}]</text>
+        <text class="consume_li_t2">{{item.date}}</text>
+      </view>
+      <view class="consume_li_text">
+        <text class="consume_li_t3">{{item.ref}}</text>
+        <text class="consume_li_t4">{{item.money}}</text>
+      </view>
+    </view>
+  </view>
+</view>

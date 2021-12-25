@@ -35,7 +35,7 @@ module.exports = {
    UcenterSystemBaseCodeType: WxApiRoot +  'system/baseCodeType',  //获取类型  
    UcenterOrderFloorRoomNum: WxApiRoot + 'hotel/getFloorRoomNum', //获取房间数量 
    UcenterOrderFloorRoomPosition: WxApiRoot + 'hotel/getFloorRoomPosition', //获取房间坐标 
-   UcenterOrderPark: WxApiRoot + 'member/ocrIdent', // 上传身份证
+   UcenterOcrIdent: WxApiRoot + 'member/ocrIdent', // 上传身份证
    UcenterOrderCheckPerson: WxApiRoot + 'order/checkPerson', // 人脸识别认证
 
   //  UcenterMoveInto: WxApiRoot + 'hotel/getAvailableRoomNo', // 入住查询房间 hwh
@@ -72,7 +72,7 @@ module.exports = {
    MemberRechargePrepay:WxApiRoot +'recharge/prepay',  //充值调起
    MemberRechargeCallback:WxApiRoot +'recharge/callback',  //充值返回
    MemberRechargeHistory:WxApiRoot +'recharge/history', //余额查询
-   MemberPointHistory:WxApiRoot +'member/pointHistory', //积分查询
+
    MemberUpToHJK:WxApiRoot +'member/upToHJK', //兑换黑金卡
    
    MemberCouponList:WxApiRoot +'memberCoupon/list',//优惠劵列表
@@ -92,6 +92,12 @@ module.exports = {
    MallMemberGoodsList:WxApiRoot +'mall/memberGoods/list', //兑换码列表
    MallMemberGoodsConnect:WxApiRoot +'mall/memberGoods/connect', //兑换码转接
    MallCarWashStart:WxApiRoot +'mall/memberGoods/carWashStart', //洗车信息填写
+
+   PointsList:WxApiRoot +'exchange/list', //积分兑换列表
+   PointsDetail:WxApiRoot +'exchange/getCouponById', //积分兑换详情
+   PointsExchange:WxApiRoot +'exchange/coupon', //积分兑换
+   PointHistory:WxApiRoot +'member/pointHistory', //积分查询
+   PointRecord:WxApiRoot +'exchange/record', //积分兑换商品记录
 
    ActivityDraw:WxApiRoot +'activity/draw', // 抽奖活动
    HongbaocashOut:WxApiRoot +'hongbao/cashOut', //红包提现

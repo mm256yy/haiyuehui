@@ -34,7 +34,7 @@
         <view class="wallet_li_t1">我的余额</view>
         <view class="wallet_li_t2">{{info.moneyS}}</view>
       </view>
-      <view class="wallet_li" bindtap="walletAmount">
+      <view class="wallet_li" bindtap="goPointsMarket">
         <view class="wallet_li_t1">我的积分</view>
         <view class="wallet_li_t2">{{info.points}}</view>
       </view>

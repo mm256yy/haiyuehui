@@ -97,7 +97,7 @@
     <view class="park_ul">
       <view class="person_li">
         <view class="liveN" wx:if="{{!item.live}}">
-          <view class="liveN_btn" bindtap="goOrderPark" data-type="1">+ 添加车牌</view>
+          <view class="liveN_btn" bindtap="goPark" data-type="1">+ 添加车牌</view>
           <text class="detail_t4">每笔订单最多能提交3块车牌</text>
         </view>
       </view>

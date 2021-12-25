@@ -1,33 +1,39 @@
 page{
   background-color: #f1f1f1;
 }
-/*menu*/
-.menu_ul{
-  display: flex;
-  background-color: #fff;
-  width: 100%;
+/*head*/
+.head{
+  background-color: #039cee;
+  padding: 40rpx;
   position: fixed;
   top: 0rpx;
   left: 0rpx;
+  width: 100%;
 }
-.menu_li{
-  flex: 1 1 auto;
-  padding: 30rpx 10rpx;
-  text-align: center;
+.head_points{
+  margin-bottom: 40rpx;
 }
-.menu_li_text{
-  padding: 10rpx 0rpx;
-  border-bottom: 10rpx solid #fff;
-  color: #998;
-  text-align: center;
+.head_t1{
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: 800;
 }
-.menu_li_text_on{
-  color: #666;
-  border-bottom: 5rpx solid #fe6f41;
+.head_t2{
+  color: #fff;
+  font-size: 50rpx;
+  font-weight: 800;
+}
+.head_t3{
+  color: #fff;
+  font-size: 24rpx;
+  margin: 0rpx 10rpx;
+}
+.head_t3:first-child{
+  margin-left: 0rpx;
 }
 /*goods*/
 .market_ul{
-  padding-top: 100rpx;
+  margin-top: 265rpx;
   padding-bottom: 120rpx;
   overflow: hidden;
 }
@@ -39,9 +45,11 @@ page{
   border: 2rpx solid #f1f1f1;
   padding: 20rpx;
   background-color: #fff;
+  border-radius: 10rpx;
 }
 .goods_img_box{
   width: 100%;
+  text-align: center;
 }
 .goods_img{
   width: 100%;
@@ -54,14 +62,15 @@ page{
 }
 .goods_t1{
   height: 3em;
-  color: #666;
   overflow: hidden;
+  font-weight: 800;
 }
 .goods_t2{
   color: #e66465;
+  font-weight: 800;
+  font-size: 32rpx;
 }
 .goods_t3{
-  text-decoration: line-through;
-  color: #cdcdcd;
-  padding-left: 20rpx;
+  color: #e66465;
+  font-size: 24rpx;
 }

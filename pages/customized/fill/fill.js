@@ -312,8 +312,6 @@ Page({
     if(!check.checkMobile(this.data.fill.mobile)){return false};
     if(!check.checkMoney(this.data.total.money)){return false};
     if(!check.checkMoney(this.data.room.roomPrice)){return false};
-    console.log(this.data.room.arr)
-    console.log(this.data.room.dep)
     //传递
     let param = {
       hotelId: this.data.room.hotelId,

@@ -1,0 +1,33 @@
+<view>
+  <import src="/template/template"/> 
+  <view class="head">
+    <view class="head_points">
+      <view class="head_t1">可用积分</view>
+      <view class="head_t2">{{infoPoints}}</view>
+    </view>
+    <view class="head_menu">
+      <text class="head_t3" bindtap="goPointsHistory">积分明细 </text>
+      <text class="head_t3"> | </text>
+      <text class="head_t3" bindtap="goPointsExchange"> 兑换记录</text>
+    </view>
+  </view>
+  <view class="body">
+    <view class="market_ul">
+      <view class="maket_li" wx:for="{{goodsUl}}" wx:key="index" bindtap="goGoodsDetailed" data-id="{{item.id}}">
+        <view class="maket_li_product">
+          <view class="goods_img_box">
+            <image class="goods_img" src="{{item.img}}"></image>
+          </view>
+          <view class="goods_text">
+            <view class="goods_t1">{{item.name}}</view>
+            <view>
+              <text class="goods_t2">{{item.points}}</text>
+              <text class="goods_t3">积分</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <template is="zero" data="{{list:goodsUl}}"/>
+</view>

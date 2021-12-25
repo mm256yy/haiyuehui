@@ -1,12 +1,3 @@
-//判断是否是手机号
-function isValidPhone(str) {
-  let myreg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
-  if (!myreg.test(str)) {
-    return false;
-  } else {
-    return true;
-  };
-};
 //判断是否是数字 true 数字 false 非数字
 function isNonnum(str){
   let myreg = /^[0-9]*$/;
@@ -54,8 +45,8 @@ function checkMobile(mobile){  //使用：if(!check.checkMobile(this.data.mobile
   if(mobile.length == 0){
     showErrorToast('手机号不能空');
     return false;
-  }else if(!isValidPhone(mobile)){
-    showErrorToast('手机号不正确');
+  }else if(mobile.length != 11){
+    showErrorToast('手机号长度不正确');
     return false;
   }else if(!spaceNo(mobile)){
     showErrorToast('不能存在特殊字符');
@@ -143,7 +134,6 @@ function checkIsOverdue(day){
 };
 
 module.exports = {
-  isValidPhone,
   isNonnum,
   spaceNo,
   existValue,

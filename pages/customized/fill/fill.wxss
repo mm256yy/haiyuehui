@@ -341,10 +341,10 @@ page{background-color: #f1f1f1;}
 .foot_btn_order{
   margin: 10rpx;
   padding: 20rpx;
-  background: linear-gradient(to right, #039cee , #753ffd);
+  background: linear-gradient(to right, #039cee , #346ae8);
   text-align: center;
   color: #fff;
-  border-radius: 50rpx;
+  border-radius: 10rpx;
 }
 .foot_btn_details{
   color: #039cee;

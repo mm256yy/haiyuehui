@@ -2,28 +2,6 @@ page{
   background-color: #f1f1f1;
 }
 /*choose*/
-.choose_box{
-  position: fixed;
-  top: 0rpx;
-  left: 0rpx;
-  width: 100%;
-  height: 80rpx;
-  background-color: #f1f1f1;
-}
-.choose_type{
-  display: flex;
-  background-color: #fff;
-  padding:0rpx 30rpx;
-}
-.choose_type_li{
-  padding: 25rpx 25rpx;
-  flex: 1 1 auto;
-  text-align: center;
-}
-.choose_type_li_on{
-  color: #039cee ;
-  border-bottom: 1rpx solid #039cee;
-}
 .choose_day{
   padding:20rpx 30rpx;
   background-color: #f1f1f1;
@@ -37,40 +15,40 @@ page{
   height: 50rpx;
 }
 /*消费列表*/
-.record_ul{
-  margin-top: 170rpx;
+.consume_ul{
+  margin-top: 0rpx;
 }
-.record_li{
+.consume_li{
   padding: 30rpx;
   border-bottom: 1rpx solid #f1f1f1;
   background-color: #fff;
   margin: 20rpx;
   border-radius: 20rpx;
 } 
-.record_li_text{
+.consume_li_text{
   padding: 5rpx 0rpx;
   font-size: 30rpx;
 }
-.record_li_text text{
+.consume_li_text text{
   line-height: 30rpx;
 }
-.record_li_t1{
+.consume_li_t1{
   font-size: 30rpx;
 }
-.record_li_t2{
+.consume_li_t2{
   font-size: 24rpx;
   color: #cdcdcd;
   float: right;
 }
-.record_li_t3{
+.consume_li_t3{
   font-size: 24rpx;
 }
-.record_li_t4{
+.consume_li_t4{
   font-size: 28rpx;
   font-weight: 800;
   float: right;
 }
-.record_li_t5{
+.consume_li_t5{
   margin-left: 20rpx;
   color: #999;
 }

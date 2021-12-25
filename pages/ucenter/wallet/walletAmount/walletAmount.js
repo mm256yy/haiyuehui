@@ -36,7 +36,7 @@ Page({
   //消费记录
   moneyConsume(){
     wx.navigateTo({
-      url: "/pages/ucenter/wallet/walletConsume/walletConsume"
+      url: "/pages/ucenter/wallet/walletHistory/walletHistory"
     });
   },
   //常见问题

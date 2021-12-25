@@ -21,7 +21,7 @@
         </view>
         <view class="wallet_li" bindtap="moneyConsume">
           <image class="wallet_li_img" src="/static/images/other/other7.png"></image>
-          <text class="wallet_li_text">充值/积分记录</text>
+          <text class="wallet_li_text">充值记录/消费记录</text>
           <image class="wallet_li_go" src="/static/images/right.png">></image>
         </view>
       </view>

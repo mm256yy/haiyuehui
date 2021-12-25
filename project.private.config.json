@@ -27,7 +27,7 @@
         {
           "name": "商城",
           "pathName": "pages/market/marketDetailed/marketDetailed",
-          "query": "id=53",
+          "query": "id=1",
           "scene": null
         },
         {
@@ -37,15 +37,15 @@
           "scene": null
         },
         {
-          "name": "pages/member/memberUpHJK/memberUpHJK",
-          "pathName": "pages/member/memberUpHJK/memberUpHJK",
+          "name": "111",
+          "pathName": "pages/ucenter/points/pointsExchange/pointsExchange",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/ucenter/order/orderFace/orderFace",
-          "pathName": "pages/ucenter/order/orderFace/orderFace",
-          "query": "",
+          "name": "/pages/market/marketDetailed/marketDetailed",
+          "pathName": "pages/market/marketDetailed/marketDetailed",
+          "query": "id=160",
           "scene": null
         }
       ]
