@@ -120,8 +120,8 @@ Page({
       }
       let powerUlShowNew = [
         {img:'power0',text1:'订房折扣',text2:(discountNew/10)+'折'},
-        {img:'power3',text1:'积分奖励',text2:(scoreTimesNew/100)+'倍'},
-        {img:'power21',text1:'生日礼',text2:"领取蛋糕劵"},
+        {img:'power22',text1:'订单',text2:"免费取消"},
+        {img:'power21',text1:'会员',text2:"生日礼"},
         {img:'power4',text1:'入住退房',text2:"免查房"},
       ]
       this.setData({

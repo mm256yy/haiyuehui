@@ -31,7 +31,7 @@ let memberCard = [
     baImg:'card7',
     nameC:'黑金卡',
     nameE:'Diamond Member',
-    upRule:'满足以下条件升级：<br/>老板赠送<br/>',
+    upRule:'满足以下条件升级：<br/>不对外发售<br/>',
     validityRule:'一年',
   }
 ]
@@ -48,7 +48,7 @@ let powerUl = [
       {arr:1,text1:'订房折扣',text2:'9折',use:true},
       {arr:2,text1:'订房折扣',text2:'8.5折',use:true},
       {arr:3,text1:'订房折扣',text2:'8折',use:true},
-      {arr:4,text1:'订房折扣',text2:'7折',use:true},
+      {arr:4,text1:'订房折扣',text2:'7.5折',use:true},
     ],
   },
   // {
@@ -152,16 +152,16 @@ let powerUl = [
   },
   {
     img:'power21',
-    text1:'生日礼',
-    text2:'领取蛋糕劵',
+    text1:'会员',
+    text2:'生日礼',
     introduce:'入住时会员生日可享受生日礼遇<br/>惊喜不断',
     show:true,
     grade:[
-      {arr:0,text1:'生日礼',text2:'领取蛋糕劵',use:true},
-      {arr:1,text1:'生日礼',text2:'领取蛋糕劵',use:true},
-      {arr:2,text1:'生日礼',text2:'领取蛋糕劵',use:true},
-      {arr:3,text1:'生日礼',text2:'领取蛋糕劵',use:true},
-      {arr:4,text1:'生日礼',text2:'领取蛋糕劵',use:true},
+      {arr:0,text1:'会员',text2:'生日礼',use:true},
+      {arr:1,text1:'会员',text2:'生日礼',use:true},
+      {arr:2,text1:'会员',text2:'生日礼',use:true},
+      {arr:3,text1:'会员',text2:'生日礼',use:true},
+      {arr:4,text1:'会员',text2:'生日礼',use:true},
     ],
   },
   // {
@@ -180,16 +180,16 @@ let powerUl = [
   // },
   {
     img:'power12',
-    text1:'欢迎糕点/礼品',
+    text1:'迎宾鲜果/糕点',
     text2:'首日',
     introduce:'入住享受欢迎糕点/礼品一份',
     show:true,
     grade:[
-      {arr:0,text1:'欢迎糕点/礼品',text2:'首日',use:true},
-      {arr:1,text1:'欢迎糕点/礼品',text2:'首日',use:true},
-      {arr:2,text1:'欢迎糕点/礼品',text2:'首日',use:true},
-      {arr:3,text1:'欢迎糕点/礼品',text2:'首日',use:true},
-      {arr:4,text1:'欢迎糕点/礼品',text2:'首日',use:true},
+      {arr:0,text1:'迎宾鲜果/糕点',text2:'首日',use:true},
+      {arr:1,text1:'迎宾鲜果/糕点',text2:'首日',use:true},
+      {arr:2,text1:'迎宾鲜果/糕点',text2:'首日',use:true},
+      {arr:3,text1:'迎宾鲜果/糕点',text2:'首日',use:true},
+      {arr:4,text1:'迎宾鲜果/糕点',text2:'首日',use:true},
     ],
   },
   // {
@@ -359,7 +359,7 @@ let powerUl = [
       {arr:1,text1:'客房升级',text2:'升一级',use:false},
       {arr:2,text1:'客房升级',text2:'升一级',use:true},
       {arr:3,text1:'客房升级',text2:'升二级',use:true},
-      {arr:4,text1:'客房升级',text2:'至套房',use:true},
+      {arr:4,text1:'客房升级',text2:'至三级',use:true},
     ],
   },
   

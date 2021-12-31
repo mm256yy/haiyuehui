@@ -214,6 +214,10 @@ Page({
           img:'/static/images/member-home1.jpg',
           bindtap:'goFollow',
         },
+        {
+          img:'/static/images/member-home3.jpg',
+          bindtap:'goPointsMarket',
+        },
       ]
     }
     this.setData({
@@ -276,4 +280,9 @@ Page({
       url: "/pages/market/marketIndex/marketIndex",
     });
   },
+  goPointsMarket(){
+    wx.navigateTo({
+      url: "/pages/ucenter/points/pointsMarket/pointsMarket",
+    });
+  }
 });

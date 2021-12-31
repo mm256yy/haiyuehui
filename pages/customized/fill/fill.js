@@ -5,7 +5,7 @@ let user = require('../../../utils/user.js');
 Page({
   data: {
     pics:[
-      '/static/images/banner2.jpg',
+      '/static/images/banner1.jpg',
     ],
     room:{
       hotelId:'',
@@ -205,7 +205,7 @@ Page({
       if(res.result.imgList&&res.result.imgList.length != 0){
         picsNew = res.result.imgList;
       }else{
-        picsNew = ['/static/images/banner2.jpg']
+        picsNew = ['/static/images/banner1.jpg']
       }
       this.setData({
         pics:picsNew,

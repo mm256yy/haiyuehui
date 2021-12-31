@@ -5,16 +5,18 @@ let api = require('../../../../config/api.js');
 Page({
   data: {
     infoPoints: 0,
-    goodsUl: [{
-      img: '/static/images/logo.png',
-      name: '测试产品123123',
-      introduce: '这是一个测试产品打扫打扫打扫的大事',
-      categoryId: '',
-      price: '123',
-      salePrice: '110',
-      content: '',
-      shareUrl: '',
-    }, ],
+    goodsUl: [
+      // {
+      //   img: '/static/images/logo.png',
+      //   name: '测试产品123123',
+      //   introduce: '这是一个测试产品打扫打扫打扫的大事',
+      //   categoryId: '',
+      //   price: '123',
+      //   salePrice: '110',
+      //   content: '',
+      //   shareUrl: '',
+      // }, 
+    ],
     pageNo:1,
   },
   onLoad: function (options) {

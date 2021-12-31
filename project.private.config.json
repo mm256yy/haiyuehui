@@ -27,7 +27,7 @@
         {
           "name": "商城",
           "pathName": "pages/market/marketDetailed/marketDetailed",
-          "query": "id=1",
+          "query": "id=8",
           "scene": null
         },
         {
@@ -38,7 +38,7 @@
         },
         {
           "name": "111",
-          "pathName": "pages/ucenter/points/pointsExchange/pointsExchange",
+          "pathName": "pages/member/activity/scratchCard/scratchCard",
           "query": "",
           "scene": null
         },

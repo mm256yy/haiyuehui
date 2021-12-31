@@ -470,7 +470,102 @@ Page({
       })
     }
     //进行分割规格组合
-    this.specCompose()
+    // this.specCompose()
+    this.specAbled(index1)
+  },
+  specAbled(){
+    let specChoose = this.data.specChoose
+    let specList = this.data.specList
+    let specChooseTrue = false
+    let not_ol = []
+    let not_li = [[]]
+    for(let i = 0; i < specChoose.length; i++){
+      if(specChoose[i]){
+        specChooseTrue = true
+      }
+    }
+    if(specChooseTrue){
+      for (let i = 0; i < specList.length; i++) {
+        for (let j = 0; j < specList[i].list.length; j++) {
+          specList[i].list[j].abled = true
+        }
+      }
+      //获取选中值在productList中的类似位置
+      for(let i = 0; i < specChoose.length; i++){
+        if (specChoose[i]) { 
+          not_li = this.funChooseVal(i,specChoose[i])
+          for(let i = 0; i < not_li.length; i++){
+            for (let j = 0; j < not_li[i].length; j++) {
+              let i_tal = i
+              let j_tal = not_li[i][j]
+              specList[i_tal].list[j_tal].abled = false
+              if(specList[i_tal].list[j_tal].choose){
+                specList[i_tal].list[j_tal].choose = false
+                specChoose[i_tal] = null
+              }
+            }
+          }
+        }
+      }
+    }else{
+      for (let i = 0; i < specList.length; i++) {
+        for (let j = 0; j < specList[i].list.length; j++) {
+          specList[i].list[j].abled = true
+        }
+      }
+    }
+    this.setData({
+      specList: specList,
+      specChoose: specChoose,
+    })
+  },
+  funChooseVal(index1,chooseVal){
+    let specChoose = this.data.specChoose
+    let productList = this.data.productList
+    let specList = this.data.specList
+    let v_productList = []
+    let choose_li = []
+    for (let i = 0; i < productList.length; i++) {
+      v_productList = productList[i].spec.split('$') //j代表productList第几位
+      for(let j = 0; j < productList.length; j++){
+        if (v_productList[j] == chooseVal) {
+          choose_li.push(i)
+        }
+      }
+    }
+    let ex_ul = [[]]
+    let ex_li = []
+    for(let z = 0; z < specChoose.length; z++){
+      for(let i = 0; i < choose_li.length; i++){
+        let arr = choose_li[i]
+        let n_productList = productList[arr].spec.split('$')
+        ex_li[i] = n_productList[z]
+      }
+      ex_ul[z] = this.unique(ex_li)
+      ex_li = []
+    }
+
+    //找没有规格组合
+    let not_ul = []
+    let not_li = []
+    for(let i = 0; i < specList.length; i++){
+      for(let j = 0; j < specList[i].list.length; j++){
+        if(index1 != i){
+          let has = false
+          for(let k = 0; k < ex_ul[i].length; k++){
+            if(specList[i].list[j].name == ex_ul[i][k]){
+              has = true
+            }
+          }
+          if(!has){
+            not_li.push(j)
+          }
+        }
+      }
+      not_ul[i] = not_li
+      not_li = []
+    }
+    return not_ul;
   },
   specCompose() {
     let specChoose = this.data.specChoose
@@ -676,4 +771,21 @@ Page({
       })
     }).catch((err) => {});
   },
+  //去重
+  unique(arr) {
+    let newArr = [arr[0]];
+    for (let i = 1; i < arr.length; i++) {
+      let flag = false;
+      for (let j = 0; j < newArr.length; j++) {
+        if (arr[i] === newArr[j]) {
+          flag = true;
+          break;
+        }
+      }
+      if (!flag) {
+        newArr.push(arr[i]);
+      }
+    }
+    return newArr;
+  }
 })
