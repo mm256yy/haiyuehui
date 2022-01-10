@@ -7,11 +7,14 @@
 // let WxApiRoot = 'http://124.70.132.80:9001/wx/'; let testing = true;
 // 本机 开发api地址
 // let WxApiRoot = 'http://192.168.133.67:9002/wx/'; let testing = true;    //'http://192.168.188.79:9001/wx/'; 
+// let WxApiRoot = 'http://115.238.67.214:9001/wx/'; let testing = true;  //明俊外网地址 
 // 生产地址 
 let WxApiRoot = 'https://hotels.hwhautomall.com/wx/'; let testing = false;  // let WxApiRoot = 'https://www.hwhhotels.com/wx/';
  
 module.exports = {
    testing,  //判断是否是测试环境
+   AuthCheckSession: WxApiRoot + 'system/forceUpdateSession', //强制刷新Session
+
    AuthCheckToken: WxApiRoot + 'auth/checkToken', //判断token是否过期 hwh
    AuthLoginByWeixin: WxApiRoot + 'auth/wxLogin', //微信登录 hwh
    AuthRegisterCaptcha: WxApiRoot + 'auth/sendSmsCode', //验证码 hwh

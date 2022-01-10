@@ -39,6 +39,7 @@ App({
     }else if(option.scene){
       inviteCode = this.sceneSplit(option.scene,0)
     }
+    console.log('code',inviteCode)
     // 商城id
     if(option.goodsId){
       goodsId = option.goodsId;

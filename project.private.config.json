@@ -38,7 +38,7 @@
         },
         {
           "name": "111",
-          "pathName": "pages/member/activity/scratchCard/scratchCard",
+          "pathName": "pages/ucenter/order/orderAddition/orderAddition",
           "query": "",
           "scene": null
         },

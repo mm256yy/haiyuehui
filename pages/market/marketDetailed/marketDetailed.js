@@ -78,6 +78,7 @@ Page({
   },
   onShow: function () {
     this.member();
+    this.specChooseEmpty();
   },
   //点击转发按钮
   onShareAppMessage: function (ops) {
@@ -99,7 +100,7 @@ Page({
   },
   //会员
   member() {
-    user.memberGetInfoStorage().then(res => {
+    user.memberGetInfo().then(res => {
       this.setData({
         'info.cardLevel': res.result.cardLevel
       })
@@ -787,5 +788,11 @@ Page({
       }
     }
     return newArr;
-  }
+  },
+  //清除specChoose
+  specChooseEmpty(){
+    this.setData({
+      specChoose:[],
+    })
+  },
 })

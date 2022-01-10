@@ -1,8 +1,6 @@
 let util = require('../../../../utils/util.js');
 let check = require('../../../../utils/check.js');
 let api = require('../../../../config/api.js');
-let pay = require('../../../../utils/pay.js');
-// pages/ucenter/order/index.js
 Page({
   data: {
     menuUl:[
@@ -30,6 +28,7 @@ Page({
         payMoney:0,
         otaId:'',
         pid:null, //有值为续租订单
+        connected:0, //是否是接入订单
       }*/
     ],
     pageNo:1,
@@ -63,26 +62,28 @@ Page({
       let o_ul = [];
       let o_li = {};
       let orderUlNew = []
-      if(res.result.records.length != 0){ 
-        for(let i=0;i<res.result.records.length;i++){
+      let data = res.result.records
+      if(data.length != 0){ 
+        for(let i=0;i<data.length;i++){
           o_li = {
-            id:res.result.records[i].orderId ,
-            hotelName:res.result.records[i].hotelName||'暂无获取到酒店名字',
-            status:res.result.records[i].status,
-            startTime:new Date(res.result.records[i].arr).getTime(),
-            startTimeS:res.result.records[i].arr,
-            endTime:new Date(res.result.records[i].dep).getTime(),
-            endTimeS:res.result.records[i].dep,
-            orderRoom:res.result.records[i].rmdesc,
-            orderNum:res.result.records[i].orderId,
-            orderPrice:res.result.records[i].money,
-            roomNo:res.result.records[i].roomNo?res.result.records[i].roomNo:'',
-            canAdd:res.result.records[i].canAdd,
-            isCis:res.result.records[i].isCis,
-            isOverdue:(check.checkIsOverdue(res.result.records[i].dep) < 0),
-            payMoney:res.result.records[i].payMoney?res.result.records[i].payMoney:0,
-            otaId:res.result.records[i].otaId?res.result.records[i].otaId:'',
-            pid:res.result.records[i].pid,
+            id:data[i].orderId ,
+            hotelName:data[i].hotelName||'暂无获取到酒店名字',
+            status:data[i].status,
+            startTime:new Date(data[i].arr).getTime(),
+            startTimeS:data[i].arr,
+            endTime:new Date(data[i].dep).getTime(),
+            endTimeS:data[i].dep,
+            orderRoom:data[i].rmdesc,
+            orderNum:data[i].orderId,
+            orderPrice:data[i].money,
+            roomNo:data[i].roomNo?data[i].roomNo:'',
+            canAdd:data[i].canAdd,
+            isCis:data[i].isCis,
+            isOverdue:(check.checkIsOverdue(data[i].dep) < 0),
+            payMoney:data[i].payMoney?data[i].payMoney:0,
+            otaId:data[i].otaId?data[i].otaId:'',
+            pid:data[i].pid,
+            connected:data[i].connected == 1?1:0,
           }
           o_ul.push(o_li)
         }
@@ -91,7 +92,7 @@ Page({
         orderUlNew = o_ul;
       }else{
         orderUlNew = this.data.orderUl.concat(o_ul);
-        if(res.result.records.length == 0){
+        if(data.length == 0){
           this.setData({
             pageNo:this.data.pageNo - 1
           });
@@ -149,7 +150,6 @@ Page({
           let param = {
             orderId:e.currentTarget.dataset.orderId
           }
-          console.log(param)
           util.request(api.UcenterOrderCheckOut , param , 'POST').then(res => {
             wx.showToast({title: "退房申请成功" ,image:'/static/images/icon_success.png'})
             that.init(0,1);

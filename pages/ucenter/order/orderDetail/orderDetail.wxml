@@ -127,7 +127,7 @@
       </view>
     </view>
   </view>
-  <view class="money_box">
+  <view class="money_box" wx:if="{{(detail.connected == 1&&detail.status == 11)||(detail.connected == 0)}}">
     <view class="order_h1">订单金额详情</view>
     <view class="order_money" bindtap="{{datePrices.length !=0?'funDatePricesShow':''}}">
       <view class="order_money_li">
@@ -179,7 +179,7 @@
       <view class="order_money_li"><text class="detail_t1">付款金额</text><text class="detail_t3">￥{{filter.moneyFixed(total.money)}}</text></view>
     </view>
   </view>
-  <view class="money_box" wx:if="{{(detail.status == 22||detail.status == 23||detail.status == 24||detail.status == 31||detail.status == 41||detail.status == 51)}}">
+  <view class="money_box" wx:if="{{(detail.status == 22||detail.status == 23||detail.status == 24||detail.status == 31||detail.status == 41||detail.status == 51)&&((detail.connected == 1&&detail.status == 11)||(detail.connected == 0))}}">
     <view class="order_h1">订单支付方式</view>
     <view class="order_money">
       <view class="order_money_li"><text class="detail_t1">余额支付：</text><text class="detail_t2">￥{{filter.moneyFixed(total.wayBalance)}}</text></view>

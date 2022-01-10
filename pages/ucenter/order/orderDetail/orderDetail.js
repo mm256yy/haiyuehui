@@ -25,6 +25,7 @@ Page({
       otaId:'',  //ota订单
       otaRestype:'',  //ota类型
       pid:null,//是否是续租订单
+      connected:0,//是否是接入订单
     },
     personUl:[
       /*{    
@@ -114,6 +115,7 @@ Page({
         otaId:data.otaId?data.otaId:'',
         otaRestype:data.otaRestype?data.otaRestype:'',
         pid:data.pid,
+        connected:data.connected == 1?1:0,
       }
       let dayNum = (new Date(data.dep) - new Date(data.arr))/1000/60/60/24;
       //日历房

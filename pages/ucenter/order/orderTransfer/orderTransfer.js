@@ -1,9 +1,7 @@
-// pages/ucenter/orderTransfer/orderTransfer.js
 let util = require('../../../../utils/util.js');
 let api = require('../../../../config/api.js');
-let pay = require('../../../../utils/pay.js');
 let user = require('../../../../utils/user.js');
-let app = getApp();
+
 Page({
   data: {
     processNum:1,
@@ -44,6 +42,7 @@ Page({
       otaId:'', //ota的id
       otaRestype:'',  //ota的类型
       roomNo:'',
+      connected:'', //是否为接入订单 1是 0否 
     }
   },
   onShow: function () {
@@ -155,6 +154,7 @@ Page({
         otaId:res.result.otaId?res.result.otaId:'',
         otaRestype:res.result.otaRestype?res.result.otaRestype:'',
         roomNo:res.result.roomNo?res.result.roomNo:'',
+        connected:res.result.connected == 1?1:0,
       }
       //
       that.setData({
@@ -222,6 +222,7 @@ Page({
         otaId:res.result.otaId?res.result.otaId:'',
         otaRestype:res.result.otaRestype?res.result.otaRestype:'',
         roomNo:res.result.roomNo?res.result.roomNo:'',
+        connected:res.result.connected == 1?1:0,
       }
       //
       that.setData({
@@ -278,9 +279,4 @@ Page({
       url:"/pages/ucenter/order/orderList/orderList"
     })
   },
-  // dayNum(startTime,endTime){
-  //   let day = new Date((endTime).replace(/-/g,'/')) - new Date((startTime).replace(/-/g,'/'))
-  //   let num = day/1000/60/60/24;
-  //   return num
-  // }
 })
