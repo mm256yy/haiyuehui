@@ -2,20 +2,24 @@ let util = require('../../../../utils/util.js');
 let api = require('../../../../config/api.js');
 Page({
   data: {
-    chooseDate:'本月',
+    chooseDate:'今年',
     consumeUl:[
       // {type:'充值',date:'2020-12-12',ref:'备注',money:'-5000',hotelName:''},
-    ]
+    ],
+    pageNo:1,
   },
   onLoad: function (options) {
     let date = new Date();
-    let val = date.getFullYear()+'-'+ util.formatNumber(date.getMonth() + 1)
+    let val = date.getFullYear()
     this.setData({
       chooseDate:val
     })
   },
   onShow: function () {
-    this.bindConsume();
+    this.setData({
+      pageNo:1,
+    })
+    this.bindConsume(1);
   },
   //选择时间
   bindDateChange(e) {
@@ -23,49 +27,73 @@ Page({
     this.setData({
       chooseDate: chooseDateNew
     })
-    this.bindConsume(this.data.chooseType);
+    this.bindConsume(1);
   },
-  bindConsume(){  
-    let chooseDateNew = this.data.chooseDate;
+  // 上拉刷新
+  onReachBottom: function() {
+    this.setData({
+      pageNo:this.data.pageNo + 1,
+    })
+    this.bindConsume(2)
+  },
+  //获取积分历史
+  bindConsume(pull){   //pull 1为初始化 2为下拉
+    let chooseDateNew = this.data.chooseDate.toString();
     let param = {
-      startDate:chooseDateNew+'-01', 
-      endDate:this.endDate(chooseDateNew)+'-01',
+      startDate:chooseDateNew+'-01-01', 
+      endDate:chooseDateNew+'-12-01',
+      pageNo:this.data.pageNo,
+      pageSize:15,
     }
     util.request(api.PointHistory, param , 'GET').then(res => {
-      let ul=[];
-      let li={};
+      let consumeUl = [];
+      let o_ul=[];
+      let o_li={};
       let liType = '';
       let liMoney = '';
       let liRef = '';
-      for(let i=0;i<res.result.length;i++){
-        let li_credit = (res.result[i].credit != 0);  //充值
-        let li_charge = (res.result[i].charge != 0);  //消费
-        let li_descript = (res.result[i].descript||res.result[i].descript == '');  //积分
-
-        if(li_credit&&li_descript){  //积分充值
-          liType = '充值';  
-          liMoney = '+'+res.result[i].credit;
-          liRef = res.result[i].descript == ''?'(未备注)':res.result[i].descript
-        }else if(li_charge&&li_descript){  //积分消费
-          liType = '消费';  
-          liMoney = '-'+Math.abs(res.result[i].charge);
-          liRef = res.result[i].descript == ''?'(未备注)':res.result[i].descript
-        }else{
-          liType = '异常';  
-          liMoney = '异常';
-          liRef = '异常';
+      let data = res.result.records
+      if(data.length != 0){
+        for(let i=0;i<data.length;i++){
+          let li_credit = (data[i].credit != 0);  //充值
+          let li_charge = (data[i].charge != 0);  //消费
+          let li_descript = (data[i].descript||data[i].descript == '');  //积分
+  
+          if(li_credit&&li_descript){  //积分充值
+            liType = '充值';  
+            liMoney = '+'+data[i].credit;
+            liRef = data[i].descript == ''?'(未备注)':data[i].descript
+          }else if(li_charge&&li_descript){  //积分消费
+            liType = '消费';  
+            liMoney = '-'+Math.abs(data[i].charge);
+            liRef = data[i].descript == ''?'(未备注)':data[i].descript
+          }else{
+            liType = '异常';  
+            liMoney = '异常';
+            liRef = '异常';
+          }
+          o_li = {
+            type:liType,
+            date:data[i].date,
+            ref:liRef,
+            money:liMoney,
+            hotelName:data[i].hotelName
+          }
+          o_ul.push(o_li)
         }
-        li = {
-          type:liType,
-          date:res.result[i].date,
-          ref:liRef,
-          money:liMoney,
-          hotelName:res.result[i].hotelName
-        }
-        ul.push(li)
       }
+      if(pull == 1){  //初始化
+        consumeUl = o_ul;
+      }else{
+        consumeUl = this.data.consumeUl.concat(o_ul);
+        if(data.length == 0){
+          this.setData({
+            pageNo:this.data.pageNo - 1
+          });
+        }
+      };
       this.setData({
-        consumeUl : ul
+        consumeUl : consumeUl
       })
     }).catch((err) => {});
   },

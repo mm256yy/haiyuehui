@@ -1,20 +1,59 @@
-
-.login_logo{
-  margin-top: 100rpx;
+page{
+  background-color: #f1f1f1;
+}
+/*menu*/
+.menu_box{
+  padding: 40rpx 20rpx;
+}
+.menu_ul{
+  display: flex;
+}
+.menu_li{
+  flex: 1 1 auto;
   text-align: center;
 }
-.logo_img{
-  width: 80%;
-  margin:auto;
+.menu_li_num{
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius:50rpx;
+  background-color: #cdcdcd;
+  color: #fff;
+  margin: auto;
 }
-/*form*/
-.form_box {
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-  padding: 0 40rpx;
-  background: #fff;
-  margin-top: 100rpx;
+.menu_li_num_on{
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius:50rpx;
+  background-color: #1890ff;
+  color: #fff;
+  margin: auto;
+}
+.menu_li_name{
+  font-size: 24rpx;
+  margin-top: 10rpx;
+  color: #cdcdcd;
+}
+.menu_li_name_on{
+  font-size: 24rpx;
+  margin-top: 10rpx;
+  color: #1890ff;
+}
+/*two*/
+.live_box{
+  background-color: #fff;
+  padding: 40rpx 0rpx;
+}
+.live_input{
+  padding: 20rpx 30rpx;
+}
+.live_title{
+  text-align: center;
+  padding: 30rpx;
+  border-bottom: 1px solid #999;
 }
 .form_ul{
   display: flex;
@@ -38,79 +77,133 @@
   height: 80rpx;
 }
 .person_text{
-  color: #999;
-  font-size: 24rpx;
-}
-.form_li{
-  height: 96rpx;
-  position: relative;
-}
-
-.form_input{
-  display: block;
-  width: 100%;
-  height: 95rpx;
-  color: #333;
-  font-size: 30rpx;
-  border-bottom: 1px solid #f1f1f1;
-}
-
-.form-item-code {
-  height: auto;
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-}
-.code-btn {
-  padding: 20rpx 40rpx;
+  background-color: #1890ff;
   border-radius: 10rpx;
+  margin: 5px;
+  padding:10px 0px;
+  text-align: center;
+  color: #fff;
+  font-size: 24rpx;
+  width: 150rpx;
+}
+.input_li{
+  position: relative;
+}
+.input_li text{
+  display: inline-block;
+  width: 120rpx;
+  line-height: 45rpx;
+  text-align: right;
+  padding-top:10rpx ;
+}
+.input_li input{
+  padding: 25rpx 20rpx;
+  border-radius:10rpx ;
+  border-bottom:1rpx solid #f1f1f1 ;
+}
+.room_ul{
+  overflow: hidden;
+}
+.room_li{
+  width: 25%;
+  float: left;
+  padding: 10rpx 0rpx;
+}
+.room_detail{
+  font-size: 24rpx;
+  color: #999;
+  padding: 10rpx;
+}
+.room_detai2{
+  font-size: 24rpx;
+  color: #753ffd;
+  padding: 10rpx;
+}
+.room_li_val{
   color: #008cd7;
-  z-index: 10;
+  background-color: #d8f1ff;
+  font-size: 28rpx;
+  text-align: center;
+  padding: 10rpx 0rpx;
+  margin: 0rpx 10rpx;
+  overflow: hidden;
+  border-radius:20rpx ;
+  position: relative;
+}
+.room_li_on{
+  color: #fff;
+  background-color: #008cd7;
+}
+.room_choose{
+  width: 30rpx;
+  height: 30rpx;
   position: absolute;
-  right: 0rpx;
   top: 10rpx;
 }
-
-.form-item .clear {
-  position: absolute;
-  top: 26rpx;
-  right: 18rpx;
-  z-index: 2;
-  display: block;
-  background: #fff;
-  height: 44rpx;
-  width: 44rpx;
+.room_choose_left{
+  left: 0rpx;
 }
-
-.btn_li {
-  margin: 60rpx 0rpx 40rpx 0rpx;
-  padding: 20rpx 10rpx;
-  border-radius:50rpx ;
-  color: #fff;
-  font-size: 30rpx;
-  width: 100%;
-  border-radius: 50rpx;
-  background: linear-gradient(to right, #039cee , #753ffd);
+.room_choose_right{
+  right: 0rpx;
+}
+.live_blue{
+  color: #008cd7;
+  font-size: 28rpx;
+  padding: 40rpx 30rpx;
   text-align: center;
 }
-.form_label{
-  padding: 10rpx;
+.live_red{
+  color: #cc0000;
   font-size: 24rpx;
-  color: #999;
+  background-color: #fff;
+  padding: 0rpx 30rpx;
 }
-.share_btn{
-  margin: 40rpx 0rpx 40rpx 0rpx;
-  padding: 20rpx 10rpx;
-  border-radius:50rpx ;
-  color: #039cee;
-  font-size: 30rpx;
-  width: 100% !important;
-  border-radius: 50rpx;
-  border: 1px solid #039cee;
-  /*background: linear-gradient(to right, #039cee , #753ffd);*/
-  font-weight: 500;
+/*park*/
+.park_box{
+  background-color: #fff;
   text-align: center;
+  position: relative;
 }
+.face_top{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+}
+/*success*/
+.success_box{
+  background-color: #fff;
+  text-align: center;
+  padding: 20rpx;
+}
+.success_text{
+  color: #008cd7;
+  font-size: 36rpx;
+  font-weight: 800;
+}
+/*btn*/
+.choose_btn{
+  background-color: #fff;
+}
+.btn_define{
+  background: linear-gradient(to right, #039cee , #753ffd);
+  color: #fff;
+  border-radius: 40rpx;
+  text-align: center;
+  padding: 20rpx;
+  margin:0rpx 20rpx;
+}
+.btn_again{
+  background-color: #e6e4e4;
+  color: #666;
+  border-radius: 40rpx;
+  text-align: center;
+  padding: 20rpx;
+  margin: 20rpx;
+}
+.reside_btn{
+  padding: 50rpx 0rpx 50rpx;
+}
+/*agreement*/
 .agreement{
   text-align: center;
   color: #999;

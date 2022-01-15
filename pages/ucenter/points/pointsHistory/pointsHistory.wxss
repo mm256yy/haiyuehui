@@ -2,6 +2,12 @@ page{
   background-color: #f1f1f1;
 }
 /*choose*/
+.choose_box{
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+}
 .choose_day{
   padding:20rpx 30rpx;
   background-color: #f1f1f1;
@@ -16,7 +22,7 @@ page{
 }
 /*消费列表*/
 .consume_ul{
-  margin-top: 0rpx;
+  margin-top: 100rpx;
 }
 .consume_li{
   padding: 30rpx;

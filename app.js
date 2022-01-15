@@ -8,8 +8,9 @@ App({
   },
   onShow: function(data) {
     this.renderingTime();  //日历
-    this.invite(data);  //邀请人
-    this.exchange(data); //兑换码转接
+    this.otherVal(data);  //获取 邀请码/商城id/兑换码
+    // this.invite(data);  //邀请人
+    // this.exchange(data); //兑换码转接
   },
   //判断是否有更新内容
   update(){
@@ -28,33 +29,79 @@ App({
       })
     })
   },
-  //邀请人
-  invite(data){
+  otherVal(data){
     let option = data.query;
+    let json = {};
+    let hasVal = false; //判断是否有值？有值则剩下的不赋予值
+
     let inviteCode = "";
     let goodsId = "";
-    //用户id
-    if(option.inviteCode){
+    let exchangeCode = "";
+    console.log('option',option)
+    //邀请码
+    if(option.inviteCode && !hasVal){  //链接
       inviteCode = option.inviteCode;
-    }else if(option.scene){
-      inviteCode = this.sceneSplit(option.scene,0)
+    }else if(option.scene  && !hasVal){  //二维码
+      json = this.urlToJson(option.scene)
+      inviteCode = json.inviteCode
     }
-    console.log('code',inviteCode)
-    // 商城id
-    if(option.goodsId){
+    if(inviteCode){
+      hasVal = true
+    }
+    //商品id
+    if(option.goodsId && !hasVal){
       goodsId = option.goodsId;
-    }else if(option.scene){
-      goodsId = this.sceneSplit(option.scene,1)
+    }else if(option.scene && !hasVal){
+      json = this.urlToJson(option.scene)
+      inviteCode = json.code;
+      goodsId = json.gid;
     }
+    if(goodsId){
+      hasVal = true
+    }
+    //兑换码
+    if(option.ids && !hasVal){
+      exchangeCode = option.ids;
+    }else if(option.scene && !hasVal){
+      json = this.urlToJson(option.scene)
+      exchangeCode = json.ids
+    }
+    if(exchangeCode){
+      hasVal = true
+    }
+    //存储
+    console.log(inviteCode)
     wx.setStorageSync('othersInviteCode', inviteCode);
     wx.setStorageSync('othersgoodsId', goodsId);
-  },
-  //转接兑换码
-  exchange(data){
-    let option = data.query;
-    let exchangeCode = option.ids;
     wx.setStorageSync('exchangeCode', exchangeCode);
   },
+  //邀请人
+  // invite(data){
+  //   let option = data.query;
+  //   let inviteCode = "";
+  //   let goodsId = "";
+  //   //用户id
+  //   if(option.inviteCode){
+  //     inviteCode = option.inviteCode;
+  //   }else if(option.scene){
+  //     inviteCode = this.sceneSplit(option.scene,0)
+  //   }
+  //   console.log('code',inviteCode)
+  //   // 商城id
+  //   if(option.goodsId){
+  //     goodsId = option.goodsId;
+  //   }else if(option.scene){
+  //     goodsId = this.sceneSplit(option.scene,1)
+  //   }
+  //   wx.setStorageSync('othersInviteCode', inviteCode);
+  //   wx.setStorageSync('othersgoodsId', goodsId);
+  // },
+  //转接兑换码
+  // exchange(data){
+  //   let option = data.query;
+  //   let exchangeCode = option.ids;
+  //   wx.setStorageSync('exchangeCode', exchangeCode);
+  // },
   //获取用户信息
   userInfo(){
     wx.getSetting({
@@ -89,14 +136,25 @@ App({
     }
   },
   //切割scene
-  sceneSplit(date,val){
-    let str = decodeURIComponent(date).toString().split('&');
-    if(str[val]){
-      let pa = str[val].split('=');
-      return pa[1]
-    }else{
-      return null
+  // sceneSplit(date,val){
+  //   let str = decodeURIComponent(date).toString().split('&');
+  //   console.log('str',this.urlToJson(decodeURIComponent(date).toString()))
+  //   if(str[val]){
+  //     let pa = str[val].split('=');
+  //     return pa[1]
+  //   }else{
+  //     return null
+  //   }
+  // },
+  //url转json
+  urlToJson(date){
+    let ret = {};
+    let string = decodeURIComponent(date).toString().split('&')
+    for(let i = 0;i<string.length;i++){
+      let str = string[i].split('=');
+      ret[str[0]] = str[1];
     }
+    return ret;
   },
   //
   globalData: {},  //切勿删除

@@ -2,8 +2,8 @@
   <import src="/template/template"/> 
   <view class="choose_box" bindtap="chooseTime">
     <view class="choose_day">
-      <picker class="choose_time" mode="date" fields="month" value="{{chooseDate}}" start="2020-01-01" end="2050-01-01" bindchange="bindDateChange">
-        <view class="picker">选择月份：{{chooseDate}}</view>
+      <picker class="choose_time" mode="date" fields="year" value="{{chooseDate}}" start="2020-01-01" end="2050-01-01" bindchange="bindDateChange">
+        <view class="picker">选择年份：{{chooseDate}}年</view>
       </picker>
     </view>
   </view>

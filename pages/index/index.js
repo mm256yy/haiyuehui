@@ -8,18 +8,20 @@ let app = getApp();
 Page({
   data: {
     bannerUrls:[
-      '/static/images/banner1.jpg',
-      '/static/images/banner4.jpg',
+      {
+        img:'/static/images/banner1.jpg',
+        bindtap:''
+      }
     ],
     recommendUrls:[
       // {
       //   img:'/static/images/member-luck.jpg',
       //   bindtap:'goLuck',
       // },
-      // {
-      //   img:'/static/images/member-home.jpg',
-      //   bindtap:'',
-      // },
+      {
+        img:'/static/images/member-home1.jpg',
+        bindtap:'/pages/member/memberFollow/memberFollow',
+      },
     ],
     hotelsName:'点击选择酒店',
     hotelsId:'hotelsId',
@@ -41,16 +43,15 @@ Page({
   onLoad: function (option) {
     wx.setStorageSync('othersInviteCodeFrist', true);
     user.goToLogin()
+    this.topBanner();
   },
   onShow: function () {
-    // wx.showTabBar()
     this.marketGo();  //跳转到商城
     this.getAllowance();  //津贴
     this.getMarketDetailed();  //商城佣金
     this.renderingTime();  //日历
     this.fristRegister();  //优惠券  
     this.member();
-    this.activity();  //活动入口判断
   },
   //获取津贴
   getAllowance(){
@@ -194,35 +195,70 @@ Page({
     })
   },
   //活动时间判断
-  activity(){
-    let date = (new Date()).getTime();
-    let recommendUrlsNew = [];
-    if(date <= 1636646402000){ //活动日子
-      recommendUrlsNew = [
-        {
-          img:'/static/images/member-home2.jpg',
-          bindtap:'marketIndex',
-        },
-        {
-          img:'/static/images/member-home1.jpg',
-          bindtap:'goFollow',
-        },
-      ]
-    }else{
-      recommendUrlsNew = [
-        {
-          img:'/static/images/member-home1.jpg',
-          bindtap:'goFollow',
-        },
-        {
-          img:'/static/images/member-home3.jpg',
-          bindtap:'goPointsMarket',
-        },
-      ]
-    }
-    this.setData({
-      recommendUrls:recommendUrlsNew
-    })
+  // activity(){
+  //   let date = (new Date()).getTime();
+  //   let recommendUrlsNew = [];
+  //   if(date <= 1636646402000){ //活动日子
+  //     recommendUrlsNew = [
+  //       {
+  //         img:'/static/images/member-home2.jpg',
+  //         bindtap:'marketIndex',
+  //       },
+  //       {
+  //         img:'/static/images/member-home1.jpg',
+  //         bindtap:'goFollow',
+  //       },
+  //     ]
+  //   }else{
+  //     recommendUrlsNew = [
+  //       {
+  //         img:'/static/images/member-home1.jpg',
+  //         bindtap:'goFollow',
+  //       },
+  //       {
+  //         img:'/static/images/member-home3.jpg',
+  //         bindtap:'goPointsMarket',
+  //       },
+  //     ]
+  //   }
+  //   this.setData({
+  //     recommendUrls:recommendUrlsNew
+  //   })
+  // },
+  //banner图片1
+  topBanner(){
+    let that = this
+    let bannerUrls = []
+    let recommendUrls = []
+    util.request(api.TndexBannerList , 'GET').then(res => {
+      let data = res.result
+      let li = {}
+      for(let i=0;i<data.length;i++){
+        li = {
+          img:data[i].img,
+          bindtap:data[i].link,
+        }
+        if(data[i].location == 1){
+          bannerUrls.push(li)
+        }else if(data[i].location == 2){
+          recommendUrls.push(li)
+        }
+      }
+      if(bannerUrls.length == 0){
+        bannerUrls = [
+          {img:'/static/images/banner1.jpg',bindtap:''},
+        ]
+      }
+      if(recommendUrls.length == 0){
+        recommendUrls = [
+          {img:'/static/images/member-home1.jpg',bindtap:'/pages/member/memberFollow/memberFollow'},
+        ]
+      }
+      that.setData({
+        bannerUrls:bannerUrls,
+        recommendUrls:recommendUrls
+      })
+    }).catch((err) => {});
   },
   dayZero(val){
     if(val<=9){
@@ -270,11 +306,6 @@ Page({
       url: "/pages/member/activity/memberLuck/memberLuck",
     });
   },
-  goFollow(){
-    wx.navigateTo({
-      url: "/pages/member/memberFollow/memberFollow",
-    });
-  },
   marketIndex(){
     wx.switchTab({
       url: "/pages/market/marketIndex/marketIndex",
@@ -283,6 +314,12 @@ Page({
   goPointsMarket(){
     wx.navigateTo({
       url: "/pages/ucenter/points/pointsMarket/pointsMarket",
+    });
+  },
+  goto(e){
+    let url = e.currentTarget.dataset.tap;
+    wx.navigateTo({
+      url: url,
     });
   }
 });

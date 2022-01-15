@@ -8,6 +8,7 @@
 // 本机 开发api地址
 // let WxApiRoot = 'http://192.168.133.67:9002/wx/'; let testing = true;    //'http://192.168.188.79:9001/wx/'; 
 // let WxApiRoot = 'http://115.238.67.214:9001/wx/'; let testing = true;  //明俊外网地址 
+// let WxApiRoot = 'http://192.168.133.88:9002/wx/'; let testing = true;  //益静本机
 // 生产地址 
 let WxApiRoot = 'https://hotels.hwhautomall.com/wx/'; let testing = false;  // let WxApiRoot = 'https://www.hwhhotels.com/wx/';
  
@@ -22,6 +23,8 @@ module.exports = {
    AuthRegisterWx: WxApiRoot + 'auth/bindWxMobile', //用微信默认手机号/绑定手机号 hwh
    SystemUpload: WxApiRoot + 'system/upload', //上传图片
    
+   TndexBannerList: WxApiRoot + 'banner/list', //banner 图片
+
    CustomizedHotelsDetailed: WxApiRoot + 'hotel/getRoomPrice', //获取酒店房间信息 hwh
    CustomizedHotelsRoom: WxApiRoot + 'hotel/room', //获取房间详情 hwh
    CustomizedHotelsList: WxApiRoot + 'hotel/list', //获取酒店列表 hwh

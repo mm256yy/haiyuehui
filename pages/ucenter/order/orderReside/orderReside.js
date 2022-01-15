@@ -39,7 +39,7 @@ Page({
       mobile:'',
       file:'',
     },
-    //
+    //错误提示
     cameraErr:'',
   },
   onLoad: function (options) {

@@ -39,7 +39,7 @@
         {
           "name": "111",
           "pathName": "pages/ucenter/order/orderAddition/orderAddition",
-          "query": "",
+          "query": "additionType=1",
           "scene": null
         },
         {
