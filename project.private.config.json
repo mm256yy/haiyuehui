@@ -38,8 +38,8 @@
         },
         {
           "name": "111",
-          "pathName": "pages/ucenter/order/orderAddition/orderAddition",
-          "query": "additionType=1",
+          "pathName": "pages/ucenter/invite/inviteCode/inviteCode",
+          "query": "",
           "scene": null
         },
         {

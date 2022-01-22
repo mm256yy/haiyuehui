@@ -8,7 +8,7 @@
         >
         <block wx:for="{{bannerUrls}}" wx:key="item">
           <swiper-item>
-            <image src="{{item.img}}" class="banner_image" />
+            <image src="{{item.img}}" class="banner_image" data-tap="{{item.bindtap}}" bindtap="goto"/>
           </swiper-item>
         </block>
       </swiper>

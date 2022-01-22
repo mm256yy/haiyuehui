@@ -201,7 +201,7 @@ Page({
   //   if(date <= 1636646402000){ //活动日子
   //     recommendUrlsNew = [
   //       {
-  //         img:'/static/images/member-home2.jpg',
+  //         img:'/static/images/member-home1.jpg',
   //         bindtap:'marketIndex',
   //       },
   //       {
@@ -216,7 +216,7 @@ Page({
   //         bindtap:'goFollow',
   //       },
   //       {
-  //         img:'/static/images/member-home3.jpg',
+  //         img:'/static/images/member-home1.jpg',
   //         bindtap:'goPointsMarket',
   //       },
   //     ]
