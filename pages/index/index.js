@@ -19,7 +19,7 @@ Page({
       //   bindtap:'goLuck',
       // },
       {
-        img:'/static/images/member-home1.jpg',
+        img:'/static/images/member-home.jpg',
         bindtap:'/pages/member/memberFollow/memberFollow',
       },
     ],
@@ -194,37 +194,6 @@ Page({
       popShow:false
     })
   },
-  //活动时间判断
-  // activity(){
-  //   let date = (new Date()).getTime();
-  //   let recommendUrlsNew = [];
-  //   if(date <= 1636646402000){ //活动日子
-  //     recommendUrlsNew = [
-  //       {
-  //         img:'/static/images/member-home1.jpg',
-  //         bindtap:'marketIndex',
-  //       },
-  //       {
-  //         img:'/static/images/member-home1.jpg',
-  //         bindtap:'goFollow',
-  //       },
-  //     ]
-  //   }else{
-  //     recommendUrlsNew = [
-  //       {
-  //         img:'/static/images/member-home1.jpg',
-  //         bindtap:'goFollow',
-  //       },
-  //       {
-  //         img:'/static/images/member-home1.jpg',
-  //         bindtap:'goPointsMarket',
-  //       },
-  //     ]
-  //   }
-  //   this.setData({
-  //     recommendUrls:recommendUrlsNew
-  //   })
-  // },
   //banner图片1
   topBanner(){
     let that = this
@@ -251,7 +220,7 @@ Page({
       }
       if(recommendUrls.length == 0){
         recommendUrls = [
-          {img:'/static/images/member-home1.jpg',bindtap:'/pages/member/memberFollow/memberFollow'},
+          {img:'/static/images/member-home.jpg',bindtap:'/pages/member/memberFollow/memberFollow'},
         ]
       }
       that.setData({

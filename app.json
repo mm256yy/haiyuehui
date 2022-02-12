@@ -4,6 +4,7 @@
     "pages/index/index",
     "pages/member/activity/memberLuck/memberLuck",
     "pages/member/activity/scratchCard/scratchCard",
+    "pages/member/activity/recruit/recruit",
     
     "pages/member/memberIndex/memberIndex",
     "pages/member/memberPower/memberPower",

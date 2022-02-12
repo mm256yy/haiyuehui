@@ -41,6 +41,8 @@ Page({
     },
     //错误提示
     cameraErr:'',
+    //isDebug
+    isDebug:false,
   },
   onLoad: function (options) {
     this.ctx = wx.createCameraContext()
@@ -48,6 +50,7 @@ Page({
     this.roomImg();
   },
   onShow: function () {
+    this.funIsDebug();
     this.substitution()
   },
   //加载hotel参数
@@ -274,7 +277,24 @@ Page({
       that.infoBtnFrist()
     }
   },
-  
+  //调用摄像头（瑞沃）
+  resideBtn2(){
+    var that = this;
+    let choose = this.data.menuChoose
+    if(choose == 2){
+      this.ctx.takePhoto({
+        quality: 'high',
+        success: (res) => {
+          console.log(res)
+          var tempImagePath = res.tempImagePath;
+          that.Imgupload2(that, tempImagePath)
+        }
+      })
+    }else{
+      check.showErrorToast("长按失败");
+    }
+  },
+
   //办理入住
   infoBtnFrist(){
     let roomNoNew = (this.data.hotel.roomPitch == ''?this.data.hotel.roomNo:this.data.hotel.roomPitch)
@@ -382,6 +402,70 @@ Page({
           }).catch((err) => {
             that.setData({
               cameraErr : '悉点接口调用失败'
+            })
+          });
+        }else{
+          check.showErrorToast(data.message);
+          that.setData({
+            cameraErr : data.message
+          })
+          return;
+        }
+      },
+      fail: function (e) {
+        console.log(e);
+        that.setData({
+          cameraErr : JSON.stringify(e)
+        })
+        check.showErrorToast("照片上传失败");
+      },
+      complete: function () {
+        wx.hideToast(); //隐藏Toast
+      }
+    })
+  },
+  //funIsDebug
+  funIsDebug(){
+    this.setData({
+      isDebug:wx.getStorageSync('debug')
+    })
+  },
+  //图片上传(瑞沃)
+  Imgupload2(page, path) {
+    let that = this;
+    wx.showToast({
+      icon: "loading",
+      title: "正在上传"
+    }),
+    wx.uploadFile({
+      url: api.SystemUpload,
+      filePath: path,
+      name: 'file',
+      header: {
+        "Content-Type": "multipart/form-data",
+        'X-HWH-Token': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        //上传成功返回数据
+        let data = JSON.parse(res.data)
+        if (data.code == 0) {
+          that.setData({
+            'info.file':data.result
+          })
+          let roomNoNew = (that.data.hotel.roomPitch == ''?that.data.hotel.roomNo:that.data.hotel.roomPitch)
+          let url = api.UcenterOrderRWCheckPerson +'?orderId='+ that.data.hotel.orderId
+          + '&name=' + that.data.info.name
+          + '&ident=' + that.data.info.identity
+          + '&filePath=' + data.result
+          util.requestPOST( url , 'POST').then(res => {
+            check.showSuccessToast("上传成功")
+            that.setData({
+              menuChoose : 3,
+              cameraErr:'',
+            })
+          }).catch((err) => {
+            that.setData({
+              cameraErr : '瑞沃接口调用失败'
             })
           });
         }else{

@@ -42,7 +42,10 @@ module.exports = {
    UcenterOrderFloorRoomNum: WxApiRoot + 'hotel/getFloorRoomNum', //获取房间数量 
    UcenterOrderFloorRoomPosition: WxApiRoot + 'hotel/getFloorRoomPosition', //获取房间坐标 
    UcenterOcrIdent: WxApiRoot + 'member/ocrIdent', // 上传身份证
-   UcenterOrderCheckPerson: WxApiRoot + 'order/checkPerson', // 人脸识别认证
+   UcenterOrderCheckPerson: WxApiRoot + 'order/checkPerson', // 人脸识别认证(悉点)
+
+   UcenterOrderRWCheckPerson: WxApiRoot + 'order/rwCheckin', // 人脸识别认证(瑞沃)
+   UcenterOrderRWCheckout: WxApiRoot + 'order/rwCheckout',  // 退房(瑞沃)
 
   //  UcenterMoveInto: WxApiRoot + 'hotel/getAvailableRoomNo', // 入住查询房间 hwh
    UcenterOrderAddPerson: WxApiRoot + 'order/addPerson', //添加同住 hwh
@@ -107,5 +110,6 @@ module.exports = {
 
    ActivityDraw:WxApiRoot +'activity/draw', // 抽奖活动
    HongbaocashOut:WxApiRoot +'hongbao/cashOut', //红包提现
-
+   
+   personnelSubmit:WxApiRoot +'apply/submit', //人事招聘请求
  }

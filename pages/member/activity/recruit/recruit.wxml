@@ -1,0 +1,76 @@
+<view>
+  <view class="box_background"></view>
+  <view class="box">
+    <view class="box1">
+      <image src="/static/images/recruit.png" class="ba" mode="widthFix"></image>
+    </view>
+    <view class="box2">
+      <view class="box2_head">
+        <view class="head_text">海外海集团招募通道开启，期待与您同行！</view>
+      </view>
+      <view class="box2_white">
+        <view class="form_ul">
+          <view class="form_li">
+            <text class="form_li_t">真实姓名</text>
+            <input class="form_input" placeholder-class="placeholder" value="{{info.name}}" bindinput="bindNameInput" placeholder="请输入真实名字" />
+          </view>
+          <view class="form_li">
+            <text class="form_li_t">联系电话</text>
+            <input class="form_input" placeholder-class="placeholder" value="{{info.mobile}}" bindinput="bindMobileInput" placeholder="请输入手机号码"/>
+          </view>
+          <view class="form_li">
+            <text class="form_li_t">性别</text>
+            <view class="form_gender">
+              <radio-group bindchange="radioChange">
+                <label>
+                  <radio class="radio_choose" value="1"/>
+                  <text class="radio_val">男</text>
+                </label>
+                <label>
+                  <radio class="radio_choose" value="0"/>
+                  <text class="radio_val">女</text>
+                </label>
+              </radio-group>
+            </view>
+          </view>
+          <view class="form_li">
+            <text class="form_li_t">年龄</text>
+            <view class="form_age">
+              <slider bindchange="sliderchange" min="16" max="80" block-size="23" block-color="#003091" activeColor="#003091" show-value/>
+            </view>
+          </view>
+          <view class="form_li">
+            <text class="form_li_t">应聘企业</text>
+            <view class="form_input">
+              <picker bindchange="bindPickerChange" value="{{companyIndex}}" range="{{company}}">
+                <view class="company_text1" wx:if="{{!company[companyIndex]}}">请选择应聘企业</view>
+                <view class="company_text2">
+                  {{company[companyIndex]}}
+                </view>
+              </picker>
+            </view>
+          </view>
+          <view class="form_li">
+            <text class="form_li_t">应聘岗位</text>
+            <input class="form_input" placeholder-class="placeholder" value="{{info.job}}" bindinput="bindJobInput" placeholder="请输入应聘岗位"/>
+          </view>
+        </view>
+        <view class="btn_box">
+          <view class="btn_success" bindtap="btnSuccess">确认信息</view>
+        </view>
+        <view class="foot">
+          <view class="foot_text">总部地址：杭州市拱墅区石祥路579号</view>
+          <view class="foot_text">联系电话：0571-88173822</view>
+        </view>
+      </view>
+      <view class="box2_ad" bindtap="goIndex">
+        <image src="/static/images/ad.png" class="box2_ad_img" mode="widthFix"></image>
+      </view>
+      <!-- <view class="box2_honor">
+        <view class="honor_text">中国民营企业500强</view>
+        <view class="honor_text">中国服务业100强</view>
+        <view class="honor_text">浙江省民营企业100强</view>
+      </view> -->
+    </view>
+  </view>
+</view>

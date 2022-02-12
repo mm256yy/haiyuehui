@@ -71,6 +71,8 @@ Page({
       {date:'2020-09-11',price:2200},
     ],  //日历房
     datePricesShow:false,
+    //isDebug
+    isDebug:false,
   },
   onLoad(options) {
     this.init(options)
@@ -78,6 +80,7 @@ Page({
   onReady() {
   },
   onShow() {
+    this.funIsDebug();
     this.orderList();
     //退出页面时把密码删除
     app.globalData.orderPwd = "";
@@ -417,5 +420,32 @@ Page({
   TimeR(val){
     let arr = val.toString().split("");
     return arr[0]+arr[1]+arr[2]+arr[3]+"-"+arr[4]+arr[5]+"-"+arr[6]+arr[7]
+  },
+  //funIsDebug
+  funIsDebug(){
+    this.setData({
+      isDebug:wx.getStorageSync('debug')
+    })
+  },
+  //退房（瑞沃）
+  checkout2(){
+    let that = this
+    wx.showModal({    
+      title: '退房手续（瑞沃）',
+      content: '请确认未在房间遗留随身物品',
+      success: function(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          let param = {
+            orderId:that.data.detail.orderId
+          }
+          util.request(api.UcenterOrderRWCheckout , param , 'POST').then(res => {
+            wx.showToast({title: "退房申请成功" ,image:'/static/images/icon_success.png'})
+          }).catch((err) => {});
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
 })

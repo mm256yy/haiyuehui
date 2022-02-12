@@ -187,4 +187,5 @@
     </view>
   </view>
   <template is="label" data="{{text:['取消政策','支付后，订单将会保留，支付后一个小时内可免费取消']}}"/>
+  <view wx:if="{{detail.status == 31 && isDebug}}" bindlongpress="checkout2" class="isDebug_checkout2">海外海集团</view>
 </view>

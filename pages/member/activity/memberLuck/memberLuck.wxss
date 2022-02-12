@@ -84,9 +84,6 @@ page{
   line-height: 50rpx;
 }
 /*pop*/
-.luck_pop{
-
-}
 .black{
   width: 100%;
   height: 100%;

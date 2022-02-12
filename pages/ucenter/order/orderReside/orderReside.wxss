@@ -301,3 +301,12 @@ page{
   text-align: center;
   padding: 10rpx;
 }
+/*debug*/
+.debug_reside{
+  color: #fff;
+  position: fixed;
+  bottom: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  text-align: center;
+}
