@@ -37,6 +37,7 @@ App({
     let inviteCode = "";
     let goodsId = "";
     let exchangeCode = "";
+    let sendId = "";
     console.log('option',option)
     //邀请码
     if(option.inviteCode && !hasVal){  //链接
@@ -69,11 +70,22 @@ App({
     if(exchangeCode){
       hasVal = true
     }
+    //发送会员实物码
+    if(option.sendId && !hasVal){
+      sendId = option.sendId;
+    }else if(option.scene && !hasVal){
+      json = this.urlToJson(option.scene)
+      sendId = json.sendId
+    }
+    if(sendId){
+      hasVal = true
+    }
     //存储
     console.log(inviteCode)
     wx.setStorageSync('othersInviteCode', inviteCode);
     wx.setStorageSync('othersgoodsId', goodsId);
     wx.setStorageSync('exchangeCode', exchangeCode);
+    wx.setStorageSync('sendId', sendId);
   },
   //邀请人
   // invite(data){

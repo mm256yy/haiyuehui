@@ -19,15 +19,15 @@
           "scene": null
         },
         {
-          "name": "抽奖",
-          "pathName": "pages/member/activity/memberLuck/memberLuck",
-          "query": "",
+          "name": "send",
+          "pathName": "pages/index/index",
+          "query": "sendId=3",
           "scene": null
         },
         {
           "name": "商城",
           "pathName": "pages/market/marketDetailed/marketDetailed",
-          "query": "id=8",
+          "query": "id=11",
           "scene": null
         },
         {

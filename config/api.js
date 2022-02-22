@@ -110,6 +110,7 @@ module.exports = {
 
    ActivityDraw:WxApiRoot +'activity/draw', // 抽奖活动
    HongbaocashOut:WxApiRoot +'hongbao/cashOut', //红包提现
+   SendGoods:WxApiRoot +'sendGoods/getGoods', //实物赠送id
    
    personnelSubmit:WxApiRoot +'apply/submit', //人事招聘请求
  }

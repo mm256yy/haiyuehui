@@ -51,6 +51,7 @@ Page({
     this.getMarketDetailed();  //商城佣金
     this.renderingTime();  //日历
     this.fristRegister();  //优惠券  
+    this.getSendId(); //实物send
     this.member();
   },
   //获取津贴
@@ -94,6 +95,19 @@ Page({
         })
         wx.setStorageSync('marketBadge', [0,0,1,0]);
         wx.setStorageSync('exchangeCode', "");
+      }).catch((err) => {});
+    }
+  },
+  //获取实物赠送id
+  getSendId(){
+    let sendId = wx.getStorageSync('sendId');
+    if(check.existValue(sendId)){
+      let param = {
+        sendGoodsId:sendId,
+      };
+      util.request(api.SendGoods , param , 'GET').then(res => {
+        wx.showModal({title: '恭喜',content: "会员等级获取成功",showCancel: false}); 
+        wx.removeStorageSync('sendId');
       }).catch((err) => {});
     }
   },
@@ -253,7 +267,7 @@ Page({
           i+=5;
         }else{
           ret+=asc2str(parseInt("0x"+asc));
-        i+=2;
+          i+=2;
         };
       }else{
         ret+= chr;

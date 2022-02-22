@@ -64,6 +64,8 @@ function marketType(type){
     case 4 : return "申请退款";
     case 5 : return "退款失败";
     case 6 : return "已结单";
+    case 7 : return "已退款";
+    case 8 : return "已核销";
     default: return '未知状态';
   }
 }
