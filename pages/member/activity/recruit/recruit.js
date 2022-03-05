@@ -17,21 +17,7 @@ Page({
       job:'',
     },
     company:[
-      '海外海集团总部',
-      '杭州海外海皇冠大酒店',
-      '马鞍山海外海皇冠大酒店',
-      '江山海外海皇冠大酒店',
-      '杭州千岛湖海外海假日酒店',
-      '杭州海外海国际酒店',
-      '杭州海外海纳川酒店',
-      '杭州海外海百纳酒店',
-      '杭州海外海通信大厦',
-      '杭州海外海运河大厦',
-      '杭州海外海德胜大厦',
-      '杭州海外海商城',
-      '杭州海外海汽车城',
-      '马鞍山海外海汽车城',
-      '盐城海外海汽车城',
+      {name:'海外海集团总部',orgCode:''}
     ],
     companyIndex:null,
     status: 2, //1 正 2 反
@@ -43,6 +29,7 @@ Page({
   },
   onShow: function () {
     this.init();
+    this.funCompany();
   },
   init(){
     //获取到当前的手机号123
@@ -56,6 +43,15 @@ Page({
         url: "/pages/auth/login/login"
       })
     }
+  },
+  //获得企业
+  funCompany(){
+    util.request(api.personnelCompany, 'GET').then(res => {
+      let company = res.result
+      this.setData({
+        company:company
+      })
+    }).catch((err) => {});
   },
   //确定信息
   btnSuccess(){
@@ -75,7 +71,8 @@ Page({
       mobile:info.mobile,
       sex:info.gender,
       age:info.age,
-      corpName:this.data.company[this.data.companyIndex],
+      corpName:this.data.company[this.data.companyIndex].name,
+      orgCode:this.data.company[this.data.companyIndex].orgCode,
       job:info.job,
     }
     util.request(api.personnelSubmit, param, 'POST').then(res => {
@@ -94,7 +91,7 @@ Page({
         name:'',
         mobile:'',
         gender:'',
-        age:'',
+        age:1,
         job:'',
       }
       this.setData({

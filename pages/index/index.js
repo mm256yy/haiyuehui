@@ -42,7 +42,7 @@ Page({
   },
   onLoad: function (option) {
     wx.setStorageSync('othersInviteCodeFrist', true);
-    user.goToLogin()
+    // user.goToLogin()
     this.topBanner();
   },
   onShow: function () {
@@ -108,7 +108,9 @@ Page({
       util.request(api.SendGoods , param , 'GET').then(res => {
         wx.showModal({title: '恭喜',content: "会员等级获取成功",showCancel: false}); 
         wx.removeStorageSync('sendId');
-      }).catch((err) => {});
+      }).catch((err) => {
+        wx.removeStorageSync('sendId');
+      });
     }
   },
   //获取会员信息

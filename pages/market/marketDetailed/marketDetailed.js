@@ -236,12 +236,9 @@ Page({
           title: '错误提醒',
           content: '该产品已经下架或失效',
           success: function(res) {
-            wx.redirectTo({
-              url: "/pages/market/marketList/marketList"
-            })
+            
           }
         })
-        return false
       }
       this.setData({
         detailed: detailedNew,

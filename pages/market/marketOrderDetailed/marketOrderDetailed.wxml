@@ -19,7 +19,7 @@
       </view>
     </view>
     <view class="goods_ul">
-      <view class="goods_li" wx:for="{{detail.goods}}" wx:key="index1" wx:for-index="index1" wx:for-item="item1">
+      <view class="goods_li" wx:for="{{detail.goods}}" wx:key="index1" wx:for-index="index1" wx:for-item="item1" data-id="{{item1.id}}" bindtap="goMarketDetailed">
         <view class="goods_li_body">
           <view class="goods_img_box">
             <image src="{{item1.img}}" data-text="{{item1.codes}}" class="goods_img"></image>

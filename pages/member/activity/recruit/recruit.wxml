@@ -42,10 +42,10 @@
           <view class="form_li">
             <text class="form_li_t">应聘企业</text>
             <view class="form_input">
-              <picker bindchange="bindPickerChange" value="{{companyIndex}}" range="{{company}}">
-                <view class="company_text1" wx:if="{{!company[companyIndex]}}">请选择应聘企业</view>
+              <picker bindchange="bindPickerChange" value="{{companyIndex}}" range="{{company}}" range-key="name">
+                <view class="company_text1" wx:if="{{!company[companyIndex].name}}">请选择应聘企业</view>
                 <view class="company_text2">
-                  {{company[companyIndex]}}
+                  {{company[companyIndex].name}}
                 </view>
               </picker>
             </view>

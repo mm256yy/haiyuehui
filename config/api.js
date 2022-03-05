@@ -113,4 +113,5 @@ module.exports = {
    SendGoods:WxApiRoot +'sendGoods/getGoods', //实物赠送id
    
    personnelSubmit:WxApiRoot +'apply/submit', //人事招聘请求
+   personnelCompany:WxApiRoot +'apply/company', //人事招聘公司列表
  }

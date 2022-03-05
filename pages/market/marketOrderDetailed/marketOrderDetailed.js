@@ -110,6 +110,12 @@ Page({
       console.log(err)
     });
   },
+  goMarketDetailed(e){
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({ 
+      url: "/pages/market/marketDetailed/marketDetailed?id="+id
+   });
+  },
   // longShareCopy(e){
   //   let code = e.currentTarget.dataset.text;
   //   let codeCopy = '';
