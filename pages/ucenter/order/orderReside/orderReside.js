@@ -297,20 +297,10 @@ Page({
 
   //办理入住
   infoBtnFrist(){
-    let roomNoNew = (this.data.hotel.roomPitch == ''?this.data.hotel.roomNo:this.data.hotel.roomPitch)
-    let param = {
-      orderId:this.data.hotel.orderId,
-      roomNo:roomNoNew,
-      name:this.data.info.name,
-      ident:this.data.info.identity,
-      mobile:this.data.info.mobile
-    }
-    util.request(api.UcenterOrderCheckin , param , 'POST').then(res => {
-      wx.showToast({title: "入住成功" ,image:'/static/images/icon_success.png'})
-      wx.navigateBack({
-        delta: 2  
-      })
-    }).catch((err) => {});
+    //   
+    wx.navigateBack({
+      delta: 2  
+    })
   },
   //input
   bindNameInput(e){
@@ -323,7 +313,7 @@ Page({
       'info.identity': e.detail.value
     });
   },
-  bindTelInput(e){
+  bindMobileInput(e){
     this.setData({
       'info.mobile': e.detail.value
     });
@@ -434,7 +424,7 @@ Page({
   Imgupload2(page, path) {
     let that = this;
     wx.showToast({
-      icon: "loading",
+      icon: "loading",    
       title: "正在上传"
     }),
     wx.uploadFile({

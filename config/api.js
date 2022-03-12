@@ -36,7 +36,7 @@ module.exports = {
    UcenterOrderDetail: WxApiRoot + 'order/detail', //订单详情 hwh
    UcenterOrderCancel: WxApiRoot + 'order/cancel', //取消订单 hwh
    UcenterOrderRefund: WxApiRoot + 'order/refund', //发起退款 hwh
-   UcenterOrderCheckin: WxApiRoot + 'order/checkin', //办理入住 hwh
+  //  UcenterOrderCheckin: WxApiRoot + 'order/checkin', //办理入住 hwh
    UcenterSystemBaseCode: WxApiRoot +  'system/baseCode',  //入住选择查询，获取类型 hwh
    UcenterSystemBaseCodeType: WxApiRoot +  'system/baseCodeType',  //获取类型  
    UcenterOrderFloorRoomNum: WxApiRoot + 'hotel/getFloorRoomNum', //获取房间数量 

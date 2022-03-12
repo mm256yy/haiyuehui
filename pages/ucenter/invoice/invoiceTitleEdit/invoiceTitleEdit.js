@@ -57,7 +57,7 @@ Page({
       'detail.address': e.detail.value
     });
   },
-  bindTelInput(e) {
+  bindMobileInput(e) {
     this.setData({
       'detail.tel': e.detail.value
     });

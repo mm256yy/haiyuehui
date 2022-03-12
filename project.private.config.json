@@ -14,8 +14,8 @@
       "list": [
         {
           "name": "关注页",
-          "pathName": "pages/member/memberFollow/memberFollow",
-          "query": "id=11&cardLevel=BJK",
+          "pathName": "pages/customized/fill/fill",
+          "query": "",
           "scene": null
         },
         {
