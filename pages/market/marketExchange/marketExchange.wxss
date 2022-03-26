@@ -49,6 +49,7 @@ page{background-color: #f1f1f1;}
 .exchange_li_body{
   padding: 20rpx;
   border-bottom: 1rpx solid #f1f1f1;
+  position: relative;
 }
 .exchange_li_foot{
   overflow: hidden;
@@ -69,11 +70,17 @@ page{background-color: #f1f1f1;}
   margin-top: 10rpx;
   border-radius:5rpx ;
 }
+.exchange_detail{
+  position: absolute;
+  right: 25rpx;
+  bottom: 20rpx;
+  color: #008cd7;
+}
 .exchange_name_can{
-  margin-right: 50rpx;
+  margin-right: 0rpx;
 }
 .exchange_name_no{
-  margin-right: 50rpx;
+  margin-right: 0rpx;
   color: #999;
 }
 .exchange_code_can{

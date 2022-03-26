@@ -18,6 +18,7 @@ Page({
       //   time:'2020-12-12',
       //   choose:false,
       //   tap:'',
+      //   goodsId:'',
       // },
     ],
     info:{
@@ -88,6 +89,7 @@ Page({
             time:data[i].createTime,
             choose:false,
             tap:this.tapType(data[i].orgCode),
+            goodsId:data[i].goodsId,
           }
           o_ul.push(o_li)
         }
@@ -220,10 +222,10 @@ Page({
   },
   nameLength(name){
     if(name){
-      if(name.length <= 20){
+      if(name.length <= 48){
         return name
       }else{
-        return name.substring(0,20) + '...';
+        return name.substring(0,44) + '...';
       }
     }
   },
@@ -233,5 +235,11 @@ Page({
     wx.navigateTo({ 
       url: "/pages/market/marketWritten/marketWritten?id="+id+"&orgCode="+orgCode
    });
+  },
+  goMarketDetailed(e){
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({ 
+      url: "/pages/market/marketDetailed/marketDetailed?id="+id
+    });
   },
 })

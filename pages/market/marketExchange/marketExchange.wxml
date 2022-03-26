@@ -19,6 +19,7 @@
           <view class="exchange_li_body">
             <view class="{{item.used == 0?'exchange_name_can':'exchange_name_no'}}">{{item.name}}</view>
             <view class="exchange_spec" wx:if="{{item.spec}}">{{filter.specDivision(item.spec)}}</view>
+            <view class="exchange_detail" bindtap="goMarketDetailed" data-id="{{item.goodsId}}">查看更多</view>
           </view>
           <view  class="exchange_li_foot" wx:if="{{item.used == 0}}">
             <text class="{{item.used == 0?'exchange_btn_can':'exchange_btn_no'}}" wx:if="{{item.tap != ''}}" catchtap="{{item.used == 0?item.tap:''}}" data-id="{{item.id}}" data-org="{{item.orgCode}}">立即使用</text>

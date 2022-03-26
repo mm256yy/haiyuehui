@@ -147,6 +147,23 @@ page{
 .notice_li_t2{
   margin-left: 150rpx;
 }
+.indication_li{
+  position: relative;
+  margin-bottom: 15rpx;
+}
+.indication_li_d{
+  color: #fe6f41;
+  font-weight: 800;
+  position: absolute;
+  top: -3rpx;
+  left: 5rpx;
+}
+.indication_li_t{
+  display: inline-block;
+  margin-left: 30rpx;
+  color: #999;
+}
+
 /*foot*/
 .goods_foot{
   display: flex;

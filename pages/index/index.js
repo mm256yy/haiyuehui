@@ -43,7 +43,6 @@ Page({
   onLoad: function (option) {
     wx.setStorageSync('othersInviteCodeFrist', true);
     // user.goToLogin()
-    this.topBanner();
   },
   onShow: function () {
     this.marketGo();  //跳转到商城
@@ -53,6 +52,7 @@ Page({
     this.fristRegister();  //优惠券  
     this.getSendId(); //实物send
     this.member();
+    this.topBanner();
   },
   //获取津贴
   getAllowance(){

@@ -95,6 +95,21 @@
 			<view class="notice_content">
 				<rich-text space="true" nodes="{{detailed.content}}"></rich-text>
 			</view>
+			<view class="notice_li_head"><text class="notice_li_h1">价格说明</text></view>
+			<view class="price_indication">
+				<view class="indication_li">
+					<text class="indication_li_d">·</text>
+					<text class="indication_li_t">商品展示的划线价为市场参考价，可能是供应商所售卖商品的线下零售价或曾经张世国的销售价，并非原价，仅供您参考</text>
+				</view>
+				<view class="indication_li">
+					<text class="indication_li_d">·</text>
+					<text class="indication_li_t">未划线价格：指商品的实时标价，不因表述的差异改变性质。具体成交价格根据商品参加活动，或使用优惠劵、积分等变化，最终以订单结算页价格为准</text>
+				</view>
+				<view class="indication_li">
+					<text class="indication_li_d">·</text>
+					<text class="indication_li_t">商品详细页（含主图）以图片或文字形式标注的一口价、促销价、优惠价等价格可能是再使用优惠劵、满减或特定优惠活动和时间段等情形下的价格，具体请以结算页面的标价、优惠条件或活动规则为准</text>
+				</view>
+			</view>
 		</view>
 	</view>
 	<view class="goods_foot">

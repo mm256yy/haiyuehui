@@ -118,7 +118,7 @@ Page({
         badge:badgeNew
       });
       wx.setTabBarBadge({
-        index: 2,
+        index: 3,
         text:'1',
         success: res => { console.log(res) },
         fail: res => { console.error }
@@ -226,7 +226,7 @@ Page({
     })
     app.globalData.badge = "";
     wx.removeTabBarBadge({
-      index: 2,
+      index: 3,
       success: res => { console.log(res) },
       fail: res => { console.error }
     })
