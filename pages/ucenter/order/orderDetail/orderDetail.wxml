@@ -83,14 +83,14 @@
         </view>
       </view>
     </view>
-    <view  class="person_ul" wx:if="{{(detail.status == 22||detail.status == 31)&&(personUl.length != 0)&&(!detail.isOverdue)}}">
+    <!-- <view  class="person_ul" wx:if="{{(detail.status == 22||detail.status == 31)&&(personUl.length != 0)&&(!detail.isOverdue)}}">
       <view class="person_li">
         <view class="liveN" wx:if="{{!item.live}}">
           <view class="liveN_btn" bindtap="goOrderAddition" data-type="1">+ 添加访客</view>
           <text class="detail_t4">按照公安规定进出房间人员需要如实登记</text>
         </view>
       </view>
-    </view>
+    </view> -->
   </view>
   <!-- <view class="park_box">
     <view class="order_h1">免费停车</view>

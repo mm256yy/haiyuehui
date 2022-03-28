@@ -378,6 +378,7 @@ Page({
           })
           let roomNoNew = (that.data.hotel.roomPitch == ''?that.data.hotel.roomNo:that.data.hotel.roomPitch)
           let url = api.UcenterOrderCheckPerson +'?orderId='+ that.data.hotel.orderId
+          + '&type=0'  //0首次 1同住人 2访客
           + '&roomNo=' + roomNoNew
           + '&name=' + that.data.info.name
           + '&ident=' + that.data.info.identity

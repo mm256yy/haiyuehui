@@ -73,70 +73,74 @@ Page({
         }
       })
     }else if(choose == 2){
-      let additionType = that.data.additionType
-      if(additionType == 0||additionType == 2){ //同住人
-        that.startBtn0()
-      }else if(additionType == 1){
-        that.startBtn1()
-      }
+      wx.navigateBack({
+        delta: 1  // 返回上一级页面。
+      })
+      // let additionType = that.data.additionType
+      // if(additionType == 0||additionType == 2){ //同住人
+      //   wx.navigateBack({
+      //     delta: 1  // 返回上一级页面。
+      //   })
+      // }else if(additionType == 1){
+      //   wx.navigateBack({
+      //     delta: 1  // 返回上一级页面。
+      //   })
+      // }
     }
   },
   //添加同住人
-  startBtn0(){
-    let that = this;
-    if(!check.checkName(this.data.info.name)){return false}
-    if(!check.checkIdentity(this.data.info.identity)){return false}
-    if(!check.checkMobile(this.data.info.mobile)){return false}
-
-    let param = {
-      orderId:this.data.orderId,
-      name:this.data.info.name,
-      ident:this.data.info.identity,
-      mobile:this.data.info.mobile
-    }
-    console.log(param)
-    util.request(api.UcenterOrderAddPerson , param , 'POST').then(res => {
-      wx.showModal({ title: '成功',content: '入住成功',showCancel: false , success (res) {
-        if (that.data.additionType == 2) { //同住人分享
-          wx.switchTab({ 
-            url:"/pages/index/index"
-          })
-        } else{
-          wx.navigateBack({
-            delta: 1  // 返回上一级页面。
-          })
-        }
-      }});
-    }).catch((err) => {});
-    
-  },
+  // startBtn0(){
+  //   let that = this;
+  //   if(!check.checkName(this.data.info.name)){return false}
+  //   if(!check.checkIdentity(this.data.info.identity)){return false}
+  //   if(!check.checkMobile(this.data.info.mobile)){return false}
+  //   let param = {
+  //     orderId:this.data.orderId,
+  //     name:this.data.info.name,
+  //     ident:this.data.info.identity,
+  //     mobile:this.data.info.mobile
+  //   }
+  //   console.log(param)
+  //   util.request(api.UcenterOrderAddPerson , param , 'POST').then(res => {
+  //     wx.showModal({ title: '成功',content: '入住成功',showCancel: false , success (res) {
+  //       if (that.data.additionType == 2) { //同住人分享
+  //         wx.switchTab({ 
+  //           url:"/pages/index/index"
+  //         })
+  //       } else{
+  //         wx.navigateBack({
+  //           delta: 1  // 返回上一级页面。
+  //         })
+  //       }
+  //     }});
+  //   }).catch((err) => {});
+  // },
   //添加访客
-  startBtn1(){
-    if(!check.checkName(this.data.info.name)){return false}
-    if(!check.checkIdentity(this.data.info.identity)){return false}
-    if(!check.checkMobile(this.data.info.mobile)){return false}
-
-    let param = {
-      orderId:this.data.orderId,
-      hotelId:this.data.hotelId,
-      roomNo:this.data.roomNo,
-      name:this.data.info.name,
-      ident:this.data.info.identity,
-      mobile:this.data.info.mobile
-    }
-    console.log(param)
-    util.request(api.UcenterVisitorAdd , param , 'POST').then(res => {
-      wx.showModal({ title: '成功',content: '提交成功',showCancel: false , success (res) {
-        if (res.confirm) {
-          wx.navigateBack({
-            delta: 1  // 返回上一级页面。
-          })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }});
-    }).catch((err) => {});
-  }, 
+  // startBtn1(){
+  //   if(!check.checkName(this.data.info.name)){return false}
+  //   if(!check.checkIdentity(this.data.info.identity)){return false}
+  //   if(!check.checkMobile(this.data.info.mobile)){return false}
+  //   let param = {
+  //     orderId:this.data.orderId,
+  //     hotelId:this.data.hotelId,
+  //     roomNo:this.data.roomNo,
+  //     name:this.data.info.name,
+  //     ident:this.data.info.identity,
+  //     mobile:this.data.info.mobile
+  //   }
+  //   console.log(param)
+  //   util.request(api.UcenterVisitorAdd , param , 'POST').then(res => {
+  //     wx.showModal({ title: '成功',content: '提交成功',showCancel: false , success (res) {
+  //       if (res.confirm) {
+  //         wx.navigateBack({
+  //           delta: 1  // 返回上一级页面。
+  //         })
+  //       } else if (res.cancel) {
+  //         console.log('用户点击取消')
+  //       }
+  //     }});
+  //   }).catch((err) => {});
+  // }, 
   //拍照识别
   park(){
     var that = this;
@@ -172,7 +176,15 @@ Page({
           that.setData({
             'info.file':data.result
           })
+          let additionType = that.data.additionType
+          let checkType = null; //0首次 1同住人 2访客
+          if(additionType == 0||additionType == 2){ //同住人
+            checkType = 1
+          }else if(additionType == 1){ //访客
+            checkType = 2
+          }
           let url = api.UcenterOrderCheckPerson +'?orderId='+ that.data.orderId
+          + '&type=' + checkType
           + '&roomNo=' + that.data.roomNo
           + '&name=' + that.data.info.name
           + '&ident=' + that.data.info.identity
