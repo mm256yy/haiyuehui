@@ -1,3 +1,4 @@
+let user = require('../../utils/user.js');
 Page({
   data: {
     type:0,
@@ -7,17 +8,21 @@ Page({
     this.setData({
       type:type
     })
-    if(type == 1){
-      wx.redirectTo({  
-        url:"/pages/member/activity/recruit/recruit"
-      });
-    }
   },
   onShow: function () {
-    
-    
-  },
-  onHide: function () {
-
+    user.memberGetInfo().then(res => {
+      let type = this.data.type;
+      if(type == 1){
+        wx.redirectTo({  
+          url:"/pages/member/activity/recruit/recruit"
+        });
+      }else if(type == 2){
+        wx.redirectTo({  
+          url:"/pages/member/activity/aprilFools/aprilFools"
+        });
+      }
+    }).catch((err) => {
+      console.log(err)
+    });
   },
 })

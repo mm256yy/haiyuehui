@@ -37,10 +37,11 @@
           "scene": null
         },
         {
-          "name": "111",
-          "pathName": "pages/member/activity/recruit/recruit",
-          "query": "",
-          "scene": null
+          "name": "pages/logs/logs",
+          "pathName": "pages/logs/logs",
+          "query": "type=2",
+          "scene": null,
+          "launchMode": "default"
         },
         {
           "name": "/pages/market/marketDetailed/marketDetailed",
