@@ -1,0 +1,71 @@
+page{
+  background-color: #f1f1f1;
+}
+.form_li{
+  border-radius: 20rpx;
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 20rpx;
+}
+.form_ul{
+  margin: 20rpx;
+}
+.form_li_text{
+  display: flex;
+}
+.form_li_t{
+  width: 150rpx;
+  line-height: 40rpx;
+}
+.form_input{
+  flex: 1 1 auto;
+  color: #cdcdcd;
+}
+.form_li_red{
+  color: #cc0000;
+}
+.form_radio{
+  margin: 10rpx 0rpx;
+}
+.form_image{
+  border: 1rpx solid #cdcdcd;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 20rpx;
+  margin-top: 20rpx;
+  position: relative;
+  overflow: hidden;
+}
+.form_src{
+  width: 200rpx;
+  height: 200rpx;
+}
+.form_add{
+  display: inline-block;
+  width: 200rpx;
+  font-size: 80rpx;
+  line-height: 180rpx;
+  color: #cdcdcd;
+  position: absolute;
+  top: 0rpx;
+  left: 50%;
+  margin-left: -100rpx;
+  text-align: center;
+}
+/*form_btn*/
+.form_btn{
+  position: fixed;
+  bottom: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  padding: 10px;
+}
+.submit_btn{
+  border-radius: 10rpx;
+  background: #039cee;
+  padding: 18rpx;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}

@@ -87,6 +87,9 @@
     "pages/ucenter/points/pointsHistory/pointsHistory",
     "pages/ucenter/points/pointsExchange/pointsExchange",
 
+    "pages/ucenter/nuclein/health/health",
+    "pages/ucenter/nuclein/scan/scan",
+
     "pages/ucenter/teamNumber/teamNumber",
     "pages/logs/logs"
   ],

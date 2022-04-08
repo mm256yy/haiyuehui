@@ -1,0 +1,5 @@
+<view>
+  <view class="wx_btn_success" bindtap="scan">
+    扫码
+  </view>
+</view>

@@ -1,0 +1,32 @@
+<view>
+  <view class="form_ul">
+    <view class="form_li form_li_text">
+      <text class="form_li_t ">订单编号：</text>
+      <input class="form_input" disabled bindinput="bindNumInput" placeholder-class="placeholder" value="{{orderId}}" placeholder="订单编号"/>
+    </view>
+    <view class="form_li">
+      <view>1.请拍摄顾客的健康码<text class="form_li_red">（必填）</text></view>
+      <view class="form_image" bindtap="image1Change">
+        <image class="form_src" src="{{form.url1}}"></image>
+        <text class="form_add">+</text>
+      </view>
+    </view>
+    <view class="form_li">
+      <view>2.请拍摄顾客的行程码</view>
+      <view class="form_image" bindtap="image2Change">
+        <image class="form_src" src="{{form.url2}}"></image>
+        <text class="form_add">+</text>
+      </view>
+    </view>
+    <view class="form_li">
+      <view>3.请拍摄顾客的核酸检测报告</view>
+      <view class="form_image" bindtap="image3Change">
+        <image class="form_src" src="{{form.url3}}"></image>
+        <text class="form_add">+</text>
+      </view>
+    </view>
+  </view>
+  <view class="form_btn">
+    <view class="submit_btn" bindtap="submitBtn">提交健康信息</view>
+  </view>
+</view>
