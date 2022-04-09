@@ -1,8 +1,26 @@
-/*from*/
-.form_ul {
+page{
+  background-color: #f1f1f1;
+}
+.info_ba{
+  background-color: #039cee;
   width: 100%;
-  height: auto;
+  height: 400rpx;
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  z-index: -1;
+}
+/*form*/
+.form{
+  margin: 20rpx;
+  background: #fff;
+  box-shadow: 0rpx 5rpx 8rpx #f1f1f1;
+  border-radius: 10rpx;
   overflow: hidden;
+  padding-bottom: 40rpx;
+}
+.form_ul {
+  height: auto;
   padding: 0 30rpx;
   background: #fff;
 }
@@ -33,15 +51,29 @@
   padding:0rpx 30rpx;
 }
 .btn_success{
-  margin: 60rpx 0rpx 40rpx 0rpx;
-  padding: 20rpx 10rpx;
-  border-radius:50rpx ;
-  color: #fff;
-  font-size: 30rpx;
-  width: 100%;
-  border-radius: 50rpx;
-  background: linear-gradient(to right, #039cee , #753ffd);
+  border-radius: 10rpx;
+  background: #039cee;
+  padding: 18rpx;
   text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+/*code*/
+.code_qr{
+  text-align: center;
+  padding: 40rpx;
+}
+.code_qr_img{
+  width: 400rpx;
+  height: 400rpx;
+  margin: auto
+}
+.code_qr_label{
+  color: #039cee;
+  font-weight: 800;
+  font-size: 40rpx;
+  margin-top: 40rpx
 }
 /*template*/
 @import "/template/template.wxss";

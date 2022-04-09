@@ -1,6 +1,23 @@
 page{
   background-color: #f1f1f1;
 }
+/*info*/
+.info_ul{
+  border-radius: 20rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  padding: 0rpx 20rpx;
+}
+.info_li{
+  display: flex;
+  padding: 10px 0px;
+  border-bottom: 1rpx solid #f1f1f1;
+}
+.info_li_t{
+  width: 150rpx;
+  line-height: 40rpx;
+}
+/*form*/
 .form_li{
   border-radius: 20rpx;
   background-color: #fff;
@@ -10,22 +27,12 @@ page{
 .form_ul{
   margin: 20rpx;
 }
-.form_li_text{
-  display: flex;
-}
-.form_li_t{
-  width: 150rpx;
-  line-height: 40rpx;
-}
 .form_input{
   flex: 1 1 auto;
-  color: #cdcdcd;
+  color: #333;
 }
 .form_li_red{
   color: #cc0000;
-}
-.form_radio{
-  margin: 10rpx 0rpx;
 }
 .form_image{
   border: 1rpx solid #cdcdcd;

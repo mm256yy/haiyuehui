@@ -1,6 +1,14 @@
+let util = require('../../../../utils/util.js');
+let check = require('../../../../utils/check.js');
+let api = require('../../../../config/api.js');
 Page({
   data: {
-    orderId:'45456456454',
+    memberId:'',
+    info:{
+      ident:'',
+      mobile:'',
+      name:'',
+    },
     form:{
       url1:'',
       url2:'',
@@ -8,10 +16,63 @@ Page({
     }
   },
   onLoad: function (options) {
-
+    this.init(options)
   },
   onShow: function () {
 
+  },
+  init(options){
+    let that = this
+    // let string = decodeURIComponent(options.query.scene).toString().split('=')
+    // let id = string[1];
+    let id = options.id
+    util.request(api.memberGetPersonInfo + '?memberId=' + id , 'GET').then(res => {
+      let data = res.result;
+      if(!data.isCheckPerson){
+        check.showErrorToast('您并不是检查人员，请联系工作人员')
+      }else{
+        let info = {
+          ident: data.ident,
+          mobile: data.mobile,
+          name: data.name,
+        }
+        that.setData({
+          info:info
+        })
+      }
+    }).catch((err) => {});
+  },
+  //提交
+  submitBtn(){
+    if(!this.data.orderId){
+      check.showErrorToast('请扫码获取用户手机号')
+      return false
+    }
+    if(!this.data.form.url1){
+      check.showErrorToast('请拍摄顾客的健康码')
+      return false
+    }
+    let param = {
+      orderId:orderId,
+      photoType1:1,
+      url1:form.url1,
+      photoType2:4,
+      url2:form.url2,
+      vin:form.vin,
+    };
+    util.request(api.GaugingCarQueryTimesQuery , param , 'post').then(res => {
+      wx.showModal({ 
+        title: '查询成功',
+        content: '请在本订单报告列表查看报告信息',
+        success: function(res) {
+          wx.redirectTo({
+            url: "/pages/ucenter/gauging/reportList/reportList?orderId="+orderId
+          })
+        }
+      })
+    }).catch((err) => {
+      
+    });
   },
   image1Change(){
     let that = this;

@@ -1,5 +1,10 @@
 <view>
-  <view class="wx_btn_success" bindtap="scan">
-    扫码
+  <view class="scan_box">
+    <view class="scan_text">根据新冠病毒防疫要求</view>
+    <view class="scan_text">请让用户进入【海悦会】小程序</view>
+    <view class="scan_text">在【我的】-【身份信息】内展示二维码</view>
+  </view>
+  <view class="btn_box" bindtap="scan">
+    <view class="btn">扫码</view>
   </view>
 </view>

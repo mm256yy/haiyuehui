@@ -1,8 +1,18 @@
 <view>
   <view class="form_ul">
-    <view class="form_li form_li_text">
-      <text class="form_li_t ">订单编号：</text>
-      <input class="form_input" disabled bindinput="bindNumInput" placeholder-class="placeholder" value="{{orderId}}" placeholder="订单编号"/>
+    <view class="info_ul">
+      <view class="info_li">
+        <text class="info_li_t">用户手机：</text>
+        <input class="form_input" disabled placeholder-class="placeholder" value="{{info.mobile}}" placeholder="扫描顾客订单二维码"/>
+      </view>
+      <view class="info_li">
+        <text class="info_li_t">用户姓名：</text>
+        <input class="form_input" disabled placeholder-class="placeholder" value="{{info.name}}" placeholder="扫描顾客订单二维码"/>
+      </view>
+      <view class="info_li">
+        <text class="info_li_t">身份证：</text>
+        <input class="form_input" disabled placeholder-class="placeholder" value="{{info.ident}}" placeholder="扫描顾客订单二维码"/>
+      </view>
     </view>
     <view class="form_li">
       <view>1.请拍摄顾客的健康码<text class="form_li_red">（必填）</text></view>

@@ -10,12 +10,11 @@ Page({
       mobile:'',
     },
     isFirst:false,
+    codeImg:'',
   },
   onLoad: function (options) {
     this.init();
-  },
-  onReady: function () {
-
+    this.healthQrcode();
   },
   onShow: function () {
     
@@ -82,6 +81,15 @@ Page({
       wx.navigateBack({ 
         delta: 1  
       }); 
+    }).catch((err) => {});
+  },
+  //健康二维码
+  healthQrcode(){
+    let that = this
+    util.request(api.memberCheckQrcode , 'GET').then(res => {
+      that.setData({
+        codeImg:res.result
+      })
     }).catch((err) => {});
   },
   //input焦点

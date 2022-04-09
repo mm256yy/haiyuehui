@@ -37,17 +37,18 @@
           "scene": null
         },
         {
-          "name": "pages/logs/logs",
-          "pathName": "pages/logs/logs",
-          "query": "type=2",
-          "scene": null,
-          "launchMode": "default"
+          "name": "pages/ucenter/set/information/information",
+          "pathName": "pages/ucenter/set/information/information",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         },
         {
-          "name": "/pages/market/marketDetailed/marketDetailed",
-          "pathName": "pages/market/marketDetailed/marketDetailed",
-          "query": "id=160",
-          "scene": null
+          "name": "核酸",
+          "pathName": "pages/ucenter/nuclein/scan/scan",
+          "query": "id=211122102451555",
+          "scene": null,
+          "launchMode": "default"
         }
       ]
     }

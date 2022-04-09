@@ -15,10 +15,11 @@ Page({
     wx.scanCode({
       onlyFromCamera: true,
       success (res) {
-        let orderId = res.orderId
-        wx.navigateTo({ 
-          url: "/pages/ucenter/nuclein/health/health?orderId=" + orderId
-        });
+        console.log(res)
+        // let orderId = res.orderId
+        // wx.navigateTo({ 
+        //   url: "/pages/ucenter/nuclein/health/health?orderId=" + orderId
+        // });
       },
       fail (res) {
         console.log(res)
