@@ -13,11 +13,10 @@ Page({
     codeImg:'',
   },
   onLoad: function (options) {
-    this.init();
-    this.healthQrcode();
+    
   },
   onShow: function () {
-    
+    this.init();
   },
   init(){
     //获取到当前的手机号123
@@ -25,10 +24,6 @@ Page({
     let isFirstNew = null; 
     if(tel){  //如果存在
       console.log("手机号获取到")
-    }else{
-      wx.redirectTo({
-        url: "/pages/auth/login/login"
-      })
     }
     user.memberGetInfo().then(res => {
       let infoNew = {
@@ -45,6 +40,7 @@ Page({
         info:infoNew,
         isFirst:isFirstNew,
       })
+      this.healthQrcode();
     }).catch((err) => {
       console.log(err);
     });

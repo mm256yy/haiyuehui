@@ -37,7 +37,7 @@
           "scene": null
         },
         {
-          "name": "pages/ucenter/set/information/information",
+          "name": "pages/ucenter/nuclein/scan/scan",
           "pathName": "pages/ucenter/set/information/information",
           "query": "",
           "launchMode": "default",
@@ -45,8 +45,8 @@
         },
         {
           "name": "核酸",
-          "pathName": "pages/ucenter/nuclein/scan/scan",
-          "query": "id=211122102451555",
+          "pathName": "pages/ucenter/nuclein/health/health",
+          "query": "id=220330113316118",
           "scene": null,
           "launchMode": "default"
         }

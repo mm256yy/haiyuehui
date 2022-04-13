@@ -15,16 +15,16 @@ Page({
     wx.scanCode({
       onlyFromCamera: true,
       success (res) {
-        console.log(res)
-        // let orderId = res.orderId
-        // wx.navigateTo({ 
-        //   url: "/pages/ucenter/nuclein/health/health?orderId=" + orderId
-        // });
+        let string = decodeURIComponent(res.path).toString().split('=')
+        let memberId = string[2];
+        let router = (string[0].split('?'))[0]
+        let url = '/' + router + '?id='+ memberId
+        console.log(url)
+        wx.navigateTo({ 
+          url: url
+        });
       },
       fail (res) {
-        console.log(res)
-      },
-      complete (res) {
         console.log(res)
       },
     })

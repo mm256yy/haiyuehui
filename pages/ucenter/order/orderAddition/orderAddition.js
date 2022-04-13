@@ -174,7 +174,7 @@ Page({
         let data = JSON.parse(res.data)
         if (data.code == 0) {
           that.setData({
-            'info.file':data.result
+            'info.file':data.result.localPath
           })
           let additionType = that.data.additionType
           let checkType = null; //0首次 1同住人 2访客
@@ -189,7 +189,7 @@ Page({
           + '&name=' + that.data.info.name
           + '&ident=' + that.data.info.identity
           + '&mobile=' + that.data.info.mobile
-          + '&filePath=' + data.result
+          + '&filePath=' + data.result.localPath
           util.requestPOST( url , 'POST').then(res => {
             check.showSuccessToast("上传成功")
             that.setData({

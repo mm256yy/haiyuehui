@@ -374,7 +374,7 @@ Page({
         let data = JSON.parse(res.data)
         if (data.code == 0) {
           that.setData({
-            'info.file':data.result
+            'info.file':data.result.localPath
           })
           let roomNoNew = (that.data.hotel.roomPitch == ''?that.data.hotel.roomNo:that.data.hotel.roomPitch)
           let url = api.UcenterOrderCheckPerson +'?orderId='+ that.data.hotel.orderId
@@ -383,7 +383,7 @@ Page({
           + '&name=' + that.data.info.name
           + '&ident=' + that.data.info.identity
           + '&mobile=' + that.data.info.mobile
-          + '&filePath=' + data.result
+          + '&filePath=' + data.result.localPath
           util.requestPOST( url , 'POST').then(res => {
             check.showSuccessToast("上传成功")
             that.setData({
@@ -441,13 +441,13 @@ Page({
         let data = JSON.parse(res.data)
         if (data.code == 0) {
           that.setData({
-            'info.file':data.result
+            'info.file':data.result.localPath
           })
           let roomNoNew = (that.data.hotel.roomPitch == ''?that.data.hotel.roomNo:that.data.hotel.roomPitch)
           let url = api.UcenterOrderRWCheckPerson +'?orderId='+ that.data.hotel.orderId
           + '&name=' + that.data.info.name
           + '&ident=' + that.data.info.identity
-          + '&filePath=' + data.result
+          + '&filePath=' + data.result.localPath
           util.requestPOST( url , 'POST').then(res => {
             check.showSuccessToast("上传成功")
             that.setData({
