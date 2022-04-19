@@ -45,8 +45,8 @@
         },
         {
           "name": "核酸",
-          "pathName": "pages/ucenter/nuclein/health/health",
-          "query": "id=220330113316118",
+          "pathName": "pages/ucenter/nuclein/scan/scan",
+          "query": "",
           "scene": null,
           "launchMode": "default"
         }

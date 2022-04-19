@@ -21,7 +21,7 @@ Page({
     if(options.id){
       memberId = options.id
     }else{
-      let string = decodeURIComponent(options.query.scene).toString().split('=')
+      let string = decodeURIComponent(options.scene).toString().split('=')
       memberId = string[1];
     }
     this.setData({
