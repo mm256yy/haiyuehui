@@ -97,7 +97,14 @@ function numSpace(num){
 function MobileFour(mobile){
   return mobile.slice(7,11)
 }
-
+//返回标题太长
+function titleLong(text){
+  if(text.length <= 16){
+    return text;
+  }else{
+    return text.substring(0,16) + '...';
+  }
+}
 module.exports = {
   moneyFixed:moneyFixed,
   moneyDiscount:moneyDiscount,
@@ -114,4 +121,5 @@ module.exports = {
 
   numSpace:numSpace,
   MobileFour:MobileFour,
+  titleLong:titleLong,
 };

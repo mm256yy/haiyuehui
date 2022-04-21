@@ -122,6 +122,19 @@ Page({
       console.log(err);
     });
   },
+  //
+  qrcodeShow(){
+    let param = {
+      id: this.data.detailed.id,
+    }
+    util.request(api.MallGoodsInviteImg , param , 'GET').then(res => {
+      let data = res.result
+      wx.previewImage({
+        current: data, // 当前显示图片的http链接
+        urls: [data] // 需要预览的图片http链接列表
+      })
+    }).catch((err) => {});
+  },
   //单选
   exchangeChoose(e){
     let index = e.currentTarget.dataset.index;

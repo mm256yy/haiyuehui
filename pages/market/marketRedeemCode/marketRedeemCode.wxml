@@ -1,0 +1,48 @@
+<view>
+  <wxs src="../../../filter/filter.wxs" module="filter" />
+  <view class="form_ul">
+    <view class="form_li form_li_text">
+      <text class="form_li_t">兑换码：</text>
+      <input class="form_input" bindinput="bindNumInput" placeholder-class="placeholder" value="{{detail.code}}" placeholder="请输入兑换码"/>
+    </view>
+    <view class="form_li goods_box">
+      <image class="goods_img" src="{{detail.img}}"></image>
+      <view class="goods_content">
+        <view class="content_name">{{filter.titleLong(detail.title)}}</view>
+        <view class="content_spec">{{detail.spec}}</view>
+        <view class="content_price">￥{{filter.moneyFixed(detail.salePrice)}}</view>
+      </view>
+      <view class="goods_more" bindtap="goMarketDetailed">查看更多</view>
+    </view>
+    <view class="form_li">
+      <view class="detail_li">
+        <text class="detail_title" >订单id：</text>
+        <text class="detail_val">{{detail.orderId}}</text>
+      </view>
+      <!-- <view class="detail_li">
+        <text class="detail_title" >商品名称：</text>
+        <text class="detail_val">{{detail.title}}</text>
+      </view>
+      <view class="detail_li">
+        <text class="detail_title" >商品规格：</text>
+        <text class="detail_val">{{detail.spec}}</text>
+      </view> -->
+      <view class="detail_li">
+        <text class="detail_title" >更改时间：</text>
+        <text class="detail_val">{{detail.updateTime}}</text>
+      </view>
+      <view class="detail_li">
+        <text class="detail_title" >订单状态：</text>
+        <text class="detail_val">{{filter.marketType(detail.orderStatus)}}</text>
+      </view>
+      <view class="detail_li">
+        <text class="detail_title" >使用状态：</text>
+        <text class="detail_val">{{filter.exchangeStatus(detail.used)}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="form_btn">
+    <view wx:if="{{detail.used == 0}}" class="submit_btn" bindtap="submitBtn">核销</view>
+    <view wx:if="{{detail.used != 0}}" class="submit_btn_no">无法核销</view>
+  </view>
+</view>

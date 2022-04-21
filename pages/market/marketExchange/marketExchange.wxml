@@ -7,14 +7,15 @@
       <view class="type_li {{typeMenu == 1?'type_li_on':''}}" bindtap="typeTap" data-used="1">已使用</view>
     </view>
     <view class="exchange_ul" wx:if="{{exchangeList.length != 0}}">
-      <view class="exchange_li" wx:for="{{exchangeList}}" wx:key="index" bindtap="{{item.used == 0?'exchangeChoose':''}}" data-index="{{index}}">
-        <view class="exchange_li_left">
+      <view class="exchange_li" wx:for="{{exchangeList}}" wx:key="index">
+        <view class="exchange_li_left" bindtap="{{item.used == 0?'exchangeChoose':''}}" data-index="{{index}}">
           <image src="/static/images/gou{{item.choose?'4':'1'}}.png" class="exchange_choose" ></image>
           <text class="{{item.used == 0?'exchange_code_can':'exchange_code_no'}}" >兑换码：{{filter.numSpace(item.code)}}</text>
         </view>
         <view class="exchange_li_rigth">
           <view class="exchange_li_head">
-            <text class="exchange_status">{{filter.exchangeStatus(item.used)}}</text>
+            <image class="exchange_qrcode" src="/static/images/qrcode.png" wx:if="{{item.used == 0}}" bindtap="qrcodeShow"></image>
+            <text class="exchange_status" wx:if="{{item.used != 0}}">{{filter.exchangeStatus(item.used)}}</text>
           </view>
           <view class="exchange_li_body">
             <view class="{{item.used == 0?'exchange_name_can':'exchange_name_no'}}">{{item.name}}</view>

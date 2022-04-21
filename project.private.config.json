@@ -38,17 +38,17 @@
         },
         {
           "name": "pages/ucenter/nuclein/scan/scan",
-          "pathName": "pages/ucenter/set/information/information",
+          "pathName": "pages/market/marketRedeemCode/marketRedeemCode",
           "query": "",
-          "launchMode": "default",
-          "scene": null
+          "scene": null,
+          "launchMode": "default"
         },
         {
           "name": "核酸",
           "pathName": "pages/ucenter/nuclein/scan/scan",
           "query": "",
-          "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

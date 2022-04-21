@@ -79,6 +79,7 @@
     "pages/market/marketExchange/marketExchange",
     "pages/market/marketWritten/marketWritten",
     "pages/market/marketShare/marketShare",
+    "pages/market/marketRedeemCode/marketRedeemCode",
 
     "pages/ucenter/points/pointsMarket/pointsMarket",
     "pages/ucenter/points/pointsDetail/pointsDetail",
