@@ -34,7 +34,7 @@ Page({
   init(){
     let that = this
     user.memberGetInfo().then(res => {
-      if(!res.result.isCheckPerson){
+      if(!res.result.healthCheck){
         check.showErrorToast('您还不是检测员工，请联系技术人员')
       }else{
         that.info()

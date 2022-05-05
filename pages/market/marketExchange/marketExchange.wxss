@@ -1,4 +1,39 @@
 page{background-color: #f1f1f1;}
+/*pop*/
+.black{
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 200;
+}
+.pop_box{
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 100%;
+  z-index: 300;
+}
+.pop_img_box{
+  margin:300rpx auto;
+  background-color: #fff;
+  width: 500rpx;
+  border-radius: 10rpx;
+  padding: 30rpx;
+}
+.pop_img{
+  width: 440rpx;
+  height: 440rpx;
+  border-radius: 10rpx;
+}
+.pop_text{
+  margin-top: 20rpx;
+  text-align: center;
+  color: #008cd7;
+}
 /*menu*/
 .type{
   background-color: #fff;

@@ -2,6 +2,15 @@
   <wxs src="../../../filter/filter.wxs" module="filter" />
 	<import src="/template/template"/>
   <view>
+    <view wx:if="{{popShow}}">
+      <view class="black"></view>
+      <view class="pop_box" bindtap="hidePopShow">
+        <view class="pop_img_box">
+          <image class="pop_img" src="data:image/png;base64,{{qrCodePop}}"></image>
+          <view class="pop_text">请出示此二维码给员工核销</view>
+        </view>
+      </view>
+    </view>
     <view class="type">
       <view class="type_li {{typeMenu == 0?'type_li_on':''}}" bindtap="typeTap" data-used="0">未使用</view>
       <view class="type_li {{typeMenu == 1?'type_li_on':''}}" bindtap="typeTap" data-used="1">已使用</view>
@@ -14,7 +23,7 @@
         </view>
         <view class="exchange_li_rigth">
           <view class="exchange_li_head">
-            <image class="exchange_qrcode" src="/static/images/qrcode.png" wx:if="{{item.used == 0}}" bindtap="qrcodeShow"></image>
+            <image class="exchange_qrcode" src="/static/images/qrcode.png" wx:if="{{item.used == 0}}" bindtap="qrcodeShow" data-code="{{item.code}}"></image>
             <text class="exchange_status" wx:if="{{item.used != 0}}">{{filter.exchangeStatus(item.used)}}</text>
           </view>
           <view class="exchange_li_body">

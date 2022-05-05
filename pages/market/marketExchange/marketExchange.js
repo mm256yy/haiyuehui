@@ -27,7 +27,9 @@ Page({
     totle:{
       choose:false,
       num:0,
-    }
+    },
+    popShow:false,
+    qrCodePop:'',
   },
   onLoad: function (options) {
     user.goToLogin();
@@ -122,18 +124,24 @@ Page({
       console.log(err);
     });
   },
-  //
-  qrcodeShow(){
+  //显示二维码
+  qrcodeShow(e){
+    let code = e.currentTarget.dataset.code
     let param = {
-      id: this.data.detailed.id,
+      code: code,
     }
-    util.request(api.MallGoodsInviteImg , param , 'GET').then(res => {
+    util.request(api.MemberGoodsCheckQrcode , param , 'GET').then(res => {
       let data = res.result
-      wx.previewImage({
-        current: data, // 当前显示图片的http链接
-        urls: [data] // 需要预览的图片http链接列表
+      this.setData({
+        popShow:true,
+        qrCodePop:data,
       })
     }).catch((err) => {});
+  },
+  hidePopShow(){
+    this.setData({
+      popShow:false,
+    })
   },
   //单选
   exchangeChoose(e){

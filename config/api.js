@@ -9,7 +9,7 @@
 // let WxApiRoot = 'http://192.168.133.67:9002/wx/'; let testing = true;  //'http://192.168.188.79:9001/wx/'; 
 // let WxApiRoot = 'http://115.238.67.214:9002/wx/'; let testing = true;  //明俊外网地址 
 // let WxApiRoot = 'http://192.168.133.88:9002/wx/'; let testing = true;  //益静本机
-// let WxApiRoot = 'http://192.168.1.7:9002/wx/'; let testing = true;  //临时ip
+// let WxApiRoot = 'http://mingtian.gz2vip.91tunnel.com/wx/'; let testing = true;  //临时ip
 // 生产地址 
 let WxApiRoot = 'https://hotels.hwhautomall.com/wx/'; let testing = false;  // let WxApiRoot = 'https://www.hwhhotels.com/wx/';
  
@@ -119,4 +119,8 @@ module.exports = {
    memberCheckQrcode:WxApiRoot +'member/checkQrcode', //核酸健康-查询
    memberGetPersonInfo:WxApiRoot +'member/getPersonInfo', //核酸健康-获取用户信息
    memberHealthRecord:WxApiRoot +'hotelCheckRecord/submit', //核酸健康-提交用户信息和图片
+
+   MemberGoodsCheckQrcode:WxApiRoot +'mall/memberGoods/goodsCheckQrcode', //兑换码二维码
+   MemberGoodsQueryByCode:WxApiRoot +'mall/memberGoods/queryByCode', //兑换码查询商品信息
+   MemberGoodsConsumeCode:WxApiRoot +'mall/memberGoods/consumeCode', //兑换码员工核销
  }

@@ -1,15 +1,6 @@
 {
   "setting": {},
   "condition": {
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
     "miniprogram": {
       "list": [
         {
@@ -39,18 +30,19 @@
         {
           "name": "pages/ucenter/nuclein/scan/scan",
           "pathName": "pages/market/marketRedeemCode/marketRedeemCode",
-          "query": "",
-          "scene": null,
-          "launchMode": "default"
+          "query": "gc=631027210111",
+          "launchMode": "default",
+          "scene": null
         },
         {
-          "name": "核酸",
-          "pathName": "pages/ucenter/nuclein/scan/scan",
+          "name": "pages/market/marketExchange/marketExchange",
+          "pathName": "pages/market/marketExchange/marketExchange",
           "query": "",
           "launchMode": "default",
           "scene": null
         }
       ]
     }
-  }
+  },
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html"
 }
