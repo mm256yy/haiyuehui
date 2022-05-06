@@ -9,7 +9,7 @@
       <image class="goods_img" src="{{detail.img}}"></image>
       <view class="goods_content">
         <view class="content_name">{{filter.titleLong(detail.title)}}</view>
-        <view class="content_spec">{{detail.spec}}</view>
+        <view class="content_spec" wx:if="{{detail.spec}}">{{detail.spec}}</view>
       </view>
       <view class="goods_more" bindtap="goMarketDetailed">查看更多</view>
     </view>

@@ -67,6 +67,7 @@ Page({
   },
   //提交
   submitBtn(){
+    let that = this
     if(!this.data.detail.code){
       check.showErrorToast('请扫码获取兑换码')
       return false
@@ -77,15 +78,8 @@ Page({
       id:detail.id,
     };
     util.request(api.MemberGoodsConsumeCode , param , 'post').then(res => {
-      wx.showModal({ 
-        title: '提交成功',
-        content: '提交的内容可以在后台查询到',
-        success: function(res) {
-          wx.switchTab({
-            url: "/pages/index/index"
-          })
-        }
-      })
+      wx.showModal({title: '核销成功',content: "核销订单可至海悦会后台查看",showCancel: false}); 
+      that.onShow()
     }).catch((err) => {
       
     });

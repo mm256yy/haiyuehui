@@ -206,7 +206,7 @@ Page({
         ids.push(exchangeListNew[i].id)
       }
     }
-    console.log(ids)
+    console.log(img)
     return {
       title: '您的好友送您'+this.data.totle.num+'张商品兑换码',
       imageUrl:img,//图片地址
