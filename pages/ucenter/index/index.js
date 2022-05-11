@@ -51,7 +51,7 @@ Page({
       {img:'/static/images/other/other2.png',text:'常住人簿',tap:'goOften',badge:false},
       // {img:'/static/images/other/other3.png',text:'账单开票',tap:'goInvoice',badge:false},
       {img:'/static/images/other/other4.png',text:'隐私条款',tap:'goPrivacy',badge:false},
-      {img:'/static/images/other/other4.png',text:'我的礼品卡',tap:'giftCard',badge:false},
+      // {img:'/static/images/other/other4.png',text:'我的礼品卡',tap:'giftCard',badge:false},
       {img:'/static/images/other/other5.png',text:'客服帮助',tap:'goService',badge:false},
 
       {img:'/static/images/other/other9.png',text:'设置',tap:'goSet',badge:false},

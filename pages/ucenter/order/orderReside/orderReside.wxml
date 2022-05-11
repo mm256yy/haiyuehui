@@ -71,7 +71,7 @@
 		<template is="zero" data="{{list:roomImgUl}}"/>
 	</view>
 	<view class="reside_btn">
-		<view class="btn_define" bindtap="resideBtn">{{menuChoose == 3?'办理入住':'下一步'}}</view>
+		<view class="btn_define" bindtap="resideBtn">{{menuChoose == 3?'入住完成':'下一步'}}</view>
 	</view>
 	<view class="debug_reside" wx:if="{{menuChoose == 2 && isDebug}}" bindlongpress="resideBtn2">
 		海外海集团

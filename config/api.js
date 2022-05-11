@@ -9,7 +9,7 @@
 // let WxApiRoot = 'http://192.168.133.67:9002/wx/'; let testing = true;  //'http://192.168.188.79:9001/wx/'; 
 // let WxApiRoot = 'http://115.238.67.214:9002/wx/'; let testing = true;  //明俊外网地址 
 // let WxApiRoot = 'http://192.168.133.88:9002/wx/'; let testing = true;  //益静本机
-// let WxApiRoot = 'http://mingtian.gz2vip.91tunnel.com/wx/'; let testing = true;  //临时ip
+// let WxApiRoot = 'http://192.168.1.6:9002/wx/'; let testing = true;  //临时ip
 // 生产地址 
 let WxApiRoot = 'https://hotels.hwhautomall.com/wx/'; let testing = false;  // let WxApiRoot = 'https://www.hwhhotels.com/wx/';
  
@@ -110,6 +110,7 @@ module.exports = {
    PointRecord:WxApiRoot +'exchange/record', //积分兑换商品记录
 
    ActivityDraw:WxApiRoot +'activity/draw', // 抽奖活动
+   
    GiftList:WxApiRoot+'present/list',// 礼品卡列表
    MemberGiftList:WxApiRoot+'present/memberPresent',// 我的礼品卡列表
    GiftSubmit:WxApiRoot +'present/submit',//礼品提交订单

@@ -39,13 +39,13 @@ Page({
       console.log(res)
       //跳转
       wx.redirectTo({
-        url: "/pages/customized/payResult/payResult?result=2&end=3"
+        url: "/pages/customized/payResult/payResult?result=2&end=5"
       });
     }).catch((err) => {
       console.log(err)
       //跳转
       wx.redirectTo({
-        url: "/pages/customized/payResult/payResult?result=3&end=3"
+        url: "/pages/customized/payResult/payResult?result=3&end=5"
       });
     });
   },
