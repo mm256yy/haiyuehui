@@ -14,6 +14,7 @@ Page({
       couponNum:0,
       arr:'',
       dep:'2021-12-12',
+      levelsEndTime:'', //黑金卡过期时间
       cardNo:'1500615615',
       discount:95,  //95%  会员打折
       scoreTimes:100,  //1.5倍 积分倍数
@@ -31,10 +32,8 @@ Page({
     memberCard:[],
     powerUl:[],
     powerUlShow:[
-      {img:'power0',text1:'订房折扣',text2:'9.5折'},
-      {img:'power1',text1:'餐饮折扣',text2:'9.5折'},
-      {img:'power2',text1:'娱乐折扣',text2:'9.5折'},
-      {img:'power3',text1:'积分奖励',text2:'1倍'},
+      // {img:'power0',text1:'订房折扣',text2:'9.5折'},
+      // {img:'power3',text1:'积分奖励',text2:'1倍'},
     ],
     couponUl:[
       // {
@@ -110,6 +109,7 @@ Page({
         couponNum:0,
         arr:res.result.arr,
         dep:res.result.dep,
+        levelsEndTime:res.result.levelsEndTime,
         cardNo:res.result.cardno,
         card:member.memberCard[grade],
         discount:discountNew,  
@@ -120,9 +120,9 @@ Page({
       }
       let powerUlShowNew = [
         {img:'power0',text1:'订房折扣',text2:(discountNew/10)+'折'},
-        {img:'power1',text1:'餐饮折扣',text2:(discountNew/10)+'折'},
-        {img:'power2',text1:'娱乐折扣',text2:(discountNew/10)+'折'},
-        {img:'power3',text1:'积分奖励',text2:(scoreTimesNew/100)+'倍'},
+        {img:'power22',text1:'订单',text2:"免费取消"},
+        {img:'power21',text1:'会员',text2:"生日礼"},
+        {img:'power4',text1:'入住退房',text2:"免查房"},
       ]
       this.setData({
         info:infoNew,
@@ -141,13 +141,19 @@ Page({
   //更多权益
   powerMost(){
     wx.navigateTo({ 
-      url: "/pages/member/memberPower/memberPower"
+      url: "/pages/member/memberPower/memberPower?member="+this.data.info.card.nameC
     });
   },
   //我的余额
   walletAmount(){
     wx.navigateTo({ 
       url: "/pages/ucenter/wallet/walletAmount/walletAmount"
+    });
+  },
+  //我的积分
+  goPointsMarket(){
+    wx.navigateTo({ 
+      url: "/pages/ucenter/points/pointsMarket/pointsMarket"
     });
   },
   //优惠劵

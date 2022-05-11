@@ -40,10 +40,16 @@ Page({
           delta: 1  // 返回上一级页面。
         })
       }else{
-        console.log(res)
-        wx.navigateTo({ 
-          url: "/pages/auth/registerWx/registerWx"
-        });
+        let pages = getCurrentPages();
+        if(pages.length <= 1){
+          wx.navigateTo({
+            url: "/pages/auth/registerWx/registerWx"
+          });
+        }else{
+          wx.redirectTo({
+            url: "/pages/auth/registerWx/registerWx"
+          });
+        }
       }
     }).catch((err) => {
       app.globalData.hasLogin = false;
@@ -61,4 +67,10 @@ Page({
       url: "/pages/member/memberAgree/memberAgree"
     });
   },
+  //登陆取消
+  loginCancel(){
+    wx.navigateBack({
+      delta: 1  // 返回上一级页面。
+    })
+  }
 })

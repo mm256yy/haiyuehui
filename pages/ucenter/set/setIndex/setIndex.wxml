@@ -4,4 +4,7 @@
       退出登陆
     </view>
   </view>
+  <view class="set_debug">
+    <view class="set_debug_text" bindlongpress="debug">海外海集团</view>
+  </view>
 </view>

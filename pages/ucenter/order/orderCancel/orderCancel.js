@@ -51,7 +51,6 @@ Page({
   },
   //点击选择类型
   radioChange(e){
-    console.log(e)
     this.setData({
       chooseVal:e.currentTarget.dataset.index,
       cause:e.currentTarget.dataset.val
@@ -94,13 +93,8 @@ Page({
       }).catch((err2) => {});
     }
   },
-  //发起退款
-  refund(){
-
-  },
   //input焦点
   bindTextareaInput: function(e) {
-    console.log(e)
     this.setData({
       textarea: e.detail.value
     });

@@ -1,32 +1,50 @@
 <view>
-  <view class="login_logo">
-    <image class="logo_img" mode="widthFix" src="/static/images/addition.jpg"></image>
-  </view>
-  <view class="form_box">
-    <view class="form_ul">
-      <view class="form_left">
-        <view class="form_li">
-          <input class="form_input" placeholder-class="placeholder" cursor-spacing="40rpx" value="{{info.name}}" bindinput="bindNameInput" placeholder="请输入真实名字" />
-        </view>
-        <view class="input_li">
-          <input class="form_input" placeholder-class="placeholder"  cursor-spacing="40rpx" value="{{info.identity}}" bindinput="bindIdentityInput" placeholder="请输入真实身份证" />
-        </view>
-      </view>
-      <view class="form_right" bindtap="person" wx:if="{{additionType != 2}}">
-        <view class="form_person">
-          <image class="person_img" src="/static/images/selected.png"></image>
-          <view class="person_text">同住人簿</view>
-        </view>
-      </view>
+  <view class="menu_box">
+		<view class="menu_ul">
+			<view class="menu_li" wx:for="{{menuUl}}" wx:key="index" >
+				<view class="{{menuChoose >= index?'menu_li_num_on':'menu_li_num'}}">{{index+1}}</view>
+				<view class="{{menuChoose >= index?'menu_li_name_on':'menu_li_name'}}">{{item.name}}</view>
+			</view>
+		</view>
+	</view>
+  <view class="live_box" wx:if="{{menuChoose == 0}}">
+		<view class="live_blue" wx:if="{{additionType == 0}}">按照法律规定入住酒店必须填写身份证信息</view>
+		<view class="live_input">
+			<view class="form_ul">
+				<view class="form_left">
+					<view class="input_li">
+						<input placeholder="请输入真实姓名" placeholder-class="placeholder" cursor-spacing="40rpx" value="{{info.name}}" bindinput="bindNameInput"></input>
+					</view>
+					<view class="input_li">
+						<input placeholder="请输入身份证" placeholder-class="placeholder" cursor-spacing="40rpx" value="{{info.identity}}" bindinput="bindIdentityInput"></input>
+					</view>
+				</view>
+				<view class="form_right">
+					<view class="form_person">
+						<view class="person_text" bindtap="person">常住人簿</view>
+						<view class="person_text" bindtap="park">身份证识别</view>
+					</view>
+				</view>
+			</view>
+			<view class="input_li">
+				<input placeholder="请输入手机号" placeholder-class="placeholder" cursor-spacing="40rpx" value="{{info.mobile}}" bindinput="bindMobileInput"></input>
+			</view>
+		</view>
+		<view class="live_red">注:请确认真实的姓名与身份证正确，否则无法识别</view>
+	</view>
+	<view class="park_box" wx:if="{{menuChoose == 1}}">
+		<camera device-position="front" flash="off" binderror="error" style="width: 100%; height: 350px;"></camera>
+		<image class="face_top" src="/static/images/face.png" style="width: 100%; height: 350px;"></image>
+		<view class="camera_err">{{cameraErr}}</view>
+	</view>
+	<view class="success_box" wx:if="{{menuChoose == 2}}">
+		<image mode="widthFix" style="width: 100px; height: 100px;" src="/static/images/face-gou.jpg"></image>
+		<view class="success_text">完成登记</view>
+	</view>
+  <view>
+    <view class="reside_btn">
+      <view class="btn_define" bindtap="resideBtn" wx:if="{{additionType == 0||additionType == 2}}">{{menuChoose == 2?'确认同住人':'下一步'}}</view>
+      <view class="btn_define" bindtap="resideBtn" wx:if="{{additionType == 1}}">{{menuChoose == 2?'确认访客':'下一步'}}</view>
     </view>
-    <view class="input_li">
-      <input class="form_input" placeholder-class="placeholder" cursor-spacing="40rpx" value="{{info.mobile}}" bindinput="bindMobileInput" placeholder="请输入手机号码"/>
-    </view>
-    <view wx:if="{{additionType == 1}}" class="form_label">按照规定进出房间人员需要如实登记</view>
-    <view class="btn_box">
-      <view class="btn_li" bindtap="startBtn0" wx:if="{{additionType == 0||additionType == 2}}">确认同住人</view>
-      <view class="btn_li" bindtap="startBtn1" wx:if="{{additionType == 1}}">确认访客</view>
-    </view>
-    <view class="agreement">确认即同意<text class="agreement_href" bindtap="goAgree">《海外海酒店协议》</text></view>
   </view>
 </view>

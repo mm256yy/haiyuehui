@@ -47,26 +47,14 @@ Page({
     otherIcon:[
       {img:'/static/images/other/other1.png',text:'身份信息',tap:'goInformation',badge:false},
       {img:'/static/images/other/other8.png',text:'会员权益',tap:'goMember',badge:false},
+      {img:'/static/images/other/other10.png',text:'积分商城',tap:'goPointsMarket',badge:false},
       {img:'/static/images/other/other2.png',text:'常住人簿',tap:'goOften',badge:false},
       // {img:'/static/images/other/other3.png',text:'账单开票',tap:'goInvoice',badge:false},
       {img:'/static/images/other/other4.png',text:'隐私条款',tap:'goPrivacy',badge:false},
-      // {img:'/static/images/other/other5.png',text:'客服热线',tap:'goService',badge:false},
       {img:'/static/images/other/other4.png',text:'我的礼品卡',tap:'giftCard',badge:false},
+      {img:'/static/images/other/other5.png',text:'客服帮助',tap:'goService',badge:false},
+
       {img:'/static/images/other/other9.png',text:'设置',tap:'goSet',badge:false},
-    ],
-    serviceIcon:[
-      {img:'/static/images/service/service0.png',text:'住房延期'},
-      {img:'/static/images/service/service1.png',text:'账单查询'},
-      {img:'/static/images/service/service2.png',text:'我的发票'},
-      {img:'/static/images/service/service3.png',text:'关于我们'},
-      {img:'/static/images/service/service4.png',text:'线上买单'},
-      {img:'/static/images/service/service5.png',text:'迷你吧'},
-      {img:'/static/images/service/service6.png',text:'快递上楼'},
-      {img:'/static/images/service/service7.png',text:'打扫服务'},
-      {img:'/static/images/service/service8.png',text:'客耗品'},
-      {img:'/static/images/service/service9.png',text:'物品租赁'},
-      {img:'/static/images/service/service10.png',text:'洗衣服务'},
-      {img:'/static/images/service/service11.png',text:'叫醒服务'},
     ],
     badge:{
       menu:[0,0,0,0]
@@ -77,7 +65,6 @@ Page({
     // console.log(1)
   },
   onShow: function () {
-    console.log(this.data.ucenter.allowanceMoney)
     this.userInfo();
     this.member();
     this.badge();
@@ -135,7 +122,7 @@ Page({
         badge:badgeNew
       });
       wx.setTabBarBadge({
-        index: 2,
+        index: 3,
         text:'1',
         success: res => { console.log(res) },
         fail: res => { console.error }
@@ -233,11 +220,14 @@ Page({
       url: "/pages/ucenter/set/setIndex/setIndex"
     });
   },
-  //客服热线
+  //客服帮助
   goService(){
-    wx.makePhoneCall({
-      phoneNumber:'057188173811'
-    })
+    wx.navigateTo({ 
+      url: "/pages/ucenter/service/serviceIndex/serviceIndex"
+    });
+    // wx.makePhoneCall({
+    //   phoneNumber:'057188173811'
+    // })
   },
   //清除红点
   cleanBadge(){
@@ -246,7 +236,7 @@ Page({
     })
     app.globalData.badge = "";
     wx.removeTabBarBadge({
-      index: 2,
+      index: 3,
       success: res => { console.log(res) },
       fail: res => { console.error }
     })
@@ -255,6 +245,11 @@ Page({
   goHotelsList(){
     wx.navigateTo({ 
       url: "/pages/customized/hotelsList/hotelsList"
+    });
+  },
+  goPointsMarket(){
+    wx.navigateTo({ 
+      url: "/pages/ucenter/points/pointsMarket/pointsMarket"
     });
   }
 })

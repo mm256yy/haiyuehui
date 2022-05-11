@@ -2,23 +2,34 @@
   <wxs src="../../../filter/filter.wxs" module="filter" />
 	<import src="/template/template"/>
   <view>
+    <view wx:if="{{popShow}}">
+      <view class="black"></view>
+      <view class="pop_box" bindtap="hidePopShow">
+        <view class="pop_img_box">
+          <image class="pop_img" src="data:image/png;base64,{{qrCodePop}}"></image>
+          <view class="pop_text">请出示此二维码给员工核销</view>
+        </view>
+      </view>
+    </view>
     <view class="type">
       <view class="type_li {{typeMenu == 0?'type_li_on':''}}" bindtap="typeTap" data-used="0">未使用</view>
       <view class="type_li {{typeMenu == 1?'type_li_on':''}}" bindtap="typeTap" data-used="1">已使用</view>
     </view>
     <view class="exchange_ul" wx:if="{{exchangeList.length != 0}}">
-      <view class="exchange_li" wx:for="{{exchangeList}}" wx:key="index" bindtap="{{item.used == 0?'exchangeChoose':''}}" data-index="{{index}}">
-        <view class="exchange_li_left">
+      <view class="exchange_li" wx:for="{{exchangeList}}" wx:key="index">
+        <view class="exchange_li_left" bindtap="{{item.used == 0?'exchangeChoose':''}}" data-index="{{index}}">
           <image src="/static/images/gou{{item.choose?'4':'1'}}.png" class="exchange_choose" ></image>
           <text class="{{item.used == 0?'exchange_code_can':'exchange_code_no'}}" >兑换码：{{filter.numSpace(item.code)}}</text>
         </view>
         <view class="exchange_li_rigth">
           <view class="exchange_li_head">
-            <text class="exchange_status">{{filter.exchangeStatus(item.used)}}</text>
+            <image class="exchange_qrcode" src="/static/images/qrcode.png" wx:if="{{item.used == 0}}" bindtap="qrcodeShow" data-code="{{item.code}}"></image>
+            <text class="exchange_status" wx:if="{{item.used != 0}}">{{filter.exchangeStatus(item.used)}}</text>
           </view>
           <view class="exchange_li_body">
             <view class="{{item.used == 0?'exchange_name_can':'exchange_name_no'}}">{{item.name}}</view>
             <view class="exchange_spec" wx:if="{{item.spec}}">{{filter.specDivision(item.spec)}}</view>
+            <view class="exchange_detail" bindtap="goMarketDetailed" data-id="{{item.goodsId}}">查看更多</view>
           </view>
           <view  class="exchange_li_foot" wx:if="{{item.used == 0}}">
             <text class="{{item.used == 0?'exchange_btn_can':'exchange_btn_no'}}" wx:if="{{item.tap != ''}}" catchtap="{{item.used == 0?item.tap:''}}" data-id="{{item.id}}" data-org="{{item.orgCode}}">立即使用</text>

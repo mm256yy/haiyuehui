@@ -1,0 +1,29 @@
+<view>
+  <view class="home_swiper">
+		<image src="{{detailed.picture}}" class="banner_image" />
+	</view>
+  <view class="goods_body">
+    <view class="body_list">
+      <view class="body_li body_name">{{detailed.title}}</view>
+			<view class="body_li">
+				<text class="body_point_t1">{{detailed.points}}</text>
+				<text class="body_point_t2">积分</text>
+			</view>
+			<view class="body_member">
+				<view class="body_member_li" wx:if="{{item.show}}" wx:for="{{tags}}" wx:key="index">{{item.name}}</view>
+			</view>
+		</view>
+		<view class="body_list">
+			<view class="notice_title">
+				<image class="notice_img" src="/static/images/i2.png"></image>
+				<view class="notice_title_t">商品说明</view>
+			</view>
+			<view class="notice">
+				<view class="notice_li_t" wx:for="{{detailed.content}}" wx:key="index">{{item}}</view>
+			</view>
+		</view>
+  </view>
+  <view class="goods_foot">
+    <view class="foot_btn" bindtap="exchange">兑换</view>
+  </view>
+</view>

@@ -1,11 +1,58 @@
+page{
+  background-color: #f1f1f1;
+}
 /*img*/
 .cis_title{
   width: 100%;
 }
+/*menu*/
+.menu_box{
+  padding: 40rpx 20rpx;
+}
+.menu_ul{
+  display: flex;
+}
+.menu_li{
+  flex: 1 1 auto;
+  text-align: center;
+}
+.menu_li_num{
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius:50rpx;
+  background-color: #cdcdcd;
+  color: #fff;
+  margin: auto;
+}
+.menu_li_num_on{
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius:50rpx;
+  background-color: #1890ff;
+  color: #fff;
+  margin: auto;
+}
+.menu_li_name{
+  font-size: 24rpx;
+  margin-top: 10rpx;
+  color: #cdcdcd;
+}
+.menu_li_name_on{
+  font-size: 24rpx;
+  margin-top: 10rpx;
+  color: #1890ff;
+}
 /*two*/
+.live_box{
+  background-color: #fff;
+  padding: 40rpx 0rpx;
+}
 .live_input{
   padding: 20rpx 30rpx;
-  background-color: #fff;
 }
 .live_title{
   text-align: center;
@@ -34,8 +81,14 @@
   height: 80rpx;
 }
 .person_text{
-  color: #999;
+  background-color: #1890ff;
+  border-radius: 10rpx;
+  margin: 5px;
+  padding:10px 0px;
+  text-align: center;
+  color: #fff;
   font-size: 24rpx;
+  width: 150rpx;
 }
 .input_li{
   position: relative;
@@ -45,7 +98,6 @@
   width: 120rpx;
   line-height: 45rpx;
   text-align: right;
-  float: left;
   padding-top:10rpx ;
 }
 .input_li input{
@@ -98,6 +150,12 @@
 .room_choose_right{
   right: 0rpx;
 }
+.live_blue{
+  color: #008cd7;
+  font-size: 28rpx;
+  padding: 40rpx 30rpx;
+  text-align: center;
+}
 .live_red{
   color: #cc0000;
   font-size: 24rpx;
@@ -105,6 +163,9 @@
   padding: 0rpx 30rpx;
 }
 /*four*/
+.choose_box{
+  background-color: #fff;
+}
 .choose_four_head{
   text-align: center;
   padding: 20rpx;
@@ -189,6 +250,28 @@
   top: 7rpx;
   left: 7rpx;
 }
+/*park*/
+.park_box{
+  background-color: #fff;
+  text-align: center;
+  position: relative;
+}
+.face_top{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+}
+/*success*/
+.success_box{
+  background-color: #fff;
+  text-align: center;
+  padding: 20rpx;
+}
+.success_text{
+  color: #008cd7;
+  font-size: 36rpx;
+  font-weight: 800;
+}
 /*btn*/
 .choose_btn{
   background-color: #fff;
@@ -211,4 +294,19 @@
 }
 .reside_btn{
   padding: 50rpx 0rpx 50rpx;
+}
+/**/
+.camera_err{
+  color: #cc0000;
+  text-align: center;
+  padding: 10rpx;
+}
+/*debug*/
+.debug_reside{
+  color: #fff;
+  position: fixed;
+  bottom: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  text-align: center;
 }

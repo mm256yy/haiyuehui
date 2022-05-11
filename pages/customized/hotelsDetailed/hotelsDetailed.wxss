@@ -244,7 +244,7 @@ swiper{
   right: 0rpx;
 }
 .room_price_vip{
-  width: 160rpx;
+  min-width: 180rpx;
   position: absolute;
   bottom: 0rpx;
   right: 0rpx;
@@ -254,7 +254,7 @@ swiper{
   text-align: center;
 }
 .room_price_sic{
-  width: 160rpx;
+  min-width: 180rpx;
   position: absolute;
   bottom: 0rpx;
   right: 0rpx;
@@ -282,7 +282,7 @@ swiper{
 }
 .vip_price text{
   color: #cc0000;
-  font-size: 30rpx;
+  font-size: 28rpx;
 }
 .sic_price text{
   color: #753ffd;

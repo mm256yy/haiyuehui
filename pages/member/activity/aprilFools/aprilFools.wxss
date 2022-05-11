@@ -1,0 +1,12 @@
+.fools_ul{
+  padding: 50rpx 20rpx;
+}
+.fools_li_b{
+  font-weight: 800;
+  font-size: 40rpx;
+}
+.fools_li{
+  text-align: center;
+  font-size: 30rpx;
+  line-height: 50rpx;
+}

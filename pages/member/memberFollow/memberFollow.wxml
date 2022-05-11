@@ -1,5 +1,5 @@
 <view class="page-body">
   <view class="body">
-    <web-view src="https://mp.weixin.qq.com/s/vSEETgciHgjfzSOFLMD_rA"></web-view>
+    <web-view src="{{url}}"></web-view> 
   </view>
 </view>

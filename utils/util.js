@@ -32,7 +32,6 @@ function whiteList(){
     currPage = pages[pages.length - 1].route;
   }
   let whiteList = [null,"pages/index/index","pages/ucenter/index/index","pages/ucenter/order/orderList/orderList","pages/market/marketOrderList/marketOrderList","pages/market/shoppingCart/shoppingCart","pages/market/marketList/marketList","pages/market/marketDetailed/marketDetailed","pages/market/marketExchange/marketExchange"];  //跳转白名单
-  console.log(currPage)
   if(whiteList.indexOf(currPage) >= 0){ //存在
     return true;
   }else{
@@ -53,6 +52,72 @@ function request(url, data = {}, method = "GET") {
       },
       success: function(res) {
         console.log(res);
+        jhxLoadHide();
+        if (res.statusCode == 200) {
+          if(res.data.code == 0||res.data == "ok"){  //判断是否成功
+            resolve(res.data);
+          }else if(res.data.message == "未登录"||res.data.message == '请先登录'){
+            let iswhiteList = whiteList();
+            if(iswhiteList){ //存在
+              //未登陆
+            }else{
+              let pages = getCurrentPages();
+              if(pages.length <= 1){
+                wx.navigateTo({
+                  url: "/pages/auth/login/login"
+                });
+              }else{
+                wx.redirectTo({
+                  url: "/pages/auth/login/login"
+                });
+              }
+            }
+            wx.showToast({title: "未登陆" ,image:'/static/images/icon_error.png'})
+            reject("未登陆");
+          }else if(res.data.message){
+            if(res.data.message.length <= 7){
+              wx.showToast({title: res.data.message ,image:'/static/images/icon_error.png'})
+            }else if(res.data.message.length <= 14&&res.data.message.length>7){
+              wx.showToast({title: res.data.message ,icon:'none'})
+            }else{
+              wx.showModal({title: '提示',content: res.data.message})
+            }
+            reject(res.data.message);
+          }else if(res.data.message == null){
+            console.log(res.data.message);
+          }else{
+            wx.showToast({title: "未知异常" ,image:'/static/images/icon_error.png'})
+            reject("未知异常");
+          }
+        } else {
+          wx.showToast({title: "未连接服务器" ,image:'/static/images/icon_error.png'})
+          reject("未连接到服务器200+");
+          console.log(res.errMsg);
+        }
+      },
+      fail: function(err) {
+        jhxLoadHide()
+        wx.showToast({title: "网络连接失败" ,image:'/static/images/icon_error.png'})
+        reject("网络连接失败")
+        console.log(err)
+      }
+    })
+  });
+}
+/*封封微信的的request*/
+function requestPOST(url, data = {}, method = "POST") {
+  jhxLoadShow("加载中")
+  return new Promise(function(resolve, reject) {
+    wx.request({
+      url: url,
+      data: data,
+      method: method,
+      header: {
+        'Content-Type': 'application/json',
+        'X-HWH-Token': wx.getStorageSync('token')
+      },
+      success: function(res) {
+        // console.log(res.data);
         jhxLoadHide();
         if (res.statusCode == 200) {
           if(res.data.code == 0||res.data == "ok"){  //判断是否成功
@@ -138,9 +203,13 @@ function jhxLoadHide() {
 //身份证信息处理 	350102200103077639 ==> 35010*******77639
 function identityCard(val){  
   //let val = JSON.stringify(num)
-  let valLength = val.length;
-  let valNew = val.substring(0,5) +'**********'+val.substring(valLength-2,valLength)
-  return valNew
+  if(val){
+    let valLength = val.length;
+    let valNew = val.substring(0,5) +'**********'+val.substring(valLength-2,valLength)
+    return valNew
+  }else{
+    return '未查询到身份证信息'
+  }
 }
 //手机号隐藏
 function mobileCard(val){
@@ -148,40 +217,6 @@ function mobileCard(val){
   let valNew = val.substring(0,3) +'******'+val.substring(valLength-2,valLength)
   return valNew
 }
-// //订单类型
-// function orderType(type){
-//   if(type == 11){  //订单生成，未支付
-//     return "待支付"
-//   }else if(type == 12){  //下单未支付用户取消
-//     return "已取消"
-//   }else if(type == 13){ //下单未支付超期系统自动取消
-//     return "超时已取消"
-//   }else if(type == 21){  //订单支付中
-//     return "支付中"
-//   }else if(type == 22){  //支付完成，待入住
-//     return "待入住"
-//   }else if(type == 23){  //支付完成，未入住，用户申请退款
-//     return "退款申请中"
-//   }else if(type == 24){  //管理员执行退款操作，确认退款成功
-//     return "退款成功"
-//   }else if(type == 25){  //续租，支付成功
-//     return "已支付"
-//   }else if(type == 26){  //退款失败
-//     return "退款失败"
-//   }else if(type == 31){  //已入住
-//     return "已入住"
-//   }else if(type == 32){  //已入住 并且续住
-//     return "已续住"
-//   }else if(type == 41){  //已退房
-//     return "已申请退房"
-//   }else if(type == 51){  //已结单
-//     return "已结单"
-//   }else if(type == 61){  //结单后发送了奖励
-//     return "已结单"
-//   }else{
-//     return "未知状态"
-//   }
-// }
 //会员类型
 function memberGrade(type){
   if(type == "GBK"){
@@ -226,6 +261,7 @@ module.exports = {
 
   whiteList,
   request,
+  requestPOST,
 
   jhxLoadShow,
   jhxLoadHide,
@@ -233,7 +269,6 @@ module.exports = {
   mobileCard,
   networkManage,
 
-  // orderType,
   memberGrade,
   importantMoney,
 }

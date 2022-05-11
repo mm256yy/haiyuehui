@@ -31,9 +31,9 @@ Page({
       app.globalData.hasLogin = true;
       app.fristRegister = true;  //首页弹窗
       app.globalData.badge = {menu:[0,3,0,0]};
-      wx.switchTab({ 
-        url:"/pages/index/index"
-      })
+      wx.navigateBack({ 
+        delta: 1 
+      }); 
       wx.setStorageSync('userInfoMobile', res.result.mobile||"未获取到手机号");
     }).catch((err) => {});
   }

@@ -1,0 +1,12 @@
+<view>
+  <view class="fools_ul">
+    <view class="fools_li fools_li_b">恭喜您，上当啦！</view>
+    <view class="fools_li">海悦会在愚人节跟大家开了一个玩笑</view>
+    <view class="fools_li">还请各位见谅呐 ~</view>
+    <view class="fools_li">虽然赠送白金会员的活动是子虚乌有</view>
+    <view class="fools_li">但是对会员的关怀都是真切的！</view>
+    <view class="fools_li">评论区留言点赞前三的会员</view>
+    <view class="fools_li">送价值100元礼品卡一张</view>
+    <view class="fools_li">活动截止4月10日</view>
+  </view>
+</view>

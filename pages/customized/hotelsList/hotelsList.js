@@ -14,7 +14,7 @@ Page({
         hotelsLi = {
           id:res.result[i].id,
           name:res.result[i].name,
-          img:res.result[i].imgList != null?res.result[i].imgList[0]:'/static/images/banner2.jpg',
+          img:res.result[i].imgList != null?res.result[i].imgList[0]:'/static/images/banner1.jpg',
           address:res.result[i].address,
           deposit:res.result[i].deposit,
           tel:res.result[i].tel,

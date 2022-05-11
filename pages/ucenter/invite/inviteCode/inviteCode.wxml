@@ -5,7 +5,8 @@
   <view class="code_box">
     <view class="code_qr">
       <image class="code_qr_img" src="data:image/png;base64,{{codeImg}}" mode="widthFix"></image>
-      <view class="code_qr_text">扫一扫上面的二维码图案，邀请好友</view>
+      <!-- <view class="code_qr_text">扫一扫上面的二维码图案，邀请好友</view> -->
     </view>
+    <image class="ba_image" mode="widthFix" src="/static/images/ba-img.jpg"></image>
   </view>
 </view>

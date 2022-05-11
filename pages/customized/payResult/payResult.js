@@ -2,9 +2,9 @@ let app = getApp();
 Page({
   data: {
     second:5,
-    result:1,   //0失败  1成功
-    time:null,
-    orderId:""
+    orderId:"",
+    result:1,   //0支付失败 1支付成功 2提现成功 3提现失败
+    time:null
   },
   onLoad: function (options) {
     let that = this;
@@ -44,9 +44,14 @@ Page({
       wx.reLaunch({
         url: '/pages/ucenter/giftresult/giftresult?orderIds='+this.data.orderId,
       })
-    }else if(val==4){
+    }else if(val==4){ //礼品卡主页
       wx.reLaunch({
         url: '/pages/ucenter/gift/gift',
+      })
+
+    }else if(val == 5){ //提现
+      wx.navigateBack({
+        delta: 2
       })
     }
   }

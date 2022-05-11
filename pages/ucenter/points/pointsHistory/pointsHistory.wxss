@@ -1,0 +1,60 @@
+page{
+  background-color: #f1f1f1;
+}
+/*choose*/
+.choose_box{
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+}
+.choose_day{
+  padding:20rpx 30rpx;
+  background-color: #f1f1f1;
+}
+.choose_time{
+  display: inline-block;
+  background-color: #fff;
+  border-radius:50rpx;
+  padding: 0rpx 25rpx;
+  line-height: 50rpx;
+  height: 50rpx;
+}
+/*消费列表*/
+.consume_ul{
+  margin-top: 100rpx;
+}
+.consume_li{
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f1f1f1;
+  background-color: #fff;
+  margin: 20rpx;
+  border-radius: 20rpx;
+} 
+.consume_li_text{
+  padding: 5rpx 0rpx;
+  font-size: 30rpx;
+}
+.consume_li_text text{
+  line-height: 30rpx;
+}
+.consume_li_t1{
+  font-size: 30rpx;
+}
+.consume_li_t2{
+  font-size: 24rpx;
+  color: #cdcdcd;
+  float: right;
+}
+.consume_li_t3{
+  font-size: 24rpx;
+}
+.consume_li_t4{
+  font-size: 28rpx;
+  font-weight: 800;
+  float: right;
+}
+.consume_li_t5{
+  margin-left: 20rpx;
+  color: #999;
+}

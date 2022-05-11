@@ -147,6 +147,23 @@ page{
 .notice_li_t2{
   margin-left: 150rpx;
 }
+.indication_li{
+  position: relative;
+  margin-bottom: 15rpx;
+}
+.indication_li_d{
+  color: #fe6f41;
+  font-weight: 800;
+  position: absolute;
+  top: -3rpx;
+  left: 5rpx;
+}
+.indication_li_t{
+  display: inline-block;
+  margin-left: 30rpx;
+  color: #999;
+}
+
 /*foot*/
 .goods_foot{
   display: flex;
@@ -210,6 +227,9 @@ page{
 .goods_foot_pay{
   background-color: #fe6f41;
 }
+.goods_foot_pay_no{
+  background-color: #cdcdcd;
+}
 /*pop*/
 .pop_black{
   background-color: rgba(0,0,0,0.6);
@@ -261,7 +281,14 @@ page{
 }
 .pop_num_box{
   display: flex;
-  padding: 40rpx 20rpx;
+  padding: 40rpx 20rpx 0rpx 20rpx;
+}
+.pop_canAmount_box{
+  text-align:right ;
+  padding:10px ;
+}
+.pop_canAmount{
+  color: #fe6f41;
 }
 .pop_purchase{
   line-height: 60rpx;
@@ -348,41 +375,4 @@ page{
   border-radius:100rpx ;
   text-align:center ;
   padding:10rpx 40rpx;
-}
-.canvas_btn{
-  position: fixed;
-  bottom: 20rpx;
-  left: 0rpx;
-  z-index: 120;
-}
-.created_image{
-  background-color: #fe6f41;
-  color: #fff;
-  border-radius:100rpx;
-  padding:20rpx 50rpx;
-  margin:20rpx ;
-  text-align: center;
-}
-.cance_image{
-  background-color: #fff;
-  color: #000;
-  border-radius:100rpx;
-  padding:20rpx 50rpx;
-  margin:20rpx ;
-  text-align: center;
-}
-.canvas_screen{
-  position: fixed;
-  top: 0rpx;
-  left: 0rpx;
-  width: 100%;
-  z-index: 120;
-}
-.canvas_box{
-  height: 500px;
-  width: 300px;
-  background-color: #fff;
-  border-radius:20rpx;
-  z-index: 120;
-  margin:50rpx auto;
 }

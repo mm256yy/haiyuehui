@@ -90,10 +90,9 @@ Page({
       app.fristRegister = true; //首页弹窗
       app.globalData.badge = {menu:[0,3,0,0]};
       wx.setStorageSync('userInfoMobile', that.data.mobile);
-      //wx.setStorageSync('userInfo', res.data.data.userInfo);
-      wx.switchTab({ 
-        url:"/pages/index/index"
-      })
+      wx.navigateBack({ 
+        delta: 1  
+      });
     }).catch((err) => {});
   },
 })

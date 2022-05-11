@@ -24,6 +24,8 @@ Page({
       canStay:false,   //是否可以入住
       otaId:'',  //ota订单
       otaRestype:'',  //ota类型
+      pid:null,//是否是续租订单
+      connected:0,//是否是接入订单
     },
     personUl:[
       /*{    
@@ -69,6 +71,8 @@ Page({
       {date:'2020-09-11',price:2200},
     ],  //日历房
     datePricesShow:false,
+    //isDebug
+    isDebug:false,
   },
   onLoad(options) {
     this.init(options)
@@ -76,6 +80,7 @@ Page({
   onReady() {
   },
   onShow() {
+    this.funIsDebug();
     this.orderList();
     //退出页面时把密码删除
     app.globalData.orderPwd = "";
@@ -112,6 +117,8 @@ Page({
         canStay:(check.checkIsOverdue(data.arr) === 0),
         otaId:data.otaId?data.otaId:'',
         otaRestype:data.otaRestype?data.otaRestype:'',
+        pid:data.pid,
+        connected:data.connected == 1?1:0,
       }
       let dayNum = (new Date(data.dep) - new Date(data.arr))/1000/60/60/24;
       //日历房
@@ -179,7 +186,7 @@ Page({
         datePrices:datePricesNew,
       })
       this.member();
-      // this.addDaysList(); 续租
+      // this.addDaysList(); //续住
     }).catch((err) => {});
   },
   //会员信息
@@ -239,7 +246,7 @@ Page({
       })
     }).catch((err) => {});
   },
-  //续租订单支付
+  //续住订单支付
   perpay(e){
     let index = e.currentTarget.dataset.index;
     //
@@ -312,19 +319,19 @@ Page({
           console.log(that.data.detail.roomNo)
           if(that.data.detail.roomNo == ''){
             wx.navigateTo({
-              // url: "/pages/ucenter/order/orderChoose/orderChoose?arr="+that.data.detail.startTimeS+
-              // "&dep="+that.data.detail.endTimeS+
-              // "&hotelId="+that.data.detail.hotelId+
-              // "&rmtype="+that.data.detail.rmtype+
-              // "&orderId="+that.data.detail.orderId+
-              // "&roomNo="+that.data.detail.roomNo
-              url: "/pages/ucenter/order/orderReside/orderReside?arr="+that.data.detail.startTimeS+
+              url: "/pages/ucenter/order/orderChoose/orderChoose?arr="+that.data.detail.startTimeS+
               "&dep="+that.data.detail.endTimeS+
               "&hotelId="+that.data.detail.hotelId+
               "&rmtype="+that.data.detail.rmtype+
               "&orderId="+that.data.detail.orderId+
-              "&roomNo="+that.data.detail.roomNo+
-              "&floor=22"
+              "&roomNo="+that.data.detail.roomNo
+              // url: "/pages/ucenter/order/orderReside/orderReside?arr="+that.data.detail.startTimeS+
+              // "&dep="+that.data.detail.endTimeS+
+              // "&hotelId="+that.data.detail.hotelId+
+              // "&rmtype="+that.data.detail.rmtype+
+              // "&orderId="+that.data.detail.orderId+
+              // "&roomNo="+that.data.detail.roomNo+
+              // "&floor=22"
             })
           }else{
             wx.navigateTo({
@@ -352,6 +359,12 @@ Page({
       url: "/pages/ucenter/order/orderAddition/orderAddition?orderId="+this.data.detail.orderId+"&additionType="+additionType+"&hotelId="+this.data.detail.hotelId+"&roomNo="+this.data.detail.roomNo
     })
   },
+  // 停车车牌
+  // goOrderPark(){
+  //   wx.navigateTo({
+  //     url: "/pages/ucenter/order/orderPark/orderPark?orderId="+this.data.detail.orderId+"&hotelId="+this.data.detail.hotelId+"&roomNo="+this.data.detail.roomNo
+  //   })
+  // },
   //订单明细显示
   funDatePricesShow(){
     this.setData({
@@ -407,5 +420,32 @@ Page({
   TimeR(val){
     let arr = val.toString().split("");
     return arr[0]+arr[1]+arr[2]+arr[3]+"-"+arr[4]+arr[5]+"-"+arr[6]+arr[7]
+  },
+  //funIsDebug
+  funIsDebug(){
+    this.setData({
+      isDebug:wx.getStorageSync('debug')
+    })
+  },
+  //退房（瑞沃）
+  checkout2(){
+    let that = this
+    wx.showModal({    
+      title: '退房手续（瑞沃）',
+      content: '请确认未在房间遗留随身物品',
+      success: function(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          let param = {
+            orderId:that.data.detail.orderId
+          }
+          util.request(api.UcenterOrderRWCheckout , param , 'POST').then(res => {
+            wx.showToast({title: "退房申请成功" ,image:'/static/images/icon_success.png'})
+          }).catch((err) => {});
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
 })

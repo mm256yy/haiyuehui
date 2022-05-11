@@ -10,15 +10,13 @@ Page({
       mobile:'',
     },
     isFirst:false,
+    codeImg:'',
   },
   onLoad: function (options) {
-    this.init();
-  },
-  onReady: function () {
-
+    
   },
   onShow: function () {
-    
+    this.init();
   },
   init(){
     //获取到当前的手机号123
@@ -26,10 +24,6 @@ Page({
     let isFirstNew = null; 
     if(tel){  //如果存在
       console.log("手机号获取到")
-    }else{
-      wx.redirectTo({
-        url: "/pages/auth/login/login"
-      })
     }
     user.memberGetInfo().then(res => {
       let infoNew = {
@@ -46,6 +40,7 @@ Page({
         info:infoNew,
         isFirst:isFirstNew,
       })
+      this.healthQrcode();
     }).catch((err) => {
       console.log(err);
     });
@@ -82,6 +77,15 @@ Page({
       wx.navigateBack({ 
         delta: 1  
       }); 
+    }).catch((err) => {});
+  },
+  //健康二维码
+  healthQrcode(){
+    let that = this
+    util.request(api.memberCheckQrcode , 'GET').then(res => {
+      that.setData({
+        codeImg:res.result
+      })
     }).catch((err) => {});
   },
   //input焦点

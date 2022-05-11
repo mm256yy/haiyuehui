@@ -27,7 +27,7 @@
     </view>
     <view class="form_li">
       <text class="form_li_t">电话号码</text>
-      <input class="form_input" placeholder-class="placeholder" bindinput="bindTelInput" value="{{detail.tel}}" placeholder="请输入手机号码" />
+      <input class="form_input" placeholder-class="placeholder" bindinput="bindMobileInput" value="{{detail.tel}}" placeholder="请输入手机号码" />
     </view>
     <view class="form_radio form_li_mo" bindtap="defaultChange">
       <radio value="1" checked="{{default}}" class="agree_radio" ext-class="agree_radio" />

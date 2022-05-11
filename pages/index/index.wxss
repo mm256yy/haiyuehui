@@ -4,7 +4,7 @@
   position: relative;
 }
 .home_swiper{
-  background-color: #cdcdcd;
+  background-color: #fff;
 }
 .home_swiper>swiper{
   height: 550rpx;

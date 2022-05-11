@@ -1,4 +1,40 @@
 page{background-color: #f1f1f1;}
+/*pop*/
+.black{
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 200;
+}
+.pop_box{
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 100%;
+  z-index: 300;
+}
+.pop_img_box{
+  margin:300rpx auto;
+  background-color: #fff;
+  width: 500rpx;
+  border-radius: 10rpx;
+  padding: 30rpx;
+}
+.pop_img{
+  width: 440rpx;
+  height: 440rpx;
+  border-radius: 10rpx;
+}
+.pop_text{
+  margin-top: 20rpx;
+  text-align: center;
+  color: #008cd7;
+}
+/*menu*/
 .type{
   background-color: #fff;
   display: flex;
@@ -31,8 +67,8 @@ page{background-color: #f1f1f1;}
 }
 .exchange_li_left{
   position: absolute;
-  top: 14rpx;
-  left:20rpx;
+  top: 15rpx;
+  left: 15rpx;
 }
 .exchange_choose{
   width: 50rpx;
@@ -49,6 +85,7 @@ page{background-color: #f1f1f1;}
 .exchange_li_body{
   padding: 20rpx;
   border-bottom: 1rpx solid #f1f1f1;
+  position: relative;
 }
 .exchange_li_foot{
   overflow: hidden;
@@ -57,6 +94,11 @@ page{background-color: #f1f1f1;}
 .exchange_status{
   float: right;
   color: #999;
+}
+.exchange_qrcode{
+  width:45rpx;
+  height:45rpx;
+  float:right;
 }
 .exchange_spec{
   font-size: 24rpx;
@@ -69,17 +111,23 @@ page{background-color: #f1f1f1;}
   margin-top: 10rpx;
   border-radius:5rpx ;
 }
+.exchange_detail{
+  position: absolute;
+  right: 25rpx;
+  bottom: 20rpx;
+  color: #008cd7;
+}
 .exchange_name_can{
-  margin-right: 50rpx;
+  margin-right: 0rpx;
 }
 .exchange_name_no{
-  margin-right: 50rpx;
+  margin-right: 0rpx;
   color: #999;
 }
 .exchange_code_can{
   float: left;
   color: #008cd7;
-  margin-left: 20rpx;
+  margin-left: 10rpx;
   line-height: 50rpx;
 }
 .exchange_code_no{

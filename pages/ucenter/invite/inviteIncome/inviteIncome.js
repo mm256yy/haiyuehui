@@ -76,6 +76,12 @@ Page({
       url: "/pages/ucenter/invite/inviteStrategy/inviteStrategy"
     })
   },
+  //红包提现
+  goRedPack(){
+    wx.navigateTo({
+      url: "/pages/ucenter/invite/inviteRedPack/inviteRedPack?moneyMax="+this.data.total.money
+    })
+  },
   endDate(endDate){
     let endDateNew = endDate.split("-");
     if(endDateNew[1] == '12'){

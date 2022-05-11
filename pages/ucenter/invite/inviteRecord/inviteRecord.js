@@ -129,6 +129,7 @@ Page({
             changes:data[i].changes,
             balance:data[i].balance,
             time:data[i].createTime,
+            remark:data[i].remark,
           }
           o_ul.push(o_li)
         }

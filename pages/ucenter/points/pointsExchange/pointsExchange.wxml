@@ -1,0 +1,16 @@
+<view>
+  <import src="/template/template"/> 
+  <view class="exchange_ul">
+    <view class="exchange_li" wx:for="{{exchangeUl}}" wx:key="index">
+      <view class="exchange_li_body">
+        <image src="{{item.img}}" class="exchange_li_img"></image>
+        <view class="exchange_li_content">
+          <view class="exchange_li_title">{{item.title}}</view>
+          <view class="exchange_li_time">{{item.time}}</view>
+          <view class="exchange_li_points">{{item.points}}积分</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <template is="zero" data="{{list: exchangeUl}}"/>
+</view>

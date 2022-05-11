@@ -18,6 +18,7 @@ Page({
       //   time:'2020-12-12',
       //   choose:false,
       //   tap:'',
+      //   goodsId:'',
       // },
     ],
     info:{
@@ -26,7 +27,9 @@ Page({
     totle:{
       choose:false,
       num:0,
-    }
+    },
+    popShow:false,
+    qrCodePop:'',
   },
   onLoad: function (options) {
     user.goToLogin();
@@ -88,6 +91,7 @@ Page({
             time:data[i].createTime,
             choose:false,
             tap:this.tapType(data[i].orgCode),
+            goodsId:data[i].goodsId,
           }
           o_ul.push(o_li)
         }
@@ -119,6 +123,25 @@ Page({
     }).catch((err) => {
       console.log(err);
     });
+  },
+  //显示二维码
+  qrcodeShow(e){
+    let code = e.currentTarget.dataset.code
+    let param = {
+      code: code,
+    }
+    util.request(api.MemberGoodsCheckQrcode , param , 'GET').then(res => {
+      let data = res.result
+      this.setData({
+        popShow:true,
+        qrCodePop:data,
+      })
+    }).catch((err) => {});
+  },
+  hidePopShow(){
+    this.setData({
+      popShow:false,
+    })
   },
   //单选
   exchangeChoose(e){
@@ -183,7 +206,7 @@ Page({
         ids.push(exchangeListNew[i].id)
       }
     }
-    console.log(ids)
+    console.log(img)
     return {
       title: '您的好友送您'+this.data.totle.num+'张商品兑换码',
       imageUrl:img,//图片地址
@@ -220,10 +243,10 @@ Page({
   },
   nameLength(name){
     if(name){
-      if(name.length <= 20){
+      if(name.length <= 48){
         return name
       }else{
-        return name.substring(0,20) + '...';
+        return name.substring(0,44) + '...';
       }
     }
   },
@@ -233,5 +256,11 @@ Page({
     wx.navigateTo({ 
       url: "/pages/market/marketWritten/marketWritten?id="+id+"&orgCode="+orgCode
    });
+  },
+  goMarketDetailed(e){
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({ 
+      url: "/pages/market/marketDetailed/marketDetailed?id="+id
+    });
   },
 })

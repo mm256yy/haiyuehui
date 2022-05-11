@@ -13,9 +13,9 @@
       </view>
       <image src="/static/images/invite_ba_fan.png" class="invite_ba_fan1"></image>
       <image src="/static/images/invite_ba_fan.png" class="invite_ba_fan2"></image>
-      <!-- <view class="total_money_t3" >去提现 ></view> -->
     </view>
-    <view class="total_ul" wx:if="{{false}}">
+    <view class="withdrawal_btn" bindtap="goRedPack">立即提现</view>
+    <!-- <view class="total_ul" wx:if="{{false}}">
       <view class="total_li">
         <view>今日收益（元）</view>
         <view class="total_li_money">{{filter.moneyFixed(total.todayMoney)}}</view>
@@ -26,7 +26,7 @@
         <view class="total_li_money">{{filter.moneyFixed(total.historyMoney)}}</view>
         <view>共<text class="total_li_num">{{total.historyNum}}</text>单</view>
       </view>
-    </view>
+    </view> -->
   </view>
   <view class="income_list">
     <!-- <view class="income_data">

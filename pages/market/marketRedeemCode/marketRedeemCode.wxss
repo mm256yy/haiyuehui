@@ -1,0 +1,96 @@
+page{
+  background-color: #f1f1f1;
+}
+.form_li{
+  border-radius: 20rpx;
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 20rpx;
+}
+.form_ul{
+  margin: 20rpx;
+}
+.form_li_text{
+  display: flex;
+}
+.form_li_t{
+  width: 150rpx;
+  line-height: 40rpx;
+}
+.form_input{
+  flex: 1 1 auto;
+}
+/*goods*/
+.goods_box{
+  position: relative;
+}
+.goods_img{
+  width: 160rpx;
+  height: 160rpx;
+  background-color: #f1f1f1;
+  position: absolute;
+  top: 20rpx;
+}
+.goods_content{
+  margin-left: 180rpx;
+  min-height: 160rpx;
+}
+.content_name{
+  word-break: break-all;
+}
+.content_spec{
+  display: inline-block;
+  background-color: #f1f1f1;
+  color: #999;
+  min-width: 100rpx;
+  padding: 5rpx 10rpx;
+  text-align: center;
+  margin-top: 10rpx;
+  border-radius: 5rpx;
+  font-size: 24rpx;
+}
+.content_price{
+  margin-top: 40rpx;
+}
+.goods_more{
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  color: #039cee;
+}
+/*detail*/
+.detail_li{
+  margin-bottom: 10rpx;
+  word-break: break-all;
+}
+.detail_title{
+  display: inline-block;
+  width: 150rpx;
+  color: #999;
+}
+/*form_btn*/
+.form_btn{
+  position: fixed;
+  bottom: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  padding: 10px;
+}
+.submit_btn{
+  border-radius: 10rpx;
+  background: #039cee;
+  padding: 18rpx;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+.submit_btn_no{
+  border-radius: 10rpx;
+  background: #cdcdcd;
+  padding: 18rpx;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}

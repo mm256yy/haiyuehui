@@ -68,7 +68,7 @@ Page({
       totle:totleNew
     })
   },
-  //会员余额
+  //手机号
   member(){
     user.memberGetInfo().then(res => {
       let modeNew = {

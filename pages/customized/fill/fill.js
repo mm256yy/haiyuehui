@@ -5,7 +5,7 @@ let user = require('../../../utils/user.js');
 Page({
   data: {
     pics:[
-      '/static/images/banner2.jpg',
+      '/static/images/banner1.jpg',
     ],
     room:{
       hotelId:'',
@@ -48,6 +48,7 @@ Page({
       // memberAllowanceId:0,  //津贴
       // allowanceMoney:0, //津贴金额
       // fromMemberId:0,
+      // cardno:0, //会员卡号
     },
     breakfastUl:[
       // {price:1200,name:'不选早餐',val:'wec0'},
@@ -111,7 +112,7 @@ Page({
       endWeek:util.formatWeek(calendarNew.endTime),
       timeNum:this.dayNum(calendarNew),
       rmtype:roomrNew.rmtype,
-      ratecode:'WEC0',
+      ratecode:this.ratecodeMin(roomrNew.wec0,roomrNew.wec1,roomrNew.wec,roomrNew.wec3),
       arr:arrTime,
       dep:depTime,
       cis:(roomrNew.isCis?1:0), //1是 0否
@@ -170,6 +171,7 @@ Page({
         memberAllowanceId:(res.result.memberAllowanceId?res.result.memberAllowanceId:''),
         allowanceMoney:(res.result.allowanceMoney?res.result.allowanceMoney:0),
         fromMemberId:(res.result.fromMemberId?res.result.fromMemberId:0),
+        cardno:res.result.cardno,
       }
       this.setData({
         fill:fillNew,
@@ -203,7 +205,7 @@ Page({
       if(res.result.imgList&&res.result.imgList.length != 0){
         picsNew = res.result.imgList;
       }else{
-        picsNew = ['/static/images/banner2.jpg']
+        picsNew = ['/static/images/banner1.jpg']
       }
       this.setData({
         pics:picsNew,
@@ -216,15 +218,23 @@ Page({
   //日历房
   funInfoPrice(index){
     //明细日历房
+    let infoPriceArr = [];
     let infoPriceNew = [];
+    let room = this.data.room
     if(index == 0){
-      infoPriceNew = this.data.room.wec0s.slice(0, -1);
+      infoPriceArr = room.wec0s
     }else if(index == 1){
-      infoPriceNew = this.data.room.wec1s.slice(0, -1);
+      infoPriceArr = room.wec1s
     }else if(index == 2){
-      infoPriceNew = this.data.room.wecs.slice(0, -1);
+      infoPriceArr = room.wecs
     }else if(index == 3){
-      infoPriceNew = this.data.room.wec3s.slice(0, -1);
+      infoPriceArr = room.wec3s
+    }
+
+    if(infoPriceArr.length >= 2){
+      infoPriceNew = infoPriceArr.slice(0, -1);
+    }else {
+      infoPriceNew = infoPriceArr
     }
     this.setData({
       infoPrice:infoPriceNew,
@@ -302,8 +312,6 @@ Page({
     if(!check.checkMobile(this.data.fill.mobile)){return false};
     if(!check.checkMoney(this.data.total.money)){return false};
     if(!check.checkMoney(this.data.room.roomPrice)){return false};
-    console.log(this.data.room.arr)
-    console.log(this.data.room.dep)
     //传递
     let param = {
       hotelId: this.data.room.hotelId,
@@ -327,7 +335,8 @@ Page({
       memberAllowanceId:this.data.fill.memberAllowanceId,  //津贴id
       allowanceMoney:this.data.fill.allowanceMoney, //津贴金额
       fromMemberId:this.data.fill.fromMemberId, //发送津贴人id
-      datePrices:this.data.infoPrice  //日历房
+      datePrices:this.data.infoPrice,  //日历房
+      cardno:this.data.fill.cardno, //会员卡号
     };
     util.request(api.CustomizedHotelsFill ,param, 'POST').then(res => {
       //跳转
@@ -357,6 +366,20 @@ Page({
       return wec3;
     }else{
       return 999900
+    }
+  },
+  //ratecode
+  ratecodeMin(wec0,wec1,wec,wec3){
+    if(util.importantMoney(wec0) != 999900){
+      return 'WEC0';
+    }else if(util.importantMoney(wec1) != 999900){
+      return 'WEC1';
+    }else if(util.importantMoney(wec) != 999900){
+      return 'WEC';
+    }else if(util.importantMoney(wec3) != 999900){
+      return 'WEC3';
+    }else{
+      check.showErrorToast('错误-房间已满')
     }
   },
   breakfastNum(wec0,wec1,wec,wec3){

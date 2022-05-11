@@ -22,16 +22,13 @@
   </view>
   <view class="hotels_fill">
     <view class="fill_h1">续住时间<text class="fill_h1_tip" wx:if="{{dayNum == 0}}">注：延期时间至当日18:00(暂只能续住一次)</text></view>
-    <view class="fill_day_ul">
-      <view class="fill_day_li">
-        <view class="day_li_btn {{dayNum == 0?'day_li_on':''}}" bindtap="dayBtn" data-day="0">半天</view>
-      </view>   
+    <view class="fill_day_ul"> 
       <view class="fill_day_li"><view class="day_li_btn {{dayNum == 1?'day_li_on':''}}" bindtap="dayBtn" data-day="1">1天</view></view>
       <view class="fill_day_li"><view class="day_li_btn {{dayNum == 2?'day_li_on':''}}" bindtap="dayBtn" data-day="2">2天</view></view>
       <view class="fill_day_li"><view class="day_li_btn {{dayNum == 3?'day_li_on':''}}" bindtap="dayBtn" data-day="3">3天</view></view>
       <view class="fill_day_li"><view class="day_li_btn {{dayNum == 4?'day_li_on':''}}" bindtap="dayBtn" data-day="4">4天</view></view>
-      <!-- <view class="fill_day_li"><view class="day_li_btn {{dayNum == 5?'day_li_on':''}}" bindtap="dayBtn" data-day="5">5天</view></view> -->
-      <view class="fill_day_li"><view class="day_li_btn {{dayNum == 5?'day_li_on':''}}" bindtap="dayBtn" data-day="5">自定义</view></view>
+      <view class="fill_day_li"><view class="day_li_btn {{dayNum == 5?'day_li_on':''}}" bindtap="dayBtn" data-day="5">5天</view></view>
+      <view class="fill_day_li"><view class="day_li_btn {{dayNum == 6?'day_li_on':''}}" bindtap="dayBtn" data-day="6">自定义</view></view>
       <view class="clear"></view>
     </view>
     <view class="custom_ul" wx:if="{{customShow}}">
@@ -40,14 +37,53 @@
       <view class="custom_btn fill_day_add" bindtap="addDay">+</view>
     </view>
   </view>
-  <popCoupon id="popId" full-money-price="{{total.roomPrice}}" bindcouponTotal="couponTotal"></popCoupon>
   <view class="hotels_introduce">
     <view class="introduce_t">温馨提示：</view>
     <view class="introduce_t introduce_t1">亲爱的顾客，欢迎您来到美丽的城市，并选择入住本酒店。为响应政府倡议，自从2019年12月起，酒店客房内不再主动提供牙刷、牙膏、浴液、肥皂、梳子、拖鞋等一次性日用品。为了您的便利，请您自带上述用品，感谢您的配合。希望您在这里度过美好的时光！祝您生活及工作愉快！</view>
   </view>
-  <evaluation id="evaluationId"></evaluation>
-  <view class="hotels_btn" bindtap="placeOrder">
-    立即下单
+  <view class="hotels_foot">
+    <view class="hotels_foot_pop" wx:if="{{infoPop}}">
+      <view class="black" bindtap="infoShow"></view>
+      <view class="pop_box">
+        <view class="pop">
+          <view class="pop_h1">房费详细</view>
+          <view class="info_body">
+            <view class="info_price_ul info_price_date">
+              <view class="price_li" wx:for="{{infoPrice}}" wx:key="index">
+                <text class="info_price_data">{{item.date}}</text>
+                <text class="price_li_r">￥{{money.moneyFixed(item.price)}}</text>
+              </view>
+            </view>
+            <view class="info_price_ul">
+              <view class="price_li">
+                <text>房费小计</text>
+                <text class="price_li_r price_subtotal">{{money.moneyFixed(total.roomTotalPrice)}}</text>
+                <text class="price_li_rmb price_subtotal">￥</text>
+                <text class="price_li_details">{{continueDay + "晚，1间共"}}</text>
+              </view>
+              <view class="price_li ">
+                <text>会员折扣</text>
+                <text class="price_li_r">{{money.moneyDiscount(member.discount)}}折</text>
+              </view>
+              <view class="price_li">
+                <text>其他费用</text>
+                <text class="price_li_r">{{money.moneyFixed(total.other)}}</text>
+                <text class="price_li_rmb">￥</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="hotels_foot_btn">
+      <view class="foot_btn_flex foot_btn_money">
+        <text class="btn_money_t1">在线支付</text>
+        <text class="btn_money_t2">￥</text>
+        <text class="btn_money_t3">{{money.moneyFixed(total.money)}}</text>
+      </view>
+      <view class="foot_btn_flex foot_btn_details" bindtap="infoShow">明细</view>
+      <view class="foot_btn_flex foot_btn_order" bindtap="placeOrder">立即下单</view>
+    </view>
   </view>
 </view>
 

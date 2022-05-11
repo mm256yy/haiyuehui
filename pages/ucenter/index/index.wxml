@@ -36,38 +36,6 @@
       <view class="news_btn" wx:if="{{ucenter.endTime != 0}}">继续使用</view>
     </view>
   </view>
-  <!-- <view class="ucenter_member" wx:if="{{false}}">
-    <view class="member_h1">海悦会特权</view>
-    <image class="member_kind" src="/static/images/king.png"></image>
-    <view class="member_ul">
-      <view class="member_li" wx:for="{{memberUl}}" wx:key="index">
-        <image class="member_li_img" src="{{item.img}}"></image>
-        <view class="member_li_text">{{item.text1}}</view>
-        <view class="member_li_text">{{item.text2}}</view>
-      </view>
-    </view>
-  </view> -->
-  <!-- <view class="ucenter_market" wx:if="{{goodsUl.length != 0}}">
-    <view class="market_head" bindtap="goMarket">
-      <text class="head_h1">海外海商城</text>
-      <text class="head_h2">更多</text>
-    </view>
-    <view class="market_ul">
-      <view class="maket_li" wx:for="{{goodsUl}}" wx:key="index" bindtap="goGoodsDetailed" data-id="{{item.id}}">
-        <view class="maket_li_product">
-          <view class="goods_img_box">
-            <image class="goods_img" src="{{item.img}}"></image>
-          </view>
-          <view class="goods_text">
-            <view class="goods_t1">{{item.name}}</view>
-            <view>
-              <text class="goods_t2">￥{{filter.moneyFixed(item.salePrice)}}</text>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view> -->
   <view class="ucenter_other">
     <view class="other_ul">
       <view class="other_li" wx:for="{{otherIcon}}" wx:key="index" bindtap="{{item.tap}}">
@@ -75,15 +43,6 @@
         <text class="other_li_text">{{item.text}}</text>
         <image class="other_li_go" src="/static/images/right.png"></image>
         <text class="other_li_badge" wx:if="{{item.badge}}"></text>
-      </view>
-    </view>
-  </view>
-  <view class="ucenter_service" wx:if="{{false}}">
-    <view class="ucenter_service_h1">我的服务</view>
-    <view class="service_ul">
-      <view class="service_li" wx:for="{{serviceIcon}}" wx:key="index">
-        <image class="service_img" src="{{item.img}}"></image>
-        <view class="service_text">{{item.text}}</view>
       </view>
     </view>
   </view>

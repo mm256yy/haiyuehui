@@ -1,9 +1,7 @@
-// pages/ucenter/orderTransfer/orderTransfer.js
 let util = require('../../../../utils/util.js');
 let api = require('../../../../config/api.js');
-let pay = require('../../../../utils/pay.js');
 let user = require('../../../../utils/user.js');
-let app = getApp();
+
 Page({
   data: {
     processNum:1,
@@ -44,6 +42,7 @@ Page({
       otaId:'', //ota的id
       otaRestype:'',  //ota的类型
       roomNo:'',
+      connected:'', //是否为接入订单 1是 0否 
     }
   },
   onShow: function () {
@@ -83,7 +82,6 @@ Page({
   },
   //选择酒店
   bindChange(e){
-    console.log(e)
     this.setData({
       'info.hotelsId': e.detail.value
     })
@@ -156,6 +154,7 @@ Page({
         otaId:res.result.otaId?res.result.otaId:'',
         otaRestype:res.result.otaRestype?res.result.otaRestype:'',
         roomNo:res.result.roomNo?res.result.roomNo:'',
+        connected:res.result.connected == 1?1:0,
       }
       //
       that.setData({
@@ -223,6 +222,7 @@ Page({
         otaId:res.result.otaId?res.result.otaId:'',
         otaRestype:res.result.otaRestype?res.result.otaRestype:'',
         roomNo:res.result.roomNo?res.result.roomNo:'',
+        connected:res.result.connected == 1?1:0,
       }
       //
       that.setData({
@@ -245,15 +245,25 @@ Page({
       tmplIds: ['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'],
       success (res) {
         if(res['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'] == "accept"){
-          wx.redirectTo({
-            url: "/pages/ucenter/order/orderReside/orderReside?arr="+that.data.detail.startTimeS+
-              "&dep="+that.data.detail.endTimeS+
-              "&hotelId="+that.data.detail.hotelId+
-              "&rmtype="+that.data.detail.rmtype+
-              "&orderId="+that.data.detail.orderId+
-              "&roomNo="+that.data.detail.roomNo+
-              "&floor=22"
-          })
+          if(+that.data.detail.roomNo == ''){
+            wx.redirectTo({
+              url: "/pages/ucenter/order/orderChoose/orderChoose?arr="+that.data.detail.startTimeS+
+                "&dep="+that.data.detail.endTimeS+
+                "&hotelId="+that.data.detail.hotelId+
+                "&rmtype="+that.data.detail.rmtype+
+                "&orderId="+that.data.detail.orderId+
+                "&roomNo="+that.data.detail.roomNo
+            })
+          }else{
+            wx.redirectTo({
+              url: "/pages/ucenter/order/orderReside/orderReside?arr="+that.data.detail.startTimeS+
+                "&dep="+that.data.detail.endTimeS+
+                "&hotelId="+that.data.detail.hotelId+
+                "&rmtype="+that.data.detail.rmtype+
+                "&orderId="+that.data.detail.orderId+
+                "&roomNo="+that.data.detail.roomNo
+            })
+          }
         }else if(res['6THD8pL9Vii7LJ6UV3B6TUfTUDujUhZeC9B-jEJ0eFo'] == "reject"){
           wx.showModal({title: '错误信息',content: "请确认退房通知提醒",showCancel: false});
         }else{
@@ -269,9 +279,4 @@ Page({
       url:"/pages/ucenter/order/orderList/orderList"
     })
   },
-  // dayNum(startTime,endTime){
-  //   let day = new Date((endTime).replace(/-/g,'/')) - new Date((startTime).replace(/-/g,'/'))
-  //   let num = day/1000/60/60/24;
-  //   return num
-  // }
 })

@@ -68,7 +68,7 @@ Page({
           hotelsLi = {
             id:res.result[i].id,
             name:res.result[i].name,
-            img:res.result[i].imgList != null?res.result[i].imgList[0]:'/static/images/banner2.jpg',
+            img:res.result[i].imgList != null?res.result[i].imgList[0]:'/static/images/banner1.jpg',
             address:res.result[i].address,
             deposit:res.result[i].deposit,
             tel:res.result[i].tel,
@@ -171,7 +171,7 @@ Page({
         let hotelNew = {
           id:hotel.id,
           name:hotel.name,   
-          pics:(hotel.imgList?hotel.imgList:['/static/images/banner2.jpg']),
+          pics:(hotel.imgList?hotel.imgList:['/static/images/banner1.jpg']),
           address:hotelVal,
           tel:telVal,
           dining:{},
@@ -319,13 +319,13 @@ Page({
   //money
   moneyMin(wec0,wec1,wec,wec3){
     if(util.importantMoney(wec0) != 999900){
-      return wec0;
+      return wec0*0.95;
     }else if(util.importantMoney(wec1) != 999900){
-      return wec1;
+      return wec1*0.95;
     }else if(util.importantMoney(wec) != 999900){
-      return wec;
+      return wec*0.95;
     }else if(util.importantMoney(wec3) != 999900){
-      return wec3;
+      return wec3*0.95;
     }else{
       return 999900
     }

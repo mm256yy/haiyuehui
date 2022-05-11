@@ -95,6 +95,21 @@
 			<view class="notice_content">
 				<rich-text space="true" nodes="{{detailed.content}}"></rich-text>
 			</view>
+			<view class="notice_li_head"><text class="notice_li_h1">价格说明</text></view>
+			<view class="price_indication">
+				<view class="indication_li">
+					<text class="indication_li_d">·</text>
+					<text class="indication_li_t">商品展示的划线价为市场参考价，可能是供应商所售卖的商品的线下零售价或曾经展示过的销售价，并非原价，仅供您参考</text>
+				</view>
+				<view class="indication_li">
+					<text class="indication_li_d">·</text>
+					<text class="indication_li_t">未划线价格：指商品的实时标价，不因表述的差异改变性质。具体成交价格根据商品参加活动，或使用优惠券、积分等发生变化，最终以订单结算页价格为准</text>
+				</view>
+				<view class="indication_li">
+					<text class="indication_li_d">·</text>
+					<text class="indication_li_t">商品详情页（含主图）以图片或文字形式标注的一口价、促销价、优惠价等价格可能是在使用优惠券、满减或特定优惠活动和时间段等情形下的价格，具体请以结算页面的标价、优惠条件或活动规则为准</text>
+				</view>
+			</view>
 		</view>
 	</view>
 	<view class="goods_foot">
@@ -108,7 +123,7 @@
 				</view>
 			</view>
 		</view>
-		<view wx:if="{{detailed.isSingle != 1}}" class="goods_foot_li goods_foot_btn goods_foot_shop" bindtap="popShow" data-mode="0">
+		<view wx:if="{{detailed.isSingle != 1 && !detailed.bonusRate}}" class="goods_foot_li goods_foot_btn goods_foot_shop" bindtap="popShow" data-mode="0">
 			<view class="goods_foot_btn_t">加入购物车</view>
 		</view>
 		<view class="goods_foot_li goods_foot_btn goods_foot_pay" bindtap="popShow" data-mode="1">
@@ -144,28 +159,25 @@
 						<view class="num_view num_reduce" bindtap="goodsNum" data-val="0">-</view>
 					</view>
 				</view>
+				<view class="pop_canAmount_box" wx:if="{{detailed.canAmount > 0}}">
+					<text class="pop_canAmount" wx:if="{{detailed.canRefund == 0}}">（此产品不支持退款）</text>
+					<text class="pop_canAmount">（单人限购{{detailed.canAmount}}件）</text>
+				</view>
 				<view class="pop_btn">
-					<view class="pop_btn_li goods_foot_pay" bindtap="{{buyMode == 0?'addShopingCart':'buy'}}">{{buyMode == 0?'加入购物车':'立即购买'}}</view>
+					<view class="pop_btn_li goods_foot_pay" wx:if="{{buyMode == 0 && detailed.canBuy && detailed.isOnSale == 1}}" bindtap="addShopingCart">加入购物车</view>
+					<view class="pop_btn_li goods_foot_pay" wx:if="{{buyMode != 0 && detailed.canBuy && detailed.isOnSale == 1}}" bindtap="buy">立即购买</view>
+					<view class="pop_btn_li goods_foot_pay_no" wx:if="{{buyMode != 0 && !detailed.canBuy && detailed.isOnSale == 1}}" bindtap="">当前会员等级不能购买</view>
+					<view class="pop_btn_li goods_foot_pay_no" wx:if="{{!detailed.isOnSale}}" bindtap="">该产品已经下架或失效</view>
 					<!-- <view class="pop_btn_li goods_foot_pay">立即购买</view> -->
 				</view>
 			</view>
 		</view>
 	</view>
-	<view class="goods_share" wx:if="{{false}}">
+	<view class="goods_share" wx:if="{{detailed.bonusRate}}" bindtap="goMarketShareTwo" bindlongpress="handleLongPress">
 		<!-- <view class="">
 			<image src="/static/images/del-b.png" class="goods_share_del"></image>
 		</view> -->
 		<view class="goods_share_text">他人下单即得佣金</view>
-		<view class="goods_share_btn" bindtap="createdImage">立即分享</view>
-	</view>
-	<view class="goods_pop" wx:if="{{canvasShow}}">
-		<view class="pop_black"></view>
-		<view class="canvas_screen">
-			<view class="canvas_box">
-				<canvas canvas-id='shareFrends' style='width:300px;height:500px'></canvas>
-			</view>
-			<view class="created_image" bindtap="saveImage">保存图片进行分享</view>
-			<view class="cance_image" bindtap="cancelmage">取消</view>
-		</view>
+		<view class="goods_share_btn">立即分享</view>
 	</view>
 </view>

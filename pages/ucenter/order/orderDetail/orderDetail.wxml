@@ -10,7 +10,7 @@
     <view class="detail_ul">
       <view class="detail_hotel">{{detail.hotelName}}</view>
       <view><text class="detail_t1">房型名称：</text><text class="detail_t0">{{detail.rmdesc}}</text></view>
-      <view wx:if="{{(detail.status == 31||detail.status == 41||detail.status == 51)||(detail.roomNo != '')}}">
+      <view wx:if="{{(detail.status == 31||detail.status == 41||detail.status == 51)&&(detail.roomNo != '')}}">
         <text class="detail_t1" >入住房号：</text>
         <text class="detail_t0">{{detail.roomNo}}</text>
       </view>
@@ -53,7 +53,7 @@
   <view class="isCis_person" wx:if="{{(detail.status == 22||detail.status == 31)&&!detail.isCis}}">
     <view class="isCis_person_text">非云智住暂不支持入住，请到前台办理</view>
   </view>
-  <view class="order_person" wx:if="{{(detail.status == 22||detail.status == 31||detail.status == 41||detail.status == 51)&&detail.isCis}}">
+  <view class="order_person" wx:if="{{(detail.status == 22||detail.status == 31||detail.status == 41||detail.status == 51)&&(detail.isCis)&&(!detail.pid)}}">
     <view class="order_h1">入住人信息</view>
     <view class="person_ul" wx:for="{{personUl}}" wx:key="index">
       <view class="person_li">
@@ -83,15 +83,26 @@
         </view>
       </view>
     </view>
-    <view  class="person_ul" wx:if="{{(detail.status == 22||detail.status == 31)&&(personUl.length != 0)&&(!detail.isOverdue)}}">
+    <!-- <view  class="person_ul" wx:if="{{(detail.status == 22||detail.status == 31)&&(personUl.length != 0)&&(!detail.isOverdue)}}">
       <view class="person_li">
         <view class="liveN" wx:if="{{!item.live}}">
           <view class="liveN_btn" bindtap="goOrderAddition" data-type="1">+ 添加访客</view>
           <text class="detail_t4">按照公安规定进出房间人员需要如实登记</text>
         </view>
       </view>
-    </view>
+    </view> -->
   </view>
+  <!-- <view class="park_box">
+    <view class="order_h1">免费停车</view>
+    <view class="park_ul">
+      <view class="person_li">
+        <view class="liveN" wx:if="{{!item.live}}">
+          <view class="liveN_btn" bindtap="goPark" data-type="1">+ 添加车牌</view>
+          <text class="detail_t4">每笔订单最多能提交3块车牌</text>
+        </view>
+      </view>
+    </view>
+  </view> -->
   <view class="addition_box" wx:if="{{(detail.status == 31||detail.status == 41||detail.status == 51)&&(additionUl.length != 0)&&detail.isCis}}">
     <view class="order_h1">续住订单</view>
     <view class="addition_ul">
@@ -116,7 +127,7 @@
       </view>
     </view>
   </view>
-  <view class="money_box">
+  <view class="money_box" wx:if="{{(detail.connected == 1&&detail.status == 11)||(detail.connected == 0)}}">
     <view class="order_h1">订单金额详情</view>
     <view class="order_money" bindtap="{{datePrices.length !=0?'funDatePricesShow':''}}">
       <view class="order_money_li">
@@ -168,7 +179,7 @@
       <view class="order_money_li"><text class="detail_t1">付款金额</text><text class="detail_t3">￥{{filter.moneyFixed(total.money)}}</text></view>
     </view>
   </view>
-  <view class="money_box" wx:if="{{(detail.status == 22||detail.status == 23||detail.status == 24||detail.status == 31||detail.status == 41||detail.status == 51)}}">
+  <view class="money_box" wx:if="{{(detail.status == 22||detail.status == 23||detail.status == 24||detail.status == 31||detail.status == 41||detail.status == 51)&&((detail.connected == 1&&detail.status == 11)||(detail.connected == 0))}}">
     <view class="order_h1">订单支付方式</view>
     <view class="order_money">
       <view class="order_money_li"><text class="detail_t1">余额支付：</text><text class="detail_t2">￥{{filter.moneyFixed(total.wayBalance)}}</text></view>
@@ -176,4 +187,5 @@
     </view>
   </view>
   <template is="label" data="{{text:['取消政策','支付后，订单将会保留，支付后一个小时内可免费取消']}}"/>
+  <view wx:if="{{detail.status == 31 && isDebug}}" bindlongpress="checkout2" class="isDebug_checkout2">海外海集团</view>
 </view>

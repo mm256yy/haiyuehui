@@ -67,6 +67,7 @@ Page({
       }
       let remarkNew = data.remark == null?["尚未备注"]:data.remark.split('\n');
       let detailNew = {
+        canRefund:data.canRefund,
         status:data.status,
         createTime:data.createTime,
         id:data.id,
@@ -108,6 +109,12 @@ Page({
     }).catch((err) => {
       console.log(err)
     });
+  },
+  goMarketDetailed(e){
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({ 
+      url: "/pages/market/marketDetailed/marketDetailed?id="+id
+   });
   },
   // longShareCopy(e){
   //   let code = e.currentTarget.dataset.text;

@@ -24,11 +24,11 @@ function usePay(param){
         util.jhxLoadHide();
         resolve(true);
       }else{  //微信支付
-        // if(!res.result.respData){
-        //   check.showErrorToast(res.result.respMsg)
-        //   reject(false);
-        //   return false
-        // }
+        if(!res.result.respData){
+          check.showErrorToast(res.result.respMsg)
+          reject(false);
+          return false
+        }
         let data = JSON.parse(res.result.respData); //message
         let ssn = res.result.respTxnSsn;
         console.log(data);

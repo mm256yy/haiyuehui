@@ -44,6 +44,8 @@ page{
   padding: 30rpx;
   border-bottom: 1rpx solid #f1f1f1;
   background-color: #fff;
+  margin: 20rpx;
+  border-radius: 20rpx;
 } 
 .record_li_text{
   padding: 5rpx 0rpx;

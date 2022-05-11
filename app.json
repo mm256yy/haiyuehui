@@ -1,11 +1,19 @@
 {
-  "pages": [
+
+  "pages":[
     "pages/index/index",
     "pages/member/activity/memberLuck/memberLuck",
+    "pages/member/activity/scratchCard/scratchCard",
+    "pages/member/activity/recruit/recruit",
+    "pages/member/activity/aprilFools/aprilFools",
+    
+
     "pages/member/memberIndex/memberIndex",
     "pages/member/memberPower/memberPower",
     "pages/member/memberAgree/memberAgree",
     "pages/member/memberFollow/memberFollow",
+
+    "pages/member/memberUpHJK/memberUpHJK",
     "pages/auth/login/login",
     "pages/auth/loginAgree/loginAgree",
     "pages/auth/registerWx/registerWx",
@@ -26,6 +34,7 @@
     "pages/ucenter/order/orderChoose/orderChoose",
     "pages/ucenter/order/orderContinue/orderContinue",
     "pages/ucenter/order/orderTransfer/orderTransfer",
+    "pages/ucenter/order/orderFace/orderFace",
     "pages/ucenter/coupon/coupon",
     "pages/ucenter/set/visitor/visitor",
     "pages/ucenter/invoice/billList/billList",
@@ -40,14 +49,17 @@
     "pages/ucenter/invite/inviteRecord/inviteRecord",
     "pages/ucenter/invite/inviteIndex/inviteIndex",
     "pages/ucenter/invite/inviteIncome/inviteIncome",
+    "pages/ucenter/invite/inviteRedPack/inviteRedPack",
     "pages/ucenter/set/setIndex/setIndex",
     "pages/ucenter/set/oftenList/oftenList",
     "pages/ucenter/set/oftenEdit/oftenEdit",
     "pages/ucenter/set/information/information",
+    "pages/ucenter/service/serviceIndex/serviceIndex",
     "pages/ucenter/wallet/walletAmount/walletAmount",
     "pages/ucenter/wallet/walletConsume/walletConsume",
     "pages/ucenter/wallet/walletRecharge/walletRecharge",
     "pages/ucenter/wallet/walletProblem/walletProblem",
+    "pages/ucenter/wallet/walletHistory/walletHistory",
     "pages/market/marketIndex/marketIndex",
     "pages/market/shoppingCart/shoppingCart",
     "pages/market/marketOrderList/marketOrderList",
@@ -59,6 +71,17 @@
     "pages/market/marketDetailed/marketDetailed",
     "pages/market/marketExchange/marketExchange",
     "pages/market/marketWritten/marketWritten",
+    "pages/market/marketShare/marketShare",
+    "pages/market/marketRedeemCode/marketRedeemCode",
+
+    "pages/ucenter/points/pointsMarket/pointsMarket",
+    "pages/ucenter/points/pointsDetail/pointsDetail",
+    "pages/ucenter/points/pointsReside/pointsReside",
+    "pages/ucenter/points/pointsHistory/pointsHistory",
+    "pages/ucenter/points/pointsExchange/pointsExchange",
+
+    "pages/ucenter/nuclein/health/health",
+    "pages/ucenter/nuclein/scan/scan",
     "pages/ucenter/teamNumber/teamNumber",
     "pages/logs/logs",
     "pages/ucenter/gift/gift",

@@ -21,5 +21,8 @@
         微信快捷登录
       </view>
     </button>
+    <view class="wx_login_cancel" bindtap="loginCancel">
+      <view>取消</view>
+    </view>
   </view>
 </view>

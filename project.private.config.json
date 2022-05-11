@@ -1,42 +1,48 @@
 {
   "setting": {},
   "condition": {
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
     "miniprogram": {
       "list": [
         {
           "name": "关注页",
-          "pathName": "pages/member/memberFollow/memberFollow",
-          "query": "id=11&cardLevel=BJK",
+          "pathName": "pages/customized/fill/fill",
+          "query": "",
           "scene": null
         },
         {
-          "name": "抽奖",
-          "pathName": "pages/member/activity/memberLuck/memberLuck",
-          "query": "",
+          "name": "send",
+          "pathName": "pages/index/index",
+          "query": "sendId=3",
           "scene": null
         },
         {
           "name": "商城",
           "pathName": "pages/market/marketDetailed/marketDetailed",
-          "query": "id=8",
+          "query": "id=11",
           "scene": null
         },
         {
-          "name": "pages/customized/hotelsList/hotelsList",
-          "pathName": "pages/customized/hotelsDetailed/hotelsDetailed",
-          "query": "hotelId=H000003",
+          "name": "企鹅",
+          "pathName": "pages/ucenter/order/orderReside/orderReside",
+          "query": "arr=2021-11-18&dep=2021-11-19&floor=07&hotelId=H000030&orderId=21111930000001&rmtype=SJ&roomNo=1101",
+          "scene": null
+        },
+        {
+          "name": "pages/ucenter/nuclein/scan/scan",
+          "pathName": "pages/market/marketRedeemCode/marketRedeemCode",
+          "query": "gc=631027210111",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/market/marketExchange/marketExchange",
+          "pathName": "pages/market/marketExchange/marketExchange",
+          "query": "",
+          "launchMode": "default",
           "scene": null
         }
       ]
     }
-  }
+  },
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html"
 }

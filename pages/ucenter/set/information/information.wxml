@@ -1,21 +1,30 @@
 <view>
   <import src="/template/template.wxml"/>
-  <view class="form_ul">
-    <view class="form_li">
-      <text class="form_li_t">手机号码</text>
-      <input class="form_input form_mobile" placeholder-class="placeholder" disabled="{{true}}" value="{{info.mobile}}" placeholder="请输入手机号码"/>
+  <view class="info_ba"></view>
+  <view class="form code_qr">
+    <image class="code_qr_img" src="data:image/png;base64,{{codeImg}}" mode="widthFix"></image>
+    <view class="code_qr_label">根据新冠病毒防疫要求</view>
+    <view class="code_qr_label">请出示此二维码给酒店员工核验</view>
+  </view>
+  <view class="form">
+    <view class="form_ul">
+      <view class="form_li">
+        <text class="form_li_t">手机号码</text>
+        <input class="form_input form_mobile" placeholder-class="placeholder" disabled="{{true}}" value="{{info.mobile}}" placeholder="请输入手机号码"/>
+      </view>
+      <view class="form_li">
+        <text class="form_li_t">真实姓名</text>
+        <input class="form_input" placeholder-class="placeholder" value="{{info.name}}" bindinput="bindNameInput" placeholder="请输入真实名字" />
+      </view>
+      <view class="form_li">
+        <text class="form_li_t">身份证号</text>
+        <input class="form_input {{isFirst?'':'form_mobile'}}" placeholder-class="placeholder" disabled="{{isFirst?false:true}}" value="{{info.ident}}" bindinput="bindIdentityInput" placeholder="请输入真实身份证" />
+      </view>
     </view>
-    <view class="form_li">
-      <text class="form_li_t">真实姓名</text>
-      <input class="form_input" placeholder-class="placeholder" value="{{info.name}}" bindinput="bindNameInput" placeholder="请输入真实名字" />
-    </view>
-    <view class="form_li">
-      <text class="form_li_t">身份证号</text>
-      <input class="form_input {{isFirst?'':'form_mobile'}}" placeholder-class="placeholder" disabled="{{isFirst?false:true}}" value="{{info.ident}}" bindinput="bindIdentityInput" placeholder="请输入真实身份证" />
+    <template is="label" data="{{text:['身份证号提交后将不允许修改']}}"/>
+    <view class="btn_box">
+      <view class="btn_success" bindtap="btnSuccess">确认更改信息</view>
     </view>
   </view>
-  <template is="label" data="{{text:['身份证号提交后将不允许修改']}}"/>
-  <view class="btn_box">
-    <view class="btn_success" bindtap="btnSuccess">确认信息</view>
-  </view>
+  
 </view>

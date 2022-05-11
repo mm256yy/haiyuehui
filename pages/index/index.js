@@ -8,18 +8,20 @@ let app = getApp();
 Page({
   data: {
     bannerUrls:[
-      '/static/images/banner1.jpg',
-      '/static/images/banner4.jpg',
+      {
+        img:'/static/images/banner1.jpg',
+        bindtap:''
+      }
     ],
     recommendUrls:[
       // {
       //   img:'/static/images/member-luck.jpg',
       //   bindtap:'goLuck',
       // },
-      // {
-      //   img:'/static/images/member-home.jpg',
-      //   bindtap:'',
-      // },
+      {
+        img:'/static/images/member-home.jpg',
+        bindtap:'/pages/member/memberFollow/memberFollow',
+      },
     ],
     hotelsName:'点击选择酒店',
     hotelsId:'hotelsId',
@@ -40,35 +42,24 @@ Page({
   },
   onLoad: function (option) {
     wx.setStorageSync('othersInviteCodeFrist', true);
-    user.goToLogin()
+    // user.goToLogin()
   },
   onShow: function () {
-    // wx.showTabBar()
     this.marketGo();  //跳转到商城
     this.getAllowance();  //津贴
+    this.getMarketDetailed();  //商城佣金
     this.renderingTime();  //日历
     this.fristRegister();  //优惠券  
+    this.getSendId(); //实物send
     this.member();
-    this.activity();  //活动入口判断
+    this.topBanner();
   },
-  //传递邀请人
-  // invite(option){
-  //   console.log(option)
-  //   let inviteCode = ""; 
-  //   if(option.inviteCode){
-  //     inviteCode = option.inviteCode;
-  //   }else{
-  //     let scene = decodeURIComponent(option.scene).toString().split('=');
-  //     inviteCode = scene[1];
-  //   }
-  //   wx.setStorageSync('othersInviteCode', inviteCode);
-  // },
   //获取津贴
   getAllowance(){
     let inviteCode = wx.getStorageSync('othersInviteCode');
     let inviteCodeFrist = wx.getStorageSync('othersInviteCodeFrist')
-    console.log(inviteCode);
-    if(inviteCode != ""&&inviteCode != undefined&&inviteCodeFrist){
+    let goodsId = wx.getStorageSync('othersgoodsId');
+    if(inviteCode != ""&&inviteCode != undefined&&inviteCodeFrist&&(!goodsId)){
       let param = {
         inviteCode:inviteCode,
       };
@@ -77,6 +68,15 @@ Page({
         wx.setStorageSync('othersInviteCode', "");
         wx.setStorageSync('othersInviteCodeFrist', false);
       }).catch((err) => {});
+    }
+  },
+  //商城佣金
+  getMarketDetailed(){
+    let goodsId = wx.getStorageSync('othersgoodsId');
+    if(goodsId){
+      wx.navigateTo({
+        url: "/pages/market/marketDetailed/marketDetailed?id="+goodsId
+      })
     }
   },
   //获取兑换码
@@ -96,6 +96,21 @@ Page({
         wx.setStorageSync('marketBadge', [0,0,1,0]);
         wx.setStorageSync('exchangeCode', "");
       }).catch((err) => {});
+    }
+  },
+  //获取实物赠送id
+  getSendId(){
+    let sendId = wx.getStorageSync('sendId');
+    if(check.existValue(sendId)){
+      let param = {
+        sendGoodsId:sendId,
+      };
+      util.request(api.SendGoods , param , 'GET').then(res => {
+        wx.showModal({title: '恭喜',content: "会员等级获取成功",showCancel: false}); 
+        wx.removeStorageSync('sendId');
+      }).catch((err) => {
+        wx.removeStorageSync('sendId');
+      });
     }
   },
   //获取会员信息
@@ -195,23 +210,40 @@ Page({
       popShow:false
     })
   },
-  //活动时间判断
-  activity(){
-    let date = (new Date()).getTime();
-    let recommendUrlsNew = [];
-    if(date <= 1615823999000){ //活动日子
-
-    }else{
-      recommendUrlsNew = [
-        {
-          img:'/static/images/member-home1.jpg',
-          bindtap:'goFollow',
-        },
-      ]
-    }
-    this.setData({
-      recommendUrls:recommendUrlsNew
-    })
+  //banner图片1
+  topBanner(){
+    let that = this
+    let bannerUrls = []
+    let recommendUrls = []
+    util.request(api.TndexBannerList , 'GET').then(res => {
+      let data = res.result
+      let li = {}
+      for(let i=0;i<data.length;i++){
+        li = {
+          img:data[i].img,
+          bindtap:data[i].link,
+        }
+        if(data[i].location == 1){
+          bannerUrls.push(li)
+        }else if(data[i].location == 2){
+          recommendUrls.push(li)
+        }
+      }
+      if(bannerUrls.length == 0){
+        bannerUrls = [
+          {img:'/static/images/banner1.jpg',bindtap:''},
+        ]
+      }
+      if(recommendUrls.length == 0){
+        recommendUrls = [
+          {img:'/static/images/member-home.jpg',bindtap:'/pages/member/memberFollow/memberFollow'},
+        ]
+      }
+      that.setData({
+        bannerUrls:bannerUrls,
+        recommendUrls:recommendUrls
+      })
+    }).catch((err) => {});
   },
   dayZero(val){
     if(val<=9){
@@ -237,7 +269,7 @@ Page({
           i+=5;
         }else{
           ret+=asc2str(parseInt("0x"+asc));
-        i+=2;
+          i+=2;
         };
       }else{
         ret+= chr;
@@ -259,9 +291,20 @@ Page({
       url: "/pages/member/activity/memberLuck/memberLuck",
     });
   },
-  goFollow(){
-    wx.navigateTo({
-      url: "/pages/member/memberFollow/memberFollow",
+  marketIndex(){
+    wx.switchTab({
+      url: "/pages/market/marketIndex/marketIndex",
     });
   },
+  goPointsMarket(){
+    wx.navigateTo({
+      url: "/pages/ucenter/points/pointsMarket/pointsMarket",
+    });
+  },
+  goto(e){
+    let url = e.currentTarget.dataset.tap;
+    wx.navigateTo({
+      url: url,
+    });
+  }
 });

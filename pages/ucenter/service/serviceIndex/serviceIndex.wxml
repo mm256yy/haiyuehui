@@ -1,0 +1,19 @@
+<view id="box">
+  <view class="service_problem">
+    <view class="problem_head">
+      <view class="problem_head_li problem_head_li_on">热点关注</view>
+    </view>
+    <view class="problem_body">
+      <view class="problem_body_li" wx:for="{{problemUl}}" wx:key="index" bindtap="chooseProblem" data-arr="{{index}}">
+      {{item.problem}}
+      </view>
+    </view>
+  </view>
+  <view class="service_answer">
+    <view class="answer_ul">
+      <view class="answer_li" wx:for="{{answerUl}}" wx:key="index">
+        <view class="answer_li_l {{item.type == 1?'answer_user':'answer_service'}}" >{{item.val}}</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,42 @@
+page{
+  background-color: #f1f1f1;
+}
+/*recharge*/
+.wallet_recharge{
+  background-color: #fff;
+  padding: 30rpx;
+  margin-top: 20rpx;
+}
+.recharge_money{
+  padding: 30rpx 0rpx;
+  position: relative;
+}
+.recharge_money_text{
+  font-size: 50rpx;
+  position: absolute;
+  top: 45rpx;
+  left: 15rpx;
+}
+.recharge_money_input{
+  height: 70rpx;
+  font-size: 60rpx;
+  margin-left: 80rpx;
+  margin-right: 120rpx;
+  padding: 10rpx;
+}
+.recharge_money_total{
+  color: #039cee;
+  position: absolute;
+  top: 60rpx;
+  right: 0rpx;
+}
+.wallet_recharge_type{
+  float: right;
+  color: #179B16;
+}
+.dis_success{
+  opacity: 0.5;
+}
+.placeholder{
+  font-size: 40rpx;
+}

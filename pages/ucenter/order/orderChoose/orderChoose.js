@@ -51,7 +51,6 @@ Page({
       hotelId:this.data.hotel.hotelId,
       type:2,
     }
-    console.log(param)
     util.request(api.UcenterSystemBaseCodeType ,param, 'GET').then(res => {
       let screenUlNew = [];
       let screen_li = {};
@@ -78,9 +77,8 @@ Page({
       dep:this.data.hotel.dep,
       floor:'',
       feature:featureNew,
-      rmtype:'SJ' //this.data.hotel.rmtype
+      rmtype:this.data.hotel.rmtype
     }
-    console.log(param)
     util.request(api.UcenterOrderFloorRoomNum ,param, 'POST').then(res => {
       let floor_ul = [];
       let floor_li = {};

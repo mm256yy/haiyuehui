@@ -1,0 +1,138 @@
+
+.box_background{
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #002060 , #003091);
+  z-index: -2;
+}
+/*box1*/
+.box1{
+  margin-top: 110rpx;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.ba{
+  width: 100%;
+}
+/*box2*/
+.box2{
+  width: 100%;
+  height: 100%;
+  padding: 20rpx;
+  margin-top: -100rpx;
+}
+.box2_white{
+  background-color: #fff;
+  border-radius: 10rpx;
+  padding: 20rpx 0rpx 20rpx 0rpx;
+}
+/*from*/
+.form_ul {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding: 0 30rpx;
+}
+.form_li{
+  height: 96rpx;
+  position: relative;
+  border-bottom: 1px solid #d9d9d9;
+  display: flex;
+  border-bottom: 1px solid #f1f1f1;
+}
+.form_li_t{
+  width: 200rpx;
+  line-height: 95rpx;
+}
+.form_input{
+  flex: 1 1 auto;
+  display: block;
+  width: 100%;
+  height: 95rpx;
+  color: #333;
+  font-size: 30rpx;
+}
+.form_gender{
+  flex: 1 1 auto;
+  display: block;
+  width: 100%;
+  margin: auto 0rpx;
+}
+.form_age{
+  flex: 1 1 auto;
+  display: block;
+  width: 100%;
+  margin: auto 0rpx;
+}
+.form_age slider{
+  margin: 10px 10px;
+}
+.radio_val{
+  margin-right: 30rpx;
+}
+/*btn*/
+.btn_box{
+  padding:0rpx 30rpx;
+}
+.btn_success{
+  margin: 40rpx 0rpx 20rpx 0rpx;
+  padding: 20rpx 10rpx;
+  border-radius:50rpx ;
+  color: #fff;
+  font-size: 30rpx;
+  width: 100%;
+  border-radius: 10rpx;
+  background: linear-gradient(to right, #003091 , #003091);
+  text-align: center;
+}
+/*foot*/
+.foot{
+  padding-top: 10rpx;
+}
+.foot_text{
+  text-align: center;
+  color: #999;
+}
+radio .wx-radio-input.wx-radio-input-checked {
+  border-color: #003091 !important;
+  background: #003091 !important;
+}
+/*box3*/
+.box2_honor{
+  text-align: center;
+  margin-top: 50rpx;
+}
+.honor_text{
+  color: #fff;
+  line-height: 45rpx;
+}
+/*head*/
+.box2_head{
+  padding: 30rpx 0rpx;
+}
+.head_text{
+  color: #fff;
+}
+/*ad*/
+.box2_ad{
+  margin-top: 20rpx;
+  overflow: hidden;
+}
+.box2_ad_img{
+  width: 100%;
+  border-radius: 10rpx;
+}
+.company_text1{
+  line-height: 95rpx;
+  color: #cdcdcd;
+  font-size: 30rpx;
+}
+.company_text2{
+  line-height: 95rpx;
+  color: #000;
+  font-size: 30rpx;
+}

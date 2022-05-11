@@ -30,6 +30,9 @@ Page({
       // isSingle:0,  //是否单独购买 1 是(不能加入购物车) 0 否 null 否\
       // startBuy:'',  //开卖时间 null 值为没有限制 
       // countdown:'',  //倒计时
+      // actual:0, //是否虚拟产品 0（有兑换码） 1（没有兑换码）
+      // canAmount:0, //最多购买数量 null 和 -1 都是为无限期
+      // cardLevelCan:0, //购买卡等级限制
     },
     pop: false,
     goodsNum: 1,
@@ -67,8 +70,6 @@ Page({
     info: {
       cardLevel: '',
     },
-    canvasShow: false,
-    saveImagePath:'',
   },
   onLoad: function (options) {
     this.setData({
@@ -77,6 +78,7 @@ Page({
   },
   onShow: function () {
     this.member();
+    this.specChooseEmpty();
   },
   //点击转发按钮
   onShareAppMessage: function (ops) {
@@ -98,20 +100,28 @@ Page({
   },
   //会员
   member() {
-    user.memberGetInfoStorage().then(res => {
+    user.memberGetInfo().then(res => {
       this.setData({
         'info.cardLevel': res.result.cardLevel
       })
       this.init();
     }).catch((err) => {
-      this.init();
-      console.log(err)
+      if(err == '未登陆'){
+        wx.navigateTo({
+          url: "/pages/auth/login/login"
+        });
+      }else{
+        this.init();
+      }
     });
   },
   init() {
+    let inviteCode = wx.getStorageSync('othersInviteCode');
+    console.log(inviteCode)
     let param = {
       id: this.data.id,
-      cardLevel: this.data.info.cardLevel
+      cardLevel: this.data.info.cardLevel,
+      inviteCode:inviteCode
     }
     util.request(api.MallGoodsDetail, param, 'GET').then(res => {
       let data = res.result;
@@ -126,7 +136,7 @@ Page({
       }
       //图文详情
       let contentNew = data.content ? data.content : ''
-      contentNew = contentNew.replace(/width="300"/g, 'width="100%"').replace(/display: block/g, 'display: block;padding-bottom: 10px;').replace(/height="300"/g, '');
+      contentNew = contentNew.replace(/width="800"/g, 'width="100%"').replace(/width="300"/g, 'width="100%"').replace(/width="600"/g, 'width="100%"').replace(/display: block/g, 'display: block;padding-bottom: 10px;').replace(/height="300"/g, '').replace(/height="600"/g, '');
       let detailedNew = {
         id: data.id,
         name: data.title,
@@ -152,6 +162,12 @@ Page({
         isSingle: data.isSingle,
         startBuy: data.startBuy ? data.startBuy : '',
         countdown: this.funCountdown(data.startBuy), //倒计时
+        actual:data.actual, //是否是虚拟产品
+        bonusRate:data.bonusRate,  //佣金比例
+        canAmount:data.canAmount,
+        cardLevelCan:data.cardLevel,
+        canBuy:this.funcanBuy(data.canBuy),
+        canRefund:data.canRefund,
       };
       //规格
       let specListNew = '';
@@ -214,6 +230,16 @@ Page({
         discount: data.discount ? data.discount : 100,
         money: 0,
       }
+      //判断是否下架
+      if(detailedNew.isOnSale != 1){
+        wx.showModal({
+          title: '错误提醒',
+          content: '该产品已经下架或失效',
+          success: function(res) {
+            
+          }
+        })
+      }
       this.setData({
         detailed: detailedNew,
         total: totalNew,
@@ -224,6 +250,9 @@ Page({
       this.redTipNum();
       this.total();
       this.delSpec(specListNew, productListNew);
+      //清除index穿进来的两个本地存储值
+      wx.removeStorage({key: 'othersInviteCode'})
+      wx.removeStorage({key: 'othersgoodsId'})
     }).catch((err) => {});
   },
   //总计
@@ -376,9 +405,10 @@ Page({
     let val = e.currentTarget.dataset.val;
     let num = this.data.goodsNum
     let amount = this.data.detailed.amount
+    let canAmount = this.data.detailed.canAmount //佣金商品限定数量 null 和 -1 都是为无限期
     if (val == 0 && num > 1) {
       num--
-    } else if (val == 1 && (num < amount || amount == "不限制")) {
+    } else if (val == 1 && (num < amount || amount == "不限制") && (num < canAmount || !canAmount || canAmount == -1)) {
       num++
     }
     this.setData({
@@ -438,78 +468,173 @@ Page({
       })
     }
     //进行分割规格组合
-    this.specCompose()
+    // this.specCompose()
+    this.specAbled(index1)
   },
-  specCompose() {
+  specAbled(){
     let specChoose = this.data.specChoose
-    let productList = this.data.productList
-    let v_productList = []
-    let j_ul = []
-    let j_li = []
-    let cho_ul = []
-    //输出选中列表productList的值
-    if (specChoose.length != 0) {
-      for (let i = 0; i < specChoose.length; i++) {
-        if (specChoose[i]) { //i代表specChoose第几位
-          for (let j = 0; j < productList.length; j++) {
-            v_productList = productList[j].spec.split('$') //j代表productList第几位
-            if (v_productList[i] == specChoose[i]) {
-              j_li.push(j)
-            }
-          }
-          j_ul.push(j_li)
-          j_li = []
-          cho_ul.push(i)
-        } else {
-          cho_ul.push(i)
+    let specList = this.data.specList
+    let specChooseTrue = false
+    let not_ol = []
+    let not_li = [[]]
+    for(let i = 0; i < specChoose.length; i++){
+      if(specChoose[i]){
+        specChooseTrue = true
+      }
+    }
+    if(specChooseTrue){
+      for (let i = 0; i < specList.length; i++) {
+        for (let j = 0; j < specList[i].list.length; j++) {
+          specList[i].list[j].abled = true
         }
       }
-      let v_ul = [];
-      let v_num = 0
-      if (j_ul.length > 1) {
-        for (let i = 0; i < j_ul[0].length; i++) {
-          for (let j = 0; j < j_ul.length; j++) {
-            if (j_ul[j].indexOf(j_ul[0][i]) != -1) {
-              v_num++
-            }
-          }
-          if (v_num == j_ul.length) {
-            v_ul.push(j_ul[0][i])
-          }
-          v_num = 0
-        }
-      } else {
-        v_ul = j_ul[0]
-      }
-      //进行隐藏未被选到的specList
-      let specList = this.data.specList
-      if (v_ul) {
-        for (let i = 0; i < specList.length; i++) {
-          for (let j = 0; j < specList[i].list.length; j++) {
-            specList[i].list[j].abled = false
-          }
-        }
-        for (let i = 0; i < cho_ul.length; i++) {
-          for (let j = 0; j < v_ul.length; j++) {
-            for (let k = 0; k < specList[cho_ul[i]].list.length; k++) {
-              if (specList[cho_ul[i]].list[k].name == productList[v_ul[j]].spec.split('$')[cho_ul[i]]) {
-                specList[cho_ul[i]].list[k].abled = true
+      //获取选中值在productList中的类似位置
+      for(let i = 0; i < specChoose.length; i++){
+        if (specChoose[i]) { 
+          not_li = this.funChooseVal(i,specChoose[i])
+          for(let i = 0; i < not_li.length; i++){
+            for (let j = 0; j < not_li[i].length; j++) {
+              let i_tal = i
+              let j_tal = not_li[i][j]
+              specList[i_tal].list[j_tal].abled = false
+              if(specList[i_tal].list[j_tal].choose){
+                specList[i_tal].list[j_tal].choose = false
+                specChoose[i_tal] = null
               }
             }
           }
         }
-      } else {
-        for (let i = 0; i < specList.length; i++) {
-          for (let j = 0; j < specList[i].list.length; j++) {
-            specList[i].list[j].abled = true
+      }
+    }else{
+      for (let i = 0; i < specList.length; i++) {
+        for (let j = 0; j < specList[i].list.length; j++) {
+          specList[i].list[j].abled = true
+        }
+      }
+    }
+    this.setData({
+      specList: specList,
+      specChoose: specChoose,
+    })
+  },
+  funChooseVal(index1,chooseVal){
+    let specChoose = this.data.specChoose
+    let productList = this.data.productList
+    let specList = this.data.specList
+    let v_productList = []
+    let choose_li = []
+    for (let i = 0; i < productList.length; i++) {
+      v_productList = productList[i].spec.split('$') //j代表productList第几位
+      for(let j = 0; j < productList.length; j++){
+        if (v_productList[j] == chooseVal) {
+          choose_li.push(i)
+        }
+      }
+    }
+    let ex_ul = [[]]
+    let ex_li = []
+    for(let z = 0; z < specChoose.length; z++){
+      for(let i = 0; i < choose_li.length; i++){
+        let arr = choose_li[i]
+        let n_productList = productList[arr].spec.split('$')
+        ex_li[i] = n_productList[z]
+      }
+      ex_ul[z] = this.unique(ex_li)
+      ex_li = []
+    }
+
+    //找没有规格组合
+    let not_ul = []
+    let not_li = []
+    for(let i = 0; i < specList.length; i++){
+      for(let j = 0; j < specList[i].list.length; j++){
+        if(index1 != i){
+          let has = false
+          for(let k = 0; k < ex_ul[i].length; k++){
+            if(specList[i].list[j].name == ex_ul[i][k]){
+              has = true
+            }
+          }
+          if(!has){
+            not_li.push(j)
           }
         }
       }
-      this.setData({
-        specList: specList
-      })
+      not_ul[i] = not_li
+      not_li = []
     }
+    return not_ul;
   },
+  // specCompose() {
+  //   let specChoose = this.data.specChoose
+  //   let productList = this.data.productList
+  //   let v_productList = []
+  //   let j_ul = [] //拥有选中类型的规格组合arr
+  //   let j_li = []
+  //   let cho_ul = []
+  //   //输出选中列表productList的值
+  //   if (specChoose.length != 0) {
+  //     for (let i = 0; i < specChoose.length; i++) {
+  //       if (specChoose[i]) { //i代表specChoose第几位
+  //         for (let j = 0; j < productList.length; j++) {
+  //           v_productList = productList[j].spec.split('$') //j代表productList第几位
+  //           if (v_productList[i] == specChoose[i]) {
+  //             j_li.push(j)
+  //           }
+  //         }
+  //         j_ul.push(j_li)
+  //         j_li = []
+  //         cho_ul.push(i)
+  //       } else {
+  //         cho_ul.push(i)
+  //       }
+  //     }
+  //     let v_ul = []; //精确到哪个规格组合,例[6]，没有显示undefined
+  //     let v_num = 0
+  //     if (j_ul.length > 1) {
+  //       for (let i = 0; i < j_ul[0].length; i++) {
+  //         for (let j = 0; j < j_ul.length; j++) {
+  //           if (j_ul[j].indexOf(j_ul[0][i]) != -1) {
+  //             v_num++
+  //           }
+  //         }
+  //         if (v_num == j_ul.length) {
+  //           v_ul.push(j_ul[0][i])
+  //         }
+  //         v_num = 0
+  //       }
+  //     } else {
+  //       v_ul = j_ul[0]
+  //     }
+  //     //进行隐藏未被选到的specList
+  //     let specList = this.data.specList
+  //     if (v_ul) {
+  //       for (let i = 0; i < specList.length; i++) {
+  //         for (let j = 0; j < specList[i].list.length; j++) {
+  //           specList[i].list[j].abled = false
+  //         }
+  //       }
+  //       for (let i = 0; i < cho_ul.length; i++) {
+  //         for (let j = 0; j < v_ul.length; j++) {
+  //           for (let k = 0; k < specList[cho_ul[i]].list.length; k++) {
+  //             if (specList[cho_ul[i]].list[k].name == productList[v_ul[j]].spec.split('$')[cho_ul[i]]) {
+  //               specList[cho_ul[i]].list[k].abled = true
+  //             }
+  //           }
+  //         }
+  //       }
+  //     } else {
+  //       for (let i = 0; i < specList.length; i++) {
+  //         for (let j = 0; j < specList[i].list.length; j++) {
+  //           specList[i].list[j].abled = true
+  //         }
+  //       }
+  //     }
+  //     this.setData({
+  //       specList: specList
+  //     })
+  //   }
+  // },
   //删除规格
   delSpec(specList, productList) {
     for (let i = 0; i < productList.length; i++) {
@@ -598,113 +723,73 @@ Page({
       return false
     }
   },
-  //获取背景图片
-  backgroundImg() {
-    let that = this;
-    var p = new Promise(function (resolve, reject) {
-      wx.downloadFile({
-        url: that.data.detailed.sliderImg[0], //仅为示例，并非真实的资源
-        success(res) {
-          if (res.statusCode === 200) {
-            resolve(res.tempFilePath);
-          }
-        }
-      })
-    });
-    return p;
-  },
-  //获取二维码
-  codeImg() {
-    let that = this;
-    var p = new Promise(function (resolve, reject) {
-      wx.downloadFile({
-        url: that.data.detailed.sliderImg[0], //仅为示例，并非真实的资源
-        success(res) {
-          if (res.statusCode === 200) {
-            resolve(res.tempFilePath);
-          }
-        }
-      })
-    });
-    return p;
-  },
-  //绘图
-  createdImage() {
-    console.log(12)
-    util.jhxLoadShow("图片生成中");
-    let that = this;
-    Promise
-      .all([this.backgroundImg(), this.codeImg()])
-      .then(function (results) {
-        //进行绘制
-        const ctx = wx.createCanvasContext('shareFrends');
-        ctx.drawImage(results[0], 0, 0, 300, 300);
-        ctx.font = "14px Georgia";
-        ctx.fillText('长按二维码', 120, 441)
-        ctx.draw()
-        // 3. canvas画布转成图片
-        wx.canvasToTempFilePath({
-          x: 0,
-          y: 0,
-          width: 300,
-          height: 500,
-          destWidth: 600,
-          destHeight: 1000,
-          canvasId: 'shareFrends',
-          success: function (res) {
-            console.log(34)
-            util.jhxLoadHide();
-            if (!res.tempFilePath) {
-              wx.showModal({
-                title: '提示',
-                content: '图片绘制中，请稍后重试',
-                showCancel: false
-              })
-            }
-            that.setData({
-              saveImagePath:res.tempFilePath
-            })
-          },
-          fail: function (res) {
-            check.showErrorToast(res)
-          }
-        })
-      });
+  //立即分享
+  // goMarketShare(){
+  //   let id = this.data.detailed.id
+  //   let name = this.data.detailed.name;
+  //   let price = this.data.detailed.sliderImg[0];
 
-    this.setData({
-      canvasShow: true
-    })
+  //   wx.navigateTo({
+  //     url: '/pages/market/marketShare/marketShare?name='+name+'&price='+price+'&id='+id
+  //   })
+  // },
+  //是否能购买
+  funcanBuy(val){
+    if(val == null){
+      return true
+    }else if(val == 0){
+      return false
+    }else{
+      return true
+    }
   },
-  //保存图片
-  saveImage() {
-    let that = this;
-    //4. 当用户点击分享到朋友圈时，将图片保存到相册
-    wx.saveImageToPhotosAlbum({
-      filePath: that.data.saveImagePath,
-      success(res) {
-        wx.showModal({
-          title: '图片保存成功',
-          content: '图片成功保存到相册了，去发圈噻~',
-          showCancel: false,
-          confirmText: '好哒',
-          confirmColor: '#72B9C3',
-          success: function (res) {
-            that.setData({
-              saveImagePath:res.tempFilePath,
-              canvasShow: false
-            })
-          }
-        })
-      },
-      fail: function (res) {
-        check.showErrorToast(res)
+
+  goMarketShareTwo(){
+    let param = {
+      id: this.data.detailed.id,
+    }
+    util.request(api.MallGoodsInviteImg , param , 'GET').then(res => {
+      let data = res.result
+      wx.previewImage({
+        current: data, // 当前显示图片的http链接
+        urls: [data] // 需要预览的图片http链接列表
+      })
+    }).catch((err) => {});
+  },
+  handleLongPress(){
+    let param = {
+      id: this.data.detailed.id,
+      reset:true,
+    }
+    util.request(api.MallGoodsInviteImg , param , 'GET').then(res => {
+      let data = res.result
+      wx.previewImage({
+        current: data, // 当前显示图片的http链接
+        urls: [data] // 需要预览的图片http链接列表
+      })
+    }).catch((err) => {});
+  },
+  //去重
+  unique(arr) {
+    let newArr = [arr[0]];
+    for (let i = 1; i < arr.length; i++) {
+      let flag = false;
+      for (let j = 0; j < newArr.length; j++) {
+        if (arr[i] === newArr[j]) {
+          flag = true;
+          break;
+        }
       }
-    })
+      if (!flag) {
+        newArr.push(arr[i]);
+      }
+    }
+    return newArr;
   },
-  //取消绘图
-  cancelmage() {
+  //清除specChoose
+  specChooseEmpty(){
     this.setData({
-      canvasShow: false
+      specChoose:[],
     })
   },
 })
