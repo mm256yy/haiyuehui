@@ -64,6 +64,7 @@ function marketType(type){
     case 4 : return "申请退款";
     case 5 : return "退款失败";
     case 6 : return "已结单";
+    case 7 : return "已退款"
     default: return '未知状态';
   }
 }
@@ -91,6 +92,21 @@ function numSpace(num){
   }
   
 }
+//js将2022-03-29T02:36:39.000+0000转化为2022.03.29 02:36:39格式
+
+function transformTimestamp(timestamp){
+   var arr = timestamp.split('T')
+   var arrs=arr[1].split('.')[0].split(':')
+    return arr[0]+' '+arrs[0]+':'+arrs[1]+':'+arrs[2]
+}
+function exchangeCase(type){
+  switch (type) {
+    case 2 : return "未使用";
+    case 3 : return "已使用";
+    case 5 : return "已退款";
+    default: return '未知状态';
+  }
+}
 //返回手机尾号四位
 function MobileFour(mobile){
   return mobile.slice(7,11)
@@ -112,4 +128,6 @@ module.exports = {
 
   numSpace:numSpace,
   MobileFour:MobileFour,
+  transformTimestamp:transformTimestamp,
+  exchangeCase:exchangeCase,
 };

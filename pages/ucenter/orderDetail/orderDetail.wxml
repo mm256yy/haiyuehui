@@ -1,0 +1,52 @@
+<view>
+  <wxs src="../../../filter/filter.wxs" module="filter" />
+  <view class="mar">
+    <view class="head">
+      <view class="headC">
+        <view>订单已完成!</view>
+        <view>感谢您对海悦会的喜爱与支持,欢迎再度光临</view>
+      </view>
+    </view>
+   <view style="margin:0 auto;width:98%">
+   <view class="detail">
+          <view style="padding:20rpx">
+            <view class="giftcard_list_contentF" style="height:60rpx;line-height: 60rpx;">
+              <text>订单详情</text>
+              <text class="text2">{{filter.marketType(datas[0].status)}}</text>
+            </view>
+
+            <view class="giftcard_list_contentF giftcard_list_contentS">
+
+              <view class="giftcard_list_contentF_r">
+                <image src="{{imgUrl}}" style="flex:0 0 260rpx"></image>
+                <view style="flex:0 0 170rpx; margin-left:20rpx">{{datas[0].money/100}}元礼品卡</view>
+              </view>
+
+              <view class="giftcard_list_contentF_l">
+               <view>￥{{datas[0].money/100}}</view>
+               <view>  x1</view>
+              </view>
+
+            </view>
+            <view class="giftcard_list_contentF giftcard_list_contentT">
+              <view>共1件商品 合计￥{{datas[0].money/100}}</view>
+            </view>
+          </view>
+   </view>
+    <view class="orderdetail">
+     <view style="padding:20rpx">
+      <view class="orderdetailtitle">订单信息</view>
+      <view class="orderdetailT">
+        <text>订单编号</text>
+        <text>{{datas[0].id}}</text>
+      </view>
+      <view class="orderdetailT">
+        <text>交易时间</text>
+        <text>{{datas[0].createTime}}</text>
+      </view>
+     </view>
+    </view>
+    <button class="refund" style="width:180rpx;height:60rpx;" bindtap="refund">申请退款</button>
+   </view>
+  </view>
+</view>

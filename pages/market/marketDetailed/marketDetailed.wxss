@@ -195,7 +195,6 @@ page{
   color: #fff;
   border-radius:20rpx ;
   font-size: 20rpx;
-  
 }
 .goods_foot_btn{
   display: flex;

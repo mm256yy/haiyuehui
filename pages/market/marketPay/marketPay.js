@@ -29,7 +29,6 @@ Page({
     this.member();
   },
   initialize(data){
-    console.log(data)
     let orderNew = {
       orderId:data.orderId,
       money:data.money||999900,

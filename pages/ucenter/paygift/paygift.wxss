@@ -1,0 +1,85 @@
+.backGround{
+  background-color: #faeeee;
+  width: 100%;
+  height: 300rpx;
+}
+.imgStyle{
+  width: 60%;
+  height: 300rpx;
+  position: absolute;
+  background-color: gray;
+  top:100rpx;
+  border-radius: 40rpx;
+  left:calc(50% - 30%);
+}
+.title{
+  text-align: center;
+  margin: 180rpx 0 30rpx 0;
+}
+.money_card{
+  width: 180rpx;
+  height: 90rpx;
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20rpx;
+  position: relative;
+}
+.money_cardF{
+  border: 1rpx solid #bab8b9;
+}
+.money_cardCF{
+  border: 1rpx solid #db0426;
+  background-color:#faeeee ;
+}
+.money_cardCFT{
+  color:#db0426
+}
+.rule{
+  width:96%;
+  position: absolute;
+  bottom: 120rpx;
+  left: 2%;
+}
+.pay{
+  background-color: #db0426;
+  color: white;
+  border-radius: 40rpx;
+}
+.pays{
+  background-color: #bab8b9;
+  color: white;
+  border-radius: 40rpx;
+}
+.triangle{
+        position: absolute;
+        width: 0;
+				height: 0;
+				border: 30rpx solid red;
+				border-top-color: #db0426;
+				border-bottom-color: transparent;
+				border-left-color: transparent;
+        border-right-color:  #db0426;
+        border-top-right-radius: 10rpx;
+        top:0;
+        right:0;
+}
+.triangleV{
+        position: absolute;
+        top:-20rpx;
+        right:-20rpx;
+        z-index: 100;
+        width: 20rpx;
+        height: 20rpx;
+
+}
+.triangleFV{
+  display: none;
+}
+.clc{
+  width:96%;
+  position: absolute;
+  bottom: 30rpx;
+  left: 2%;
+}

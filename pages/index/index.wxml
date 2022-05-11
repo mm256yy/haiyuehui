@@ -18,7 +18,7 @@
         <!-- <view class="booking_hotels" >选择入住时间</view> -->
         <view class="booking_ul" bindtap="calendarShow">
           <view class="booking_li">
-            <view class="booking_li_h5">入住时间</view>
+            <view class="booking_li_h5">入住时间1</view>
             <view class="booking_li_time">
               <text class="booking_li_days">{{show.startTime}}</text>
               <text class="booking_li_h5">{{show.startWeek}}</text>

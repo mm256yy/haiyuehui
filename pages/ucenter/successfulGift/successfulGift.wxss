@@ -1,0 +1,34 @@
+.backGround{
+  background-color: #faeeee;
+  width: 100%;
+  height: 300rpx;
+}
+.imgStyle{
+  width: 60%;
+  height: 300rpx;
+  position: absolute;
+  background-color: gray;
+  top:100rpx;
+  border-radius: 40rpx;
+  left:calc(50% - 30%);
+}
+.title{
+  text-align: center;
+  margin: 180rpx 0 30rpx 0;
+}
+.titleF{
+  text-align: center;
+  font-size: 40rpx;
+  margin-bottom: 10rpx;
+}
+.titleFF{
+  text-align: center;
+  font-size: 28rpx;
+  color: #bab8b9;
+}
+.clc{
+  width: 50%;
+  border: 1rpx solid #db0426;
+  color: #db0426;
+  border-radius: 40rpx;
+}

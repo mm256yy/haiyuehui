@@ -1,19 +1,15 @@
 {
-  "pages":[
-    
+  "pages": [
     "pages/index/index",
     "pages/member/activity/memberLuck/memberLuck",
-    
     "pages/member/memberIndex/memberIndex",
     "pages/member/memberPower/memberPower",
     "pages/member/memberAgree/memberAgree",
     "pages/member/memberFollow/memberFollow",
-    
     "pages/auth/login/login",
     "pages/auth/loginAgree/loginAgree",
     "pages/auth/registerWx/registerWx",
     "pages/auth/register/register",
-    
     "pages/customized/calendar/calendar",
     "pages/customized/fill/fill",
     "pages/customized/hotelsList/hotelsList",
@@ -21,7 +17,6 @@
     "pages/customized/payResult/payResult",
     "pages/customized/hotelsDetailed/hotelsDetailed",
     "pages/customized/hotelsMap/hotelsMap",
-    
     "pages/ucenter/index/index",
     "pages/ucenter/order/orderCancel/orderCancel",
     "pages/ucenter/order/orderAddition/orderAddition",
@@ -31,34 +26,28 @@
     "pages/ucenter/order/orderChoose/orderChoose",
     "pages/ucenter/order/orderContinue/orderContinue",
     "pages/ucenter/order/orderTransfer/orderTransfer",
-
     "pages/ucenter/coupon/coupon",
     "pages/ucenter/set/visitor/visitor",
-    
     "pages/ucenter/invoice/billList/billList",
     "pages/ucenter/invoice/applyResult/applyResult",
     "pages/ucenter/invoice/applyInvoice/applyInvoice",
     "pages/ucenter/invoice/invoiceTitle/invoiceTitle",
     "pages/ucenter/invoice/invoiceTitleDetail/invoiceTitleDetail",
     "pages/ucenter/invoice/invoiceTitleEdit/invoiceTitleEdit",
-
     "pages/ucenter/invite/inviteList/inviteList",
     "pages/ucenter/invite/inviteCode/inviteCode",
     "pages/ucenter/invite/inviteStrategy/inviteStrategy",
     "pages/ucenter/invite/inviteRecord/inviteRecord",
     "pages/ucenter/invite/inviteIndex/inviteIndex",
     "pages/ucenter/invite/inviteIncome/inviteIncome",
-
     "pages/ucenter/set/setIndex/setIndex",
     "pages/ucenter/set/oftenList/oftenList",
     "pages/ucenter/set/oftenEdit/oftenEdit",
     "pages/ucenter/set/information/information",
-
     "pages/ucenter/wallet/walletAmount/walletAmount",
     "pages/ucenter/wallet/walletConsume/walletConsume",
     "pages/ucenter/wallet/walletRecharge/walletRecharge",
     "pages/ucenter/wallet/walletProblem/walletProblem",
-
     "pages/market/marketIndex/marketIndex",
     "pages/market/shoppingCart/shoppingCart",
     "pages/market/marketOrderList/marketOrderList",
@@ -70,15 +59,21 @@
     "pages/market/marketDetailed/marketDetailed",
     "pages/market/marketExchange/marketExchange",
     "pages/market/marketWritten/marketWritten",
-
     "pages/ucenter/teamNumber/teamNumber",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/ucenter/gift/gift",
+    "pages/ucenter/paygift/paygift",
+    "pages/ucenter/giftresult/giftresult",
+    "pages/ucenter/successfulGift/successfulGift",
+    "pages/ucenter/orderDetail/orderDetail",
+    "pages/ucenter/giftothersresult/giftothersresult"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "海外海酒店",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "backgroundColor": "#fff",

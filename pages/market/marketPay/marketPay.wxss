@@ -5,20 +5,20 @@ page{background-color: #f1f1f1;}
   padding: 20rpx;
   background-color: #313848;
   color: #fff;
-  border-radius:10rpx ;
+  border-radius:10rpx;
 }
 /*订单类型*/
 .pay_ul{
   background-color: #fff;
-  padding:0rpx 20rpx ;
+  padding:0rpx 20rpx;
   margin-bottom: 20rpx;
 }
 .pay_li{
-  border-bottom:1px solid #f1f1f1 ;
+  border-bottom:1px solid #f1f1f1;
   padding: 20rpx 0rpx;
 }
 .pay_li:last-child{
-  border-bottom:0rpx ;
+  border-bottom:0rpx;
 }
 .pay_li_h{
   margin-right: 30rpx;
@@ -31,7 +31,7 @@ page{background-color: #f1f1f1;}
   color: #cc0000;
 }
 .pay_li_green{
-  color:#179B16 ;
+  color:#179B16;
 }
 .pay_label{
   text-align: center;

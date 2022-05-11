@@ -1,0 +1,21 @@
+<view>
+ <view class="backGround"></view>
+    <image src="{{imgUrl}}" class="imgStyle"></image>
+ <view class="title">选择礼品卡充值金额</view>
+<view style="width:95%;margin:0 auto">
+  <view style="display:flex;justify-content: space-between; flex-wrap: wrap;">
+  <view class="money_card {{first_id==index?'money_cardCF':'money_cardF' }}" wx:for="{{numList}}" wx:key="index" bindtap="chooseMoney" data-id="{{item.id}}">
+  <view class="{{first_id==index?'triangle':''}}"><image src="/static/images/check.png" class="{{first_id==index?'triangleV':'triangleFV'}}"></image></view>
+   <text class="{{first_id==index?'money_cardCFT':''}}">￥{{item.num}}</text>
+ </view>
+</view>
+<view class="rule">
+<label   class="radio" catchtap='checkedTap'>
+  <radio checked="{{checked}}"/>购买即代表您已阅读并接受<text style="color:blue">《礼品卡购卡合同》</text>和<text style="color:blue">《礼品卡章程》</text>
+</label>
+</view>
+<view class="clc">
+ <button class="{{checked?'pay':'pays'}}" style="width:100%" bindtap="{{checked?'giftPay':'popConfirm'}}" > 立即支付￥{{money}}</button>
+</view>
+</view>
+</view>

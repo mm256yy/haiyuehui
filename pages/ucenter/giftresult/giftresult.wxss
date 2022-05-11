@@ -1,0 +1,54 @@
+.backGround{
+  background-color: #faeeee;
+  width: 100%;
+  height: 300rpx;
+}
+.imgStyle{
+  width: 60%;
+  height: 300rpx;
+  position: absolute;
+  background-color: gray;
+  top:100rpx;
+  border-radius: 40rpx;
+  left:calc(50% - 30%);
+}
+.title{
+  text-align: center;
+  margin: 180rpx 0 30rpx 0;
+}
+.tab{
+  display: flex;
+  justify-content: space-around;
+}
+.mar{
+  width: 95%;
+  margin: 0 auto;
+}
+.textarea_content{
+  border: 1rpx solid #bab8b9;
+  width: 100%;
+  border-radius: 10rpx;
+}
+.mystyle{
+  width: 100%;
+  height: 200rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #bab8b9;
+  border-radius: 10rpx;
+}
+.marg{
+  margin:50rpx 0 150rpx 0 ;
+}
+.pay{
+  background-color: #db0426;
+  color: white;
+  border-radius: 40rpx;
+}
+.clc{
+  width:96%;
+  position: absolute;
+  bottom: 30rpx;
+  left: 2%;
+}

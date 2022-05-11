@@ -1,0 +1,11 @@
+<view>
+  <view class="backGround"></view>
+    <image src="{{imgUrl}}" class="imgStyle"></image>
+    <!-- <view class="imgStyle"></view> -->
+ <view class="title">{{money}}元礼品卡</view>
+<view style="margin-bottom:100rpx">
+  <view class="titleF">已成功领取</view>
+ <view class="titleFF">工作在辛苦也要对自己好一点儿~</view>
+</view>
+ <button class="clc" bindtap="back">查看礼品卡</button>
+</view>

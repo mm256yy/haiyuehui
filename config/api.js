@@ -2,13 +2,13 @@
  // 手机 开发API地址 
  // let WxApiRoot = 'http://112.17.106.101:9001/wx/';  let testing = true; 
  // 正式线上ip 
- // let WxApiRoot = 'http://124.70.147.182:9001/wx/'; let testing = false; 
+//  let WxApiRoot = 'http://124.70.147.182:9001/wx/'; let testing = false; 
  // 测试线上ip 
- // let WxApiRoot = 'http://124.70.132.80:9001/wx/'; let testing = true;
+  let WxApiRoot = 'http://124.70.132.80:9002/wx/'; let testing = true;
  // 本机 开发api地址
- // let WxApiRoot = 'http://192.168.133.67:9002/wx/'; let testing = true;    //'http://192.168.188.79:9001/wx/'; 
+//  let WxApiRoot = 'http://192.168.1.4:9002/wx/'; let testing = true;    //'http://192.168.188.79:9001/wx/'; 
  // 生产地址 
- let WxApiRoot = 'https://hotels.hwhautomall.com/wx/'; let testing = false;  // let WxApiRoot = 'https://www.hwhhotels.com/wx/';
+//  let WxApiRoot = 'https://hotels.hwhautomall.com/wx/'; let testing = false;  // let WxApiRoot = 'https://www.hwhhotels.com/wx/';
  
 module.exports = {
    testing,  //判断是否是测试环境
@@ -89,4 +89,15 @@ module.exports = {
    MallCarWashStart:WxApiRoot +'mall/memberGoods/carWashStart', //洗车信息填写
 
    ActivityDraw:WxApiRoot +'activity/draw', // 抽奖活动
+
+
+   GiftList:WxApiRoot+'present/list',// 礼品卡列表
+   MemberGiftList:WxApiRoot+'present/memberPresent',// 我的礼品卡列表
+   GiftSubmit:WxApiRoot +'present/submit',//礼品提交订单
+   GiftPay:WxApiRoot+'present/prepay',//礼品预支付
+   GiftCallback:WxApiRoot+'present/callback',//礼品支付成功回调
+   UsePresent:WxApiRoot+'present/usePresent', //微信使用礼品卡接口
+   OthersPresent:WxApiRoot+'present/receive',  //微信接受礼品卡接口
+   Giftorder:WxApiRoot+'present/presentOrder',//礼品订单
+   Refund:WxApiRoot+'present/doRefund'//订单退款
  }

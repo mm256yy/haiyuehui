@@ -51,6 +51,7 @@ Page({
       // {img:'/static/images/other/other3.png',text:'账单开票',tap:'goInvoice',badge:false},
       {img:'/static/images/other/other4.png',text:'隐私条款',tap:'goPrivacy',badge:false},
       // {img:'/static/images/other/other5.png',text:'客服热线',tap:'goService',badge:false},
+      {img:'/static/images/other/other4.png',text:'我的礼品卡',tap:'giftCard',badge:false},
       {img:'/static/images/other/other9.png',text:'设置',tap:'goSet',badge:false},
     ],
     serviceIcon:[
@@ -73,12 +74,14 @@ Page({
   },
   onLoad: function () {
     user.goToLogin();
+    // console.log(1)
   },
   onShow: function () {
     console.log(this.data.ucenter.allowanceMoney)
     this.userInfo();
     this.member();
     this.badge();
+    // console.log(2)
   },
   //登陆后获取用户信息
   userInfo(){
@@ -219,6 +222,12 @@ Page({
       url: "/pages/member/memberAgree/memberAgree"
     });
   }, 
+  //礼品卡 
+  giftCard(){
+    wx.navigateTo({
+      url: '/pages/ucenter/gift/gift',
+    })
+  },
   goSet(){
     wx.navigateTo({ 
       url: "/pages/ucenter/set/setIndex/setIndex"

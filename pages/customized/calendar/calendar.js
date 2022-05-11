@@ -27,6 +27,7 @@ Page({
   onLoad: function () {
     let now_data = new Date().getTime()
     console.log(now_data)
+    // console.log(1)
     this.rendering(now_data)
     this.setData({
       monthOneDay:now_data

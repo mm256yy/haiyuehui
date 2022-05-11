@@ -29,6 +29,7 @@ App({
     })
   },
   //邀请人
+  
   invite(data){
     let option = data.query;
     let inviteCode = ""; 

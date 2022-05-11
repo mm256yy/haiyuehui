@@ -1,0 +1,118 @@
+page {
+  background: #f1f1f1;
+}
+
+.mar{
+  width: 95%;
+  margin: 0 auto;
+}
+.head{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200rpx;
+}
+.headC{
+  text-align: center;
+}
+.headC :nth-of-type(1){
+  margin-bottom: 20rpx;
+  font-size: 40rpx;
+}
+.headC :nth-of-type(2){
+  font-size: 24rpx;
+  color: #bab8b9;
+}
+/* .head view{
+  padding: 20rpx 0;
+} */
+.orderdetail{
+  width: 100%;
+  background-color: white;
+  border-radius: 10rpx;
+}
+.orderdetailtitle {
+  border-bottom: 1rpx solid #bab8b9;
+  padding: 10rpx 0;
+}
+.orderdetailT{
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 0; 
+}
+.orderdetailT text:nth-of-type(1){
+  color:#bab8b9 ;
+}
+.refund{
+  float: right;
+  margin-top: 20rpx;
+  border-radius: 30rpx;
+  font-size: 20rpx;
+  color: gray;
+}
+.detail{
+  width:100%;
+  backGround-color:white;
+  border-radius:10rpx;
+  margin-bottom: 30rpx;
+}
+
+.giftcard_list{
+  width: 95%;
+  background-color: white;
+  border-radius:20rpx;
+  margin: 20rpx auto;
+}
+.giftcard_list :nth-of-type(1){
+  width: 98%;
+  padding: 10rpx;
+  margin: 0 auto;
+}
+.giftcard_list_contentF{
+  display: flex;
+  justify-content:space-between;
+  flex-direction: row;
+}
+.text2{
+  flex: 0 0 100rpx;
+  line-height: 58rpx;
+}
+.giftcard_list_contentF_r{
+  display: flex;
+}
+.giftcard_list_contentF_r image{
+  width: 100%;
+  /* height: 200rpx; */
+  height: 100%;
+  /* border-radius: 50rpx; */
+}
+.giftcard_list_contentF_l{
+  flex: 0 0 180rpx;
+}
+.giftcard_list_contentF_l :nth-of-type(1){
+  margin-left: 103rpx;
+}
+.giftcard_list_contentF_l :nth-of-type(2){
+  margin-left: 110rpx;
+}
+.giftcard_list_contentS{
+  border-bottom: 1rpx solid #bab8b9;
+  margin: 20rpx 0;
+  height: 200rpx;
+  padding-bottom: 20rpx;
+}
+.line{
+  width: 100%;
+  height: 1rpx;
+  background-color:  gray;
+}
+.giftcard_list_contentT button{
+  background-color: #db0426;
+  border-radius: 40rpx;
+  color: white;
+  font-size: 28rpx;
+  height: 60rpx;
+  flex: 0 0 180rpx;
+  line-height: 40rpx;
+}
