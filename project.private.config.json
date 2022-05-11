@@ -4,18 +4,6 @@
     "miniprogram": {
       "list": [
         {
-          "name": "关注页",
-          "pathName": "pages/customized/fill/fill",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "send",
-          "pathName": "pages/index/index",
-          "query": "sendId=3",
-          "scene": null
-        },
-        {
           "name": "商城",
           "pathName": "pages/market/marketDetailed/marketDetailed",
           "query": "id=11",

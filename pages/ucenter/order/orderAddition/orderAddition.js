@@ -229,7 +229,7 @@ Page({
   //酒店协议
   goAgree(){
     wx.navigateTo({
-      url: "/pages/member/memberAgree/memberAgree"
+      url: "/subpackage/pages/member/memberAgree/memberAgree"
     })
   },
   //input焦点

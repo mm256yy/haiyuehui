@@ -12,17 +12,11 @@ page{
   padding-top: 10px;
   border-bottom:1px solid #cdcdcd ;
 }
-.problem_head_li{
-  
-}
 .problem_head_li_on{
   display: inline-block;
   padding-bottom: 10px;
   color: #039cee;
   border-bottom:3px solid #039cee ;
-}
-.problem_body{
-
 }
 .problem_body_li{
   border-bottom:1px dashed #cdcdcd ;

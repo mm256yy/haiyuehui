@@ -14,10 +14,6 @@ Page({
       }
     ],
     recommendUrls:[
-      // {
-      //   img:'/static/images/member-luck.jpg',
-      //   bindtap:'goLuck',
-      // },
       {
         img:'/static/images/member-home.jpg',
         bindtap:'/pages/member/memberFollow/memberFollow',
@@ -285,11 +281,6 @@ Page({
       });
       wx.setStorageSync('canGoMarket', 0);
     }
-  },
-  goLuck(){
-    wx.navigateTo({
-      url: "/pages/member/activity/memberLuck/memberLuck",
-    });
   },
   marketIndex(){
     wx.switchTab({

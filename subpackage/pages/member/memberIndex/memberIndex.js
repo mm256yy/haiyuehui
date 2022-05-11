@@ -1,12 +1,10 @@
-let util = require('../../../utils/util.js');
-let api = require('../../../config/api.js');
+let util = require('../../../../utils/util.js');
 let member = require('../../../utils/member.js');
-let user = require('../../../utils/user.js');
-let app = getApp();
+let user = require('../../../../utils/user.js');
 Page({
   data: {
     info:{
-      avatarUrl:'/static/images/person.jpg',
+      avatarUrl:'/subpackage/images/person.jpg',
       name:'未登录',
       points:0,  //积分数量
       money:0,
@@ -141,7 +139,7 @@ Page({
   //更多权益
   powerMost(){
     wx.navigateTo({ 
-      url: "/pages/member/memberPower/memberPower?member="+this.data.info.card.nameC
+      url: "/subpackage/pages/member/memberPower/memberPower?member="+this.data.info.card.nameC
     });
   },
   //我的余额

@@ -1,7 +1,4 @@
-let util = require('../../../utils/util.js');
-let api = require('../../../config/api.js');
 let member = require('../../../utils/member.js');
-let app = getApp();
 Page({
   data: {
     memberCard:[],

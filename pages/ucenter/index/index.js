@@ -182,7 +182,7 @@ Page({
   },
   goMember(){
     wx.navigateTo({ 
-      url: "/pages/member/memberIndex/memberIndex"
+      url: "/subpackage/pages/member/memberIndex/memberIndex"
     });
   },
   //个人信息
@@ -206,7 +206,7 @@ Page({
   //隐私条款
   goPrivacy(){
     wx.navigateTo({ 
-      url: "/pages/member/memberAgree/memberAgree"
+      url: "/subpackage/pages/member/memberAgree/memberAgree"
     });
   }, 
   //礼品卡 
@@ -223,7 +223,7 @@ Page({
   //客服帮助
   goService(){
     wx.navigateTo({ 
-      url: "/pages/ucenter/service/serviceIndex/serviceIndex"
+      url: "/subpackage/pages/service/serviceIndex/serviceIndex"
     });
     // wx.makePhoneCall({
     //   phoneNumber:'057188173811'

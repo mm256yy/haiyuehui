@@ -64,7 +64,7 @@ Page({
   //协议链接
   agreeUrl(){
     wx.navigateTo({ 
-      url: "/pages/member/memberAgree/memberAgree"
+      url: "/subpackage/pages/member/memberAgree/memberAgree"
     });
   },
   //登陆取消

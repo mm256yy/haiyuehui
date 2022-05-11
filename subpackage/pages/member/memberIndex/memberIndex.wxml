@@ -1,11 +1,11 @@
 <view>
   <import src="/template/template"/> 
-  <wxs src="../../../filter/filter.wxs" module="filter"/>
+  <wxs src="../../../../filter/filter.wxs" module="filter"/>
   <view class="member_head">
-    <image class="member_head_ba" mode="widthFix" src="/static/images/member_ba.jpg"></image>
+    <image class="member_head_ba" mode="widthFix" src="/subpackage/images/member_ba.jpg"></image>
     <view class="member_card">
       <view class="head_banner">
-        <image src="/static/images/{{info.card.baImg}}.png" class="member_card_ba" mode="widthFix" />
+        <image src="/subpackage/images/{{info.card.baImg}}.png" class="member_card_ba" mode="widthFix" />
         <view class="member_card_content">
           <view class="member_card_tou" >
             <image class="card_tou_img" src="{{info.avatarUrl}}"></image>
@@ -52,7 +52,7 @@
     <view class="power_ul">
       <view class="power_li" wx:for="{{powerUlShow}}" wx:key="index" bindtap="introduceValShow" data-index="{{index}}">
         <view class="power_li_circular">
-          <image class="power_li_img" src="/static/images/power/{{item.img}}.png"></image>
+          <image class="power_li_img" src="/subpackage/images/power/{{item.img}}.png"></image>
         </view>
         <view class="power_li_text">{{item.text1}}</view>
         <view class="power_li_text">{{item.text2}}</view>
@@ -69,7 +69,7 @@
       <view class="coupon_li" wx:for="{{couponUl}}" wx:key="index">
         <view class="coupon_li_box">
           <view class="coupon_li_grade">贵宾会员{{coupon.name}}专享</view>
-          <image src="/static/images/receive.png" wx:if="{{item.type == 1}}" class="coupon_li_receive"></image>
+          <image src="/subpackage/images/receive.png" wx:if="{{item.type == 1}}" class="coupon_li_receive"></image>
           <view class="coupon_li_left">
             <view class="coupon_li_text">
               <text class="coupon_li_t1">￥</text>
