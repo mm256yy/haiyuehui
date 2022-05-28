@@ -1,50 +1,34 @@
 <view>
-  <view class="form_li_tip">
-    <text>如要开具增值税专用发票，需全部填写</text>
-  </view>
   <view class="invoice_from">
     <radio-group class="form_li" bindchange="radioChange">
       <view class="form_radio">
-        <radio value="0" checked="{{companyType == 0}}" class="agree_radio" ext-class="agree_radio" />
-        <text>企业</text>
+        <radio value="0" checked="{{detail.type == 0}}" class="agree_radio" ext-class="agree_radio" />
+        <text>个人</text>
       </view>
       <view class="form_radio">
-        <radio value="1" checked="{{companyType == 1}}" class="agree_radio" ext-class="agree_radio" />
-        <text>个人及政府事业单位</text>
+        <radio value="1" checked="{{detail.type == 1}}" class="agree_radio" ext-class="agree_radio" />
+        <text>单位</text>
       </view>
     </radio-group>
     <view class="form_li">
       <text class="form_li_t">名称<text class="form_li_must">*</text></text>
-      <input class="form_input" placeholder-class="placeholder" bindinput="bindNameInput" value="{{detail.name}}" placeholder="请输入手机号码" />
+      <input class="form_input" placeholder-class="placeholder" bindinput="bindNameInput" value="{{detail.name}}" placeholder="请输入名称/单位名称" />
     </view>
-    <view class="form_li">
-      <text class="form_li_t">税号<text class="form_li_must">*</text></text>
-      <input class="form_input" placeholder-class="placeholder" bindinput="bindNumInput" value="{{detail.num}}" placeholder="请输入手机号码" />
+    <view class="form_li" wx:if="{{detail.type == 1}}">
+      <text class="form_li_t">单位税号<text class="form_li_must">*</text></text>
+      <input class="form_input" placeholder-class="placeholder" bindinput="bindCodeInput" value="{{detail.code}}" placeholder="请输入单位税号" />
     </view>
-    <view class="form_li">
-      <text class="form_li_t">公司地址</text>
-      <input class="form_input" placeholder-class="placeholder" bindinput="bindAddressInput" value="{{detail.address}}" placeholder="请输入手机号码" />
+    <view class="form_li" wx:if="{{detail.type == 1}}">
+      <text class="form_li_t">单位地址</text>
+      <input class="form_input" placeholder-class="placeholder" bindinput="bindAddressInput" value="{{detail.address}}" placeholder="请输入单位地址" />
     </view>
-    <view class="form_li">
-      <text class="form_li_t">电话号码</text>
-      <input class="form_input" placeholder-class="placeholder" bindinput="bindMobileInput" value="{{detail.tel}}" placeholder="请输入手机号码" />
+    <view class="form_li" wx:if="{{detail.type == 1}}">
+      <text class="form_li_t">单位电话</text>
+      <input class="form_input" placeholder-class="placeholder" bindinput="bindPhoneInput" value="{{detail.phone}}" placeholder="请输入单位电话" />
     </view>
     <view class="form_radio form_li_mo" bindtap="defaultChange">
-      <radio value="1" checked="{{default}}" class="agree_radio" ext-class="agree_radio" />
+      <radio checked="{{detail.isDefault == 0}}" class="agree_radio" ext-class="agree_radio" />
       <text>设为默认抬头</text>
-    </view>
-  </view>
-  <view class="form_li_tip">
-    <text>请填写联系方式，向你同步电子发票信息</text>
-  </view>
-  <view class="invoice_from">
-    <view class="form_li">
-      <text class="form_li_t">手机号<text class="form_li_must">*</text></text>
-      <input class="form_input" placeholder-class="placeholder" bindinput="bindMobileInput" value="{{detail.mobile}}" placeholder="请输入手机号码" />
-    </view>
-    <view class="form_li">
-      <text class="form_li_t">邮箱<text class="form_li_must">*</text></text>
-      <input class="form_input" placeholder-class="placeholder" bindinput="bindEmailInput" value="{{detail.email}}" placeholder="请输入手机号码" />
     </view>
   </view>
   <view class="invoice_foot">

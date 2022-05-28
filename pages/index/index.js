@@ -297,5 +297,17 @@ Page({
     wx.navigateTo({
       url: url,
     });
-  }
+  },
+  goCoupon(){
+    wx.navigateTo({
+      url: '/pages/ucenter/coupon/coupon',
+    });
+  },
+  goIntroduceImg(){
+    let data = 'http://124.70.132.80/group1/M00/00/47/fEaEUGKDa76ABoFLAAR68q2HECg154.jpg'
+    wx.previewImage({
+      current: data, // 当前显示图片的http链接
+      urls: [data] // 需要预览的图片http链接列表
+    })
+  },
 });

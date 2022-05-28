@@ -55,7 +55,7 @@ page{
 }
 /*btn*/
 .btn_box{
-  padding:0rpx 30rpx;
+  padding:0rpx 20rpx;
   position: fixed;
   bottom: 10rpx;
   left: 0rpx;

@@ -4,14 +4,14 @@
 // 正式线上ip 
 // let WxApiRoot = 'http://124.70.147.182:9001/wx/'; let testing = false; 
 // 测试线上ip 
-let WxApiRoot = 'http://124.70.132.80:9002/wx/'; let testing = true;
+// let WxApiRoot = 'http://124.70.132.80:9002/wx/'; let testing = true;
 // 本机 开发api地址
 // let WxApiRoot = 'http://192.168.133.67:9002/wx/'; let testing = true;  //'http://192.168.188.79:9001/wx/'; 
 // let WxApiRoot = 'http://115.238.67.214:9002/wx/'; let testing = true;  //明俊外网地址 
 // let WxApiRoot = 'http://192.168.133.88:9002/wx/'; let testing = true;  //益静本机
-// let WxApiRoot = 'http://192.168.1.6:9002/wx/'; let testing = true;  //临时ip
+// let WxApiRoot = 'http://192.168.1.4:9002/wx/'; let testing = true;  //临时ip
 // 生产地址 
-// let WxApiRoot = 'https://hotels.hwhautomall.com/wx/'; let testing = false;  // let WxApiRoot = 'https://www.hwhhotels.com/wx/';
+let WxApiRoot = 'https://hotels.hwhautomall.com/wx/'; let testing = false;  // let WxApiRoot = 'https://www.hwhhotels.com/wx/';
  
 module.exports = {
    testing,  //判断是否是测试环境
@@ -133,4 +133,13 @@ module.exports = {
    MemberGoodsCheckQrcode:WxApiRoot +'mall/memberGoods/goodsCheckQrcode', //兑换码二维码
    MemberGoodsQueryByCode:WxApiRoot +'mall/memberGoods/queryByCode', //兑换码查询商品信息
    MemberGoodsConsumeCode:WxApiRoot +'mall/memberGoods/consumeCode', //兑换码员工核销
+
+   UcenterOrderInvoiceOpening:WxApiRoot +'system/invoiceOpening', //开发票
+   UcenterOrderInvoicePdf:WxApiRoot +'system/queryPdf', //发票查询
+   UcenterOrderInvoiceGetPdf:WxApiRoot +'invoice/getPdfByOrderId', //发票本地查询
+   UcenterInvoiceTitleList:WxApiRoot +'invoice/title/list', //发票抬头-列表
+   UcenterInvoiceTitleAdd:WxApiRoot +'invoice/title/add', //发票抬头-新增
+   UcenterInvoiceTitleEdit:WxApiRoot +'invoice/title/edit', //发票抬头-编辑
+   UcenterInvoiceTitleDel:WxApiRoot +'invoice/title/delete', //发票抬头-删除
+   UcenterInvoiceTitleDefault:WxApiRoot +'invoice/title/setDefaultAddress', //发票抬头-设置默认
  }

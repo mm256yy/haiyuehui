@@ -3,43 +3,84 @@ let check = require('../../../../utils/check.js');
 let api = require('../../../../config/api.js');
 Page({
   data: {
-    companyType:0,
-    default:false,
+    id:0,
     detail:{
-      name:'',
-      num:'',
-      address:'',
-      tel:'',
-      mobile:'',
-      email:'',
+      address: "",
+      code: "",
+      createTime: "",
+      deleted: 0,
+      id: 0,
+      isDefault: 0,
+      memberId: 0,
+      name: "",
+      phone: "",
+      type: 0,
+      updateTime: "",
     }
   },
+  onLoad(options) {
+    this.init(options)
+  },
   onShow: function () {
-
+    this.funDetal()
+  },
+  init(options){
+    this.setData({
+      id:options.id
+    })
+  },
+  //详情
+  funDetal(){
+    let id = this.data.id
+    if(id){
+      util.request(api.UcenterInvoiceTitleList , 'GET').then(res => {
+        let data = res.result
+        let detail = {}
+        data.map((obj)=>{
+          if(obj.id == id){
+            detail = obj
+          }
+        })
+        this.setData({
+          detail:detail,
+        })
+      }).catch((err) => {});
+    }
   },
   //选择企业类型
   radioChange(e){
     let val = e.detail.value;
     this.setData({
-      companyType:val
+      'detail.type': val
     })
   },
   //设置为默认
   defaultChange(){
+    let isDefault = this.data.detail.isDefault
     this.setData({
-      default:!this.data.default
+      'detail.isDefault': isDefault == 0?1:0
     })
   },
   //保存
   preserve(){
+    let id = this.data.id
+    let param = this.data.detail
+    let url = ''
     if(!check.checkName(this.data.detail.name)){return false}
-    
-    if(!check.checkMobile(this.data.detail.mobile)){return false}
-    if(!check.checkEmail(this.data.detail.email)){return false}
-    let param = {
-
+    if(param.type == 1 && param.code == ''){
+      check.showErrorToast('单位税号不能为空');
+      return false
     }
-    console.log(this.data.detail)
+    if(id){ //编辑
+      url = api.UcenterInvoiceTitleEdit
+    }else{
+      url = api.UcenterInvoiceTitleAdd
+    }
+    util.request(url , param , 'POST').then(res => {
+      wx.navigateBack({ 
+        delta: 1  
+      }); 
+    }).catch((err) => {});
   },
   //input
   bindNameInput(e) {
@@ -47,9 +88,9 @@ Page({
       'detail.name': e.detail.value
     });
   },
-  bindNumInput(e) {
+  bindCodeInput(e) {
     this.setData({
-      'detail.num': e.detail.value
+      'detail.code': e.detail.value
     });
   },
   bindAddressInput(e) {
@@ -57,19 +98,9 @@ Page({
       'detail.address': e.detail.value
     });
   },
-  bindMobileInput(e) {
+  bindPhoneInput(e) {
     this.setData({
-      'detail.tel': e.detail.value
-    });
-  },
-  bindMobileInput(e) {
-    this.setData({
-      'detail.mobile': e.detail.value
-    });
-  },
-  bindEmailInput(e) {
-    this.setData({
-      'detail.email': e.detail.value
+      'detail.phone': e.detail.value
     });
   },
 })

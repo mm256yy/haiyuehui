@@ -49,7 +49,7 @@ Page({
       {img:'/static/images/other/other8.png',text:'会员权益',tap:'goMember',badge:false},
       {img:'/static/images/other/other10.png',text:'积分商城',tap:'goPointsMarket',badge:false},
       {img:'/static/images/other/other2.png',text:'常住人簿',tap:'goOften',badge:false},
-      // {img:'/static/images/other/other3.png',text:'账单开票',tap:'goInvoice',badge:false},
+      // {img:'/static/images/other/other3.png',text:'发票抬头',tap:'goInvoice',badge:false},
       {img:'/static/images/other/other4.png',text:'隐私条款',tap:'goPrivacy',badge:false},
       // {img:'/static/images/other/other4.png',text:'我的礼品卡',tap:'giftCard',badge:false},
       {img:'/static/images/other/other5.png',text:'客服帮助',tap:'goService',badge:false},
@@ -200,7 +200,7 @@ Page({
   //账单开票
   goInvoice(){
     wx.navigateTo({ 
-      url: "/pages/ucenter/invoice/billList/billList"
+      url: "/pages/ucenter/invoice/invoiceTitle/invoiceTitle?oftenType=0"
     });
   },
   //隐私条款

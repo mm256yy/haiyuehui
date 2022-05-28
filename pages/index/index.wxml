@@ -43,17 +43,28 @@
     </view>
   </view>
   <view class="home_recommend">
-    <swiper 
-      indicator-dots="false"
-      autoplay="true"
-      interval="5000"
-      >
-      <block wx:for="{{recommendUrls}}" wx:key="item">
-        <swiper-item>
-          <image src="{{item.img}}" class="recommend_image" mode="widthFix" data-tap="{{item.bindtap}}" bindtap="goto"/>
-        </swiper-item>
-      </block>
-    </swiper>
+    <view class="recommend_ul">
+      <swiper 
+        indicator-dots="false"
+        autoplay="true"
+        interval="5000"
+        >
+        <block wx:for="{{recommendUrls}}" wx:key="item">
+          <swiper-item>
+            <image src="{{item.img}}" class="recommend_image" mode="widthFix" data-tap="{{item.bindtap}}" bindtap="goto"/>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="broadcast_ul">
+      <view class="broadcast_li" bindtap="goCoupon">
+        <image class="broadcast_img" mode="widthFix" src="/static/images/broadcast2.jpg" alt=""/>
+      </view>
+      <view class="broadcast_li_i"></view>
+      <view class="broadcast_li" bindtap="goIntroduceImg">
+        <image class="broadcast_img" mode="widthFix" src="/static/images/broadcast1.jpg" alt=""/>
+      </view>
+    </view>
   </view>
   <!-- <view class="home_member">  
     <image src="/static/images/member-home.jpg" mode="widthFix"></image>

@@ -104,7 +104,6 @@ Page({
   menuOn(e){
     let index = e.currentTarget.dataset.index
     let id = e.currentTarget.dataset.id
-    console.log(e.currentTarget.dataset);
     this.setData({
       menuVal:index,
       pageNo:1

@@ -4,27 +4,42 @@
     "miniprogram": {
       "list": [
         {
-          "name": "商城",
-          "pathName": "pages/market/marketDetailed/marketDetailed",
-          "query": "id=11",
-          "scene": null
-        },
-        {
           "name": "企鹅",
           "pathName": "pages/ucenter/order/orderReside/orderReside",
           "query": "arr=2021-11-18&dep=2021-11-19&floor=07&hotelId=H000030&orderId=21111930000001&rmtype=SJ&roomNo=1101",
           "scene": null
         },
         {
-          "name": "pages/ucenter/nuclein/scan/scan",
-          "pathName": "pages/market/marketRedeemCode/marketRedeemCode",
-          "query": "gc=631027210111",
+          "name": "4567",
+          "pathName": "pages/ucenter/order/orderDetail/orderDetail",
+          "query": "",
           "launchMode": "default",
           "scene": null
         },
         {
-          "name": "pages/market/marketExchange/marketExchange",
-          "pathName": "pages/market/marketExchange/marketExchange",
+          "name": "123456",
+          "pathName": "pages/ucenter/invoice/applyInvoice/applyInvoice",
+          "query": "orderId=7951203908888587864&goodsUnit=晚&goodsAmount=1&goodsPrice=100&totalPrice=100",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "applyResult",
+          "pathName": "pages/ucenter/invoice/applyResult/applyResult",
+          "query": "buyerName=456789&invoiceCode=123456&invoiceNum=11111",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/ucenter/order/orderInvoice/orderInvoice",
+          "query": "orderId=22052106000003",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "抽奖",
+          "pathName": "pages/member/activity/memberLuck/memberLuck",
           "query": "",
           "launchMode": "default",
           "scene": null

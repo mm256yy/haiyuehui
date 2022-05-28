@@ -9,7 +9,7 @@ Page({
       id:'',
       remark:['未写备注'],
       payMoney:0,
-      discount:100,
+      // discount:100,
       money:'',
       goods:[
         {
@@ -71,7 +71,7 @@ Page({
         status:data.status,
         createTime:data.createTime,
         id:data.id,
-        discount:100,
+        // discount:100,
         money:data.money,
         payMoney:data.payMoney,
         remark:remarkNew,
@@ -103,9 +103,9 @@ Page({
   //会员
   member(){
     user.memberGetInfoStorage().then(res => {
-      this.setData({
-        'detail.discount':res.result.discount
-      })
+      // this.setData({
+      //   'detail.discount':res.result.discount
+      // })
     }).catch((err) => {
       console.log(err)
     });

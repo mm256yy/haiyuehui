@@ -1,0 +1,53 @@
+page{
+  background-color: #f1f1f1;
+}
+/*head*/
+.invoice_head{
+  background: linear-gradient(to left, #346ae8 , #039cee);
+  padding: 50rpx;
+  padding-bottom: 70rpx;
+  text-align: center;
+}
+.invoice_head_money{
+  color: #fff;
+  font-size: 30rpx;
+  margin-top: 10rpx;
+}
+.invoice_head_text{
+  color: #fff;
+  font-weight: 800;
+  font-size: 30rpx;
+}
+/*goods*/
+.invoice_goods{
+  margin-top: -20rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+}
+.invoice_title{
+  padding: 20rpx;
+  text-align: center;
+}
+.goods_box{
+  padding: 20rpx;
+}
+.goods_text{
+  padding:10rpx 0rpx;
+}
+/*btn*/
+.goods_btn{
+  padding: 20rpx;
+  text-align: right;
+  overflow: hidden;
+}
+.goods_btn_success{
+  width: 180rpx;
+  text-align: center;
+  padding: 13rpx;
+  margin: 0rpx 10rpx;
+  color: #fff;
+  background: linear-gradient(to right, #039cee , #346ae8);
+  border-radius: 50rpx;
+  font-size: 24rpx;
+  float: right;
+}

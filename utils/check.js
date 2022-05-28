@@ -60,7 +60,7 @@ function checkName(name){ //使用：if(!check.checkName(this.data.name)){return
   if(name.length == 0){
     showErrorToast('姓名不能为空');
     return false;
-  }else if(name.length > 8){
+  }else if(name.length > 30){
     showErrorToast('姓名不能过长');
     return false;
   }else if(isNonnum(name)){

@@ -6,15 +6,49 @@
       <view class="company_name">海外海集团</view>
     </view>
     <view class="invoice_bill">
-      <view class="invoice_money">￥{{filter.moneyFixed(invoice.money)}}</view>
+      <view class="invoice_money">￥{{filter.moneyFixed(invoice[0].totalPrice)}}</view>
       <view class="invoice_order">订单号：
-        <text class="invoice_order_num">{{invoice.orderNum}}</text>
+        <text class="invoice_order_num">{{detail.orderId}}</text>
       </view>
     </view>
-    <view class="invoice_title" bindtap="goInvoiceTitle">
-      <text>抬头</text>
+    <!-- <view class="invoice_title" bindtap="goInvoiceTitle">
+      <text>抬头名称</text>
       <image class="invoice_right_img invoice_right" src="/static/images/right.png" alt="logo" />
       <text class="invoice_right">{{invoice.company != ''?invoice.company:'请选择'}}</text>
+    </view> -->
+    <view class="invoice_from">
+      <view class="invoice_person">
+        <view class="person_val" bindtap="goInvoiceTitle">
+          <image class="person_img" src="/static/images/selected.png"></image>
+          <view class="person_text" >常用抬头</view>
+        </view>
+      </view>
+      <radio-group class="form_li form_li_left" bindchange="radioChange">
+        <view class="form_radio">
+          <radio value="0" checked="{{companyType == 0}}" class="agree_radio" ext-class="agree_radio" />
+          <text>个人</text>
+        </view>
+        <view class="form_radio">
+          <radio value="1" checked="{{companyType ==1}}" class="agree_radio" ext-class="agree_radio" />
+          <text>单位</text>
+        </view>
+      </radio-group>
+      <view class="form_li form_li_left">
+        <text class="form_li_t">名称<text class="form_li_must">*</text></text>
+        <input class="form_input" placeholder-class="placeholder" bindinput="bindNameInput" value="{{detail.name}}" placeholder="请输入名称/单位名称" />
+      </view>
+      <view class="form_li" wx:if="{{companyType == 1}}">
+        <text class="form_li_t">单位税号<text class="form_li_must">*</text></text>
+        <input class="form_input" placeholder-class="placeholder" bindinput="bindTaxnumInput" value="{{detail.code}}" placeholder="请输入单位税号" />
+      </view>
+      <view class="form_li" wx:if="{{companyType == 1}}">
+        <text class="form_li_t">单位地址</text>
+        <input class="form_input" placeholder-class="placeholder" bindinput="bindBankInput" value="{{detail.address}}" placeholder="请输入单位地址" />
+      </view>
+      <view class="form_li" wx:if="{{companyType == 1}}">
+        <text class="form_li_t">单位电话</text>
+        <input class="form_input" placeholder-class="placeholder" bindinput="bindMobileInput" value="{{detail.phone}}" placeholder="请输入单位电话" />
+      </view>
     </view>
   </view>
   <view class="invoice_foot">
@@ -26,20 +60,24 @@
       <view class="pop_head">确认发票信息</view>
       <view class="pop_ul">
         <view class="pop_li">
-          <text class="pop_li_t1">发票抬头</text>
-          <text class="pop_li_t2">{{invoice.company}}</text>
+          <text class="pop_li_t1">抬头类型</text>
+          <text class="pop_li_t2">{{companyType == 0?'个人':'单位'}}</text>
         </view>
         <view class="pop_li">
-          <text class="pop_li_t1">纳税人识别号</text>
-          <text class="pop_li_t2">{{invoice.taxNum}}</text>
+          <text class="pop_li_t1">抬头名称</text>
+          <text class="pop_li_t2">{{detail.name}}</text>
         </view>
-        <view class="pop_li">
-          <text class="pop_li_t1">邮箱</text>
-          <text class="pop_li_t2">{{invoice.email}}</text>
+        <view class="pop_li" wx:if="{{companyType == 1}}">
+          <text class="pop_li_t1">单位税号</text>
+          <text class="pop_li_t2">{{detail.code}}</text>
         </view>
-        <view class="pop_li">
-          <text class="pop_li_t1">手机号</text>
-          <text class="pop_li_t2">{{invoice.mobile}}</text>
+        <view class="pop_li" wx:if="{{companyType == 1}}">
+          <text class="pop_li_t1">单位地址</text>
+          <text class="pop_li_t2">{{detail.address}}</text>
+        </view>
+        <view class="pop_li" wx:if="{{companyType == 1}}">
+          <text class="pop_li_t1">单位电话</text>
+          <text class="pop_li_t2">{{detail.phone}}</text>
         </view>
       </view>
       <view class="pop_foot">
