@@ -1,7 +1,7 @@
 // pages/ucenter/giftresult/giftresult.js
-let api = require('../../../config/api.js');
-let util = require('../../../utils/util.js');
-let user = require('../../../utils/user.js');
+let api = require('../../../../config/api.js');
+let util = require('../../../../utils/util.js');
+let user = require('../../../../utils/user.js');
 Page({
 
   /**

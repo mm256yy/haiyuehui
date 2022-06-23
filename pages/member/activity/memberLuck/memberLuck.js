@@ -236,5 +236,10 @@ Page({
     this.setData({
       ruleTitleChoose: val
     })
-  }
+  },
+  goInvitation(){
+    wx.navigateTo({
+      url: "/pages/ucenter/invite/inviteCode/inviteCode"
+    })
+  },
 })

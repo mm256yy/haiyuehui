@@ -1,7 +1,7 @@
-let util = require('../../../utils/util.js');
-let pay = require('../../../utils/pay.js');
-let api = require('../../../config/api.js');
-let user = require('../../../utils/user.js');
+let util = require('../../../../utils/util.js');
+let pay = require('../../../../utils/pay.js');
+let api = require('../../../../config/api.js');
+let user = require('../../../../utils/user.js');
 Page({
 
   /**

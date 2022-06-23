@@ -51,7 +51,7 @@ function request(url, data = {}, method = "GET") {
         'X-HWH-Token': wx.getStorageSync('token')
       },
       success: function(res) {
-        console.log(res);
+        // console.log(res);
         jhxLoadHide();
         if (res.statusCode == 200) {
           if(res.data.code == 0||res.data == "ok"){  //判断是否成功

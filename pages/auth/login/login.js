@@ -30,7 +30,6 @@ Page({
   },
   login(e){
     user.loginByWeixin(e.detail.userInfo).then(res => {
-      console.log(res)
       wx.setStorageSync('userInfo', e.detail.userInfo);
       app.globalData.hasLogin = true;
       if(res.result.mobile){  //有账号

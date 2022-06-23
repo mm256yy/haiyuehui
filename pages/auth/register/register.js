@@ -78,8 +78,6 @@ Page({
   },
   //绑定手机号
   requestRegister(wxCode) {
-    console.log(wxCode)
-    console.log(this.data.code)
     let that = this;
     let param = {
       mobile: that.data.mobile,

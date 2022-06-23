@@ -3,6 +3,7 @@ let api = require('../../../config/api.js');
 let util = require('../../../utils/util.js');
 let user = require('../../../utils/user.js');
 let check = require('../../../utils/check.js');
+let badge = require('../../../utils/badge.js');
 let app = getApp();
 Page({
   data: {
@@ -45,16 +46,16 @@ Page({
       },
     ],
     otherIcon:[
-      {img:'/static/images/other/other1.png',text:'身份信息',tap:'goInformation',badge:false},
-      {img:'/static/images/other/other8.png',text:'会员权益',tap:'goMember',badge:false},
-      {img:'/static/images/other/other10.png',text:'积分商城',tap:'goPointsMarket',badge:false},
-      {img:'/static/images/other/other2.png',text:'常住人簿',tap:'goOften',badge:false},
-      // {img:'/static/images/other/other3.png',text:'发票抬头',tap:'goInvoice',badge:false},
-      {img:'/static/images/other/other4.png',text:'隐私条款',tap:'goPrivacy',badge:false},
-      // {img:'/static/images/other/other4.png',text:'我的礼品卡',tap:'giftCard',badge:false},
-      {img:'/static/images/other/other5.png',text:'客服帮助',tap:'goService',badge:false},
-
-      {img:'/static/images/other/other9.png',text:'设置',tap:'goSet',badge:false},
+      {img:'/static/images/other/other1.png',text:'身份信息',tap:'goInformation',badge:0},
+      {img:'/static/images/other/other11.png',text:'我的消息',tap:'goNotify',badge:0},
+      {img:'/static/images/other/other8.png',text:'会员权益',tap:'goMember',badge:0},
+      {img:'/static/images/other/other10.png',text:'积分商城',tap:'goPointsMarket',badge:0},
+      {img:'/static/images/other/other2.png',text:'常住人簿',tap:'goOften',badge:0},
+      // {img:'/static/images/other/other3.png',text:'发票抬头',tap:'goInvoice',badge:0},
+      {img:'/static/images/other/other4.png',text:'隐私条款',tap:'goPrivacy',badge:0},
+      // {img:'/static/images/other/other4.png',text:'我的礼品卡',tap:'giftCard',badge:0},
+      {img:'/static/images/other/other5.png',text:'客服帮助',tap:'goService',badge:0},
+      {img:'/static/images/other/other9.png',text:'设置',tap:'goSet',badge:0},
     ],
     badge:{
       menu:[0,0,0,0]
@@ -62,13 +63,13 @@ Page({
   },
   onLoad: function () {
     user.goToLogin();
-    // console.log(1)
   },
   onShow: function () {
     this.userInfo();
     this.member();
     this.badge();
-    // console.log(2)
+    badge.notifyBadgeSet();
+    this.notifyBadge();
   },
   //登陆后获取用户信息
   userInfo(){
@@ -108,7 +109,7 @@ Page({
       }
       this.setData({
         ucenter:ucenterNew,
-        'otherIcon[0].badge':(res.result.name == ''||res.result.name == '微信'?true:false),
+        'otherIcon[0].badge':(res.result.name == ''||res.result.name == '微信'?1:0),
       })
     }).catch((err) => {
       console.log(err)
@@ -124,9 +125,16 @@ Page({
       wx.setTabBarBadge({
         index: 3,
         text:'1',
-        success: res => { console.log(res) },
-        fail: res => { console.error }
       });
+    }
+  },
+  //消息-红点
+  notifyBadge(){
+    let notify = app.globalData.notifyBadge;
+    if(notify){
+      this.setData({
+        'otherIcon[1].badge':notify.num
+      })
     }
   },
   //设置
@@ -176,9 +184,6 @@ Page({
   //会议与团队
   meeting(){
     check.showErrorToast("暂未开放")
-    /*wx.navigateTo({
-      url: "/pages/ucenter/teamNumber/teamNumber"
-    })*/
   },
   goMember(){
     wx.navigateTo({ 
@@ -189,6 +194,12 @@ Page({
   goInformation(){
     wx.navigateTo({ 
       url: "/pages/ucenter/set/information/information"
+    });
+  },
+  //我的消息
+  goNotify(){
+    wx.navigateTo({ 
+      url: "/pages/ucenter/notify/notifyList/notifyList"
     });
   },
   //同住人簿

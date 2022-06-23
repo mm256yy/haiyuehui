@@ -1,5 +1,5 @@
 <view>
-  <wxs src="../../../filter/filter.wxs" module="filter" />
+  <wxs src="../../../../filter/filter.wxs" module="filter" />
   <view class="mar">
     <view class="head">
       <view class="headC">

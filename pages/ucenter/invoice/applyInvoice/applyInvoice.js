@@ -28,6 +28,7 @@ Page({
           taxRate: 0,
           taxMoney: 0,
           goodsCode: '3070402000000000000',
+          customizeGoodCode:0,
           invoiceNature: 0,
         }
       ],
@@ -35,7 +36,6 @@ Page({
       checker: '收款人1',
       drawer: '复核人1',
       remark: 'asd',
-      customizeGoodCode: '',
     },
     popShow:false,
     companyType:0,
@@ -65,6 +65,7 @@ Page({
         taxRate: 0,
         taxMoney: 0,
         goodsCode: '3070402000000000000',
+        customizeGoodCode: 0,
         invoiceNature: 0,
       }
       this.setData({
@@ -98,12 +99,17 @@ Page({
   popConfirm(){
     console.log(this.data.invoice)
     let detail = this.data.detail
+    let invoiceGoods = {
+      ...this.data.invoice.invoiceGoods,
+      customizeGoodCode: detail.code,
+    }
     let param = {
       ...this.data.invoice,
       buyerName: detail.name,
-      customizeGoodCode: detail.code,
+      invoiceGoods: invoiceGoods,
       buyerPhone: detail.address + detail.phone,
     }
+    console.log(param)
     let data = {
       invoiceCode:'111111',
       invoiceNum:'333333333',

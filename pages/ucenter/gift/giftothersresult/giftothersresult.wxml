@@ -1,6 +1,5 @@
-<!--pages/ucenter/giftothersresult/giftothersresult.wxml-->
 <view>
-  <wxs src="../../../filter/filter.wxs" module="filter" />
+  <wxs src="../../../../filter/filter.wxs" module="filter" />
   <view class="backGround"></view>
   <image src="{{imgUrls}}" class="imgStyle"></image>
   

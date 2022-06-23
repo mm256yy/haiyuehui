@@ -1,0 +1,22 @@
+page{
+  background-color: #f1f1f1;
+}
+.notify_li{
+  background-color: #fff;
+  border-radius: 10rpx;
+  margin: 20rpx;
+  padding: 20rpx;
+}
+.notify_head{
+  margin-bottom: 20rpx;
+  position: relative;
+  overflow: hidden;
+}
+.notify_status{
+  color: #999;
+  float: left;
+}
+.notify_time{
+  float: right;
+  color: #999;
+}

@@ -565,76 +565,6 @@ Page({
     }
     return not_ul;
   },
-  // specCompose() {
-  //   let specChoose = this.data.specChoose
-  //   let productList = this.data.productList
-  //   let v_productList = []
-  //   let j_ul = [] //拥有选中类型的规格组合arr
-  //   let j_li = []
-  //   let cho_ul = []
-  //   //输出选中列表productList的值
-  //   if (specChoose.length != 0) {
-  //     for (let i = 0; i < specChoose.length; i++) {
-  //       if (specChoose[i]) { //i代表specChoose第几位
-  //         for (let j = 0; j < productList.length; j++) {
-  //           v_productList = productList[j].spec.split('$') //j代表productList第几位
-  //           if (v_productList[i] == specChoose[i]) {
-  //             j_li.push(j)
-  //           }
-  //         }
-  //         j_ul.push(j_li)
-  //         j_li = []
-  //         cho_ul.push(i)
-  //       } else {
-  //         cho_ul.push(i)
-  //       }
-  //     }
-  //     let v_ul = []; //精确到哪个规格组合,例[6]，没有显示undefined
-  //     let v_num = 0
-  //     if (j_ul.length > 1) {
-  //       for (let i = 0; i < j_ul[0].length; i++) {
-  //         for (let j = 0; j < j_ul.length; j++) {
-  //           if (j_ul[j].indexOf(j_ul[0][i]) != -1) {
-  //             v_num++
-  //           }
-  //         }
-  //         if (v_num == j_ul.length) {
-  //           v_ul.push(j_ul[0][i])
-  //         }
-  //         v_num = 0
-  //       }
-  //     } else {
-  //       v_ul = j_ul[0]
-  //     }
-  //     //进行隐藏未被选到的specList
-  //     let specList = this.data.specList
-  //     if (v_ul) {
-  //       for (let i = 0; i < specList.length; i++) {
-  //         for (let j = 0; j < specList[i].list.length; j++) {
-  //           specList[i].list[j].abled = false
-  //         }
-  //       }
-  //       for (let i = 0; i < cho_ul.length; i++) {
-  //         for (let j = 0; j < v_ul.length; j++) {
-  //           for (let k = 0; k < specList[cho_ul[i]].list.length; k++) {
-  //             if (specList[cho_ul[i]].list[k].name == productList[v_ul[j]].spec.split('$')[cho_ul[i]]) {
-  //               specList[cho_ul[i]].list[k].abled = true
-  //             }
-  //           }
-  //         }
-  //       }
-  //     } else {
-  //       for (let i = 0; i < specList.length; i++) {
-  //         for (let j = 0; j < specList[i].list.length; j++) {
-  //           specList[i].list[j].abled = true
-  //         }
-  //       }
-  //     }
-  //     this.setData({
-  //       specList: specList
-  //     })
-  //   }
-  // },
   //删除规格
   delSpec(specList, productList) {
     for (let i = 0; i < productList.length; i++) {
@@ -723,16 +653,6 @@ Page({
       return false
     }
   },
-  //立即分享
-  // goMarketShare(){
-  //   let id = this.data.detailed.id
-  //   let name = this.data.detailed.name;
-  //   let price = this.data.detailed.sliderImg[0];
-
-  //   wx.navigateTo({
-  //     url: '/pages/market/marketShare/marketShare?name='+name+'&price='+price+'&id='+id
-  //   })
-  // },
   //是否能购买
   funcanBuy(val){
     if(val == null){
@@ -743,31 +663,40 @@ Page({
       return true
     }
   },
-
-  goMarketShareTwo(){
-    let param = {
-      id: this.data.detailed.id,
+  //分享
+  goMarketShare(e){
+    let type = e.currentTarget.dataset.type
+    let param = {}
+    if(type == 1){
+      param = {
+        id: this.data.detailed.id,
+      }
+    }else if(type == 2){
+      param = {
+        id: this.data.detailed.id,
+        reset:true,
+      }
     }
-    util.request(api.MallGoodsInviteImg , param , 'GET').then(res => {
-      let data = res.result
-      wx.previewImage({
-        current: data, // 当前显示图片的http链接
-        urls: [data] // 需要预览的图片http链接列表
-      })
-    }).catch((err) => {});
-  },
-  handleLongPress(){
-    let param = {
-      id: this.data.detailed.id,
-      reset:true,
-    }
-    util.request(api.MallGoodsInviteImg , param , 'GET').then(res => {
-      let data = res.result
-      wx.previewImage({
-        current: data, // 当前显示图片的http链接
-        urls: [data] // 需要预览的图片http链接列表
-      })
-    }).catch((err) => {});
+    let code = '9fz38iYAV-k1-OxtDHGu8CY-J-QiuUG9g---UusE0ek'
+    /*申请调用*/
+    wx.requestSubscribeMessage({
+      tmplIds: [code],
+      success (res) {
+        if(res[code] == "accept"){
+          util.request(api.MallGoodsInviteImg , param , 'GET').then(res => {
+            let data = res.result
+            wx.previewImage({
+              current: data, // 当前显示图片的http链接
+              urls: [data] // 需要预览的图片http链接列表
+            })
+          }).catch((err) => {});
+        }else if(res[code] == "reject"){
+          wx.showModal({title: '错误信息',content: "请确认返现通知提醒",showCancel: false});
+        }else{
+          wx.showModal({title: '错误信息',content: "请联系前台处理",showCancel: false});
+        }
+      }
+    })
   },
   //去重
   unique(arr) {

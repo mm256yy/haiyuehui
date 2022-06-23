@@ -19,6 +19,7 @@
       </view>
     </view>
   </view>
+  <view class="invitation" bindtap="goInvitation">立即邀请朋友</view>
   <view class="luck_rule">
     <view class="rule_box">
       <view class="rule_title_ul">

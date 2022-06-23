@@ -42,7 +42,9 @@
         <image class="other_li_img" src="{{item.img}}"></image>
         <text class="other_li_text">{{item.text}}</text>
         <image class="other_li_go" src="/static/images/right.png"></image>
-        <text class="other_li_badge" wx:if="{{item.badge}}"></text>
+        <text class="other_li_badge" wx:if="{{item.badge}}">
+          <text class="other_li_badge_num">{{item.badge}}</text>
+        </text>
       </view>
     </view>
   </view>

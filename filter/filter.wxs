@@ -76,6 +76,13 @@ function exchangeStatus(status){
     default: return '已使用';
   }
 }
+//消息状态
+function notifyStatus(status){
+  switch (status) {
+    case 0 : return "未读";
+    default: return '已读';
+  }
+}
 //market规格值
 function specDivision(val){
   return val.split('$').join("，");
@@ -131,6 +138,7 @@ module.exports = {
   otaType:otaType,
   marketType:marketType,
   exchangeStatus:exchangeStatus,
+  notifyStatus:notifyStatus,
 
   specDivision:specDivision,
 

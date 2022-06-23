@@ -1,10 +1,7 @@
-let util = require('../../../utils/util.js');
-let pay = require('../../../utils/pay.js');
-let api = require('../../../config/api.js');
-let user = require('../../../utils/user.js');
-const {
-  GiftSubmit
-} = require('../../../config/api.js');
+let util = require('../../../../utils/util.js');
+let pay = require('../../../../utils/pay.js');
+let api = require('../../../../config/api.js');
+let user = require('../../../../utils/user.js');
 Page({
 
   /**
@@ -44,8 +41,8 @@ Page({
     imgUrl: "",
     id: null,
     money: 100,
-    checked:false,
-    orderId:"",
+    checked: false,
+    orderId: "",
   },
 
   /**
@@ -66,9 +63,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   if(!this.data.checked){
-     console.log(1)
-   }
+    if (!this.data.checked) {
+      console.log(1)
+    }
   },
 
   /**
@@ -122,7 +119,7 @@ Page({
         break;
       case 6:
         this.setData({
-          money:1000
+          money: 1000
         });
         break;
     }
@@ -131,7 +128,7 @@ Page({
     let param = {
       presentId: this.data.id,
       // money: this.data.money*100
-      money:1
+      money: 1
     }
     util.request(api.GiftSubmit, param, 'POST').then(res => {
       console.log("欲支付成功")
@@ -140,14 +137,14 @@ Page({
         orderMark: "礼品卡",
       }
       this.setData({
-        orderId:res.result.id
+        orderId: res.result.id
       })
       console.log(this.data.orderId);
       pay.giftPay(params).then(res => {
         //跳转
         wx.setStorageSync('locks', true)
         wx.redirectTo({
-          url: "/pages/customized/payResult/payResult?result=1&end=3"+'&orderId='+this.data.orderId
+          url: "/pages/customized/payResult/payResult?result=1&end=3" + '&orderId=' + this.data.orderId
         });
       }).catch(() => {
         //跳转
@@ -157,23 +154,23 @@ Page({
       });
     }).catch((err) => {});
   },
-  popConfirm(){
+  popConfirm() {
     wx.showModal({
       title: '提示',
       content: '请您阅读并同意《礼品卡购卡合同》与《礼品卡章程》',
-      showCancel:false,
-      confirmColor:"#db0426",
-      confirmText:"确认",
+      showCancel: false,
+      confirmColor: "#db0426",
+      confirmText: "确认",
     })
   },
   onHide: function () {
 
   },
   checkedTap: function () {
-		var checked = this.data.checked;
-		this.setData({
-		  checked: !checked
-		})
+    var checked = this.data.checked;
+    this.setData({
+      checked: !checked
+    })
   },
   /**
    * 生命周期函数--监听页面卸载

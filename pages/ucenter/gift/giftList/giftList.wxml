@@ -1,6 +1,5 @@
-<!--pages/ucenter/gift/gift.wxml-->
 <view class="gift_index">
-  <wxs src="../../../filter/filter.wxs" module="filter" />
+  <wxs src="../../../../filter/filter.wxs" module="filter" />
   <view class="gift_tab">
     <view  wx:for="{{titleList}}" wx:key="index" bindtap="tab" data-id="{{item.id}}">{{item.name}}</view>
   </view>

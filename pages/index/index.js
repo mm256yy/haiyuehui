@@ -3,6 +3,7 @@ let user = require('../../utils/user.js');
 let util = require('../../utils/util.js');
 let api = require('../../config/api.js');
 let check = require('../../utils/check.js');
+let badge = require('../../utils/badge.js');
 let app = getApp();
 
 Page({
@@ -49,6 +50,7 @@ Page({
     this.getSendId(); //实物send
     this.member();
     this.topBanner();
+    badge.notifyBadgeSet();
   },
   //获取津贴
   getAllowance(){
@@ -89,7 +91,6 @@ Page({
           index: 1,
           text: '1'
         })
-        wx.setStorageSync('marketBadge', [0,0,1,0]);
         wx.setStorageSync('exchangeCode', "");
       }).catch((err) => {});
     }

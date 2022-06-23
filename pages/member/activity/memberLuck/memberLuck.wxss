@@ -25,7 +25,7 @@ page{
 }
 /*body*/
 .luck_body{
-  margin: 50rpx;
+  margin: 30rpx;
 }
 .luck_flex{
   margin:50rpx 0rpx ;
@@ -65,6 +65,15 @@ page{
 .flex_li_text{
   color: #005698;
   font-size: 25rpx;
+}
+.invitation{
+  background-color: #005698;
+  color: #fff;
+  text-align: center;
+  padding: 30rpx;
+  border-radius: 10rpx;
+  border:1px solid #fff ;
+  margin:70rpx 30rpx 0rpx;
 }
 /*rule*/
 .luck_rule{

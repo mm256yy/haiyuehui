@@ -75,15 +75,22 @@
 
     "pages/ucenter/nuclein/health/health",
     "pages/ucenter/nuclein/scan/scan",
-    "pages/ucenter/teamNumber/teamNumber",
     "pages/logs/logs",
-    "pages/ucenter/gift/gift",
-    "pages/ucenter/paygift/paygift",
-    "pages/ucenter/giftresult/giftresult",
-    "pages/ucenter/successfulGift/successfulGift",
-    "pages/ucenter/orderDetail/orderDetail",
-    "pages/ucenter/giftothersresult/giftothersresult"
+     
+    "pages/ucenter/notify/notifyList/notifyList",
+
+    "pages/ucenter/gift/giftList/giftList",
+    "pages/ucenter/gift/paygift/paygift",
+    "pages/ucenter/gift/giftresult/giftresult",
+    "pages/ucenter/gift/successfulGift/successfulGift",
+    "pages/ucenter/gift/orderDetail/orderDetail",
+    "pages/ucenter/gift/giftothersresult/giftothersresult"
   ],
+  "permission":{
+    "scope.userLocation":{
+      "desc":"请点击确定"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

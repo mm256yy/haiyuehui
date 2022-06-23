@@ -38,8 +38,8 @@
           "scene": null
         },
         {
-          "name": "抽奖",
-          "pathName": "pages/member/activity/memberLuck/memberLuck",
+          "name": "ln",
+          "pathName": "pages/ucenter/invite/inviteCode/inviteCode",
           "query": "",
           "launchMode": "default",
           "scene": null
