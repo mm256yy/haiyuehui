@@ -41,6 +41,7 @@ Page({
           tel:res.result[i].tel,
           cis:res.result[i].cis,
           imgList:res.result[i].imgList,
+          distance:res.result[i].distance,
         }
         hotelsUl.push(hotelsLi)
       }

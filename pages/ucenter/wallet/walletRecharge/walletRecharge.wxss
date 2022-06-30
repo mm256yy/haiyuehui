@@ -60,8 +60,8 @@ page{
 }
 .rule_li_gift{
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 0px;
+  right: 0px;
   background-color: #753ffd;
   color: #fff;
   font-size: 20rpx;

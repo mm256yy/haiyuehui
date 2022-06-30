@@ -13,7 +13,7 @@ Page({
       {id:4,money:100000,moneyS:'1000元',moneyOnS:'1000元',recharge:1000},
     ],
     ruleUl:[
-      {id:5,money:10000,moneyS:'100元',moneyOnS:'100元',recharge:100},
+      // {id:5,money:10000,moneyS:'100元',moneyOnS:'100元',recharge:100},
     ],
     orderId:'',
   },
@@ -29,10 +29,10 @@ Page({
       let ruleUl = data.map((obj,index)=>{
         return obj = {
           id:5+index,
-          money: obj.recharge,
-          moneyS: (obj.recharge/100) + '元',
-          moneyOnS: obj.actualGoodsName,
-          recharge: obj.recharge/100,
+          money: obj.money,
+          moneyS: (obj.money/100) + '元',
+          moneyOnS: obj.name,
+          recharge: obj.money/100,
         }
       })
       this.setData({
@@ -43,10 +43,10 @@ Page({
   //充值调起订单
   successBtn(){
     if(!check.checkMoney(this.data.moneyNum)){return false}
-    if(this.data.moneyNum%100 != 0){
-      wx.showModal({ title: '失败',content: '金额应该为100的整数倍',showCancel: false });
-      return false
-    }
+    // if(this.data.moneyNum%100 != 0){
+    //   wx.showModal({ title: '失败',content: '金额应该为100的整数倍',showCancel: false });
+    //   return false
+    // }
     let param = {
       money:(api.testing?Math.round(this.data.moneyNum*100):Math.round(this.data.moneyNum*100)),
     }  

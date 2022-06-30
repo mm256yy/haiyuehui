@@ -77,3 +77,17 @@ page{
   top: 0rpx;
   right: 10rpx;
 }
+.hotels_text_distance{
+  position: absolute;
+  bottom: 20rpx;
+  right: 20rpx;
+}
+.distance_img{
+  width: 30rpx;
+  height: 30rpx;
+  margin: 2rpx 5rpx 0rpx 0rpx;
+}
+.distance_val{
+  color: #999;
+  float: right;
+}

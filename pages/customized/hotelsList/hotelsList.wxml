@@ -1,5 +1,6 @@
 
 <view>
+  <wxs src="../../../filter/filter.wxs" module="filter"/>
   <import src="/template/template"/> 
   <view class="hotels_ul">
     <view class="hotels_li"  wx:for="{{hotels}}" wx:key="index" bindtap="hotelsDetailed" data-arr="{{index}}" data-id="{{item.id}}" data-name="{{item.name}}">
@@ -14,6 +15,10 @@
         <text class="hotels_text_attr hotels_text_cis" wx:if="{{item.cis == 1}}">云智住</text>
         <view class="hotels_text_attr hotels_text_5" wx:if="{{item.id == 'H000001'}}">毗邻西湖</view>
         <image wx:if="{{item.cis == 1}}" src="/static/images/cis.png" class="cis"></image>
+        <view class="hotels_text_distance">
+          <image class="distance_img" src="/static/images/address2.png"></image>
+          <text class="distance_val" >{{filter.distance(item.distance)}}</text>
+        </view>
       </view>
     </view>
   </view>

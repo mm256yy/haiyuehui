@@ -17,6 +17,8 @@
         <view class="money_li_val {{moneyChoose == item.id ?'money_li_val_on':''}}">{{moneyChoose == item.id ?item.moneyS:item.moneyOnS}}</view>
       </view>
     </view>
+  </view>
+  <view class="wallet_recharge" wx:if="{{ruleUl.length > 0}}">
     <text>充值活动</text>
     <view class="rule_ul">
       <view class="rule_li" wx:for="{{ruleUl}}" bindtap="rechargeFast" data-money="{{item.recharge}}" data-index="{{item.id}}" wx:key="index">
