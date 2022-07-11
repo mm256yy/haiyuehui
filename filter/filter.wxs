@@ -33,14 +33,14 @@ function roomType(type){
     case 21 : return "支付中";
     case 22 : return "待入住";
     case 23 : return "退款申请中";
-    case 24 : return "退款成功";
+    case 24 : return "拒绝退款";
     case 25 : return "已支付";
     case 26 : return "退款失败";
     case 31 : return "已入住";
     case 32 : return "已续住";
     case 41 : return "已申请退房";
-    case 51 : return "已结单";
-    case 61 : return "已结单";
+    case 51 : return "退款成功";
+    case 61 : return "已发佣金";
     default: return '未知状态';
   }
 }
