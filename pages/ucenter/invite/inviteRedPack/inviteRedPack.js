@@ -32,21 +32,26 @@ Page({
       check.showErrorToast('请输入提现金额')
       return false;
     }else if(num > max){
-      check.showErrorToast('提现的金额高于可提现金额')
+      check.showErrorToast('提现的金额高于可提现金额')   
+      return false;
+    }else if(num < 100){
+      check.showErrorToast('提现的金额需高于1元')
       return false;
     }
     util.request(api.HongbaocashOut+'?money='+num , 'GET').then(res => {
       console.log(res)
       //跳转
       wx.redirectTo({
-        url: "/pages/customized/payResult/payResult?result=2&end=3"
+        url: "/pages/customized/payResult/payResult?result=2&end=5"
       });
     }).catch((err) => {
       console.log(err)
       //跳转
-      wx.redirectTo({
-        url: "/pages/customized/payResult/payResult?result=3&end=3"
-      });
+      setTimeout(()=>{
+        wx.redirectTo({
+          url: "/pages/customized/payResult/payResult?result=3&end=5"
+        });
+      },1000)
     });
   },
   //input

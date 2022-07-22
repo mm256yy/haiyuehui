@@ -1,0 +1,16 @@
+<view>
+  <wxs src="../../../../filter/filter.wxs" module="filter" />
+  <view class="notify_ul">
+    <view class="notify_li" wx:for="{{notifyUl}}" wx:key="index">  
+      <view class="notify_head">
+        <view class="notify_status">[系统] {{filter.notifyStatus(item.status)}}</view>
+        <view class="notify_time">{{item.createTime}}</view>
+      </view>
+      <view class="notify_body">
+        <view class="notify_content">
+          {{item.content}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

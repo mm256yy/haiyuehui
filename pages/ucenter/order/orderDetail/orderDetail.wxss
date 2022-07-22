@@ -262,6 +262,25 @@ page{background-color: #f1f1f1;}
   padding-top:10rpx ;
   padding-right: 20rpx;
 }
+/**/
+.invoice_box{
+  text-align: right;
+  padding:20rpx 10rpx;
+  margin-top: 1rpx;
+  background-color: #fff;
+  overflow: hidden;
+}
+.invoice_btn{
+  width: 180rpx;
+  text-align: center;
+  padding: 13rpx;
+  margin: 0rpx 10rpx ;
+  color: #fff;
+  background: linear-gradient(to right, #039cee , #346ae8);
+  border-radius: 50rpx;
+  float: right;
+  font-size: 24rpx;
+}
 /*zero*/
 .zero_box{
   background-color: #fff;

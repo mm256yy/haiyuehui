@@ -288,14 +288,19 @@ page{
 }
 .other_li_badge{
   display: inline-block;
-  margin: 10rpx;
-  width: 20rpx;
-  height: 20rpx;
-  border-radius:430rpx ;
-  border: 1px solid #f00000;
-  background-color: #f00000;
-  color: #fff !important;
-  float: right;
+  width: 35rpx;
+  height: 35rpx;
+  border-radius:40rpx ;
+  background-color: #ff4747;
+  text-align: center;
+  position: absolute;
+  top: 28rpx;
+  right: 60rpx;
+}
+.other_li_badge_num{
+  color: #fff;
+  font-size: 24rpx;
+  line-height: 35rpx;
 }
 .other_li_go{
   width: 40rpx;

@@ -76,6 +76,13 @@ function exchangeStatus(status){
     default: return '已使用';
   }
 }
+//消息状态
+function notifyStatus(status){
+  switch (status) {
+    case 0 : return "未读";
+    default: return '已读';
+  }
+}
 //market规格值
 function specDivision(val){
   return val.split('$').join("，");
@@ -120,6 +127,14 @@ function titleLong(text){
     return text.substring(0,16) + '...';
   }
 }
+//距离
+function distance(val){
+  if(val < 1000){
+    return val + 'm'
+  }else{
+    return (val/1000).toFixed(1) + 'km'
+  }
+}
 module.exports = {
   moneyFixed:moneyFixed,
   moneyDiscount:moneyDiscount,
@@ -131,6 +146,7 @@ module.exports = {
   otaType:otaType,
   marketType:marketType,
   exchangeStatus:exchangeStatus,
+  notifyStatus:notifyStatus,
 
   specDivision:specDivision,
 
@@ -139,4 +155,5 @@ module.exports = {
   transformTimestamp:transformTimestamp,
   exchangeCase:exchangeCase,
   titleLong:titleLong,
+  distance:distance,
 };

@@ -448,4 +448,11 @@ Page({
       }
     })
   },
+  //开发票
+  invoiceOpening(){
+    wx.navigateTo({
+      url: "/pages/ucenter/order/orderInvoice/orderInvoice?orderId="
+      +this.data.detail.orderId
+    })
+  },
 })

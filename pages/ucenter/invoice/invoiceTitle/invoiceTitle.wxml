@@ -1,13 +1,29 @@
 <view>
   <import src="/template/template"/> 
-  <view class="title_ul">
+  <view class="often_ul">
     <template is="zero" data="{{list: titleUl}}"/>
-    <view class="title_li" wx:for="{{titleUl}}" wx:key="index" bindtap="goInvoiceTitleDetail" data-id="item.id">
-      <view class="company_name">{{item.name}}</view>
-      <view class="company_num">税号：{{item.num}}</view>
+    <view class="often_li" wx:for="{{titleUl}}" wx:key="index" >
+      <view class="often_li_val" bindtap="chooseOften" data-index="{{index}}">
+        <view class="often_li_choose" wx:if="{{index+1 == oftenChoose}}" data-index="{{index}}" bindtap="delete">
+          <image class="often_li_del" src="/static/images/del.png"></image>
+        </view>
+        <view class="often_li_text">
+          <view class="company_head">
+            <span class="company_name">{{item.name}}</span>
+            <span class="company_default" wx:if="{{item.isDefault == 0}}">默认</span>
+          </view>
+          <view class="company_num">
+            <view wx:if="{{item.type != 0}}">单位税号：{{item.code}}</view> 
+            <view wx:if="{{item.type == 0}}">抬头类型：个人</view>
+          </view>
+        </view>
+      </view>
+      <view  class="often_li_edit" bindtap="edit" data-index="{{index}}" wx:if="{{index+1 != oftenChoose}}">
+        <image class="i_edit" src="/static/images/edit.png"></image>
+      </view>
     </view>
   </view>
   <view class="invoice_foot">
-    <view class="invoice_btn" bindtap="addInvoiceTitle">新增</view>
+    <view class="invoice_btn" bindtap="btnSuccess">新增抬头</view>
   </view>
 </view>

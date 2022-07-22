@@ -46,9 +46,9 @@
         <view class="order_money_li">
           <text class="detail_t1">订单总金额：</text><text class="detail_t2">￥{{filter.moneyFixed(detail.money)}}</text>
         </view>
-        <view class="order_money_li" wx:if="{{detail.discount != 100}}">
+        <!-- <view class="order_money_li" wx:if="{{detail.discount != 100}}">
           <text class="detail_t1">会员折扣：</text><text class="detail_t2">{{filter.moneyDiscount(detail.discount)}}折</text>
-        </view>
+        </view> -->
         <view class="order_money_li" wx:if="{{detail.payMoney != 0}}">
           <text class="detail_t1">付款金额：</text><text class="detail_t3">￥{{filter.moneyFixed(detail.payMoney)}}</text>
         </view>

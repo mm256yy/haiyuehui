@@ -3,7 +3,7 @@
   <view class="often_box">
     <view class="often_ul">
       <view class="often_li" wx:for="{{often}}" wx:key="index" >
-        <view bindtap="chooseOften"  class="often_li_val" data-index="{{index}}">
+        <view class="often_li_val" bindtap="chooseOften" data-index="{{index}}">
           <view class="often_li_choose" wx:if="{{index+1 == oftenChoose}}" data-index="{{index}}" bindtap="delete">
             <image class="often_li_del" src="/static/images/del.png"></image>
           </view>
@@ -16,7 +16,7 @@
             <view class="often_li_t often_li_identity">{{item.identityS}}</view>
           </view>
         </view>
-        <view class="often_li_edit" bindtap="edit" data-index="{{index}}">
+        <view class="often_li_edit" bindtap="edit" data-index="{{index}}" wx:if="{{index+1 != oftenChoose}}">
           <image class="i_edit" src="/static/images/edit.png"></image>
         </view>
       </view>

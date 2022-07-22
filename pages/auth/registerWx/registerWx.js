@@ -26,7 +26,6 @@ Page({
       iv: e.detail.iv,
       encryptedData:e.detail.encryptedData,
     }
-    console.log(param)
     util.request(api.AuthRegisterWx, param, 'POST').then(function(res) {
       app.globalData.hasLogin = true;
       app.fristRegister = true;  //首页弹窗

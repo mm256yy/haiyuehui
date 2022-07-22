@@ -1,0 +1,23 @@
+<view>
+  <wxs src="../../../../filter/filter.wxs" module="filter"/>
+  <view class="invoice_head">
+    
+    <view class="invoice_head_text" wx:if="{{status == 1}}">未开票</view>
+    <view class="invoice_head_text" wx:if="{{status == 2}}">已开票</view>
+    <view class="invoice_head_money" wx:if="{{status == 2}}">已开发票金额：￥{{filter.moneyFixed(detail.money)}}</view>
+  </view>
+  <view class="invoice_goods">
+    <view class="invoice_title">订单详情</view>
+    <view class="goods_box">
+      <view class="goods_text">订单编号：{{orderId}}</view>
+      <view class="goods_text">入住酒店：{{detail.hotelName}}</view>
+      <view class="goods_text">房型名称：{{detail.rmdesc}}</view>
+      <view class="goods_text">联系电话：{{detail.mobile}}</view>
+      <view class="goods_text">付款金额：{{filter.moneyFixed(detail.money)}}</view>
+    </view>
+    <view class="goods_btn">
+      <view class="goods_btn_success" wx:if="{{status == 1}}" bindtap="goInvoiceOpening">申请开票</view>
+      <view class="goods_btn_success" wx:if="{{status == 2}}" bindtap="seeInvoice">查看发票</view>
+    </view>
+  </view>
+</view>

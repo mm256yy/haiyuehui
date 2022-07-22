@@ -347,6 +347,19 @@ page{
   max-height: 550rpx;
 }
 /*share*/
+.share_box{
+  display: flex;
+}
+.share_li_btn{
+  flex: 1 1 auto;
+  padding: 10px ;
+  margin: 0px 10px;
+  background-color: #fe6f41;
+  color: #fff;
+  border-radius:10rpx ;
+  text-align:center ;
+}
+
 .goods_share{
   position: fixed;
   bottom: 200rpx;

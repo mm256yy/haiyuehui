@@ -30,7 +30,6 @@ Page({
   },
   login(e){
     user.loginByWeixin(e.detail.userInfo).then(res => {
-      console.log(res)
       wx.setStorageSync('userInfo', e.detail.userInfo);
       app.globalData.hasLogin = true;
       if(res.result.mobile){  //有账号
@@ -64,7 +63,7 @@ Page({
   //协议链接
   agreeUrl(){
     wx.navigateTo({ 
-      url: "/pages/member/memberAgree/memberAgree"
+      url: "/subpackage/pages/member/memberAgree/memberAgree"
     });
   },
   //登陆取消

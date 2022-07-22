@@ -7,45 +7,45 @@ Page({
       [
         {
           img:'/static/images/luck/luck1.png',
-          text:'100元优惠券',
+          text:'早餐劵1张',
           animationVal:1,
           bindtap:'',
           class:'flex_li_b',
-          prize:'100元满减优惠券（共计3张）',
-          route:'/pages/ucenter/coupon/coupon',
-        },
-        {
-          img:'/static/images/luck/luck2.png',
-          text:'5张免房券',
-          animationVal:2,
-          bindtap:'',
-          class:'flex_li_b',
-          prize:'同酒店免房券5张',
+          prize:'海外海皇冠大酒店通兑早餐券1张',
           route:'/pages/market/marketExchange/marketExchange',
         },
         {
-          img:'/static/images/luck/luck1.png',
-          text:'100元优惠券',
+          img:'/static/images/luck/luck4.png',
+          text:'20元优惠劵',
+          animationVal:2,
+          bindtap:'',
+          class:'flex_li_b',
+          prize:'海悦会日历房优惠券20元',
+          route:'/pages/ucenter/coupon/coupon',
+        },
+        {
+          img:'/static/images/luck/luck3.png',
+          text:'延迟退房券',
           animationVal:3,
           bindtap:'',
           class:'flex_li_b',
-          prize:'100元满减优惠券（共计3张）',
-          route:'/pages/ucenter/coupon/coupon',
+          prize:'海外海皇冠大酒店延迟退房1小时券',
+          route:'/pages/market/marketExchange/marketExchange',
         },
       ],
       [
         {
-          img:'/static/images/luck/luck2.png',
-          text:'5张免房券',
+          img:'/static/images/luck/luck1.png',
+          text:'早餐券1张',
           animationVal:8,
           bindtap:'',
           class:'flex_li_b',
-          prize:'同酒店免房券5张',
+          prize:'千岛湖海外海假日酒店早餐券1张',
           route:'/pages/market/marketExchange/marketExchange',
         },
         {
-          img:'/static/images/luck/luck3.png',
-          text:'共三次机会',
+          img:'/static/images/luck/luckGO.png',
+          text:'立即抽奖',
           animationVal:9,
           bindtap:'luckDraw',
           class:'flex_li_go',
@@ -53,56 +53,72 @@ Page({
           route:'',
         },
         {
-          img:'/static/images/luck/luck2.png',
-          text:'5张免房券',
+          img:'/static/images/luck/luck4.png',
+          text:'10元优惠劵',
           animationVal:4,
           bindtap:'',
           class:'flex_li_b',
-          prize:'同酒店免房券5张',
-          route:'/pages/market/marketExchange/marketExchange',
+          prize:'海悦会日历房优惠券10元',
+          route:'/pages/ucenter/coupon/coupon',
         },
       ],
       [
         {
-          img:'/static/images/luck/luck1.png',
-          text:'100元优惠券',
+          img:'/static/images/luck/luck4.png',
+          text:'30元优惠劵',
           animationVal:7,
           bindtap:'',
           class:'flex_li_b',
-          prize:'100元满减优惠券（共计3张）',
+          prize:'海悦会日历房优惠券30元',
           route:'/pages/ucenter/coupon/coupon',
         },
         {
-          img:'/static/images/luck/luck2.png',
-          text:'5张免房券',
+          img:'/static/images/luck/luck5.png',
+          text:'总统套房券',
           animationVal:6,
           bindtap:'',
           class:'flex_li_b',
-          prize:'同酒店免房券5张',
+          prize:'杭州海外海通信大厦总统套房券1张',
           route:'/pages/market/marketExchange/marketExchange',
         },
         {
-          img:'/static/images/luck/luck1.png',
-          text:'100元优惠券',
+          img:'/static/images/luck/luck2.png',
+          text:'客房升级券',
           animationVal:5,
           bindtap:'',
           class:'flex_li_b',
-          prize:'100元满减优惠券（共计3张）',
-          route:'/pages/ucenter/coupon/coupon',
+          prize:'客房升级券（客房升一档）',
+          route:'/pages/market/marketExchange/marketExchange',
         },
       ],
     ],
+    ruleTitleChoose:2,
     animationVal:1,
     tap:true,
     popShow:false,
-    prize:'客房满减券满300减30',
+    prize:'海悦会日历房优惠劵10元',
     route:'',
+    //time
+    dayTime:false,
+    hoursTime:0,
+    minutesTime:0,
   },
   onLoad: function (options) {
 
   },
   onShow: function () {
-
+    this.luckTime()
+  },
+  luckTime(){
+    let date = new Date()
+    let day = date.getDate();
+    let hours = 23-date.getHours();
+    let minutes = 60-date.getMinutes();
+    this.setData({
+      dayTime: day,
+      hoursTime: hours,
+      minutesTime: minutes,
+    })
   },
   //点击go进行抽奖
   luckDraw(){
@@ -110,14 +126,12 @@ Page({
     this.setData({
       tap:false
     })
-    // let val = this.funGetValId(9)
-    // console.log(val)
+    // let val = this.funGetValId(1)
     // this.luckDrawAnimation(val);
     util.request(api.ActivityDraw , 'GET').then(res => {
-      console.log(res)
       let val = this.funGetValId(res.result)
       this.luckDrawAnimation(val);
-    }).catch((err) => {
+    }).finally((err) => {
       this.setData({
         tap:true
       })
@@ -150,7 +164,7 @@ Page({
       this.setData({
         animationVal:val
       })
-    },150)
+    },50)
   },
   //pop显示
   funPopShow(luck){
@@ -182,21 +196,50 @@ Page({
   //route
   funRoute(){
     let route = this.data.route;
-    console.log(this.data.route)
     wx.redirectTo({  //关闭当前页(卸载)，跳转到指定页
       url:route
     });
   },
   //转换传过来的id
   funGetValId(id){
-    if(id == 9){ //满减
-      let arr = [0,2,4,6];
+    if(id == 1){ 
+      let arr = [3];
+      return arr[Math.floor((Math.random()*arr.length))];
+    }else if(id == 2){
+      let arr = [1];
+      return arr[Math.floor((Math.random()*arr.length))];
+    }else if(id == 3){
+      let arr = [6];
+      return arr[Math.floor((Math.random()*arr.length))];
+    }else if(id == 4){
+      let arr = [0];
+      return arr[Math.floor((Math.random()*arr.length))];
+    }else if(id == 5){
+      let arr = [2];
+      return arr[Math.floor((Math.random()*arr.length))];
+    }else if(id == 6){
+      let arr = [8];
+      return arr[Math.floor((Math.random()*arr.length))];
+    }else if(id == 7){
+      let arr = [5];
       return arr[Math.floor((Math.random()*arr.length))];
     }else if(id == 8){
-      let arr = [1,3,5,7];
+      let arr = [4];
       return arr[Math.floor((Math.random()*arr.length))];
     }else{
-      return 0;
+      return 3;
     }
+  },
+  //选择头部
+  funRuleTitleChoose(e){
+    let val = e.currentTarget.dataset.val;
+    this.setData({
+      ruleTitleChoose: val
+    })
+  },
+  goInvitation(){
+    wx.navigateTo({
+      url: "/pages/ucenter/invite/inviteCode/inviteCode"
+    })
   },
 })

@@ -13,8 +13,17 @@
   <view class="wallet_recharge">
     <text>快捷选择</text>
     <view class="money_ul">
-      <view class="money_li" wx:for="{{moneyUl}}" bindtap="rechargeFast" data-money="{{item.recharge}}" data-index="{{index}}" wx:key="index">
-        <view class="money_li_val {{moneyLi == index + 1?'money_li_val_on':''}}">{{moneyLi == index + 1?item.moneyS:item.moneyOnS}}</view>
+      <view class="money_li" wx:for="{{moneyUl}}" bindtap="rechargeFast" data-money="{{item.recharge}}" data-index="{{item.id}}" wx:key="index">
+        <view class="money_li_val {{moneyChoose == item.id ?'money_li_val_on':''}}">{{moneyChoose == item.id ?item.moneyS:item.moneyOnS}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="wallet_recharge" wx:if="{{ruleUl.length > 0}}">
+    <text>充值活动</text>
+    <view class="rule_ul">
+      <view class="rule_li" wx:for="{{ruleUl}}" bindtap="rechargeFast" data-money="{{item.recharge}}" data-index="{{item.id}}" wx:key="index">
+        <view class="money_li_val {{moneyChoose == item.id ?'money_li_val_on':''}}">{{moneyChoose == item.id ?item.moneyS:item.moneyOnS}}</view>
+        <view class="rule_li_gift">礼包</view>
       </view>
     </view>
   </view>

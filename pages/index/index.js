@@ -3,6 +3,7 @@ let user = require('../../utils/user.js');
 let util = require('../../utils/util.js');
 let api = require('../../config/api.js');
 let check = require('../../utils/check.js');
+let badge = require('../../utils/badge.js');
 let app = getApp();
 
 Page({
@@ -14,10 +15,6 @@ Page({
       }
     ],
     recommendUrls:[
-      // {
-      //   img:'/static/images/member-luck.jpg',
-      //   bindtap:'goLuck',
-      // },
       {
         img:'/static/images/member-home.jpg',
         bindtap:'/pages/member/memberFollow/memberFollow',
@@ -53,6 +50,7 @@ Page({
     this.getSendId(); //实物send
     this.member();
     this.topBanner();
+    badge.notifyBadgeSet();
   },
   //获取津贴
   getAllowance(){
@@ -93,7 +91,6 @@ Page({
           index: 1,
           text: '1'
         })
-        wx.setStorageSync('marketBadge', [0,0,1,0]);
         wx.setStorageSync('exchangeCode', "");
       }).catch((err) => {});
     }
@@ -286,11 +283,6 @@ Page({
       wx.setStorageSync('canGoMarket', 0);
     }
   },
-  goLuck(){
-    wx.navigateTo({
-      url: "/pages/member/activity/memberLuck/memberLuck",
-    });
-  },
   marketIndex(){
     wx.switchTab({
       url: "/pages/market/marketIndex/marketIndex",
@@ -306,5 +298,17 @@ Page({
     wx.navigateTo({
       url: url,
     });
-  }
+  },
+  goCoupon(){
+    wx.navigateTo({
+      url: '/pages/ucenter/coupon/coupon',
+    });
+  },
+  goIntroduceImg(){
+    let data = 'http://124.70.132.80/group1/M00/00/47/fEaEUGKDa76ABoFLAAR68q2HECg154.jpg'
+    wx.previewImage({
+      current: data, // 当前显示图片的http链接
+      urls: [data] // 需要预览的图片http链接列表
+    })
+  },
 });

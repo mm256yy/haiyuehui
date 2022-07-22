@@ -1,6 +1,9 @@
 <view>
-  <view class="code_share" wx:if="{{closeShareshow}}" bindtap="closeShare">
+  <!-- <view class="code_share" wx:if="{{closeShareshow}}" bindtap="closeShare">
     <image class="code_share_img" mode="widthFix" src="/static/images/share-tips.png"></image>
+  </view> -->
+  <view class="code_share" bindtap="imagesCompose">
+    <image class="code_share_img" mode="widthFix" src="/static/images/share_w.png" ></image>
   </view>
   <view class="code_box">
     <view class="code_qr">
@@ -8,5 +11,17 @@
       <!-- <view class="code_qr_text">扫一扫上面的二维码图案，邀请好友</view> -->
     </view>
     <image class="ba_image" mode="widthFix" src="/static/images/ba-img.jpg"></image>
+  </view>
+  <view class="pop" wx:if="{{popShow}}">
+    <view class="black" bindtap="popHide"></view>
+    <view class="pop_share">
+      <view class="share_poster">
+        <canvas class="share_canvas"  type="2d" id="myCanvas"></canvas>
+      </view>
+      <view class="share_btn">
+        <!-- <view class="share_btn_li" bindtap="">分享到朋友圈</view> -->
+        <view class="share_btn_li" bindtap="downloadReport">下载照片</view>
+      </view>
+    </view>
   </view>
 </view>

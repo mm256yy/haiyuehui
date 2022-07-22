@@ -1,11 +1,14 @@
-
+page{
+  background-color: #f1f1f1;
+}
 /*often_li*/
 .often_ul{
-  background-color: #fff;
   margin-bottom: 100rpx;
 }
 .often_li{
+  background-color: #fff;
   border-bottom:1rpx solid #f1f1f1;
+  margin:20rpx;
   position: relative;
 }
 .often_li_val{
@@ -44,6 +47,7 @@
   margin-left: 20rpx;
 }
 .often_li_edit{
+  background-color: #fff;
   position: absolute;
   top: 0rpx;
   right: 0rpx;
@@ -65,7 +69,6 @@
   bottom: 10rpx;
   left: 0rpx;
   width: 100%;
-  background-color: #fff;
 }
 .btn_success{
   margin: 20rpx 0rpx 20rpx 0rpx;

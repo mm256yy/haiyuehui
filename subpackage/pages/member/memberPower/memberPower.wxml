@@ -1,0 +1,74 @@
+<view>
+  <view class="member_head">
+    <image class="member_head_ba" mode="widthFix" src="/subpackage/images/member_ba.jpg"></image>
+    <view class="member_card">
+      <view class="head_banner">
+        <swiper 
+          class="swiper"
+          bindchange="changeCard"
+          current="{{memberVal}}"
+          >
+          <block wx:for="{{memberCard}}" wx:key="index">
+            <swiper-item>
+              <image src="/subpackage/images/{{item.baImg}}.png" class="member_card_ba" mode="widthFix" />
+              <view class="member_card_content">
+                <view class="member_rule">
+                  <rich-text class="rule_up" nodes="{{item.upRule}}"></rich-text>
+                </view>
+                <!-- <view class="member_card_tou" wx:if="{{info.memberUp == index}}">
+                  <image class="card_tou_img" src="{{info.avatarUrl}}"></image>
+                </view>
+                <view class="card_integral" wx:if="{{info.memberUp == index}}" bindtap="information">
+                  <view class="card_t card_t1">{{info.name}}</view>
+                  <view class="card_t card_t2">编辑会员信息></view>
+                </view> -->
+                <view class="card_member">
+                  <view class="card_t card_t3">{{item.nameC}}</view>
+                  <view class="card_t card_t2">{{item.nameE}}</view>
+                </view>
+                <view class="card_endtime" >有效期：{{item.validityRule}}</view>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+  </view>
+  <view class="member_progress">
+    <view class="progress_ul">
+      <view class="progress_li" wx:for="{{memberCard}}" wx:key="index" bindtap="memberProgress" data-index="{{index}}">
+        <view class="progress_li_content">
+          <view class="progress_li_left"></view>
+          <view class="{{memberVal == index?'progress_li_up':'progress_li_down'}}">
+          </view>
+          <view class="progress_li_right"></view>
+        </view>
+        <view class="progress_li_t1">{{item.nameC}}</view>
+      </view>
+    </view>
+    <view class="progress_li_label" wx:if="{{false}}">☆再住<text class="progress_li_t2">3</text>间夜可升级为 | 银卡 |</view>
+  </view>
+  <view class="member_privilege">
+    <view class="privilege_ba " >
+      <!-- <image src="/subpackage/images/member-i1.png" class="member_i1"></image> -->
+      <image src="/subpackage/images/member-i2.png" class="member_i2"></image>
+      <view class="privilege_ul ">
+        <view class="privilege_li {{item.use?'':'privilege_li_show'}}" bindtap="introduceValShow" data-index="{{index}}" wx:if="{{item.show}}" wx:for="{{powerUl}}" wx:key="index">
+          <image class="privilege_li_img" src="/subpackage/images/power/{{item.img}}.png"></image>
+          <view class="privilege_li_t1">{{item.text1}}</view>
+          <view class="privilege_li_t1">{{item.text2}}</view>
+        </view>
+      </view>
+      <!-- <view class="privilege_most" bindtap="funPowerRelease">
+        <image class="privilege_most_image {{powerRelease?'privilege_most_image_release':''}}" src="/subpackage/images/power/power_most.png"  mode="widthFix"></image>
+      </view> -->
+    </view>
+  </view>
+  <view class="member_black" wx:if="{{introduceShow}}" data-index="0" bindtap="introduceValShow">
+    <view class="black_flex">
+      <view class="black_tip_box">
+        <rich-text class="black_tip_val" nodes="{{introduceVal}}"></rich-text>
+      </view>
+    </view>
+  </view>
+</view>

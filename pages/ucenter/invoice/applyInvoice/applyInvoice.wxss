@@ -22,7 +22,7 @@ page{
 .invoice_bill{
   background-color:#fff ;
   padding:0rpx 20rpx ;
-  margin-top:10rpx ;
+  margin:10rpx 0rpx;
 }
 .invoice_money{
   font-size: 60rpx;
@@ -48,6 +48,74 @@ page{
 .invoice_right_img{
   width: 40rpx;
   height: 40rpx;
+}
+/*invoice_person*/
+.invoice_person{
+  position: absolute;
+  top: 0rpx;
+  right: 30rpx;
+  width: 180rpx;
+  height: 190rpx;
+  display: flex;
+  border-bottom: 1rpx solid #f1f1f1;
+  border-left: 1rpx solid #f1f1f1;
+}
+.person_val {
+  align-items: center;
+  margin: auto;
+  text-align: center;
+}
+.person_img {
+  width: 60rpx;
+  height: 60rpx;
+}
+.person_text {
+  color: #999;
+}
+/*invoice_from*/
+.form_li_tip{
+  padding:20rpx ;
+}
+.form_radio{
+  margin-top: 30rpx;
+  margin-right: 20rpx;
+}
+.agree_radio{
+  color: #008cd7 !important;
+}
+.form_li_must{
+  color:#cc0000;
+  font-size: 36rpx;
+}
+.invoice_from{
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding: 0 30rpx;
+  background: #fff;
+  position: relative;
+}
+.form_li{
+  height: 96rpx;
+  position: relative;
+  border-bottom: 1px solid #d9d9d9;
+  display: flex;
+  border-bottom: 1px solid #f1f1f1;
+}
+.form_li_left{
+  margin-right: 180rpx;
+}
+.form_li_t{
+  width: 200rpx;
+  line-height: 95rpx;
+}
+.form_input{
+  flex: 1 1 auto;
+  display: block;
+  width: 100%;
+  height: 95rpx;
+  color: #333;
+  font-size: 30rpx;
 }
 /*foot*/
 .invoice_foot{
@@ -106,7 +174,7 @@ page{
   display: flex;
 }
 .pop_li_t1{
-  width: 300rpx;
+  width: 220rpx;
   color:#999;
 }
 .pop_li_t2{

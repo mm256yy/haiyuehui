@@ -65,7 +65,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 }
 
 /*success btn*/
-.wx_btn_success{font-size:28rpx;background:linear-gradient(to right,#039cee,#753ffd);color:#fff;text-align:center;padding:20rpx 10rpx;border-radius:50rpx;margin:30rpx;}
+.wx_btn_success{font-size:28rpx;background:linear-gradient(to right,#039cee,#753ffd);color:#fff;text-align:center;padding:20rpx 10rpx;border-radius:10rpx;margin:30rpx;}
 
 /*template*/
 @import "/template/template.wxss";

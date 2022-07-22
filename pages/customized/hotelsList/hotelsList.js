@@ -7,9 +7,30 @@ Page({
     ]
   },
   onLoad: function (options) {
+    this.init()
+  },
+  onShow: function () {
+    
+  },
+  init(){
+    const that = this
+    wx.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      success: function(res) {
+        let longitude = res.longitude
+        let latitude = res.latitude
+        that.hotelsList(longitude,latitude)
+      }
+    })
+  },
+  hotelsList(longitude,latitude){
     let hotelsUl = [];
     let hotelsLi = {};
-    util.request(api.CustomizedHotelsList, 'GET').then(res => {
+    let param = {
+      lon:longitude,
+      lat:latitude,
+    }
+    util.request(api.CustomizedHotelsList,param, 'GET').then(res => {
       for(let i=0;i<res.result.length;i++){
         hotelsLi = {
           id:res.result[i].id,
@@ -20,6 +41,7 @@ Page({
           tel:res.result[i].tel,
           cis:res.result[i].cis,
           imgList:res.result[i].imgList,
+          distance:res.result[i].distance,
         }
         hotelsUl.push(hotelsLi)
       }
@@ -27,9 +49,6 @@ Page({
         hotels: hotelsUl
       })
     }).catch((err) => {});
-  },
-  onShow: function () {
-
   },
   hotelsDetailed(e){
     let hotelVal = this.data.hotels[e.currentTarget.dataset.arr]

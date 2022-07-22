@@ -1,24 +1,85 @@
 page{
   background-color: #f1f1f1;
 }
-/*title*/
-.title_li{
-  background-color: #fff;
-  margin:20rpx;
-  padding: 0rpx 20rpx ;
+/*often*/
+.often_ul{
+  margin-bottom: 100rpx;
 }
-.company_name{
+.often_li{
+  background-color: #fff;
+  border-bottom:1rpx solid #f1f1f1;
+  margin:20rpx;
+  position: relative;
+}
+.often_li_val{
+  display: flex;
+}
+.company_head{
   padding: 25rpx 0rpx ;
   border-bottom:1rpx solid #f1f1f1 ;
+}
+.company_name{
   font-weight: 800;
+}
+.company_default{
+  float: right;
+  font-size: 22rpx;
+  color: #fff;
+  padding: 5rpx 10rpx;
+  border-radius: 10rpx;
+  background-color: #753ffd;
+  margin-left: 20rpx;
 }
 .company_num{
   padding: 25rpx 0rpx ;
   color: #999;
 }
+.often_li_choose{
+  width: 80rpx;
+  background-color: #cc0000;
+  display: flex;
+}
+.often_li_del{
+  width: 40rpx;
+  height: 40rpx;
+  align-items:center;
+  margin: auto;
+}
+.often_li_text{
+  padding:0rpx 20rpx;
+  margin-right: 90rpx;
+  flex: 1 1 auto;
+}
+.often_li_mo{
+  font-size: 22rpx;
+  color: #fff;
+  padding: 5rpx 10rpx;
+  border-radius:10rpx ;
+  background-color: #753ffd;
+  margin-left: 20rpx;
+}
+.often_li_edit{
+  background-color: #fff;
+  position: absolute;
+  top: 0rpx;
+  right: 0rpx;
+  width: 100rpx;
+  height: 100%;
+  text-align: center;
+  display: flex;
+}
+.i_edit{
+  width: 40rpx;
+  height: 40rpx;
+  margin: auto;
+  align-items:center;
+}
 /*foot*/
 .invoice_foot{
   padding:20rpx ;
+  position: fixed;
+  bottom: 10rpx;
+  width: 100%;
 }
 .invoice_btn{
   background:linear-gradient(to right, #039cee , #753ffd);

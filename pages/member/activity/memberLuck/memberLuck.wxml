@@ -1,6 +1,13 @@
 <view>
+  <image class="luck_ba" src="https://img.hwhhotels.com/165346101281098.jpg"></image>
   <view class="luck_head">
-    <image class="luck_head_img" src="/static/images/member-luck2.jpg" mode="widthFix"></image>
+    <image class="luck_head_img" src="/static/images/member-luck2.png" mode="widthFix"></image>
+  </view>
+  <view class="luck_time">
+    <!-- <view class="luck_time_li" wx:if="{{dayTime == 28}}">
+      距离活动结束还剩下0天{{hoursTime}}时{{minutesTime}}分
+    </view>
+    <view class="luck_time_li" wx:if="{{dayTime != 28}}">活动时间尚未开始，每月28号9时准时开始</view> -->
   </view>
   <view class="luck_body">
     <view class="luck_flex" wx:for="{{luckUl}}" wx:key="index1" wx:for-index="index1" wx:for-item="item1">
@@ -12,46 +19,30 @@
       </view>
     </view>
   </view>
+  <view class="invitation" bindtap="goInvitation">立即邀请朋友</view>
   <view class="luck_rule">
     <view class="rule_box">
-      <view class="rule_title">活动规则</view>
-      <view class="rule_content">
+      <view class="rule_title_ul">
+        <view class="rule_title {{ruleTitleChoose == 2?'rule_title_on':''}}" bindtap="funRuleTitleChoose" data-val="2">活动规则</view>
+      </view>
+      <view class="rule_content" wx:if="{{ruleTitleChoose == 2}}">
         <view class="rule_text">
-          <text class="rule_t1">活动时间</text>
-          <text class="rule_t2">2021年3月15日</text>
-        </view>
-        <view class="rule_text">
-          <text class="rule_t1">活动参与</text>
-          <text class="rule_t2">关注海外海酒店公众号的海悦会会员，限2021年3月9日——3月14日，通过小程序预定，2021年3月14入住的预订者</text>
+          <text class="rule_t1">参与方式</text>
+          <view class="rule_t2">活动无需报名，授权注册成为海悦会会员即可参与抽奖</view>
         </view>
         <view class="rule_text">
           <text class="rule_t1">抽奖规则</text>
-          <text class="rule_t2">抽奖仅2021年3月15日当天，参与每人可抽奖3次，100%中奖；</text>
+          <view class="rule_t2">1.活动期间授权注册成为海悦会会员即可参与抽奖。</view>
+          <view class="rule_t2">2.本次抽奖活动有效期内每人仅有1次抽奖机会，每邀请一个新会员增加1次抽奖机会。</view>
+          <view class="rule_t2">3.中奖奖品将会在抽奖后1个工作日内以兑换券形式发放至您的海悦会会员账号中，您可以到海悦会-商城-兑换码-进行查看。</view>
+          <view class="rule_t2">4.抽中的活动奖品仅限在有效期内兑换或使用，过期未使用则自动失效。</view>
+          <view class="rule_t2">5.不同活动奖品使用规则有差异，请以具体兑换券使用规则为准。</view>
         </view>
         <view class="rule_text">
-          <text class="rule_t1">奖品有效期</text>
-          <view class="rule_t2">百元优惠券有效期为：</view>
-          <view class="rule_t2">2021年3月15日——2021年6月15日；</view>
-          <view class="rule_t2">同酒店免房券有效期为：</view>
-          <view class="rule_t2">2021年3月15日——2021年12月31日；</view>
-        </view>
-        <view class="rule_text">
-          <text class="rule_t1">奖品预约规则</text>
-          <view class="rule_t2">至少提前1天预约</view>
-        </view>
-        <view class="rule_text">
-          <text class="rule_t1">同酒店免房券（所有酒店选其一）</text>
-          <view class="rule_t2">杭州海外海皇冠大酒店高级大床房；</view>
-          <view class="rule_t2">马鞍山海外海皇冠大酒店高级大床房；</view>
-          <view class="rule_t2">杭州海外海国际酒店高级大床房；</view>
-          <view class="rule_t2">杭州海外海纳川酒店高级大床房；</view>
-          <view class="rule_t2">杭州海外海通信大厦高级大床房；</view>
-          <view class="rule_t2">千岛湖海外海假日酒店温馨大床房；</view>
-        </view>
-        <view class="rule_text">
-          <text class="rule_t1">奖品其他规则</text>
-          <view class="rule_t2">1、仅限本人或转赠亲友使用，杜绝二次售卖，如若错误转赠他人导致核销失败概不负责；</view>
-          <view class="rule_t2">2、奖品均不开具发票，不兑换现金。</view>
+          <text class="rule_t1">奖品及使用规则</text>
+          <view class="rule_t2">1.优惠券仅限海悦会小程序日历房预订使用，有效期为获取之日起有效期90天。</view>
+          <view class="rule_t2">2.产品兑换券使用有效期：产品兑换券仅支持线下核销，有效期为获取之日起90天，请在有效期内使用该券，逾期将无法使用。</view>
+          <view class="rule_t2">3.此券不折现，不找零，不与酒店其它优惠活动同时使用。</view>
         </view>
       </view>
     </view>

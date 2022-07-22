@@ -1,15 +1,12 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/member/memberUpHJK/memberUpHJK",
+    "pages/member/memberFollow/memberFollow",
     "pages/member/activity/memberLuck/memberLuck",
     "pages/member/activity/scratchCard/scratchCard",
     "pages/member/activity/recruit/recruit",
     "pages/member/activity/aprilFools/aprilFools",
-    "pages/member/memberIndex/memberIndex",
-    "pages/member/memberPower/memberPower",
-    "pages/member/memberAgree/memberAgree",
-    "pages/member/memberFollow/memberFollow",
-    "pages/member/memberUpHJK/memberUpHJK",
     "pages/auth/login/login",
     "pages/auth/loginAgree/loginAgree",
     "pages/auth/registerWx/registerWx",
@@ -31,13 +28,12 @@
     "pages/ucenter/order/orderContinue/orderContinue",
     "pages/ucenter/order/orderTransfer/orderTransfer",
     "pages/ucenter/order/orderFace/orderFace",
+    "pages/ucenter/order/orderInvoice/orderInvoice",
     "pages/ucenter/coupon/coupon",
     "pages/ucenter/set/visitor/visitor",
-    "pages/ucenter/invoice/billList/billList",
     "pages/ucenter/invoice/applyResult/applyResult",
     "pages/ucenter/invoice/applyInvoice/applyInvoice",
     "pages/ucenter/invoice/invoiceTitle/invoiceTitle",
-    "pages/ucenter/invoice/invoiceTitleDetail/invoiceTitleDetail",
     "pages/ucenter/invoice/invoiceTitleEdit/invoiceTitleEdit",
     "pages/ucenter/invite/inviteList/inviteList",
     "pages/ucenter/invite/inviteCode/inviteCode",
@@ -50,7 +46,7 @@
     "pages/ucenter/set/oftenList/oftenList",
     "pages/ucenter/set/oftenEdit/oftenEdit",
     "pages/ucenter/set/information/information",
-    "pages/ucenter/service/serviceIndex/serviceIndex",
+    
     "pages/ucenter/wallet/walletAmount/walletAmount",
     "pages/ucenter/wallet/walletConsume/walletConsume",
     "pages/ucenter/wallet/walletRecharge/walletRecharge",
@@ -76,17 +72,23 @@
     "pages/ucenter/points/pointsExchange/pointsExchange",
     "pages/ucenter/nuclein/health/health",
     "pages/ucenter/nuclein/scan/scan",
-    "pages/ucenter/teamNumber/teamNumber",
     "pages/logs/logs",
-    "pages/ucenter/gift/gift",
-    "pages/ucenter/paygift/paygift",
-    "pages/ucenter/giftresult/giftresult",
-    "pages/ucenter/successfulGift/successfulGift",
-    "pages/ucenter/orderDetail/orderDetail",
-    "pages/ucenter/giftothersresult/giftothersresult",
-    "pages/ucenter/giftCard",
-    "pages/ucenter/giftCard/giftCard"
+
+     
+    "pages/ucenter/notify/notifyList/notifyList",
+
+    "pages/ucenter/gift/giftList/giftList",
+    "pages/ucenter/gift/paygift/paygift",
+    "pages/ucenter/gift/giftresult/giftresult",
+    "pages/ucenter/gift/successfulGift/successfulGift",
+    "pages/ucenter/gift/orderDetail/orderDetail",
+    "pages/ucenter/gift/giftothersresult/giftothersresult"
   ],
+  "permission":{
+    "scope.userLocation":{
+      "desc":"请点击确定"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -94,6 +96,19 @@
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },
+  "subpackages": [  
+    {
+      "root":"subpackage", 
+      "name":"subpackage", 
+      "pages":[
+        "pages/service/serviceIndex/serviceIndex",
+        "pages/member/memberIndex/memberIndex",
+        "pages/member/memberPower/memberPower",
+        "pages/member/memberAgree/memberAgree"
+      ],
+      "independent":false 
+    }
+  ],
   "tabBar": {
     "backgroundColor": "#fff",
     "borderStyle": "black",

@@ -4,39 +4,42 @@
     "miniprogram": {
       "list": [
         {
-          "name": "关注页",
-          "pathName": "pages/customized/fill/fill",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "send",
-          "pathName": "pages/index/index",
-          "query": "sendId=3",
-          "scene": null
-        },
-        {
-          "name": "商城",
-          "pathName": "pages/market/marketDetailed/marketDetailed",
-          "query": "id=11",
-          "scene": null
-        },
-        {
           "name": "企鹅",
           "pathName": "pages/ucenter/order/orderReside/orderReside",
           "query": "arr=2021-11-18&dep=2021-11-19&floor=07&hotelId=H000030&orderId=21111930000001&rmtype=SJ&roomNo=1101",
           "scene": null
         },
         {
-          "name": "pages/ucenter/nuclein/scan/scan",
-          "pathName": "pages/market/marketRedeemCode/marketRedeemCode",
-          "query": "gc=631027210111",
+          "name": "4567",
+          "pathName": "pages/ucenter/order/orderDetail/orderDetail",
+          "query": "",
           "launchMode": "default",
           "scene": null
         },
         {
-          "name": "pages/market/marketExchange/marketExchange",
-          "pathName": "pages/market/marketExchange/marketExchange",
+          "name": "123456",
+          "pathName": "pages/ucenter/invoice/applyInvoice/applyInvoice",
+          "query": "orderId=7951203908888587864&goodsUnit=晚&goodsAmount=1&goodsPrice=100&totalPrice=100",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "applyResult",
+          "pathName": "pages/ucenter/invoice/applyResult/applyResult",
+          "query": "buyerName=456789&invoiceCode=123456&invoiceNum=11111",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/ucenter/order/orderInvoice/orderInvoice",
+          "query": "orderId=22052106000003",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "ln",
+          "pathName": "pages/ucenter/invite/inviteCode/inviteCode",
           "query": "",
           "launchMode": "default",
           "scene": null
@@ -44,5 +47,6 @@
       ]
     }
   },
-  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html"
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "libVersion": "2.23.4"
 }

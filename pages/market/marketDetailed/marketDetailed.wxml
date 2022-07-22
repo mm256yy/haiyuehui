@@ -43,6 +43,10 @@
 				<view class="body_other_t1">销售量</view>
 			</view>
 		</view>
+    <view class="body_list share_box">
+      <view class="share_li_btn" bindtap="goMarketShare" data-type="1">立即分享产品</view>
+      <view class="share_li_btn" bindtap="goMarketShare" data-type="2">重新生成分享</view>
+    </view>
 		<view class="body_list body_flex">
 			<view class="body_icon">
 				<image class="body_icon_img" src="/static/images/gou3.png"></image>
@@ -173,11 +177,9 @@
 			</view>
 		</view>
 	</view>
-	<view class="goods_share" wx:if="{{detailed.bonusRate}}" bindtap="goMarketShareTwo" bindlongpress="handleLongPress">
-		<!-- <view class="">
-			<image src="/static/images/del-b.png" class="goods_share_del"></image>
-		</view> -->
-		<view class="goods_share_text">他人下单即得佣金</view>
+	<!-- <view class="goods_share" wx:if="{{detailed.bonusRate}}" bindtap="goMarketShareTwo" bindlongpress="handleLongPress">
+		<view class="goods_share_text">长按5秒重新生成分享图</view>
 		<view class="goods_share_btn">立即分享</view>
-	</view>
+    <view class="goods_share_btn">重新生成分享</view>
+	</view> -->
 </view>

@@ -6,10 +6,11 @@
 // 测试线上ip 
 // let WxApiRoot = 'http://124.70.132.80:9002/wx/'; let testing = true;
 // 本机 开发api地址
-// let WxApiRoot = 'http://192.168.133.67:9002/wx/'; let testing = true;  //'http://192.168.188.79:9001/wx/'; 
+// let WxApiRoot = 'http://192.168.188.72:9002/wx/'; let testing = true;  //'http://192.168.188.79:9001/wx/'; 
 // let WxApiRoot = 'http://115.238.67.214:9002/wx/'; let testing = true;  //明俊外网地址 
 let WxApiRoot = 'http://192.168.188.73:9002/wx/'; let testing = true;  //益静本机
 // let WxApiRoot = 'http://mingtian.gz2vip.91tunnel.com/wx/'; let testing = true;  //临时ip
+
 // 生产地址 
 // let WxApiRoot = 'https://hotels.hwhautomall.com/wx/'; let testing = false;  // let WxApiRoot = 'https://www.hwhhotels.com/wx/';
  
@@ -82,7 +83,8 @@ module.exports = {
    MemberRechargePrepay:WxApiRoot +'recharge/prepay',  //充值调起
    MemberRechargeCallback:WxApiRoot +'recharge/callback',  //充值返回
    MemberRechargeHistory:WxApiRoot +'recharge/history', //余额查询
-
+   MemberRechargeList:WxApiRoot +'recharge/rule/list', //充值规则
+   
    MemberUpToHJK:WxApiRoot +'member/upToHJK', //兑换黑金卡
    
    MemberCouponList:WxApiRoot +'memberCoupon/list',//优惠劵列表
@@ -110,6 +112,7 @@ module.exports = {
    PointRecord:WxApiRoot +'exchange/record', //积分兑换商品记录
 
    ActivityDraw:WxApiRoot +'activity/draw', // 抽奖活动
+   
    GiftList:WxApiRoot+'present/list',// 礼品卡列表
    MemberGiftList:WxApiRoot+'present/memberPresent',// 我的礼品卡列表
    GiftSubmit:WxApiRoot +'present/submit',//礼品提交订单
@@ -132,4 +135,16 @@ module.exports = {
    MemberGoodsCheckQrcode:WxApiRoot +'mall/memberGoods/goodsCheckQrcode', //兑换码二维码
    MemberGoodsQueryByCode:WxApiRoot +'mall/memberGoods/queryByCode', //兑换码查询商品信息
    MemberGoodsConsumeCode:WxApiRoot +'mall/memberGoods/consumeCode', //兑换码员工核销
+
+   UcenterOrderInvoiceOpening:WxApiRoot +'system/invoiceOpening', //开发票
+   UcenterOrderInvoicePdf:WxApiRoot +'system/queryPdf', //发票查询
+   UcenterOrderInvoiceGetPdf:WxApiRoot +'invoice/getPdfByOrderId', //发票本地查询
+   UcenterInvoiceTitleList:WxApiRoot +'invoice/title/list', //发票抬头-列表
+   UcenterInvoiceTitleAdd:WxApiRoot +'invoice/title/add', //发票抬头-新增
+   UcenterInvoiceTitleEdit:WxApiRoot +'invoice/title/edit', //发票抬头-编辑
+   UcenterInvoiceTitleDel:WxApiRoot +'invoice/title/delete', //发票抬头-删除
+   UcenterInvoiceTitleDefault:WxApiRoot +'invoice/title/setDefaultAddress', //发票抬头-设置默认
+
+   MemberNotifyUnreadCount:WxApiRoot +'memberNotify/unreadCount', //消息-消息数量
+   MemberNotifyList:WxApiRoot +'memberNotify/list', //消息-消息列表
  }
