@@ -38,13 +38,18 @@
   </view>
   <view class="hotels_fill">
     <view class="fill_form">
-      <view class="fill_li" wx:if="{{false}}">
+      <view class="fill_li">
         <text>房间数量</text>
-        <view class="room_num">
+        <picker class="room_num" bindchange="bindRoomNumChange" value="{{roomNumIndex}}" range="{{roomNumArray}}">
+          <view class="picker">
+            {{roomNumArray[roomNumIndex]}}间
+          </view>
+        </picker>
+        <!-- <view class="room_num">
           <image class="room_num_btn room_num_reduce" bindtap="room" data-type="0" src="/static/images/num_reduce.png"></image>
           <text class="room_num_val">{{fill.roomNum}}</text>
           <image class="room_num_btn room_num_add" bindtap="room" data-type="1" src="/static/images/num_add.png"></image>
-        </view>
+        </view> -->
       </view>
       <view class="fill_li">
         <text>联系人</text>

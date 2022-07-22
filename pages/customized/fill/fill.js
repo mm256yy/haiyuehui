@@ -79,6 +79,9 @@ Page({
       {date:'16-29',price:51800},
       {date:'16-29',price:51800},
     ],
+    //房间数量
+    roomNumIndex:0,
+    roomNumArray:[1,2,3,4,5]
   },
   onLoad: function (options) {
     this.mobileInfo();
@@ -200,7 +203,6 @@ Page({
       hotelId:this.data.room.hotelId,
       rmtype:this.data.room.rmtype,
     }
-    console.log(param)
     util.request(api.CustomizedHotelsRoom , param , 'GET').then(res => {
       if(res.result.imgList&&res.result.imgList.length != 0){
         picsNew = res.result.imgList;
@@ -277,7 +279,7 @@ Page({
     let roomTotalPriceNew = 0;
     let infoPrice = this.data.infoPrice
     for(let i=0;i<infoPrice.length;i++){
-      roomTotalPriceNew += infoPrice[i].price
+      roomTotalPriceNew += infoPrice[i].price*this.data.fill.roomNum
     }
     
     let timeNumNew = this.data.room.timeNum;
@@ -337,11 +339,12 @@ Page({
       fromMemberId:this.data.fill.fromMemberId, //发送津贴人id
       datePrices:this.data.infoPrice,  //日历房
       cardno:this.data.fill.cardno, //会员卡号
+      rmnum:this.data.fill.roomNum, //房间数量
     };
     util.request(api.CustomizedHotelsFill ,param, 'POST').then(res => {
       //跳转
       wx.redirectTo({
-        url: "/pages/customized/pay/pay?money="+res.result.money+"&orderId="+res.result.orderId+"&rmdesc="+this.data.room.roomName
+        url: "/pages/customized/pay/pay?money="+this.data.total.money+"&orderId="+res.result.orderId+"&rmdesc="+this.data.room.roomName
       })
     }).catch((err) => {});
   },
@@ -396,6 +399,16 @@ Page({
     }
   },
   //房间数量
+  bindRoomNumChange(e){
+    let roomNumArray = this.data.roomNumArray
+    let index = e.detail.value
+    this.setData({
+      roomNumIndex: index,
+      'fill.roomNum' : roomNumArray[index],
+    })
+    //重新计算
+    this.total()
+  },
   room(e){
     let type = e.currentTarget.dataset.type
     let numNew = this.data.fill.roomNum  
@@ -404,11 +417,8 @@ Page({
     }else if(type == 1){
       numNew ++ ;
     }
-    this.setData({
-      'fill.roomNum' : numNew
-    })
-    //重新计算
-    this.total()
+    
+    
   },
   //input焦点
   bindNameInput: function(e) {

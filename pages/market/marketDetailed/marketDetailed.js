@@ -721,4 +721,9 @@ Page({
       specChoose:[],
     })
   },
+  bindNumInput(e){
+    this.setData({
+      goodsNum: e.detail.value
+    });
+  },
 })

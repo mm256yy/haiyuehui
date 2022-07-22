@@ -20,6 +20,9 @@ Page({
         let longitude = res.longitude
         let latitude = res.latitude
         that.hotelsList(longitude,latitude)
+      },
+      fail: function (res) {
+        that.hotelsList('','')
       }
     })
   },

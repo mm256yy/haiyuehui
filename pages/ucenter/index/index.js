@@ -53,7 +53,7 @@ Page({
       {img:'/static/images/other/other2.png',text:'常住人簿',tap:'goOften',badge:0},
       // {img:'/static/images/other/other3.png',text:'发票抬头',tap:'goInvoice',badge:0},
       {img:'/static/images/other/other4.png',text:'隐私条款',tap:'goPrivacy',badge:0},
-      // {img:'/static/images/other/other4.png',text:'我的礼品卡',tap:'giftCard',badge:0},
+      {img:'/static/images/other/other4.png',text:'我的礼品卡',tap:'giftCard',badge:0},
       {img:'/static/images/other/other5.png',text:'客服帮助',tap:'goService',badge:0},
       {img:'/static/images/other/other9.png',text:'设置',tap:'goSet',badge:0},
     ],
@@ -223,7 +223,7 @@ Page({
   //礼品卡 
   giftCard(){
     wx.navigateTo({
-      url: '/pages/ucenter/gift/gift',
+      url: '/pages/ucenter/gift/giftList/giftList',
     })
   },
   goSet(){

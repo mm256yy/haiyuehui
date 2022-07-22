@@ -74,7 +74,7 @@ page{background-color: #f1f1f1;}
   flex: 1 1 auto;
 }
 .fill_li{
-  padding: 20rpx 0rpx;
+  padding: 10rpx 0rpx;
   position: relative;
 }
 .fill_li:first-child{
@@ -92,23 +92,10 @@ page{background-color: #f1f1f1;}
   left: 10rpx;
 }
 .fill_li>input{
-  margin-left: 160rpx;
+  margin: 10rpx 0rpx 10rpx 160rpx;
 }
 .room_num{
-  text-align: right;
-  padding: 10rpx;
-  margin: auto;
-}
-.room_num_btn{
-  display: inline-block;
-  width: 40rpx;
-  height: 40rpx;
-  background-color: #fff;
-  color: #fff;
-  margin: -7rpx 20rpx;
-}
-.room_num_val{
-  display: inline-block;
+  margin: 10rpx 0rpx 10rpx 160rpx;
 }
 .person_selected{
   width: 180rpx;
