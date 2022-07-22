@@ -1,0 +1,12 @@
+/* pages/ucenter/giftCard/giftCard.wxss */
+.head{
+  color: black;
+  text-align: center;
+  padding:20rpx 0;
+  font-weight: 600;
+  font-size: 36rpx;
+}
+.content view{
+  color: black;
+  font-weight: 600;
+}

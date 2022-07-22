@@ -16,6 +16,7 @@
     </view>
   </view>
   <view wx:if="{{!show}}">
+    <view bindtap="giftCard" class="cardText">《关于礼品卡》</view>
      <view class="zero" wx:if="{{showUnder}}">
       <image src="/static/images/zero.png" class="zeroImg"></image>
       <button class="back" bindtap="back">去逛逛</button>

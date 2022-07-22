@@ -118,3 +118,9 @@ page {
   flex: 0 0 180rpx;
   line-height: 30rpx;
 }
+.cardText{
+  color: red;
+  position: fixed;
+  top: 10%;
+  right: 10%;
+}

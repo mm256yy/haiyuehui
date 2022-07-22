@@ -127,6 +127,11 @@ Page({
       url: '/pages/ucenter/giftresult/giftresult?orderId='+orderId+'&imgurl='+imgUrl+'&mobile='+mobile+'&money='+money,
     })
   },
+  giftCard(){
+    wx.navigateTo({
+      url: '/pages/ucenter/giftCard/giftCard'
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
