@@ -127,8 +127,8 @@ Page({
   giftPay() {
     let param = {
       presentId: this.data.id,
-      // money: this.data.money*100
-      money: 1
+      money: this.data.money*100
+      // money: 1
     }
     util.request(api.GiftSubmit, param, 'POST').then(res => {
       console.log("欲支付成功")
