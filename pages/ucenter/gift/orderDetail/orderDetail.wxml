@@ -46,7 +46,7 @@
       </view>
      </view>
     </view>
-    <button class="refund" style="width:180rpx;height:60rpx;" bindtap="refund">申请退款</button>
+    <!-- <button class="refund" style="width:180rpx;height:60rpx;" bindtap="refund">申请退款</button> -->
    </view>
   </view>
 </view>

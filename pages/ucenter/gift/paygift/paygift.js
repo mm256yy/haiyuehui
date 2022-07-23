@@ -172,6 +172,11 @@ Page({
       checked: !checked
     })
   },
+  giftCard(){
+    wx.navigateTo({
+      url: '/pages/ucenter/giftCard/giftCard'
+    })
+  },
   /**
    * 生命周期函数--监听页面卸载
    */

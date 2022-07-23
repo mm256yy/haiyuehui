@@ -11,7 +11,7 @@
 </view>
 <view class="rule">
 <label   class="radio" catchtap='checkedTap'>
-  <radio checked="{{checked}}"/>购买即代表您已阅读并接受<text style="color:blue">《礼品卡购卡合同》</text>和<text style="color:blue">《礼品卡章程》</text>
+  <radio checked="{{checked}}"/>购买即代表您已阅读并接受<text style="color:blue" bindtap="giftCard">《礼品卡章程》</text>
 </label>
 </view>
 <view class="clc">
