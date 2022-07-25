@@ -132,11 +132,11 @@ Page({
       let money=e.currentTarget.dataset.money
       if(this.data.orderIds){
         wx.navigateTo({
-          url: '/pages/ucenter/successfulGift/successfulGift?money='+this.data.datas[0].money+'&imgurl='+this.data.datas[0].imgUrl,
+          url: '/pages/ucenter/gift/successfulGift/successfulGift?money='+this.data.datas[0].money+'&imgurl='+this.data.datas[0].imgUrl,
         })
       }else{
         wx.navigateTo({
-          url: '/pages/ucenter/successfulGift/successfulGift?money='+money+'&imgurl='+imgUrl,
+          url: '/pages/ucenter/gift/successfulGift/successfulGift?money='+money+'&imgurl='+imgUrl,
         })
       }
     }).catch((err) => {});
@@ -179,14 +179,14 @@ Page({
     if(this.data.orderIds){
       return {
         title: '您的好友送你一张礼品卡,请注意查收!',
-        path: '/pages/ucenter/giftothersresult/giftothersresult?mobile='+mobile+'&orderId='+this.data.datas[0].orderId+'&imgUrl='+this.data.datas[0].imgUrl+'&money='+this.data.datas[0].money,
+        path: '/pages/ucenter/gift/giftothersresult/giftothersresult?mobile='+mobile+'&orderId='+this.data.datas[0].orderId+'&imgUrl='+this.data.datas[0].imgUrl+'&money='+this.data.datas[0].money,
         desc: '领取即可使用', 
         imageUrl: this.data.datas[0].imgUrl,
       }
     }else{
       return {
         title: '您的好友送你一张礼品卡,请注意查收!',
-        path: '/pages/ucenter/giftothersresult/giftothersresult?mobile='+mobile+'&orderId='+this.data.orderId+'&imgUrl='+this.data.imgUrl+'&money='+this.data.money,
+        path: '/pages/ucenter/gift/giftothersresult/giftothersresult?mobile='+mobile+'&orderId='+this.data.orderId+'&imgUrl='+this.data.imgUrl+'&money='+this.data.money,
         desc: '领取即可使用', 
         imageUrl: this.data.imgUrl,
       }

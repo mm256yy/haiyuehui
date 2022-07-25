@@ -124,7 +124,7 @@ animationData2: {},
     util.request(api.OthersPresent,param,"GET").then(res=>{
       wx.removeStorageSync('locks')
       wx.navigateTo({
-        url: '/pages/ucenter/successfulGift/successfulGift?imgurl='+this.data.imgUrls+'&money='+this.data.moneys,        
+        url: '/pages/ucenter/gift/successfulGift/successfulGift?imgurl='+this.data.imgUrls+'&money='+this.data.moneys,        
       })
       wx.setStorageSync('orderIds',this.data.orderIds)
       wx.setStorageSync('lock',1)

@@ -52,7 +52,7 @@ Page({
     let orderId=e.currentTarget.dataset.orderid
     let imgUrl=e.currentTarget.dataset.imgurl
     wx.navigateTo({
-      url: '/pages/ucenter/orderDetail/orderDetail?orderId='+orderId+'&imgUrl='+imgUrl,
+      url: '/pages/ucenter/gift/orderDetail/orderDetail?orderId='+orderId+'&imgUrl='+imgUrl,
     })
    }
   },
@@ -113,7 +113,7 @@ Page({
     let id=e.currentTarget.dataset.id
     let imgUrl=e.currentTarget.dataset.imgurl
     wx.navigateTo({
-      url: '/pages/ucenter/paygift/paygift?id='+id+'&imgurl='+imgUrl,
+      url: '/pages/ucenter/gift/paygift/paygift?id='+id+'&imgurl='+imgUrl,
     })
   },
   give(e){
@@ -123,7 +123,12 @@ Page({
     let money=e.currentTarget.dataset.money
     console.log(e.currentTarget.dataset)
     wx.navigateTo({
-      url: '/pages/ucenter/giftresult/giftresult?orderId='+orderId+'&imgurl='+imgUrl+'&mobile='+mobile+'&money='+money,
+      url: '/pages/ucenter/gift/giftresult/giftresult?orderId='+orderId+'&imgurl='+imgUrl+'&mobile='+mobile+'&money='+money,
+    })
+  },
+  giftCard(){
+    wx.navigateTo({
+      url: '/pages/ucenter/giftCard/giftCard'
     })
   },
   /**
@@ -134,7 +139,7 @@ Page({
   },
   ceshi(){
     wx.navigateTo({
-      url: '/pages/ucenter/giftothersresult/giftothersresult'
+      url: '/pages/ucenter/gift/giftothersresult/giftothersresult'
     })
   },
   /**

@@ -42,11 +42,11 @@ Page({
       })
     }else if(val==3){ //礼品卡支付
       wx.reLaunch({
-        url: '/pages/ucenter/giftresult/giftresult?orderIds='+this.data.orderId,
+        url: '/pages/ucenter/gift/giftresult/giftresult?orderIds='+this.data.orderId,
       })
     }else if(val==4){ //礼品卡主页
       wx.reLaunch({
-        url: '/pages/ucenter/gift/gift',
+        url: '/pages/ucenter/gift/giftList/giftList',
       })
 
     }else if(val == 5){ //提现

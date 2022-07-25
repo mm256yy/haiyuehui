@@ -1,22 +1,18 @@
-let util = require('../../../../utils/util.js');
-let pay = require('../../../../utils/pay.js');
-let api = require('../../../../config/api.js');
-let user = require('../../../../utils/user.js');
+// pages/ucenter/giftCard/giftCard.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-     imgUrl:"",
-     money:""
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.detail(options)
+
   },
 
   /**
@@ -25,26 +21,7 @@ Page({
   onReady: function () {
 
   },
-  detail(data){
-    let detail={
-      imgUrl:data.imgurl,
-      money:data.money,
-    }
-    this.setData({
-      imgUrl:detail.imgUrl,
-      money:detail.money
-    })
-  },
-  back(){
-    wx.redirectTo({
-      url: "/pages/ucenter/gift/giftList/giftList?id=2"
-    });
-  },
-  // orderDetail(){
-  //   util.request(api.Giftorder,param,"GET").then(res=>{
-        
-  //   })
-  // },
+
   /**
    * 生命周期函数--监听页面显示
    */

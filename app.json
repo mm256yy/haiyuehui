@@ -1,6 +1,5 @@
 {
-
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/member/memberUpHJK/memberUpHJK",
     "pages/member/memberFollow/memberFollow",
@@ -66,16 +65,15 @@
     "pages/market/marketWritten/marketWritten",
     "pages/market/marketShare/marketShare",
     "pages/market/marketRedeemCode/marketRedeemCode",
-
     "pages/ucenter/points/pointsMarket/pointsMarket",
     "pages/ucenter/points/pointsDetail/pointsDetail",
     "pages/ucenter/points/pointsReside/pointsReside",
     "pages/ucenter/points/pointsHistory/pointsHistory",
     "pages/ucenter/points/pointsExchange/pointsExchange",
-
     "pages/ucenter/nuclein/health/health",
     "pages/ucenter/nuclein/scan/scan",
     "pages/logs/logs",
+
      
     "pages/ucenter/notify/notifyList/notifyList",
 
