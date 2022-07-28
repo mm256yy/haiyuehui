@@ -78,11 +78,15 @@
     "pages/ucenter/notify/notifyList/notifyList",
 
     "pages/ucenter/gift/giftList/giftList",
+    "pages/ucenter/giftCard/giftCard",
     "pages/ucenter/gift/paygift/paygift",
     "pages/ucenter/gift/giftresult/giftresult",
     "pages/ucenter/gift/successfulGift/successfulGift",
     "pages/ucenter/gift/orderDetail/orderDetail",
     "pages/ucenter/gift/giftothersresult/giftothersresult"
+  ],
+  "requiredPrivateInfos":[
+    "getLocation"
   ],
   "permission":{
     "scope.userLocation":{

@@ -1,4 +1,4 @@
-let member = require('../../../utils/member.js');
+const member = require('../../../utils/member.js');
 Page({
   data: {
     memberCard:[],
@@ -15,19 +15,19 @@ Page({
   },
   onLoad: function (options) {
     let memberCard = {}
+    const memberTwo = JSON.parse(JSON.stringify(member.memberCard))
     if(options.member == '黑金卡'){
-      memberCard = member.memberCard
+      memberCard = memberTwo
     }else{
-      memberCard = member.memberCard.splice(0,4);
+      memberCard = memberTwo.splice(0,4);
     }
-    console.log(memberCard)
     this.setData({
       memberCard : memberCard,
     })
   },
   onShow: function () {
     this.setData({
-      powerUl :　member.powerUl,
+      powerUl:member.powerUl,
     })
     // this.init()
     this.funPowerOpacity()

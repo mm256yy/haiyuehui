@@ -3,10 +3,6 @@ let pay = require('../../../../utils/pay.js');
 let api = require('../../../../config/api.js');
 let user = require('../../../../utils/user.js');
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     numList: [{
         num: 100,
@@ -44,33 +40,14 @@ Page({
     checked: false,
     orderId: "",
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     this.detail(options)
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
     if (!this.data.checked) {
       console.log(1)
     }
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
   detail(data) {
     let detailList = {
       id: data.id,
@@ -139,7 +116,6 @@ Page({
       this.setData({
         orderId: res.result.id
       })
-      console.log(this.data.orderId);
       pay.giftPay(params).then(res => {
         //跳转
         wx.setStorageSync('locks', true)
@@ -163,9 +139,6 @@ Page({
       confirmText: "确认",
     })
   },
-  onHide: function () {
-
-  },
   checkedTap: function () {
     var checked = this.data.checked;
     this.setData({
@@ -177,31 +150,4 @@ Page({
       url: '/pages/ucenter/giftCard/giftCard'
     })
   },
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

@@ -7,7 +7,9 @@
   </view>
   <view class="mar">
     <view wx:if="{{show}}" class="marg">
-      <textarea placeholder-class="placeholder" class="textarea_content" bindblur="bindRemarkInput" bindinput="bindRemarkInput" placeholder="用咖啡敬你一杯，我的朋友！" maxlength="100" cols="30" rows="10"></textarea>
+      <view class="textarea_box">
+        <textarea placeholder-class="placeholder" class="textarea_content" bindblur="bindRemarkInput" bindinput="bindRemarkInput" placeholder="用咖啡敬你一杯，我的朋友！" maxlength="100" cols="30" rows="10"></textarea>
+      </view>
     </view>
     <view wx:if="{{!show}}" class="mystyle marg">“工作这么辛苦，对自己好一点~”</view>
     <view class="clc">

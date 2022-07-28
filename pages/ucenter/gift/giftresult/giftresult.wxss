@@ -9,7 +9,7 @@
   position: absolute;
   background-color: gray;
   top:100rpx;
-  border-radius: 40rpx;
+  border-radius: 20rpx;
   left:calc(50% - 30%);
 }
 .title{
@@ -24,10 +24,13 @@
   width: 95%;
   margin: 0 auto;
 }
-.textarea_content{
+.textarea_box{
   border: 1rpx solid #bab8b9;
-  width: 100%;
+  padding: 20rpx;
   border-radius: 10rpx;
+}
+.textarea_content{
+  width: 100%;
 }
 .mystyle{
   width: 100%;

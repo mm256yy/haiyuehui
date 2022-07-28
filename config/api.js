@@ -4,14 +4,14 @@
 // 正式线上ip 
 // let WxApiRoot = 'http://124.70.147.182:9001/wx/'; let testing = false; 
 // 测试线上ip 
-let WxApiRoot = 'http://124.70.132.80:9002/wx/'; let testing = true;
+// let WxApiRoot = 'http://124.70.132.80:9002/wx/'; let testing = true;
 // 本机 开发api地址
 // let WxApiRoot = 'http://192.168.188.72:9002/wx/'; let testing = true;  // 明俊本机'http://192.168.188.79:9001/wx/'; 
 // let WxApiRoot = 'http://115.238.67.214:9002/wx/'; let testing = true;  //明俊外网地址 
 // let WxApiRoot = 'http://192.168.188.73:9002/wx/'; let testing = true;  //益静本机
 // let WxApiRoot = 'http://mingtian.gz2vip.91tunnel.com/wx/'; let testing = true;  //临时ip
 // 生产地址 
-// let WxApiRoot = 'https://hotels.hwhautomall.com/wx/'; let testing = false;  // let WxApiRoot = 'https://www.hwhhotels.com/wx/';
+let WxApiRoot = 'https://hotels.hwhautomall.com/wx/'; let testing = false;  // let WxApiRoot = 'https://www.hwhhotels.com/wx/';
  
 module.exports = {
    testing,  //判断是否是测试环境

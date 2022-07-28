@@ -38,7 +38,7 @@
   </view>
   <view class="hotels_fill">
     <view class="fill_form">
-      <view class="fill_li">
+      <view class="fill_li" wx:if="{{false}}">
         <text>房间数量</text>
         <picker class="room_num" bindchange="bindRoomNumChange" value="{{roomNumIndex}}" range="{{roomNumArray}}">
           <view class="picker">

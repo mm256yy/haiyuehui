@@ -339,7 +339,7 @@ Page({
       fromMemberId:this.data.fill.fromMemberId, //发送津贴人id
       datePrices:this.data.infoPrice,  //日历房
       cardno:this.data.fill.cardno, //会员卡号
-      rmnum:this.data.fill.roomNum, //房间数量
+      // rmnum:this.data.fill.roomNum, //房间数量
     };
     util.request(api.CustomizedHotelsFill ,param, 'POST').then(res => {
       //跳转

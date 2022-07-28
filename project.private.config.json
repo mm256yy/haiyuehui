@@ -32,8 +32,8 @@
         },
         {
           "name": "",
-          "pathName": "pages/ucenter/order/orderInvoice/orderInvoice",
-          "query": "orderId=22052106000003",
+          "pathName": "pages/ucenter/gift/giftList/giftList",
+          "query": "",
           "launchMode": "default",
           "scene": null
         },
