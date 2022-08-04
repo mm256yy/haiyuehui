@@ -159,8 +159,8 @@
 					</view>
 					<view class="pop_num">
 						<view class="num_view num_add" bindtap="goodsNum" data-val="1">+</view>
-            <input class="num_view num_num" type="text" bindinput="bindNumInput" value="{{goodsNum}}"/>
-						<!-- <view class="num_view num_num">{{goodsNum}}</view> -->
+            <!-- <input class="num_view num_num" type="text" bindinput="bindNumInput" value="{{goodsNum}}"/> -->
+						<view class="num_view num_num">{{goodsNum}}</view>
 						<view class="num_view num_reduce" bindtap="goodsNum" data-val="0">-</view>
 					</view>
 				</view>

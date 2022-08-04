@@ -19,6 +19,7 @@
 .tab{
   display: flex;
   justify-content: space-around;
+  position: relative;
 }
 .mar{
   width: 95%;
@@ -54,4 +55,22 @@
   position: absolute;
   bottom: 30rpx;
   left: 2%;
+}
+.tab_bottom{
+  position: absolute;
+  bottom: 4rpx;
+  top: 40rpx;
+  left: 140rpx;
+  width: 90rpx;
+  height: 2rpx;
+  background-color: #db0426;
+}
+.tab_bottom1{
+  position: absolute;
+  bottom: 4rpx;
+  top: 40rpx;
+  right: 140rpx;
+  width: 90rpx;
+  height: 2rpx;
+  background-color: #db0426;
 }

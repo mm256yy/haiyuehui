@@ -27,7 +27,7 @@
       </view>
     </view>
   </view>
-  <view class="ucenter_news" wx:if="{{ucenter.allowanceMoney != 0&&ucenter.allowanceMoney}}" bindtap="goHotelsList">
+  <!-- <view class="ucenter_news" wx:if="{{ucenter.allowanceMoney != 0&&ucenter.allowanceMoney}}" bindtap="goHotelsList">
     <view class="news_box">
       <view class="news_title">海悦会送你无门槛{{filter.moneyNatural(ucenter.allowanceMoney)}}元现金津贴</view>
       <view class="news_label" wx:if="{{ucenter.endTime == 0}}">激活后24小时内，可无限次使用！</view>
@@ -35,7 +35,7 @@
       <view class="news_label" wx:if="{{ucenter.endTime != 0}}">已激活，截止至{{ucenter.endTime}}</view>
       <view class="news_btn" wx:if="{{ucenter.endTime != 0}}">继续使用</view>
     </view>
-  </view>
+  </view> -->
   <view class="ucenter_other">
     <view class="other_ul">
       <view class="other_li" wx:for="{{otherIcon}}" wx:key="index" bindtap="{{item.tap}}">

@@ -91,7 +91,7 @@ Page({
         inviteCode:inviteCode,
       };
       util.request(api.MemberInviteSendAllowance , param , 'GET').then(res => {
-        wx.showModal({title: '恭喜',content: "成功获取5元津贴",showCancel: false}); 
+        wx.showModal({title: '成功',content: "扫码成功",showCancel: false}); 
         wx.setStorageSync('othersInviteCode', "");
       }).catch((err) => {});
     }

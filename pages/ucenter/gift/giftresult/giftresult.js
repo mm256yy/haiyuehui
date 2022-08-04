@@ -20,7 +20,9 @@ Page({
     mobile: "",
     orderIds: "",
     datas: [],
-    param: {}
+    param: {},
+    shows:true,
+    showss:false
   },
   onLoad: function (options) {
     this.detail(options)
@@ -67,14 +69,21 @@ Page({
         show: true,
         title: "立即送出",
         send: "share",
-        give: ""
+        give: "",
+        class:"tab_bottom",
+        shows:true,
+        showss:false
+
       })
     } else if (id == 2) {
       this.setData({
         show: false,
         title: "确定",
         send: "",
-        give: "giftPay"
+        give: "giftPay",
+        class:"tab_bottom",
+        shows:false,
+        showss:true
       })
     }
   },

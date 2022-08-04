@@ -8,9 +8,9 @@
   width: 60%;
   height: 300rpx;
   position: absolute;
-  background-color: gray;
+  /* background-color: gray; */
   top: 100rpx;
-  border-radius: 40rpx;
+  border-radius: 20rpx;
   left: calc(50% - 30%);
 }
 

@@ -1,17 +1,19 @@
 <view>
   <view class="backGround"></view>
   <image src="{{orderIds?datas[0].imgUrl:imgUrl}}" class="imgStyle"></image>
-  <view class="title">{{orderIds?datas[0].money:money}}元礼品卡</view>
+  <view class="title">{{orderIds?datas[0].money/100:money/100}}元礼品卡</view>
   <view class="tab">
-    <view wx:for="{{list}}" wx:key="index" bindtap="tab" data-id="{{item.id}}">{{item.name}}</view>
+    <view  wx:for="{{list}}" wx:key="index" bindtap="tab" data-id="{{item.id}}">{{item.name}}</view>
+    <view class="tab_bottom" wx:if="{{shows}}"></view>
+    <view class="tab_bottom1" wx:if="{{showss}}"></view>
   </view>
   <view class="mar">
-    <view wx:if="{{show}}" class="marg">
+    <!-- <view wx:if="{{show}}" class="marg">
       <view class="textarea_box">
         <textarea placeholder-class="placeholder" class="textarea_content" bindblur="bindRemarkInput" bindinput="bindRemarkInput" placeholder="用咖啡敬你一杯，我的朋友！" maxlength="100" cols="30" rows="10"></textarea>
       </view>
     </view>
-    <view wx:if="{{!show}}" class="mystyle marg">“工作这么辛苦，对自己好一点~”</view>
+    <view wx:if="{{!show}}" class="mystyle marg">“工作这么辛苦，对自己好一点~”</view> -->
     <view class="clc">
       <button class="pay" style="width:100%" bindtap="{{give}}" open-type="{{send}}" data-imgUrl="{{imgUrl}}" data-money="{{money}}"> {{title}}</button>
     </view>
