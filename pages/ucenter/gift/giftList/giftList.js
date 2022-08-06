@@ -12,7 +12,7 @@ Page({
       id: 2
     }],
     show: true,
-    MemberGiftList: [],
+    orderGiftList: [],
     showUnder: null,
     timer: "",
     pageNo: 1,
@@ -22,25 +22,30 @@ Page({
     this.tags(options)
   },
   onShow: function () {
-    this.list()
-    this.menberList()
+    this.giftList()
+    this.orderList(1)
+  },
+  // 上拉加载
+  onReachBottom: function() {
+    this.setData({
+      pageNo:this.data.pageNo + 1,
+    })
+    this.orderList(2)
   },
   tags(data) {
     if (data.id == 2) {
       this.setData({
+        menu: 2,
         show: false
       })
     }
   },
   toDetail(e) {
-    let locks = wx.getStorageSync('locks')
-    if (locks) {
-      let orderId = e.currentTarget.dataset.orderid
-      let imgUrl = e.currentTarget.dataset.imgurl
-      wx.navigateTo({
-        url: '/pages/ucenter/gift/orderDetail/orderDetail?orderId=' + orderId + '&imgUrl=' + imgUrl,
-      })
-    }
+    let orderId = e.currentTarget.dataset.orderid
+    let imgUrl = e.currentTarget.dataset.imgurl
+    wx.navigateTo({
+      url: '/pages/ucenter/gift/orderDetail/orderDetail?orderId=' + orderId + '&imgUrl=' + imgUrl,
+    })
   },
   tab(e) {
     let id = e.currentTarget.dataset.id
@@ -54,47 +59,49 @@ Page({
         show: false,
         menu: 2,
       })
-      if (this.data.MemberGiftList.length) {
-        this.setData({
-          showUnder: false
-        })
-      } else {
-        this.setData({
-          showUnder: true
-        })
-      }
     }
   },
-  back() {
-    this.setData({
-      show: true
-    })
-  },
-  list() {
+  giftList() {
     util.request(api.GiftList, 'GET').then(res => {
       this.setData({
         giftList: res.result
       })
     }).catch((err) => {});
   },
-  menberList() {
+  orderList(pull) { //pull 1为初始化 2为下拉
     let param = {
       pageNo: this.data.pageNo,
-      pageSize: 10
+      pageSize: 15
     }
-    util.request(api.MemberGiftList, param, 'GET').then(res => {
-      console.log(res)
-      if (param.pageNo == 1) {
-        this.setData({
-          MemberGiftList: res.result.records,
-          num: res.result.total
-        })
-      } else if (param.pageNo > 1) {
-        this.setData({
-          MemberGiftList: this.data.MemberGiftList.concat(res.result.records)
-        })
+    util.request(api.GiftMemberList, param, 'GET').then(res => {
+      let o_ul = [];
+      let o_li = {};
+      let orderGiftList = []
+      let data = res.result.records
+      if(data.length != 0){
+        for(let i=0;i<data.length;i++){
+          o_li = data[i]
+          o_ul.push(o_li)
+        }
       }
-    }).catch((err) => {});
+      if(pull == 1){  //初始化
+        orderGiftList = o_ul
+      }else{
+        orderGiftList = this.data.orderGiftList.concat(o_ul);
+        if(data.length == 0){
+          this.setData({
+            pageNo:this.data.pageNo - 1
+          });
+        }
+      };
+      this.setData({
+        orderGiftList: orderGiftList,
+      })
+    }).catch((err) => {
+      this.setData({
+        orderGiftList:[]
+      })
+    });
   },
   toPay(e) {
     let id = e.currentTarget.dataset.id
@@ -105,22 +112,8 @@ Page({
   },
   give(e) {
     let orderId = e.currentTarget.dataset.orderid
-    let imgUrl = e.currentTarget.dataset.imgurl
-    let mobile = e.currentTarget.dataset.mobile
-    let money = e.currentTarget.dataset.money
-    console.log(e.currentTarget.dataset)
     wx.navigateTo({
-      url: '/pages/ucenter/gift/giftresult/giftresult?orderId=' + orderId + '&imgurl=' + imgUrl + '&mobile=' + mobile + '&money=' + money,
-    })
-  },
-  giftCard() {
-    wx.navigateTo({
-      url: '/pages/ucenter/giftCard/giftCard'
-    })
-  },
-  ceshi() {
-    wx.navigateTo({
-      url: '/pages/ucenter/gift/giftothersresult/giftothersresult'
+      url: '/pages/ucenter/gift/giftresult/giftresult?orderId=' + orderId,
     })
   },
   onPullDownRefresh: function () {
@@ -132,15 +125,15 @@ Page({
       pageNo: this.data.pageNo,
       pageSize: 10
     }
-    util.request(api.MemberGiftList, param, 'GET').then(res => {
+    util.request(api.GiftMemberList, param, 'GET').then(res => {
       if (param.pageNo == 1) {
         this.setData({
-          MemberGiftList: res.result.records,
+          orderGiftList: res.result.records,
           num: res.result.total
         })
       } else if (param.pageNo > 1) {
         this.setData({
-          MemberGiftList: this.data.MemberGiftList.concat(res.result.records)
+          orderGiftList: this.data.orderGiftList.concat(res.result.records)
         })
       }
       wx.hideNavigationBarLoading()

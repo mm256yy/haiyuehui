@@ -22,7 +22,7 @@ Page({
     let param = {
       orderId: this.data.orderId
     }
-    util.request(api.Giftorder, param, 'GET').then(res => {
+    util.request(api.GiftOrderDetail, param, 'GET').then(res => {
       this.setData({
         datas: res.result.records
       })
@@ -42,7 +42,7 @@ Page({
             orderId: that.data.datas[0].id,
             money: that.data.datas[0].money,
           }
-          util.request(api.Refund, param, 'POST').then(res => {
+          util.request(api.GiftOrderRefund, param, 'POST').then(res => {
             wx.showToast({
               title: '退款成功',
               icon: 'success',

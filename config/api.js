@@ -113,16 +113,19 @@ module.exports = {
    ActivityDraw:WxApiRoot +'activity/draw', // 抽奖活动
    
    GiftList:WxApiRoot+'present/list',// 礼品卡列表
-   MemberGiftList:WxApiRoot+'present/memberPresent',// 我的礼品卡列表
+   GiftMemberList:WxApiRoot+'present/memberPresent',// 我的礼品卡列表
    GiftSubmit:WxApiRoot +'present/submit',//礼品提交订单
    GiftPay:WxApiRoot+'present/prepay',//礼品预支付
    GiftCallback:WxApiRoot+'present/callback',//礼品支付成功回调
-   UsePresent:WxApiRoot+'present/usePresent', //微信使用礼品卡接口
-   OthersPresent:WxApiRoot+'present/receive',  //微信接受礼品卡接口
-   Giftorder:WxApiRoot+'present/presentOrder',//礼品订单
-   Refund:WxApiRoot+'present/doRefund',//订单退款
+   GiftUsePresent:WxApiRoot+'present/usePresent', //微信使用礼品卡接口
+   GiftOrderReceive:WxApiRoot+'present/receive',  //微信接受礼品卡接口
+   GiftOrderDetail:WxApiRoot+'present/presentOrder',//礼品订单详情
+   GiftOrderRefund:WxApiRoot+'present/doRefund',//订单退款
+   GiftPresentSend:WxApiRoot +'present/send', //礼品卡发送
+
    HongbaocashOut:WxApiRoot +'hongbao/cashOut', //红包提现
    SendGoods:WxApiRoot +'sendGoods/getGoods', //实物赠送id
+   
    
    personnelSubmit:WxApiRoot +'apply/submit', //人事招聘请求
    personnelCompany:WxApiRoot +'apply/company', //人事招聘公司列表

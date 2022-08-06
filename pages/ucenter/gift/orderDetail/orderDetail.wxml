@@ -17,15 +17,15 @@
           <view class="giftcard_list_contentF giftcard_list_contentS">
             <view class="giftcard_list_contentF_r">
               <image src="{{imgUrl}}" style="flex:0 0 260rpx"></image>
-              <view style="flex:0 0 170rpx; margin-left:20rpx">{{datas[0].money/100}}元礼品卡</view>
+              <view style="flex:0 0 170rpx; margin-left:20rpx">{{filter.moneyNatural(money)}}元礼品卡</view>
             </view>
             <view class="giftcard_list_contentF_l">
-              <view>￥{{datas[0].money/100}}</view>
+              <view>￥{{filter.moneyNatural(money)}}</view>
               <view> x1</view>
             </view>
           </view>
           <view class="giftcard_list_contentF giftcard_list_contentT">
-            <view>共1件商品 合计￥{{datas[0].money/100}}</view>
+            <view>共1件商品 合计￥{{filter.moneyNatural(money)}}</view>
           </view>
         </view>
       </view>

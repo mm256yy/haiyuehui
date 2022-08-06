@@ -1,20 +1,15 @@
-
 Page({
   data: {
-     imgUrl:"",
-     money:""
+    imgUrl: "",
+    money: ""
   },
   onLoad: function (options) {
     this.detail(options)
   },
-  detail(data){
-    let detail={
-      imgUrl:data.imgurl,
-      money:data.money,
-    }
+  detail(data) {
     this.setData({
-      imgUrl:detail.imgUrl,
-      money:detail.money
+      imgUrl: data.imgurl,
+      money: data.money
     })
   },
   back(){

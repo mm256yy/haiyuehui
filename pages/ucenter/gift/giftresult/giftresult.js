@@ -1,157 +1,101 @@
 let api = require('../../../../config/api.js');
 let util = require('../../../../utils/util.js');
-let user = require('../../../../utils/user.js');
 Page({
   data: {
-    list: [{
-      name: "送他人",
-      id: 1
-    }, {
-      name: "自己用",
-      id: 2
-    }],
-    show: true,
-    title: "立即送出",
-    give: "",
-    send: "share",
+    menuVal: 1,
     orderId: "",
     imgUrl: null,
     money: "",
     mobile: "",
-    orderIds: "",
-    datas: [],
-    param: {},
-    shows:true,
-    showss:false
   },
   onLoad: function (options) {
-    this.detail(options)
-    this.agiandetail(options)
+    this.setData({
+      orderId: options.orderId,
+    })
+    this.orderDetail()
   },
   onShow: function () {
-    this.agiandetails()
   },
-  agiandetail(data) {
-    this.setData({
-      orderIds: data.orderIds
+  orderDetail(){
+    const that = this
+    this.funDetail().then((data)=>{
+      that.setData({
+        imgUrl: data.presentImg,
+        money: data.money,
+        mobile: data.mobile,
+      })
     })
   },
-  agiandetails() {
+  funDetail() {
     let param = {
-      orderId: this.data.orderIds
+      orderId: this.data.orderId
     }
-    util.request(api.MemberGiftList, param, 'GET').then(res => {
-      this.setData({
-        datas: res.result.records
-      })
-      console.log(this.data.datas)
-    }).catch((err) => {});
+    return new Promise(function(resolve, reject) {
+      util.request(api.GiftOrderDetail, param, 'GET').then(res => {
+        let data = res.result
+        if(data){
+          resolve(data);
+        }else{
+          wx.showModal({
+            title: '提示',
+            content: '该礼品卡已送出',
+            complete (res) {
+              wx.navigateBack({ 
+                delta: 1  
+              }); 
+            }
+          })
+        }
+      }).catch((err) => {});
+    });
   },
-
-  detail(data) {
-    let detailList = {
-      orderId: data.orderId,
-      imgUrl: data.imgurl,
-      money: data.money,
-      mobile: data.mobile
-    }
+  //选择菜单
+  chooseMenu(e){
+    let val = e.currentTarget.dataset.val
     this.setData({
-      imgUrl: detailList.imgUrl,
-      orderId: detailList.orderId,
-      money: detailList.money,
-      mobile: detailList.mobile
+      menuVal: val
     })
   },
-  tab(e) {
-    let id = e.currentTarget.dataset.id
-    if (id == 1) {
-      this.setData({
-        show: true,
-        title: "立即送出",
-        send: "share",
-        give: "",
-        class:"tab_bottom",
-        shows:true,
-        showss:false
-
-      })
-    } else if (id == 2) {
-      this.setData({
-        show: false,
-        title: "确定",
-        send: "",
-        give: "giftPay",
-        class:"tab_bottom",
-        shows:false,
-        showss:true
-      })
+  //自己使用礼品卡
+  giftUse(e) {
+    let that = this
+    let parma = {
+      mobile: this.data.mobile,
+      orderId: this.data.orderId
     }
-  },
-  giftPay(e) {
-    console.log(this.data.orderIds)
-    if (this.data.orderIds) {
-      let parma = {
-        mobile: this.data.datas[0].mobile,
-        orderId: this.data.datas[0].orderId
-      }
-      this.setData({
-        param: parma
-      })
-    } else {
-      let lock = wx.getStorageSync('lock')
-      if (lock) {
-        let mobile = wx.getStorageSync('userInfoMobile')
-        let orderId = wx.getStorageSync('orderIds')
-        let parma = {
-          mobile: mobile,
-          orderId: orderId
-        }
-        this.setData({
-          param: parma
-        })
-      } else {
-        let parma = {
-          mobile: this.data.mobile,
-          orderId: this.data.orderId
-        }
-        this.setData({
-          param: parma
-        })
-      }
-    }
-    util.request(api.UsePresent, this.data.param, 'GET').then(res => {
-      wx.removeStorage('lock')
-      let imgUrl = e.currentTarget.dataset.imgurl
-      let money = e.currentTarget.dataset.money
-      if (this.data.orderIds) {
+    this.funDetail().then((data)=>{
+      util.request(api.GiftUsePresent,parma, 'GET').then(res => {
         wx.redirectTo({
-          url: '/pages/ucenter/gift/successfulGift/successfulGift?money=' + this.data.datas[0].money + '&imgurl=' + this.data.datas[0].imgUrl,
+          url: '/pages/ucenter/gift/successfulGift/successfulGift?money=' + that.data.money + '&imgurl=' + that.data.imgUrl,
         })
-      } else {
-        wx.redirectTo({
-          url: '/pages/ucenter/gift/successfulGift/successfulGift?money=' + money + '&imgurl=' + imgUrl,
-        })
-      }
-    }).catch((err) => {});
+      }).catch((err) => {});
+    })
   },
   onShareAppMessage: function (e) {
-    // let mobile=  //暂无数据
-    // let orderId= //暂无数据
+    let that = this
+    let param = {
+      orderId: that.data.orderId,
+    }
+    this.funDetail().then((data)=>{
+      util.request(api.GiftPresentSend, param , 'GET').then(res => {
+        wx.navigateBack({ 
+          delta: 1 
+        }); 
+      }).catch((err) => {
+        wx.navigateBack({ 
+          delta: 1 
+        }); 
+      });
+    })
     let mobile = wx.getStorageSync('userInfoMobile')
-    if (this.data.orderIds) {
-      return {
-        title: '您的好友送你一张礼品卡,请注意查收!',
-        path: '/pages/ucenter/gift/giftothersresult/giftothersresult?mobile=' + mobile + '&orderId=' + this.data.datas[0].orderId + '&imgUrl=' + this.data.datas[0].imgUrl + '&money=' + this.data.datas[0].money,
-        desc: '领取即可使用',
-        imageUrl: this.data.datas[0].imgUrl,
-      }
-    } else {
-      return {
-        title: '您的好友送你一张礼品卡,请注意查收!',
-        path: '/pages/ucenter/gift/giftothersresult/giftothersresult?mobile=' + mobile + '&orderId=' + this.data.orderId + '&imgUrl=' + this.data.imgUrl + '&money=' + this.data.money,
-        desc: '领取即可使用',
-        imageUrl: this.data.imgUrl,
-      }
+    let orderId = that.data.orderId
+    let imgUrl = that.data.imgUrl
+    let money = that.data.money
+    return {
+      title: '您的好友送你一张礼品卡,请注意查收!',
+      path: '/pages/ucenter/gift/giftothersresult/giftothersresult?mobile=' + mobile + '&orderId=' + orderId + '&imgUrl=' + imgUrl + '&money=' + money,
+      desc: '领取即可使用',
+      imageUrl: imgUrl,
     }
   }
 })

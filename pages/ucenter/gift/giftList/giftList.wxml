@@ -1,44 +1,39 @@
 <view class="gift_index">
   <wxs src="../../../../filter/filter.wxs" module="filter" />
+  <import src="/template/template"/> 
   <view class="gift_menu">
     <view class="gift_menu_li {{menu == item.id ?'gift_menu_li_on':''}}" wx:for="{{titleList}}" wx:key="index" bindtap="tab" data-id="{{item.id}}">{{item.name}}</view>
   </view>
   <view class="gift_content" wx:if="{{show}}">
     <view class="gift_title">海悦会经典</view>
-    <view style="display:flex;justify-content: space-between;flex-wrap: wrap;">
-      <view class="gift_img" wx:for="{{giftList}}" wx:key="index" wx:for-item="item" bindtap="toPay" data-id="{{item.id}}" data-imgUrl="{{item.imgUrl}}">
-        <image src="{{item.imgUrl}}" class="img"></image>
-        <view class="text_style">{{item.context?item.context:'暂无描述'}}</view>
+    <view class="gift_flex" >
+      <view class="gift_img" wx:for="{{giftList}}" wx:key="index" bindtap="toPay" data-id="{{item.id}}" data-imgUrl="{{item.imgUrl}}">
+        <image class="gift_image" src="{{item.imgUrl}}" ></image>
+        <view class="text_style">{{item.context ? item.context : '暂无描述'}}</view>
       </view>
     </view>
+    <template is="zero" data="{{list:giftList}}" />
   </view>
   <view wx:if="{{!show}}">
-    <view class="zero" wx:if="{{showUnder}}">
-      <image src="/static/images/zero.png" class="zeroImg"></image>
-      <button class="back" bindtap="back">去逛逛</button>
-    </view>
-    <view class="giftcard_list" wx:if="{{!showUnder}}" wx:for="{{MemberGiftList}}" wx:key="index" data-orderId="{{item.orderId}}" data-imgUrl="{{item.imgUrl}}">
+    <view class="giftcard_list" wx:for="{{orderGiftList}}" wx:key="index" data-orderId="{{item.orderId}}" data-imgUrl="{{item.imgUrl}}">
       <view>
-        <view class="giftcard_list_contentF" style="height:60rpx;line-height:60rpx">
-          <text>{{item.createTime }}</text>
-          <text class="text2">{{filter.exchangeCase(item.status)}}</text>
+        <view class="giftcard_list_head">
+          <text>订单号：{{item.orderId}}</text>
+          <text class="head_status">{{filter.exchangeCase(item.status)}}</text>
         </view>
-        <view class="giftcard_list_contentF giftcard_list_contentS">
-          <view class="giftcard_list_contentF_r">
-            <image src="{{item.imgUrl}}" style="flex:0 0 260rpx"></image>
-            <view style="margin-left:10rpx;">{{item.money/100}}元礼品卡</view>
+        <view class="giftcard_list_body">
+          <image class="body_img" src="{{item.imgUrl}}"></image>
+          <view class="body_content">
+            <view>{{filter.moneyFixed(item.money)}}元礼品卡</view>
+            <view class="body_content_money">共1件商品 合计￥{{filter.moneyFixed(item.money)}}</view>
           </view>
-          <!-- <view class="giftcard_list_contentF_l">
-            <view>￥{{item.money/100}}</view>
-            <view>x1</view>
-          </view> -->
         </view>
-        <view class="line"></view>
-        <view class="giftcard_list_contentF giftcard_list_contentT" style="padding:0 0 20rpx 0">
-          <view>共1件商品 合计￥{{item.money/100}}</view>
-          <button catchtap="give" data-imgUrl="{{item.imgUrl}}" data-mobile="{{item.mobile}}" data-orderId="{{item.orderId}}" data-money="{{item.money}}" wx:if="{{item.status==2?true:false}}">使用</button>
+        <view class="giftcard_list_foot">
+          <view>{{item.createTime}}</view>
+          <button class="" bindtap="give" data-orderId="{{item.orderId}}" wx:if="{{item.status == 2}}">使用</button>
         </view>
       </view>
     </view>
+    <template is="zero" data="{{list:orderGiftList}}" />
   </view>
 </view>

@@ -16,11 +16,25 @@
   text-align: center;
   margin: 180rpx 0 30rpx 0;
 }
-.tab{
+.menu_ul{
   display: flex;
-  justify-content: space-around;
-  position: relative;
 }
+.menu_li{
+  flex: 1 1 auto;
+  text-align: center;
+}
+.menu_li_text{
+  font-size: 30rpx;
+  font-weight: 800;
+  padding: 20rpx;
+}
+.menu_li_on{
+  border-bottom:5rpx solid #db0426 ;
+}
+
+
+
+
 .mar{
   width: 95%;
   margin: 0 auto;
@@ -45,10 +59,12 @@
 .marg{
   margin:50rpx 0 150rpx 0 ;
 }
-.pay{
+.gift_use{
+  width: 100% !important;
   background-color: #db0426;
   color: white;
   border-radius: 40rpx;
+  padding: 20rpx;
 }
 .clc{
   width:96%;

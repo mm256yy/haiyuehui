@@ -1,8 +1,8 @@
 page {
   background: #f1f1f1;
 }
+/*head*/
 .gift_index{
-  /* background-color: gray; */
   width: 100%;
   height: 100%;
 }
@@ -17,6 +17,7 @@ page {
 .gift_menu_li_on{
   border-bottom:5rpx solid #db0426;
 }
+/*body*/
 .gift_content{
   margin: 20rpx;
 }
@@ -24,6 +25,11 @@ page {
   font-weight: 800;
   font-size: 30rpx;
   margin-bottom: 20rpx;
+}
+.gift_flex{
+  display:flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 .gift_img{
   background-color: white;
@@ -33,86 +39,59 @@ page {
   text-align: center;
   padding: 10rpx 0;
 }
-.img{
+.gift_image{
   width: 300rpx;
   height: 200rpx;
   margin: 20rpx 20rpx 0 20rpx;
   border-radius: 10rpx;
 }
 
-.zero{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width:50%;
-  height: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-}
-.zeroImg{
-  width: 300rpx;
-  height: 300rpx;
-}
-.back{
-  color: red;
-  border: 1rpx solid red;
-  border-radius: 40rpx;
-  font-size: 28rpx;
-}
+/*order*/
 .giftcard_list{
-  width: 95%;
-  background-color: white;
-  border-radius:20rpx;
+  background-color: #fff;
   margin: 20rpx auto;
 }
-.giftcard_list :nth-of-type(1){
-  width: 98%;
-  /* padding: 10rpx; */
-  margin: 0 auto;
+.giftcard_list_head{
+  padding: 20rpx;
+  position: relative;
 }
-.line{
-  width: 100%;
-  height: 1rpx;
-  background-color: gray;
+.head_status{
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
 }
-.giftcard_list_contentF{
-  display: flex;
-  justify-content:space-around;
-  flex-direction: row;
-  margin: 24rpx 0 ;
-  padding: 5rpx;
+.giftcard_list_body{
+  position: relative;
 }
-.text2{
-  flex: 0 0 100rpx;
-  line-height: 58rpx;
-  text-align: right;
-}
-.giftcard_list_contentF_r{
-  display: flex;
-  justify-content:space-around;
-}
-.giftcard_list_contentF_r image{
-  width: 100%;
-  height: 100%;
+.body_img{
+  width: 260rpx;
+  height: 180rpx;
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
   border-radius: 10rpx;
 }
-.giftcard_list_contentF_l{
-  flex: 0 0 180rpx;
+.body_content{
+  margin-left: 280rpx;
+  height: 220rpx;
+  padding: 20rpx;
+  position: relative;
 }
-.giftcard_list_contentF_l :nth-of-type(1){
-  margin-left: 103rpx;
+.body_content_money{
+  position: absolute;
+  bottom: 20rpx;
+  left: 20rpx;
 }
-.giftcard_list_contentF_l :nth-of-type(2){
-  margin-left: 110rpx;
+.giftcard_list_foot{
+  padding: 20rpx;
+  border-top: 1rpx solid #f1f1f1;
+  position: relative;
 }
-.giftcard_list_contentS{
-  height: 160rpx;
-}
-.line{
-  width: 100%;
-  height: 1rpx;
-  background-color: #f1f1f1;
-}
-.giftcard_list_contentT button{
+.giftcard_list_foot button{
+  position: absolute;
+  top: 3px;
+  right: 20rpx;
+  width: 200rpx;
   background-color: #db0426;
   border-radius: 40rpx;
   color: white;
@@ -120,10 +99,4 @@ page {
   height: 60rpx;
   flex: 0 0 180rpx;
   line-height: 30rpx;
-}
-.cardText{
-  color: red;
-  position: fixed;
-  top: 10%;
-  right: 10%;
 }

@@ -42,7 +42,7 @@ Page({
       })
     }else if(val==3){ //礼品卡支付
       wx.redirectTo({
-        url: '/pages/ucenter/gift/giftresult/giftresult?orderIds='+this.data.orderId,
+        url: '/pages/ucenter/gift/giftresult/giftresult?orderId='+this.data.orderId,
       })
     }else if(val==4){ //礼品卡主页
       wx.reLaunch({

@@ -24,23 +24,21 @@ function bonusType(type){
     default: return '其他';
   }
 }
-//room订单状态
-function roomType(type){
-  switch (type) {
-    case 11 : return "待支付";
+//酒店订单状态
+function roomType(status){
+  switch (status) {
+    case 11 : return "未支付";
     case 12 : return "已取消";
     case 13 : return "超时已取消";
     case 21 : return "支付中";
     case 22 : return "待入住";
     case 23 : return "退款申请中";
     case 24 : return "拒绝退款";
-    case 25 : return "已支付";
-    case 26 : return "退款失败";
+    case 25 : return "已续住";
     case 31 : return "已入住";
-    case 32 : return "已续住";
-    case 41 : return "已申请退房";
+    case 41 : return "已退房";
     case 51 : return "退款成功";
-    case 61 : return "已发佣金";
+    case 61 : return "已退房";
     default: return '未知状态';
   }
 }

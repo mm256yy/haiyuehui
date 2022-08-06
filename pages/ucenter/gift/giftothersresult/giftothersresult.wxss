@@ -9,7 +9,7 @@
   position: absolute;
   background-color: gray;
   top:100rpx;
-  border-radius: 40rpx;
+  border-radius: 20rpx;
   left:calc(50% - 30%);
 }
 .backdrop{
@@ -22,7 +22,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
 }
 .draw{
   width: 70%;

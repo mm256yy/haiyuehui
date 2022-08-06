@@ -38,9 +38,9 @@
           "scene": null
         },
         {
-          "name": "ln",
-          "pathName": "pages/ucenter/invite/inviteCode/inviteCode",
-          "query": "",
+          "name": "pages/ucenter/gift/giftothersresult/giftothersresult",
+          "pathName": "pages/ucenter/gift/giftothersresult/giftothersresult",
+          "query": "mobiles=15967125243&imgUrls=https://img.hwhhotels.com/165873262608125.jpg&money=1&orderId=92080592000030",
           "launchMode": "default",
           "scene": null
         }
