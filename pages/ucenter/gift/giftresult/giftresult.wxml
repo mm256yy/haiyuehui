@@ -1,7 +1,7 @@
 <view>
   <view class="backGround"></view>
   <image src="{{orderIds?datas[0].imgUrl:imgUrl}}" class="imgStyle"></image>
-  <view class="title">{{orderIds?datas[0].money:money}}元礼品卡</view>
+  <view class="title">{{orderIds?datas[0].money/100:money/100}}元礼品卡</view>
   <view class="tab">
     <view wx:for="{{list}}" wx:key="index" bindtap="tab" data-id="{{item.id}}">{{item.name}}</view>
   </view>

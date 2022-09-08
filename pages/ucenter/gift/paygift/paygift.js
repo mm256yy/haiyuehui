@@ -127,7 +127,7 @@ Page({
   giftPay() {
     let param = {
       presentId: this.data.id,
-      money: this.data.money*100
+      money: this.data.money
       // money: 1
     }
     util.request(api.GiftSubmit, param, 'POST').then(res => {
