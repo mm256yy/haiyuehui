@@ -38,6 +38,10 @@
 				<view class="body_other_t2">{{detailed.amount}}</view>
 				<view class="body_other_t1">库存量</view>
 			</view>
+      <view class="body_icon">
+				<view class="body_other_t2">{{inviteCode ? inviteCode : '无'}}</view>
+				<view class="body_other_t1">邀请码</view>
+			</view>
 			<view class="body_icon">
 				<view class="body_other_t2">{{detailed.sales}}</view>
 				<view class="body_other_t1">销售量</view>
