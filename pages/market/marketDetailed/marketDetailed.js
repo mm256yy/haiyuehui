@@ -5,6 +5,7 @@ let user = require('../../../utils/user.js');
 Page({
   data: {
     id: 1,
+    inviteCode:'',
     detailed: {
       // id:1,
       // name:'五芳斋月饼礼盒中秋节双蛋黄莲蓉等广式月饼礼盒装780g中秋礼品送礼大礼包五芳合价月饼礼盒',
@@ -245,7 +246,8 @@ Page({
         total: totalNew,
         specList: specListNew,
         productList: productListNew,
-        'detailed.amount': amountTotal
+        'detailed.amount': amountTotal,
+        inviteCode: inviteCode,
       })
       this.redTipNum();
       this.total();
@@ -720,5 +722,10 @@ Page({
     this.setData({
       specChoose:[],
     })
+  },
+  bindNumInput(e){
+    this.setData({
+      goodsNum: e.detail.value
+    });
   },
 })

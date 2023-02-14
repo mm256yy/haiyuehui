@@ -81,3 +81,12 @@ page{
   background: linear-gradient(to right, #039cee , #753ffd);
   text-align: center;
 }
+.often_Box{
+  width: 95%;
+  height: 100rpx;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+}

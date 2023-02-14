@@ -22,8 +22,15 @@
       </view>
     </view>
   </view>
-  <view class="btn_box">
-    <view class="btn_success" bindtap="btnSuccess">+ 新增常住人</view>
+  <view class="often_Box"  wx:for="{{often}}" wx:key="index" >
+  <view>{{item.name}}</view>
+  <view>{{item.mobile}}</view>
+  <view><text>编辑</text>|<text>删除</text></view>
   </view>
+  <i-button bind:click="handleClick" type="primary">添加入住人</i-button>
+  <!-- <view class="btn_box">
+    <view class="btn_success" bindtap="btnSuccess">+ 新增常住人</view>
+  </view> -->
+  <view class="btn_success">确定</view>
   <template is="zero" data="{{list:often}}"/>
 </view>

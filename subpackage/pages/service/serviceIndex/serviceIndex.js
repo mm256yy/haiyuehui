@@ -43,7 +43,7 @@ Page({
       val: '正在输入...'
     }
     let service = this.data.problemUl[arr].answer
-
+    
     let answerArr = this.data.answerUl.length
     let answerUl = [...this.data.answerUl,user,serviceLoding]
     this.setData({

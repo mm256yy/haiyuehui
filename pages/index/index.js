@@ -4,6 +4,7 @@ let util = require('../../utils/util.js');
 let api = require('../../config/api.js');
 let check = require('../../utils/check.js');
 let badge = require('../../utils/badge.js');
+const city = require('../../utils/city.js');
 let app = getApp();
 
 Page({
@@ -35,7 +36,8 @@ Page({
     popShow:false,
     info:{
       memberId:'',
-    }
+    },
+    city:"",
   },
   onLoad: function (option) {
     wx.setStorageSync('othersInviteCodeFrist', true);
@@ -51,6 +53,9 @@ Page({
     this.member();
     this.topBanner();
     badge.notifyBadgeSet();
+    this.setData({
+      city:wx.getStorageSync('city')
+    })
   },
   //获取津贴
   getAllowance(){
@@ -62,7 +67,7 @@ Page({
         inviteCode:inviteCode,
       };
       util.request(api.MemberInviteSendAllowance , param , 'GET').then(res => {
-        wx.showModal({title: '恭喜',content: "成功获取5元津贴",showCancel: false}); 
+        wx.showModal({title: '成功',content: "扫码成功",showCancel: false}); 
         wx.setStorageSync('othersInviteCode', "");
         wx.setStorageSync('othersInviteCodeFrist', false);
       }).catch((err) => {});
@@ -311,4 +316,9 @@ Page({
       urls: [data] // 需要预览的图片http链接列表
     })
   },
+  chooseCity(){
+    wx.navigateTo({
+      url: '/pages/city/city',
+    });
+  }
 });

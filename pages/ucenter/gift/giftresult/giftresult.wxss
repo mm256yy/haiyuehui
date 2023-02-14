@@ -9,25 +9,43 @@
   position: absolute;
   background-color: gray;
   top:100rpx;
-  border-radius: 40rpx;
+  border-radius: 20rpx;
   left:calc(50% - 30%);
 }
 .title{
   text-align: center;
   margin: 180rpx 0 30rpx 0;
 }
-.tab{
+.menu_ul{
   display: flex;
-  justify-content: space-around;
 }
+.menu_li{
+  flex: 1 1 auto;
+  text-align: center;
+}
+.menu_li_text{
+  font-size: 30rpx;
+  font-weight: 800;
+  padding: 20rpx;
+}
+.menu_li_on{
+  border-bottom:5rpx solid #db0426 ;
+}
+
+
+
+
 .mar{
   width: 95%;
   margin: 0 auto;
 }
-.textarea_content{
+.textarea_box{
   border: 1rpx solid #bab8b9;
-  width: 100%;
+  padding: 20rpx;
   border-radius: 10rpx;
+}
+.textarea_content{
+  width: 100%;
 }
 .mystyle{
   width: 100%;
@@ -41,14 +59,34 @@
 .marg{
   margin:50rpx 0 150rpx 0 ;
 }
-.pay{
+.gift_use{
+  width: 100% !important;
   background-color: #db0426;
   color: white;
   border-radius: 40rpx;
+  padding: 20rpx;
 }
 .clc{
   width:96%;
   position: absolute;
   bottom: 30rpx;
   left: 2%;
+}
+.tab_bottom{
+  position: absolute;
+  bottom: 4rpx;
+  top: 40rpx;
+  left: 140rpx;
+  width: 90rpx;
+  height: 2rpx;
+  background-color: #db0426;
+}
+.tab_bottom1{
+  position: absolute;
+  bottom: 4rpx;
+  top: 40rpx;
+  right: 140rpx;
+  width: 90rpx;
+  height: 2rpx;
+  background-color: #db0426;
 }

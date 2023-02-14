@@ -12,11 +12,14 @@ page{
 }
 .head_points{
   margin-bottom: 40rpx;
+  display: flex;
 }
+/* 日历房订单 */
 .head_t1{
   color: #fff;
   font-size: 28rpx;
   font-weight: 800;
+  justify-content: center;
 }
 .head_t2{
   color: #fff;

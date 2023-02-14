@@ -41,8 +41,8 @@ Page({
         url:"/pages/market/marketOrderList/marketOrderList"
       })
     }else if(val==3){ //礼品卡支付
-      wx.reLaunch({
-        url: '/pages/ucenter/gift/giftresult/giftresult?orderIds='+this.data.orderId,
+      wx.redirectTo({
+        url: '/pages/ucenter/gift/giftresult/giftresult?orderId='+this.data.orderId,
       })
     }else if(val==4){ //礼品卡主页
       wx.reLaunch({

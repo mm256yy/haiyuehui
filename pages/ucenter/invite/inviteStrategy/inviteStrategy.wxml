@@ -33,7 +33,7 @@
         <view class="strategy_li_h1">攻略二</view>
         <view class="strategy_li_box">
           <view class="strategy_li_h2">所有顾客扫码入住，将获得佣金提成4%</view>
-          <view class="strategy_li_h3">（若是扫码成功，顾客同样会获得5元津贴）</view>
+          <view class="strategy_li_h3">（若是扫码成功，顾客绑定邀请人）</view>
         </view>
       </view>
     </view>
@@ -41,9 +41,9 @@
       <view class="strategy_title">疑惑解答</view>
       <view class="strategy_problem_text">1.全民营销提现功能暂未开发，请敬请期待</view>
       <!-- <view class="strategy_problem_text">2.发展者是顾客的首位扫码的人员，今后该顾客的消费都将于发展者绑定，拿到对应佣金。</view> -->
-      <view class="strategy_problem_text">3.攻略二中，若提供二维码为多人，那最接近支付的那次扫码推广者，将是唯一获取佣金。</view>
-      <view class="strategy_problem_text">4.攻略二中，用户获得5元津贴可多次使用，时间有限期为24小时，期间内的消费，提供二维码人员可多次获取佣金。</view>
-      <view class="strategy_problem_text">5.最终解释权归本公司所有</view>
+      <view class="strategy_problem_text">2.攻略二中，若提供二维码为多人，那最接近支付的那次扫码推广者，将是唯一获取佣金。</view>
+      <!-- <view class="strategy_problem_text">4.攻略二中，用户获得1元津贴可多次使用，时间有限期为24小时，期间内的消费，提供二维码人员可多次获取佣金。</view> -->
+      <view class="strategy_problem_text">3.最终解释权归本公司所有</view>
     </view>
   </view>
 </view>

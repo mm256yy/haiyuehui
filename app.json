@@ -46,7 +46,6 @@
     "pages/ucenter/set/oftenList/oftenList",
     "pages/ucenter/set/oftenEdit/oftenEdit",
     "pages/ucenter/set/information/information",
-    
     "pages/ucenter/wallet/walletAmount/walletAmount",
     "pages/ucenter/wallet/walletConsume/walletConsume",
     "pages/ucenter/wallet/walletRecharge/walletRecharge",
@@ -73,20 +72,22 @@
     "pages/ucenter/nuclein/health/health",
     "pages/ucenter/nuclein/scan/scan",
     "pages/logs/logs",
-
-     
     "pages/ucenter/notify/notifyList/notifyList",
-
     "pages/ucenter/gift/giftList/giftList",
+    "pages/ucenter/gift/giftCard/giftCard",
     "pages/ucenter/gift/paygift/paygift",
     "pages/ucenter/gift/giftresult/giftresult",
     "pages/ucenter/gift/successfulGift/successfulGift",
     "pages/ucenter/gift/orderDetail/orderDetail",
-    "pages/ucenter/gift/giftothersresult/giftothersresult"
+    "pages/ucenter/gift/giftothersresult/giftothersresult",
+    "pages/city/city"
   ],
-  "permission":{
-    "scope.userLocation":{
-      "desc":"请点击确定"
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "请点击确定"
     }
   },
   "window": {
@@ -96,17 +97,17 @@
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },
-  "subpackages": [  
+  "subpackages": [
     {
-      "root":"subpackage", 
-      "name":"subpackage", 
-      "pages":[
+      "root": "subpackage",
+      "name": "subpackage",
+      "pages": [
         "pages/service/serviceIndex/serviceIndex",
         "pages/member/memberIndex/memberIndex",
         "pages/member/memberPower/memberPower",
         "pages/member/memberAgree/memberAgree"
       ],
-      "independent":false 
+      "independent": false
     }
   ],
   "tabBar": {
@@ -119,7 +120,7 @@
         "pagePath": "pages/index/index",
         "iconPath": "static/images/tab/index2.png",
         "selectedIconPath": "static/images/tab/index1.png",
-        "text": "酒店"
+        "text": "首页"
       },
       {
         "pagePath": "pages/market/marketIndex/marketIndex",

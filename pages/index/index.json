@@ -1,5 +1,8 @@
 {
   "navigationBarTitleText": "首页",
-  "usingComponents": {},
-  "navigationStyle": "custom"
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "i-button":"../../dist/button/index",
+    "i-icon": "../../dist/icon/index"
+  }
 }

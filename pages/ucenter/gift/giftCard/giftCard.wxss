@@ -1,0 +1,7 @@
+.box{
+  padding: 30rpx;
+}
+.content view{
+  color: black;
+  font-weight: 600;
+}

@@ -1,14 +1,10 @@
 <view class="container">
   <view class="home_head">
     <view class="home_swiper">
-      <swiper 
-        indicator-dots="false"
-        autoplay="true"
-        interval="5000"
-        >
+      <swiper indicator-dots="false" autoplay="true" interval="5000">
         <block wx:for="{{bannerUrls}}" wx:key="item">
           <swiper-item>
-            <image src="{{item.img}}" class="banner_image" data-tap="{{item.bindtap}}" bindtap="goto"/>
+            <image src="{{item.img}}" class="banner_image" data-tap="{{item.bindtap}}" bindtap="goto" />
           </swiper-item>
         </block>
       </swiper>
@@ -17,8 +13,8 @@
       <view class="booking_box">
         <!-- <view class="booking_hotels" >选择入住时间</view> -->
         <view class="booking_ul" bindtap="calendarShow">
-          <view class="booking_li">
-            <view class="booking_li_h5">入住时间1</view>
+          <!-- <view class="booking_li">
+            <view class="booking_li_h5">入住时间</view>
             <view class="booking_li_time">
               <text class="booking_li_days">{{show.startTime}}</text>
               <text class="booking_li_h5">{{show.startWeek}}</text>
@@ -33,8 +29,33 @@
           </view>
           <view class="booking_li booking_li_totle">
             <text class="booking_li_h5"></text><text class="booking_li_h6">{{show.num}}</text><text class="booking_li_h5">晚</text>
+          </view> -->
+          <view class="booking_li">
+            <view>{{city}}</view>
+           
+            <view bindtap="chooseCity">
+              我的位置
+              <!-- <i-icon type="ios-pin" size="28" style="width:20rpx;color:red"/> -->
+              <i-icon type="coordinates" size="20" color="#80848f" />
+              <!-- <Icon type="ios-pin" /> -->
+            </view>
           </view>
         </view>
+          <view class="booking_li booking_ul">
+            <view>
+              今天入住
+            </view>
+            <view>
+              <i-button type="ghost" size="small" shape="circle" style="width:30rpx;height:10rpx">共一晚</i-button>
+              <!-- 共一晚 -->
+            </view>
+            <view>
+            周四离店
+            </view>
+          </view>
+          <view>
+          
+          </view>
         <view>
           <view bindtap="hotelsList" class="booking_btn">预定酒店</view>
           <view bindtap="orderTransfer" class="order_btn">查询订单</view>
@@ -44,37 +65,36 @@
   </view>
   <view class="home_recommend">
     <view class="recommend_ul">
-      <swiper 
-        indicator-dots="false"
-        autoplay="true"
-        interval="5000"
-        >
+      <swiper indicator-dots="false" autoplay="true" interval="5000">
         <block wx:for="{{recommendUrls}}" wx:key="item">
           <swiper-item>
-            <image src="{{item.img}}" class="recommend_image" mode="widthFix" data-tap="{{item.bindtap}}" bindtap="goto"/>
+            <image src="{{item.img}}" class="recommend_image" mode="widthFix" data-tap="{{item.bindtap}}"
+              bindtap="goto" /> 
           </swiper-item>
         </block>
       </swiper>
-    </view>
+    </view> 
     <view class="broadcast_ul">
       <view class="broadcast_li" bindtap="goCoupon">
-        <image class="broadcast_img" mode="widthFix" src="/static/images/broadcast2.jpg" alt=""/>
+        <image class="broadcast_img" mode="widthFix" src="/static/images/broadcast2.jpg" alt="" />
       </view>
       <view class="broadcast_li_i"></view>
       <view class="broadcast_li" bindtap="goIntroduceImg">
-        <image class="broadcast_img" mode="widthFix" src="/static/images/broadcast1.jpg" alt=""/>
+        <image class="broadcast_img" mode="widthFix" src="/static/images/broadcast1.jpg" alt="" />
       </view>
     </view>
   </view>
   <!-- <view class="home_member">  
-    <image src="/static/images/member-home.jpg" mode="widthFix"></image>
+    <image src="/static/images/member-home.jpg" mode="widthFix"></image> 25实勘 2疑似 8聊天==880
   </view> -->
   <view class="pop" wx:if="{{popShow}}" bindtap="popHide">
     <view class="black"></view>
     <view class="pop_coupon">
-      <view class="pop_img_box" bindtap="goCoupon"><image class="pop_img" src="/static/images/pop_coupon.png"></image></view>
+      <view class="pop_img_box" bindtap="goCoupon">
+        <image class="pop_img" src="/static/images/pop_coupon.png"></image>
+      </view>
     </view>
-  </view>
+  </view> 
   <!--<view>
     <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
       <view class="picker">

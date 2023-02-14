@@ -1,5 +1,5 @@
 let util = require('../../../../utils/util.js');
-let member = require('../../../utils/member.js');
+const member = require('../../../utils/member.js');
 let user = require('../../../../utils/user.js');
 Page({
   data: {

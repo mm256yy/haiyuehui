@@ -39,9 +39,9 @@
   padding: 20rpx 0rpx;
   border-bottom:1px solid #f1f1f1 ;
 }
-.booking_li{
+/* .booking_li{
   flex: 1 1 auto;
-}
+} */
 .booking_li_totle{
   width: 40rpx;
   padding-top:12rpx ;
@@ -145,4 +145,9 @@
 .broadcast_img{
   width: 100%;
   border-radius:10rpx;
+}
+.booking_li{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }

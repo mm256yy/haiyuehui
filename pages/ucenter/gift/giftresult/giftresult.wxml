@@ -1,4 +1,5 @@
 <view>
+  <wxs src="../../../../filter/filter.wxs" module="filter" />
   <view class="backGround"></view>
   <image src="{{orderIds?datas[0].imgUrl:imgUrl}}" class="imgStyle"></image>
   <view class="title">{{orderIds?datas[0].money/100:money/100}}元礼品卡</view>
@@ -6,12 +7,9 @@
     <view wx:for="{{list}}" wx:key="index" bindtap="tab" data-id="{{item.id}}">{{item.name}}</view>
   </view>
   <view class="mar">
-    <view wx:if="{{show}}" class="marg">
-      <textarea placeholder-class="placeholder" class="textarea_content" bindblur="bindRemarkInput" bindinput="bindRemarkInput" placeholder="用咖啡敬你一杯，我的朋友！" maxlength="100" cols="30" rows="10"></textarea>
-    </view>
-    <view wx:if="{{!show}}" class="mystyle marg">“工作这么辛苦，对自己好一点~”</view>
     <view class="clc">
-      <button class="pay" style="width:100%" bindtap="{{give}}" open-type="{{send}}" data-imgUrl="{{imgUrl}}" data-money="{{money}}"> {{title}}</button>
+      <button wx:if="{{menuVal == 1}}" class="gift_use" open-type="share" data-orderId="{{orderId}}" data-imgUrl="{{imgUrl}}" data-money="{{money}}">分享他人</button>
+      <button wx:if="{{menuVal == 2}}" class="gift_use" bindtap="giftUse">立即使用</button>
     </view>
   </view>
 </view>

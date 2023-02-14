@@ -1,4 +1,6 @@
 {
-  "navigationBarTitleText": "常住人簿",
-  "usingComponents": {}
+  "navigationBarTitleText": "选择入住人",
+  "usingComponents": {
+    "i-button": "../../dist/button/index"
+}
 }

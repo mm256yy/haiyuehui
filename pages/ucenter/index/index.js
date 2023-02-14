@@ -27,22 +27,26 @@ Page({
       {
         bindtap:'wallet',
         img:'/static/images/u-menu3.png',
-        text:'我的钱包'
+        // text:'我的钱包'
+        text:"酒店订单"
       },
       {
         bindtap:'coupon',
         img:'/static/images/u-menu2.png',
-        text:'我的劵包'
+        // text:'我的劵包'
+        text:"商城订单"
       },
       {
         bindtap:'meeting',
         img:'/static/images/u-menu5.png',
-        text:'会议与团队'
+        // text:'会议与团队'
+        text:"积分兑换"
       },
       {
         bindtap:'goInvitation',
         img:'/static/images/u-menu4.png',
-        text:'全民营销'
+        // text:'全民营销'
+        text:"关注我们"
       },
     ],
     otherIcon:[
@@ -50,16 +54,28 @@ Page({
       {img:'/static/images/other/other11.png',text:'我的消息',tap:'goNotify',badge:0},
       {img:'/static/images/other/other8.png',text:'会员权益',tap:'goMember',badge:0},
       {img:'/static/images/other/other10.png',text:'积分商城',tap:'goPointsMarket',badge:0},
+      {img:'/static/images/other/other12.png',text:'我的礼品卡',tap:'giftCard',badge:0},
       {img:'/static/images/other/other2.png',text:'常住人簿',tap:'goOften',badge:0},
       // {img:'/static/images/other/other3.png',text:'发票抬头',tap:'goInvoice',badge:0},
       {img:'/static/images/other/other4.png',text:'隐私条款',tap:'goPrivacy',badge:0},
-      {img:'/static/images/other/other4.png',text:'我的礼品卡',tap:'giftCard',badge:0},
       {img:'/static/images/other/other5.png',text:'客服帮助',tap:'goService',badge:0},
       {img:'/static/images/other/other9.png',text:'设置',tap:'goSet',badge:0},
     ],
     badge:{
       menu:[0,0,0,0]
     },
+    transactionList:["在线入住","在线续住","自助离店"],
+    serveList:["开发票","客房服务","呼叫打扫","一键吐槽"],
+    otherList:[
+    {img:"",text:"会员权益"},
+    {img:"",text:"积分商城"},
+    {img:"",text:"邀请有礼"},
+    {img:"",text:"常住人铺"},
+    {img:"",text:"我的钱包"},
+    {img:"",text:"我的券包"},
+    {img:"",text:"礼品卡"},
+    {img:"",text:"设置"}
+  ]
   },
   onLoad: function () {
     user.goToLogin();
@@ -147,6 +163,13 @@ Page({
   sign(){
     wx.navigateTo({
       url: "/pages/auth/login/login"
+      // url:" /pages/auth/register/register"
+    })
+  },
+  cesi(){
+    wx.navigateTo({
+      // url: "/pages/auth/login/login"
+      url:"/pages/auth/register/register"
     })
   },
   //绑定手机号码

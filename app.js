@@ -5,6 +5,7 @@ App({
   onLaunch: function () { 
     this.update();  //是否更新
     // this.userInfo();// 获取用户信息
+    this.overShare(); //添加分享监听
   },
   onShow: function(data) {
     this.renderingTime();  //日历
@@ -172,6 +173,18 @@ App({
       ret[str[0]] = str[1];
     }
     return ret;
+  },
+  overShare(){
+    wx.onAppRoute(()=>{
+      var pages = getCurrentPages();
+      var curPage = pages[pages.length-1];
+      if (curPage) {
+        wx.showShareMenu({
+          withShareTicket: true,
+          menus: ['shareAppMessage', 'shareTimeline']
+        })
+      }
+    });
   },
   //
   globalData: {},  //切勿删除

@@ -44,7 +44,7 @@ Page({
     })
     this.init(0,1);
   },
-  // 上拉刷新
+  // 上拉加载
   onReachBottom: function() {
     this.setData({
       pageNo:this.data.pageNo + 1,

@@ -2,8 +2,8 @@
   <import src="/template/template"/> 
   <view class="head">
     <view class="head_points">
-      <view class="head_t1">可用积分</view>
-      <view class="head_t2">{{infoPoints}}</view>
+      <text class="head_t1">我的积分：{{infoPoints}}</text>
+      <!-- <text class="head_t2"></text> -->
     </view>
     <view class="head_menu">
       <text class="head_t3" bindtap="goPointsHistory">积分明细 </text>

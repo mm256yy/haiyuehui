@@ -334,3 +334,46 @@ page{
   text-align: center;
   font-size: 24rpx;
 }
+.ucenter_banner{
+  width: 100%;
+}
+.ucenter_banner_img{
+  border-radius:20rpx ;
+  margin:20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  background-color: #fff;
+  height: 200rpx;
+}
+.otherListStyleList{
+  width:25%;
+  height:150rpx;
+  padding: 20rpx 0 0 20rpx;
+}
+.otherListStyle{
+  width: 100rpx;
+  height: 100rpx;
+  background-color: black;
+}
+.transactionListStyle{
+  width: 30%;
+  height: 100rpx;
+  background-color: #fff;
+  text-align: center;
+  line-height: 100rpx;
+  margin: 0 30rpx 0 0 ;
+  border-radius:20rpx ;
+}
+.transactionListStyleF{
+  width: 23%;
+  height: 100rpx;
+  background-color: #fff;
+  text-align: center;
+  line-height: 100rpx;
+  margin: 0 10rpx 0 0 ;
+  border-radius:20rpx ;
+}
+
+

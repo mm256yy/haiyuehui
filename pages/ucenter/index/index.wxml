@@ -27,15 +27,62 @@
       </view>
     </view>
   </view>
-  <view class="ucenter_news" wx:if="{{ucenter.allowanceMoney != 0&&ucenter.allowanceMoney}}" bindtap="goHotelsList">
+  <view class="ucenter_banner">
+   <view class="ucenter_banner_img">
+    全名营销推广轮播
+   </view>
+  </view>
+  <view  class="ucenter_banner"> 
+   <view style="  width: 95%;margin:20rpx auto;">
+    <view style="margin:0 0 20rpx 0">
+    <text style="color:black">在线办理入离店</text>
+    <text style="color:gray;margin-left:20rpx">无接触办理，快捷办理</text>
+    </view>
+    <view style="display:flex">
+     <view wx:for="{{transactionList}}" wx:key="index" class="transactionListStyle">{{item}}</view>
+    </view>
+   </view>
+   <view style="  width: 95%;margin:20rpx auto;">
+    <view style="margin:0 0 20rpx 0">
+      <text style="color:black">在线管家服务</text>
+      <text style="color:gray;margin-left:20rpx">一键呼叫，快速完成</text>
+    </view>
+    <view style="display:flex">
+      <view wx:for="{{serveList}}" wx:key="index" class="transactionListStyleF">{{item}}</view>
+    </view>
+   </view>
+  </view>
+  <view  class="ucenter_banner">
+  <view style="  width: 95%;margin:0 auto;">
+   <view style="display:flex;justify-content: space-between;">
+    <text>常用功能</text>
+    <text style="color:gray">更多></text>
+   </view>
+   <view style="display:flex;flex-wrap: wrap;">
+      <view wx:for="{{otherList}}" wx:key="index" class="otherListStyleList">
+      <view class="otherListStyle"></view>
+      <view style="margin:10rpx 0;font-size:24rpx;text-align: center;width:100rpx">{{item.text}}</view>
+      </view>
+   </view>
+  </view>
+  <view>
+   <view>
+    <!-- <img src="" alt=""> -->
+    <text></text>
+   </view>
+  </view>
+  </view>
+  <!-- <view class="ucenter_news" wx:if="{{ucenter.allowanceMoney != 0&&ucenter.allowanceMoney}}" bindtap="goHotelsList">
     <view class="news_box">
+
+
       <view class="news_title">海悦会送你无门槛{{filter.moneyNatural(ucenter.allowanceMoney)}}元现金津贴</view>
       <view class="news_label" wx:if="{{ucenter.endTime == 0}}">激活后24小时内，可无限次使用！</view>
       <view class="news_btn" wx:if="{{ucenter.endTime == 0}}">激活使用</view>
       <view class="news_label" wx:if="{{ucenter.endTime != 0}}">已激活，截止至{{ucenter.endTime}}</view>
       <view class="news_btn" wx:if="{{ucenter.endTime != 0}}">继续使用</view>
     </view>
-  </view>
+  </view> -->
   <view class="ucenter_other">
     <view class="other_ul">
       <view class="other_li" wx:for="{{otherIcon}}" wx:key="index" bindtap="{{item.tap}}">
@@ -48,4 +95,5 @@
       </view>
     </view>
   </view>
+  <view bindtap="cesi">测试</view>
 </view>
